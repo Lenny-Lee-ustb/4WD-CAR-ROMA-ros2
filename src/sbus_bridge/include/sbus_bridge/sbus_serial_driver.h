@@ -62,7 +62,7 @@ namespace sbus_serial
 		bool startReceiverThread();
 		bool stopReceiverThread();
 
-		static constexpr int kSbusFrameLength_ = 25;
+		static constexpr int kSbusFrameLength_ = 35;
 		static constexpr uint8_t kSbusHeaderByte_ = 0x0F;
 		static constexpr uint8_t kSbusFooterByte_ = 0x00;
 		static constexpr int kPollTimeoutMilliSeconds_ = 500;

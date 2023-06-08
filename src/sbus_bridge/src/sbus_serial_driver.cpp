@@ -259,16 +259,13 @@ namespace sbus_serial
 						// as well as zeros in the four most significant bytes of the flag
 						// byte (byte 23)
 						if( bytes_buf.front() == kSbusHeaderByte_
-						    && !(bytes_buf[kSbusFrameLength_ - 2] & 0xF0)
-						    && bytes_buf[kSbusFrameLength_ - 1] == kSbusFooterByte_ )
+						    && !(bytes_buf[kSbusFrameLength_ - 2] & 0xF0))
 						{
-
 							for( uint8_t i = 0; i < kSbusFrameLength_; i++ )
 							{
 								sbus_msg_bytes[i] = bytes_buf.front();
 								bytes_buf.pop_front();
 							}
-
 							valid_sbus_message_received = true;
 						}
 						else
@@ -276,7 +273,7 @@ namespace sbus_serial
 							// If it is not a valid SBUS message but has a correct header byte
 							// we need to pop it to prevent staying in this loop forever
 							bytes_buf.pop_front();
-							printf( "SBUS message framing not in sync\n" );
+							printf( "SBUS message framing not in sync here\n" );
 						}
 
 						// If not, pop front elements until we have a valid header byte
@@ -308,50 +305,35 @@ namespace sbus_serial
 		SBusMsg sbus_msg;
 
 		// Decode the 16 regular channels
-		sbus_msg.channels[0] = (((uint16_t)sbus_msg_bytes[1])
-					| ((uint16_t)sbus_msg_bytes[2] << 8)) & 0x07FF;
-		sbus_msg.channels[1] = (((uint16_t)sbus_msg_bytes[2] >> 3)
-					| ((uint16_t)sbus_msg_bytes[3] << 5)) & 0x07FF;
-		sbus_msg.channels[2] =
-			(((uint16_t)sbus_msg_bytes[3] >> 6) | ((uint16_t)sbus_msg_bytes[4] << 2)
-			 | ((uint16_t)sbus_msg_bytes[5] << 10)) & 0x07FF;
-		sbus_msg.channels[3] = (((uint16_t)sbus_msg_bytes[5] >> 1)
-					| ((uint16_t)sbus_msg_bytes[6] << 7)) & 0x07FF;
-		sbus_msg.channels[4] = (((uint16_t)sbus_msg_bytes[6] >> 4)
-					| ((uint16_t)sbus_msg_bytes[7] << 4)) & 0x07FF;
-		sbus_msg.channels[5] = (((uint16_t)sbus_msg_bytes[7] >> 7)
-					| ((uint16_t)sbus_msg_bytes[8] << 1) | ((uint16_t)sbus_msg_bytes[9] << 9))
-				       & 0x07FF;
-		sbus_msg.channels[6] = (((uint16_t)sbus_msg_bytes[9] >> 2)
-					| ((uint16_t)sbus_msg_bytes[10] << 6)) & 0x07FF;
-		sbus_msg.channels[7] = (((uint16_t)sbus_msg_bytes[10] >> 5)
-					| ((uint16_t)sbus_msg_bytes[11] << 3)) & 0x07FF;
-		sbus_msg.channels[8] = (((uint16_t)sbus_msg_bytes[12])
-					| ((uint16_t)sbus_msg_bytes[13] << 8)) & 0x07FF;
-		sbus_msg.channels[9] = (((uint16_t)sbus_msg_bytes[13] >> 3)
-					| ((uint16_t)sbus_msg_bytes[14] << 5)) & 0x07FF;
-		sbus_msg.channels[10] = (((uint16_t)sbus_msg_bytes[14] >> 6)
-					 | ((uint16_t)sbus_msg_bytes[15] << 2)
-					 | ((uint16_t)sbus_msg_bytes[16] << 10)) & 0x07FF;
-		sbus_msg.channels[11] = (((uint16_t)sbus_msg_bytes[16] >> 1)
-					 | ((uint16_t)sbus_msg_bytes[17] << 7)) & 0x07FF;
-		sbus_msg.channels[12] = (((uint16_t)sbus_msg_bytes[17] >> 4)
-					 | ((uint16_t)sbus_msg_bytes[18] << 4)) & 0x07FF;
-		sbus_msg.channels[13] = (((uint16_t)sbus_msg_bytes[18] >> 7)
-					 | ((uint16_t)sbus_msg_bytes[19] << 1)
-					 | ((uint16_t)sbus_msg_bytes[20] << 9)) & 0x07FF;
-		sbus_msg.channels[14] = (((uint16_t)sbus_msg_bytes[20] >> 2)
-					 | ((uint16_t)sbus_msg_bytes[21] << 6)) & 0x07FF;
-		sbus_msg.channels[15] = (((uint16_t)sbus_msg_bytes[21] >> 5)
-					 | ((uint16_t)sbus_msg_bytes[22] << 3)) & 0x07FF;
+		for (uint8_t i = 0; i < 16; i++)
+		{
+			sbus_msg.channels[i] = ((uint16_t)sbus_msg_bytes[2*i+1]<< 8) | ((uint16_t)sbus_msg_bytes[2*i+2]);
+		}
+	
+		// sbus_msg.channels[0] = ((uint16_t)sbus_msg_bytes[1]<< 8) | ((uint16_t)sbus_msg_bytes[2]);
+		// sbus_msg.channels[1] = ((uint16_t)sbus_msg_bytes[3]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[2] = ((uint16_t)sbus_msg_bytes[5]<< 8) | ((uint16_t)sbus_msg_bytes[6]);
+		// sbus_msg.channels[3] = ((uint16_t)sbus_msg_bytes[7]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[4] = ((uint16_t)sbus_msg_bytes[9]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[5] = ((uint16_t)sbus_msg_bytes[11]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[6] = ((uint16_t)sbus_msg_bytes[13]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[7] = ((uint16_t)sbus_msg_bytes[15]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[8] = ((uint16_t)sbus_msg_bytes[17]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[9] = ((uint16_t)sbus_msg_bytes[19]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[10] = ((uint16_t)sbus_msg_bytes[21]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[11] = ((uint16_t)sbus_msg_bytes[23]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[12] = ((uint16_t)sbus_msg_bytes[25]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[13] = ((uint16_t)sbus_msg_bytes[27]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[14] = ((uint16_t)sbus_msg_bytes[29]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
+		// sbus_msg.channels[15] = ((uint16_t)sbus_msg_bytes[31]<< 8) | ((uint16_t)sbus_msg_bytes[4]);
 
-		if( sbus_msg_bytes[23] & (1 << 2)) {
+		if( sbus_msg_bytes[33] & (1 << 2)) {
 			sbus_msg.frame_lost = true;
 		} else {
 			sbus_msg.frame_lost = false;
 		}
 
-		if( sbus_msg_bytes[23] & (1 << 3)) {
+		if( sbus_msg_bytes[33] & (1 << 3)) {
 			sbus_msg.failsafe = true;
 		} else {
 			sbus_msg.failsafe = false;
