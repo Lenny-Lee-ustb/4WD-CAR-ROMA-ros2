@@ -53,7 +53,7 @@ int main( int argc, char **argv )
 	double enableChannelProportionalMin;
 	double enableChannelProportionalMax;
 
-	port = nh->declare_parameter<std::string>("port", "/dev/ttyTHS2");
+	port = nh->declare_parameter<std::string>("port", "/dev/ttyUSB0");
 	refresh_rate_hr = nh->declare_parameter<int>("refresh_rate_hz", 5);
 	rxMinValue = nh->declare_parameter<int>("rxMinValue", 172);
 	rxMaxValue = nh->declare_parameter<int>("rxMaxValue", 1811);
@@ -69,7 +69,6 @@ int main( int argc, char **argv )
 	float rawSpan = static_cast<float>(rxMaxValue-rxMinValue);
 	float outSpan = static_cast<float>(outMaxValue-outMinValue);
 
-//	ros::Publisher pub = nh.advertise<sbus_serial::Sbus>( "sbus", 100 );
 	auto pub = nh->create_publisher<sbus_interface::msg::Sbus>("sbus", 100);
 	auto loop_rate = rclcpp::Rate((1.0 / refresh_rate_hr) * 1e9);
 

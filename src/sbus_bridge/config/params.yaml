@@ -1,7 +1,7 @@
 sbus_bridge_node:
   ros__parameters:
     port: "/dev/sbus"
-    refresh_rate_hz: 50
+    refresh_rate_hz: 100
     rxMinValue: 192
     rxMaxValue: 1792
     outMinValue: 0

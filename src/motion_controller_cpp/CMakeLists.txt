@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(lower_controller_cpp)
+project(motion_controller_cpp)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -8,6 +8,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(sbus_interface REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -23,10 +24,10 @@ endif()
 
 ament_package()
 
-add_executable(lower_controller src/lower_controller.cpp)
-ament_target_dependencies(lower_controller rclcpp)
+add_executable(motion_controller src/motion_controller.py)
+ament_target_dependencies(motion_controller rclcpp)
 install(TARGETS
-  lower_controller
+  motion_controller
   DESTINATION lib/${PROJECT_NAME}
 )
 

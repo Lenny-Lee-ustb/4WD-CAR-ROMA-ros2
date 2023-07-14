@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'wt906_imu_py'
+package_name = 'servo_rs485_py'
 
 setup(
     name=package_name,
@@ -13,16 +13,13 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='lenny',
+    maintainer='car02',
     maintainer_email='qq1021620522@gmail.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "wt906_serial = wt906_imu_py.wt906_serial:main",
-            "fast_pub_test = wt906_imu_py.fast_pub_test:main"
         ],
     },
 )
-
