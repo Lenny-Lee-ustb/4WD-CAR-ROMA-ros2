@@ -25,7 +25,6 @@ class ImuNode(Node):
         self.ImuFrameID = self.get_parameter('ImuFrameID').get_parameter_value().string_value
         self.publisher_ = self.create_publisher(msg_type=Imu, topic='imu_state_'+str(self.serial_ID), qos_profile=qos_profile) # init publisher
 
-        
         # variables for DueData
         self.ACCData=[0.0]*8
         self.GYROData=[0.0]*8

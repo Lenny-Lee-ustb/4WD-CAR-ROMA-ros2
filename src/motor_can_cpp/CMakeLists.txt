@@ -22,3 +22,10 @@ if(BUILD_TESTING)
 endif()
 
 ament_package()
+
+add_executable(motor_can src/motor_can.cpp)
+ament_target_dependencies(motor_can rclcpp)
+install(TARGETS
+  motor_can
+  DESTINATION lib/${PROJECT_NAME}
+)

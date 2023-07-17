@@ -10,6 +10,11 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sbus_interface REQUIRED)
 
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -24,7 +29,7 @@ endif()
 
 ament_package()
 
-add_executable(motion_controller src/motion_controller.py)
+add_executable(motion_controller src/motion_controller.cpp)
 ament_target_dependencies(motion_controller rclcpp)
 install(TARGETS
   motion_controller
