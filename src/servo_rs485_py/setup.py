@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "servo_rs485_py = servo_rs485_py.servo_rs485_py:main"
+            "servo_rs485_node = servo_rs485_py.servo_rs485:main"
         ],
     },
 )

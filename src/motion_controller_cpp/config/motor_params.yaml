@@ -1,0 +1,17 @@
+motor_can_node : # node name
+  ros__parameters:
+    CanSeries: "can3"
+    wheel_radius: 0.07
+    motor_ratio: 5.18
+    Kp: 1.1
+    Ki: 0.4
+    Kd: 0.0
+    IBound: 0.3
+    dt: 0.001
+    preTorque: 0.15
+    filter_a1: 0.828
+    filter_b0: 0.086
+    filter_b1: 0.086
+    K_motor: 0.0813
+    maxTorque: 1.6
+    minTorque: -1.6

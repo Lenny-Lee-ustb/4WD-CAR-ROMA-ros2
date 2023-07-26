@@ -1,0 +1,12 @@
+sbus_bridge_node:
+  ros__parameters:
+    port: "/dev/sbus"
+    refresh_rate_hz: 100
+    rxMinValue: 192
+    rxMaxValue: 1792
+    outMinValue: 0
+    outMaxValue: 1000
+    silentOnFailsafe: false
+    enableChannelNum: -1
+    enableChannelProportionalMin: 0.0
+    enableChannelProportionalMax: 1.0

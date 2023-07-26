@@ -1,0 +1,11 @@
+servo_rs485_node : # node name
+  ros__parameters:
+    left_min_position: 0
+    left_mid_position: 2047
+    left_max_position: 4095
+    right_min_position: 0
+    right_mid_position: 2047
+    right_max_position: 4095
+    baud_rate: 1000000
+    device_name: /dev/servo
+

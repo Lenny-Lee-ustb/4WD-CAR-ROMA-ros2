@@ -8,6 +8,13 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
+
+include_directories(include)
+
+install(DIRECTORY
+        config
+        DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -21,10 +28,13 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+
 ament_package()
 
-add_executable(motor_can src/motor_can.cpp)
-ament_target_dependencies(motor_can rclcpp)
+add_executable(motor_can 
+src/motor_can.cpp
+)
+ament_target_dependencies(motor_can rclcpp geometry_msgs)
 install(TARGETS
   motor_can
   DESTINATION lib/${PROJECT_NAME}
