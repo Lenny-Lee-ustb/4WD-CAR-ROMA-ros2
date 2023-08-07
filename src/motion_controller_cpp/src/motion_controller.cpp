@@ -61,7 +61,7 @@ void Motion_controller_node::sbus_command_callback(const sbus_interface::msg::Sb
     frame_lost_ = sbus_cmd->frame_lost;
     // signal inout and store
     sbus_cmd_.linear.x = double(longSbusIn) / 500.0 * speed_max_;
-    sbus_cmd_.angular.z = double(steerSbusIn) / 500.0 * angle_max_;
+    sbus_cmd_.angular.z = - double(steerSbusIn) / 500.0 * angle_max_;
 }
 
 void Motion_controller_node::upper_command_callback(const geometry_msgs::msg::Twist::SharedPtr upper_cmd)
@@ -117,7 +117,7 @@ void Motion_controller_node::fwdKinematicCal(const double vX, const double avZ)
     motor_cmd_pub_->publish(motor_cmd_);
 
     servo_cmd_.polygon.points[0].x  = avZ;
-    servo_cmd_.polygon.points[1].x  = -avZ;
+    servo_cmd_.polygon.points[1].x  = avZ;
     servo_cmd_pub_->publish(servo_cmd_);
 }
 

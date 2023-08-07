@@ -25,7 +25,7 @@ def generate_launch_description():
         executable="motion_controller",
         parameters=[
             {"speedMax":3.0},
-            {"angleMax":0.7}
+            {"angleMax":0.75}
         ]
     )
 

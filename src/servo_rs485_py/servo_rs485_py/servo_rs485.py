@@ -3,7 +3,7 @@ from rclpy.node import Node
 import math
 from dynamixel_sdk import * # Uses Dynamixel SDK library 
 
-from geometry_msgs.msg import PolygonStamped, Point
+from geometry_msgs.msg import PolygonStamped, Point32
 from rclpy.qos import QoSProfile
 from rclpy.duration import Duration
 from rclpy.qos import QoSDurabilityPolicy
@@ -22,21 +22,31 @@ class ServoNode(Node):
         self.__len_present_position = 4
         self.__len_goal_position = 4
         self.__left_ID = 1
-        self.__left_min_position = self.declare_parameter("left_min_position",0)
-        self.__left_mid_position = self.declare_parameter("left_mid_position",2047)
-        self.__left_max_position = self.declare_parameter("left_max_position",4095)
+        self.__left_min_position = self.declare_parameter("left_min_position",0).value
+        self.__left_mid_position = self.declare_parameter("left_mid_position",2047).value
+        self.__left_max_position = self.declare_parameter("left_max_position",4095).value
         self.__right_ID = 2
-        self.__right_min_position = self.declare_parameter("right_min_position",0)
-        self.__right_mid_position = self.declare_parameter("right_mid_position",2047)
-        self.__right_max_position = self.declare_parameter("right_max_position",4095)
-        self.__baud_rate = self.declare_parameter("baud_rate", 1000000)
-        self.__device_name = self.declare_parameter("device_name",'/dev/servo')
-        self.__moving_threshold = self.declare_parameter("moving_threshold", 10)
+        self.__right_min_position = self.declare_parameter("right_min_position",0).value
+        self.__right_mid_position = self.declare_parameter("right_mid_position",2047).value
+        self.__right_max_position = self.declare_parameter("right_max_position",4095).value
+        self.__baud_rate = self.declare_parameter("baud_rate", 1000000).value
+        self.__device_name = self.declare_parameter("device_name",'/dev/servo').value
         self.servo_cmd = [self.__left_mid_position, self.__right_mid_position]
-        self.servo_cmd_sub = PolygonStamped()
 
+        # Init handle , open port, set baudrate
         self.dxl_communication_init()
-
+        # Enable Left servo Torque
+        self.dxl_enable_torque(self.__left_ID)
+        # Enable Right servo Torque
+        self.dxl_enable_torque(self.__right_ID)
+        # Add parameter storage for Left servo present position
+        self.dxl_read_add_param_pos(self.__left_ID)
+        # Add parameter storage for Right servo present position
+        self.dxl_read_add_param_pos(self.__right_ID)
+        # Add parameter storage for Left servo target position
+        self.dxl_write_set_param_pos(self.__left_ID)
+        # Add parameter storage for Right servo target position
+        self.dxl_write_set_param_pos(self.__right_ID)
 
         self.publisher_ = self.create_publisher(PolygonStamped, 'servo_state', qos_profile_pub)
         self.publisher_
@@ -50,21 +60,51 @@ class ServoNode(Node):
         self.groupBulkWrite = GroupBulkWrite(self.portHandler, self.packetHandler)
         self.groupBulkRead = GroupBulkRead(self.portHandler, self.packetHandler)
         # Open port
+        self.dxl_open_port()
+        # Set port baudrate
+        self.dxl_set_baudrate(self.__baud_rate)
+
+    def cmd_callback(self, msg):
+        self.servo_cmd[0] = self.cal_goal_pos(self.__left_min_position,self.__left_mid_position,self.__left_max_position, msg.polygon.points[0].x)
+        self.servo_cmd[1] = self.cal_goal_pos(self.__right_min_position,self.__right_mid_position,self.__right_max_position, -msg.polygon.points[1].x)
+
+    def control_loop_timer(self):
+        self.dxl_write_change_param_pos(self.__left_ID,self.servo_cmd[0])
+        self.dxl_write_change_param_pos(self.__right_ID,self.servo_cmd[1])
+        self.dxl_write_txPacket()
+
+        servo_state_pub = PolygonStamped()
+        servo_left = Point32()
+        servo_right = Point32()
+        self.dxl_read_rxPacket()
+        servo_left.x = float(self.dxl_get_data(self.__left_ID))
+        servo_right.x = float(self.dxl_get_data(self.__right_ID))
+        servo_state_pub.polygon.points.append(servo_left)
+        servo_state_pub.polygon.points.append(servo_right)
+        self.publisher_.publish(servo_state_pub)
+        
+    def cal_goal_pos(self, min_pos, mid_pos, max_pos, goal):
+        angle = int(goal/(2*math.pi)*4096)
+        goal_pos = mid_pos + angle
+        goal_pos = min(max(goal_pos, min_pos), max_pos)
+        return int(goal_pos)
+    
+    def dxl_open_port(self):
         if self.portHandler.openPort():
             self.get_logger().info("Succeeded to open the port")
         else:
             self.get_logger().info("Failed to open the port")
             quit()
 
-        # Set port baudrate
-        if self.portHandler.setBaudRate(self.__baud_rate):
+    def dxl_set_baudrate(self, baudrate):
+        if self.portHandler.setBaudRate(baudrate):
             self.get_logger().info("Succeeded to change the baudrate")
         else:
             self.get_logger().info("Failed to change the baudrate")
 
-        # Enable Left servo Torque
+    def dxl_enable_torque(self, ID):
         dxl_comm_result, dxl_error = self.packetHandler.write1ByteTxRx(self.portHandler, 
-                                                                       self.__left_ID, 
+                                                                       ID, 
                                                                        self.__addr_torque_enable, 
                                                                        self.__torque_enable)
         if dxl_comm_result != COMM_SUCCESS:
@@ -72,39 +112,61 @@ class ServoNode(Node):
         elif dxl_error != 0:
             self.get_logger().info("%s" % self.packetHandler.getRxPacketError(dxl_error))
         else:
-            self.get_logger().info("Dynamixel#%d has been successfully connected" % self.__left_ID)
-        # Enable Right servo Torque
+            self.get_logger().info("Dynamixel#%d has been successfully connected" % ID)
+
+    def dxl_disable_torque(self, ID):
         dxl_comm_result, dxl_error = self.packetHandler.write1ByteTxRx(self.portHandler, 
-                                                                       self.__right_ID, 
+                                                                       ID, 
                                                                        self.__addr_torque_enable, 
-                                                                       self.__torque_enable)
+                                                                       self.__torque_disable)
         if dxl_comm_result != COMM_SUCCESS:
             self.get_logger().info("%s" % self.packetHandler.getTxRxResult(dxl_comm_result))
         elif dxl_error != 0:
             self.get_logger().info("%s" % self.packetHandler.getRxPacketError(dxl_error))
         else:
-            self.get_logger().info("Dynamixel#%d has been successfully connected" % self.__right_ID)
+            self.get_logger().info("Dynamixel#%d has been successfully closed" % ID)
 
-        # Add parameter storage for Left servo present position
-        dxl_addparam_result = self.groupBulkRead.addParam(self.__left_ID, 
+    def dxl_read_add_param_pos(self, ID):
+        dxl_addparam_result = self.groupBulkRead.addParam(ID, 
                                                           self.__addr_present_position, 
                                                           self.__len_present_position)
         if dxl_addparam_result != True:
-            self.get_logger().info("[ID:%03d] groupBulkRead addparam failed" % self.__left_ID)
-        # Add parameter storage for Left servo present position
-        dxl_addparam_result = self.groupBulkRead.addParam(self.__right_ID, 
-                                                          self.__addr_present_position, 
-                                                          self.__len_present_position)
+            self.get_logger().info("[ID:%03d] groupBulkRead addparam failed" % ID)
+
+    def dxl_write_set_param_pos(self, ID, pos):
+        pos = int(pos)
+        goal_pos = [DXL_LOBYTE(DXL_LOWORD(pos)), DXL_HIBYTE(DXL_LOWORD(pos)), DXL_LOBYTE(DXL_HIWORD(pos)), DXL_HIBYTE(DXL_HIWORD(pos))]
+        dxl_addparam_result = self.groupBulkWrite.addParam(ID, self.__addr_goal_position, self.__len_goal_position, goal_pos)
         if dxl_addparam_result != True:
-            self.get_logger().info("[ID:%03d] groupBulkRead addparam failed" % self.__right_ID)
+            print("[ID:%03d] groupBulkRead addparam failed" % ID)
+            quit()
 
-    def cmd_callback(self, msg):
-        self.servo_cmd_sub = msg
-        self.servo_cmd[0] = self.servo_cmd_sub.polygon.point[0].x
-        self.servo_cmd[1] = self.servo_cmd_sub.polygon.point[1].x
+    def dxl_write_change_param_pos(self, ID, pos):
+        pos = int(pos)
+        goal_pos = [DXL_LOBYTE(DXL_LOWORD(pos)), DXL_HIBYTE(DXL_LOWORD(pos)), DXL_LOBYTE(DXL_HIWORD(pos)), DXL_HIBYTE(DXL_HIWORD(pos))]
+        dxl_addparam_result = self.groupBulkWrite.changeParam(ID, self.__addr_goal_position, self.__len_goal_position, goal_pos)
+        if dxl_addparam_result != True:
+            print("[ID:%03d] groupBulkRead addparam failed" % ID)
+            quit()
 
-    def control_loop_timer(self):
-        self.servo_state_pub = PolygonStamped()
+    def dxl_write_txPacket(self):
+        dxl_comm_result = self.groupBulkWrite.txPacket()
+        if dxl_comm_result != COMM_SUCCESS:
+            print("%s" % self.packetHandler.getTxRxResult(dxl_comm_result))
+
+    def dxl_read_rxPacket(self):
+        dxl_comm_result = self.groupBulkRead.txRxPacket()
+        if dxl_comm_result != COMM_SUCCESS:
+            print("%s" % self.packetHandler.getTxRxResult(dxl_comm_result))
+
+    def dxl_get_data(self, ID):
+        dxl_getdata_result = self.groupBulkRead.isAvailable(ID, self.__addr_present_position, self.__len_present_position)
+        if dxl_getdata_result != True:
+            print("[ID:%03d] groupBulkRead getdata failed" % ID)
+            quit()
+        return self.groupBulkRead.getData(ID, self.__addr_present_position, self.__len_present_position)
+
+
 
 def main(args=None):
     rclpy.init(args=args) # 初始化rclpy
