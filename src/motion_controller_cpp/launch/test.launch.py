@@ -55,9 +55,23 @@ def generate_launch_description():
         parameters=[can_config]
     )
 
+    imu_config = os.path.join(
+        get_package_share_directory('motion_controller_cpp'),
+        'config',
+        'imu_params.yaml'
+    )
+    imu_node = Node(
+        package="wt906_imu_py",
+        executable="wt906_serial",
+        name="wt906_serial",
+        output="screen",
+        parameters=[imu_config]
+    )
+
     ld.add_action(sbus_bridge_node)
     ld.add_action(motion_controller_node)
     ld.add_action(servo_485_node)
     ld.add_action(motor_can_node)
+    ld.add_action(imu_node)
 
     return ld

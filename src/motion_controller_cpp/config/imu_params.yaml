@@ -1,0 +1,6 @@
+wt906_serial:
+  ros__parameters:
+    serial_ID: 0
+    serial_port: "/dev/imu"
+    serial_baudrate: 921600
+    ImuFrameID: "Imu_0"

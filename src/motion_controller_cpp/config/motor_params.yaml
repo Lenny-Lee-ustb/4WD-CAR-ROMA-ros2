@@ -3,7 +3,7 @@ motor_can_node : # node name
     CanSeries: "can3"
     wheel_radius: 0.07
     motor_ratio: 5.18
-    Kp: 1.1
+    Kp: 1.0
     Ki: 0.4
     Kd: 0.0
     IBound: 0.3

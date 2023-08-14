@@ -3,7 +3,7 @@ import serial
 import math
 from sensor_msgs.msg import Imu
 from rclpy.node import Node
-from geometry_msgs.msg import Pose
+from geometry_msgs.msg import Pose, PointStamped
 from rclpy.qos import QoSProfile
 from rclpy.duration import Duration
 from rclpy.qos import QoSDurabilityPolicy
@@ -24,6 +24,7 @@ class ImuNode(Node):
         self.serial_baudrate = self.get_parameter('serial_baudrate').get_parameter_value().integer_value
         self.ImuFrameID = self.get_parameter('ImuFrameID').get_parameter_value().string_value
         self.publisher_ = self.create_publisher(msg_type=Imu, topic='imu_state_'+str(self.serial_ID), qos_profile=qos_profile) # init publisher
+        self.rpy_publisher_ = self.create_publisher(msg_type=PointStamped, topic='imu_rpy_'+str(self.serial_ID), qos_profile=qos_profile) # init publisher
 
         # variables for DueData
         self.ACCData=[0.0]*8
@@ -192,6 +193,13 @@ class ImuNode(Node):
         pub_imu.angular_velocity.z = w[2]
         pub_imu.orientation = self.RPY2Quar(angle).orientation
         self.publisher_.publish(pub_imu)
+
+        pub_rpy = PointStamped()
+        pub_rpy.header = pub_imu.header
+        pub_rpy.point.x = angle[0]
+        pub_rpy.point.y = angle[1]
+        pub_rpy.point.z = angle[2]
+        self.rpy_publisher_.publish(pub_rpy)
         # self.get_logger().info('pub now')
 
 def main(args=None):

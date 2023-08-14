@@ -149,16 +149,16 @@ private:
             motor[ID].torFiltered_Last = motor[ID].torFiltered;
 
             // due to the configuration, it needs change the direction
-            if ((ID == 0) || (ID == 2))
+            if ((ID == 0) || (ID == 3))
             {
                 motor_state.polygon.points[ID].x = motor[ID].speedFiltered;
                 motor_state.polygon.points[ID].y = motor[ID].torFiltered;
                 motor_state.polygon.points[ID].z = motor[ID].temperature;
             }
-            else if ((ID == 1) || (ID == 3))
+            else if ((ID == 1) || (ID == 2))
             {
-                motor_state.polygon.points[ID].x = motor[ID].speedFiltered; // m/s
-                motor_state.polygon.points[ID].y = motor[ID].torFiltered;   // -16384~0~16384 -> -20-0-20A -> -1.626 - 1.626Nm
+                motor_state.polygon.points[ID].x = -motor[ID].speedFiltered; // m/s
+                motor_state.polygon.points[ID].y = -motor[ID].torFiltered;   // -16384~0~16384 -> -20-0-20A -> -1.626 - 1.626Nm
                 motor_state.polygon.points[ID].z = motor[ID].temperature;   // 'c
             }
         }

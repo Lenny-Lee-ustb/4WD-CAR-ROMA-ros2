@@ -50,3 +50,10 @@ colcon build --symlink-install
 
 1. [sllidar_ros2](https://github.com/Slamtec/sllidar_ros2)
 2. [sbus_ros2](https://github.com/Lenny-Lee-ustb/sbus_ros2)
+
+## Launch car node
+
+```bash
+source install/setup.bash
+ros2 launch motion_controller_cpp test.launch.py
+```

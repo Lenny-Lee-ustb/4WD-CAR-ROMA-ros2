@@ -114,6 +114,10 @@ void Motion_controller_node::fwdKinematicCal(const double vX, const double avZ)
     motor_cmd_.polygon.points[1].x = -vX-0.000001;
     motor_cmd_.polygon.points[2].x = -vX-0.000001;
     motor_cmd_.polygon.points[3].x = vX+0.000001;
+    // motor_cmd_.polygon.points[0].y = vX;
+    // motor_cmd_.polygon.points[1].y = -vX;
+    // motor_cmd_.polygon.points[2].y = -vX;
+    // motor_cmd_.polygon.points[3].y = vX;
     motor_cmd_pub_->publish(motor_cmd_);
 
     servo_cmd_.polygon.points[0].x  = avZ;
