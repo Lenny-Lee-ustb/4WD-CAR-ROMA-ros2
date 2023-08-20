@@ -1,0 +1,4 @@
+float32 force_impact_fx
+float32 force_impact_fy
+float32 force_impact_rx
+float32 force_impact_ry
