@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'force_sensor_py'
+package_name = 'pressure_sensor_py'
 
 setup(
     name=package_name,
@@ -14,13 +14,13 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='roma',
-    maintainer_email='roma@todo.todo',
+    maintainer_email='chen.aoi@qq.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "force_sensor1 = force_sensor_py.force_sensor:main"
+            "pressure_sensor = pressure_sensor_py.pressure_sensor:main"
         ],
     },
 )

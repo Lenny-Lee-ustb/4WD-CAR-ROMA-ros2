@@ -19,9 +19,11 @@ class force_sensor(Node):
         self.frequency = self.declare_parameter('serial_frequency',100).value
         self.serial_port = self.declare_parameter('serial_port','/dev/force_sensor1').value
         self.serial_baudrate = self.declare_parameter('serial_baudrate',250000).value
+        self.ForceSensorFrameID = self.declare_parameter('ForceSensorFrameID','ForceSensor0').value
         self.slave = self.declare_parameter('slave',[1,2]).value
         self.close = signal.signal(signal.SIGINT, self.close_modbus)
-        self.publishersx = self.create_publisher(msg_type=ForceSensor, topic='force_sensor', qos_profile=qos_profile)
+        self.publishersx_f = self.create_publisher(msg_type=ForceSensor, topic='force_sensor_front', qos_profile=qos_profile)
+        self.publishersx_r = self.create_publisher(msg_type=ForceSensor, topic='force_sensor_rear', qos_profile=qos_profile)
         # self.multi_publisher(self.slave, qos_profile) # published by different publisher
         try:
             self.master = modbus_rtu.RtuMaster(serial.Serial(
@@ -42,11 +44,14 @@ class force_sensor(Node):
     
     def pub(self, force):
         pub_force = ForceSensor()
-        pub_force.force_impact_fx = force[0]
-        pub_force.force_impact_fy = force[1]
-        pub_force.force_impact_rx = force[2]
-        pub_force.force_impact_ry = force[3]
-        self.publishersx.publish(pub_force)
+        pub_force.header.frame_id = self.ForceSensorFrameID
+        pub_force.header.stamp = self.get_clock().now().to_msg()
+        pub_force.x = force[0]
+        pub_force.y = force[1]
+        self.publishersx_f.publish(pub_force)
+        pub_force.x = force[2]
+        pub_force.y = force[3]
+        self.publishersx_r.publish(pub_force)
 
     def multi_publisher(self,listx, qos_profile_publisher):
         self.publishersx = list()
@@ -61,8 +66,8 @@ class force_sensor(Node):
 
     def multi_read(self,listx):
         try:
+            force = [0., 0., 0., 0.]
             while rclpy.ok():
-                force = [0., 0., 0., 0.]
                 for x in listx:
                     force[x-1]=self.read_modbus(x)
                     # self.multi_topic_pub(x, force[x-1]) # published by different publisher

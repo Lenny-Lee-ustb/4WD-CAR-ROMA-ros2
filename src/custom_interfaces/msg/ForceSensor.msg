@@ -1,4 +1,3 @@
-float32 force_impact_fx
-float32 force_impact_fy
-float32 force_impact_rx
-float32 force_impact_ry
+std_msgs/Header header
+float32 x
+float32 y
