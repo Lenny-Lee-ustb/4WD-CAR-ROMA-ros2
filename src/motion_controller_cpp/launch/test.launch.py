@@ -24,7 +24,7 @@ def generate_launch_description():
         package="motion_controller_cpp",
         executable="motion_controller",
         parameters=[
-            {"speedMax":0.8},
+            {"speedMax":3.0},
             {"angleMax":0.75}
         ]
     )
@@ -60,19 +60,19 @@ def generate_launch_description():
         'config',
         'imu_params.yaml'
     )
-    # imu_node = Node(
-    #     package="wt906_imu_py",
-    #     executable="wt906_serial",
-    #     name="wt906_serial",
-    #     output="screen",
-    #     parameters=[imu_config]
-    # )
-
     imu_node = Node(
-            package='serial_imu',
-            executable='talker',
-            output='screen'
+        package="wt906_imu_py",
+        executable="wt906_serial",
+        name="wt906_serial",
+        output="screen",
+        parameters=[imu_config]
     )
+
+    # imu_node = Node(
+    #         package='serial_imu',
+    #         executable='talker',
+    #         output='screen'
+    # )
 
     ld.add_action(sbus_bridge_node)
     ld.add_action(motion_controller_node)
