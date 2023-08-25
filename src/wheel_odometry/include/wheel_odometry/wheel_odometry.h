@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'wheel_odometry'.
 //
-// Model version                  : 1.25
+// Model version                  : 1.28
 // Simulink Coder version         : 9.9 (R2023a) 19-Nov-2022
-// C/C++ source code generated on : Fri Aug 25 15:10:26 2023
+// C/C++ source code generated on : Fri Aug 25 16:50:23 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -67,13 +67,15 @@ struct B_wheel_odometry_T {
   SL_Bus_geometry_msgs_PolygonStamped b_varargout_2_m;
   real32_T ImpAsg_InsertedFor_x_at_inp[16];
   real32_T ImpAsg_InsertedFor_x_at_i_d[16];
-  char_T b_zeroDelimTopic[17];
-  real_T UnitDelay[2];                 // '<S7>/Unit Delay'
   real_T q[4];                         // '<S7>/MATLAB Function1'
+  char_T b_zeroDelimTopic[17];
   real_T XY_dot[2];                    // '<S7>/MATLAB Function'
   char_T prmName[15];
-  real_T yaw;                          // '<S24>/yaw'
+  real_T yaw;                          // '<S25>/yaw'
+  real_T UnitDelay[2];                 // '<S7>/Unit Delay'
   real_T b_value;
+  real_T Add;                          // '<S10>/Add'
+  boolean_T reset;                     // '<S7>/Chart'
 };
 
 // Block states (default storage) for system '<Root>'
@@ -84,12 +86,15 @@ struct DW_wheel_odometry_T {
   ros_slros2_internal_block_Sub_T obj_l;// '<S4>/SourceBlock'
   ros_slros2_internal_block_Sub_T obj_j;// '<S3>/SourceBlock'
   real_T UnitDelay_DSTATE[2];          // '<S7>/Unit Delay'
+  int16_T delay;                       // '<S7>/Chart'
+  uint8_T is_active_c4_wheel_odometry; // '<S7>/Chart'
+  uint8_T is_c4_wheel_odometry;        // '<S7>/Chart'
 };
 
 // Parameters (default storage)
 struct P_wheel_odometry_T_ {
   real_T CompareToConstant_const;     // Mask Parameter: CompareToConstant_const
-                                         //  Referenced by: '<S23>/Constant'
+                                         //  Referenced by: '<S24>/Constant'
 
   SL_Bus_nav_msgs_Odometry Constant_Value;// Computed Parameter: Constant_Value
                                              //  Referenced by: '<S1>/Constant'
@@ -113,7 +118,10 @@ struct P_wheel_odometry_T_ {
                                                           //  Referenced by: '<S3>/Constant'
 
   real_T Gain_Gain;                    // Computed Parameter: Gain_Gain
-                                          //  Referenced by: '<S17>/Gain'
+                                          //  Referenced by: '<S18>/Gain'
+
+  real_T Constant1_Value[2];           // Expression: [0,0]
+                                          //  Referenced by: '<S7>/Constant1'
 
   real_T XY_dot_Y0;                    // Computed Parameter: XY_dot_Y0
                                           //  Referenced by: '<S7>/XY_dot'
@@ -125,7 +133,7 @@ struct P_wheel_odometry_T_ {
                                           //  Referenced by: '<S7>/orientation'
 
   real_T Constant_Value_j0[4];       // Expression: [k/2, k/2, 0.5-k/2, 0.5-k/2]
-                                        //  Referenced by: '<S17>/Constant'
+                                        //  Referenced by: '<S18>/Constant'
 
   real_T UnitDelay_InitialCondition;   // Expression: 0
                                           //  Referenced by: '<S7>/Unit Delay'
@@ -136,33 +144,33 @@ struct P_wheel_odometry_T_ {
   real_T Constant_Value_e;             // Expression: 0
                                           //  Referenced by: '<S7>/Constant'
 
-  real_T Constant1_Value;              // Expression: 2*pi
-                                          //  Referenced by: '<S20>/Constant1'
-
-  real_T Constant_Value_lo;            // Expression: pi
-                                          //  Referenced by: '<S20>/Constant'
-
-  real_T Constant1_Value_f;            // Expression: 2*pi
+  real_T Constant1_Value_e;            // Expression: 2*pi
                                           //  Referenced by: '<S21>/Constant1'
 
-  real_T Constant_Value_d;             // Expression: pi
+  real_T Constant_Value_lo;            // Expression: pi
                                           //  Referenced by: '<S21>/Constant'
 
+  real_T Constant1_Value_f;            // Expression: 2*pi
+                                          //  Referenced by: '<S22>/Constant1'
+
+  real_T Constant_Value_d;             // Expression: pi
+                                          //  Referenced by: '<S22>/Constant'
+
   real_T Out1_Y0_p;                    // Computed Parameter: Out1_Y0_p
-                                          //  Referenced by: '<S24>/Out1'
+                                          //  Referenced by: '<S25>/Out1'
 
   real_T Constant_Value_p;             // Expression: pi
                                           //  Referenced by: '<S10>/Constant'
 
   real32_T Gain1_Gain;                 // Expression: single(b/L)
-                                          //  Referenced by: '<S17>/Gain1'
+                                          //  Referenced by: '<S18>/Gain1'
 
   real32_T Gain1_Gain_i[2];            // Computed Parameter: Gain1_Gain_i
                                           //  Referenced by: '<S8>/Gain1'
 
   uint8_T ManualSwitch_CurrentSetting;
                               // Computed Parameter: ManualSwitch_CurrentSetting
-                                 //  Referenced by: '<S17>/Manual Switch'
+                                 //  Referenced by: '<S18>/Manual Switch'
 
 };
 
@@ -236,8 +244,8 @@ extern volatile boolean_T runModel;
 //-
 //  These blocks were eliminated from the model due to optimizations:
 //
-//  Block '<S17>/Reshape' : Reshape block reduction
-//  Block '<S17>/Reshape2' : Reshape block reduction
+//  Block '<S18>/Reshape' : Reshape block reduction
+//  Block '<S18>/Reshape2' : Reshape block reduction
 //  Block '<S8>/Reshape' : Reshape block reduction
 
 
@@ -270,16 +278,17 @@ extern volatile boolean_T runModel;
 //  '<S12>'  : 'wheel_odometry/Subscribe1/Enabled Subsystem'
 //  '<S13>'  : 'wheel_odometry/Subscribe2/Enabled Subsystem'
 //  '<S14>'  : 'wheel_odometry/Subsystem/For Each Subsystem'
-//  '<S15>'  : 'wheel_odometry/Subsystem1/MATLAB Function'
-//  '<S16>'  : 'wheel_odometry/Subsystem1/MATLAB Function1'
-//  '<S17>'  : 'wheel_odometry/Subsystem1/Subsystem'
-//  '<S18>'  : 'wheel_odometry/Subsystem2/For Each Subsystem'
-//  '<S19>'  : 'wheel_odometry/Subsystem3/MATLAB Function'
-//  '<S20>'  : 'wheel_odometry/Subsystem5/If Action Subsystem'
-//  '<S21>'  : 'wheel_odometry/Subsystem5/If Action Subsystem1'
-//  '<S22>'  : 'wheel_odometry/Subsystem5/Subsystem4'
-//  '<S23>'  : 'wheel_odometry/Subsystem5/Subsystem4/Compare To Constant'
-//  '<S24>'  : 'wheel_odometry/Subsystem5/Subsystem4/Enabled Subsystem1'
+//  '<S15>'  : 'wheel_odometry/Subsystem1/Chart'
+//  '<S16>'  : 'wheel_odometry/Subsystem1/MATLAB Function'
+//  '<S17>'  : 'wheel_odometry/Subsystem1/MATLAB Function1'
+//  '<S18>'  : 'wheel_odometry/Subsystem1/Subsystem'
+//  '<S19>'  : 'wheel_odometry/Subsystem2/For Each Subsystem'
+//  '<S20>'  : 'wheel_odometry/Subsystem3/MATLAB Function'
+//  '<S21>'  : 'wheel_odometry/Subsystem5/If Action Subsystem'
+//  '<S22>'  : 'wheel_odometry/Subsystem5/If Action Subsystem1'
+//  '<S23>'  : 'wheel_odometry/Subsystem5/Subsystem4'
+//  '<S24>'  : 'wheel_odometry/Subsystem5/Subsystem4/Compare To Constant'
+//  '<S25>'  : 'wheel_odometry/Subsystem5/Subsystem4/Enabled Subsystem1'
 
 #endif                                 // RTW_HEADER_wheel_odometry_h_
 

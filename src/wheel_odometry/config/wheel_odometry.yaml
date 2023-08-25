@@ -1,0 +1,3 @@
+wheel_odometry_node:
+  ros__parameters:
+    WheelSpd_scale: 1.0

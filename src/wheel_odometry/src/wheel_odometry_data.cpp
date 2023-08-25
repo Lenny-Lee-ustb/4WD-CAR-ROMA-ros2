@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'wheel_odometry'.
 //
-// Model version                  : 1.25
+// Model version                  : 1.28
 // Simulink Coder version         : 9.9 (R2023a) 19-Nov-2022
-// C/C++ source code generated on : Fri Aug 25 15:10:26 2023
+// C/C++ source code generated on : Fri Aug 25 16:50:23 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -21,7 +21,7 @@
 // Block parameters (default storage)
 P_wheel_odometry_T wheel_odometry::wheel_odometry_P = {
   // Mask Parameter: CompareToConstant_const
-  //  Referenced by: '<S23>/Constant'
+  //  Referenced by: '<S24>/Constant'
 
   0.5,
 
@@ -644,9 +644,14 @@ P_wheel_odometry_T wheel_odometry::wheel_odometry_P = {
   },
 
   // Computed Parameter: Gain_Gain
-  //  Referenced by: '<S17>/Gain'
+  //  Referenced by: '<S18>/Gain'
 
   0.036337755620479584,
+
+  // Expression: [0,0]
+  //  Referenced by: '<S7>/Constant1'
+
+  { 0.0, 0.0 },
 
   // Computed Parameter: XY_dot_Y0
   //  Referenced by: '<S7>/XY_dot'
@@ -664,7 +669,7 @@ P_wheel_odometry_T wheel_odometry::wheel_odometry_P = {
   0.0,
 
   // Expression: [k/2, k/2, 0.5-k/2, 0.5-k/2]
-  //  Referenced by: '<S17>/Constant'
+  //  Referenced by: '<S18>/Constant'
 
   { 0.5, 0.5, 0.0, 0.0 },
 
@@ -684,16 +689,6 @@ P_wheel_odometry_T wheel_odometry::wheel_odometry_P = {
   0.0,
 
   // Expression: 2*pi
-  //  Referenced by: '<S20>/Constant1'
-
-  6.2831853071795862,
-
-  // Expression: pi
-  //  Referenced by: '<S20>/Constant'
-
-  3.1415926535897931,
-
-  // Expression: 2*pi
   //  Referenced by: '<S21>/Constant1'
 
   6.2831853071795862,
@@ -703,8 +698,18 @@ P_wheel_odometry_T wheel_odometry::wheel_odometry_P = {
 
   3.1415926535897931,
 
+  // Expression: 2*pi
+  //  Referenced by: '<S22>/Constant1'
+
+  6.2831853071795862,
+
+  // Expression: pi
+  //  Referenced by: '<S22>/Constant'
+
+  3.1415926535897931,
+
   // Computed Parameter: Out1_Y0_p
-  //  Referenced by: '<S24>/Out1'
+  //  Referenced by: '<S25>/Out1'
 
   0.0,
 
@@ -714,7 +719,7 @@ P_wheel_odometry_T wheel_odometry::wheel_odometry_P = {
   3.1415926535897931,
 
   // Expression: single(b/L)
-  //  Referenced by: '<S17>/Gain1'
+  //  Referenced by: '<S18>/Gain1'
 
   0.605263174F,
 
@@ -724,7 +729,7 @@ P_wheel_odometry_T wheel_odometry::wheel_odometry_P = {
   { 0.5F, 0.5F },
 
   // Computed Parameter: ManualSwitch_CurrentSetting
-  //  Referenced by: '<S17>/Manual Switch'
+  //  Referenced by: '<S18>/Manual Switch'
 
   0U
 };

@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'wheel_odometry'.
 //
-// Model version                  : 1.25
+// Model version                  : 1.28
 // Simulink Coder version         : 9.9 (R2023a) 19-Nov-2022
-// C/C++ source code generated on : Fri Aug 25 15:10:26 2023
+// C/C++ source code generated on : Fri Aug 25 16:50:23 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -34,6 +34,11 @@ extern "C"
 
 #include "rt_defines.h"
 
+// Named constants for Chart: '<S7>/Chart'
+const uint8_T wheel_odometry_IN_clearXY = 1U;
+const uint8_T wheel_odometry_IN_hold = 2U;
+const uint8_T wheel_odometry_IN_waiting = 3U;
+const uint8_T wheel_odometry_IN_waiting1 = 4U;
 real_T rt_atan2d_snf(real_T u0, real_T u1)
 {
   real_T y;
@@ -182,8 +187,9 @@ void wheel_odometry::step()
   real_T XY_dot_tmp;
   real_T XY_dot_tmp_0;
   real_T XY_dot_tmp_1;
-  real_T rtb_Add;
-  real_T rtb_ManualSwitch_idx_1;
+  real_T rtb_vxvy_idx_1;
+  real_T s_idx_1_tmp;
+  real32_T rtb_Gain1_0;
   boolean_T b_varargout_1;
   boolean_T b_varargout_1_0;
 
@@ -203,11 +209,11 @@ void wheel_odometry::step()
   // End of Outputs for SubSystem: '<S4>/Enabled Subsystem'
 
   // Outputs for Iterator SubSystem: '<S8>/For Each Subsystem' incorporates:
-  //   ForEach: '<S18>/For Each'
+  //   ForEach: '<S19>/For Each'
 
   for (ForEach_itr = 0; ForEach_itr < 16; ForEach_itr++) {
-    // ForEachSliceAssignment generated from: '<S18>/x' incorporates:
-    //   ForEachSliceSelector generated from: '<S18>/In1'
+    // ForEachSliceAssignment generated from: '<S19>/x' incorporates:
+    //   ForEachSliceSelector generated from: '<S19>/In1'
 
     wheel_odometry_B.ImpAsg_InsertedFor_x_at_inp[ForEach_itr] =
       wheel_odometry_B.In1_b.polygon.points[ForEach_itr].x;
@@ -245,6 +251,12 @@ void wheel_odometry::step()
   // MATLABSystem: '<Root>/Get Parameter'
   ParamGet_wheel_odometry_353.getParameter(&wheel_odometry_B.b_value);
 
+  // Gain: '<S8>/Gain1'
+  rtb_Gain1_0 = wheel_odometry_P.Gain1_Gain_i[0] *
+    wheel_odometry_B.ImpAsg_InsertedFor_x_at_inp[0] +
+    wheel_odometry_P.Gain1_Gain_i[1] *
+    wheel_odometry_B.ImpAsg_InsertedFor_x_at_inp[1];
+
   // MATLABSystem: '<S5>/SourceBlock'
   b_varargout_1_0 = Sub_wheel_odometry_193.getLatestMessage
     (&wheel_odometry_B.b_varargout_2);
@@ -264,72 +276,74 @@ void wheel_odometry::step()
   //   Constant: '<S10>/Constant'
   //   MATLAB Function: '<S9>/MATLAB Function'
 
-  rtb_Add = rt_atan2d_snf((wheel_odometry_B.In1.orientation.w *
+  wheel_odometry_B.Add = rt_atan2d_snf((wheel_odometry_B.In1.orientation.w *
     wheel_odometry_B.In1.orientation.z + wheel_odometry_B.In1.orientation.x *
     wheel_odometry_B.In1.orientation.y) * 2.0, 1.0 -
     (wheel_odometry_B.In1.orientation.y * wheel_odometry_B.In1.orientation.y +
      wheel_odometry_B.In1.orientation.z * wheel_odometry_B.In1.orientation.z) *
     2.0) + wheel_odometry_P.Constant_Value_p;
 
-  // Outputs for Enabled SubSystem: '<S22>/Enabled Subsystem1' incorporates:
-  //   EnablePort: '<S24>/Enable'
+  // Outputs for Enabled SubSystem: '<S23>/Enabled Subsystem1' incorporates:
+  //   EnablePort: '<S25>/Enable'
 
-  // RelationalOperator: '<S23>/Compare' incorporates:
-  //   Clock: '<S22>/Clock'
-  //   Constant: '<S23>/Constant'
+  // RelationalOperator: '<S24>/Compare' incorporates:
+  //   Clock: '<S23>/Clock'
+  //   Constant: '<S24>/Constant'
 
   if ((&wheel_odometry_M)->Timing.t[0] <=
       wheel_odometry_P.CompareToConstant_const) {
-    // SignalConversion generated from: '<S24>/yaw'
-    wheel_odometry_B.yaw = rtb_Add;
+    // SignalConversion generated from: '<S25>/yaw'
+    wheel_odometry_B.yaw = wheel_odometry_B.Add;
   }
 
-  // End of RelationalOperator: '<S23>/Compare'
-  // End of Outputs for SubSystem: '<S22>/Enabled Subsystem1'
+  // End of RelationalOperator: '<S24>/Compare'
+  // End of Outputs for SubSystem: '<S23>/Enabled Subsystem1'
 
   // If: '<S10>/If' incorporates:
-  //   Constant: '<S21>/Constant'
-  //   RelationalOperator: '<S21>/Relational Operator'
-  //   Sum: '<S21>/Add'
-  //   Switch: '<S21>/Switch'
+  //   Constant: '<S22>/Constant'
+  //   RelationalOperator: '<S22>/Relational Operator'
+  //   Sum: '<S22>/Add'
+  //   Switch: '<S22>/Switch'
 
   if (wheel_odometry_B.yaw <= 3.1415926535897931) {
     // Outputs for IfAction SubSystem: '<S10>/If Action Subsystem' incorporates:
-    //   ActionPort: '<S20>/Action Port'
+    //   ActionPort: '<S21>/Action Port'
 
-    // Switch: '<S20>/Switch' incorporates:
-    //   Constant: '<S20>/Constant'
-    //   Constant: '<S20>/Constant1'
-    //   RelationalOperator: '<S20>/Relational Operator'
-    //   Sum: '<S20>/Add'
-    //   Sum: '<S20>/Add1'
-    //   Sum: '<S20>/Add2'
+    // Switch: '<S21>/Switch' incorporates:
+    //   Constant: '<S21>/Constant'
+    //   Constant: '<S21>/Constant1'
+    //   RelationalOperator: '<S21>/Relational Operator'
+    //   Sum: '<S21>/Add'
+    //   Sum: '<S21>/Add1'
+    //   Sum: '<S21>/Add2'
 
-    if (wheel_odometry_B.yaw + wheel_odometry_P.Constant_Value_lo < rtb_Add) {
-      rtb_Add = (rtb_Add - wheel_odometry_P.Constant1_Value) -
-        wheel_odometry_B.yaw;
+    if (wheel_odometry_B.yaw + wheel_odometry_P.Constant_Value_lo <
+        wheel_odometry_B.Add) {
+      wheel_odometry_B.Add = (wheel_odometry_B.Add -
+        wheel_odometry_P.Constant1_Value_e) - wheel_odometry_B.yaw;
     } else {
-      rtb_Add -= wheel_odometry_B.yaw;
+      wheel_odometry_B.Add -= wheel_odometry_B.yaw;
     }
 
-    // End of Switch: '<S20>/Switch'
+    // End of Switch: '<S21>/Switch'
     // End of Outputs for SubSystem: '<S10>/If Action Subsystem'
 
     // Outputs for IfAction SubSystem: '<S10>/If Action Subsystem1' incorporates:
-    //   ActionPort: '<S21>/Action Port'
+    //   ActionPort: '<S22>/Action Port'
 
-  } else if (wheel_odometry_B.yaw - wheel_odometry_P.Constant_Value_d > rtb_Add)
-  {
-    // Switch: '<S21>/Switch' incorporates:
-    //   Constant: '<S21>/Constant1'
-    //   Sum: '<S21>/Add1'
+  } else if (wheel_odometry_B.yaw - wheel_odometry_P.Constant_Value_d >
+             wheel_odometry_B.Add) {
+    // Switch: '<S22>/Switch' incorporates:
+    //   Constant: '<S22>/Constant1'
+    //   Sum: '<S22>/Add1'
 
-    rtb_Add += wheel_odometry_P.Constant1_Value_f - wheel_odometry_B.yaw;
+    wheel_odometry_B.Add += wheel_odometry_P.Constant1_Value_f -
+      wheel_odometry_B.yaw;
   } else {
-    // Switch: '<S21>/Switch' incorporates:
-    //   Sum: '<S21>/Add2'
+    // Switch: '<S22>/Switch' incorporates:
+    //   Sum: '<S22>/Add2'
 
-    rtb_Add -= wheel_odometry_B.yaw;
+    wheel_odometry_B.Add -= wheel_odometry_B.yaw;
 
     // End of Outputs for SubSystem: '<S10>/If Action Subsystem1'
   }
@@ -343,16 +357,12 @@ void wheel_odometry::step()
   //   MATLAB Function: '<S7>/MATLAB Function'
 
   if (b_varargout_1) {
-    // UnitDelay: '<S7>/Unit Delay'
-    wheel_odometry_B.UnitDelay[0] = wheel_odometry_DW.UnitDelay_DSTATE[0];
-    wheel_odometry_B.UnitDelay[1] = wheel_odometry_DW.UnitDelay_DSTATE[1];
-
-    // ManualSwitch: '<S17>/Manual Switch' incorporates:
-    //   Constant: '<S17>/Constant'
-    //   Gain: '<S17>/Gain'
+    // ManualSwitch: '<S18>/Manual Switch' incorporates:
+    //   Constant: '<S18>/Constant'
+    //   Gain: '<S18>/Gain'
     //   MATLABSystem: '<Root>/Get Parameter'
     //   Product: '<Root>/Product'
-    //   Product: '<S17>/Product'
+    //   Product: '<S18>/Product'
 
     if (wheel_odometry_P.ManualSwitch_CurrentSetting == 1) {
       wheel_odometry_B.b_value = (((wheel_odometry_B.b_value *
@@ -376,76 +386,160 @@ void wheel_odometry::step()
         wheel_odometry_P.Constant_Value_j0[3];
     }
 
-    // End of ManualSwitch: '<S17>/Manual Switch'
+    // End of ManualSwitch: '<S18>/Manual Switch'
+
+    // Reshape: '<S18>/Reshape1' incorporates:
+    //   Gain: '<S18>/Gain1'
+    //   Gain: '<S8>/Gain1'
+    //   Product: '<S18>/Product1'
+    //   Trigonometry: '<S18>/Tan'
+
+    rtb_vxvy_idx_1 = wheel_odometry_P.Gain1_Gain * static_cast<real32_T>(tan(
+      static_cast<real_T>(rtb_Gain1_0))) * wheel_odometry_B.b_value;
+
+    // Chart: '<S7>/Chart' incorporates:
+    //   Gain: '<S8>/Gain1'
+    //   Reshape: '<S18>/Reshape1'
+
+    if (wheel_odometry_DW.is_active_c4_wheel_odometry == 0U) {
+      wheel_odometry_DW.is_active_c4_wheel_odometry = 1U;
+      wheel_odometry_DW.is_c4_wheel_odometry = wheel_odometry_IN_hold;
+      wheel_odometry_B.reset = false;
+    } else {
+      switch (wheel_odometry_DW.is_c4_wheel_odometry) {
+       case wheel_odometry_IN_clearXY:
+        if (wheel_odometry_DW.delay < 2) {
+          wheel_odometry_DW.is_c4_wheel_odometry = wheel_odometry_IN_hold;
+          wheel_odometry_B.reset = false;
+        } else {
+          wheel_odometry_DW.delay = static_cast<int16_T>(wheel_odometry_DW.delay
+            - 1);
+        }
+        break;
+
+       case wheel_odometry_IN_hold:
+        s_idx_1_tmp = fabs(wheel_odometry_B.b_value);
+        if ((s_idx_1_tmp < 0.01) && (rtb_Gain1_0 > 0.6)) {
+          wheel_odometry_DW.is_c4_wheel_odometry = wheel_odometry_IN_waiting;
+        } else if ((s_idx_1_tmp < 0.01) && (rtb_Gain1_0 < -0.6)) {
+          wheel_odometry_DW.is_c4_wheel_odometry = wheel_odometry_IN_waiting1;
+        } else {
+          wheel_odometry_B.reset = false;
+        }
+        break;
+
+       case wheel_odometry_IN_waiting:
+        if (rtb_Gain1_0 < -0.6) {
+          wheel_odometry_DW.is_c4_wheel_odometry = wheel_odometry_IN_clearXY;
+          wheel_odometry_B.reset = true;
+          wheel_odometry_DW.delay = 5;
+        } else if (fabs(wheel_odometry_B.b_value) >= 0.1) {
+          wheel_odometry_DW.is_c4_wheel_odometry = wheel_odometry_IN_hold;
+          wheel_odometry_B.reset = false;
+        }
+        break;
+
+       default:
+        // case IN_waiting1:
+        if (fabs(wheel_odometry_B.b_value) >= 0.1) {
+          wheel_odometry_DW.is_c4_wheel_odometry = wheel_odometry_IN_hold;
+          wheel_odometry_B.reset = false;
+        } else if (rtb_Gain1_0 > 0.6) {
+          wheel_odometry_DW.is_c4_wheel_odometry = wheel_odometry_IN_clearXY;
+          wheel_odometry_B.reset = true;
+          wheel_odometry_DW.delay = 5;
+        }
+        break;
+      }
+    }
+
+    // End of Chart: '<S7>/Chart'
 
     // MATLAB Function: '<S7>/MATLAB Function'
-    XY_dot_tmp = sin(rtb_Add);
-    XY_dot_tmp_0 = cos(rtb_Add);
+    XY_dot_tmp = sin(wheel_odometry_B.Add);
+    XY_dot_tmp_0 = cos(wheel_odometry_B.Add);
 
-    // Reshape: '<S17>/Reshape1' incorporates:
-    //   Gain: '<S17>/Gain1'
-    //   Gain: '<S8>/Gain1'
-    //   Product: '<S17>/Product1'
-    //   Trigonometry: '<S17>/Tan'
-
-    rtb_ManualSwitch_idx_1 = static_cast<real32_T>(tan(static_cast<real_T>
-      (wheel_odometry_P.Gain1_Gain_i[0] *
-       wheel_odometry_B.ImpAsg_InsertedFor_x_at_inp[0] +
-       wheel_odometry_P.Gain1_Gain_i[1] *
-       wheel_odometry_B.ImpAsg_InsertedFor_x_at_inp[1]))) *
-      wheel_odometry_P.Gain1_Gain * wheel_odometry_B.b_value;
+    // UnitDelay: '<S7>/Unit Delay'
+    wheel_odometry_B.UnitDelay[0] = wheel_odometry_DW.UnitDelay_DSTATE[0];
 
     // MATLAB Function: '<S7>/MATLAB Function' incorporates:
-    //   Reshape: '<S17>/Reshape1'
+    //   Reshape: '<S18>/Reshape1'
 
     XY_dot_tmp_1 = XY_dot_tmp_0 * wheel_odometry_B.b_value + -XY_dot_tmp *
-      rtb_ManualSwitch_idx_1;
+      rtb_vxvy_idx_1;
     wheel_odometry_B.XY_dot[0] = XY_dot_tmp_1;
+
+    // Switch: '<S7>/Switch' incorporates:
+    //   Constant: '<S7>/Constant1'
+    //   MATLAB Function: '<S7>/MATLAB Function'
+    //   UnitDelay: '<S7>/Unit Delay'
+
+    if (wheel_odometry_B.reset) {
+      s_idx_1_tmp = wheel_odometry_P.Constant1_Value[0];
+    } else {
+      s_idx_1_tmp = wheel_odometry_DW.UnitDelay_DSTATE[0];
+    }
 
     // Sum: '<S7>/Add' incorporates:
     //   Gain: '<S7>/Gain'
     //   MATLAB Function: '<S7>/MATLAB Function'
+    //   Switch: '<S7>/Switch'
     //   UnitDelay: '<S7>/Unit Delay'
 
     wheel_odometry_DW.UnitDelay_DSTATE[0] = wheel_odometry_P.Gain_Gain_n *
-      XY_dot_tmp_1 + wheel_odometry_B.UnitDelay[0];
+      XY_dot_tmp_1 + s_idx_1_tmp;
+
+    // UnitDelay: '<S7>/Unit Delay'
+    wheel_odometry_B.UnitDelay[1] = wheel_odometry_DW.UnitDelay_DSTATE[1];
 
     // MATLAB Function: '<S7>/MATLAB Function' incorporates:
-    //   Reshape: '<S17>/Reshape1'
+    //   Reshape: '<S18>/Reshape1'
 
     XY_dot_tmp = XY_dot_tmp * wheel_odometry_B.b_value + XY_dot_tmp_0 *
-      rtb_ManualSwitch_idx_1;
+      rtb_vxvy_idx_1;
     wheel_odometry_B.XY_dot[1] = XY_dot_tmp;
+
+    // Switch: '<S7>/Switch' incorporates:
+    //   Constant: '<S7>/Constant1'
+    //   MATLAB Function: '<S7>/MATLAB Function'
+    //   UnitDelay: '<S7>/Unit Delay'
+
+    if (wheel_odometry_B.reset) {
+      s_idx_1_tmp = wheel_odometry_P.Constant1_Value[1];
+    } else {
+      s_idx_1_tmp = wheel_odometry_DW.UnitDelay_DSTATE[1];
+    }
 
     // Sum: '<S7>/Add' incorporates:
     //   Gain: '<S7>/Gain'
     //   MATLAB Function: '<S7>/MATLAB Function'
+    //   Switch: '<S7>/Switch'
     //   UnitDelay: '<S7>/Unit Delay'
 
     wheel_odometry_DW.UnitDelay_DSTATE[1] = wheel_odometry_P.Gain_Gain_n *
-      XY_dot_tmp + wheel_odometry_B.UnitDelay[1];
+      XY_dot_tmp + s_idx_1_tmp;
 
     // MATLAB Function: '<S7>/MATLAB Function1' incorporates:
     //   Constant: '<S7>/Constant'
 
-    wheel_odometry_B.b_value = rtb_Add / 2.0;
-    XY_dot_tmp_0 = wheel_odometry_P.Constant_Value_e / 2.0;
-    rtb_Add = cos(wheel_odometry_B.b_value);
+    wheel_odometry_B.b_value = wheel_odometry_B.Add / 2.0;
+    s_idx_1_tmp = wheel_odometry_P.Constant_Value_e / 2.0;
+    wheel_odometry_B.Add = cos(wheel_odometry_B.b_value);
     wheel_odometry_B.b_value = sin(wheel_odometry_B.b_value);
-    XY_dot_tmp = cos(XY_dot_tmp_0);
-    XY_dot_tmp_0 = sin(XY_dot_tmp_0);
-    rtb_ManualSwitch_idx_1 = rtb_Add * XY_dot_tmp;
-    XY_dot_tmp_1 = wheel_odometry_B.b_value * XY_dot_tmp_0;
-    wheel_odometry_B.q[0] = rtb_ManualSwitch_idx_1 * XY_dot_tmp + XY_dot_tmp_1 *
-      XY_dot_tmp_0;
-    wheel_odometry_B.q[1] = rtb_ManualSwitch_idx_1 * XY_dot_tmp_0 - XY_dot_tmp_1
-      * XY_dot_tmp;
-    rtb_ManualSwitch_idx_1 = wheel_odometry_B.b_value * XY_dot_tmp;
-    XY_dot_tmp_1 = rtb_Add * XY_dot_tmp_0;
-    wheel_odometry_B.q[2] = XY_dot_tmp_1 * XY_dot_tmp + rtb_ManualSwitch_idx_1 *
-      XY_dot_tmp_0;
-    wheel_odometry_B.q[3] = rtb_ManualSwitch_idx_1 * XY_dot_tmp - XY_dot_tmp_1 *
-      XY_dot_tmp_0;
+    rtb_vxvy_idx_1 = cos(s_idx_1_tmp);
+    s_idx_1_tmp = sin(s_idx_1_tmp);
+    XY_dot_tmp = wheel_odometry_B.Add * rtb_vxvy_idx_1;
+    XY_dot_tmp_0 = wheel_odometry_B.b_value * s_idx_1_tmp;
+    wheel_odometry_B.q[0] = XY_dot_tmp * rtb_vxvy_idx_1 + XY_dot_tmp_0 *
+      s_idx_1_tmp;
+    wheel_odometry_B.q[1] = XY_dot_tmp * s_idx_1_tmp - XY_dot_tmp_0 *
+      rtb_vxvy_idx_1;
+    XY_dot_tmp = wheel_odometry_B.b_value * rtb_vxvy_idx_1;
+    XY_dot_tmp_0 = wheel_odometry_B.Add * s_idx_1_tmp;
+    wheel_odometry_B.q[2] = XY_dot_tmp_0 * rtb_vxvy_idx_1 + XY_dot_tmp *
+      s_idx_1_tmp;
+    wheel_odometry_B.q[3] = XY_dot_tmp * rtb_vxvy_idx_1 - XY_dot_tmp_0 *
+      s_idx_1_tmp;
   }
 
   // End of Outputs for SubSystem: '<Root>/Subsystem1'
@@ -545,13 +639,13 @@ void wheel_odometry::initialize()
 
     // End of SystemInitialize for SubSystem: '<S5>/Enabled Subsystem'
 
-    // SystemInitialize for Enabled SubSystem: '<S22>/Enabled Subsystem1'
-    // SystemInitialize for SignalConversion generated from: '<S24>/yaw' incorporates:
-    //   Outport: '<S24>/Out1'
+    // SystemInitialize for Enabled SubSystem: '<S23>/Enabled Subsystem1'
+    // SystemInitialize for SignalConversion generated from: '<S25>/yaw' incorporates:
+    //   Outport: '<S25>/Out1'
 
     wheel_odometry_B.yaw = wheel_odometry_P.Out1_Y0_p;
 
-    // End of SystemInitialize for SubSystem: '<S22>/Enabled Subsystem1'
+    // End of SystemInitialize for SubSystem: '<S23>/Enabled Subsystem1'
 
     // SystemInitialize for Enabled SubSystem: '<Root>/Subsystem1'
     // InitializeConditions for UnitDelay: '<S7>/Unit Delay'
