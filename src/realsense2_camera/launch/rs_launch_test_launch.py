@@ -37,6 +37,15 @@ local_parameters = [{'name': 'enable_fisheye1', 'default': 'false', 'description
                     {'name': 'calib_odom_file', 'default': odom_file, 'description': "''"},
                     {'name': 'topic_odom_in',   'default': '/wheel_odom', 'description': 'topic for T265 wheel odometry'},
                    ]
+for param in local_parameters:
+    if param['name'] == 'calib_odom_file':
+        calib_odom_file_value = param['default']
+        continue
+    if param['name'] == 'topic_odom_in':
+        topic_odom_in_value = param['default']
+        break
+print("check:", calib_odom_file_value)
+print("check:", topic_odom_in_value)
 default_params = copy.deepcopy(rs_launch.configurable_parameters)
                     
 
