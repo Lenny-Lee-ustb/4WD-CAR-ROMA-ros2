@@ -10,6 +10,11 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch.conditions import IfCondition
 
+odom_file = os.path.join(
+        get_package_share_directory('realsense2_camera'),
+        'config',
+        'calibration_odometry.json'
+    )
 
 configurable_parameters = [{'name': 'camera_name',                  'default': 'camera', 'description': 'camera unique name'},
                            {'name': 'serial_no',                    'default': "''", 'description': 'choose device by serial number'},

@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'wheel_odometry'.
 //
-// Model version                  : 1.28
+// Model version                  : 1.30
 // Simulink Coder version         : 9.9 (R2023a) 19-Nov-2022
-// C/C++ source code generated on : Fri Aug 25 16:50:23 2023
+// C/C++ source code generated on : Sun Sep  3 12:16:53 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -159,8 +159,9 @@ void wheel_odometry::wheel_odometry_SystemCore_setup
   rmw_qos_history_policy_t history;
   rmw_qos_profile_t qos_profile;
   rmw_qos_reliability_policy_t reliability;
-  static const char_T tmp[16] = { '/', 'S', 'p', 'd', '_', 'P', 'o', 's', 'i',
-    't', 'i', 'o', 'n', '_', 'X', 'Y' };
+  char_T b_zeroDelimTopic[12];
+  static const char_T tmp[11] = { '/', 'w', 'h', 'e', 'e', 'l', '_', 'o', 'd',
+    'o', 'm' };
 
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
@@ -168,13 +169,12 @@ void wheel_odometry::wheel_odometry_SystemCore_setup
   reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
   durability = RMW_QOS_POLICY_DURABILITY_VOLATILE;
   SET_QOS_VALUES(qos_profile, history, (size_t)1.0, durability, reliability);
-  for (int32_T i = 0; i < 16; i++) {
-    wheel_odometry_B.b_zeroDelimTopic[i] = tmp[i];
+  for (int32_T i = 0; i < 11; i++) {
+    b_zeroDelimTopic[i] = tmp[i];
   }
 
-  wheel_odometry_B.b_zeroDelimTopic[16] = '\x00';
-  Pub_wheel_odometry_253.createPublisher(&wheel_odometry_B.b_zeroDelimTopic[0],
-    qos_profile);
+  b_zeroDelimTopic[11] = '\x00';
+  Pub_wheel_odometry_253.createPublisher(&b_zeroDelimTopic[0], qos_profile);
   obj->isSetupComplete = true;
 }
 

@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'wheel_odometry'.
 //
-// Model version                  : 1.28
+// Model version                  : 1.30
 // Simulink Coder version         : 9.9 (R2023a) 19-Nov-2022
-// C/C++ source code generated on : Fri Aug 25 16:50:23 2023
+// C/C++ source code generated on : Sun Sep  3 12:16:53 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -671,7 +671,7 @@ P_wheel_odometry_T wheel_odometry::wheel_odometry_P = {
   // Expression: [k/2, k/2, 0.5-k/2, 0.5-k/2]
   //  Referenced by: '<S18>/Constant'
 
-  { 0.5, 0.5, 0.0, 0.0 },
+  { 0.25, 0.25, 0.25, 0.25 },
 
   // Expression: 0
   //  Referenced by: '<S7>/Unit Delay'
@@ -721,7 +721,7 @@ P_wheel_odometry_T wheel_odometry::wheel_odometry_P = {
   // Expression: single(b/L)
   //  Referenced by: '<S18>/Gain1'
 
-  0.605263174F,
+  0.5F,
 
   // Computed Parameter: Gain1_Gain_i
   //  Referenced by: '<S8>/Gain1'

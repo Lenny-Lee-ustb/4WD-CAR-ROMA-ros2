@@ -85,11 +85,6 @@ target_link_libraries(wheel_odometry
 install(TARGETS wheel_odometry
   EXPORT export_${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME})
-install(DIRECTORY launch
-  DESTINATION share/${PROJECT_NAME})
-install(DIRECTORY config
-  DESTINATION share/${PROJECT_NAME}
-)
 ament_export_include_directories(
   include
 )
@@ -108,4 +103,4 @@ add_custom_command(
 				   )				   
 endforeach(file_i)
 ament_package()
-# Generated on Fri Aug 25 16:50:29 2023
+# Generated on Sun Sep 03 12:16:59 2023

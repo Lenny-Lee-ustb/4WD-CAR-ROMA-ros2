@@ -4,9 +4,9 @@
 //
 // Code generated for Simulink model 'wheel_odometry'.
 //
-// Model version                  : 1.28
+// Model version                  : 1.30
 // Simulink Coder version         : 9.9 (R2023a) 19-Nov-2022
-// C/C++ source code generated on : Fri Aug 25 16:50:27 2023
+// C/C++ source code generated on : Sun Sep 03 12:16:57 2023
 //
 #ifndef _ROS2_MATLAB_NODEINTERFACE_
 #define _ROS2_MATLAB_NODEINTERFACE_

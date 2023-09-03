@@ -20,6 +20,3 @@ def generate_launch_description():
             parameters=[config]
         )
     ])
-
-def main(args=None):
-    generate_launch_description()

@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'wheel_odometry'.
 //
-// Model version                  : 1.28
+// Model version                  : 1.30
 // Simulink Coder version         : 9.9 (R2023a) 19-Nov-2022
-// C/C++ source code generated on : Fri Aug 25 16:50:23 2023
+// C/C++ source code generated on : Sun Sep  3 12:16:53 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -67,12 +67,11 @@ struct B_wheel_odometry_T {
   SL_Bus_geometry_msgs_PolygonStamped b_varargout_2_m;
   real32_T ImpAsg_InsertedFor_x_at_inp[16];
   real32_T ImpAsg_InsertedFor_x_at_i_d[16];
+  real_T UnitDelay[2];                 // '<S7>/Unit Delay'
   real_T q[4];                         // '<S7>/MATLAB Function1'
-  char_T b_zeroDelimTopic[17];
   real_T XY_dot[2];                    // '<S7>/MATLAB Function'
   char_T prmName[15];
   real_T yaw;                          // '<S25>/yaw'
-  real_T UnitDelay[2];                 // '<S7>/Unit Delay'
   real_T b_value;
   real_T Add;                          // '<S10>/Add'
   boolean_T reset;                     // '<S7>/Chart'
