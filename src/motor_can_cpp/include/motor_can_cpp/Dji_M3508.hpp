@@ -25,12 +25,14 @@ public:
 	int16_t curRx, velRx, angleRx, curTx;
 	int8_t thermalRx; // Monitor thermal
 
+	std::string drive_mode;
+
 	double K;
 	double temperature;																				  // C
 	double tor, torLast, torFiltered, torFiltered_Last, torqueDes, torqueConst, torqueMax, torqueMin; // tor = K*cur
 	double speed, speedLast, speedFiltered, speedFiltered_Last, speedDes, speedErr;					  // m/s
 
-	int16_t MotorTune();
+	int16_t MotorVelocityTune(), MotorTorqueTune();
 	bool MotorSetup(double Kp, double Ki, double Kd, double IBound, double dt, double preTorque, double filter_a1, double filter_b0, double filter_b1, double K_motor, double maxTorque, double minTorque);
 	double LowPassFilter(double yLast, double x, double xLast);
 	void SendZero(int s);
@@ -63,23 +65,28 @@ bool Motor_M3508::MotorSetup(double Kp,
 	return 1;
 }
 
-int16_t Motor_M3508::MotorTune()
+int16_t Motor_M3508::MotorVelocityTune()
 {
 	// This method is borrowed from MIT Cheetah, which is used in Tmotor AK series.
 	double T_ref;
 	int16_t iqref;
-	if (speedDes != 0 && torqueDes == 0)
-	{
-		T_ref = motorPID.calculateOutput(speedDes, speed);
-		T_ref = T_ref + getSignNum(T_ref, 0.2) * preTorque_;
-	}
-	else if (speedDes == 0 && torqueDes != 0)
-	{
-		T_ref = torqueDes;
-	}
-	else{
-		T_ref = 0;
-	}
+
+	T_ref = motorPID.calculateOutput(speedDes, speed);
+	T_ref += getSignNum(T_ref, 0.2) * preTorque_;
+
+	T_ref = std::min(std::max(T_ref, torqueMin), torqueMax);
+	iqref = (int16_t)round(T_ref / K * (16384.0 / 20.0));
+	iqref = std::min(std::max(iqref, (int16_t)-16384), (int16_t)16384);
+	return iqref;
+}
+
+int16_t Motor_M3508::MotorTorqueTune()
+{
+	// This method is borrowed from MIT Cheetah, which is used in Tmotor AK series.
+	double T_ref;
+	int16_t iqref;
+
+	T_ref = torqueDes;
 
 	T_ref = std::min(std::max(T_ref, torqueMin), torqueMax);
 	iqref = (int16_t)round(T_ref / K * (16384.0 / 20.0));

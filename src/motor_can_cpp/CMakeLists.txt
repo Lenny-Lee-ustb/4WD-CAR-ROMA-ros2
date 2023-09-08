@@ -9,6 +9,8 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(custom_interfaces REQUIRED)
+
 
 include_directories(include)
 
@@ -34,7 +36,7 @@ ament_package()
 add_executable(motor_can 
 src/motor_can.cpp
 )
-ament_target_dependencies(motor_can rclcpp geometry_msgs)
+ament_target_dependencies(motor_can rclcpp geometry_msgs custom_interfaces)
 install(TARGETS
   motor_can
   DESTINATION lib/${PROJECT_NAME}

@@ -8,6 +8,8 @@
 #include "geometry_msgs/msg/polygon_stamped.hpp"
 #include "motor_can_cpp/Dji_M3508.hpp"
 #include "motor_can_cpp/can_tools.h"
+#include "custom_interfaces/msg/actuator_command.hpp"
+#include "custom_interfaces/msg/actuator_state.hpp"
 
 // socket taojiezi
 int s;
@@ -57,11 +59,15 @@ public:
         }
 
         motorRxCount = 0;
-        motor_state.polygon.points.resize(4);
+        motor_state.actuator_state.resize(4);
+        motor_state.actuator_state[0].name = "Front Left";
+        motor_state.actuator_state[1].name = "Front Right";
+        motor_state.actuator_state[2].name = "Rear Right";
+        motor_state.actuator_state[3].name = "Rear Left";
 
         // init sub and pub
-        cmd_subscriber_ = this->create_subscription<geometry_msgs::msg::PolygonStamped>("motor_cmd", 10, std::bind(&MotorCanNode::command_callback, this, std::placeholders::_1));
-        state_publisher_ = this->create_publisher<geometry_msgs::msg::PolygonStamped>("motor_state", 10);
+        cmd_subscriber_ = this->create_subscription<custom_interfaces::msg::ActuatorCommand>("motor_cmd", 10, std::bind(&MotorCanNode::command_callback, this, std::placeholders::_1));
+        state_publisher_ = this->create_publisher<custom_interfaces::msg::ActuatorState>("motor_state", 10);
         conrtol_loop_ = this->create_wall_timer(std::chrono::nanoseconds(1000000), std::bind(&MotorCanNode::control_loop_callback, this));
         can_rx_timer_ = this->create_wall_timer(std::chrono::nanoseconds(100000), std::bind(&MotorCanNode::can_rx_timer_callback, this));
         RCLCPP_INFO(this->get_logger(), "%s节点已经启动.", name.c_str());
@@ -69,10 +75,10 @@ public:
 
 private:
     // variables
-    rclcpp::Subscription<geometry_msgs::msg::PolygonStamped>::SharedPtr cmd_subscriber_;
-    rclcpp::Publisher<geometry_msgs::msg::PolygonStamped>::SharedPtr state_publisher_;
+    rclcpp::Subscription<custom_interfaces::msg::ActuatorCommand>::SharedPtr cmd_subscriber_;
+    rclcpp::Publisher<custom_interfaces::msg::ActuatorState>::SharedPtr state_publisher_;
     rclcpp::TimerBase::SharedPtr conrtol_loop_, can_rx_timer_;
-    geometry_msgs::msg::PolygonStamped motor_state;
+    custom_interfaces::msg::ActuatorState motor_state;
     Motor_M3508 motor[4];
     std::string CanSeries, password;
     double Kp, Ki, Kd, IBound, dt, preTorque, filter_a1, filter_b0, filter_b1, K_motor, minTorque, maxTorque;
@@ -81,13 +87,14 @@ private:
     struct can_frame txFrame, rxFrame;
 
     // subscribe and CAN send
-    void command_callback(const geometry_msgs::msg::PolygonStamped::SharedPtr motor_cmd)
+    void command_callback(const custom_interfaces::msg::ActuatorCommand::SharedPtr motor_cmd)
     {
-        int motorNum = motor_cmd->polygon.points.size();
+        int motorNum = motor_cmd->actuator_command.size();
         for (auto i = 0; i < motorNum; i++)
         {
-            motor[i].speedDes = motor_cmd->polygon.points[i].x;
-            motor[i].torqueDes = motor_cmd->polygon.points[i].y;
+            motor[i].drive_mode = motor_cmd->drive_mode;
+            motor[i].speedDes = motor_cmd->actuator_command[i].velocity;
+            motor[i].torqueDes = motor_cmd->actuator_command[i].effort;
         }
     }
 
@@ -102,11 +109,18 @@ private:
                 motor[i].speedDes = 0.0;
             }
         }
-        
-        for (auto i = 0; i < 4; i++)
+
+        if (motor[0].drive_mode=="velocity")
         {
-            motor[i].curTx = motor[i].MotorTune();
+            for (auto i = 0; i < 4; i++){
+                motor[i].curTx = motor[i].MotorVelocityTune();
+            }
+        } else if (motor[0].drive_mode=="effort"){
+            for (auto i = 0; i < 4; i++){
+                motor[i].curTx = motor[i].MotorTorqueTune();
+            }
         }
+
         for (int j = 0; j < 4; j++)
         {
             txFrame.data[2 * j] = motor[j].curTx >> 8;     // 控制电流值高 8 位
@@ -151,15 +165,13 @@ private:
             // due to the configuration, it needs change the direction
             if ((ID == 0) || (ID == 3))
             {
-                motor_state.polygon.points[ID].x = motor[ID].speedFiltered;
-                motor_state.polygon.points[ID].y = motor[ID].torFiltered;
-                motor_state.polygon.points[ID].z = motor[ID].temperature;
+                motor_state.actuator_state[ID].velocity = motor[ID].speedFiltered;
+                motor_state.actuator_state[ID].effort = motor[ID].torFiltered;
             }
             else if ((ID == 1) || (ID == 2))
             {
-                motor_state.polygon.points[ID].x = -motor[ID].speedFiltered; // m/s
-                motor_state.polygon.points[ID].y = -motor[ID].torFiltered;   // -16384~0~16384 -> -20-0-20A -> -1.626 - 1.626Nm
-                motor_state.polygon.points[ID].z = motor[ID].temperature;   // 'c
+                motor_state.actuator_state[ID].velocity = -motor[ID].speedFiltered; // m/s
+                motor_state.actuator_state[ID].effort = -motor[ID].torFiltered;   // -16384~0~16384 -> -20-0-20A -> -1.626 - 1.626Nm
             }
         }
 

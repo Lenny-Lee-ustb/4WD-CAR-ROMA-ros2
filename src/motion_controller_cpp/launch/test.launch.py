@@ -78,6 +78,6 @@ def generate_launch_description():
     ld.add_action(motion_controller_node)
     ld.add_action(servo_485_node)
     ld.add_action(motor_can_node)
-    ld.add_action(imu_node)
+    # ld.add_action(imu_node)
 
     return ld

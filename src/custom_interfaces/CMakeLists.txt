@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.8)
 project(custom_interfaces)
 
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+endif()
+
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
@@ -11,8 +16,10 @@ find_package(rosidl_default_generators REQUIRED)
 find_package(std_msgs REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/Actuator.msg"
+  "msg/ActuatorCommand.msg"
+  "msg/ActuatorState.msg"
   "msg/ForceSensor.msg"
-
   "msg/PressureSensor.msg"
   DEPENDENCIES std_msgs
 )

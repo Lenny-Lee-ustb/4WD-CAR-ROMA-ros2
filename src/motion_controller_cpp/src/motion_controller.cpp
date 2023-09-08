@@ -1,7 +1,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "sbus_interface/msg/sbus.hpp"
-#include "geometry_msgs/msg/polygon_stamped.hpp"
 #include "geometry_msgs/msg/twist.hpp"
+#include "custom_interfaces/msg/actuator_command.hpp"
 
 class Motion_controller_node : public rclcpp::Node
 {
@@ -12,16 +12,22 @@ public:
         angle_max_ = this->declare_parameter<double>("angleMax", 0.7);
         min_speed_threshold_ = this->declare_parameter<double>("minSpeedThreshold", 0.15);
 
-        motor_cmd_.polygon.points.resize(4);
-        servo_cmd_.polygon.points.resize(2);
+        motor_cmd_.actuator_command.resize(4);
+        motor_cmd_.actuator_command[0].name = "Front Left";
+        motor_cmd_.actuator_command[1].name = "Front Right";
+        motor_cmd_.actuator_command[2].name = "Rear Right";
+        motor_cmd_.actuator_command[3].name = "Rear Left";
+        servo_cmd_.actuator_command.resize(2);
+        servo_cmd_.actuator_command[0].name = "Front Left";
+        servo_cmd_.actuator_command[1].name = "Front Right";
         moveable_in_ = 0;
         direct_in_ = 0;
         control_in_ = 0;
 
         sbus_subs_ = this->create_subscription<sbus_interface::msg::Sbus>("sbus", 10, std::bind(&Motion_controller_node::sbus_command_callback, this, std::placeholders::_1));
         upper_cmd_subs_ = this->create_subscription<geometry_msgs::msg::Twist>("cmd_vel", 10, std::bind(&Motion_controller_node::upper_command_callback, this, std::placeholders::_1));
-        motor_cmd_pub_ = this->create_publisher<geometry_msgs::msg::PolygonStamped>("motor_cmd", 10);
-        servo_cmd_pub_ = this->create_publisher<geometry_msgs::msg::PolygonStamped>("servo_cmd", 10);
+        motor_cmd_pub_ = this->create_publisher<custom_interfaces::msg::ActuatorCommand>("motor_cmd", 10);
+        servo_cmd_pub_ = this->create_publisher<custom_interfaces::msg::ActuatorCommand>("servo_cmd", 10);
         command_info_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("command_info",10);
         cmd_trans_timer_ = this->create_wall_timer(std::chrono::milliseconds(10), std::bind(&Motion_controller_node::CmdTrans, this));
         RCLCPP_INFO(this->get_logger(), "%s节点已经启动.", name.c_str());
@@ -30,11 +36,11 @@ public:
 private:
     rclcpp::Subscription<sbus_interface::msg::Sbus>::SharedPtr sbus_subs_;
     rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr upper_cmd_subs_;
-    rclcpp::Publisher<geometry_msgs::msg::PolygonStamped>::SharedPtr motor_cmd_pub_, servo_cmd_pub_;
+    rclcpp::Publisher<custom_interfaces::msg::ActuatorCommand>::SharedPtr motor_cmd_pub_, servo_cmd_pub_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr command_info_pub_;
     rclcpp::TimerBase::SharedPtr cmd_trans_timer_;
     geometry_msgs::msg::Twist upper_cmd_, sbus_cmd_, cmd_;
-    geometry_msgs::msg::PolygonStamped motor_cmd_, servo_cmd_;
+    custom_interfaces::msg::ActuatorCommand motor_cmd_, servo_cmd_;
 
     int moveable_in_, direct_in_, control_in_, cmdMuxCount_;
     bool failsafe_, frame_lost_;
@@ -110,18 +116,19 @@ void Motion_controller_node::CmdTrans()
 
 void Motion_controller_node::fwdKinematicCal(const double vX, const double avZ)
 {
-    motor_cmd_.polygon.points[0].x = vX+0.000001;
-    motor_cmd_.polygon.points[1].x = -vX-0.000001;
-    motor_cmd_.polygon.points[2].x = -vX-0.000001;
-    motor_cmd_.polygon.points[3].x = vX+0.000001;
-    // motor_cmd_.polygon.points[0].y = vX;
-    // motor_cmd_.polygon.points[1].y = -vX;
-    // motor_cmd_.polygon.points[2].y = -vX;
-    // motor_cmd_.polygon.points[3].y = vX;
+    motor_cmd_.drive_mode = "velocity";
+    motor_cmd_.actuator_command[0].velocity = vX;
+    motor_cmd_.actuator_command[1].velocity = -vX;
+    motor_cmd_.actuator_command[2].velocity = -vX;
+    motor_cmd_.actuator_command[3].velocity = vX;
+    // motor_cmd_.actuator_command[0].effort = vX;
+    // motor_cmd_.actuator_command[1].effort = -vX;
+    // motor_cmd_.actuator_command[2].effort = -vX;
+    // motor_cmd_.actuator_command[3].effort = vX;
     motor_cmd_pub_->publish(motor_cmd_);
 
-    servo_cmd_.polygon.points[0].x  = avZ;
-    servo_cmd_.polygon.points[1].x  = avZ;
+    servo_cmd_.actuator_command[0].position  = avZ;
+    servo_cmd_.actuator_command[1].position  = avZ;
     servo_cmd_pub_->publish(servo_cmd_);
 }
 

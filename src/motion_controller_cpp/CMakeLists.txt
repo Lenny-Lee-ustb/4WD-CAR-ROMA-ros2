@@ -9,6 +9,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sbus_interface REQUIRED)
+find_package(custom_interfaces REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
 install(DIRECTORY
@@ -34,7 +35,7 @@ endif()
 ament_package()
 
 add_executable(motion_controller src/motion_controller.cpp)
-ament_target_dependencies(motion_controller rclcpp sbus_interface geometry_msgs)
+ament_target_dependencies(motion_controller rclcpp sbus_interface geometry_msgs custom_interfaces)
 install(TARGETS
   motion_controller
   DESTINATION lib/${PROJECT_NAME}

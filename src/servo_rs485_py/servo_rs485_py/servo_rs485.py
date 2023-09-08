@@ -4,6 +4,7 @@ import math
 from dynamixel_sdk import * # Uses Dynamixel SDK library 
 
 from geometry_msgs.msg import PolygonStamped, Point32
+from custom_interfaces.msg import ActuatorState, ActuatorCommand, Actuator
 from rclpy.qos import QoSProfile
 from rclpy.duration import Duration
 from rclpy.qos import QoSDurabilityPolicy
@@ -44,13 +45,13 @@ class ServoNode(Node):
         # Add parameter storage for Right servo present position
         self.dxl_read_add_param_pos(self.__right_ID)
         # Add parameter storage for Left servo target position
-        self.dxl_write_set_param_pos(self.__left_ID)
+        self.dxl_write_set_param_pos(self.__left_ID, self.__left_mid_position)
         # Add parameter storage for Right servo target position
-        self.dxl_write_set_param_pos(self.__right_ID)
+        self.dxl_write_set_param_pos(self.__right_ID, self.__right_mid_position)
 
-        self.publisher_ = self.create_publisher(PolygonStamped, 'servo_state', qos_profile_pub)
+        self.publisher_ = self.create_publisher(ActuatorState, 'servo_state', qos_profile_pub)
         self.publisher_
-        self.subscriber_ = self.create_subscription(PolygonStamped, 'servo_cmd', self.cmd_callback, qos_profile_sub)
+        self.subscriber_ = self.create_subscription(ActuatorCommand, 'servo_cmd', self.cmd_callback, qos_profile_sub)
         self.subscriber_
         self.pubTimer_ = self.create_timer(0.01, self.control_loop_timer)
 
@@ -65,22 +66,24 @@ class ServoNode(Node):
         self.dxl_set_baudrate(self.__baud_rate)
 
     def cmd_callback(self, msg):
-        self.servo_cmd[0] = self.cal_goal_pos(self.__left_min_position,self.__left_mid_position,self.__left_max_position, msg.polygon.points[0].x)
-        self.servo_cmd[1] = self.cal_goal_pos(self.__right_min_position,self.__right_mid_position,self.__right_max_position, -msg.polygon.points[1].x)
+        self.servo_cmd[0] = self.cal_goal_pos(self.__left_min_position,self.__left_mid_position,self.__left_max_position, msg.actuator_command[0].position)
+        self.servo_cmd[1] = self.cal_goal_pos(self.__right_min_position,self.__right_mid_position,self.__right_max_position, -msg.actuator_command[1].position)
 
     def control_loop_timer(self):
         self.dxl_write_change_param_pos(self.__left_ID,self.servo_cmd[0])
         self.dxl_write_change_param_pos(self.__right_ID,self.servo_cmd[1])
         self.dxl_write_txPacket()
 
-        servo_state_pub = PolygonStamped()
-        servo_left = Point32()
-        servo_right = Point32()
+        servo_state_pub = ActuatorState()
+        servo_left = Actuator()
+        servo_right = Actuator()
         self.dxl_read_rxPacket()
-        servo_left.x = float(self.dxl_get_data(self.__left_ID))
-        servo_right.x = float(self.dxl_get_data(self.__right_ID))
-        servo_state_pub.polygon.points.append(servo_left)
-        servo_state_pub.polygon.points.append(servo_right)
+        servo_left.name = 'Front Left'
+        servo_right.name = 'Front Right'
+        servo_left.position = float(self.dxl_get_data(self.__left_ID))
+        servo_right.position = float(self.dxl_get_data(self.__right_ID))
+        servo_state_pub.actuator_state.append(servo_left)
+        servo_state_pub.actuator_state.append(servo_right)
         self.publisher_.publish(servo_state_pub)
         
     def cal_goal_pos(self, min_pos, mid_pos, max_pos, goal):
