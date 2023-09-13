@@ -24,7 +24,7 @@ def generate_launch_description():
         package="motion_controller_cpp",
         executable="motion_controller",
         parameters=[
-            {"speedMax":3.0},
+            {"speedMax":3.5},
             {"angleMax":0.75}
         ]
     )
@@ -55,29 +55,30 @@ def generate_launch_description():
         parameters=[can_config]
     )
 
-    imu_config = os.path.join(
-        get_package_share_directory('motion_controller_cpp'),
-        'config',
-        'imu_params.yaml'
-    )
-    imu_node = Node(
-        package="wt906_imu_py",
-        executable="wt906_serial",
-        name="wt906_serial",
-        output="screen",
-        parameters=[imu_config]
-    )
-
+    # imu_config = os.path.join(
+    #     get_package_share_directory('motion_controller_cpp'),
+    #     'config',
+    #     'imu_params.yaml'
+    # )
     # imu_node = Node(
-    #         package='serial_imu',
-    #         executable='talker',
-    #         output='screen'
+    #     package="wt906_imu_py",
+    #     executable="wt906_serial",
+    #     name="wt906_serial",
+    #     output="screen",
+    #     parameters=[imu_config]
     # )
 
-    ld.add_action(sbus_bridge_node)
-    ld.add_action(motion_controller_node)
-    ld.add_action(servo_485_node)
-    ld.add_action(motor_can_node)
-    # ld.add_action(imu_node)
+    imu_node = Node(
+            package='ch040_imu_cpp',
+            executable='imu_publisher',
+            name='imu_pub_node',
+            output='screen'
+    )
+
+    # ld.add_action(sbus_bridge_node)
+    # ld.add_action(motion_controller_node)
+    # ld.add_action(servo_485_node)
+    # ld.add_action(motor_can_node)
+    ld.add_action(imu_node)
 
     return ld

@@ -1,5 +1,6 @@
-Please run these commands in this path(./rules/):
+## Please run these commands in this path(./rules/):
 
-    sudo cp rs232.rules /etc/udev/rules.d/rs232.rules 
-
-    sudo cp laser.rules /etc/udev/rules.d/laser.rules 
+```bash
+    sudo cp 99-ch344q.rules /etc/udev/rules.d/99-ch344q.rules 
+    sudo cp 99-teensy.rules /etc/udev/rules.d/99-teensy.rules 
+``` 

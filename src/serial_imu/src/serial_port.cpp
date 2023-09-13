@@ -13,7 +13,7 @@ extern "C"{
 
 #include "ch_serial.h"
 
-#define IMU_SERIAL  ("/dev/laser")
+#define IMU_SERIAL  ("/dev/imu")
 #define BAUD        (B921600)
 #define GRA_ACC     (9.8)
 #define DEG_TO_RAD  (0.01745329)
@@ -64,7 +64,7 @@ class IMUPublisher : public rclcpp::Node
 						imu_data.linear_acceleration.z = raw.imu[raw.nimu - 1].acc[2] * GRA_ACC;
 
 						imu_data.header.stamp = rclcpp::Clock().now();
-						imu_data.header.frame_id = "base_link";
+						imu_data.header.frame_id = "imu_link";
 						imu_pub->publish(imu_data);
 					}
 				}

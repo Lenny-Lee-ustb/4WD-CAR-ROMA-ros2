@@ -11,11 +11,7 @@ This project is under constuction!
 ### Install ROS2
 
 `wget http://fishros.com/install -O fishros && . fishros`  
-
-### Install Realsense
-
-`sudo apt install ros-humble-librealsense2*`  
-`sudo apt install ros-humble-realsense2-*`  
+ 
 
 ### Setup DynamixelSDK python
 
@@ -42,6 +38,9 @@ cd 4WD-CAR-ROMA-ros2
 git submodule init
 git submodule update
 colcon build --symlink-install
+source install/setup.bash
+colcon build --symlink-install
+
 ```
 
 ---
@@ -56,4 +55,14 @@ colcon build --symlink-install
 ```bash
 source install/setup.bash
 ros2 launch motion_controller_cpp test.launch.py
+```
+
+## Logging data
+
+```bash
+# in work space
+source install/setup.bash
+# in ros_bags dir
+ros2 bag record /motor_cmd /motor_state /servo_cmd /servo_state
+# You can add other messages into it
 ```
