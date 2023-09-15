@@ -176,14 +176,14 @@ def main(args=None):
 
     qos_profile_publisher = QoSProfile(depth=10)
     qos_profile_publisher.reliability = QoSReliabilityPolicy.RELIABLE
-    # Options  QoSDurabilityPolicy.VOLATILE, QoSDurabilityPolicy.TRANSIENT_LOCAL,
-    qos_profile_publisher.durability = QoSDurabilityPolicy.VOLATILE
+    # # Options  QoSDurabilityPolicy.VOLATILE, QoSDurabilityPolicy.TRANSIENT_LOCAL,
+    # qos_profile_publisher.durability = QoSDurabilityPolicy.VOLATILE
     qos_profile_publisher.deadline = Duration(seconds=1)
     # Options QoSLivelinessPolicy.MANUAL_BY_TOPIC, QoSLivelinessPolicy.AUTOMATIC
     qos_profile_publisher.liveliness = QoSLivelinessPolicy.AUTOMATIC
 
     qos_profile_subscriber = QoSProfile(depth=10)
-    qos_profile_subscriber.reliability = QoSReliabilityPolicy.BEST_EFFORT
+    # qos_profile_subscriber.reliability = QoSReliabilityPolicy.BEST_EFFORT
     qos_profile_subscriber.durability = QoSDurabilityPolicy.VOLATILE
 
     ServoSubPubNode = ServoNode("servo_rs485_node", qos_profile_publisher, qos_profile_subscriber)  # 新建一个节点

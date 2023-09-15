@@ -1,4 +1,4 @@
-KERNEL=="ttyACM*", ATTRS{bInterfaceClass}=="02", ATTRS{bInterfaceNumber}=="00", MODE:="0777", SYMLINK+="battery"
-KERNEL=="ttyACM*", ATTRS{bInterfaceClass}=="02", ATTRS{bInterfaceNumber}=="02", MODE:="0777", SYMLINK+="sbus"
-KERNEL=="ttyACM*", ATTRS{bInterfaceClass}=="02", ATTRS{bInterfaceNumber}=="04", MODE:="0777", SYMLINK+="imu"
-KERNEL=="ttyACM*", ATTRS{bInterfaceClass}=="02", ATTRS{bInterfaceNumber}=="06", MODE:="0777", SYMLINK+="servo"
+KERNEL=="ttyCH343USB*", ATTRS{bInterfaceClass}=="02", ATTRS{bInterfaceNumber}=="00", MODE:="0777", SYMLINK+="battery"
+KERNEL=="ttyCH343USB*", ATTRS{bInterfaceClass}=="02", ATTRS{bInterfaceNumber}=="02", MODE:="0777", SYMLINK+="sbus"
+KERNEL=="ttyCH343USB*", ATTRS{bInterfaceClass}=="02", ATTRS{bInterfaceNumber}=="04", MODE:="0777", SYMLINK+="imu"
+KERNEL=="ttyCH343USB*", ATTRS{bInterfaceClass}=="02", ATTRS{bInterfaceNumber}=="06", MODE:="0777", SYMLINK+="servo"

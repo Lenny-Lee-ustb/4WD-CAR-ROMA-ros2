@@ -75,7 +75,7 @@ def generate_launch_description():
             output='screen'
     )
 
-    # ld.add_action(sbus_bridge_node)
+    ld.add_action(sbus_bridge_node)
     # ld.add_action(motion_controller_node)
     # ld.add_action(servo_485_node)
     # ld.add_action(motor_can_node)

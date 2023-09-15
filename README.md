@@ -23,6 +23,17 @@ At ~/ directory
 
 ### Init Serial
 
+#### Install CH343_serial driver
+
+At ~/ directory
+```bash
+git clone https://github.com/WCHSoftGroup/ch343ser_linux.git
+cd ch343ser_linux/driver
+sudo make install
+```
+
+#### Copy rules files to tules.d
+
 You should read rules/rules.md
 
 ### Reduce serial latency
@@ -54,6 +65,7 @@ colcon build --symlink-install
 
 ```bash
 source install/setup.bash
+./low_latency_script.sh
 ros2 launch motion_controller_cpp test.launch.py
 ```
 

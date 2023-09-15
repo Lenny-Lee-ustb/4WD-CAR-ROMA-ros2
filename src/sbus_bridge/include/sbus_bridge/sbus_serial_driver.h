@@ -55,7 +55,10 @@ namespace sbus_serial
 		void setCallback( SBusCallback );       // Set callback to be invoked every time an SBUS packet is received
 
 	  private:
-
+		std::thread receiver_thread_;
+		std::atomic_bool receiver_thread_should_exit_;
+		int serial_port_fd_;
+		SBusCallback callback_;
 		bool setUpSBusSerialPort( const std::string& port,  const bool start_receiver_thread );
 		bool connectSerialPort( const std::string& port );
 		void disconnectSerialPort();
@@ -65,16 +68,13 @@ namespace sbus_serial
 		static constexpr int kSbusFrameLength_ = 35;
 		static constexpr uint8_t kSbusHeaderByte_ = 0x0F;
 		static constexpr uint8_t kSbusFooterByte_ = 0x00;
-		static constexpr int kPollTimeoutMilliSeconds_ = 500;
+		static constexpr int kPollTimeoutMilliSeconds_ = 100;
 
 		bool configureSerialPortForSBus() const;
 		void serialPortReceiveThread();
-		SBusMsg parseSbusMessage( uint8_t sbus_msg_bytes[kSbusFrameLength_] ) const;
+		void parseSbusMessage( uint8_t sbus_msg_bytes[kSbusFrameLength_], SBusMsg& received_sbus_msg);
 
-		std::thread receiver_thread_;
-		std::atomic_bool receiver_thread_should_exit_;
-		SBusCallback callback_;
-		int serial_port_fd_;
+
 	};
 
 } // namespace sbus_serial
