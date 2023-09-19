@@ -9,16 +9,16 @@
 ## 启动方式
 
 ### 要启动Motion_controller节点 ，按照以下步骤操作：
-
-`cd 4WD-CAR-ROMA-ros2/`  
-`colcon build --packages-select custom_interfaces`  
-`colcon build --packages-select servo_rs485_py`  
-`colcon build --packages-select sbus_interface`  
-`source ~/4WD-CAR-ROMA-ros2/install/setup.bash`  
-`colcon build --packages-select motion_controller_cpp`  
-`source ~/4WD-CAR-ROMA-ros2/install/setup.bash`  
-`ros2 run motion_controller_cpp motion_controller`  
-
+```bash
+cd 4WD-CAR-ROMA-ros2/  
+colcon build --packages-select custom_interfaces  
+colcon build --packages-select servo_rs485_py  
+colcon build --packages-select sbus_interface  
+source ~/4WD-CAR-ROMA-ros2/install/setup.bash  
+colcon build --packages-select motion_controller_cpp  
+source ~/4WD-CAR-ROMA-ros2/install/setup.bash  
+ros2 run motion_controller_cpp motion_controller  
+```
 ---
 
 ## 订阅与发布
