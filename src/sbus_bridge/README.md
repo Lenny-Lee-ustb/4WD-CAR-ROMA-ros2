@@ -1,8 +1,8 @@
 # Sbus_bridge_node 
-## 简介
+## 1.简介
 ### 用于处理来自SBUS接收器的遥控信号，并发布出去。
 ---
-## 启动方式
+## 2.启动方式
 ### 要启动Sbus_bridge_node，按照以下步骤操作：
 ```bash
 cd 4WD-CAR-ROMA-ros2/  
@@ -11,13 +11,13 @@ source ~/4WD-CAR-ROMA-ros2/install/setup.bash
 ros2 run sbus_bridge sbus_bridge_node  
 ```
 ---
-## 订阅与发布
+## 3.订阅与发布
 ### 发布
 >/sbus(sbus_interface::msg::Sbus)  
-这个主题包含了处理后的SBUS数据，可以检查是否丢帧，遥控状态是否正常，并包含了sbus各通道的数据。  
+>>这个主题包含了处理后的SBUS数据，可以检查是否丢帧，遥控状态是否正常，并包含了sbus各通道的数据。  
 ---
-## 功能
-接收来自SBUS接收器的原始遥控信号，处理并发布
+## 4.功能
+>接收来自SBUS接收器的原始遥控信号，处理并发布
 ---
 
 # Sbus_serial_dirver

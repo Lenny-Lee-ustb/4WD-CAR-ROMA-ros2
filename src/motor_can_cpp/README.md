@@ -1,9 +1,9 @@
 # Motor_can
 ---
-## 简介
+## 1.简介
 ### 启动MotorCan节点，用于控制和监控4个电机。
 ---
-## 获取参数
+## 2.获取参数
 ```bash
 motor_can_node : # node name  
   ros__parameters:  
@@ -24,7 +24,7 @@ motor_can_node : # node name
     minTorque: -1.6  
 ```
 ---
-## 启动方式
+## 3.启动方式
 ### 要启动MotorCan节点，按照以下步骤操作：
 ```bash
 cd 4WD-CAR-ROMA-ros2/  
@@ -34,19 +34,19 @@ source ~/4WD-CAR-ROMA-ros2/install/setup.bash //配置环境变量。
 ros2 run motor_can_cpp motor_can //运行节点。  
 ```
 ---
-## 订阅与发布
+## 4.订阅与发布
 ### 订阅
 > /motor_cmd(custom_interfaces/msg/ActuatorCommand)  
-用于接收电机的控制命令,包含速度与扭矩。  
+>>用于接收电机的控制命令,包含速度与扭矩。  
 由motion_controller节点发布，包含4个电机的控制信息。  
 ### 发布
 > /motor_state(custom_interfaces/msg/ActuatorState)  
-用于发布电机的状态信息。  
+>>用于发布电机的状态信息。  
 ---
 ## 功能
 >MotorCan节点的功能包括：  
->初始化can通信，电机。  
->定时控制以及刷新电机状态。  
->接收并解析来自/motor_cmd主题的控制命令，以控制电机的速度和扭矩。  
->将电机的状态信息发布到/motor_state主题，以便用户可以检查电机状态。  
->节点关闭时同时关闭can通信。  
+初始化can通信，电机。  
+定时控制以及刷新电机状态。  
+接收并解析来自/motor_cmd主题的控制命令，以控制电机的速度和扭矩。  
+将电机的状态信息发布到/motor_state主题，以便用户可以检查电机状态。  
+节点关闭时同时关闭can通信。  
