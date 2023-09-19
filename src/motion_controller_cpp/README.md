@@ -24,18 +24,18 @@ ros2 run motion_controller_cpp motion_controller
 ## 3.订阅与发布
 
 ### 订阅
-
-> /sbus(消息类型：sbus_interface/msg/Sbus）  
+```
+/sbus(消息类型：sbus_interface/msg/Sbus）  
 ```
 该主题接收来自Sbus接收器的输入，通过读取各通道数据，确定遥控状态，并确定线速度和角速度。  
 ```
-> /cmd_vel(消息类型：geometry_msgs/msg/Twist）  
+/cmd_vel(消息类型：geometry_msgs/msg/Twist）  
 ```
 该主题接收来自上层控制器的输入，包括线速度和角速度命令（需要额外的发布方）。  
-```
-### 发布
 
->/motor_cmd(消息类型：custom_interfaces/msg/ActuatorCommand）  
+### 发布
+```
+/motor_cmd(消息类型：custom_interfaces/msg/ActuatorCommand）  
 ```
 该主题发布电机控制命令，包括速度和转矩命令。  
 ```
@@ -46,7 +46,7 @@ ros2 run motion_controller_cpp motion_controller
 /command_info(消息类型：geometry_msgs/msg/Twist）  
 ```
 该主题发布小车状态信息，便于用户检查小车状态。  
-```
+
 ---
 
 ## 4.功能
