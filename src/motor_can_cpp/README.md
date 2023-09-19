@@ -36,12 +36,16 @@ ros2 run motor_can_cpp motor_can //运行节点。
 ---
 ## 4.订阅与发布
 ### 订阅
-> /motor_cmd(custom_interfaces/msg/ActuatorCommand)  
->>用于接收电机的控制命令,包含速度与扭矩。  
+```
+/motor_cmd(custom_interfaces/msg/ActuatorCommand)  
+```
+用于接收电机的控制命令,包含速度与扭矩。  
 由motion_controller节点发布，包含4个电机的控制信息。  
 ### 发布
-> /motor_state(custom_interfaces/msg/ActuatorState)  
->>用于发布电机的状态信息。  
+```
+/motor_state(custom_interfaces/msg/ActuatorState)  
+```
+用于发布电机的状态信息。  
 ---
 ## 功能
 >MotorCan节点的功能包括：  

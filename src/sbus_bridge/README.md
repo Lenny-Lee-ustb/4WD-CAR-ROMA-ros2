@@ -13,8 +13,10 @@ ros2 run sbus_bridge sbus_bridge_node
 ---
 ## 3.订阅与发布
 ### 发布
->/sbus(sbus_interface::msg::Sbus)  
->>这个主题包含了处理后的SBUS数据，可以检查是否丢帧，遥控状态是否正常，并包含了sbus各通道的数据。  
+```
+/sbus(sbus_interface::msg::Sbus)  
+```
+这个主题包含了处理后的SBUS数据，可以检查是否丢帧，遥控状态是否正常，并包含了sbus各通道的数据。  
 ---
 ## 4.功能
 >接收来自SBUS接收器的原始遥控信号，处理并发布
