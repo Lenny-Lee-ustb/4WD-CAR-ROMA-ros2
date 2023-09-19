@@ -46,6 +46,7 @@ ros2 run motor_can_cpp motor_can //运行节点。
 /motor_state(custom_interfaces/msg/ActuatorState)  
 ```
 用于发布电机的状态信息。  
+  
 ---
 ## 功能
 >MotorCan节点的功能包括：  
