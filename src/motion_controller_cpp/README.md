@@ -1,14 +1,14 @@
-# Motion_controller
+# Motion_controller_node
 
 ## 1.简介
 
-### 用于控制移动平台上的电机和舵机以实现运动控制。  该节点接收来自Sbus接收器的输入，确定小车的线速度和角速度,然后设置电机、舵机控制参数并发布给其他节点使用。
+用于控制移动平台上的电机和舵机以实现运动控制。  该节点接收来自遥控器的输入，确定期望的小车线速度和角速度，然后设置电机、舵机控制参数并发布给其他节点使用。  
 
 ---
 
 ## 2.启动方式
 
-### 要启动Motion_controller节点 ，按照以下步骤操作：
+### 要启动Motion_controller_node节点 ，按照以下步骤操作：
 ```bash
 cd 4WD-CAR-ROMA-ros2/  
 colcon build --packages-select custom_interfaces  
@@ -25,31 +25,33 @@ ros2 run motion_controller_cpp motion_controller
 
 ### 订阅
 ```
-/sbus(消息类型：sbus_interface/msg/Sbus）  
+/sbus(sbus_interface/msg/Sbus）  
 ```
-该主题接收来自Sbus接收器的输入，通过读取各通道数据，确定遥控状态，并确定线速度和角速度。  
+通过读取消息中各通道数据，可以确定遥控状态、期望的线速度和角速度等。  
 ```
-/cmd_vel(消息类型：geometry_msgs/msg/Twist）  
+/cmd_vel(geometry_msgs/msg/Twist）  
 ```
-该主题接收来自上层控制器的输入，包括线速度和角速度命令（需要额外的发布方）。  
+包括线速度和角速度命令（需要额外的发布方）。  
 
 ### 发布
 ```
-/motor_cmd(消息类型：custom_interfaces/msg/ActuatorCommand）  
+/motor_cmd(custom_interfaces/msg/ActuatorCommand）  
 ```
-该主题发布电机控制命令，包括速度和转矩命令。  
+发布电机控制信息，包括速度和转矩信息。  
 ```
-/servo_cmd(消息类型：custom_interfaces/msg/ActuatorCommand）  
+/servo_cmd(custom_interfaces/msg/ActuatorCommand）  
 ```
-该主题发布伺服控制命令，用于控制伺服电机。  
+发布舵机控制信息，用于控制舵机。  
+由servo_rs485_node节点接收此话题消息。  
+
 ```
-/command_info(消息类型：geometry_msgs/msg/Twist）  
+/command_info(geometry_msgs/msg/Twist）  
 ```
-该主题发布小车状态信息，便于用户检查小车状态。  
+发布小车状态信息，便于用户检查小车状态。  
 
 ---
 
 ## 4.功能
   
-主要作用是充当控制器，将来自遥控器的命令转化为电机和伺服的控制信号，从而实现移动平台的运动控制。
+主要作用是充当控制器，将来自遥控器的信号转化为电机和舵机的控制信息，从而实现移动平台的运动控制。
   
