@@ -150,42 +150,109 @@ namespace sbus_serial
 		return true;
 	}
 
+	// bool SBusSerialPort::configureSerialPortForSBus() const
+	// {
+	// 	// clear config
+	// 	fcntl(serial_port_fd_, F_SETFL, 0);
+	// 	// read non blocking
+	// 	fcntl(serial_port_fd_, F_SETFL, O_NONBLOCK);
+
+	// 	struct termios2 uart_config;
+	// 	/* Fill the struct for the new configurauart_confign */
+	// 	ioctl(serial_port_fd_, TCGETS2, &uart_config);
+
+	// 	// 设置波特率为115200
+	// 	uart_config.c_cflag &= ~CBAUD; // 清除波特率标志
+	// 	uart_config.c_cflag |= BOTHER; // 使用非标准波特率
+	// 	uart_config.c_ispeed = 115200; // 输入波特率
+	// 	uart_config.c_ospeed = 115200; // 输出波特率
+	// 	// 设置数据位为8位
+	// 	uart_config.c_cflag |= CLOCAL | CREAD;
+	// 	uart_config.c_cflag &= ~CSIZE;
+	// 	uart_config.c_cflag |= CS8;
+	// 	// 设置停止位为1位
+	// 	uart_config.c_cflag &= ~CSTOPB;
+	// 	// 禁用奇偶校验
+	// 	uart_config.c_cflag &= ~PARENB;
+	// 	uart_config.c_iflag &= ~INPCK;
+	// 	// disable hard flow
+	// 	uart_config.c_cflag &= ~CRTSCTS;
+
+	// 	if (ioctl(serial_port_fd_, TCSETS2, &uart_config) < 0)
+	// 	{
+	// 		printf("[Could not set configurauart_confign of serial port]\n");
+	// 		return false;
+	// 	}
+
+	// 	return true;
+	// }
 	bool SBusSerialPort::configureSerialPortForSBus() const
 	{
 		// clear config
-		fcntl(serial_port_fd_, F_SETFL, 0);
+		fcntl( serial_port_fd_, F_SETFL, 0 );
 		// read non blocking
-		fcntl(serial_port_fd_, F_SETFL, O_NONBLOCK);
+		fcntl( serial_port_fd_, F_SETFL, FNDELAY );
 
 		struct termios2 uart_config;
-		/* Fill the struct for the new configurauart_confign */
-		ioctl(serial_port_fd_, TCGETS2, &uart_config);
+		/* Fill the struct for the new configuration */
+		ioctl( serial_port_fd_, TCGETS2, &uart_config );
 
-		// 设置波特率为115200
-		uart_config.c_cflag &= ~CBAUD; // 清除波特率标志
-		uart_config.c_cflag |= BOTHER; // 使用非标准波特率
-		uart_config.c_ispeed = 115200; // 输入波特率
-		uart_config.c_ospeed = 115200; // 输出波特率
-		// 设置数据位为8位
-		uart_config.c_cflag |= CLOCAL | CREAD;
-		uart_config.c_cflag &= ~CSIZE;
+		// Output flags - Turn off output processing
+		// no CR to NL translation, no NL to CR-NL translation,
+		// no NL to CR translation, no column 0 CR suppression,
+		// no Ctrl-D suppression, no fill characters, no case mapping,
+		// no local output processing
+		//
+		uart_config.c_oflag &= ~(OCRNL | ONLCR | ONLRET | ONOCR | OFILL | OPOST);
+
+		// Input flags - Turn off input processing
+		// convert break to null byte, no CR to NL translation,
+		// no NL to CR translation, don't mark parity errors or breaks
+		// no input parity check, don't strip high bit off,
+		// no XON/XOFF software flow control
+		//
+		uart_config.c_iflag &= ~(IGNBRK | BRKINT | ICRNL | INLCR | PARMRK | INPCK
+					 | ISTRIP | IXON);
+
+		//
+		// No line processing:
+		// echo off
+		// echo newline off
+		// canonical mode off,
+		// extended input processing off
+		// signal chars off
+		//
+		uart_config.c_lflag &= ~(ECHO | ECHONL | ICANON | IEXTEN | ISIG);
+
+		// Turn off character processing
+		// Turn off odd parity
+		uart_config.c_cflag &= ~(CSIZE | PARODD | CBAUD);
+
+		// Enable parity generation on output and parity checking for input.
+		// uart_config.c_cflag |= PARENB;
+		// Set two stop bits, rather than one.
+		// uart_config.c_cflag |= CSTOPB;
+		// No output processing, force 8 bit input
 		uart_config.c_cflag |= CS8;
-		// 设置停止位为1位
-		uart_config.c_cflag &= ~CSTOPB;
-		// 禁用奇偶校验
-		uart_config.c_cflag &= ~PARENB;
-		uart_config.c_iflag &= ~INPCK;
-		// disable hard flow
-		uart_config.c_cflag &= ~CRTSCTS;
+		// Enable a non standard baud rate
+		uart_config.c_cflag |= BOTHER;
 
-		if (ioctl(serial_port_fd_, TCSETS2, &uart_config) < 0)
+		// Set custom baud rate of 100'000 bits/s necessary for sbus
+		// const speed_t spd = 100000;
+		const speed_t spd = 115200;
+
+		uart_config.c_ispeed = spd;
+		uart_config.c_ospeed = spd;
+
+		if( ioctl( serial_port_fd_, TCSETS2, &uart_config ) < 0 )
 		{
-			printf("[Could not set configurauart_confign of serial port]\n");
+			printf( "[Could not set configuration of serial port\n" );
 			return false;
 		}
 
 		return true;
 	}
+
 
 	void SBusSerialPort::serialPortReceiveThread()
 	{

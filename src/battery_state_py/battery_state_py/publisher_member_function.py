@@ -16,8 +16,6 @@ import rclpy
 from rclpy.node import Node
 import serial
 
-from std_msgs.msg import String
-from std_msgs.msg import Float64MultiArray
 from sensor_msgs.msg import BatteryState
 
 class MinimalPublisher(Node):
@@ -49,7 +47,7 @@ class MinimalPublisher(Node):
         msg.cell_voltage = battery.cell_voltage
 
         self.publisher_.publish(msg)
-        self.get_logger().info('Send: \n Battery voltage: %.2f V; Battery temperature: %.2f C; Battery percentage: %d %%' % (msg.voltage, msg.temperature, msg.percentage))
+        # self.get_logger().info('Send: \n Battery voltage: %.2f V; Battery temperature: %.2f C; Battery percentage: %d %%' % (msg.voltage, msg.temperature, msg.percentage))
         self.i += 1
 
 def hexShow(argv):        #十六进制显示 方法1

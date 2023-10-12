@@ -55,19 +55,6 @@ def generate_launch_description():
         parameters=[can_config]
     )
 
-    # imu_config = os.path.join(
-    #     get_package_share_directory('motion_controller_cpp'),
-    #     'config',
-    #     'imu_params.yaml'
-    # )
-    # imu_node = Node(
-    #     package="wt906_imu_py",
-    #     executable="wt906_serial",
-    #     name="wt906_serial",
-    #     output="screen",
-    #     parameters=[imu_config]
-    # )
-
     imu_node = Node(
             package='ch040_imu_cpp',
             executable='imu_publisher',
@@ -75,10 +62,18 @@ def generate_launch_description():
             output='screen'
     )
 
+    battery_node = Node(
+            package='battery_state_py',
+            executable='talker',
+            name='battery_state_node',
+            output='screen'
+    )
+
     ld.add_action(sbus_bridge_node)
-    # ld.add_action(motion_controller_node)
-    # ld.add_action(servo_485_node)
-    # ld.add_action(motor_can_node)
+    ld.add_action(motion_controller_node)
+    ld.add_action(servo_485_node)
+    ld.add_action(motor_can_node)
     ld.add_action(imu_node)
+    ld.add_action(battery_node)
 
     return ld

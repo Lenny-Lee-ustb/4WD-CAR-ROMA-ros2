@@ -11,6 +11,8 @@
 
   <depend>rclcpp</depend>
 
+  <exec_depend>sbus_interface</exec_depend>
+  <exec_depend>custom_interfaces</exec_depend>
   <exec_depend>motor_can_cpp</exec_depend>
   <exec_depend>servo_rs485_py</exec_depend>
 
