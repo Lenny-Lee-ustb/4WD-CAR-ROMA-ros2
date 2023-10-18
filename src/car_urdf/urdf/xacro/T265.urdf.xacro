@@ -1,0 +1,27 @@
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <!-- PI 值 -->
+    <xacro:property name="PI" value="3.1416"/>
+    <!-- 定义车辆参数 -->
+    <!-- 中心车体长宽高 -->
+    <xacro:property name="T265_x" value="0.2"/>
+    <xacro:property name="T265_y" value="0.0"/>
+    <xacro:property name="T265_z" value="0.2"/>
+    <link name="T265">
+        <visual>
+            <!-- 形状 -->
+            <geometry>
+                <mesh filename="package://car_urdf/meshes/t265.stl" scale="1 1 1"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="${PI / 2} 0 -${PI / 2}" />
+            <material name="gray"/>
+        </visual>
+    </link>
+    <joint name="T2652baselink" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="T265"/>
+        <origin xyz="${T265_x} ${T265_y} ${T265_z}"/>
+    </joint>
+
+    
+    
+</robot>
