@@ -75,6 +75,7 @@ class ServoNode(Node):
         self.dxl_write_txPacket()
 
         servo_state_pub = ActuatorState()
+        servo_state_pub.header.stamp = self.get_clock().now().to_msg()
         servo_left = Actuator()
         servo_right = Actuator()
         self.dxl_read_rxPacket()

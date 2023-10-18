@@ -1,4 +1,5 @@
 install/
 build/
+data/
 log/
 .vscode/
