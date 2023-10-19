@@ -3,9 +3,11 @@
     <xacro:property name="PI" value="3.1416"/>
     <!-- 定义车辆参数 -->
     <!-- 中心车体长宽高 -->
-    <xacro:property name="T265_x" value="0.2"/>
-    <xacro:property name="T265_y" value="0.0"/>
-    <xacro:property name="T265_z" value="0.2"/>
+    <xacro:property name="imu_bian" value="0.0235"/>
+    <xacro:property name="imu_bottom" value="0.01225"/>
+    <xacro:property name="T265_x" value="0.2504"/>
+    <xacro:property name="T265_y" value="0.0461"/>
+    <xacro:property name="T265_z" value="0.0795"/>
     <link name="T265">
         <visual>
             <!-- 形状 -->
@@ -17,9 +19,9 @@
         </visual>
     </link>
     <joint name="T2652baselink" type="fixed">
-        <parent link="base_footprint"/>
+        <parent link="base_link"/>
         <child link="T265"/>
-        <origin xyz="${T265_x} ${T265_y} ${T265_z}"/>
+        <origin xyz="${base_central_length/2+T265_x} ${base_central_width/2-T265_y-imu_bian} ${T265_z+imu_bottom+base_central_height/2}"/>
     </joint>
 
     

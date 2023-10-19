@@ -8,28 +8,29 @@
     <xacro:property name="base_central_width" value="0.2"/>
     <!-- 前车体长宽高 -->
     <xacro:property name="base_front_height" value="0.083"/>
-    <xacro:property name="base_front_length" value="0.141"/>
-    <xacro:property name="base_front_width" value="0.078"/>
+    <xacro:property name="base_front_length" value="0.1325"/>
+    <xacro:property name="base_front_width" value="0.0825"/>
     <!-- 后车体长宽高 -->
     <xacro:property name="base_back_height" value="0.083"/>
-    <xacro:property name="base_back_length" value="0.141"/>
-    <xacro:property name="base_back_width" value="0.078"/>
+    <xacro:property name="base_back_length" value="0.1385"/>
+    <xacro:property name="base_back_width" value="0.0825"/>
     <!-- 离地间距 -->
-    <xacro:property name="base_to_plane" value="0.015"/>
+    <xacro:property name="base_to_plane" value="0.029"/>
     <!-- 车轮半径 宽度 到车体长度-->
-    <xacro:property name="wheel_radius" value="0.065"/>
+    <xacro:property name="wheel_radius" value="0.070"/>
     <xacro:property name="wheel_length" value="0.070"/>
-    <xacro:property name="wheel_to_base" value="0.096"/>
+    <xacro:property name="wheel_to_base" value="0.095"/>
     <!--板到车体长度 前后 厚 左右 上下-->
-    <xacro:property name="ban_to_base" value="0.122"/>
+    <xacro:property name="ban_to_base" value="0.123"/>
     <xacro:property name="ban_width" value="0.100"/>
     <xacro:property name="joint_move_right" value="0.225"/>
-    <xacro:property name="joint_move_down" value="0.0"/>
+    <xacro:property name="joint_move_down" value="0.0022"/>
     <!--支撑件到车体长度 前后 左右 上下-->
-    <xacro:property name="supporter_width" value="0.030"/>
-    <xacro:property name="distance_between" value="0.035"/>
-    <xacro:property name="joint_to_base" value="0.120"/>
-    <xacro:property name="joint_to_base_top" value="0.060"/>
+    <xacro:property name="supporter_z" value="0.02"/>
+    <xacro:property name="joint_to_base" value="0.118"/>
+    <xacro:property name="joint_to_center" value="0.05"/>
+    <xacro:property name="joint_to_top" value="0.020"/>
+    <xacro:property name="joint_to_bottom" value="0.023"/>
     <!-- 定义颜色 -->
     <material name="gray">
         <color rgba="0.6 0.6 0.6 1" />
@@ -111,7 +112,7 @@
     <joint name="frontbanlink2basefrontlink" type="fixed">
         <parent link="base_front_link"/>
         <child link="front_ban_link"/>
-        <origin xyz="${ban_to_base-ban_width+base_front_length/2} -${joint_move_right} -${base_front_height/2}"/>
+        <origin xyz="${ban_to_base-ban_width+base_front_length/2} -${joint_move_right} -${base_front_height/2-joint_move_down}"/>
     </joint>
     <!-- 定义 back_ban_link -->
     <link name="back_ban_link">
@@ -127,30 +128,28 @@
     <joint name="backbanlink2basebacklink" type="fixed">
         <parent link="base_back_link"/>
         <child link="back_ban_link"/>
-        <origin xyz="-${ban_to_base-ban_width+base_back_length/2} ${joint_move_right} -${base_front_height/2}"/>
+        <origin xyz="-${ban_to_base-ban_width+base_back_length/2} ${joint_move_right} -${base_front_height/2-joint_move_down}"/>
     </joint>
-    <!-- 定义 supporter_link  前：-1 后：1 左：-1 右：1 -->
-    <xacro:macro name="supporter_link_func" params="supporter_name link_name is_back is_right">
+    <!-- 定义 supporter_link  前=1 -->
+    <xacro:macro name="supporter_link_func" params="supporter_name  is_front ">
     <link name="${supporter_name}_supporter_link">
         <visual>
             <!-- 形状 -->
             <geometry>
-                <mesh filename="package://car_urdf/meshes/supporter.stl" scale="0.001 0.001 0.001"/>
+                <mesh filename="package://car_urdf/meshes/new_supporter.stl" scale="0.001 0.001 0.001"/>
             </geometry>
-            <origin xyz="0 0 0" rpy="${PI / 2} 0 ${(PI / 2)*(is_back / 2 - 1 / 2)+(PI / 2)*(is_back / 2 + 1 / 2)}" />
+            <origin xyz="0 0 0" rpy="${PI / 2} 0 ${-(PI / 2)*(is_front / 2 - 1 / 2)-(PI / 2)*(is_front / 2 + 1 / 2)}" />
             <material name="yellow"/>
         </visual>
     </link>
-    <joint name="${supporter_name}supporterlink2base${link_name}link" type="fixed">
-        <parent link="base_${link_name}_link"/>
+    <joint name="${supporter_name}supporterlink2base${supporter_name}link" type="fixed">
+        <parent link="base_${supporter_name}_link"/>
         <child link="${supporter_name}_supporter_link"/>
-        <origin xyz="${(joint_to_base+base_front_length/2)*is_back*(-1)} ${(supporter_width*(is_back/2+is_right/2)*(is_back/2+is_right/2)+distance_between / 2)*(-1)*is_right} -${joint_to_base_top-base_front_height/2}"/>
+        <origin xyz="${(base_front_length/2)*(is_front/2+1/2)+(base_back_length/2)*(is_front/2-1/2)+joint_to_base*is_front} ${joint_to_center*is_front} ${joint_to_bottom-joint_to_top-supporter_z}"/>
     </joint>
     </xacro:macro>
-    <xacro:supporter_link_func supporter_name="frontleft" link_name="front" is_back="-1" is_right="-1" />
-    <xacro:supporter_link_func supporter_name="frontright" link_name="front" is_back="-1" is_right="1" />
-    <xacro:supporter_link_func supporter_name="backleft" link_name="back" is_back="1" is_right="-1" />
-    <xacro:supporter_link_func supporter_name="backright" link_name="back" is_back="1" is_right="1" />
+    <xacro:supporter_link_func supporter_name="front" is_front="1" />
+    <xacro:supporter_link_func supporter_name="back" is_front="-1" />
     <!-- 车轮前转轴宏定义 -->
     <xacro:macro name="wheel_bar_func" params="bar_name is_left" >
         <link name="${bar_name}_bar">
