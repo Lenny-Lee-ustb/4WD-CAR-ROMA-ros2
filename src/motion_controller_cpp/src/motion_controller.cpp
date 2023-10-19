@@ -62,7 +62,7 @@ void Motion_controller_node::sbus_command_callback(const sbus_interface::msg::Sb
     // remap steer angle to symatric[-500, 500]
     moveable_in_ = sbus_cmd->mapped_channels[3];
     direct_in_ = sbus_cmd->mapped_channels[7];
-    control_in_ = sbus_cmd->mapped_channels[6];
+    control_in_ = sbus_cmd->mapped_channels[5];
     failsafe_ = sbus_cmd->failsafe;
     frame_lost_ = sbus_cmd->frame_lost;
     // signal inout and store

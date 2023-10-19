@@ -14,6 +14,6 @@ def generate_launch_description():
         executable="wheel_receiver"
         )
     # 创建LaunchDescription对象launch_description,用于描述launch文件
-    launch_description = LaunchDescription([node1])
+    launch_description = LaunchDescription([node1, node2])
     # 返回让ROS2根据launch描述执行节点
     return launch_description

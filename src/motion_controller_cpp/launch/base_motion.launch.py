@@ -67,6 +67,13 @@ def generate_launch_description():
             executable='talker',
             name='battery_state_node',
             output='screen'
+
+    
+    )
+    wheel_node = Node(
+        package="wheel_remote_py",
+        executable="wheel_publisher",
+        output='screen'
     )
 
     ld.add_action(sbus_bridge_node)
@@ -75,5 +82,6 @@ def generate_launch_description():
     ld.add_action(motor_can_node)
     ld.add_action(imu_node)
     ld.add_action(battery_node)
+    ld.add_action(wheel_node)
 
     return ld

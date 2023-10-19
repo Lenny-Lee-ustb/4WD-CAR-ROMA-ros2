@@ -28,7 +28,7 @@ class MinimalPublisher(Node):
         msg = Twist()
         wheel_info = recvWheel(serverSocket) # 1*3 list of float
 
-        msg.angular.z = wheel_info[0] * maxAngle
+        msg.angular.z = - wheel_info[0] * maxAngle
         msg.linear.x = wheel_info[1] * maxSpeed
         # msg.linear.y = wheel_info[2]
 
