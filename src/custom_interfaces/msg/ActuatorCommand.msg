@@ -1,5 +1,5 @@
 # This contains multi actuators' command.
 
 std_msgs/Header header
-string drive_mode 
-Actuator[] actuator_command
+int32 drive_mode #0:neutral 1:velocity 2:effort
+Actuator[4] actuator_command

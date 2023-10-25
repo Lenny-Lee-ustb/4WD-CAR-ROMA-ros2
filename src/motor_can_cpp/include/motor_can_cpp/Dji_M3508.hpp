@@ -25,7 +25,7 @@ public:
 	int16_t curRx, velRx, angleRx, curTx;
 	int8_t thermalRx; // Monitor thermal
 
-	std::string drive_mode;
+	int32_t drive_mode;
 
 	double K;
 	double temperature;																				  // C

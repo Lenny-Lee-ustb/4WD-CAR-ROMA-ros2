@@ -110,14 +110,27 @@ private:
             }
         }
 
-        if (motor[0].drive_mode=="velocity")
+        if (motor[0].drive_mode==0)
+        {
+            for (auto i = 0; i < 4; i++){
+                motor[i].speedDes = 0.0;
+                motor[i].curTx = motor[i].MotorVelocityTune();
+            }
+        } else if (motor[0].drive_mode==1)
         {
             for (auto i = 0; i < 4; i++){
                 motor[i].curTx = motor[i].MotorVelocityTune();
             }
-        } else if (motor[0].drive_mode=="effort"){
+        } else if (motor[0].drive_mode==2){
             for (auto i = 0; i < 4; i++){
                 motor[i].curTx = motor[i].MotorTorqueTune();
+            }
+        } else{
+            printf("error");
+            for (auto i = 0; i < 4; i++)
+            {
+                motor[i].speedDes = 0.0;
+                motor[i].curTx = motor[i].MotorVelocityTune();
             }
         }
 

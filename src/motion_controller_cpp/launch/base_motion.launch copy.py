@@ -20,22 +20,12 @@ def generate_launch_description():
         parameters=[sbus_config]
     )
 
-    # motion_controller_node = Node(
-    #     package="motion_controller_cpp",
-    #     executable="motion_controller",
-    #     parameters=[
-    #         {"speedMax":3.5},
-    #         {"angleMax":0.75}
-    #     ]
-    # )
     motion_controller_node = Node(
-        package="motion_controller_node",
-        executable="motion_controller_node",
+        package="motion_controller_cpp",
+        executable="motion_controller",
         parameters=[
-            {"spdMax":3.5},
-            {"angleMax":0.6},
-            {"effortMax":0.6},
-            {"ackermann_enable":1.0}            
+            {"speedMax":3.5},
+            {"angleMax":0.75}
         ]
     )
 

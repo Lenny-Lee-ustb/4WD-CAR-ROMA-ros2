@@ -34,10 +34,11 @@ endif()
 
 ament_package()
 
-add_executable(motion_controller src/motion_controller.cpp)
-ament_target_dependencies(motion_controller rclcpp sbus_interface geometry_msgs custom_interfaces)
-install(TARGETS
-  motion_controller
-  DESTINATION lib/${PROJECT_NAME}
-)
+##################  motion_controller  ######################
+# add_executable(motion_controller src/motion_controller.cpp)
+# ament_target_dependencies(motion_controller rclcpp sbus_interface geometry_msgs custom_interfaces)
+# install(TARGETS
+#   motion_controller
+#   DESTINATION lib/${PROJECT_NAME}
+# )
 
