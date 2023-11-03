@@ -2,11 +2,11 @@
 //
 // File ros2nodeinterface.h
 //
-// Code generated for Simulink model 'motion_controller_node'.
+// Code generated for Simulink model 'motion_controller_slide_test'.
 //
-// Model version                  : 2.153
+// Model version                  : 2.170
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Nov 03 10:19:53 2023
+// C/C++ source code generated on : Fri Nov 03 13:18:47 2023
 //
 #ifndef _ROS2_MATLAB_NODEINTERFACE_
 #define _ROS2_MATLAB_NODEINTERFACE_
@@ -26,11 +26,11 @@
 #pragma GCC diagnostic ignored "-Wshadow"
 #endif //_MSC_VER
 #include "rclcpp/rclcpp.hpp"
-class motion_controller_node;
-#include "motion_controller_node_types.h"
+class motion_controller_slide_test;
+#include "motion_controller_slide_test_types.h"
 #include "slros_busmsg_conversion.h"
 #include "custom_interfaces/msg/actuator_command.hpp"
-#include "custom_interfaces/msg/actuator_state.hpp"
+#include "nav_msgs/msg/odometry.hpp"
 #include "sbus_interface/msg/sbus.hpp"
 namespace ros2 {
 namespace matlab {
@@ -66,7 +66,7 @@ namespace matlab {
     NodeInterface& operator=(const NodeInterface& );
     //
     rclcpp::Node::SharedPtr mNode;
-    std::shared_ptr<motion_controller_node> mModel;
+    std::shared_ptr<motion_controller_slide_test> mModel;
     rclcpp::executors::MultiThreadedExecutor::SharedPtr mExec;
     //
     Semaphore mBaseRateSem;
@@ -93,7 +93,7 @@ namespace matlab {
       return mNode;
     }
     //
-    std::shared_ptr<motion_controller_node> getModel() {
+    std::shared_ptr<motion_controller_slide_test> getModel() {
       return mModel;
     }
   }; //class NodeInterface

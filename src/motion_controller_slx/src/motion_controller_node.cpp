@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_node'.
 //
-// Model version                  : 2.152
+// Model version                  : 2.153
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Oct 27 15:30:20 2023
+// C/C++ source code generated on : Fri Nov  3 10:19:25 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -33,7 +33,7 @@ extern "C"
 #include "rmw/qos_profiles.h"
 #include <stddef.h>
 
-// Named constants for Chart: '<S2>/Chart'
+// Named constants for Chart: '<S3>/Chart'
 const uint8_T motion_contr_IN_NO_ACTIVE_CHILD = 0U;
 const uint8_T motion_contro_IN_velocity_mode1 = 2U;
 const uint8_T motion_control_IN_velocity_mode = 4U;
@@ -47,7 +47,7 @@ const uint8_T motion_controller_node_IN_hold = 3U;
 void motion_controller_node::motion_control_CurrentTime_Init
   (DW_CurrentTime_motion_control_T *localDW)
 {
-  // Start for MATLABSystem: '<S1>/Current Time'
+  // Start for MATLABSystem: '<S2>/Current Time'
   localDW->obj.matlabCodegenIsDeleted = false;
   localDW->objisempty = true;
   localDW->obj.isInitialized = 1;
@@ -58,7 +58,7 @@ void motion_controller_node::motion_control_CurrentTime_Init
 void motion_controller_node::motion_controller_n_CurrentTime
   (B_CurrentTime_motion_controll_T *localB)
 {
-  // MATLABSystem: '<S1>/Current Time'
+  // MATLABSystem: '<S2>/Current Time'
   currentROS2TimeBus(&localB->CurrentTime);
 }
 
@@ -66,28 +66,28 @@ void motion_controller_node::motion_controller_n_CurrentTime
 void motion_controller_node::motion_control_CurrentTime_Term
   (DW_CurrentTime_motion_control_T *localDW)
 {
-  // Terminate for MATLABSystem: '<S1>/Current Time'
+  // Terminate for MATLABSystem: '<S2>/Current Time'
   if (!localDW->obj.matlabCodegenIsDeleted) {
     localDW->obj.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S1>/Current Time'
+  // End of Terminate for MATLABSystem: '<S2>/Current Time'
 }
 
-// System initialize for Simulink Function: '<S2>/get_angle'
+// System initialize for Simulink Function: '<S3>/get_angle'
 void motion_controller_node::motion_controlle_get_angle_Init()
 {
   static const char_T prmName[9] = "angleMax";
   static const char_T prmName_0[17] = "ackermann_enable";
 
-  // Start for MATLABSystem: '<S14>/Get Parameter'
+  // Start for MATLABSystem: '<S15>/Get Parameter'
   motion_controller_node_DW.obj_j.matlabCodegenIsDeleted = false;
   motion_controller_node_DW.obj_j.isInitialized = 1;
   ParamGet_motion_controller_node_193.initParam(&prmName[0]);
   ParamGet_motion_controller_node_193.setInitialValue(0.6);
   motion_controller_node_DW.obj_j.isSetupComplete = true;
 
-  // Start for MATLABSystem: '<S14>/Get Parameter1'
+  // Start for MATLABSystem: '<S15>/Get Parameter1'
   motion_controller_node_DW.obj_c.matlabCodegenIsDeleted = false;
   motion_controller_node_DW.obj_c.isInitialized = 1;
   ParamGet_motion_controller_node_213.initParam(&prmName_0[0]);
@@ -95,77 +95,77 @@ void motion_controller_node::motion_controlle_get_angle_Init()
   motion_controller_node_DW.obj_c.isSetupComplete = true;
 }
 
-// Output and update for Simulink Function: '<S2>/get_angle'
+// Output and update for Simulink Function: '<S3>/get_angle'
 void motion_controller_node::motion_controller_nod_get_angle(real_T rtu_angle,
   real_T rty_angle_cmd[4])
 {
   real_T b_value;
   real_T b_value_0;
 
-  // MATLABSystem: '<S14>/Get Parameter'
+  // MATLABSystem: '<S15>/Get Parameter'
   ParamGet_motion_controller_node_193.getParameter(&b_value);
 
-  // MATLABSystem: '<S14>/Get Parameter1'
+  // MATLABSystem: '<S15>/Get Parameter1'
   ParamGet_motion_controller_node_213.getParameter(&b_value_0);
 
-  // MATLAB Function: '<S14>/MATLAB Function' incorporates:
-  //   MATLABSystem: '<S14>/Get Parameter'
-  //   MATLABSystem: '<S14>/Get Parameter1'
-  //   SignalConversion generated from: '<S14>/angle'
+  // MATLAB Function: '<S15>/MATLAB Function' incorporates:
+  //   MATLABSystem: '<S15>/Get Parameter'
+  //   MATLABSystem: '<S15>/Get Parameter1'
+  //   SignalConversion generated from: '<S15>/angle'
 
   b_value *= rtu_angle;
   if (b_value_0 == 1.0) {
     b_value_0 = motion_controller_node_P.L / (tan(b_value) + 1.0E-9);
     if (b_value_0 >= 0.0) {
-      // SignalConversion generated from: '<S14>/angle_cmd'
+      // SignalConversion generated from: '<S15>/angle_cmd'
       rty_angle_cmd[0] = rt_atan2d_snf(motion_controller_node_P.L, b_value_0 -
         motion_controller_node_P.Tw / 2.0);
       b_value = rt_atan2d_snf(motion_controller_node_P.L,
         motion_controller_node_P.Tw / 2.0 + b_value_0);
     } else {
-      // SignalConversion generated from: '<S14>/angle_cmd'
+      // SignalConversion generated from: '<S15>/angle_cmd'
       rty_angle_cmd[0] = rt_atan2d_snf(motion_controller_node_P.L, b_value_0 -
         motion_controller_node_P.Tw / 2.0) - 3.1415926535897931;
       b_value = rt_atan2d_snf(motion_controller_node_P.L,
         motion_controller_node_P.Tw / 2.0 + b_value_0) - 3.1415926535897931;
     }
   } else {
-    // SignalConversion generated from: '<S14>/angle_cmd'
+    // SignalConversion generated from: '<S15>/angle_cmd'
     rty_angle_cmd[0] = b_value;
   }
 
-  // SignalConversion generated from: '<S14>/angle_cmd' incorporates:
-  //   MATLAB Function: '<S14>/MATLAB Function'
+  // SignalConversion generated from: '<S15>/angle_cmd' incorporates:
+  //   MATLAB Function: '<S15>/MATLAB Function'
 
   rty_angle_cmd[1] = b_value;
   rty_angle_cmd[2] = 0.0;
   rty_angle_cmd[3] = 0.0;
 }
 
-// Termination for Simulink Function: '<S2>/get_angle'
+// Termination for Simulink Function: '<S3>/get_angle'
 void motion_controller_node::motion_controlle_get_angle_Term()
 {
-  // Terminate for MATLABSystem: '<S14>/Get Parameter'
+  // Terminate for MATLABSystem: '<S15>/Get Parameter'
   if (!motion_controller_node_DW.obj_j.matlabCodegenIsDeleted) {
     motion_controller_node_DW.obj_j.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S14>/Get Parameter'
+  // End of Terminate for MATLABSystem: '<S15>/Get Parameter'
 
-  // Terminate for MATLABSystem: '<S14>/Get Parameter1'
+  // Terminate for MATLABSystem: '<S15>/Get Parameter1'
   if (!motion_controller_node_DW.obj_c.matlabCodegenIsDeleted) {
     motion_controller_node_DW.obj_c.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S14>/Get Parameter1'
+  // End of Terminate for MATLABSystem: '<S15>/Get Parameter1'
 }
 
-// System initialize for Simulink Function: '<S2>/get_effort'
+// System initialize for Simulink Function: '<S3>/get_effort'
 void motion_controller_node::motion_controll_get_effort_Init()
 {
   static const char_T prmName[10] = "effortMax";
 
-  // Start for MATLABSystem: '<S15>/Get Parameter'
+  // Start for MATLABSystem: '<S16>/Get Parameter'
   motion_controller_node_DW.obj_d.matlabCodegenIsDeleted = false;
   motion_controller_node_DW.obj_d.isInitialized = 1;
   ParamGet_motion_controller_node_202.initParam(&prmName[0]);
@@ -173,23 +173,23 @@ void motion_controller_node::motion_controll_get_effort_Init()
   motion_controller_node_DW.obj_d.isSetupComplete = true;
 }
 
-// Output and update for Simulink Function: '<S2>/get_effort'
+// Output and update for Simulink Function: '<S3>/get_effort'
 void motion_controller_node::motion_controller_no_get_effort(real_T
   rtu_longdrive, real_T rty_effort_cmd[4])
 {
   real_T b_value;
 
-  // MATLABSystem: '<S15>/Get Parameter'
+  // MATLABSystem: '<S16>/Get Parameter'
   ParamGet_motion_controller_node_202.getParameter(&b_value);
 
-  // MATLAB Function: '<S15>/MATLAB Function' incorporates:
-  //   MATLABSystem: '<S15>/Get Parameter'
-  //   SignalConversion generated from: '<S15>/angle'
+  // MATLAB Function: '<S16>/MATLAB Function' incorporates:
+  //   MATLABSystem: '<S16>/Get Parameter'
+  //   SignalConversion generated from: '<S16>/angle'
 
   b_value *= rtu_longdrive;
 
-  // SignalConversion generated from: '<S15>/angle_cmd' incorporates:
-  //   MATLAB Function: '<S15>/MATLAB Function'
+  // SignalConversion generated from: '<S16>/angle_cmd' incorporates:
+  //   MATLAB Function: '<S16>/MATLAB Function'
 
   rty_effort_cmd[0] = b_value;
   rty_effort_cmd[1] = -b_value;
@@ -197,31 +197,31 @@ void motion_controller_node::motion_controller_no_get_effort(real_T
   rty_effort_cmd[3] = b_value;
 }
 
-// Termination for Simulink Function: '<S2>/get_effort'
+// Termination for Simulink Function: '<S3>/get_effort'
 void motion_controller_node::motion_controll_get_effort_Term()
 {
-  // Terminate for MATLABSystem: '<S15>/Get Parameter'
+  // Terminate for MATLABSystem: '<S16>/Get Parameter'
   if (!motion_controller_node_DW.obj_d.matlabCodegenIsDeleted) {
     motion_controller_node_DW.obj_d.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S15>/Get Parameter'
+  // End of Terminate for MATLABSystem: '<S16>/Get Parameter'
 }
 
-// System initialize for Simulink Function: '<S2>/get_spd'
+// System initialize for Simulink Function: '<S3>/get_spd'
 void motion_controller_node::motion_controller__get_spd_Init()
 {
   static const char_T prmName[7] = "spdMax";
   static const char_T prmName_0[17] = "ackermann_enable";
 
-  // Start for MATLABSystem: '<S16>/Get Parameter'
+  // Start for MATLABSystem: '<S17>/Get Parameter'
   motion_controller_node_DW.obj_l.matlabCodegenIsDeleted = false;
   motion_controller_node_DW.obj_l.isInitialized = 1;
   ParamGet_motion_controller_node_194.initParam(&prmName[0]);
   ParamGet_motion_controller_node_194.setInitialValue(3.5);
   motion_controller_node_DW.obj_l.isSetupComplete = true;
 
-  // Start for MATLABSystem: '<S16>/Get Parameter1'
+  // Start for MATLABSystem: '<S17>/Get Parameter1'
   motion_controller_node_DW.obj.matlabCodegenIsDeleted = false;
   motion_controller_node_DW.obj.isInitialized = 1;
   ParamGet_motion_controller_node_217.initParam(&prmName_0[0]);
@@ -229,7 +229,7 @@ void motion_controller_node::motion_controller__get_spd_Init()
   motion_controller_node_DW.obj.isSetupComplete = true;
 }
 
-// Output and update for Simulink Function: '<S2>/get_spd'
+// Output and update for Simulink Function: '<S3>/get_spd'
 void motion_controller_node::motion_controller_node_get_spd(real_T rtu_angle,
   real_T rtu_longdrive, real_T rty_spd_cmd[4])
 {
@@ -238,17 +238,17 @@ void motion_controller_node::motion_controller_node_get_spd(real_T rtu_angle,
   real_T vFR;
   real_T vRL;
 
-  // MATLABSystem: '<S16>/Get Parameter'
+  // MATLABSystem: '<S17>/Get Parameter'
   ParamGet_motion_controller_node_194.getParameter(&b_value);
 
-  // MATLABSystem: '<S16>/Get Parameter1'
+  // MATLABSystem: '<S17>/Get Parameter1'
   ParamGet_motion_controller_node_217.getParameter(&b_value_0);
 
-  // MATLAB Function: '<S16>/MATLAB Function' incorporates:
-  //   MATLABSystem: '<S16>/Get Parameter'
-  //   MATLABSystem: '<S16>/Get Parameter1'
-  //   SignalConversion generated from: '<S16>/longdrive1'
-  //   SignalConversion generated from: '<S16>/longdrive'
+  // MATLAB Function: '<S17>/MATLAB Function' incorporates:
+  //   MATLABSystem: '<S17>/Get Parameter'
+  //   MATLABSystem: '<S17>/Get Parameter1'
+  //   SignalConversion generated from: '<S17>/longdrive1'
+  //   SignalConversion generated from: '<S17>/longdrive'
 
   b_value *= rtu_longdrive;
   if (b_value_0 == 1.0) {
@@ -267,8 +267,8 @@ void motion_controller_node::motion_controller_node_get_spd(real_T rtu_angle,
         3.1415926535897931;
     }
 
-    // SignalConversion generated from: '<S16>/angle_cmd' incorporates:
-    //   SignalConversion generated from: '<S16>/longdrive1'
+    // SignalConversion generated from: '<S17>/angle_cmd' incorporates:
+    //   SignalConversion generated from: '<S17>/longdrive1'
 
     rty_spd_cmd[0] = (motion_controller_node_P.L / sin(vFR) -
                       motion_controller_node_P.WHEEL_OFFSET) * b_value /
@@ -280,36 +280,85 @@ void motion_controller_node::motion_controller_node_get_spd(real_T rtu_angle,
     b_value = ((motion_controller_node_P.Tw / 2.0 + b_value_0) +
                motion_controller_node_P.WHEEL_OFFSET) * b_value / b_value_0;
   } else {
-    // SignalConversion generated from: '<S16>/angle_cmd'
+    // SignalConversion generated from: '<S17>/angle_cmd'
     rty_spd_cmd[0] = b_value;
     vFR = b_value;
     vRL = b_value;
   }
 
-  // SignalConversion generated from: '<S16>/angle_cmd' incorporates:
-  //   MATLAB Function: '<S16>/MATLAB Function'
+  // SignalConversion generated from: '<S17>/angle_cmd' incorporates:
+  //   MATLAB Function: '<S17>/MATLAB Function'
 
   rty_spd_cmd[1] = -vFR;
   rty_spd_cmd[2] = -vRL;
   rty_spd_cmd[3] = b_value;
 }
 
-// Termination for Simulink Function: '<S2>/get_spd'
+// Termination for Simulink Function: '<S3>/get_spd'
 void motion_controller_node::motion_controller__get_spd_Term()
 {
-  // Terminate for MATLABSystem: '<S16>/Get Parameter'
+  // Terminate for MATLABSystem: '<S17>/Get Parameter'
   if (!motion_controller_node_DW.obj_l.matlabCodegenIsDeleted) {
     motion_controller_node_DW.obj_l.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S16>/Get Parameter'
+  // End of Terminate for MATLABSystem: '<S17>/Get Parameter'
 
-  // Terminate for MATLABSystem: '<S16>/Get Parameter1'
+  // Terminate for MATLABSystem: '<S17>/Get Parameter1'
   if (!motion_controller_node_DW.obj.matlabCodegenIsDeleted) {
     motion_controller_node_DW.obj.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S16>/Get Parameter1'
+  // End of Terminate for MATLABSystem: '<S17>/Get Parameter1'
+}
+
+void motion_controller_node::motion_control_SystemCore_setup
+  (ros_slros2_internal_block_Pub_T *obj)
+{
+  rmw_qos_profile_t qos_profile;
+  char_T b_zeroDelimTopic[11];
+  static const char_T b_zeroDelimTopic_0[11] = "/motor_cmd";
+
+  // Start for MATLABSystem: '<S9>/SinkBlock'
+  obj->isInitialized = 1;
+  qos_profile = rmw_qos_profile_default;
+
+  // Start for MATLABSystem: '<S9>/SinkBlock'
+  SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)5.0,
+                 RMW_QOS_POLICY_DURABILITY_VOLATILE,
+                 RMW_QOS_POLICY_RELIABILITY_RELIABLE);
+  for (int32_T i = 0; i < 11; i++) {
+    // Start for MATLABSystem: '<S9>/SinkBlock'
+    b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
+  }
+
+  Pub_motion_controller_node_4.createPublisher(&b_zeroDelimTopic[0], qos_profile);
+  obj->isSetupComplete = true;
+}
+
+void motion_controller_node::motion_contr_SystemCore_setup_f
+  (ros_slros2_internal_block_Pub_T *obj)
+{
+  rmw_qos_profile_t qos_profile;
+  char_T b_zeroDelimTopic[11];
+  static const char_T b_zeroDelimTopic_0[11] = "/servo_cmd";
+
+  // Start for MATLABSystem: '<S10>/SinkBlock'
+  obj->isInitialized = 1;
+  qos_profile = rmw_qos_profile_default;
+
+  // Start for MATLABSystem: '<S10>/SinkBlock'
+  SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)10.0,
+                 RMW_QOS_POLICY_DURABILITY_VOLATILE,
+                 RMW_QOS_POLICY_RELIABILITY_RELIABLE);
+  for (int32_T i = 0; i < 11; i++) {
+    // Start for MATLABSystem: '<S10>/SinkBlock'
+    b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
+  }
+
+  Pub_motion_controller_node_148.createPublisher(&b_zeroDelimTopic[0],
+    qos_profile);
+  obj->isSetupComplete = true;
 }
 
 void motion_controller_node::motion_cont_SystemCore_setup_fs
@@ -319,16 +368,16 @@ void motion_controller_node::motion_cont_SystemCore_setup_fs
   char_T b_zeroDelimTopic[6];
   static const char_T b_zeroDelimTopic_0[6] = "/sbus";
 
-  // Start for MATLABSystem: '<S21>/SourceBlock'
+  // Start for MATLABSystem: '<S22>/SourceBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S21>/SourceBlock'
+  // Start for MATLABSystem: '<S22>/SourceBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)1.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
   for (int32_T i = 0; i < 6; i++) {
-    // Start for MATLABSystem: '<S21>/SourceBlock'
+    // Start for MATLABSystem: '<S22>/SourceBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
@@ -344,69 +393,20 @@ void motion_controller_node::motion_con_SystemCore_setup_fsy
   char_T b_zeroDelimTopic[13];
   static const char_T b_zeroDelimTopic_0[13] = "/motor_state";
 
-  // Start for MATLABSystem: '<S22>/SourceBlock'
+  // Start for MATLABSystem: '<S23>/SourceBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S22>/SourceBlock'
+  // Start for MATLABSystem: '<S23>/SourceBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)1.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
   for (int32_T i = 0; i < 13; i++) {
-    // Start for MATLABSystem: '<S22>/SourceBlock'
+    // Start for MATLABSystem: '<S23>/SourceBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
   Sub_motion_controller_node_238.createSubscriber(&b_zeroDelimTopic[0],
-    qos_profile);
-  obj->isSetupComplete = true;
-}
-
-void motion_controller_node::motion_control_SystemCore_setup
-  (ros_slros2_internal_block_Pub_T *obj)
-{
-  rmw_qos_profile_t qos_profile;
-  char_T b_zeroDelimTopic[11];
-  static const char_T b_zeroDelimTopic_0[11] = "/motor_cmd";
-
-  // Start for MATLABSystem: '<S8>/SinkBlock'
-  obj->isInitialized = 1;
-  qos_profile = rmw_qos_profile_default;
-
-  // Start for MATLABSystem: '<S8>/SinkBlock'
-  SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)5.0,
-                 RMW_QOS_POLICY_DURABILITY_VOLATILE,
-                 RMW_QOS_POLICY_RELIABILITY_RELIABLE);
-  for (int32_T i = 0; i < 11; i++) {
-    // Start for MATLABSystem: '<S8>/SinkBlock'
-    b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
-  }
-
-  Pub_motion_controller_node_4.createPublisher(&b_zeroDelimTopic[0], qos_profile);
-  obj->isSetupComplete = true;
-}
-
-void motion_controller_node::motion_contr_SystemCore_setup_f
-  (ros_slros2_internal_block_Pub_T *obj)
-{
-  rmw_qos_profile_t qos_profile;
-  char_T b_zeroDelimTopic[11];
-  static const char_T b_zeroDelimTopic_0[11] = "/servo_cmd";
-
-  // Start for MATLABSystem: '<S9>/SinkBlock'
-  obj->isInitialized = 1;
-  qos_profile = rmw_qos_profile_default;
-
-  // Start for MATLABSystem: '<S9>/SinkBlock'
-  SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)10.0,
-                 RMW_QOS_POLICY_DURABILITY_VOLATILE,
-                 RMW_QOS_POLICY_RELIABILITY_RELIABLE);
-  for (int32_T i = 0; i < 11; i++) {
-    // Start for MATLABSystem: '<S9>/SinkBlock'
-    b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
-  }
-
-  Pub_motion_controller_node_148.createPublisher(&b_zeroDelimTopic[0],
     qos_profile);
   obj->isSetupComplete = true;
 }
@@ -419,62 +419,61 @@ void motion_controller_node::step()
   boolean_T b_varargout_1;
   boolean_T rtb_LogicalOperator;
   boolean_T rtb_LogicalOperator_l;
-  motion_controller_n_CurrentTime(&motion_controller_node_B.CurrentTime1);
-
-  // MATLABSystem: '<S21>/SourceBlock'
-  rtb_LogicalOperator_l = Sub_motion_controller_node_1.getLatestMessage
-    (&motion_controller_node_B.b_varargout_2_m);
-
-  // Outputs for Enabled SubSystem: '<S21>/Enabled Subsystem' incorporates:
-  //   EnablePort: '<S24>/Enable'
-
-  // Start for MATLABSystem: '<S21>/SourceBlock'
-  if (rtb_LogicalOperator_l) {
-    // SignalConversion generated from: '<S24>/In1'
-    motion_controller_node_B.In1_m = motion_controller_node_B.b_varargout_2_m;
-  }
-
-  // End of Outputs for SubSystem: '<S21>/Enabled Subsystem'
-
-  // Logic: '<Root>/Logical Operator'
-  rtb_LogicalOperator = (motion_controller_node_B.In1_m.failsafe ||
-    motion_controller_node_B.In1_m.frame_lost);
 
   // MATLABSystem: '<S22>/SourceBlock'
-  b_varargout_1 = Sub_motion_controller_node_238.getLatestMessage
-    (&motion_controller_node_B.b_varargout_2);
-
-  // Logic: '<S3>/Logical Operator' incorporates:
-  //   MATLABSystem: '<S21>/SourceBlock'
-  //   MATLABSystem: '<S22>/SourceBlock'
-  //
-  rtb_LogicalOperator_l = (rtb_LogicalOperator_l && b_varargout_1);
+  rtb_LogicalOperator_l = Sub_motion_controller_node_1.getLatestMessage
+    (&motion_controller_node_B.b_varargout_2_m);
 
   // Outputs for Enabled SubSystem: '<S22>/Enabled Subsystem' incorporates:
   //   EnablePort: '<S25>/Enable'
 
   // Start for MATLABSystem: '<S22>/SourceBlock'
-  if (b_varargout_1) {
+  if (rtb_LogicalOperator_l) {
     // SignalConversion generated from: '<S25>/In1'
-    motion_controller_node_B.In1 = motion_controller_node_B.b_varargout_2;
+    motion_controller_node_B.In1_m = motion_controller_node_B.b_varargout_2_m;
   }
 
   // End of Outputs for SubSystem: '<S22>/Enabled Subsystem'
 
-  // Outputs for Iterator SubSystem: '<S3>/For Each Subsystem' incorporates:
-  //   ForEach: '<S20>/For Each'
+  // Logic: '<Root>/Logical Operator'
+  rtb_LogicalOperator = (motion_controller_node_B.In1_m.failsafe ||
+    motion_controller_node_B.In1_m.frame_lost);
+
+  // MATLABSystem: '<S23>/SourceBlock'
+  b_varargout_1 = Sub_motion_controller_node_238.getLatestMessage
+    (&motion_controller_node_B.b_varargout_2);
+
+  // Logic: '<S4>/Logical Operator' incorporates:
+  //   MATLABSystem: '<S22>/SourceBlock'
+  //   MATLABSystem: '<S23>/SourceBlock'
+  //
+  rtb_LogicalOperator_l = (rtb_LogicalOperator_l && b_varargout_1);
+
+  // Outputs for Enabled SubSystem: '<S23>/Enabled Subsystem' incorporates:
+  //   EnablePort: '<S26>/Enable'
+
+  // Start for MATLABSystem: '<S23>/SourceBlock'
+  if (b_varargout_1) {
+    // SignalConversion generated from: '<S26>/In1'
+    motion_controller_node_B.In1 = motion_controller_node_B.b_varargout_2;
+  }
+
+  // End of Outputs for SubSystem: '<S23>/Enabled Subsystem'
+
+  // Outputs for Iterator SubSystem: '<S4>/For Each Subsystem' incorporates:
+  //   ForEach: '<S21>/For Each'
 
   for (ForEach_itr = 0; ForEach_itr < 16; ForEach_itr++) {
-    // ForEachSliceAssignment generated from: '<S20>/Out1' incorporates:
-    //   ForEachSliceSelector generated from: '<S20>/In1'
+    // ForEachSliceAssignment generated from: '<S21>/Out1' incorporates:
+    //   ForEachSliceSelector generated from: '<S21>/In1'
 
     motion_controller_node_B.ImpAsg_InsertedFor_Out1_at_[ForEach_itr] =
       motion_controller_node_B.In1.actuator_state[ForEach_itr].velocity;
   }
 
-  // End of Outputs for SubSystem: '<S3>/For Each Subsystem'
+  // End of Outputs for SubSystem: '<S4>/For Each Subsystem'
 
-  // Gain: '<S3>/Gain'
+  // Gain: '<S4>/Gain'
   rtb_Gain_0 = ((motion_controller_node_P.Gain_Gain_n[0] *
                  motion_controller_node_B.ImpAsg_InsertedFor_Out1_at_[0] +
                  motion_controller_node_P.Gain_Gain_n[1] *
@@ -485,30 +484,30 @@ void motion_controller_node::step()
     motion_controller_node_B.ImpAsg_InsertedFor_Out1_at_[3];
 
   // Outputs for Atomic SubSystem: '<Root>/controller'
-  // Gain: '<S13>/Gain1' incorporates:
-  //   Constant: '<S13>/Constant2'
-  //   SignalConversion generated from: '<S3>/Bus Selector'
-  //   Sum: '<S13>/Add1'
+  // Gain: '<S14>/Gain1' incorporates:
+  //   Constant: '<S14>/Constant2'
+  //   SignalConversion generated from: '<S4>/Bus Selector'
+  //   Sum: '<S14>/Add1'
 
   motion_controller_node_B.Gain1 = (static_cast<real_T>
     (motion_controller_node_B.In1_m.mapped_channels[1]) -
     motion_controller_node_P.Constant2_Value) *
     motion_controller_node_P.Gain1_Gain;
 
-  // Gain: '<S13>/Gain2' incorporates:
-  //   Constant: '<S13>/Constant'
-  //   Gain: '<S13>/Gain'
-  //   SignalConversion generated from: '<S3>/Bus Selector'
-  //   Sum: '<S13>/Add'
+  // Gain: '<S14>/Gain2' incorporates:
+  //   Constant: '<S14>/Constant'
+  //   Gain: '<S14>/Gain'
+  //   SignalConversion generated from: '<S4>/Bus Selector'
+  //   Sum: '<S14>/Add'
 
   motion_controller_node_B.Gain2 = (static_cast<real_T>
     (motion_controller_node_B.In1_m.mapped_channels[0]) -
     motion_controller_node_P.Constant_Value_ff) *
     motion_controller_node_P.Gain_Gain * motion_controller_node_P.Gain2_Gain;
 
-  // Chart: '<S2>/Chart' incorporates:
-  //   Gain: '<S3>/Gain'
-  //   SignalConversion generated from: '<S3>/Bus Selector'
+  // Chart: '<S3>/Chart' incorporates:
+  //   Gain: '<S4>/Gain'
+  //   SignalConversion generated from: '<S4>/Bus Selector'
 
   if (motion_controller_node_DW.is_active_c3_motion_controller_ == 0U) {
     motion_controller_node_DW.is_active_c3_motion_controller_ = 1U;
@@ -710,611 +709,631 @@ void motion_controller_node::step()
     }
   }
 
-  // End of Chart: '<S2>/Chart'
+  // End of Chart: '<S3>/Chart'
   // End of Outputs for SubSystem: '<Root>/controller'
 
-  // BusAssignment: '<S1>/Bus Assignment1' incorporates:
-  //   Constant: '<S5>/Constant'
+  // Outputs for Enabled SubSystem: '<Root>/cmd_pub' incorporates:
+  //   EnablePort: '<S2>/Enable'
 
-  motion_controller_node_B.BusAssignment1 =
-    motion_controller_node_P.Constant_Value_f;
+  // RelationalOperator: '<S1>/Compare' incorporates:
+  //   Constant: '<S1>/Constant'
+  //   SignalConversion generated from: '<S4>/Bus Selector'
 
-  // Saturate: '<S1>/Saturation2'
-  rtb_Gain_0 = motion_controller_node_B.effort_cmd[0];
+  if (motion_controller_node_B.In1_m.mapped_channels[5] ==
+      motion_controller_node_P.CompareToConstant_const) {
+    motion_controller_n_CurrentTime(&motion_controller_node_B.CurrentTime1);
 
-  // Saturate: '<S1>/Saturation1'
-  motion_controller_node_B.Gain2 = motion_controller_node_B.spd_cmd[0];
+    // BusAssignment: '<S2>/Bus Assignment1' incorporates:
+    //   Constant: '<S6>/Constant'
 
-  // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-  //   ForEach: '<S7>/For Each'
+    motion_controller_node_B.BusAssignment1 =
+      motion_controller_node_P.Constant_Value_f;
 
-  // ForEachSliceAssignment generated from: '<S7>/actuaor_command' incorporates:
-  //   BusAssignment: '<S7>/Bus Assignment1'
-  //   Constant: '<S11>/Constant'
+    // Saturate: '<S2>/Saturation2'
+    rtb_Gain_0 = motion_controller_node_B.effort_cmd[0];
 
-  motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0] =
-    motion_controller_node_P.CoreSubsys_p.Constant_Value;
+    // Saturate: '<S2>/Saturation1'
+    motion_controller_node_B.Gain2 = motion_controller_node_B.spd_cmd[0];
 
-  // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
+    // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+    //   ForEach: '<S8>/For Each'
 
-  // Saturate: '<S1>/Saturation2'
-  if (rtb_Gain_0 > motion_controller_node_P.Saturation2_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
+    // ForEachSliceAssignment generated from: '<S8>/actuaor_command' incorporates:
+    //   BusAssignment: '<S8>/Bus Assignment1'
+    //   Constant: '<S12>/Constant'
+
+    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0] =
+      motion_controller_node_P.CoreSubsys_p.Constant_Value;
+
+    // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+
+    // Saturate: '<S2>/Saturation2'
+    if (rtb_Gain_0 > motion_controller_node_P.Saturation2_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].effort =
+        motion_controller_node_P.Saturation2_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else if (rtb_Gain_0 < motion_controller_node_P.Saturation2_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].effort =
+        motion_controller_node_P.Saturation2_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].effort =
+        rtb_Gain_0;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    }
+
+    // Saturate: '<S2>/Saturation1'
+    if (motion_controller_node_B.Gain2 >
+        motion_controller_node_P.Saturation1_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].velocity =
+        motion_controller_node_P.Saturation1_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else if (motion_controller_node_B.Gain2 <
+               motion_controller_node_P.Saturation1_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].velocity =
+        motion_controller_node_P.Saturation1_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].velocity =
+        motion_controller_node_B.Gain2;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    }
+
+    // Saturate: '<S2>/Saturation2'
+    rtb_Gain_0 = motion_controller_node_B.effort_cmd[1];
+
+    // Saturate: '<S2>/Saturation1'
+    motion_controller_node_B.Gain2 = motion_controller_node_B.spd_cmd[1];
+
+    // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+    //   ForEach: '<S8>/For Each'
+
+    // ForEachSliceAssignment generated from: '<S8>/actuaor_command' incorporates:
+    //   BusAssignment: '<S8>/Bus Assignment1'
+    //   Constant: '<S12>/Constant'
+
+    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1] =
+      motion_controller_node_P.CoreSubsys_p.Constant_Value;
+
+    // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+
+    // Saturate: '<S2>/Saturation2'
+    if (rtb_Gain_0 > motion_controller_node_P.Saturation2_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].effort =
+        motion_controller_node_P.Saturation2_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else if (rtb_Gain_0 < motion_controller_node_P.Saturation2_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].effort =
+        motion_controller_node_P.Saturation2_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].effort =
+        rtb_Gain_0;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    }
+
+    // Saturate: '<S2>/Saturation1'
+    if (motion_controller_node_B.Gain2 >
+        motion_controller_node_P.Saturation1_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].velocity =
+        motion_controller_node_P.Saturation1_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else if (motion_controller_node_B.Gain2 <
+               motion_controller_node_P.Saturation1_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].velocity =
+        motion_controller_node_P.Saturation1_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].velocity =
+        motion_controller_node_B.Gain2;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    }
+
+    // Saturate: '<S2>/Saturation2'
+    rtb_Gain_0 = motion_controller_node_B.effort_cmd[2];
+
+    // Saturate: '<S2>/Saturation1'
+    motion_controller_node_B.Gain2 = motion_controller_node_B.spd_cmd[2];
+
+    // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+    //   ForEach: '<S8>/For Each'
+
+    // ForEachSliceAssignment generated from: '<S8>/actuaor_command' incorporates:
+    //   BusAssignment: '<S8>/Bus Assignment1'
+    //   Constant: '<S12>/Constant'
+
+    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2] =
+      motion_controller_node_P.CoreSubsys_p.Constant_Value;
+
+    // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+
+    // Saturate: '<S2>/Saturation2'
+    if (rtb_Gain_0 > motion_controller_node_P.Saturation2_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].effort =
+        motion_controller_node_P.Saturation2_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else if (rtb_Gain_0 < motion_controller_node_P.Saturation2_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].effort =
+        motion_controller_node_P.Saturation2_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].effort =
+        rtb_Gain_0;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    }
+
+    // Saturate: '<S2>/Saturation1'
+    if (motion_controller_node_B.Gain2 >
+        motion_controller_node_P.Saturation1_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].velocity =
+        motion_controller_node_P.Saturation1_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else if (motion_controller_node_B.Gain2 <
+               motion_controller_node_P.Saturation1_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].velocity =
+        motion_controller_node_P.Saturation1_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].velocity =
+        motion_controller_node_B.Gain2;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    }
+
+    // Saturate: '<S2>/Saturation2'
+    rtb_Gain_0 = motion_controller_node_B.effort_cmd[3];
+
+    // Saturate: '<S2>/Saturation1'
+    motion_controller_node_B.Gain2 = motion_controller_node_B.spd_cmd[3];
+
+    // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+    //   ForEach: '<S8>/For Each'
+
+    // ForEachSliceAssignment generated from: '<S8>/actuaor_command' incorporates:
+    //   BusAssignment: '<S8>/Bus Assignment1'
+    //   Constant: '<S12>/Constant'
+
+    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3] =
+      motion_controller_node_P.CoreSubsys_p.Constant_Value;
+
+    // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+
+    // Saturate: '<S2>/Saturation2'
+    if (rtb_Gain_0 > motion_controller_node_P.Saturation2_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].effort =
+        motion_controller_node_P.Saturation2_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else if (rtb_Gain_0 < motion_controller_node_P.Saturation2_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].effort =
+        motion_controller_node_P.Saturation2_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].effort =
+        rtb_Gain_0;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    }
+
+    // Saturate: '<S2>/Saturation1'
+    if (motion_controller_node_B.Gain2 >
+        motion_controller_node_P.Saturation1_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].velocity =
+        motion_controller_node_P.Saturation1_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else if (motion_controller_node_B.Gain2 <
+               motion_controller_node_P.Saturation1_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].velocity =
+        motion_controller_node_P.Saturation1_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem1' incorporates:
+      //   ForEach: '<S8>/For Each'
+
+      // BusAssignment: '<S8>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].velocity =
+        motion_controller_node_B.Gain2;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem1'
+    }
+
+    // BusAssignment: '<S2>/Bus Assignment1' incorporates:
+    //   DataTypeConversion: '<S2>/Data Type Conversion'
+
+    motion_controller_node_B.BusAssignment1.header.stamp =
+      motion_controller_node_B.CurrentTime1.CurrentTime;
+    motion_controller_node_B.BusAssignment1.drive_mode =
+      motion_controller_node_B.mode;
+    memcpy(&motion_controller_node_B.BusAssignment1.actuator_command[0],
+           &motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0], sizeof
+           (SL_Bus_custom_interfaces_Actuator) << 2U);
+
+    // MATLABSystem: '<S9>/SinkBlock'
+    Pub_motion_controller_node_4.publish
+      (&motion_controller_node_B.BusAssignment1);
+    motion_controller_n_CurrentTime(&motion_controller_node_B.CurrentTime);
+
+    // BusAssignment: '<S2>/Bus Assignment2' incorporates:
+    //   Constant: '<S5>/Constant'
+
+    motion_controller_node_B.BusAssignment1 =
+      motion_controller_node_P.Constant_Value_i;
+
+    // Saturate: '<S2>/Saturation'
+    rtb_Gain_0 = motion_controller_node_B.angle_cmd[0];
+
+    // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
     //   ForEach: '<S7>/For Each'
 
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+    // ForEachSliceAssignment generated from: '<S7>/actuaor_command' incorporates:
+    //   BusAssignment: '<S7>/Bus Assignment1'
+    //   Constant: '<S11>/Constant'
 
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].effort =
-      motion_controller_node_P.Saturation2_UpperSat;
+    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0] =
+      motion_controller_node_P.CoreSubsys.Constant_Value;
 
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else if (rtb_Gain_0 < motion_controller_node_P.Saturation2_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
+    // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+
+    // Saturate: '<S2>/Saturation'
+    if (rtb_Gain_0 > motion_controller_node_P.Saturation_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].position =
+        motion_controller_node_P.Saturation_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    } else if (rtb_Gain_0 < motion_controller_node_P.Saturation_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].position =
+        motion_controller_node_P.Saturation_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].position =
+        rtb_Gain_0;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    }
+
+    rtb_Gain_0 = motion_controller_node_B.angle_cmd[1];
+
+    // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
     //   ForEach: '<S7>/For Each'
 
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+    // ForEachSliceAssignment generated from: '<S7>/actuaor_command' incorporates:
+    //   BusAssignment: '<S7>/Bus Assignment1'
+    //   Constant: '<S11>/Constant'
 
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].effort =
-      motion_controller_node_P.Saturation2_LowerSat;
+    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1] =
+      motion_controller_node_P.CoreSubsys.Constant_Value;
 
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
+    // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+
+    // Saturate: '<S2>/Saturation'
+    if (rtb_Gain_0 > motion_controller_node_P.Saturation_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].position =
+        motion_controller_node_P.Saturation_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    } else if (rtb_Gain_0 < motion_controller_node_P.Saturation_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].position =
+        motion_controller_node_P.Saturation_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].position =
+        rtb_Gain_0;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    }
+
+    rtb_Gain_0 = motion_controller_node_B.angle_cmd[2];
+
+    // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
     //   ForEach: '<S7>/For Each'
 
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+    // ForEachSliceAssignment generated from: '<S7>/actuaor_command' incorporates:
+    //   BusAssignment: '<S7>/Bus Assignment1'
+    //   Constant: '<S11>/Constant'
 
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].effort = rtb_Gain_0;
+    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2] =
+      motion_controller_node_P.CoreSubsys.Constant_Value;
 
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
+    // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+
+    // Saturate: '<S2>/Saturation'
+    if (rtb_Gain_0 > motion_controller_node_P.Saturation_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].position =
+        motion_controller_node_P.Saturation_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    } else if (rtb_Gain_0 < motion_controller_node_P.Saturation_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].position =
+        motion_controller_node_P.Saturation_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].position =
+        rtb_Gain_0;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    }
+
+    rtb_Gain_0 = motion_controller_node_B.angle_cmd[3];
+
+    // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+    //   ForEach: '<S7>/For Each'
+
+    // ForEachSliceAssignment generated from: '<S7>/actuaor_command' incorporates:
+    //   BusAssignment: '<S7>/Bus Assignment1'
+    //   Constant: '<S11>/Constant'
+
+    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3] =
+      motion_controller_node_P.CoreSubsys.Constant_Value;
+
+    // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+
+    // Saturate: '<S2>/Saturation'
+    if (rtb_Gain_0 > motion_controller_node_P.Saturation_UpperSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].position =
+        motion_controller_node_P.Saturation_UpperSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    } else if (rtb_Gain_0 < motion_controller_node_P.Saturation_LowerSat) {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].position =
+        motion_controller_node_P.Saturation_LowerSat;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    } else {
+      // Outputs for Iterator SubSystem: '<S2>/For Each Subsystem' incorporates:
+      //   ForEach: '<S7>/For Each'
+
+      // BusAssignment: '<S7>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
+
+      motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].position =
+        rtb_Gain_0;
+
+      // End of Outputs for SubSystem: '<S2>/For Each Subsystem'
+    }
+
+    // BusAssignment: '<S2>/Bus Assignment2'
+    motion_controller_node_B.BusAssignment1.header.stamp =
+      motion_controller_node_B.CurrentTime.CurrentTime;
+    memcpy(&motion_controller_node_B.BusAssignment1.actuator_command[0],
+           &motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0], sizeof
+           (SL_Bus_custom_interfaces_Actuator) << 2U);
+
+    // MATLABSystem: '<S10>/SinkBlock'
+    Pub_motion_controller_node_148.publish
+      (&motion_controller_node_B.BusAssignment1);
   }
 
-  // Saturate: '<S1>/Saturation1'
-  if (motion_controller_node_B.Gain2 >
-      motion_controller_node_P.Saturation1_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].velocity =
-      motion_controller_node_P.Saturation1_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else if (motion_controller_node_B.Gain2 <
-             motion_controller_node_P.Saturation1_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].velocity =
-      motion_controller_node_P.Saturation1_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].velocity =
-      motion_controller_node_B.Gain2;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  }
-
-  // Saturate: '<S1>/Saturation2'
-  rtb_Gain_0 = motion_controller_node_B.effort_cmd[1];
-
-  // Saturate: '<S1>/Saturation1'
-  motion_controller_node_B.Gain2 = motion_controller_node_B.spd_cmd[1];
-
-  // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-  //   ForEach: '<S7>/For Each'
-
-  // ForEachSliceAssignment generated from: '<S7>/actuaor_command' incorporates:
-  //   BusAssignment: '<S7>/Bus Assignment1'
-  //   Constant: '<S11>/Constant'
-
-  motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1] =
-    motion_controller_node_P.CoreSubsys_p.Constant_Value;
-
-  // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-
-  // Saturate: '<S1>/Saturation2'
-  if (rtb_Gain_0 > motion_controller_node_P.Saturation2_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].effort =
-      motion_controller_node_P.Saturation2_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else if (rtb_Gain_0 < motion_controller_node_P.Saturation2_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].effort =
-      motion_controller_node_P.Saturation2_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].effort = rtb_Gain_0;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  }
-
-  // Saturate: '<S1>/Saturation1'
-  if (motion_controller_node_B.Gain2 >
-      motion_controller_node_P.Saturation1_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].velocity =
-      motion_controller_node_P.Saturation1_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else if (motion_controller_node_B.Gain2 <
-             motion_controller_node_P.Saturation1_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].velocity =
-      motion_controller_node_P.Saturation1_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].velocity =
-      motion_controller_node_B.Gain2;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  }
-
-  // Saturate: '<S1>/Saturation2'
-  rtb_Gain_0 = motion_controller_node_B.effort_cmd[2];
-
-  // Saturate: '<S1>/Saturation1'
-  motion_controller_node_B.Gain2 = motion_controller_node_B.spd_cmd[2];
-
-  // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-  //   ForEach: '<S7>/For Each'
-
-  // ForEachSliceAssignment generated from: '<S7>/actuaor_command' incorporates:
-  //   BusAssignment: '<S7>/Bus Assignment1'
-  //   Constant: '<S11>/Constant'
-
-  motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2] =
-    motion_controller_node_P.CoreSubsys_p.Constant_Value;
-
-  // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-
-  // Saturate: '<S1>/Saturation2'
-  if (rtb_Gain_0 > motion_controller_node_P.Saturation2_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].effort =
-      motion_controller_node_P.Saturation2_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else if (rtb_Gain_0 < motion_controller_node_P.Saturation2_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].effort =
-      motion_controller_node_P.Saturation2_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].effort = rtb_Gain_0;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  }
-
-  // Saturate: '<S1>/Saturation1'
-  if (motion_controller_node_B.Gain2 >
-      motion_controller_node_P.Saturation1_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].velocity =
-      motion_controller_node_P.Saturation1_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else if (motion_controller_node_B.Gain2 <
-             motion_controller_node_P.Saturation1_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].velocity =
-      motion_controller_node_P.Saturation1_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].velocity =
-      motion_controller_node_B.Gain2;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  }
-
-  // Saturate: '<S1>/Saturation2'
-  rtb_Gain_0 = motion_controller_node_B.effort_cmd[3];
-
-  // Saturate: '<S1>/Saturation1'
-  motion_controller_node_B.Gain2 = motion_controller_node_B.spd_cmd[3];
-
-  // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-  //   ForEach: '<S7>/For Each'
-
-  // ForEachSliceAssignment generated from: '<S7>/actuaor_command' incorporates:
-  //   BusAssignment: '<S7>/Bus Assignment1'
-  //   Constant: '<S11>/Constant'
-
-  motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3] =
-    motion_controller_node_P.CoreSubsys_p.Constant_Value;
-
-  // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-
-  // Saturate: '<S1>/Saturation2'
-  if (rtb_Gain_0 > motion_controller_node_P.Saturation2_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].effort =
-      motion_controller_node_P.Saturation2_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else if (rtb_Gain_0 < motion_controller_node_P.Saturation2_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].effort =
-      motion_controller_node_P.Saturation2_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].effort = rtb_Gain_0;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  }
-
-  // Saturate: '<S1>/Saturation1'
-  if (motion_controller_node_B.Gain2 >
-      motion_controller_node_P.Saturation1_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].velocity =
-      motion_controller_node_P.Saturation1_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else if (motion_controller_node_B.Gain2 <
-             motion_controller_node_P.Saturation1_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].velocity =
-      motion_controller_node_P.Saturation1_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S7>/For Each'
-
-    // BusAssignment: '<S7>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].velocity =
-      motion_controller_node_B.Gain2;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-  }
-
-  // BusAssignment: '<S1>/Bus Assignment1' incorporates:
-  //   DataTypeConversion: '<S1>/Data Type Conversion'
-
-  motion_controller_node_B.BusAssignment1.header.stamp =
-    motion_controller_node_B.CurrentTime1.CurrentTime;
-  motion_controller_node_B.BusAssignment1.drive_mode =
-    motion_controller_node_B.mode;
-  memcpy(&motion_controller_node_B.BusAssignment1.actuator_command[0],
-         &motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0], sizeof
-         (SL_Bus_custom_interfaces_Actuator) << 2U);
-
-  // MATLABSystem: '<S8>/SinkBlock'
-  Pub_motion_controller_node_4.publish(&motion_controller_node_B.BusAssignment1);
-  motion_controller_n_CurrentTime(&motion_controller_node_B.CurrentTime);
-
-  // BusAssignment: '<S1>/Bus Assignment2' incorporates:
-  //   Constant: '<S4>/Constant'
-
-  motion_controller_node_B.BusAssignment1 =
-    motion_controller_node_P.Constant_Value_i;
-
-  // Saturate: '<S1>/Saturation'
-  rtb_Gain_0 = motion_controller_node_B.angle_cmd[0];
-
-  // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-  //   ForEach: '<S6>/For Each'
-
-  // ForEachSliceAssignment generated from: '<S6>/actuaor_command' incorporates:
-  //   BusAssignment: '<S6>/Bus Assignment1'
-  //   Constant: '<S10>/Constant'
-
-  motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0] =
-    motion_controller_node_P.CoreSubsys.Constant_Value;
-
-  // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-
-  // Saturate: '<S1>/Saturation'
-  if (rtb_Gain_0 > motion_controller_node_P.Saturation_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].position =
-      motion_controller_node_P.Saturation_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  } else if (rtb_Gain_0 < motion_controller_node_P.Saturation_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].position =
-      motion_controller_node_P.Saturation_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0].position =
-      rtb_Gain_0;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  }
-
-  rtb_Gain_0 = motion_controller_node_B.angle_cmd[1];
-
-  // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-  //   ForEach: '<S6>/For Each'
-
-  // ForEachSliceAssignment generated from: '<S6>/actuaor_command' incorporates:
-  //   BusAssignment: '<S6>/Bus Assignment1'
-  //   Constant: '<S10>/Constant'
-
-  motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1] =
-    motion_controller_node_P.CoreSubsys.Constant_Value;
-
-  // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-
-  // Saturate: '<S1>/Saturation'
-  if (rtb_Gain_0 > motion_controller_node_P.Saturation_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].position =
-      motion_controller_node_P.Saturation_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  } else if (rtb_Gain_0 < motion_controller_node_P.Saturation_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].position =
-      motion_controller_node_P.Saturation_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[1].position =
-      rtb_Gain_0;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  }
-
-  rtb_Gain_0 = motion_controller_node_B.angle_cmd[2];
-
-  // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-  //   ForEach: '<S6>/For Each'
-
-  // ForEachSliceAssignment generated from: '<S6>/actuaor_command' incorporates:
-  //   BusAssignment: '<S6>/Bus Assignment1'
-  //   Constant: '<S10>/Constant'
-
-  motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2] =
-    motion_controller_node_P.CoreSubsys.Constant_Value;
-
-  // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-
-  // Saturate: '<S1>/Saturation'
-  if (rtb_Gain_0 > motion_controller_node_P.Saturation_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].position =
-      motion_controller_node_P.Saturation_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  } else if (rtb_Gain_0 < motion_controller_node_P.Saturation_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].position =
-      motion_controller_node_P.Saturation_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[2].position =
-      rtb_Gain_0;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  }
-
-  rtb_Gain_0 = motion_controller_node_B.angle_cmd[3];
-
-  // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-  //   ForEach: '<S6>/For Each'
-
-  // ForEachSliceAssignment generated from: '<S6>/actuaor_command' incorporates:
-  //   BusAssignment: '<S6>/Bus Assignment1'
-  //   Constant: '<S10>/Constant'
-
-  motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3] =
-    motion_controller_node_P.CoreSubsys.Constant_Value;
-
-  // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-
-  // Saturate: '<S1>/Saturation'
-  if (rtb_Gain_0 > motion_controller_node_P.Saturation_UpperSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].position =
-      motion_controller_node_P.Saturation_UpperSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  } else if (rtb_Gain_0 < motion_controller_node_P.Saturation_LowerSat) {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].position =
-      motion_controller_node_P.Saturation_LowerSat;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  } else {
-    // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-    //   ForEach: '<S6>/For Each'
-
-    // BusAssignment: '<S6>/Bus Assignment1' incorporates:
-    //   ForEachSliceAssignment generated from: '<S6>/actuaor_command'
-
-    motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[3].position =
-      rtb_Gain_0;
-
-    // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
-  }
-
-  // BusAssignment: '<S1>/Bus Assignment2'
-  motion_controller_node_B.BusAssignment1.header.stamp =
-    motion_controller_node_B.CurrentTime.CurrentTime;
-  memcpy(&motion_controller_node_B.BusAssignment1.actuator_command[0],
-         &motion_controller_node_B.ImpAsg_InsertedFor_actuaor_[0], sizeof
-         (SL_Bus_custom_interfaces_Actuator) << 2U);
-
-  // MATLABSystem: '<S9>/SinkBlock'
-  Pub_motion_controller_node_148.publish
-    (&motion_controller_node_B.BusAssignment1);
+  // End of RelationalOperator: '<S1>/Compare'
+  // End of Outputs for SubSystem: '<Root>/cmd_pub'
 }
 
 // Model initialize function
@@ -1325,116 +1344,122 @@ void motion_controller_node::initialize()
   // initialize non-finites
   rt_InitInfAndNaN(sizeof(real_T));
 
-  // SystemInitialize for Enabled SubSystem: '<S21>/Enabled Subsystem'
-  // SystemInitialize for SignalConversion generated from: '<S24>/In1' incorporates:
-  //   Outport: '<S24>/Out1'
-
-  motion_controller_node_B.In1_m = motion_controller_node_P.Out1_Y0_f;
-
-  // End of SystemInitialize for SubSystem: '<S21>/Enabled Subsystem'
-
   // SystemInitialize for Enabled SubSystem: '<S22>/Enabled Subsystem'
   // SystemInitialize for SignalConversion generated from: '<S25>/In1' incorporates:
   //   Outport: '<S25>/Out1'
 
-  motion_controller_node_B.In1 = motion_controller_node_P.Out1_Y0;
+  motion_controller_node_B.In1_m = motion_controller_node_P.Out1_Y0_f;
 
   // End of SystemInitialize for SubSystem: '<S22>/Enabled Subsystem'
 
+  // SystemInitialize for Enabled SubSystem: '<S23>/Enabled Subsystem'
+  // SystemInitialize for SignalConversion generated from: '<S26>/In1' incorporates:
+  //   Outport: '<S26>/Out1'
+
+  motion_controller_node_B.In1 = motion_controller_node_P.Out1_Y0;
+
+  // End of SystemInitialize for SubSystem: '<S23>/Enabled Subsystem'
+
   // SystemInitialize for Atomic SubSystem: '<Root>/controller'
-  // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_effort' incorporates:
-  //   SubSystem: '<S2>/get_effort'
+  // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S3>/get_effort' incorporates:
+  //   SubSystem: '<S3>/get_effort'
 
   motion_controll_get_effort_Init();
 
-  // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_effort' 
+  // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S3>/get_effort' 
 
-  // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_spd' incorporates:
-  //   SubSystem: '<S2>/get_spd'
+  // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S3>/get_spd' incorporates:
+  //   SubSystem: '<S3>/get_spd'
 
   motion_controller__get_spd_Init();
 
-  // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_spd' 
+  // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S3>/get_spd' 
 
-  // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_angle' incorporates:
-  //   SubSystem: '<S2>/get_angle'
+  // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S3>/get_angle' incorporates:
+  //   SubSystem: '<S3>/get_angle'
 
   motion_controlle_get_angle_Init();
 
-  // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_angle' 
+  // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S3>/get_angle' 
   // End of SystemInitialize for SubSystem: '<Root>/controller'
+
+  // SystemInitialize for Enabled SubSystem: '<Root>/cmd_pub'
   motion_control_CurrentTime_Init(&motion_controller_node_DW.CurrentTime1);
 
-  // Start for MATLABSystem: '<S21>/SourceBlock'
-  motion_cont_SystemCore_setup_fs(&motion_controller_node_DW.obj_n);
-
-  // Start for MATLABSystem: '<S22>/SourceBlock'
-  motion_con_SystemCore_setup_fsy(&motion_controller_node_DW.obj_m);
-
-  // Start for MATLABSystem: '<S8>/SinkBlock'
+  // Start for MATLABSystem: '<S9>/SinkBlock'
   motion_control_SystemCore_setup(&motion_controller_node_DW.obj_b);
   motion_control_CurrentTime_Init(&motion_controller_node_DW.CurrentTime);
 
-  // Start for MATLABSystem: '<S9>/SinkBlock'
+  // Start for MATLABSystem: '<S10>/SinkBlock'
   motion_contr_SystemCore_setup_f(&motion_controller_node_DW.obj_ca);
+
+  // End of SystemInitialize for SubSystem: '<Root>/cmd_pub'
+
+  // Start for MATLABSystem: '<S22>/SourceBlock'
+  motion_cont_SystemCore_setup_fs(&motion_controller_node_DW.obj_n);
+
+  // Start for MATLABSystem: '<S23>/SourceBlock'
+  motion_con_SystemCore_setup_fsy(&motion_controller_node_DW.obj_m);
 }
 
 // Model terminate function
 void motion_controller_node::terminate()
 {
-  motion_control_CurrentTime_Term(&motion_controller_node_DW.CurrentTime1);
-
-  // Terminate for MATLABSystem: '<S21>/SourceBlock'
+  // Terminate for MATLABSystem: '<S22>/SourceBlock'
   if (!motion_controller_node_DW.obj_n.matlabCodegenIsDeleted) {
     motion_controller_node_DW.obj_n.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S21>/SourceBlock'
+  // End of Terminate for MATLABSystem: '<S22>/SourceBlock'
 
-  // Terminate for MATLABSystem: '<S22>/SourceBlock'
+  // Terminate for MATLABSystem: '<S23>/SourceBlock'
   if (!motion_controller_node_DW.obj_m.matlabCodegenIsDeleted) {
     motion_controller_node_DW.obj_m.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S22>/SourceBlock'
+  // End of Terminate for MATLABSystem: '<S23>/SourceBlock'
 
   // Terminate for Atomic SubSystem: '<Root>/controller'
-  // Terminate for S-Function (sfun_private_function_caller) generated from: '<S2>/get_effort' incorporates:
-  //   SubSystem: '<S2>/get_effort'
+  // Terminate for S-Function (sfun_private_function_caller) generated from: '<S3>/get_effort' incorporates:
+  //   SubSystem: '<S3>/get_effort'
 
   motion_controll_get_effort_Term();
 
-  // End of Terminate for S-Function (sfun_private_function_caller) generated from: '<S2>/get_effort' 
+  // End of Terminate for S-Function (sfun_private_function_caller) generated from: '<S3>/get_effort' 
 
-  // Terminate for S-Function (sfun_private_function_caller) generated from: '<S2>/get_spd' incorporates:
-  //   SubSystem: '<S2>/get_spd'
+  // Terminate for S-Function (sfun_private_function_caller) generated from: '<S3>/get_spd' incorporates:
+  //   SubSystem: '<S3>/get_spd'
 
   motion_controller__get_spd_Term();
 
-  // End of Terminate for S-Function (sfun_private_function_caller) generated from: '<S2>/get_spd' 
+  // End of Terminate for S-Function (sfun_private_function_caller) generated from: '<S3>/get_spd' 
 
-  // Terminate for S-Function (sfun_private_function_caller) generated from: '<S2>/get_angle' incorporates:
-  //   SubSystem: '<S2>/get_angle'
+  // Terminate for S-Function (sfun_private_function_caller) generated from: '<S3>/get_angle' incorporates:
+  //   SubSystem: '<S3>/get_angle'
 
   motion_controlle_get_angle_Term();
 
-  // End of Terminate for S-Function (sfun_private_function_caller) generated from: '<S2>/get_angle' 
+  // End of Terminate for S-Function (sfun_private_function_caller) generated from: '<S3>/get_angle' 
   // End of Terminate for SubSystem: '<Root>/controller'
 
-  // Terminate for MATLABSystem: '<S8>/SinkBlock'
+  // Terminate for Enabled SubSystem: '<Root>/cmd_pub'
+  motion_control_CurrentTime_Term(&motion_controller_node_DW.CurrentTime1);
+
+  // Terminate for MATLABSystem: '<S9>/SinkBlock'
   if (!motion_controller_node_DW.obj_b.matlabCodegenIsDeleted) {
     motion_controller_node_DW.obj_b.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S8>/SinkBlock'
+  // End of Terminate for MATLABSystem: '<S9>/SinkBlock'
   motion_control_CurrentTime_Term(&motion_controller_node_DW.CurrentTime);
 
-  // Terminate for MATLABSystem: '<S9>/SinkBlock'
+  // Terminate for MATLABSystem: '<S10>/SinkBlock'
   if (!motion_controller_node_DW.obj_ca.matlabCodegenIsDeleted) {
     motion_controller_node_DW.obj_ca.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S9>/SinkBlock'
+  // End of Terminate for MATLABSystem: '<S10>/SinkBlock'
+  // End of Terminate for SubSystem: '<Root>/cmd_pub'
 }
 
 // Constructor

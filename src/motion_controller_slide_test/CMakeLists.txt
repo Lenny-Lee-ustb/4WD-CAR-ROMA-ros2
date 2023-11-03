@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(motion_controller_node)
+project(motion_controller_slide_test)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 # Set CMAKE_BUILD_TYPE
 set(CMAKE_BUILD_TYPE Release)
@@ -20,19 +20,20 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_ros REQUIRED)
 find_package( custom_interfaces REQUIRED)
+find_package( nav_msgs REQUIRED)
 find_package( rclcpp REQUIRED)
 find_package( sbus_interface REQUIRED)
-include_directories("include/motion_controller_node")
+include_directories("include/motion_controller_slide_test")
 set (CMAKE_SKIP_BUILD_RPATH false)
 set (CMAKE_BUILD_WITH_INSTALL_RPATH true)
 set (CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set (CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 # Node
-add_executable(motion_controller_node 
+add_executable(motion_controller_slide_test 
 src/slros2_generic_param.cpp
 src/main.cpp
-src/motion_controller_node.cpp
-src/motion_controller_node_data.cpp
+src/motion_controller_slide_test.cpp
+src/motion_controller_slide_test_data.cpp
 src/ros2nodeinterface.cpp
 src/slros2_initialize.cpp
 src/slros_busmsg_conversion.cpp
@@ -42,14 +43,14 @@ src/rt_atan2d_snf.cpp
 src/rt_nonfinite.cpp
 )
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-target_compile_options(motion_controller_node PUBLIC 
+target_compile_options(motion_controller_slide_test PUBLIC 
   $<$<OR:$<COMPILE_LANGUAGE:CXX>,$<COMPILE_LANGUAGE:C>>:
   -Wall -Wextra -Wpedantic
   >)
 endif()
-target_compile_options(motion_controller_node PRIVATE
+target_compile_options(motion_controller_slide_test PRIVATE
   $<$<OR:$<COMPILE_LANGUAGE:CXX>,$<COMPILE_LANGUAGE:C>>:
-  -DMODEL=motion_controller_node
+  -DMODEL=motion_controller_slide_test
   -DNUMST=1
   -DNCSTATES=0
   -DHAVESTDIO
@@ -70,18 +71,19 @@ target_compile_options(motion_controller_node PRIVATE
   -fpermissive  >
   )
 ament_target_dependencies(
-  motion_controller_node
+  motion_controller_slide_test
   "custom_interfaces"
+  "nav_msgs"
   "rclcpp"
   "sbus_interface"
 )
-target_include_directories(motion_controller_node PUBLIC
+target_include_directories(motion_controller_slide_test PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-target_link_libraries(motion_controller_node 
+target_link_libraries(motion_controller_slide_test 
 	${CMAKE_DL_LIBS}
     )
-install(TARGETS motion_controller_node
+install(TARGETS motion_controller_slide_test
   EXPORT export_${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME})
 ament_export_include_directories(
@@ -89,17 +91,17 @@ ament_export_include_directories(
 )
 foreach(file_i ${CUDA_BINS})
 add_custom_command(
-                   TARGET motion_controller_node
+                   TARGET motion_controller_slide_test
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND}
-                   ARGS -E copy ${PROJECT_SOURCE_DIR}/src/${file_i} ${CMAKE_INSTALL_PREFIX}/motion_controller_node_ert_rtw/${file_i}
+                   ARGS -E copy ${PROJECT_SOURCE_DIR}/src/${file_i} ${CMAKE_INSTALL_PREFIX}/motion_controller_slide_test_ert_rtw/${file_i}
 				   )
 add_custom_command(
-                   TARGET motion_controller_node
+                   TARGET motion_controller_slide_test
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND}
-                   ARGS -E copy ${PROJECT_SOURCE_DIR}/src/${file_i} ${CMAKE_INSTALL_PREFIX}/codegen/exe/motion_controller_node/${file_i}
+                   ARGS -E copy ${PROJECT_SOURCE_DIR}/src/${file_i} ${CMAKE_INSTALL_PREFIX}/codegen/exe/motion_controller_slide_test/${file_i}
 				   )				   
 endforeach(file_i)
 ament_package()
-# Generated on Fri Nov 03 10:19:56 2023
+# Generated on Fri Nov 03 13:18:49 2023

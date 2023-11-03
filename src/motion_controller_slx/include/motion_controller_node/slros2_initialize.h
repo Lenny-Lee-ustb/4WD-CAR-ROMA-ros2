@@ -1,5 +1,5 @@
 // Copyright 2022-2023 The MathWorks, Inc.
-// Generated 27-Oct-2023 15:30:24
+// Generated 03-Nov-2023 10:19:53
 #ifndef _SLROS2_INITIALIZE_H_
 #define _SLROS2_INITIALIZE_H_
 #include "motion_controller_node_types.h"

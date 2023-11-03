@@ -5,11 +5,11 @@
 //
 // File: rtmodel.h
 //
-// Code generated for Simulink model 'motion_controller_node'.
+// Code generated for Simulink model 'motion_controller_slide_test'.
 //
-// Model version                  : 2.153
+// Model version                  : 2.170
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Nov  3 10:19:25 2023
+// C/C++ source code generated on : Fri Nov  3 13:18:43 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -18,8 +18,8 @@
 //
 #ifndef RTW_HEADER_rtmodel_h_
 #define RTW_HEADER_rtmodel_h_
-#include "motion_controller_node.h"
-#define MODEL_CLASSNAME                motion_controller_node
+#include "motion_controller_slide_test.h"
+#define MODEL_CLASSNAME                motion_controller_slide_test
 #define MODEL_STEPNAME                 step
 
 //

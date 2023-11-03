@@ -2,11 +2,11 @@
 //
 // File ros2nodeinterface.cpp
 //
-// Code generated for Simulink model 'motion_controller_node'.
+// Code generated for Simulink model 'motion_controller_slide_test'.
 //
-// Model version                  : 2.153
+// Model version                  : 2.170
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Nov 03 10:19:53 2023
+// C/C++ source code generated on : Fri Nov 03 13:18:47 2023
 //
 #ifdef _MSC_VER
 #pragma warning(push)
@@ -26,12 +26,12 @@
 #pragma GCC diagnostic ignored "-Wshadow"
 #endif //_MSC_VER
 #include "rclcpp/rclcpp.hpp"
-#include "motion_controller_node.h"
+#include "motion_controller_slide_test.h"
 #include "ros2nodeinterface.h"
 #include <thread>
 #include <chrono>
 #include <utility>
-const std::string SLROSNodeName("motion_controller_node");
+const std::string SLROSNodeName("motion_controller_slide_test");
 extern rclcpp::Node::SharedPtr SLROSNodePtr;
 namespace ros2 {
 namespace matlab {
@@ -53,13 +53,13 @@ void NodeInterface::initialize(int argc, char * const argv[]) {
         std::vector<char *> args(argv, argv + argc);
         rclcpp::init(static_cast<int>(args.size()), args.data());
         //create the Node specified in Model
-        std::string NodeName("motion_controller_node");
+        std::string NodeName("motion_controller_slide_test");
         SLROSNodePtr = std::make_shared<rclcpp::Node>(NodeName);
-        RCLCPP_INFO(SLROSNodePtr->get_logger(),"** Starting the model \"motion_controller_node\" **\n");
+        RCLCPP_INFO(SLROSNodePtr->get_logger(),"** Starting the model \"motion_controller_slide_test\" **\n");
         mExec = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
         mExec->add_node(SLROSNodePtr);
         //initialize the model which will initialize the publishers and subscribers
-        mModel = std::make_shared<motion_controller_node>(
+        mModel = std::make_shared<motion_controller_slide_test>(
         );
 		rtmSetErrorStatus(mModel->getRTM(), (NULL));
         mModel->initialize();

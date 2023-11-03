@@ -1,5 +1,5 @@
 // Copyright 2022-2023 The MathWorks, Inc.
-// Generated 27-Oct-2023 15:30:24
+// Generated 03-Nov-2023 10:19:53
 #include "slros2_initialize.h"
 // motion_controller_node/cmd_pub/Publish
 SimulinkPublisher<custom_interfaces::msg::ActuatorCommand,SL_Bus_custom_interfaces_ActuatorCommand> Pub_motion_controller_node_4;

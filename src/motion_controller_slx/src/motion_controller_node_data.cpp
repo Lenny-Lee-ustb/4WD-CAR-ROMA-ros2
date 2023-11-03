@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_node'.
 //
-// Model version                  : 2.152
+// Model version                  : 2.153
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Oct 27 15:30:20 2023
+// C/C++ source code generated on : Fri Nov  3 10:19:25 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -22,25 +22,30 @@
 P_motion_controller_node_T motion_controller_node::motion_controller_node_P = {
   // Variable: L
   //  Referenced by:
-  //    '<S14>/MATLAB Function'
-  //    '<S16>/MATLAB Function'
+  //    '<S15>/MATLAB Function'
+  //    '<S17>/MATLAB Function'
 
   0.494,
 
   // Variable: Tw
   //  Referenced by:
-  //    '<S14>/MATLAB Function'
-  //    '<S16>/MATLAB Function'
+  //    '<S15>/MATLAB Function'
+  //    '<S17>/MATLAB Function'
 
   0.281,
 
   // Variable: WHEEL_OFFSET
-  //  Referenced by: '<S16>/MATLAB Function'
+  //  Referenced by: '<S17>/MATLAB Function'
 
   0.03,
 
+  // Mask Parameter: CompareToConstant_const
+  //  Referenced by: '<S1>/Constant'
+
+  1000,
+
   // Computed Parameter: Out1_Y0
-  //  Referenced by: '<S25>/Out1'
+  //  Referenced by: '<S26>/Out1'
 
   {
     {
@@ -381,7 +386,7 @@ P_motion_controller_node_T motion_controller_node::motion_controller_node_P = {
   },
 
   // Computed Parameter: Constant_Value
-  //  Referenced by: '<S22>/Constant'
+  //  Referenced by: '<S23>/Constant'
 
   {
     {
@@ -722,7 +727,7 @@ P_motion_controller_node_T motion_controller_node::motion_controller_node_P = {
   },
 
   // Computed Parameter: Constant_Value_f
-  //  Referenced by: '<S5>/Constant'
+  //  Referenced by: '<S6>/Constant'
 
   {
     {
@@ -831,7 +836,7 @@ P_motion_controller_node_T motion_controller_node::motion_controller_node_P = {
   },
 
   // Computed Parameter: Constant_Value_i
-  //  Referenced by: '<S4>/Constant'
+  //  Referenced by: '<S5>/Constant'
 
   {
     {
@@ -940,7 +945,7 @@ P_motion_controller_node_T motion_controller_node::motion_controller_node_P = {
   },
 
   // Computed Parameter: Out1_Y0_f
-  //  Referenced by: '<S24>/Out1'
+  //  Referenced by: '<S25>/Out1'
 
   {
     {
@@ -978,7 +983,7 @@ P_motion_controller_node_T motion_controller_node::motion_controller_node_P = {
   },
 
   // Computed Parameter: Constant_Value_d
-  //  Referenced by: '<S21>/Constant'
+  //  Referenced by: '<S22>/Constant'
 
   {
     {
@@ -1015,65 +1020,95 @@ P_motion_controller_node_T motion_controller_node::motion_controller_node_P = {
     false                              // frame_lost
   },
 
-  // Expression: 500
-  //  Referenced by: '<S13>/Constant2'
-
-  500.0,
-
-  // Expression: 1/500
-  //  Referenced by: '<S13>/Gain1'
-
-  0.002,
-
-  // Expression: 500
-  //  Referenced by: '<S13>/Constant'
-
-  500.0,
-
-  // Expression: 1/500
-  //  Referenced by: '<S13>/Gain'
-
-  0.002,
-
-  // Expression: -1
-  //  Referenced by: '<S13>/Gain2'
-
-  -1.0,
-
-  // Expression: ones(1,4)/4
-  //  Referenced by: '<S3>/Gain'
-
-  { 0.25, 0.25, 0.25, 0.25 },
-
   // Expression: 1.6
-  //  Referenced by: '<S1>/Saturation2'
+  //  Referenced by: '<S2>/Saturation2'
 
   1.6,
 
   // Expression: -1.6
-  //  Referenced by: '<S1>/Saturation2'
+  //  Referenced by: '<S2>/Saturation2'
 
   -1.6,
 
   // Expression: 5
-  //  Referenced by: '<S1>/Saturation1'
+  //  Referenced by: '<S2>/Saturation1'
 
   5.0,
 
   // Expression: -5
-  //  Referenced by: '<S1>/Saturation1'
+  //  Referenced by: '<S2>/Saturation1'
 
   -5.0,
 
   // Expression: 0.75
-  //  Referenced by: '<S1>/Saturation'
+  //  Referenced by: '<S2>/Saturation'
 
   0.75,
 
   // Expression: -0.75
-  //  Referenced by: '<S1>/Saturation'
+  //  Referenced by: '<S2>/Saturation'
 
   -0.75,
+
+  // Expression: 500
+  //  Referenced by: '<S14>/Constant2'
+
+  500.0,
+
+  // Expression: 1/500
+  //  Referenced by: '<S14>/Gain1'
+
+  0.002,
+
+  // Expression: 500
+  //  Referenced by: '<S14>/Constant'
+
+  500.0,
+
+  // Expression: 1/500
+  //  Referenced by: '<S14>/Gain'
+
+  0.002,
+
+  // Expression: -1
+  //  Referenced by: '<S14>/Gain2'
+
+  -1.0,
+
+  // Expression: ones(1,4)/4
+  //  Referenced by: '<S4>/Gain'
+
+  { 0.25, 0.25, 0.25, 0.25 },
+
+  // Start of '<S8>/CoreSubsys'
+  {
+    // Computed Parameter: Constant_Value
+    //  Referenced by: '<S12>/Constant'
+
+    {
+      {
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U }
+      ,                                // name
+
+      {
+        0U,                            // CurrentLength
+        0U                             // ReceivedLength
+      },                               // name_SL_Info
+      0.0,                             // position
+      0.0,                             // velocity
+      0.0                              // effort
+    }
+  }
+  ,
+
+  // End of '<S8>/CoreSubsys'
 
   // Start of '<S7>/CoreSubsys'
   {
@@ -1101,37 +1136,7 @@ P_motion_controller_node_T motion_controller_node::motion_controller_node_P = {
       0.0                              // effort
     }
   }
-  ,
-
   // End of '<S7>/CoreSubsys'
-
-  // Start of '<S6>/CoreSubsys'
-  {
-    // Computed Parameter: Constant_Value
-    //  Referenced by: '<S10>/Constant'
-
-    {
-      {
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U }
-      ,                                // name
-
-      {
-        0U,                            // CurrentLength
-        0U                             // ReceivedLength
-      },                               // name_SL_Info
-      0.0,                             // position
-      0.0,                             // velocity
-      0.0                              // effort
-    }
-  }
-  // End of '<S6>/CoreSubsys'
 };
 
 //

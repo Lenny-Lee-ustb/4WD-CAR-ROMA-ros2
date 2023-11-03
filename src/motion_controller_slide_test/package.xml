@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>motion_controller_node</name>
+  <name>motion_controller_slide_test</name>
   <version>1.0.0</version>
   <description>TODO</description>
   <maintainer email="ros2user@test.com">ROS User</maintainer>
   <license>BSD</license>
   <buildtool_depend>ament_cmake_ros</buildtool_depend>
   <depend>custom_interfaces</depend>
+  <depend>nav_msgs</depend>
   <depend>rclcpp</depend>
   <depend>sbus_interface</depend>
   <test_depend>ament_lint_auto</test_depend>
@@ -16,4 +17,4 @@
     <build_type>ament_cmake</build_type>
   </export>
 </package>
-<!-- Generated on Fri Nov 03 10:19:56 2023 -->
+<!-- Generated on Fri Nov 03 13:18:49 2023 -->
