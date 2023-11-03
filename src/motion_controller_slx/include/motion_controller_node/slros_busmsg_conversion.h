@@ -5,6 +5,7 @@
 #include <builtin_interfaces/msg/time.hpp>
 #include <custom_interfaces/msg/actuator.hpp>
 #include <custom_interfaces/msg/actuator_command.hpp>
+#include <custom_interfaces/msg/actuator_state.hpp>
 #include <sbus_interface/msg/sbus.hpp>
 #include <std_msgs/msg/header.hpp>
 #include "motion_controller_node_types.h"
@@ -19,6 +20,9 @@ void convertToBus(SL_Bus_custom_interfaces_Actuator* busPtr, const custom_interf
 
 void convertFromBus(custom_interfaces::msg::ActuatorCommand& msgPtr, SL_Bus_custom_interfaces_ActuatorCommand const* busPtr);
 void convertToBus(SL_Bus_custom_interfaces_ActuatorCommand* busPtr, const custom_interfaces::msg::ActuatorCommand& msgPtr);
+
+void convertFromBus(custom_interfaces::msg::ActuatorState& msgPtr, SL_Bus_custom_interfaces_ActuatorState const* busPtr);
+void convertToBus(SL_Bus_custom_interfaces_ActuatorState* busPtr, const custom_interfaces::msg::ActuatorState& msgPtr);
 
 void convertFromBus(sbus_interface::msg::Sbus& msgPtr, SL_Bus_sbus_interface_Sbus const* busPtr);
 void convertToBus(SL_Bus_sbus_interface_Sbus* busPtr, const sbus_interface::msg::Sbus& msgPtr);

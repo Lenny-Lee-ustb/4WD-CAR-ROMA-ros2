@@ -28,16 +28,16 @@ def generate_launch_description():
     #         {"angleMax":0.75}
     #     ]
     # )
-    motion_controller_node = Node(
-        package="motion_controller_node",
-        executable="motion_controller_node",
-        parameters=[
-            {"spdMax":3.5},
-            {"angleMax":0.6},
-            {"effortMax":0.4},
-            {"ackermann_enable":1.0}            
-        ]
-    )
+    # motion_controller_node = Node(
+    #     package="motion_controller_node",
+    #     executable="motion_controller_node",
+    #     parameters=[
+    #         {"spdMax":3.5},
+    #         {"angleMax":0.6},
+    #         {"effortMax":0.6},
+    #         {"ackermann_enable":1.0}            
+    #     ]
+    # )
 
     servo_config = os.path.join(
         get_package_share_directory('motion_controller_cpp'),
@@ -87,7 +87,7 @@ def generate_launch_description():
     )
 
     ld.add_action(sbus_bridge_node)
-    ld.add_action(motion_controller_node)
+    # ld.add_action(motion_controller_node)
     ld.add_action(servo_485_node)
     ld.add_action(motor_can_node)
     ld.add_action(imu_node)

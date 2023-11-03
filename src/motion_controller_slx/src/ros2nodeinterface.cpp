@@ -4,9 +4,9 @@
 //
 // Code generated for Simulink model 'motion_controller_node'.
 //
-// Model version                  : 2.109
+// Model version                  : 2.152
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed Oct 25 19:24:07 2023
+// C/C++ source code generated on : Fri Oct 27 15:30:25 2023
 //
 #ifdef _MSC_VER
 #pragma warning(push)
@@ -65,7 +65,7 @@ void NodeInterface::initialize(int argc, char * const argv[]) {
         mModel->initialize();
         //create the threads for the rates in the Model
         mBaseRateThread = std::make_shared<std::thread>(&NodeInterface::baseRateTask, this);
-		mSchedulerTimer = SLROSNodePtr->create_wall_timer(std::chrono::nanoseconds(5000000),std::bind(&NodeInterface::schedulerThreadCallback,this));
+		mSchedulerTimer = SLROSNodePtr->create_wall_timer(std::chrono::nanoseconds(10000000),std::bind(&NodeInterface::schedulerThreadCallback,this));
     }
     catch (std::exception& ex) {
         std::cout << ex.what() << std::endl;

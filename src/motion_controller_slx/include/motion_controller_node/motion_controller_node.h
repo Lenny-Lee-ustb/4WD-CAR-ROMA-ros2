@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_node'.
 //
-// Model version                  : 2.109
+// Model version                  : 2.152
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed Oct 25 19:24:02 2023
+// C/C++ source code generated on : Fri Oct 27 15:30:20 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -54,16 +54,19 @@ struct DW_CurrentTime_motion_control_T {
 
 // Block signals (default storage)
 struct B_motion_controller_node_T {
+  SL_Bus_custom_interfaces_ActuatorState In1;// '<S25>/In1'
+  SL_Bus_custom_interfaces_ActuatorState b_varargout_2;
   SL_Bus_custom_interfaces_ActuatorCommand BusAssignment1;// '<S1>/Bus Assignment1' 
   SL_Bus_custom_interfaces_Actuator ImpAsg_InsertedFor_actuaor_[4];// '<S7>/Bus Assignment1' 
-  SL_Bus_sbus_interface_Sbus In1;      // '<S22>/In1'
-  SL_Bus_sbus_interface_Sbus b_varargout_2;
+  SL_Bus_sbus_interface_Sbus In1_m;    // '<S24>/In1'
+  SL_Bus_sbus_interface_Sbus b_varargout_2_m;
+  real_T ImpAsg_InsertedFor_Out1_at_[16];
   real_T angle_cmd[4];                 // '<S2>/Chart'
   real_T spd_cmd[4];                   // '<S2>/Chart'
-  real_T check;                        // '<S2>/Chart'
   real_T effort_cmd[4];                // '<S2>/Chart'
   real_T r;
   real_T Gain1;                        // '<S13>/Gain1'
+  real_T Gain2;                        // '<S13>/Gain2'
   int8_T mode;                         // '<S2>/Chart'
   B_CurrentTime_motion_controll_T CurrentTime1;// '<S1>/Current Time'
   B_CurrentTime_motion_controll_T CurrentTime;// '<S1>/Current Time'
@@ -78,12 +81,15 @@ struct DW_motion_controller_node_T {
   ros_slros2_internal_block_Get_T obj_j;// '<S14>/Get Parameter'
   ros_slros2_internal_block_Pub_T obj_ca;// '<S9>/SinkBlock'
   ros_slros2_internal_block_Pub_T obj_b;// '<S8>/SinkBlock'
-  ros_slros2_internal_block_Sub_T obj_n;// '<S20>/SourceBlock'
+  ros_slros2_internal_block_Sub_T obj_m;// '<S22>/SourceBlock'
+  ros_slros2_internal_block_Sub_T obj_n;// '<S21>/SourceBlock'
   real_T sum;                          // '<S2>/Chart'
   real_T counter;                      // '<S2>/Chart'
+  real_T check;                        // '<S2>/Chart'
   uint8_T is_active_c3_motion_controller_;// '<S2>/Chart'
   uint8_T is_Is_ready;                 // '<S2>/Chart'
   uint8_T is_cmd;                      // '<S2>/Chart'
+  uint8_T is_effort_mode;              // '<S2>/Chart'
   boolean_T ready;                     // '<S2>/Chart'
   DW_CurrentTime_motion_control_T CurrentTime1;// '<S1>/Current Time'
   DW_CurrentTime_motion_control_T CurrentTime;// '<S1>/Current Time'
@@ -118,17 +124,23 @@ struct P_motion_controller_node_T_ {
   real_T WHEEL_OFFSET;                 // Variable: WHEEL_OFFSET
                                           //  Referenced by: '<S16>/MATLAB Function'
 
-  SL_Bus_custom_interfaces_ActuatorCommand Constant_Value;// Computed Parameter: Constant_Value
-                                                             //  Referenced by: '<S5>/Constant'
+  SL_Bus_custom_interfaces_ActuatorState Out1_Y0;// Computed Parameter: Out1_Y0
+                                                    //  Referenced by: '<S25>/Out1'
+
+  SL_Bus_custom_interfaces_ActuatorState Constant_Value;// Computed Parameter: Constant_Value
+                                                           //  Referenced by: '<S22>/Constant'
+
+  SL_Bus_custom_interfaces_ActuatorCommand Constant_Value_f;// Computed Parameter: Constant_Value_f
+                                                               //  Referenced by: '<S5>/Constant'
 
   SL_Bus_custom_interfaces_ActuatorCommand Constant_Value_i;// Computed Parameter: Constant_Value_i
                                                                //  Referenced by: '<S4>/Constant'
 
-  SL_Bus_sbus_interface_Sbus Out1_Y0;  // Computed Parameter: Out1_Y0
-                                          //  Referenced by: '<S22>/Out1'
+  SL_Bus_sbus_interface_Sbus Out1_Y0_f;// Computed Parameter: Out1_Y0_f
+                                          //  Referenced by: '<S24>/Out1'
 
   SL_Bus_sbus_interface_Sbus Constant_Value_d;// Computed Parameter: Constant_Value_d
-                                                 //  Referenced by: '<S20>/Constant'
+                                                 //  Referenced by: '<S21>/Constant'
 
   real_T Constant2_Value;              // Expression: 500
                                           //  Referenced by: '<S13>/Constant2'
@@ -136,11 +148,17 @@ struct P_motion_controller_node_T_ {
   real_T Gain1_Gain;                   // Expression: 1/500
                                           //  Referenced by: '<S13>/Gain1'
 
-  real_T Constant_Value_f;             // Expression: 500
+  real_T Constant_Value_ff;            // Expression: 500
                                           //  Referenced by: '<S13>/Constant'
 
   real_T Gain_Gain;                    // Expression: 1/500
                                           //  Referenced by: '<S13>/Gain'
+
+  real_T Gain2_Gain;                   // Expression: -1
+                                          //  Referenced by: '<S13>/Gain2'
+
+  real_T Gain_Gain_n[4];               // Expression: ones(1,4)/4
+                                          //  Referenced by: '<S3>/Gain'
 
   real_T Saturation2_UpperSat;         // Expression: 1.6
                                           //  Referenced by: '<S1>/Saturation2'
@@ -229,6 +247,7 @@ class motion_controller_node
 
   // private member function(s) for subsystem '<Root>'
   void motion_cont_SystemCore_setup_fs(ros_slros2_internal_block_Sub_T *obj);
+  void motion_con_SystemCore_setup_fsy(ros_slros2_internal_block_Sub_T *obj);
   void motion_control_SystemCore_setup(ros_slros2_internal_block_Pub_T *obj);
   void motion_contr_SystemCore_setup_f(ros_slros2_internal_block_Pub_T *obj);
 
@@ -242,23 +261,27 @@ extern volatile boolean_T runModel;
 //-
 //  These blocks were eliminated from the model due to optimizations:
 //
-//  Block '<S2>/Scope' : Unused code path elimination
-//  Block '<S21>/Display' : Unused code path elimination
-//  Block '<S21>/Display1' : Unused code path elimination
-//  Block '<S21>/Display10' : Unused code path elimination
-//  Block '<S21>/Display11' : Unused code path elimination
-//  Block '<S21>/Display12' : Unused code path elimination
-//  Block '<S21>/Display13' : Unused code path elimination
-//  Block '<S21>/Display14' : Unused code path elimination
-//  Block '<S21>/Display15' : Unused code path elimination
-//  Block '<S21>/Display2' : Unused code path elimination
-//  Block '<S21>/Display3' : Unused code path elimination
-//  Block '<S21>/Display4' : Unused code path elimination
-//  Block '<S21>/Display5' : Unused code path elimination
-//  Block '<S21>/Display6' : Unused code path elimination
-//  Block '<S21>/Display7' : Unused code path elimination
-//  Block '<S21>/Display8' : Unused code path elimination
-//  Block '<S21>/Display9' : Unused code path elimination
+//  Block '<Root>/Display' : Unused code path elimination
+//  Block '<Root>/Display1' : Unused code path elimination
+//  Block '<Root>/Display2' : Unused code path elimination
+//  Block '<Root>/Display3' : Unused code path elimination
+//  Block '<Root>/Display4' : Unused code path elimination
+//  Block '<S23>/Display' : Unused code path elimination
+//  Block '<S23>/Display1' : Unused code path elimination
+//  Block '<S23>/Display10' : Unused code path elimination
+//  Block '<S23>/Display11' : Unused code path elimination
+//  Block '<S23>/Display12' : Unused code path elimination
+//  Block '<S23>/Display13' : Unused code path elimination
+//  Block '<S23>/Display14' : Unused code path elimination
+//  Block '<S23>/Display15' : Unused code path elimination
+//  Block '<S23>/Display2' : Unused code path elimination
+//  Block '<S23>/Display3' : Unused code path elimination
+//  Block '<S23>/Display4' : Unused code path elimination
+//  Block '<S23>/Display5' : Unused code path elimination
+//  Block '<S23>/Display6' : Unused code path elimination
+//  Block '<S23>/Display7' : Unused code path elimination
+//  Block '<S23>/Display8' : Unused code path elimination
+//  Block '<S23>/Display9' : Unused code path elimination
 
 
 //-
@@ -295,9 +318,12 @@ extern volatile boolean_T runModel;
 //  '<S17>'  : 'motion_controller_node/controller/get_angle/MATLAB Function'
 //  '<S18>'  : 'motion_controller_node/controller/get_effort/MATLAB Function'
 //  '<S19>'  : 'motion_controller_node/controller/get_spd/MATLAB Function'
-//  '<S20>'  : 'motion_controller_node/subscription/Subscribe'
-//  '<S21>'  : 'motion_controller_node/subscription/display'
-//  '<S22>'  : 'motion_controller_node/subscription/Subscribe/Enabled Subsystem'
+//  '<S20>'  : 'motion_controller_node/subscription/For Each Subsystem'
+//  '<S21>'  : 'motion_controller_node/subscription/Subscribe'
+//  '<S22>'  : 'motion_controller_node/subscription/Subscribe1'
+//  '<S23>'  : 'motion_controller_node/subscription/display'
+//  '<S24>'  : 'motion_controller_node/subscription/Subscribe/Enabled Subsystem'
+//  '<S25>'  : 'motion_controller_node/subscription/Subscribe1/Enabled Subsystem'
 
 #endif                                 // RTW_HEADER_motion_controller_node_h_
 

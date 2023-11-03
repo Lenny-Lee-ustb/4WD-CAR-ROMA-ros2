@@ -83,13 +83,14 @@ private:
     std::string CanSeries, password;
     double Kp, Ki, Kd, IBound, dt, preTorque, filter_a1, filter_b0, filter_b1, K_motor, minTorque, maxTorque;
     double wheel_radius, motor_ratio;
-    int motorRxCount;
+    int motorRxCount, is_cmd_active;
     struct can_frame txFrame, rxFrame;
 
     // subscribe and CAN send
     void command_callback(const custom_interfaces::msg::ActuatorCommand::SharedPtr motor_cmd)
     {
         int motorNum = motor_cmd->actuator_command.size();
+        is_cmd_active = 20;
         for (auto i = 0; i < motorNum; i++)
         {
             motor[i].drive_mode = motor_cmd->drive_mode;
@@ -139,10 +140,14 @@ private:
             txFrame.data[2 * j] = motor[j].curTx >> 8;     // 控制电流值高 8 位
             txFrame.data[2 * j + 1] = motor[j].curTx >> 0; // 控制电流值低 8 位
         }
-        if (write(s, &txFrame, sizeof(struct can_frame)) == -1)
-        {
-            printf("send error in txMotorThread\n");
+        if (is_cmd_active>=0){
+            if (write(s, &txFrame, sizeof(struct can_frame)) == -1)
+            {
+                printf("send error in txMotorThread\n");
+            }
+            is_cmd_active--;
         }
+        
     }
 
     // receive CAN Frame callback

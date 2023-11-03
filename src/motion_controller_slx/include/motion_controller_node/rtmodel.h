@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_node'.
 //
-// Model version                  : 2.109
+// Model version                  : 2.152
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed Oct 25 19:24:02 2023
+// C/C++ source code generated on : Fri Oct 27 15:30:20 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)

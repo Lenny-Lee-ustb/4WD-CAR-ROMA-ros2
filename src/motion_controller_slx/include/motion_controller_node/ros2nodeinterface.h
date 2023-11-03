@@ -4,9 +4,9 @@
 //
 // Code generated for Simulink model 'motion_controller_node'.
 //
-// Model version                  : 2.109
+// Model version                  : 2.152
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed Oct 25 19:24:07 2023
+// C/C++ source code generated on : Fri Oct 27 15:30:25 2023
 //
 #ifndef _ROS2_MATLAB_NODEINTERFACE_
 #define _ROS2_MATLAB_NODEINTERFACE_
@@ -30,6 +30,7 @@ class motion_controller_node;
 #include "motion_controller_node_types.h"
 #include "slros_busmsg_conversion.h"
 #include "custom_interfaces/msg/actuator_command.hpp"
+#include "custom_interfaces/msg/actuator_state.hpp"
 #include "sbus_interface/msg/sbus.hpp"
 namespace ros2 {
 namespace matlab {

@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_node'.
 //
-// Model version                  : 2.109
+// Model version                  : 2.152
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed Oct 25 19:24:02 2023
+// C/C++ source code generated on : Fri Oct 27 15:30:20 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -110,6 +110,24 @@ struct SL_Bus_sbus_interface_Sbus
 
 #endif
 
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_custom_interfaces_ActuatorState_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_custom_interfaces_ActuatorState_
+
+// MsgType=custom_interfaces/ActuatorState
+struct SL_Bus_custom_interfaces_ActuatorState
+{
+  // MsgType=std_msgs/Header
+  SL_Bus_std_msgs_Header header;
+
+  // MsgType=custom_interfaces/Actuator:IsVarLen=1:VarLenCategory=data:VarLenElem=actuator_state_SL_Info:TruncateAction=warn 
+  SL_Bus_custom_interfaces_Actuator actuator_state[16];
+
+  // IsVarLen=1:VarLenCategory=length:VarLenElem=actuator_state
+  SL_Bus_ROSVariableLengthArrayInfo actuator_state_SL_Info;
+};
+
+#endif
+
 #ifndef struct_f_robotics_slcore_internal_bl_T
 #define struct_f_robotics_slcore_internal_bl_T
 
@@ -146,7 +164,7 @@ struct ros_slros2_internal_block_Get_T
 
 #endif                                // struct_ros_slros2_internal_block_Get_T
 
-// Custom Type definition for MATLABSystem: '<S20>/SourceBlock'
+// Custom Type definition for MATLABSystem: '<S22>/SourceBlock'
 #include "rmw/qos_profiles.h"
 #ifndef struct_ros_slros2_internal_block_Pub_T
 #define struct_ros_slros2_internal_block_Pub_T

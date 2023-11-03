@@ -64,6 +64,25 @@ void convertToBus(SL_Bus_custom_interfaces_ActuatorCommand* busPtr, const custom
 }
 
 
+// Conversions between SL_Bus_custom_interfaces_ActuatorState and custom_interfaces::msg::ActuatorState
+
+void convertFromBus(custom_interfaces::msg::ActuatorState& msgPtr, SL_Bus_custom_interfaces_ActuatorState const* busPtr)
+{
+  const std::string rosMessageType("custom_interfaces/ActuatorState");
+
+  convertFromBusVariableNestedArray(msgPtr.actuator_state, busPtr->actuator_state, busPtr->actuator_state_SL_Info);
+  convertFromBus(msgPtr.header, &busPtr->header);
+}
+
+void convertToBus(SL_Bus_custom_interfaces_ActuatorState* busPtr, const custom_interfaces::msg::ActuatorState& msgPtr)
+{
+  const std::string rosMessageType("custom_interfaces/ActuatorState");
+
+  convertToBusVariableNestedArray(busPtr->actuator_state, busPtr->actuator_state_SL_Info, msgPtr.actuator_state, slros::EnabledWarning(rosMessageType, "actuator_state"));
+  convertToBus(&busPtr->header, msgPtr.header);
+}
+
+
 // Conversions between SL_Bus_sbus_interface_Sbus and sbus_interface::msg::Sbus
 
 void convertFromBus(sbus_interface::msg::Sbus& msgPtr, SL_Bus_sbus_interface_Sbus const* busPtr)
