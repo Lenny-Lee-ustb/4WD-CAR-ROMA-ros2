@@ -34,7 +34,7 @@ def generate_launch_description():
         parameters=[
             {"spdMax":3.5},
             {"angleMax":0.6},
-            {"effortMax":0.4},
+            {"effortMax":1.6},
             {"ackermann_enable":1.0}            
         ]
     )
