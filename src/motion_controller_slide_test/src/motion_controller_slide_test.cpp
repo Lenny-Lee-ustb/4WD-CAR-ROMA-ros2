@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slide_test'.
 //
-// Model version                  : 2.170
+// Model version                  : 2.173
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Nov  3 13:18:43 2023
+// C/C++ source code generated on : Thu Nov 23 10:42:02 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -388,7 +388,12 @@ void motion_controller_slide_test::step()
   // End of Outputs for SubSystem: '<S21>/Enabled Subsystem'
 
   // Outputs for Atomic SubSystem: '<Root>/controller'
+  // MATLABSystem: '<S2>/Get Parameter'
+  ParamGet_motion_controller_slide_test_291.getParameter
+    (&motion_controller_slide_test_B.b_value);
+
   // Chart: '<S2>/Chart' incorporates:
+  //   MATLABSystem: '<S2>/Get Parameter'
   //   SignalConversion generated from: '<S4>/Bus Selector2'
   //   SignalConversion generated from: '<S4>/Bus Selector'
 
@@ -582,7 +587,8 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_B.angle_cmd[1] = 0.0;
         motion_controller_slide_test_B.angle_cmd[2] = 0.0;
         motion_controller_slide_test_B.angle_cmd[3] = 0.0;
-        if (motion_controller_slide_test_DW.x_delta >= 1.0) {
+        if (motion_controller_slide_test_DW.x_delta >=
+            motion_controller_slide_test_B.b_value) {
           motion_controller_slide_test_DW.is_test_mode =
             motion_controller_slid_IN_slide;
           motion_controller_slide_test_B.angle_cmd[0] = 0.0;
@@ -593,16 +599,19 @@ void motion_controller_slide_test::step()
           motion_controller_slide_test_B.spd_cmd[2] = 0.0;
           motion_controller_slide_test_B.angle_cmd[3] = 0.0;
           motion_controller_slide_test_B.spd_cmd[3] = 0.0;
+          motion_controller_slide_test_B.mode = 2;
         } else {
           motion_controller_slide_test_DW.x_delta =
             motion_controller_slide_test_B.In1.pose.pose.position.x -
             motion_controller_slide_test_DW.x_ini;
-          u0 = motion_controller_slide_test_DW.counter / 100.0;
-          if (!(u0 <= 1.0)) {
-            u0 = 1.0;
+          motion_controller_slide_test_B.b_value =
+            motion_controller_slide_test_DW.counter / 100.0;
+          if (!(motion_controller_slide_test_B.b_value <= 1.0)) {
+            motion_controller_slide_test_B.b_value = 1.0;
           }
 
-          motion_controller_slide_get_spd(0.0, u0,
+          motion_controller_slide_get_spd(0.0,
+            motion_controller_slide_test_B.b_value,
             motion_controller_slide_test_B.spd_cmd);
           motion_controller_slide_test_B.mode = 1;
           motion_controller_slide_test_DW.counter++;
@@ -642,10 +651,11 @@ void motion_controller_slide_test::step()
       motion_controller_slide_test_P.Constant_Value_f;
 
     // Saturate: '<S1>/Saturation2'
-    u0 = motion_controller_slide_test_B.effort_cmd[0];
+    motion_controller_slide_test_B.b_value =
+      motion_controller_slide_test_B.effort_cmd[0];
 
     // Saturate: '<S1>/Saturation1'
-    motion_controller_slide_test_B.u0 = motion_controller_slide_test_B.spd_cmd[0];
+    u0 = motion_controller_slide_test_B.spd_cmd[0];
 
     // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
     //   ForEach: '<S8>/For Each'
@@ -660,7 +670,8 @@ void motion_controller_slide_test::step()
     // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
 
     // Saturate: '<S1>/Saturation2'
-    if (u0 > motion_controller_slide_test_P.Saturation2_UpperSat) {
+    if (motion_controller_slide_test_B.b_value >
+        motion_controller_slide_test_P.Saturation2_UpperSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -671,7 +682,8 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_P.Saturation2_UpperSat;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-    } else if (u0 < motion_controller_slide_test_P.Saturation2_LowerSat) {
+    } else if (motion_controller_slide_test_B.b_value <
+               motion_controller_slide_test_P.Saturation2_LowerSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -689,14 +701,14 @@ void motion_controller_slide_test::step()
       // BusAssignment: '<S8>/Bus Assignment1' incorporates:
       //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
 
-      motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[0].effort = u0;
+      motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[0].effort =
+        motion_controller_slide_test_B.b_value;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
     }
 
     // Saturate: '<S1>/Saturation1'
-    if (motion_controller_slide_test_B.u0 >
-        motion_controller_slide_test_P.Saturation1_UpperSat) {
+    if (u0 > motion_controller_slide_test_P.Saturation1_UpperSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -707,8 +719,7 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_P.Saturation1_UpperSat;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-    } else if (motion_controller_slide_test_B.u0 <
-               motion_controller_slide_test_P.Saturation1_LowerSat) {
+    } else if (u0 < motion_controller_slide_test_P.Saturation1_LowerSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -727,16 +738,17 @@ void motion_controller_slide_test::step()
       //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
 
       motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[0].velocity =
-        motion_controller_slide_test_B.u0;
+        u0;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
     }
 
     // Saturate: '<S1>/Saturation2'
-    u0 = motion_controller_slide_test_B.effort_cmd[1];
+    motion_controller_slide_test_B.b_value =
+      motion_controller_slide_test_B.effort_cmd[1];
 
     // Saturate: '<S1>/Saturation1'
-    motion_controller_slide_test_B.u0 = motion_controller_slide_test_B.spd_cmd[1];
+    u0 = motion_controller_slide_test_B.spd_cmd[1];
 
     // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
     //   ForEach: '<S8>/For Each'
@@ -751,7 +763,8 @@ void motion_controller_slide_test::step()
     // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
 
     // Saturate: '<S1>/Saturation2'
-    if (u0 > motion_controller_slide_test_P.Saturation2_UpperSat) {
+    if (motion_controller_slide_test_B.b_value >
+        motion_controller_slide_test_P.Saturation2_UpperSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -762,7 +775,8 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_P.Saturation2_UpperSat;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-    } else if (u0 < motion_controller_slide_test_P.Saturation2_LowerSat) {
+    } else if (motion_controller_slide_test_B.b_value <
+               motion_controller_slide_test_P.Saturation2_LowerSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -780,14 +794,14 @@ void motion_controller_slide_test::step()
       // BusAssignment: '<S8>/Bus Assignment1' incorporates:
       //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
 
-      motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[1].effort = u0;
+      motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[1].effort =
+        motion_controller_slide_test_B.b_value;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
     }
 
     // Saturate: '<S1>/Saturation1'
-    if (motion_controller_slide_test_B.u0 >
-        motion_controller_slide_test_P.Saturation1_UpperSat) {
+    if (u0 > motion_controller_slide_test_P.Saturation1_UpperSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -798,8 +812,7 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_P.Saturation1_UpperSat;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-    } else if (motion_controller_slide_test_B.u0 <
-               motion_controller_slide_test_P.Saturation1_LowerSat) {
+    } else if (u0 < motion_controller_slide_test_P.Saturation1_LowerSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -818,16 +831,17 @@ void motion_controller_slide_test::step()
       //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
 
       motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[1].velocity =
-        motion_controller_slide_test_B.u0;
+        u0;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
     }
 
     // Saturate: '<S1>/Saturation2'
-    u0 = motion_controller_slide_test_B.effort_cmd[2];
+    motion_controller_slide_test_B.b_value =
+      motion_controller_slide_test_B.effort_cmd[2];
 
     // Saturate: '<S1>/Saturation1'
-    motion_controller_slide_test_B.u0 = motion_controller_slide_test_B.spd_cmd[2];
+    u0 = motion_controller_slide_test_B.spd_cmd[2];
 
     // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
     //   ForEach: '<S8>/For Each'
@@ -842,7 +856,8 @@ void motion_controller_slide_test::step()
     // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
 
     // Saturate: '<S1>/Saturation2'
-    if (u0 > motion_controller_slide_test_P.Saturation2_UpperSat) {
+    if (motion_controller_slide_test_B.b_value >
+        motion_controller_slide_test_P.Saturation2_UpperSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -853,7 +868,8 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_P.Saturation2_UpperSat;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-    } else if (u0 < motion_controller_slide_test_P.Saturation2_LowerSat) {
+    } else if (motion_controller_slide_test_B.b_value <
+               motion_controller_slide_test_P.Saturation2_LowerSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -871,14 +887,14 @@ void motion_controller_slide_test::step()
       // BusAssignment: '<S8>/Bus Assignment1' incorporates:
       //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
 
-      motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[2].effort = u0;
+      motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[2].effort =
+        motion_controller_slide_test_B.b_value;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
     }
 
     // Saturate: '<S1>/Saturation1'
-    if (motion_controller_slide_test_B.u0 >
-        motion_controller_slide_test_P.Saturation1_UpperSat) {
+    if (u0 > motion_controller_slide_test_P.Saturation1_UpperSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -889,8 +905,7 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_P.Saturation1_UpperSat;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-    } else if (motion_controller_slide_test_B.u0 <
-               motion_controller_slide_test_P.Saturation1_LowerSat) {
+    } else if (u0 < motion_controller_slide_test_P.Saturation1_LowerSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -909,16 +924,17 @@ void motion_controller_slide_test::step()
       //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
 
       motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[2].velocity =
-        motion_controller_slide_test_B.u0;
+        u0;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
     }
 
     // Saturate: '<S1>/Saturation2'
-    u0 = motion_controller_slide_test_B.effort_cmd[3];
+    motion_controller_slide_test_B.b_value =
+      motion_controller_slide_test_B.effort_cmd[3];
 
     // Saturate: '<S1>/Saturation1'
-    motion_controller_slide_test_B.u0 = motion_controller_slide_test_B.spd_cmd[3];
+    u0 = motion_controller_slide_test_B.spd_cmd[3];
 
     // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
     //   ForEach: '<S8>/For Each'
@@ -933,7 +949,8 @@ void motion_controller_slide_test::step()
     // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
 
     // Saturate: '<S1>/Saturation2'
-    if (u0 > motion_controller_slide_test_P.Saturation2_UpperSat) {
+    if (motion_controller_slide_test_B.b_value >
+        motion_controller_slide_test_P.Saturation2_UpperSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -944,7 +961,8 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_P.Saturation2_UpperSat;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-    } else if (u0 < motion_controller_slide_test_P.Saturation2_LowerSat) {
+    } else if (motion_controller_slide_test_B.b_value <
+               motion_controller_slide_test_P.Saturation2_LowerSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -962,14 +980,14 @@ void motion_controller_slide_test::step()
       // BusAssignment: '<S8>/Bus Assignment1' incorporates:
       //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
 
-      motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[3].effort = u0;
+      motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[3].effort =
+        motion_controller_slide_test_B.b_value;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
     }
 
     // Saturate: '<S1>/Saturation1'
-    if (motion_controller_slide_test_B.u0 >
-        motion_controller_slide_test_P.Saturation1_UpperSat) {
+    if (u0 > motion_controller_slide_test_P.Saturation1_UpperSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -980,8 +998,7 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_P.Saturation1_UpperSat;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
-    } else if (motion_controller_slide_test_B.u0 <
-               motion_controller_slide_test_P.Saturation1_LowerSat) {
+    } else if (u0 < motion_controller_slide_test_P.Saturation1_LowerSat) {
       // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem1' incorporates:
       //   ForEach: '<S8>/For Each'
 
@@ -1000,7 +1017,7 @@ void motion_controller_slide_test::step()
       //   ForEachSliceAssignment generated from: '<S8>/actuaor_command'
 
       motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[3].velocity =
-        motion_controller_slide_test_B.u0;
+        u0;
 
       // End of Outputs for SubSystem: '<S1>/For Each Subsystem1'
     }
@@ -1028,14 +1045,20 @@ void motion_controller_slide_test::step()
       motion_controller_slide_test_P.Constant_Value_i;
 
     // Saturate: '<S1>/Saturation'
-    u0 = motion_controller_slide_test_B.angle_cmd[0];
-    if (u0 > motion_controller_slide_test_P.Saturation_UpperSat) {
-      u0 = motion_controller_slide_test_P.Saturation_UpperSat;
-    } else if (u0 < motion_controller_slide_test_P.Saturation_LowerSat) {
-      u0 = motion_controller_slide_test_P.Saturation_LowerSat;
+    motion_controller_slide_test_B.b_value =
+      motion_controller_slide_test_B.angle_cmd[0];
+    if (motion_controller_slide_test_B.b_value >
+        motion_controller_slide_test_P.Saturation_UpperSat) {
+      motion_controller_slide_test_B.b_value =
+        motion_controller_slide_test_P.Saturation_UpperSat;
+    } else if (motion_controller_slide_test_B.b_value <
+               motion_controller_slide_test_P.Saturation_LowerSat) {
+      motion_controller_slide_test_B.b_value =
+        motion_controller_slide_test_P.Saturation_LowerSat;
     }
 
-    motion_controller_slide_test_B.angle_cmd[0] = u0;
+    motion_controller_slide_test_B.angle_cmd[0] =
+      motion_controller_slide_test_B.b_value;
 
     // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
     //   ForEach: '<S7>/For Each'
@@ -1051,19 +1074,26 @@ void motion_controller_slide_test::step()
     //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
     //   ForEachSliceSelector generated from: '<S7>/servo_position'
 
-    motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[0].position = u0;
+    motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[0].position =
+      motion_controller_slide_test_B.b_value;
 
     // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
 
     // Saturate: '<S1>/Saturation'
-    u0 = motion_controller_slide_test_B.angle_cmd[1];
-    if (u0 > motion_controller_slide_test_P.Saturation_UpperSat) {
-      u0 = motion_controller_slide_test_P.Saturation_UpperSat;
-    } else if (u0 < motion_controller_slide_test_P.Saturation_LowerSat) {
-      u0 = motion_controller_slide_test_P.Saturation_LowerSat;
+    motion_controller_slide_test_B.b_value =
+      motion_controller_slide_test_B.angle_cmd[1];
+    if (motion_controller_slide_test_B.b_value >
+        motion_controller_slide_test_P.Saturation_UpperSat) {
+      motion_controller_slide_test_B.b_value =
+        motion_controller_slide_test_P.Saturation_UpperSat;
+    } else if (motion_controller_slide_test_B.b_value <
+               motion_controller_slide_test_P.Saturation_LowerSat) {
+      motion_controller_slide_test_B.b_value =
+        motion_controller_slide_test_P.Saturation_LowerSat;
     }
 
-    motion_controller_slide_test_B.angle_cmd[1] = u0;
+    motion_controller_slide_test_B.angle_cmd[1] =
+      motion_controller_slide_test_B.b_value;
 
     // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
     //   ForEach: '<S7>/For Each'
@@ -1079,19 +1109,26 @@ void motion_controller_slide_test::step()
     //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
     //   ForEachSliceSelector generated from: '<S7>/servo_position'
 
-    motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[1].position = u0;
+    motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[1].position =
+      motion_controller_slide_test_B.b_value;
 
     // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
 
     // Saturate: '<S1>/Saturation'
-    u0 = motion_controller_slide_test_B.angle_cmd[2];
-    if (u0 > motion_controller_slide_test_P.Saturation_UpperSat) {
-      u0 = motion_controller_slide_test_P.Saturation_UpperSat;
-    } else if (u0 < motion_controller_slide_test_P.Saturation_LowerSat) {
-      u0 = motion_controller_slide_test_P.Saturation_LowerSat;
+    motion_controller_slide_test_B.b_value =
+      motion_controller_slide_test_B.angle_cmd[2];
+    if (motion_controller_slide_test_B.b_value >
+        motion_controller_slide_test_P.Saturation_UpperSat) {
+      motion_controller_slide_test_B.b_value =
+        motion_controller_slide_test_P.Saturation_UpperSat;
+    } else if (motion_controller_slide_test_B.b_value <
+               motion_controller_slide_test_P.Saturation_LowerSat) {
+      motion_controller_slide_test_B.b_value =
+        motion_controller_slide_test_P.Saturation_LowerSat;
     }
 
-    motion_controller_slide_test_B.angle_cmd[2] = u0;
+    motion_controller_slide_test_B.angle_cmd[2] =
+      motion_controller_slide_test_B.b_value;
 
     // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
     //   ForEach: '<S7>/For Each'
@@ -1107,19 +1144,26 @@ void motion_controller_slide_test::step()
     //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
     //   ForEachSliceSelector generated from: '<S7>/servo_position'
 
-    motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[2].position = u0;
+    motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[2].position =
+      motion_controller_slide_test_B.b_value;
 
     // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
 
     // Saturate: '<S1>/Saturation'
-    u0 = motion_controller_slide_test_B.angle_cmd[3];
-    if (u0 > motion_controller_slide_test_P.Saturation_UpperSat) {
-      u0 = motion_controller_slide_test_P.Saturation_UpperSat;
-    } else if (u0 < motion_controller_slide_test_P.Saturation_LowerSat) {
-      u0 = motion_controller_slide_test_P.Saturation_LowerSat;
+    motion_controller_slide_test_B.b_value =
+      motion_controller_slide_test_B.angle_cmd[3];
+    if (motion_controller_slide_test_B.b_value >
+        motion_controller_slide_test_P.Saturation_UpperSat) {
+      motion_controller_slide_test_B.b_value =
+        motion_controller_slide_test_P.Saturation_UpperSat;
+    } else if (motion_controller_slide_test_B.b_value <
+               motion_controller_slide_test_P.Saturation_LowerSat) {
+      motion_controller_slide_test_B.b_value =
+        motion_controller_slide_test_P.Saturation_LowerSat;
     }
 
-    motion_controller_slide_test_B.angle_cmd[3] = u0;
+    motion_controller_slide_test_B.angle_cmd[3] =
+      motion_controller_slide_test_B.b_value;
 
     // Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
     //   ForEach: '<S7>/For Each'
@@ -1135,7 +1179,8 @@ void motion_controller_slide_test::step()
     //   ForEachSliceAssignment generated from: '<S7>/actuaor_command'
     //   ForEachSliceSelector generated from: '<S7>/servo_position'
 
-    motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[3].position = u0;
+    motion_controller_slide_test_B.ImpAsg_InsertedFor_actuaor_[3].position =
+      motion_controller_slide_test_B.b_value;
 
     // End of Outputs for SubSystem: '<S1>/For Each Subsystem'
 
@@ -1163,63 +1208,76 @@ void motion_controller_slide_test::initialize()
   // initialize non-finites
   rt_InitInfAndNaN(sizeof(real_T));
 
-  // SystemInitialize for Enabled SubSystem: '<S20>/Enabled Subsystem'
-  // SystemInitialize for SignalConversion generated from: '<S23>/In1' incorporates:
-  //   Outport: '<S23>/Out1'
+  {
+    static const char_T prmName[9] = "distance";
 
-  motion_controller_slide_test_B.In1_m =
-    motion_controller_slide_test_P.Out1_Y0_f;
+    // SystemInitialize for Enabled SubSystem: '<S20>/Enabled Subsystem'
+    // SystemInitialize for SignalConversion generated from: '<S23>/In1' incorporates:
+    //   Outport: '<S23>/Out1'
 
-  // End of SystemInitialize for SubSystem: '<S20>/Enabled Subsystem'
+    motion_controller_slide_test_B.In1_m =
+      motion_controller_slide_test_P.Out1_Y0_f;
 
-  // SystemInitialize for Enabled SubSystem: '<S21>/Enabled Subsystem'
-  // SystemInitialize for SignalConversion generated from: '<S24>/In1' incorporates:
-  //   Outport: '<S24>/Out1'
+    // End of SystemInitialize for SubSystem: '<S20>/Enabled Subsystem'
 
-  motion_controller_slide_test_B.In1 = motion_controller_slide_test_P.Out1_Y0;
+    // SystemInitialize for Enabled SubSystem: '<S21>/Enabled Subsystem'
+    // SystemInitialize for SignalConversion generated from: '<S24>/In1' incorporates:
+    //   Outport: '<S24>/Out1'
 
-  // End of SystemInitialize for SubSystem: '<S21>/Enabled Subsystem'
+    motion_controller_slide_test_B.In1 = motion_controller_slide_test_P.Out1_Y0;
 
-  // SystemInitialize for Atomic SubSystem: '<Root>/controller'
-  // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_effort' incorporates:
-  //   SubSystem: '<S2>/get_effort'
+    // End of SystemInitialize for SubSystem: '<S21>/Enabled Subsystem'
 
-  motion_controll_get_effort_Init();
+    // SystemInitialize for Atomic SubSystem: '<Root>/controller'
+    // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_effort' incorporates:
+    //   SubSystem: '<S2>/get_effort'
 
-  // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_effort' 
+    motion_controll_get_effort_Init();
 
-  // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_spd' incorporates:
-  //   SubSystem: '<S2>/get_spd'
+    // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_effort' 
 
-  motion_controller__get_spd_Init();
+    // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_spd' incorporates:
+    //   SubSystem: '<S2>/get_spd'
 
-  // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_spd' 
+    motion_controller__get_spd_Init();
 
-  // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_angle' incorporates:
-  //   SubSystem: '<S2>/get_angle'
+    // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_spd' 
 
-  motion_controlle_get_angle_Init();
+    // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_angle' incorporates:
+    //   SubSystem: '<S2>/get_angle'
 
-  // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_angle' 
-  // End of SystemInitialize for SubSystem: '<Root>/controller'
+    motion_controlle_get_angle_Init();
 
-  // SystemInitialize for Enabled SubSystem: '<Root>/cmd_pub'
-  motion_control_CurrentTime_Init(&motion_controller_slide_test_DW.CurrentTime1);
+    // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_angle' 
 
-  // Start for MATLABSystem: '<S9>/SinkBlock'
-  motion_control_SystemCore_setup(&motion_controller_slide_test_DW.obj_b);
-  motion_control_CurrentTime_Init(&motion_controller_slide_test_DW.CurrentTime);
+    // Start for MATLABSystem: '<S2>/Get Parameter'
+    motion_controller_slide_test_DW.obj_e.matlabCodegenIsDeleted = false;
+    motion_controller_slide_test_DW.obj_e.isInitialized = 1;
+    ParamGet_motion_controller_slide_test_291.initParam(&prmName[0]);
+    ParamGet_motion_controller_slide_test_291.setInitialValue(1.0);
+    motion_controller_slide_test_DW.obj_e.isSetupComplete = true;
 
-  // Start for MATLABSystem: '<S10>/SinkBlock'
-  motion_contr_SystemCore_setup_h(&motion_controller_slide_test_DW.obj_c);
+    // End of SystemInitialize for SubSystem: '<Root>/controller'
 
-  // End of SystemInitialize for SubSystem: '<Root>/cmd_pub'
+    // SystemInitialize for Enabled SubSystem: '<Root>/cmd_pub'
+    motion_control_CurrentTime_Init
+      (&motion_controller_slide_test_DW.CurrentTime1);
 
-  // Start for MATLABSystem: '<S20>/SourceBlock'
-  motion_cont_SystemCore_setup_h0(&motion_controller_slide_test_DW.obj_n);
+    // Start for MATLABSystem: '<S9>/SinkBlock'
+    motion_control_SystemCore_setup(&motion_controller_slide_test_DW.obj_b);
+    motion_control_CurrentTime_Init(&motion_controller_slide_test_DW.CurrentTime);
 
-  // Start for MATLABSystem: '<S21>/SourceBlock'
-  motion_con_SystemCore_setup_h0k(&motion_controller_slide_test_DW.obj_l);
+    // Start for MATLABSystem: '<S10>/SinkBlock'
+    motion_contr_SystemCore_setup_h(&motion_controller_slide_test_DW.obj_c);
+
+    // End of SystemInitialize for SubSystem: '<Root>/cmd_pub'
+
+    // Start for MATLABSystem: '<S20>/SourceBlock'
+    motion_cont_SystemCore_setup_h0(&motion_controller_slide_test_DW.obj_n);
+
+    // Start for MATLABSystem: '<S21>/SourceBlock'
+    motion_con_SystemCore_setup_h0k(&motion_controller_slide_test_DW.obj_l);
+  }
 }
 
 // Model terminate function
@@ -1246,6 +1304,13 @@ void motion_controller_slide_test::terminate()
   motion_controlle_get_angle_Term();
 
   // End of Terminate for S-Function (sfun_private_function_caller) generated from: '<S2>/get_angle' 
+
+  // Terminate for MATLABSystem: '<S2>/Get Parameter'
+  if (!motion_controller_slide_test_DW.obj_e.matlabCodegenIsDeleted) {
+    motion_controller_slide_test_DW.obj_e.matlabCodegenIsDeleted = true;
+  }
+
+  // End of Terminate for MATLABSystem: '<S2>/Get Parameter'
 
   // Terminate for S-Function (sfun_private_function_caller) generated from: '<S2>/get_effort' incorporates:
   //   SubSystem: '<S2>/get_effort'

@@ -83,6 +83,18 @@ target_include_directories(motion_controller_slide_test PUBLIC
 target_link_libraries(motion_controller_slide_test 
 	${CMAKE_DL_LIBS}
     )
+
+
+install(DIRECTORY
+    launch
+    DESTINATION share/${PROJECT_NAME}
+)
+install(DIRECTORY
+    config
+    DESTINATION share/${PROJECT_NAME})
+
+
+
 install(TARGETS motion_controller_slide_test
   EXPORT export_${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME})
@@ -104,4 +116,4 @@ add_custom_command(
 				   )				   
 endforeach(file_i)
 ament_package()
-# Generated on Fri Nov 03 13:18:49 2023
+# Generated on Thu Nov 23 10:42:14 2023

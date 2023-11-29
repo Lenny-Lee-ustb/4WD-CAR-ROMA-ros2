@@ -16,10 +16,12 @@ class ServoNode(Node):
         super().__init__(node_name=nodeName)
         self.__addr_torque_enable = 64
         self.__addr_goal_position = 116
+        self.__addr_present_current = 126
         self.__addr_present_position = 132
         self.__protocol_version = 2.0
         self.__torque_enable = 1
         self.__torque_disable = 0
+        self.__len_present_current = 2
         self.__len_present_position = 4
         self.__len_goal_position = 4
         self.__left_ID = 1
@@ -40,10 +42,6 @@ class ServoNode(Node):
         self.dxl_enable_torque(self.__left_ID)
         # Enable Right servo Torque
         self.dxl_enable_torque(self.__right_ID)
-        # Add parameter storage for Left servo present position
-        self.dxl_read_add_param_pos(self.__left_ID)
-        # Add parameter storage for Right servo present position
-        self.dxl_read_add_param_pos(self.__right_ID)
         # Add parameter storage for Left servo target position
         self.dxl_write_set_param_pos(self.__left_ID, self.__left_mid_position)
         # Add parameter storage for Right servo target position
@@ -59,7 +57,7 @@ class ServoNode(Node):
         self.portHandler = PortHandler(self.__device_name)
         self.packetHandler = PacketHandler(self.__protocol_version)
         self.groupBulkWrite = GroupBulkWrite(self.portHandler, self.packetHandler)
-        self.groupBulkRead = GroupBulkRead(self.portHandler, self.packetHandler)
+
         # Open port
         self.dxl_open_port()
         # Set port baudrate
@@ -78,11 +76,12 @@ class ServoNode(Node):
         servo_state_pub.header.stamp = self.get_clock().now().to_msg()
         servo_left = Actuator()
         servo_right = Actuator()
-        self.dxl_read_rxPacket()
         servo_left.name = 'Front Left'
         servo_right.name = 'Front Right'
-        servo_left.position = float(self.dxl_get_data(self.__left_ID))
-        servo_right.position = float(self.dxl_get_data(self.__right_ID))
+        servo_left.position = self.cal_present_pos_left(self.__left_mid_position,float(self.dxl_get_pos_data(self.__left_ID)))
+        servo_right.position = self.cal_present_pos_right(self.__right_mid_position,float(self.dxl_get_pos_data(self.__right_ID)))
+        servo_left.effort = float(self.dxl_get_cur_data(self.__left_ID))
+        servo_right.effort = float(self.dxl_get_cur_data(self.__right_ID))
         servo_state_pub.actuator_state.append(servo_left)
         servo_state_pub.actuator_state.append(servo_right)
         self.publisher_.publish(servo_state_pub)
@@ -92,6 +91,14 @@ class ServoNode(Node):
         goal_pos = mid_pos + angle
         goal_pos = min(max(goal_pos, min_pos), max_pos)
         return int(goal_pos)
+    
+    def cal_present_pos_left(self, mid_pos,pre_pos):
+        angle = (pre_pos - mid_pos)/4096 * (2*math.pi)
+        return angle
+
+    def cal_present_pos_right(self, mid_pos,pre_pos):
+        angle = -(pre_pos - mid_pos)/4096 * (2*math.pi)
+        return angle
     
     def dxl_open_port(self):
         if self.portHandler.openPort():
@@ -130,13 +137,6 @@ class ServoNode(Node):
         else:
             self.get_logger().info("Dynamixel#%d has been successfully closed" % ID)
 
-    def dxl_read_add_param_pos(self, ID):
-        dxl_addparam_result = self.groupBulkRead.addParam(ID, 
-                                                          self.__addr_present_position, 
-                                                          self.__len_present_position)
-        if dxl_addparam_result != True:
-            self.get_logger().info("[ID:%03d] groupBulkRead addparam failed" % ID)
-
     def dxl_write_set_param_pos(self, ID, pos):
         pos = int(pos)
         goal_pos = [DXL_LOBYTE(DXL_LOWORD(pos)), DXL_HIBYTE(DXL_LOWORD(pos)), DXL_LOBYTE(DXL_HIWORD(pos)), DXL_HIBYTE(DXL_HIWORD(pos))]
@@ -150,7 +150,7 @@ class ServoNode(Node):
         goal_pos = [DXL_LOBYTE(DXL_LOWORD(pos)), DXL_HIBYTE(DXL_LOWORD(pos)), DXL_LOBYTE(DXL_HIWORD(pos)), DXL_HIBYTE(DXL_HIWORD(pos))]
         dxl_addparam_result = self.groupBulkWrite.changeParam(ID, self.__addr_goal_position, self.__len_goal_position, goal_pos)
         if dxl_addparam_result != True:
-            print("[ID:%03d] groupBulkRead addparam failed" % ID)
+            print("[ID:%03d] groupBulkWrite addparam failed" % ID)
             quit()
 
     def dxl_write_txPacket(self):
@@ -158,19 +158,21 @@ class ServoNode(Node):
         if dxl_comm_result != COMM_SUCCESS:
             print("%s" % self.packetHandler.getTxRxResult(dxl_comm_result))
 
-    def dxl_read_rxPacket(self):
-        dxl_comm_result = self.groupBulkRead.txRxPacket()
-        if dxl_comm_result != COMM_SUCCESS:
-            print("%s" % self.packetHandler.getTxRxResult(dxl_comm_result))
+    def dxl_get_pos_data(self, ID):
+        dxl_getdata_result = self.packetHandler.read4ByteTxRx(self.portHandler, 
+                                                              ID, 
+                                                              self.__addr_present_position)
+        return dxl_getdata_result[0]
 
-    def dxl_get_data(self, ID):
-        dxl_getdata_result = self.groupBulkRead.isAvailable(ID, self.__addr_present_position, self.__len_present_position)
-        if dxl_getdata_result != True:
-            print("[ID:%03d] groupBulkRead getdata failed" % ID)
-            quit()
-        return self.groupBulkRead.getData(ID, self.__addr_present_position, self.__len_present_position)
-
-
+    def dxl_get_cur_data(self, ID):
+        dxl_getdata_result = self.packetHandler.read2ByteTxRx(self.portHandler, 
+                                                              ID, 
+                                                              self.__addr_present_current)
+        # print(dxl_getdata_result[0])
+        curr = int(dxl_getdata_result[0])
+        if dxl_getdata_result[0]>32768:
+            curr = dxl_getdata_result[0] - 65536
+        return curr * 2.69
 
 def main(args=None):
     rclpy.init(args=args) # 初始化rclpy

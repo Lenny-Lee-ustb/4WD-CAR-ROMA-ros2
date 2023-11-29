@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slide_test'.
 //
-// Model version                  : 2.170
+// Model version                  : 2.173
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Nov  3 13:18:43 2023
+// C/C++ source code generated on : Thu Nov 23 10:42:02 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -63,7 +63,7 @@ struct B_motion_controller_slide_tes_T {
   real_T spd_cmd[4];                   // '<S2>/Chart'
   real_T effort_cmd[4];                // '<S2>/Chart'
   real_T angle_cmd[4];                 // '<S2>/Chart'
-  real_T u0;
+  real_T b_value;
   int8_T mode;                         // '<S2>/Chart'
   B_CurrentTime_motion_controll_T CurrentTime1;// '<S1>/Current Time'
   B_CurrentTime_motion_controll_T CurrentTime;// '<S1>/Current Time'
@@ -74,6 +74,7 @@ struct DW_motion_controller_slide_te_T {
   ros_slros2_internal_block_Get_T obj; // '<S16>/Get Parameter'
   ros_slros2_internal_block_Get_T obj_d;// '<S15>/Get Parameter'
   ros_slros2_internal_block_Get_T obj_j;// '<S14>/Get Parameter'
+  ros_slros2_internal_block_Get_T obj_e;// '<S2>/Get Parameter'
   ros_slros2_internal_block_Pub_T obj_c;// '<S10>/SinkBlock'
   ros_slros2_internal_block_Pub_T obj_b;// '<S9>/SinkBlock'
   ros_slros2_internal_block_Sub_T obj_l;// '<S21>/SourceBlock'
