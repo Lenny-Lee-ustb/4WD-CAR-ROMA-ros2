@@ -5,18 +5,12 @@
 //
 // File: rtwtypes.h
 //
-// Code generated for Simulink model 'motion_controller_circle_test'.
+// Code generated for Simulink model 'motion_controller_slide_test'.
 //
-// Model version                  : 2.180
+// Model version                  : 2.179
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed Nov 15 20:42:25 2023
+// C/C++ source code generated on : Wed Nov 15 20:38:52 2023
 //
-// Target selection: ert.tlc
-// Embedded hardware selection: Intel->x86-64 (Linux 64)
-// Code generation objectives: Unspecified
-// Validation result: Not run
-//
-
 #ifndef RTWTYPES_H
 #define RTWTYPES_H
 

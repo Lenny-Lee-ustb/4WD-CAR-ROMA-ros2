@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_circle_test'.
 //
-// Model version                  : 2.180
+// Model version                  : 2.193
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed Nov 15 20:42:25 2023
+// C/C++ source code generated on : Mon Dec  4 13:23:35 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -21,13 +21,23 @@
 // Block parameters (default storage)
 P_motion_controller_circle_te_T motion_controller_circle_test::
   motion_controller_circle_test_P = {
+  // Variable: L
+  //  Referenced by: '<S16>/MATLAB Function'
+
+  0.494,
+
+  // Variable: Tw
+  //  Referenced by: '<S16>/MATLAB Function'
+
+  0.281,
+
   // Mask Parameter: ctc_const
-  //  Referenced by: '<S3>/Constant'
+  //  Referenced by: '<S5>/Constant'
 
   0,
 
   // Computed Parameter: Constant_Value
-  //  Referenced by: '<S6>/Constant'
+  //  Referenced by: '<S8>/Constant'
 
   {
     {
@@ -136,7 +146,7 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
   },
 
   // Computed Parameter: Constant_Value_i
-  //  Referenced by: '<S5>/Constant'
+  //  Referenced by: '<S7>/Constant'
 
   {
     {
@@ -245,7 +255,7 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
   },
 
   // Computed Parameter: Out1_Y0
-  //  Referenced by: '<S16>/Out1'
+  //  Referenced by: '<S22>/Out1'
 
   {
     {
@@ -283,7 +293,7 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
   },
 
   // Computed Parameter: Constant_Value_d
-  //  Referenced by: '<S14>/Constant'
+  //  Referenced by: '<S20>/Constant'
 
   {
     {
@@ -321,49 +331,79 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
   },
 
   // Expression: 1.6
-  //  Referenced by: '<S1>/Saturation2'
+  //  Referenced by: '<S3>/Saturation2'
 
   1.6,
 
   // Expression: -1.6
-  //  Referenced by: '<S1>/Saturation2'
+  //  Referenced by: '<S3>/Saturation2'
 
   -1.6,
 
   // Expression: 5
-  //  Referenced by: '<S1>/Saturation1'
+  //  Referenced by: '<S3>/Saturation1'
 
   5.0,
 
   // Expression: -5
-  //  Referenced by: '<S1>/Saturation1'
+  //  Referenced by: '<S3>/Saturation1'
 
   -5.0,
 
   // Expression: 0.75
-  //  Referenced by: '<S1>/Saturation'
+  //  Referenced by: '<S3>/Saturation'
 
   0.75,
 
   // Expression: -0.75
-  //  Referenced by: '<S1>/Saturation'
+  //  Referenced by: '<S3>/Saturation'
 
   -0.75,
 
-  // Expression: 0.4
-  //  Referenced by: '<S2>/Saturation'
+  // Expression: 0
+  //  Referenced by: '<S16>/Constant'
 
-  0.4,
+  0.0,
 
-  // Expression: -0.4
-  //  Referenced by: '<S2>/Saturation'
+  // Expression: 500
+  //  Referenced by: '<S2>/Constant2'
 
-  -0.4,
+  500.0,
 
-  // Start of '<S8>/CoreSubsys'
+  // Expression: 1/500
+  //  Referenced by: '<S2>/Gain1'
+
+  0.002,
+
+  // Expression: 500
+  //  Referenced by: '<S2>/Constant'
+
+  500.0,
+
+  // Expression: 1/500
+  //  Referenced by: '<S2>/Gain'
+
+  0.002,
+
+  // Expression: -1
+  //  Referenced by: '<S2>/Gain2'
+
+  -1.0,
+
+  // Expression: 0.3
+  //  Referenced by: '<Root>/Saturation'
+
+  0.3,
+
+  // Expression: -0.3
+  //  Referenced by: '<Root>/Saturation'
+
+  -0.3,
+
+  // Start of '<S10>/CoreSubsys'
   {
     // Computed Parameter: Constant_Value
-    //  Referenced by: '<S12>/Constant'
+    //  Referenced by: '<S14>/Constant'
 
     {
       {
@@ -388,12 +428,12 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
   }
   ,
 
-  // End of '<S8>/CoreSubsys'
+  // End of '<S10>/CoreSubsys'
 
-  // Start of '<S7>/CoreSubsys'
+  // Start of '<S9>/CoreSubsys'
   {
     // Computed Parameter: Constant_Value
-    //  Referenced by: '<S11>/Constant'
+    //  Referenced by: '<S13>/Constant'
 
     {
       {
@@ -416,7 +456,7 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
       0.0                              // effort
     }
   }
-  // End of '<S7>/CoreSubsys'
+  // End of '<S9>/CoreSubsys'
 };
 
 //

@@ -1,4 +1,5 @@
 motion_controller_circle_test:
   ros__parameters:
-    angle_max: 0.7
-    effort: 0.1
+    angleMax: 0.7
+    effortMax: 0.2
+    angle_increase_dps: 1.0

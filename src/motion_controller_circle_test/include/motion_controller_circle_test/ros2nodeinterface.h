@@ -4,9 +4,9 @@
 //
 // Code generated for Simulink model 'motion_controller_circle_test'.
 //
-// Model version                  : 2.180
+// Model version                  : 2.193
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed Nov 15 20:42:28 2023
+// C/C++ source code generated on : Mon Dec 04 13:23:39 2023
 //
 #ifndef _ROS2_MATLAB_NODEINTERFACE_
 #define _ROS2_MATLAB_NODEINTERFACE_
@@ -27,7 +27,6 @@
 #endif //_MSC_VER
 #include "rclcpp/rclcpp.hpp"
 class motion_controller_circle_test;
-#include "rtwtypes.h"
 #include "motion_controller_circle_test_types.h"
 #include "slros_busmsg_conversion.h"
 #include "custom_interfaces/msg/actuator_command.hpp"

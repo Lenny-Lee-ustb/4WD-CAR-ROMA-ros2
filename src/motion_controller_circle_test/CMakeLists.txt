@@ -36,6 +36,10 @@ src/motion_controller_circle_test_data.cpp
 src/ros2nodeinterface.cpp
 src/slros2_initialize.cpp
 src/slros_busmsg_conversion.cpp
+src/rtGetInf.cpp
+src/rtGetNaN.cpp
+src/rt_atan2d_snf.cpp
+src/rt_nonfinite.cpp
 )
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 target_compile_options(motion_controller_circle_test PUBLIC 
@@ -77,18 +81,6 @@ target_include_directories(motion_controller_circle_test PUBLIC
 target_link_libraries(motion_controller_circle_test 
 	${CMAKE_DL_LIBS}
     )
-
-
-
-install(DIRECTORY
-        launch
-        DESTINATION share/${PROJECT_NAME}
-)
-install(DIRECTORY
-        config
-        DESTINATION share/${PROJECT_NAME})
-        
-
 install(TARGETS motion_controller_circle_test
   EXPORT export_${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME})
@@ -110,4 +102,4 @@ add_custom_command(
 				   )				   
 endforeach(file_i)
 ament_package()
-# Generated on Wed Nov 15 20:42:30 2023
+# Generated on Mon Dec 04 13:23:41 2023

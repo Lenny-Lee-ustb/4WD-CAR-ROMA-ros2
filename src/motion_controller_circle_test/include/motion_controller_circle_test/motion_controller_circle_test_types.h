@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_circle_test'.
 //
-// Model version                  : 2.180
+// Model version                  : 2.193
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed Nov 15 20:42:25 2023
+// C/C++ source code generated on : Mon Dec  4 13:23:35 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -133,7 +133,20 @@ struct ros_slros2_internal_block_Cur_T
 
 #endif                                // struct_ros_slros2_internal_block_Cur_T
 
-// Custom Type definition for MATLABSystem: '<S14>/SourceBlock'
+#ifndef struct_ros_slros2_internal_block_Get_T
+#define struct_ros_slros2_internal_block_Get_T
+
+struct ros_slros2_internal_block_Get_T
+{
+  boolean_T matlabCodegenIsDeleted;
+  int32_T isInitialized;
+  boolean_T isSetupComplete;
+  f_robotics_slcore_internal_bl_T SampleTimeHandler;
+};
+
+#endif                                // struct_ros_slros2_internal_block_Get_T
+
+// Custom Type definition for MATLABSystem: '<S20>/SourceBlock'
 #include "rmw/qos_profiles.h"
 #ifndef struct_ros_slros2_internal_block_Pub_T
 #define struct_ros_slros2_internal_block_Pub_T
@@ -159,23 +172,10 @@ struct ros_slros2_internal_block_Sub_T
 
 #endif                                // struct_ros_slros2_internal_block_Sub_T
 
-#ifndef struct_ros_slros2_internal_block_Get_T
-#define struct_ros_slros2_internal_block_Get_T
-
-struct ros_slros2_internal_block_Get_T
-{
-  boolean_T matlabCodegenIsDeleted;
-  int32_T isInitialized;
-  boolean_T isSetupComplete;
-  f_robotics_slcore_internal_bl_T SampleTimeHandler;
-};
-
-#endif                                // struct_ros_slros2_internal_block_Get_T
-
-// Parameters for system: '<S1>/For Each Subsystem'
+// Parameters for system: '<S3>/For Each Subsystem'
 typedef struct P_CoreSubsys_motion_controlle_T_ P_CoreSubsys_motion_controlle_T;
 
-// Parameters for system: '<S1>/For Each Subsystem1'
+// Parameters for system: '<S3>/For Each Subsystem1'
 typedef struct P_CoreSubsys_motion_control_g_T_ P_CoreSubsys_motion_control_g_T;
 
 // Parameters (default storage)
