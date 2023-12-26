@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_circle_test'.
 //
-// Model version                  : 2.193
+// Model version                  : 2.201
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Mon Dec  4 13:23:35 2023
+// C/C++ source code generated on : Tue Dec 19 21:19:51 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -22,22 +22,31 @@
 P_motion_controller_circle_te_T motion_controller_circle_test::
   motion_controller_circle_test_P = {
   // Variable: L
-  //  Referenced by: '<S16>/MATLAB Function'
+  //  Referenced by:
+  //    '<S17>/MATLAB Function'
+  //    '<S19>/MATLAB Function'
 
   0.494,
 
   // Variable: Tw
-  //  Referenced by: '<S16>/MATLAB Function'
+  //  Referenced by:
+  //    '<S17>/MATLAB Function'
+  //    '<S19>/MATLAB Function'
 
-  0.281,
+  0.34054,
+
+  // Variable: b
+  //  Referenced by: '<S19>/MATLAB Function'
+
+  0.2216,
 
   // Mask Parameter: ctc_const
-  //  Referenced by: '<S5>/Constant'
+  //  Referenced by: '<S4>/Constant'
 
   0,
 
   // Computed Parameter: Constant_Value
-  //  Referenced by: '<S8>/Constant'
+  //  Referenced by: '<S9>/Constant'
 
   {
     {
@@ -146,7 +155,7 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
   },
 
   // Computed Parameter: Constant_Value_i
-  //  Referenced by: '<S7>/Constant'
+  //  Referenced by: '<S8>/Constant'
 
   {
     {
@@ -255,7 +264,7 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
   },
 
   // Computed Parameter: Out1_Y0
-  //  Referenced by: '<S22>/Out1'
+  //  Referenced by: '<S25>/Out1'
 
   {
     {
@@ -293,7 +302,7 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
   },
 
   // Computed Parameter: Constant_Value_d
-  //  Referenced by: '<S20>/Constant'
+  //  Referenced by: '<S23>/Constant'
 
   {
     {
@@ -331,64 +340,59 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
   },
 
   // Expression: 1.6
-  //  Referenced by: '<S3>/Saturation2'
+  //  Referenced by: '<S2>/Saturation2'
 
   1.6,
 
   // Expression: -1.6
-  //  Referenced by: '<S3>/Saturation2'
+  //  Referenced by: '<S2>/Saturation2'
 
   -1.6,
 
   // Expression: 5
-  //  Referenced by: '<S3>/Saturation1'
+  //  Referenced by: '<S2>/Saturation1'
 
   5.0,
 
   // Expression: -5
-  //  Referenced by: '<S3>/Saturation1'
+  //  Referenced by: '<S2>/Saturation1'
 
   -5.0,
 
   // Expression: 0.75
-  //  Referenced by: '<S3>/Saturation'
+  //  Referenced by: '<S2>/Saturation'
 
   0.75,
 
   // Expression: -0.75
-  //  Referenced by: '<S3>/Saturation'
+  //  Referenced by: '<S2>/Saturation'
 
   -0.75,
 
-  // Expression: 0
-  //  Referenced by: '<S16>/Constant'
-
-  0.0,
-
   // Expression: 500
-  //  Referenced by: '<S2>/Constant2'
+  //  Referenced by: '<S1>/Constant'
 
   500.0,
 
   // Expression: 1/500
-  //  Referenced by: '<S2>/Gain1'
-
-  0.002,
-
-  // Expression: 500
-  //  Referenced by: '<S2>/Constant'
-
-  500.0,
-
-  // Expression: 1/500
-  //  Referenced by: '<S2>/Gain'
+  //  Referenced by: '<S1>/Gain'
 
   0.002,
 
   // Expression: -1
-  //  Referenced by: '<S2>/Gain2'
+  //  Referenced by: '<S1>/Gain2'
 
   -1.0,
+
+  // Expression: 500
+  //  Referenced by: '<S1>/Constant2'
+
+  500.0,
+
+  // Expression: 1/500
+  //  Referenced by: '<S1>/Gain1'
+
+  0.002,
 
   // Expression: 0.3
   //  Referenced by: '<Root>/Saturation'
@@ -399,6 +403,36 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
   //  Referenced by: '<Root>/Saturation'
 
   -0.3,
+
+  // Start of '<S11>/CoreSubsys'
+  {
+    // Computed Parameter: Constant_Value
+    //  Referenced by: '<S15>/Constant'
+
+    {
+      {
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U }
+      ,                                // name
+
+      {
+        0U,                            // CurrentLength
+        0U                             // ReceivedLength
+      },                               // name_SL_Info
+      0.0,                             // position
+      0.0,                             // velocity
+      0.0                              // effort
+    }
+  }
+  ,
+
+  // End of '<S11>/CoreSubsys'
 
   // Start of '<S10>/CoreSubsys'
   {
@@ -426,37 +460,7 @@ P_motion_controller_circle_te_T motion_controller_circle_test::
       0.0                              // effort
     }
   }
-  ,
-
   // End of '<S10>/CoreSubsys'
-
-  // Start of '<S9>/CoreSubsys'
-  {
-    // Computed Parameter: Constant_Value
-    //  Referenced by: '<S13>/Constant'
-
-    {
-      {
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U }
-      ,                                // name
-
-      {
-        0U,                            // CurrentLength
-        0U                             // ReceivedLength
-      },                               // name_SL_Info
-      0.0,                             // position
-      0.0,                             // velocity
-      0.0                              // effort
-    }
-  }
-  // End of '<S9>/CoreSubsys'
 };
 
 //

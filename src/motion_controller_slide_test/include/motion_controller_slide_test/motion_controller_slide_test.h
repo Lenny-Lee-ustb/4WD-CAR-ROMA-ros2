@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slide_test'.
 //
-// Model version                  : 2.173
+// Model version                  : 2.176
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Thu Nov 23 10:42:02 2023
+// C/C++ source code generated on : Tue Dec 19 15:40:06 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -54,12 +54,10 @@ struct DW_CurrentTime_motion_control_T {
 
 // Block signals (default storage)
 struct B_motion_controller_slide_tes_T {
-  SL_Bus_nav_msgs_Odometry In1;        // '<S24>/In1'
-  SL_Bus_nav_msgs_Odometry b_varargout_2;
   SL_Bus_custom_interfaces_ActuatorCommand BusAssignment1;// '<S1>/Bus Assignment1' 
   SL_Bus_custom_interfaces_Actuator ImpAsg_InsertedFor_actuaor_[4];// '<S8>/Bus Assignment1' 
-  SL_Bus_sbus_interface_Sbus In1_m;    // '<S23>/In1'
-  SL_Bus_sbus_interface_Sbus b_varargout_2_m;
+  SL_Bus_sbus_interface_Sbus In1;      // '<S22>/In1'
+  SL_Bus_sbus_interface_Sbus b_varargout_2;
   real_T spd_cmd[4];                   // '<S2>/Chart'
   real_T effort_cmd[4];                // '<S2>/Chart'
   real_T angle_cmd[4];                 // '<S2>/Chart'
@@ -77,13 +75,11 @@ struct DW_motion_controller_slide_te_T {
   ros_slros2_internal_block_Get_T obj_e;// '<S2>/Get Parameter'
   ros_slros2_internal_block_Pub_T obj_c;// '<S10>/SinkBlock'
   ros_slros2_internal_block_Pub_T obj_b;// '<S9>/SinkBlock'
-  ros_slros2_internal_block_Sub_T obj_l;// '<S21>/SourceBlock'
   ros_slros2_internal_block_Sub_T obj_n;// '<S20>/SourceBlock'
   real_T sum;                          // '<S2>/Chart'
   real_T counter;                      // '<S2>/Chart'
   real_T check;                        // '<S2>/Chart'
-  real_T x_delta;                      // '<S2>/Chart'
-  real_T x_ini;                        // '<S2>/Chart'
+  real_T time;                         // '<S2>/Chart'
   uint32_T counter_check;              // '<S2>/Chart'
   uint8_T is_active_c3_motion_controller_;// '<S2>/Chart'
   uint8_T is_Is_ready;                 // '<S2>/Chart'
@@ -126,20 +122,14 @@ struct P_motion_controller_slide_tes_T_ {
   int16_T ctc_const;                   // Mask Parameter: ctc_const
                                           //  Referenced by: '<S3>/Constant'
 
-  SL_Bus_nav_msgs_Odometry Out1_Y0;    // Computed Parameter: Out1_Y0
-                                          //  Referenced by: '<S24>/Out1'
-
-  SL_Bus_nav_msgs_Odometry Constant_Value;// Computed Parameter: Constant_Value
-                                             //  Referenced by: '<S21>/Constant'
-
-  SL_Bus_custom_interfaces_ActuatorCommand Constant_Value_f;// Computed Parameter: Constant_Value_f
-                                                               //  Referenced by: '<S6>/Constant'
+  SL_Bus_custom_interfaces_ActuatorCommand Constant_Value;// Computed Parameter: Constant_Value
+                                                             //  Referenced by: '<S6>/Constant'
 
   SL_Bus_custom_interfaces_ActuatorCommand Constant_Value_i;// Computed Parameter: Constant_Value_i
                                                                //  Referenced by: '<S5>/Constant'
 
-  SL_Bus_sbus_interface_Sbus Out1_Y0_f;// Computed Parameter: Out1_Y0_f
-                                          //  Referenced by: '<S23>/Out1'
+  SL_Bus_sbus_interface_Sbus Out1_Y0;  // Computed Parameter: Out1_Y0
+                                          //  Referenced by: '<S22>/Out1'
 
   SL_Bus_sbus_interface_Sbus Constant_Value_d;// Computed Parameter: Constant_Value_d
                                                  //  Referenced by: '<S20>/Constant'
@@ -167,6 +157,9 @@ struct P_motion_controller_slide_tes_T_ {
 
   real_T Constant_Value_l;             // Expression: 0
                                           //  Referenced by: '<S16>/Constant'
+
+  real_T Constant_Value_h;             // Expression: 0
+                                          //  Referenced by: '<S2>/Constant'
 
   P_CoreSubsys_motion_control_g_T CoreSubsys_p;// '<S1>/For Each Subsystem1'
   P_CoreSubsys_motion_controlle_T CoreSubsys;// '<S1>/For Each Subsystem'
@@ -239,7 +232,6 @@ class motion_controller_slide_test
   void motion_control_SystemCore_setup(ros_slros2_internal_block_Pub_T *obj);
   void motion_contr_SystemCore_setup_h(ros_slros2_internal_block_Pub_T *obj);
   void motion_cont_SystemCore_setup_h0(ros_slros2_internal_block_Sub_T *obj);
-  void motion_con_SystemCore_setup_h0k(ros_slros2_internal_block_Sub_T *obj);
 
   // Real-Time Model
   RT_MODEL_motion_controller_sl_T motion_controller_slide_test_M;
@@ -255,23 +247,23 @@ extern volatile boolean_T runModel;
 //  Block '<Root>/Display1' : Unused code path elimination
 //  Block '<Root>/Display2' : Unused code path elimination
 //  Block '<Root>/Display3' : Unused code path elimination
-//  Block '<Root>/Display4' : Unused code path elimination
-//  Block '<S22>/Display' : Unused code path elimination
-//  Block '<S22>/Display1' : Unused code path elimination
-//  Block '<S22>/Display10' : Unused code path elimination
-//  Block '<S22>/Display11' : Unused code path elimination
-//  Block '<S22>/Display12' : Unused code path elimination
-//  Block '<S22>/Display13' : Unused code path elimination
-//  Block '<S22>/Display14' : Unused code path elimination
-//  Block '<S22>/Display15' : Unused code path elimination
-//  Block '<S22>/Display2' : Unused code path elimination
-//  Block '<S22>/Display3' : Unused code path elimination
-//  Block '<S22>/Display4' : Unused code path elimination
-//  Block '<S22>/Display5' : Unused code path elimination
-//  Block '<S22>/Display6' : Unused code path elimination
-//  Block '<S22>/Display7' : Unused code path elimination
-//  Block '<S22>/Display8' : Unused code path elimination
-//  Block '<S22>/Display9' : Unused code path elimination
+//  Block '<S4>/Logical Operator' : Unused code path elimination
+//  Block '<S21>/Display' : Unused code path elimination
+//  Block '<S21>/Display1' : Unused code path elimination
+//  Block '<S21>/Display10' : Unused code path elimination
+//  Block '<S21>/Display11' : Unused code path elimination
+//  Block '<S21>/Display12' : Unused code path elimination
+//  Block '<S21>/Display13' : Unused code path elimination
+//  Block '<S21>/Display14' : Unused code path elimination
+//  Block '<S21>/Display15' : Unused code path elimination
+//  Block '<S21>/Display2' : Unused code path elimination
+//  Block '<S21>/Display3' : Unused code path elimination
+//  Block '<S21>/Display4' : Unused code path elimination
+//  Block '<S21>/Display5' : Unused code path elimination
+//  Block '<S21>/Display6' : Unused code path elimination
+//  Block '<S21>/Display7' : Unused code path elimination
+//  Block '<S21>/Display8' : Unused code path elimination
+//  Block '<S21>/Display9' : Unused code path elimination
 
 
 //-
@@ -309,10 +301,8 @@ extern volatile boolean_T runModel;
 //  '<S18>'  : 'motion_controller_slide_test/controller/get_effort/MATLAB Function'
 //  '<S19>'  : 'motion_controller_slide_test/controller/get_spd/MATLAB Function'
 //  '<S20>'  : 'motion_controller_slide_test/subscription/Subscribe'
-//  '<S21>'  : 'motion_controller_slide_test/subscription/Subscribe2'
-//  '<S22>'  : 'motion_controller_slide_test/subscription/display'
-//  '<S23>'  : 'motion_controller_slide_test/subscription/Subscribe/Enabled Subsystem'
-//  '<S24>'  : 'motion_controller_slide_test/subscription/Subscribe2/Enabled Subsystem'
+//  '<S21>'  : 'motion_controller_slide_test/subscription/display'
+//  '<S22>'  : 'motion_controller_slide_test/subscription/Subscribe/Enabled Subsystem'
 
 #endif                            // RTW_HEADER_motion_controller_slide_test_h_
 

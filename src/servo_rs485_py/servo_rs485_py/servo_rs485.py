@@ -78,6 +78,7 @@ class ServoNode(Node):
         servo_right = Actuator()
         servo_left.name = 'Front Left'
         servo_right.name = 'Front Right'
+
         servo_left.position = self.cal_present_pos_left(self.__left_mid_position,float(self.dxl_get_pos_data(self.__left_ID)))
         servo_right.position = self.cal_present_pos_right(self.__right_mid_position,float(self.dxl_get_pos_data(self.__right_ID)))
         servo_left.effort = float(self.dxl_get_cur_data(self.__left_ID))
@@ -87,10 +88,10 @@ class ServoNode(Node):
         self.publisher_.publish(servo_state_pub)
         
     def cal_goal_pos(self, min_pos, mid_pos, max_pos, goal):
-        angle = int(goal/(2*math.pi)*4096)
+        angle = int(goal/(2.0*math.pi)*4096)
         goal_pos = mid_pos + angle
         goal_pos = min(max(goal_pos, min_pos), max_pos)
-        return int(goal_pos)
+        return goal_pos
     
     def cal_present_pos_left(self, mid_pos,pre_pos):
         angle = (pre_pos - mid_pos)/4096 * (2*math.pi)

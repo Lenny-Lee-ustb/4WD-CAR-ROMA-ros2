@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slide_test'.
 //
-// Model version                  : 2.173
+// Model version                  : 2.176
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Thu Nov 23 10:42:02 2023
+// C/C++ source code generated on : Tue Dec 19 15:40:06 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -178,7 +178,7 @@ void motion_controller_slide_test::motion_controller_slide_get_spd(real_T
   // MATLAB Function: '<S16>/MATLAB Function' incorporates:
   //   Constant: '<S16>/Constant'
   //   MATLABSystem: '<S16>/Get Parameter'
-  //   SignalConversion generated from: '<S16>/longdrive1'
+  //   SignalConversion generated from: '<S16>/angle'
   //   SignalConversion generated from: '<S16>/longdrive'
 
   b_value *= rtu_longdrive;
@@ -198,8 +198,8 @@ void motion_controller_slide_test::motion_controller_slide_get_spd(real_T
         3.1415926535897931;
     }
 
-    // SignalConversion generated from: '<S16>/angle_cmd' incorporates:
-    //   SignalConversion generated from: '<S16>/longdrive1'
+    // SignalConversion generated from: '<S16>/spd_cmd' incorporates:
+    //   SignalConversion generated from: '<S16>/angle'
 
     rty_spd_cmd[0] = (motion_controller_slide_test_P.L / sin(vFR) -
                       motion_controller_slide_test_P.WHEEL_OFFSET) * b_value /
@@ -211,13 +211,13 @@ void motion_controller_slide_test::motion_controller_slide_get_spd(real_T
     b_value = ((motion_controller_slide_test_P.Tw / 2.0 + R_) +
                motion_controller_slide_test_P.WHEEL_OFFSET) * b_value / R_;
   } else {
-    // SignalConversion generated from: '<S16>/angle_cmd'
+    // SignalConversion generated from: '<S16>/spd_cmd'
     rty_spd_cmd[0] = b_value;
     vFR = b_value;
     vRL = b_value;
   }
 
-  // SignalConversion generated from: '<S16>/angle_cmd' incorporates:
+  // SignalConversion generated from: '<S16>/spd_cmd' incorporates:
   //   MATLAB Function: '<S16>/MATLAB Function'
 
   rty_spd_cmd[1] = -vFR;
@@ -311,31 +311,6 @@ void motion_controller_slide_test::motion_cont_SystemCore_setup_h0
   obj->isSetupComplete = true;
 }
 
-void motion_controller_slide_test::motion_con_SystemCore_setup_h0k
-  (ros_slros2_internal_block_Sub_T *obj)
-{
-  rmw_qos_profile_t qos_profile;
-  char_T b_zeroDelimTopic[20];
-  static const char_T b_zeroDelimTopic_0[20] = "/camera/pose/sample";
-
-  // Start for MATLABSystem: '<S21>/SourceBlock'
-  obj->isInitialized = 1;
-  qos_profile = rmw_qos_profile_default;
-
-  // Start for MATLABSystem: '<S21>/SourceBlock'
-  SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)1.0,
-                 RMW_QOS_POLICY_DURABILITY_VOLATILE,
-                 RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
-  for (int32_T i = 0; i < 20; i++) {
-    // Start for MATLABSystem: '<S21>/SourceBlock'
-    b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
-  }
-
-  Sub_motion_controller_slide_test_283.createSubscriber(&b_zeroDelimTopic[0],
-    qos_profile);
-  obj->isSetupComplete = true;
-}
-
 // Model step function
 void motion_controller_slide_test::step()
 {
@@ -343,49 +318,26 @@ void motion_controller_slide_test::step()
   uint32_T qY;
   boolean_T b_varargout_1;
   boolean_T rtb_LogicalOperator;
-  boolean_T rtb_LogicalOperator_l;
 
   // MATLABSystem: '<S20>/SourceBlock'
-  rtb_LogicalOperator_l = Sub_motion_controller_slide_test_1.getLatestMessage
-    (&motion_controller_slide_test_B.b_varargout_2_m);
+  b_varargout_1 = Sub_motion_controller_slide_test_1.getLatestMessage
+    (&motion_controller_slide_test_B.b_varargout_2);
 
   // Outputs for Enabled SubSystem: '<S20>/Enabled Subsystem' incorporates:
-  //   EnablePort: '<S23>/Enable'
+  //   EnablePort: '<S22>/Enable'
 
   // Start for MATLABSystem: '<S20>/SourceBlock'
-  if (rtb_LogicalOperator_l) {
-    // SignalConversion generated from: '<S23>/In1'
-    motion_controller_slide_test_B.In1_m =
-      motion_controller_slide_test_B.b_varargout_2_m;
+  if (b_varargout_1) {
+    // SignalConversion generated from: '<S22>/In1'
+    motion_controller_slide_test_B.In1 =
+      motion_controller_slide_test_B.b_varargout_2;
   }
 
   // End of Outputs for SubSystem: '<S20>/Enabled Subsystem'
 
   // Logic: '<Root>/LogicalOperator'
-  rtb_LogicalOperator = (motion_controller_slide_test_B.In1_m.failsafe ||
-    motion_controller_slide_test_B.In1_m.frame_lost);
-
-  // MATLABSystem: '<S21>/SourceBlock'
-  b_varargout_1 = Sub_motion_controller_slide_test_283.getLatestMessage
-    (&motion_controller_slide_test_B.b_varargout_2);
-
-  // Logic: '<S4>/Logical Operator' incorporates:
-  //   MATLABSystem: '<S20>/SourceBlock'
-  //   MATLABSystem: '<S21>/SourceBlock'
-  //
-  rtb_LogicalOperator_l = (rtb_LogicalOperator_l && b_varargout_1);
-
-  // Outputs for Enabled SubSystem: '<S21>/Enabled Subsystem' incorporates:
-  //   EnablePort: '<S24>/Enable'
-
-  // Start for MATLABSystem: '<S21>/SourceBlock'
-  if (b_varargout_1) {
-    // SignalConversion generated from: '<S24>/In1'
-    motion_controller_slide_test_B.In1 =
-      motion_controller_slide_test_B.b_varargout_2;
-  }
-
-  // End of Outputs for SubSystem: '<S21>/Enabled Subsystem'
+  rtb_LogicalOperator = (motion_controller_slide_test_B.In1.failsafe ||
+    motion_controller_slide_test_B.In1.frame_lost);
 
   // Outputs for Atomic SubSystem: '<Root>/controller'
   // MATLABSystem: '<S2>/Get Parameter'
@@ -393,10 +345,10 @@ void motion_controller_slide_test::step()
     (&motion_controller_slide_test_B.b_value);
 
   // Chart: '<S2>/Chart' incorporates:
+  //   MATLABSystem: '<S20>/SourceBlock'
   //   MATLABSystem: '<S2>/Get Parameter'
-  //   SignalConversion generated from: '<S4>/Bus Selector2'
   //   SignalConversion generated from: '<S4>/Bus Selector'
-
+  //
   if (motion_controller_slide_test_DW.is_active_c3_motion_controller_ == 0U) {
     motion_controller_slide_test_DW.is_active_c3_motion_controller_ = 1U;
     motion_controller_slide_test_DW.is_Is_ready =
@@ -420,8 +372,8 @@ void motion_controller_slide_test::step()
   } else {
     if (motion_controller_slide_test_DW.is_Is_ready ==
         motion_controller_slide__IN_Ini) {
-      if ((motion_controller_slide_test_B.In1_m.mapped_channels[3] == 1000) && (
-           !rtb_LogicalOperator) && rtb_LogicalOperator_l) {
+      if ((motion_controller_slide_test_B.In1.mapped_channels[3] == 1000) &&
+          (!rtb_LogicalOperator) && b_varargout_1) {
         motion_controller_slide_test_DW.is_Is_ready =
           motion_contro_IN_velocity_mode1;
         motion_controller_slide_test_DW.ready = true;
@@ -431,8 +383,8 @@ void motion_controller_slide_test::step()
       }
 
       // case IN_velocity_mode1:
-    } else if ((motion_controller_slide_test_B.In1_m.mapped_channels[3] != 1000)
-               || rtb_LogicalOperator || (motion_controller_slide_test_DW.check ==
+    } else if ((motion_controller_slide_test_B.In1.mapped_channels[3] != 1000) ||
+               rtb_LogicalOperator || (motion_controller_slide_test_DW.check ==
                 0.0)) {
       motion_controller_slide_test_DW.is_Is_ready =
         motion_controller_slide__IN_Ini;
@@ -446,8 +398,7 @@ void motion_controller_slide_test::step()
       }
 
       motion_controller_slide_test_DW.counter_check = qY;
-      motion_controller_slide_test_DW.sum += static_cast<real_T>
-        (rtb_LogicalOperator_l);
+      motion_controller_slide_test_DW.sum += static_cast<real_T>(b_varargout_1);
       if (motion_controller_slide_test_DW.counter_check -
           motion_controller_slide_test_DW.counter_check / 20U * 20U == 0U) {
         motion_controller_slide_test_DW.check =
@@ -484,8 +435,8 @@ void motion_controller_slide_test::step()
       motion_controller_slide_test_B.angle_cmd[1] = 0.0;
       motion_controller_slide_test_B.angle_cmd[2] = 0.0;
       motion_controller_slide_test_B.angle_cmd[3] = 0.0;
-      if ((motion_controller_slide_test_B.In1_m.mapped_channels[4] != 1000) || (
-           !motion_controller_slide_test_DW.ready)) {
+      if ((motion_controller_slide_test_B.In1.mapped_channels[4] != 1000) ||
+          (!motion_controller_slide_test_DW.ready)) {
         motion_controller_slide_test_DW.is_cmd = motion_controller_slide_IN_ini2;
         motion_controller_slide_test_B.angle_cmd[0] = 0.0;
         motion_controller_slide_test_B.effort_cmd[0] = 0.0;
@@ -522,16 +473,13 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_B.spd_cmd[3] = 0.0;
         motion_controller_slide_test_B.effort_cmd[3] = 0.0;
         motion_controller_slide_test_B.mode = 0;
-      } else if ((motion_controller_slide_test_B.In1_m.mapped_channels[6] ==
-                  1000) &&
-                 (motion_controller_slide_test_B.In1_m.mapped_channels[4] ==
-                  1000)) {
+      } else if ((motion_controller_slide_test_B.In1.mapped_channels[6] == 1000)
+                 && (motion_controller_slide_test_B.In1.mapped_channels[4] ==
+                     1000)) {
         motion_controller_slide_test_DW.is_cmd = motion_controller__IN_test_mode;
         motion_controller_slide_test_DW.is_test_mode =
           motion_controller_slide__IN_acc;
-        motion_controller_slide_test_DW.x_ini =
-          motion_controller_slide_test_B.In1.pose.pose.position.x;
-        motion_controller_slide_test_DW.x_delta = 0.0;
+        motion_controller_slide_test_DW.time = 0.0;
         motion_controller_slide_test_DW.counter = 0.0;
         motion_controller_slide_test_B.angle_cmd[0] = 0.0;
         motion_controller_slide_test_B.spd_cmd[0] = 0.0;
@@ -541,7 +489,7 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_B.spd_cmd[2] = 0.0;
         motion_controller_slide_test_B.angle_cmd[3] = 0.0;
         motion_controller_slide_test_B.spd_cmd[3] = 0.0;
-      } else if (motion_controller_slide_test_B.In1_m.mapped_channels[4] == 1000)
+      } else if (motion_controller_slide_test_B.In1.mapped_channels[4] == 1000)
       {
         motion_controller_slide_test_DW.is_cmd = motion_controller_slide_IN_hold;
         motion_controller_slide_test_B.angle_cmd[0] = 0.0;
@@ -564,8 +512,8 @@ void motion_controller_slide_test::step()
 
      default:
       // case IN_test_mode:
-      if ((motion_controller_slide_test_B.In1_m.mapped_channels[4] != 1000) || (
-           !motion_controller_slide_test_DW.ready)) {
+      if ((motion_controller_slide_test_B.In1.mapped_channels[4] != 1000) ||
+          (!motion_controller_slide_test_DW.ready)) {
         motion_controller_slide_test_DW.is_test_mode =
           motion_contr_IN_NO_ACTIVE_CHILD;
         motion_controller_slide_test_DW.is_cmd = motion_controller_slide_IN_ini2;
@@ -587,7 +535,7 @@ void motion_controller_slide_test::step()
         motion_controller_slide_test_B.angle_cmd[1] = 0.0;
         motion_controller_slide_test_B.angle_cmd[2] = 0.0;
         motion_controller_slide_test_B.angle_cmd[3] = 0.0;
-        if (motion_controller_slide_test_DW.x_delta >=
+        if (motion_controller_slide_test_DW.time >=
             motion_controller_slide_test_B.b_value) {
           motion_controller_slide_test_DW.is_test_mode =
             motion_controller_slid_IN_slide;
@@ -601,9 +549,6 @@ void motion_controller_slide_test::step()
           motion_controller_slide_test_B.spd_cmd[3] = 0.0;
           motion_controller_slide_test_B.mode = 2;
         } else {
-          motion_controller_slide_test_DW.x_delta =
-            motion_controller_slide_test_B.In1.pose.pose.position.x -
-            motion_controller_slide_test_DW.x_ini;
           motion_controller_slide_test_B.b_value =
             motion_controller_slide_test_DW.counter / 100.0;
           if (!(motion_controller_slide_test_B.b_value <= 1.0)) {
@@ -615,6 +560,7 @@ void motion_controller_slide_test::step()
             motion_controller_slide_test_B.spd_cmd);
           motion_controller_slide_test_B.mode = 1;
           motion_controller_slide_test_DW.counter++;
+          motion_controller_slide_test_DW.time += 0.01;
         }
       } else {
         // case IN_slide:
@@ -640,7 +586,7 @@ void motion_controller_slide_test::step()
   //   Constant: '<S3>/Constant'
   //   SignalConversion generated from: '<S4>/Bus Selector'
 
-  if (motion_controller_slide_test_B.In1_m.mapped_channels[5] ==
+  if (motion_controller_slide_test_B.In1.mapped_channels[5] ==
       motion_controller_slide_test_P.ctc_const) {
     motion_controller_s_CurrentTime(&motion_controller_slide_test_B.CurrentTime1);
 
@@ -648,7 +594,7 @@ void motion_controller_slide_test::step()
     //   Constant: '<S6>/Constant'
 
     motion_controller_slide_test_B.BusAssignment1 =
-      motion_controller_slide_test_P.Constant_Value_f;
+      motion_controller_slide_test_P.Constant_Value;
 
     // Saturate: '<S1>/Saturation2'
     motion_controller_slide_test_B.b_value =
@@ -1209,24 +1155,15 @@ void motion_controller_slide_test::initialize()
   rt_InitInfAndNaN(sizeof(real_T));
 
   {
-    static const char_T prmName[9] = "distance";
+    static const char_T prmName[9] = "acc_time";
 
     // SystemInitialize for Enabled SubSystem: '<S20>/Enabled Subsystem'
-    // SystemInitialize for SignalConversion generated from: '<S23>/In1' incorporates:
-    //   Outport: '<S23>/Out1'
-
-    motion_controller_slide_test_B.In1_m =
-      motion_controller_slide_test_P.Out1_Y0_f;
-
-    // End of SystemInitialize for SubSystem: '<S20>/Enabled Subsystem'
-
-    // SystemInitialize for Enabled SubSystem: '<S21>/Enabled Subsystem'
-    // SystemInitialize for SignalConversion generated from: '<S24>/In1' incorporates:
-    //   Outport: '<S24>/Out1'
+    // SystemInitialize for SignalConversion generated from: '<S22>/In1' incorporates:
+    //   Outport: '<S22>/Out1'
 
     motion_controller_slide_test_B.In1 = motion_controller_slide_test_P.Out1_Y0;
 
-    // End of SystemInitialize for SubSystem: '<S21>/Enabled Subsystem'
+    // End of SystemInitialize for SubSystem: '<S20>/Enabled Subsystem'
 
     // SystemInitialize for Atomic SubSystem: '<Root>/controller'
     // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S2>/get_effort' incorporates:
@@ -1254,7 +1191,7 @@ void motion_controller_slide_test::initialize()
     motion_controller_slide_test_DW.obj_e.matlabCodegenIsDeleted = false;
     motion_controller_slide_test_DW.obj_e.isInitialized = 1;
     ParamGet_motion_controller_slide_test_291.initParam(&prmName[0]);
-    ParamGet_motion_controller_slide_test_291.setInitialValue(1.0);
+    ParamGet_motion_controller_slide_test_291.setInitialValue(2.0);
     motion_controller_slide_test_DW.obj_e.isSetupComplete = true;
 
     // End of SystemInitialize for SubSystem: '<Root>/controller'
@@ -1274,9 +1211,6 @@ void motion_controller_slide_test::initialize()
 
     // Start for MATLABSystem: '<S20>/SourceBlock'
     motion_cont_SystemCore_setup_h0(&motion_controller_slide_test_DW.obj_n);
-
-    // Start for MATLABSystem: '<S21>/SourceBlock'
-    motion_con_SystemCore_setup_h0k(&motion_controller_slide_test_DW.obj_l);
   }
 }
 
@@ -1289,13 +1223,6 @@ void motion_controller_slide_test::terminate()
   }
 
   // End of Terminate for MATLABSystem: '<S20>/SourceBlock'
-
-  // Terminate for MATLABSystem: '<S21>/SourceBlock'
-  if (!motion_controller_slide_test_DW.obj_l.matlabCodegenIsDeleted) {
-    motion_controller_slide_test_DW.obj_l.matlabCodegenIsDeleted = true;
-  }
-
-  // End of Terminate for MATLABSystem: '<S21>/SourceBlock'
 
   // Terminate for Atomic SubSystem: '<Root>/controller'
   // Terminate for S-Function (sfun_private_function_caller) generated from: '<S2>/get_angle' incorporates:

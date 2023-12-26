@@ -28,15 +28,18 @@ def generate_launch_description():
     #         {"angleMax":0.75}
     #     ]
     # )
+
+    controller_config = os.path.abspath(os.path.join(
+        get_package_share_directory('motion_controller_slx'), 
+        os.pardir, os.pardir, os.pardir, os.pardir, 
+        'src/motion_controller_cpp/',
+        'config',
+        'motion_controller_slx.yaml'))
+    
     motion_controller_node = Node(
-        package="motion_controller_node",
-        executable="motion_controller_node",
-        parameters=[
-            {"spdMax":4.5},
-            {"angleMax":0.6},
-            {"effortMax":1.6},
-            {"ackermann_enable":1.0}            
-        ]
+        package="motion_controller_slx",
+        executable="motion_controller_slx",
+        parameters=[controller_config]
     )
 
     servo_config = os.path.join(

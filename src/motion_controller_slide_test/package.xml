@@ -8,7 +8,6 @@
   <license>BSD</license>
   <buildtool_depend>ament_cmake_ros</buildtool_depend>
   <depend>custom_interfaces</depend>
-  <depend>nav_msgs</depend>
   <depend>rclcpp</depend>
   <depend>sbus_interface</depend>
   <test_depend>ament_lint_auto</test_depend>
@@ -17,4 +16,4 @@
     <build_type>ament_cmake</build_type>
   </export>
 </package>
-<!-- Generated on Thu Nov 23 10:42:14 2023 -->
+<!-- Generated on Tue Dec 19 15:40:13 2023 -->

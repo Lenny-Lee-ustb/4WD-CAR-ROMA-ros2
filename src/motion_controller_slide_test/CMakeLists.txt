@@ -20,7 +20,6 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_ros REQUIRED)
 find_package( custom_interfaces REQUIRED)
-find_package( nav_msgs REQUIRED)
 find_package( rclcpp REQUIRED)
 find_package( sbus_interface REQUIRED)
 include_directories("include/motion_controller_slide_test")
@@ -67,13 +66,12 @@ target_compile_options(motion_controller_slide_test PRIVATE
   -DROS2_PROJECT
   -DSTACK_SIZE=64
   -D__MW_TARGET_USE_HARDWARE_RESOURCES_H__
-  -DRT
+  -DRT=RT
   -fpermissive  >
   )
 ament_target_dependencies(
   motion_controller_slide_test
   "custom_interfaces"
-  "nav_msgs"
   "rclcpp"
   "sbus_interface"
 )
@@ -83,18 +81,6 @@ target_include_directories(motion_controller_slide_test PUBLIC
 target_link_libraries(motion_controller_slide_test 
 	${CMAKE_DL_LIBS}
     )
-
-
-install(DIRECTORY
-    launch
-    DESTINATION share/${PROJECT_NAME}
-)
-install(DIRECTORY
-    config
-    DESTINATION share/${PROJECT_NAME})
-
-
-
 install(TARGETS motion_controller_slide_test
   EXPORT export_${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME})
@@ -116,4 +102,4 @@ add_custom_command(
 				   )				   
 endforeach(file_i)
 ament_package()
-# Generated on Thu Nov 23 10:42:14 2023
+# Generated on Tue Dec 19 15:40:13 2023

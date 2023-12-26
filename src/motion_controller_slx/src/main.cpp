@@ -2,11 +2,11 @@
 //
 // File main.cpp
 //
-// Code generated for Simulink model 'motion_controller_node'.
+// Code generated for Simulink model 'motion_controller_slx'.
 //
-// Model version                  : 2.153
+// Model version                  : 2.179
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Nov 03 10:19:53 2023
+// C/C++ source code generated on : Tue Dec 19 20:09:04 2023
 //
 #include "ros2nodeinterface.h"
 rclcpp::Node::SharedPtr SLROSNodePtr;

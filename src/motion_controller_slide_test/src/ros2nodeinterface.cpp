@@ -4,9 +4,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slide_test'.
 //
-// Model version                  : 2.173
+// Model version                  : 2.176
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Thu Nov 23 10:42:11 2023
+// C/C++ source code generated on : Tue Dec 19 15:40:11 2023
 //
 #ifdef _MSC_VER
 #pragma warning(push)

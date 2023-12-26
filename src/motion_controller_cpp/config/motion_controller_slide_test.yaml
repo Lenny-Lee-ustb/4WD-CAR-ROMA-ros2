@@ -1,0 +1,5 @@
+motion_controller_slide_test:
+  ros__parameters:
+    spd: 2.5
+    # distance: 5.0
+    acc_time: 2.0

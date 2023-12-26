@@ -66,7 +66,7 @@ target_compile_options(motion_controller_circle_test PRIVATE
   -DROS2_PROJECT
   -DSTACK_SIZE=64
   -D__MW_TARGET_USE_HARDWARE_RESOURCES_H__
-  -DRT
+  -DRT=RT
   -fpermissive  >
   )
 ament_target_dependencies(
@@ -102,4 +102,4 @@ add_custom_command(
 				   )				   
 endforeach(file_i)
 ament_package()
-# Generated on Mon Dec 04 13:23:41 2023
+# Generated on Tue Dec 19 21:19:58 2023

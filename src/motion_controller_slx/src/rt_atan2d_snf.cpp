@@ -5,11 +5,11 @@
 //
 // File: rt_atan2d_snf.cpp
 //
-// Code generated for Simulink model 'motion_controller_node'.
+// Code generated for Simulink model 'motion_controller_slx'.
 //
-// Model version                  : 2.95
+// Model version                  : 2.154
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed Oct 25 18:52:20 2023
+// C/C++ source code generated on : Wed Dec 13 19:54:44 2023
 //
 #include "rtwtypes.h"
 #include "rt_atan2d_snf.h"

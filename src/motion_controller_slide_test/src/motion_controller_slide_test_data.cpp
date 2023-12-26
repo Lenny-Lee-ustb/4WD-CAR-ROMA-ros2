@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slide_test'.
 //
-// Model version                  : 2.173
+// Model version                  : 2.176
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Thu Nov 23 10:42:02 2023
+// C/C++ source code generated on : Tue Dec 19 15:40:06 2023
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -45,183 +45,7 @@ P_motion_controller_slide_tes_T motion_controller_slide_test::
 
   0,
 
-  // Computed Parameter: Out1_Y0
-  //  Referenced by: '<S24>/Out1'
-
-  {
-    {
-      {
-        0,                             // sec
-        0U                             // nanosec
-      },                               // stamp
-
-      {
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U }
-      ,                                // frame_id
-
-      {
-        0U,                            // CurrentLength
-        0U                             // ReceivedLength
-      }                                // frame_id_SL_Info
-    },                                 // header
-
-    {
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U }
-    ,                                  // child_frame_id
-
-    {
-      0U,                              // CurrentLength
-      0U                               // ReceivedLength
-    },                                 // child_frame_id_SL_Info
-
-    {
-      {
-        {
-          0.0,                         // x
-          0.0,                         // y
-          0.0                          // z
-        },                             // position
-
-        {
-          0.0,                         // x
-          0.0,                         // y
-          0.0,                         // z
-          0.0                          // w
-        }                              // orientation
-      },                               // pose
-
-      {
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
-      // covariance
-    },                                 // pose
-
-    {
-      {
-        {
-          0.0,                         // x
-          0.0,                         // y
-          0.0                          // z
-        },                             // linear
-
-        {
-          0.0,                         // x
-          0.0,                         // y
-          0.0                          // z
-        }                              // angular
-      },                               // twist
-
-      {
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
-      // covariance
-    }                                  // twist
-  },
-
   // Computed Parameter: Constant_Value
-  //  Referenced by: '<S21>/Constant'
-
-  {
-    {
-      {
-        0,                             // sec
-        0U                             // nanosec
-      },                               // stamp
-
-      {
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U }
-      ,                                // frame_id
-
-      {
-        0U,                            // CurrentLength
-        0U                             // ReceivedLength
-      }                                // frame_id_SL_Info
-    },                                 // header
-
-    {
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-      0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U }
-    ,                                  // child_frame_id
-
-    {
-      0U,                              // CurrentLength
-      0U                               // ReceivedLength
-    },                                 // child_frame_id_SL_Info
-
-    {
-      {
-        {
-          0.0,                         // x
-          0.0,                         // y
-          0.0                          // z
-        },                             // position
-
-        {
-          0.0,                         // x
-          0.0,                         // y
-          0.0,                         // z
-          0.0                          // w
-        }                              // orientation
-      },                               // pose
-
-      {
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
-      // covariance
-    },                                 // pose
-
-    {
-      {
-        {
-          0.0,                         // x
-          0.0,                         // y
-          0.0                          // z
-        },                             // linear
-
-        {
-          0.0,                         // x
-          0.0,                         // y
-          0.0                          // z
-        }                              // angular
-      },                               // twist
-
-      {
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
-      // covariance
-    }                                  // twist
-  },
-
-  // Computed Parameter: Constant_Value_f
   //  Referenced by: '<S6>/Constant'
 
   {
@@ -439,8 +263,8 @@ P_motion_controller_slide_tes_T motion_controller_slide_test::
     // actuator_command
   },
 
-  // Computed Parameter: Out1_Y0_f
-  //  Referenced by: '<S23>/Out1'
+  // Computed Parameter: Out1_Y0
+  //  Referenced by: '<S22>/Out1'
 
   {
     {
@@ -552,6 +376,11 @@ P_motion_controller_slide_tes_T motion_controller_slide_test::
 
   // Expression: 0
   //  Referenced by: '<S16>/Constant'
+
+  0.0,
+
+  // Expression: 0
+  //  Referenced by: '<S2>/Constant'
 
   0.0,
 

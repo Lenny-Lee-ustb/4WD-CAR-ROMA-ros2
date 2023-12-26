@@ -1,7 +1,7 @@
 motor_can_node : # node name
   ros__parameters:
     CanSeries: "can3"
-    wheel_radius: 0.07
+    wheel_radius: 0.065
     motor_ratio: 5.18
     Kp: 1.0
     Ki: 0.05
