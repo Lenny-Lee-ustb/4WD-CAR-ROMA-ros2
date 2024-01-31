@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from custom_interfaces.msg import PressureSensor
+from custom_interfaces.msg import ForceSensor
 import serial
 import binascii
 import struct
@@ -14,11 +15,13 @@ from rclpy.qos import QoSReliabilityPolicy
 class pressure_sensor(Node):
     def __init__(self, name, namespace, qos_profile):
         super().__init__(node_name=name, namespace=namespace)
+        # self.x = 0
         self.frequency = self.declare_parameter('serial_frequency',500).value
-        self.serial_port = self.declare_parameter('serial_port','/dev/pressure_sensor1').value
+        self.serial_port = self.declare_parameter('serial_port','/dev/ttyACM0').value
         self.serial_baudrate = self.declare_parameter('serial_baudrate',115200).value
         self.PressureSensorFrameID = self.declare_parameter('PressureSensorFrameID','PresssureSensor0').value
-        self.publishersx = self.create_publisher(msg_type=PressureSensor, topic='pressure_sensor', qos_profile=qos_profile)
+        self.publishers_force = self.create_publisher(msg_type=ForceSensor, topic='force_sensor', qos_profile=qos_profile)
+        self.publishers_pressure = self.create_publisher(msg_type=PressureSensor, topic='pressure_sensor', qos_profile=qos_profile)
         self.read()
 
 
@@ -38,24 +41,38 @@ class pressure_sensor(Node):
                 str_data = binascii.hexlify(data).decode('utf-8')
                 if str_data[128:136]=="0000807f":
                     float_data = self.str2float(str_data)
-                    filter_data = self.filter(float_data)
+                    pressure = self.filter_pressure(float_data)
+                    force = self.filter_force(float_data)
                 else:
                     self.get_logger().info("VERIFICATION FAILED, %s" % str_data[128:136])
-                print(float_data)
-                self.pub(float_data, filter_data)
-                time.sleep(1e-3)
+                # print(float_data)
+                self.pub_pressure(float_data, pressure)
+                self.pub_force(force)
+                time.sleep(5e-4)
         except serial.SerialException as e:
             self.get_logger().error('Serial port error: %s' % str(e))
             self.ser.close()
             time.sleep(1)
 
-    def pub(self, raw_data, filter_data):
+    def pub_pressure(self, raw_data, filter_data):
         data = PressureSensor()
         data.header.frame_id = self.PressureSensorFrameID
         data.header.stamp = self.get_clock().now().to_msg()
-        data.raw_data = raw_data[0:10]
+        data.raw_data = raw_data[5:15]
         data.filter_data = filter_data[0:10]
-        self.publishersx.publish(data)
+        self.publishers_pressure.publish(data)
+
+    def pub_force(self, force):
+        data = ForceSensor()
+        data.header.frame_id = self.PressureSensorFrameID
+        data.header.stamp = self.get_clock().now().to_msg()
+        data.x1 = force[0]
+        data.y1 = force[1]
+        data.x2 = force[2]
+        data.y2 = force[3]
+        data.fx = force[4]
+        data.fy = force[5]
+        self.publishers_force.publish(data)
 
     def str2float(self,string_data):
         true_vars = list()
@@ -68,12 +85,30 @@ class pressure_sensor(Node):
                 sum += 2
             data = int(data,16)
             float_val = struct.unpack('!f', struct.pack('!I', data))[0]
+            float_val = float_val / 65535
             true_vars.append(float_val)
         return true_vars
             
-    def filter(self, floatdata):
+    def filter_pressure(self, floatdata):
         filter_data = [0.]*10
         return filter_data
+    
+    def filter_force(self, floatdata):
+        x1 = (floatdata[1]) * 50 * 1e3
+        y1 = (floatdata[2]) * 50 * 1e3
+        x2 = (floatdata[3]) * 50 * 1e3
+        # self.x = 0.999*self.x + 0.001*x2;
+        # y1 = self.x
+        y2 = (floatdata[4]) * 50 * 1e3
+        # x1 = (floatdata[1]-0.5) * 25 * 1e3
+        # y1 = (floatdata[2]-0.5) * 25 * 1e3
+        # x2 = (floatdata[3]-0.5) * 25 * 1e3
+        # y2 = (floatdata[4]-0.5) * 25 * 1e3
+        Fx = floatdata[1] + floatdata[3]; # 13
+        Fx = (Fx - 0.5) * 50 * 9.8;
+        Fy = floatdata[3] + floatdata[4]; # 24
+        Fy = (Fy - 0.5) * 50 * 9.8;
+        return [x1, y1, x2, y2, Fx, -Fy]
 
 
 
