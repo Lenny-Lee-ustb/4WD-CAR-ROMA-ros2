@@ -2,6 +2,7 @@ import rclpy
 from rclpy.node import Node
 from custom_interfaces.msg import PressureSensor
 from custom_interfaces.msg import ForceSensor
+from sensor_msgs.msg import Temperature
 import serial
 import binascii
 import struct
@@ -15,13 +16,15 @@ from rclpy.qos import QoSReliabilityPolicy
 class pressure_sensor(Node):
     def __init__(self, name, namespace, qos_profile):
         super().__init__(node_name=name, namespace=namespace)
-        # self.x = 0
+        self.pressure_init = True
+        self.base_data = [.0] *10
         self.frequency = self.declare_parameter('serial_frequency',500).value
         self.serial_port = self.declare_parameter('serial_port','/dev/ttyACM0').value
         self.serial_baudrate = self.declare_parameter('serial_baudrate',115200).value
         self.PressureSensorFrameID = self.declare_parameter('PressureSensorFrameID','PresssureSensor0').value
         self.publishers_force = self.create_publisher(msg_type=ForceSensor, topic='force_sensor', qos_profile=qos_profile)
         self.publishers_pressure = self.create_publisher(msg_type=PressureSensor, topic='pressure_sensor', qos_profile=qos_profile)
+        self.publish_temp = self.create_publisher(msg_type=Temperature, topic='pressure_temperature', qos_profile=qos_profile)
         self.read()
 
 
@@ -41,11 +44,13 @@ class pressure_sensor(Node):
                 str_data = binascii.hexlify(data).decode('utf-8')
                 if str_data[128:136]=="0000807f":
                     float_data = self.str2float(str_data)
+                    temp = float_data[0]
                     pressure = self.filter_pressure(float_data)
                     force = self.filter_force(float_data)
                 else:
                     self.get_logger().info("VERIFICATION FAILED, %s" % str_data[128:136])
                 # print(float_data)
+                self.pub_temp(temp)
                 self.pub_pressure(float_data, pressure)
                 self.pub_force(force)
                 time.sleep(5e-4)
@@ -74,6 +79,13 @@ class pressure_sensor(Node):
         data.fy = force[5]
         self.publishers_force.publish(data)
 
+    def pub_temp(self, temp):
+        data = Temperature()
+        data.header.frame_id = self.PressureSensorFrameID
+        data.header.stamp = self.get_clock().now().to_msg()
+        data.temperature = temp
+        self.publish_temp.publish(data)
+
     def str2float(self,string_data):
         true_vars = list()
         sum = 0
@@ -85,30 +97,29 @@ class pressure_sensor(Node):
                 sum += 2
             data = int(data,16)
             float_val = struct.unpack('!f', struct.pack('!I', data))[0]
-            float_val = float_val / 65535
+            float_val = float_val / 65536
             true_vars.append(float_val)
         return true_vars
             
     def filter_pressure(self, floatdata):
-        filter_data = [0.]*10
+        if self.pressure_init:
+            self.base_data = floatdata[5:15]
+            self.pressure_init = False
+        filter_data = [.0] *10
+        for i in range(10):
+            filter_data[i] = self.base_data[i] - floatdata[i+5]
         return filter_data
     
     def filter_force(self, floatdata):
-        x1 = (floatdata[1]) * 50 * 1e3
-        y1 = (floatdata[2]) * 50 * 1e3
-        x2 = (floatdata[3]) * 50 * 1e3
-        # self.x = 0.999*self.x + 0.001*x2;
-        # y1 = self.x
-        y2 = (floatdata[4]) * 50 * 1e3
-        # x1 = (floatdata[1]-0.5) * 25 * 1e3
-        # y1 = (floatdata[2]-0.5) * 25 * 1e3
-        # x2 = (floatdata[3]-0.5) * 25 * 1e3
-        # y2 = (floatdata[4]-0.5) * 25 * 1e3
-        Fx = floatdata[1] + floatdata[3]; # 13
-        Fx = (Fx - 0.5) * 50 * 9.8;
-        Fy = floatdata[3] + floatdata[4]; # 24
-        Fy = (Fy - 0.5) * 50 * 9.8;
-        return [x1, y1, x2, y2, Fx, -Fy]
+        x1 = (floatdata[1]-0.5) * 50 * 9.8
+        y1 = -(floatdata[2]-0.5) * 50 * 9.8
+        x2 = (floatdata[3]-0.5) * 50 * 9.8
+        y2 = -(floatdata[4]-0.5) * 50 * 9.8
+        Fx = x1+x2; # 13
+        Fy = y1+y2; # 24
+
+
+        return [x1, y1, x2, y2, Fx, Fy]
 
 
 
