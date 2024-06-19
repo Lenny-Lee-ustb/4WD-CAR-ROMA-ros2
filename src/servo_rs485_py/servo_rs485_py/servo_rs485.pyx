@@ -24,49 +24,28 @@ class ServoNode(Node):
         self.__len_present_current = 2
         self.__len_present_position = 4
         self.__len_goal_position = 4
-
-        self.__forward_left_ID = 1
-        self.__forward_left_min_position = self.declare_parameter("left_min_position_f",0).value
-        self.__forward_left_mid_position = self.declare_parameter("left_mid_position_f",2047).value
-        self.__forward_left_max_position = self.declare_parameter("left_max_position_f",4095).value
-
-        self.__forward_right_ID = 2
-        self.__forward_right_min_position = self.declare_parameter("right_min_position_f",0).value
-        self.__forward_right_mid_position = self.declare_parameter("right_mid_position_f",2047).value
-        self.__forward_right_max_position = self.declare_parameter("right_max_position_f",4095).value
-
-        self.__backward_right_ID = 3
-        self.__backward_right_min_position = self.declare_parameter("right_min_position_r",0).value
-        self.__backward_right_mid_position = self.declare_parameter("right_mid_position_r",2047).value
-        self.__backward_right_max_position = self.declare_parameter("right_max_position_r",4095).value
-
-        self.__backward_left_ID = 4
-        self.__backward_left_min_position = self.declare_parameter("left_min_position_r",0).value
-        self.__backward_left_mid_position = self.declare_parameter("left_mid_position_r",2047).value
-        self.__backward_left_max_position = self.declare_parameter("left_max_position_r",4095).value
-
+        self.__left_ID = 1
+        self.__left_min_position = self.declare_parameter("left_min_position",0).value
+        self.__left_mid_position = self.declare_parameter("left_mid_position",2047).value
+        self.__left_max_position = self.declare_parameter("left_max_position",4095).value
+        self.__right_ID = 2
+        self.__right_min_position = self.declare_parameter("right_min_position",0).value
+        self.__right_mid_position = self.declare_parameter("right_mid_position",2047).value
+        self.__right_max_position = self.declare_parameter("right_max_position",4095).value
         self.__baud_rate = self.declare_parameter("baud_rate", 1000000).value
         self.__device_name = self.declare_parameter("device_name",'/dev/servo').value
-        self.servo_cmd = [self.__forward_left_mid_position, self.__forward_right_mid_position, self.__backward_left_mid_position, self.__backward_right_mid_position]
+        self.servo_cmd = [self.__left_mid_position, self.__right_mid_position]
 
         # Init handle , open port, set baudrate
         self.dxl_communication_init()
-        # Enable Forward Left servo Torque
-        self.dxl_enable_torque(self.__forward_left_ID)
-        # Enable Forward Right servo Torque
-        self.dxl_enable_torque(self.__forward_right_ID)
-        # Enable Backward Left servo Torque
-        self.dxl_enable_torque(self.__backward_left_ID)
-        # Enable Backward Right servo Torque
-        self.dxl_enable_torque(self.__backward_right_ID)
-        # Add parameter storage for Forward Left servo target position
-        self.dxl_write_set_param_pos(self.__forward_left_ID, self.__forward_left_mid_position)
-        # Add parameter storage for Forward Right servo target position
-        self.dxl_write_set_param_pos(self.__forward_right_ID, self.__forward_right_mid_position)
-        # Add parameter storage for Backward Left servo target position
-        self.dxl_write_set_param_pos(self.__backward_left_ID, self.__backward_left_mid_position)
-        # Add parameter storage for Backward Right servo target position
-        self.dxl_write_set_param_pos(self.__backward_right_ID, self.__backward_right_mid_position)
+        # Enable Left servo Torque
+        self.dxl_enable_torque(self.__left_ID)
+        # Enable Right servo Torque
+        self.dxl_enable_torque(self.__right_ID)
+        # Add parameter storage for Left servo target position
+        self.dxl_write_set_param_pos(self.__left_ID, self.__left_mid_position)
+        # Add parameter storage for Right servo target position
+        self.dxl_write_set_param_pos(self.__right_ID, self.__right_mid_position)
 
         self.publisher_ = self.create_publisher(ActuatorState, 'servo_state', qos_profile_pub)
         self.publisher_
@@ -85,44 +64,27 @@ class ServoNode(Node):
         self.dxl_set_baudrate(self.__baud_rate)
 
     def cmd_callback(self, msg):
-        self.servo_cmd[0] = self.cal_goal_pos(self.__forward_left_min_position,self.__forward_left_mid_position,self.__forward_left_max_position, msg.actuator_command[0].position)
-        self.servo_cmd[1] = self.cal_goal_pos(self.__forward_right_min_position,self.__forward_right_mid_position,self.__forward_right_max_position, -msg.actuator_command[1].position)
-        self.servo_cmd[2] = self.cal_goal_pos(self.__backward_right_min_position,self.__backward_right_mid_position,self.__backward_right_max_position, msg.actuator_command[2].position)
-        self.servo_cmd[3] = self.cal_goal_pos(self.__backward_left_min_position,self.__backward_left_mid_position,self.__backward_left_max_position, -msg.actuator_command[3].position) ## ! minus?
+        self.servo_cmd[0] = self.cal_goal_pos(self.__left_min_position,self.__left_mid_position,self.__left_max_position, msg.actuator_command[0].position)
+        self.servo_cmd[1] = self.cal_goal_pos(self.__right_min_position,self.__right_mid_position,self.__right_max_position, -msg.actuator_command[1].position)
 
     def control_loop_timer(self):
-        self.dxl_write_change_param_pos(self.__forward_left_ID,self.servo_cmd[0])
-        self.dxl_write_change_param_pos(self.__forward_right_ID,self.servo_cmd[1])
-        self.dxl_write_change_param_pos(self.__backward_right_ID,self.servo_cmd[2])
-        self.dxl_write_change_param_pos(self.__backward_left_ID,self.servo_cmd[3])
+        self.dxl_write_change_param_pos(self.__left_ID,self.servo_cmd[0])
+        self.dxl_write_change_param_pos(self.__right_ID,self.servo_cmd[1])
         self.dxl_write_txPacket()
 
         servo_state_pub = ActuatorState()
         servo_state_pub.header.stamp = self.get_clock().now().to_msg()
-        servo_forward_left = Actuator()
-        servo_forward_right = Actuator()
-        servo_backward_left = Actuator()
-        servo_backward_right = Actuator()  
-        servo_forward_left.name = 'Forward Left'
-        servo_forward_right.name = 'Forward Right'
-        servo_backward_left.name = 'Backward Left'
-        servo_backward_right.name = 'Backward Right'
+        servo_left = Actuator()
+        servo_right = Actuator()
+        servo_left.name = 'Front Left'
+        servo_right.name = 'Front Right'
 
-        servo_forward_left.position = self.cal_present_pos_left(self.__forward_left_mid_position,float(self.dxl_get_pos_data(self.__forward_left_ID)))
-        servo_forward_right.position = self.cal_present_pos_right(self.__forward_right_mid_position,float(self.dxl_get_pos_data(self.__forward_right_ID)))
-        servo_backward_left.position = self.cal_present_pos_left(self.__backward_left_mid_position,float(self.dxl_get_pos_data(self.__backward_left_ID)))
-        servo_backward_right.position = self.cal_present_pos_right(self.__backward_right_mid_position,float(self.dxl_get_pos_data(self.__backward_right_ID)))
-
-        servo_forward_left.effort = float(self.dxl_get_cur_data(self.__forward_left_ID))
-        servo_forward_right.effort = float(self.dxl_get_cur_data(self.__forward_right_ID))
-        servo_backward_left.effort = float(self.dxl_get_cur_data(self.__backward_left_ID))
-        servo_backward_right.effort = float(self.dxl_get_cur_data(self.__backward_right_ID))
-
-        servo_state_pub.actuator_state.append(servo_forward_left)
-        servo_state_pub.actuator_state.append(servo_forward_right)
-        servo_state_pub.actuator_state.append(servo_backward_left)
-        servo_state_pub.actuator_state.append(servo_backward_right)
-
+        servo_left.position = self.cal_present_pos_left(self.__left_mid_position,float(self.dxl_get_pos_data(self.__left_ID)))
+        servo_right.position = self.cal_present_pos_right(self.__right_mid_position,float(self.dxl_get_pos_data(self.__right_ID)))
+        servo_left.effort = float(self.dxl_get_cur_data(self.__left_ID))
+        servo_right.effort = float(self.dxl_get_cur_data(self.__right_ID))
+        servo_state_pub.actuator_state.append(servo_left)
+        servo_state_pub.actuator_state.append(servo_right)
         self.publisher_.publish(servo_state_pub)
         
     def cal_goal_pos(self, min_pos, mid_pos, max_pos, goal):
@@ -135,7 +97,7 @@ class ServoNode(Node):
         angle = (pre_pos - mid_pos)/4096 * (2*math.pi)
         return angle
 
-    def cal_present_pos_right(self, mid_pos,pre_pos): ## ! Is the function adapted to the 4WD?
+    def cal_present_pos_right(self, mid_pos,pre_pos):
         angle = -(pre_pos - mid_pos)/4096 * (2*math.pi)
         return angle
     

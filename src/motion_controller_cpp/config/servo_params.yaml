@@ -6,6 +6,18 @@ servo_rs485_node : # node name
     right_min_position: 1490
     right_mid_position: 2048
     right_max_position: 2570
+    left_min_position_f: 1480
+    left_mid_position_f: 2048
+    left_max_position_f: 2552
+    right_min_position_f: 1490
+    right_mid_position_f: 2048
+    right_max_position_f: 2570
+    left_min_position_r: 1657
+    left_mid_position_r: 2095
+    left_max_position_r: 2465
+    right_min_position_r: 1583
+    right_mid_position_r: 2022
+    right_max_position_r: 2460
     baud_rate: 2000000
     device_name: /dev/servo
 

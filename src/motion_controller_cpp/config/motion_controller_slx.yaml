@@ -7,3 +7,4 @@ motion_controller_slx:
     steer_rate_dps: 0.0
     acc_rate_mps: 0.0
     drive_by_2: 0.0
+    FWS: True

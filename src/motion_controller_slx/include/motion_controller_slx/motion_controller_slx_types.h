@@ -1,15 +1,15 @@
 //
-// Sponsored License - for use in support of a program or activity
-// sponsored by MathWorks.  Not for government, commercial or other
-// non-sponsored organizational use.
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
 //
 // File: motion_controller_slx_types.h
 //
 // Code generated for Simulink model 'motion_controller_slx'.
 //
-// Model version                  : 2.179
+// Model version                  : 2.185
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Tue Dec 19 20:08:59 2023
+// C/C++ source code generated on : Wed May 22 23:51:40 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -164,7 +164,7 @@ struct ros_slros2_internal_block_Get_T
 
 #endif                                // struct_ros_slros2_internal_block_Get_T
 
-// Custom Type definition for MATLABSystem: '<S25>/SourceBlock'
+// Custom Type definition for MATLABSystem: '<S27>/SourceBlock'
 #include "rmw/qos_profiles.h"
 #ifndef struct_ros_slros2_internal_block_Pub_T
 #define struct_ros_slros2_internal_block_Pub_T

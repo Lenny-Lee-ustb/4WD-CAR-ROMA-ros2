@@ -1,5 +1,5 @@
 // Copyright 2022-2023 The MathWorks, Inc.
-// Generated 19-Dec-2023 20:09:03
+// Generated 22-May-2024 23:51:45
 #ifndef _SLROS2_INITIALIZE_H_
 #define _SLROS2_INITIALIZE_H_
 #include "motion_controller_slx_types.h"
@@ -53,6 +53,8 @@ extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_3
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_194;
 // For Block motion_controller_slx/controller/Subsystem/Get Parameter4
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_298;
+// For Block motion_controller_slx/controller/Subsystem/Get Parameter5
+extern SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_slx_329;
 // For Block motion_controller_slx/controller/get_effort/Get Parameter
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_202;
 #endif

@@ -1,15 +1,15 @@
 //
-// Sponsored License - for use in support of a program or activity
-// sponsored by MathWorks.  Not for government, commercial or other
-// non-sponsored organizational use.
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
 //
 // File: motion_controller_slx_data.cpp
 //
 // Code generated for Simulink model 'motion_controller_slx'.
 //
-// Model version                  : 2.179
+// Model version                  : 2.185
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Tue Dec 19 20:08:59 2023
+// C/C++ source code generated on : Wed May 22 23:51:40 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -45,7 +45,7 @@ P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   1000,
 
   // Computed Parameter: Out1_Y0
-  //  Referenced by: '<S28>/Out1'
+  //  Referenced by: '<S30>/Out1'
 
   {
     {
@@ -386,7 +386,7 @@ P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   },
 
   // Computed Parameter: Constant_Value
-  //  Referenced by: '<S25>/Constant'
+  //  Referenced by: '<S27>/Constant'
 
   {
     {
@@ -945,7 +945,7 @@ P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   },
 
   // Computed Parameter: Out1_Y0_f
-  //  Referenced by: '<S27>/Out1'
+  //  Referenced by: '<S29>/Out1'
 
   {
     {
@@ -983,7 +983,7 @@ P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   },
 
   // Computed Parameter: Constant_Value_d
-  //  Referenced by: '<S24>/Constant'
+  //  Referenced by: '<S26>/Constant'
 
   {
     {
@@ -1049,6 +1049,11 @@ P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   //  Referenced by: '<S2>/Saturation'
 
   -0.75,
+
+  // Expression: 0
+  //  Referenced by: '<S17>/Constant'
+
+  0.0,
 
   // Expression: 500
   //  Referenced by: '<S14>/Constant2'

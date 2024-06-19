@@ -1,5 +1,5 @@
 // Copyright 2022-2023 The MathWorks, Inc.
-// Generated 19-Dec-2023 20:09:03
+// Generated 22-May-2024 23:51:45
 #include "slros2_initialize.h"
 // motion_controller_slx/cmd_pub/Publish
 SimulinkPublisher<custom_interfaces::msg::ActuatorCommand,SL_Bus_custom_interfaces_ActuatorCommand> Pub_motion_controller_slx_4;
@@ -21,5 +21,7 @@ SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_301;
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_194;
 // For Block motion_controller_slx/controller/Subsystem/Get Parameter4
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_298;
+// For Block motion_controller_slx/controller/Subsystem/Get Parameter5
+SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_slx_329;
 // For Block motion_controller_slx/controller/get_effort/Get Parameter
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_202;

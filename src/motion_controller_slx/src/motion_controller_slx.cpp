@@ -1,15 +1,15 @@
 //
-// Sponsored License - for use in support of a program or activity
-// sponsored by MathWorks.  Not for government, commercial or other
-// non-sponsored organizational use.
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
 //
 // File: motion_controller_slx.cpp
 //
 // Code generated for Simulink model 'motion_controller_slx'.
 //
-// Model version                  : 2.179
+// Model version                  : 2.185
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Tue Dec 19 20:08:59 2023
+// C/C++ source code generated on : Wed May 22 23:51:40 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -20,7 +20,6 @@
 #include "rtwtypes.h"
 #include "motion_controller_slx_types.h"
 #include <math.h>
-#include "rt_atan2d_snf.h"
 
 extern "C"
 {
@@ -29,6 +28,7 @@ extern "C"
 
 }
 
+#include "rt_atan2d_snf.h"
 #include <string.h>
 #include "rmw/qos_profiles.h"
 #include <stddef.h>
@@ -74,45 +74,119 @@ void motion_controller_slx::motion_control_CurrentTime_Term
   // End of Terminate for MATLABSystem: '<S2>/Current Time'
 }
 
-// Output and update for Simulink Function: '<S3>/get_angle'
-void motion_controller_slx::motion_controller_slx_get_angle(real_T rtu_angle,
-  real_T rty_angle_cmd[4]) const
+//
+// System initialize for atomic system:
+//    '<S14>/Chart1'
+//    '<S14>/Chart4'
+//
+void motion_controller_slx::motion_controller_s_Chart1_Init(real_T *rty_out)
+{
+  *rty_out = 0.0;
+}
+
+//
+// Output and update for atomic system:
+//    '<S14>/Chart1'
+//    '<S14>/Chart4'
+//
+void motion_controller_slx::motion_controller_slx_Chart1(real_T
+  rtu_steer_rate_dps, real_T rtu_angle, real_T *rty_out,
+  DW_Chart1_motion_controller_s_T *localDW)
+{
+  // Chart: '<S14>/Chart1'
+  if (localDW->is_active_c7_motion_controller_ == 0U) {
+    localDW->is_active_c7_motion_controller_ = 1U;
+    *rty_out = 0.0;
+  } else {
+    real_T direction;
+    direction = rtu_angle - *rty_out;
+    if (fabs(direction) < 0.001) {
+      *rty_out = rtu_angle;
+    } else if (rtu_steer_rate_dps == 0.0) {
+      *rty_out = rtu_angle;
+    } else {
+      if (rtIsNaN(direction)) {
+        direction = (rtNaN);
+      } else if (direction < 0.0) {
+        direction = -1.0;
+      } else {
+        direction = (direction > 0.0);
+      }
+
+      *rty_out += direction * rtu_steer_rate_dps / 180.0 * 3.1415926535897931 *
+        0.01;
+    }
+  }
+
+  // End of Chart: '<S14>/Chart1'
+}
+
+// Output and update for Simulink Function: '<S3>/get_angle_4w'
+void motion_controller_slx::motion_controller__get_angle_4w(real_T rtu_delta_f,
+  real_T rtu_delta_r, real_T rty_angle_cmd[4]) const
 {
   real_T deltaFR;
+  real_T deltaRL;
+  real_T deltaRR;
 
   // MATLAB Function: '<S15>/MATLAB Function' incorporates:
   //   SignalConversion generated from: '<S15>/In1'
+  //   SignalConversion generated from: '<S15>/angle1'
   //   SignalConversion generated from: '<S15>/angle'
 
   if (motion_controller_slx_B.GetParameter1 == 1.0) {
-    deltaFR = motion_controller_slx_P.L / (tan(rtu_angle) + 1.0E-9);
-    if (deltaFR >= 0.0) {
-      // SignalConversion generated from: '<S15>/angle_cmd'
-      rty_angle_cmd[0] = rt_atan2d_snf(motion_controller_slx_P.L, deltaFR -
-        motion_controller_slx_P.Tw / 2.0);
-      deltaFR = rt_atan2d_snf(motion_controller_slx_P.L,
-        motion_controller_slx_P.Tw / 2.0 + deltaFR);
+    real_T deltaFL_tmp;
+    real_T deltaFR_tmp;
+    real_T deltaRL_tmp;
+    if (rtIsNaN(rtu_delta_f)) {
+      deltaFR = (rtNaN);
+    } else if (rtu_delta_f < 0.0) {
+      deltaFR = -1.0;
     } else {
-      // SignalConversion generated from: '<S15>/angle_cmd'
-      rty_angle_cmd[0] = rt_atan2d_snf(motion_controller_slx_P.L, deltaFR -
-        motion_controller_slx_P.Tw / 2.0) - 3.1415926535897931;
-      deltaFR = rt_atan2d_snf(motion_controller_slx_P.L,
-        motion_controller_slx_P.Tw / 2.0 + deltaFR) - 3.1415926535897931;
+      deltaFR = (rtu_delta_f > 0.0);
     }
+
+    if (rtIsNaN(rtu_delta_r)) {
+      deltaRR = (rtNaN);
+    } else if (rtu_delta_r < 0.0) {
+      deltaRR = -1.0;
+    } else {
+      deltaRR = (rtu_delta_r > 0.0);
+    }
+
+    deltaFL_tmp = tan(fabs(rtu_delta_f));
+    deltaRL = tan(fabs(rtu_delta_r));
+    deltaRL_tmp = 2.0 * motion_controller_slx_P.L * deltaFL_tmp;
+    deltaFR_tmp = (deltaFR * deltaFL_tmp - deltaRR * deltaRL) *
+      motion_controller_slx_P.Tw;
+    deltaFL_tmp = 2.0 * motion_controller_slx_P.L - deltaFR_tmp;
+
+    // SignalConversion generated from: '<S15>/angle_cmd' incorporates:
+    //   SignalConversion generated from: '<S15>/angle1'
+    //   SignalConversion generated from: '<S15>/angle'
+
+    rty_angle_cmd[0] = atan(deltaRL_tmp / deltaFL_tmp) * deltaFR;
+    deltaFR_tmp += 2.0 * motion_controller_slx_P.L;
+    deltaFR *= atan(deltaRL_tmp / deltaFR_tmp);
+    deltaRL_tmp = 2.0 * motion_controller_slx_P.L * deltaRL;
+    deltaRL = atan(deltaRL_tmp / deltaFL_tmp) * deltaRR;
+    deltaRR *= atan(deltaRL_tmp / deltaFR_tmp);
   } else {
     // SignalConversion generated from: '<S15>/angle_cmd' incorporates:
     //   SignalConversion generated from: '<S15>/angle'
 
-    rty_angle_cmd[0] = rtu_angle;
-    deltaFR = rtu_angle;
+    rty_angle_cmd[0] = rtu_delta_f;
+    deltaFR = rtu_delta_f;
+    deltaRR = rtu_delta_r;
+    deltaRL = rtu_delta_r;
   }
 
   // SignalConversion generated from: '<S15>/angle_cmd' incorporates:
   //   MATLAB Function: '<S15>/MATLAB Function'
 
   rty_angle_cmd[1] = deltaFR;
-  rty_angle_cmd[2] = 0.0;
-  rty_angle_cmd[3] = 0.0;
+  rty_angle_cmd[2] = deltaRR;
+  rty_angle_cmd[3] = deltaRL;
 }
 
 // System initialize for Simulink Function: '<S3>/get_effort'
@@ -174,11 +248,11 @@ void motion_controller_slx::motion_controller_slx_get_spd(real_T rtu_angle,
   real_T vRR_tmp;
 
   // MATLAB Function: '<S17>/MATLAB Function' incorporates:
-  //   SignalConversion generated from: '<S17>/ackermann_enable'
+  //   Constant: '<S17>/Constant'
   //   SignalConversion generated from: '<S17>/angle'
   //   SignalConversion generated from: '<S17>/longdrive'
 
-  if (motion_controller_slx_B.GetParameter1 == 1.0) {
+  if (motion_controller_slx_P.Constant_Value_o == 1.0) {
     vRL = motion_controller_slx_P.L / (tan(rtu_angle) + 1.0E-9);
     if (vRL >= 0.0) {
       b_x = rt_atan2d_snf(motion_controller_slx_P.L, vRL -
@@ -278,16 +352,16 @@ void motion_controller_slx::motion_cont_SystemCore_setup_o0
   char_T b_zeroDelimTopic[6];
   static const char_T b_zeroDelimTopic_0[6] = "/sbus";
 
-  // Start for MATLABSystem: '<S24>/SourceBlock'
+  // Start for MATLABSystem: '<S26>/SourceBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S24>/SourceBlock'
+  // Start for MATLABSystem: '<S26>/SourceBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)1.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
   for (int32_T i = 0; i < 6; i++) {
-    // Start for MATLABSystem: '<S24>/SourceBlock'
+    // Start for MATLABSystem: '<S26>/SourceBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
@@ -302,16 +376,16 @@ void motion_controller_slx::motion_con_SystemCore_setup_o0a
   char_T b_zeroDelimTopic[13];
   static const char_T b_zeroDelimTopic_0[13] = "/motor_state";
 
-  // Start for MATLABSystem: '<S25>/SourceBlock'
+  // Start for MATLABSystem: '<S27>/SourceBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S25>/SourceBlock'
+  // Start for MATLABSystem: '<S27>/SourceBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)1.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
   for (int32_T i = 0; i < 13; i++) {
-    // Start for MATLABSystem: '<S25>/SourceBlock'
+    // Start for MATLABSystem: '<S27>/SourceBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
@@ -324,58 +398,58 @@ void motion_controller_slx::motion_con_SystemCore_setup_o0a
 void motion_controller_slx::step()
 {
   int16_T tmp;
-  boolean_T b_varargout_1;
+  boolean_T b_value;
   boolean_T rtb_LogicalOperator;
   boolean_T rtb_LogicalOperator_l;
 
-  // MATLABSystem: '<S24>/SourceBlock'
+  // MATLABSystem: '<S26>/SourceBlock'
   rtb_LogicalOperator_l = Sub_motion_controller_slx_1.getLatestMessage
     (&motion_controller_slx_B.b_varargout_2_m);
 
-  // Outputs for Enabled SubSystem: '<S24>/Enabled Subsystem' incorporates:
-  //   EnablePort: '<S27>/Enable'
+  // Outputs for Enabled SubSystem: '<S26>/Enabled Subsystem' incorporates:
+  //   EnablePort: '<S29>/Enable'
 
-  // Start for MATLABSystem: '<S24>/SourceBlock'
+  // Start for MATLABSystem: '<S26>/SourceBlock'
   if (rtb_LogicalOperator_l) {
-    // SignalConversion generated from: '<S27>/In1'
+    // SignalConversion generated from: '<S29>/In1'
     motion_controller_slx_B.In1_m = motion_controller_slx_B.b_varargout_2_m;
   }
 
-  // End of Outputs for SubSystem: '<S24>/Enabled Subsystem'
+  // End of Outputs for SubSystem: '<S26>/Enabled Subsystem'
 
   // Logic: '<Root>/Logical Operator'
   rtb_LogicalOperator = (motion_controller_slx_B.In1_m.failsafe ||
     motion_controller_slx_B.In1_m.frame_lost);
 
-  // MATLABSystem: '<S25>/SourceBlock'
-  b_varargout_1 = Sub_motion_controller_slx_238.getLatestMessage
+  // MATLABSystem: '<S27>/SourceBlock'
+  b_value = Sub_motion_controller_slx_238.getLatestMessage
     (&motion_controller_slx_B.b_varargout_2);
 
   // Logic: '<S4>/Logical Operator' incorporates:
-  //   MATLABSystem: '<S24>/SourceBlock'
-  //   MATLABSystem: '<S25>/SourceBlock'
+  //   MATLABSystem: '<S26>/SourceBlock'
+  //   MATLABSystem: '<S27>/SourceBlock'
   //
-  rtb_LogicalOperator_l = (rtb_LogicalOperator_l && b_varargout_1);
+  rtb_LogicalOperator_l = (rtb_LogicalOperator_l && b_value);
 
-  // Outputs for Enabled SubSystem: '<S25>/Enabled Subsystem' incorporates:
-  //   EnablePort: '<S28>/Enable'
+  // Outputs for Enabled SubSystem: '<S27>/Enabled Subsystem' incorporates:
+  //   EnablePort: '<S30>/Enable'
 
-  // Start for MATLABSystem: '<S25>/SourceBlock'
-  if (b_varargout_1) {
-    // SignalConversion generated from: '<S28>/In1'
+  // Start for MATLABSystem: '<S27>/SourceBlock'
+  if (b_value) {
+    // SignalConversion generated from: '<S30>/In1'
     motion_controller_slx_B.In1 = motion_controller_slx_B.b_varargout_2;
   }
 
-  // End of Outputs for SubSystem: '<S25>/Enabled Subsystem'
+  // End of Outputs for SubSystem: '<S27>/Enabled Subsystem'
 
   // Outputs for Iterator SubSystem: '<S4>/For Each Subsystem' incorporates:
-  //   ForEach: '<S23>/For Each'
+  //   ForEach: '<S25>/For Each'
 
   for (motion_controller_slx_B.ForEach_itr = 0;
        motion_controller_slx_B.ForEach_itr < 16;
        motion_controller_slx_B.ForEach_itr++) {
-    // ForEachSliceAssignment generated from: '<S23>/Out1' incorporates:
-    //   ForEachSliceSelector generated from: '<S23>/In1'
+    // ForEachSliceAssignment generated from: '<S25>/Out1' incorporates:
+    //   ForEachSliceSelector generated from: '<S25>/In1'
 
     motion_controller_slx_B.ImpAsg_InsertedFor_Out1_at_[motion_controller_slx_B.ForEach_itr]
       =
@@ -434,14 +508,14 @@ void motion_controller_slx::step()
 
   if (motion_controller_slx_DW.is_active_c6_motion_controller_ == 0U) {
     motion_controller_slx_DW.is_active_c6_motion_controller_ = 1U;
-    motion_controller_slx_B.out = 0.0;
+    motion_controller_slx_B.out_k = 0.0;
   } else {
     motion_controller_slx_B.b_value_c = motion_controller_slx_B.b_value_k -
-      motion_controller_slx_B.out;
+      motion_controller_slx_B.out_k;
     if (fabs(motion_controller_slx_B.b_value_c) < 0.001) {
-      motion_controller_slx_B.out = motion_controller_slx_B.b_value_k;
+      motion_controller_slx_B.out_k = motion_controller_slx_B.b_value_k;
     } else if (motion_controller_slx_B.b_value == 0.0) {
-      motion_controller_slx_B.out = motion_controller_slx_B.b_value_k;
+      motion_controller_slx_B.out_k = motion_controller_slx_B.b_value_k;
     } else {
       if (rtIsNaN(motion_controller_slx_B.b_value_c)) {
         motion_controller_slx_B.b_value_c = (rtNaN);
@@ -452,7 +526,7 @@ void motion_controller_slx::step()
           0.0);
       }
 
-      motion_controller_slx_B.out += motion_controller_slx_B.b_value_c *
+      motion_controller_slx_B.out_k += motion_controller_slx_B.b_value_c *
         motion_controller_slx_B.b_value * 0.01;
     }
   }
@@ -463,53 +537,115 @@ void motion_controller_slx::step()
   ParamGet_motion_controller_slx_317.getParameter
     (&motion_controller_slx_B.b_value);
 
+  // MATLABSystem: '<S14>/Get Parameter5'
+  ParamGet_motion_controller_slx_329.getParameter(&b_value);
+
+  // Gain: '<S14>/Gain2' incorporates:
+  //   Constant: '<S14>/Constant'
+  //   Gain: '<S14>/Gain'
+  //   SignalConversion generated from: '<S4>/Bus Selector'
+  //   Sum: '<S14>/Add'
+
+  motion_controller_slx_B.Gain2 = (static_cast<real_T>
+    (motion_controller_slx_B.In1_m.mapped_channels[0]) -
+    motion_controller_slx_P.Constant_Value_ff) *
+    motion_controller_slx_P.Gain_Gain * motion_controller_slx_P.Gain2_Gain;
+
+  // Chart: '<S14>/Chart3' incorporates:
+  //   MATLABSystem: '<S14>/Get Parameter5'
+
+  if (motion_controller_slx_DW.is_active_c8_motion_controller_ == 0U) {
+    motion_controller_slx_DW.is_active_c8_motion_controller_ = 1U;
+    if (b_value) {
+      motion_controller_slx_B.rtb_df_tmp = fabs(motion_controller_slx_B.Gain2);
+      b_value = rtIsNaN(motion_controller_slx_B.Gain2);
+      if (b_value) {
+        motion_controller_slx_B.b_value_c = (rtNaN);
+      } else if (motion_controller_slx_B.Gain2 < 0.0) {
+        motion_controller_slx_B.b_value_c = -1.0;
+      } else {
+        motion_controller_slx_B.b_value_c = (motion_controller_slx_B.Gain2 > 0.0);
+      }
+
+      if (motion_controller_slx_B.rtb_df_tmp <= 0.5) {
+        motion_controller_slx_B.b_value_k = motion_controller_slx_B.rtb_df_tmp;
+      } else {
+        motion_controller_slx_B.b_value_k = 0.5;
+      }
+
+      motion_controller_slx_B.b_value_k = motion_controller_slx_B.b_value_c *
+        motion_controller_slx_B.b_value_k * 2.0;
+      if (motion_controller_slx_B.rtb_df_tmp > 0.5) {
+        if (b_value) {
+          motion_controller_slx_B.b_value_c = (rtNaN);
+        } else if (motion_controller_slx_B.Gain2 < 0.0) {
+          motion_controller_slx_B.b_value_c = -1.0;
+        } else {
+          motion_controller_slx_B.b_value_c = (motion_controller_slx_B.Gain2 >
+            0.0);
+        }
+
+        motion_controller_slx_B.Gain2 = (motion_controller_slx_B.rtb_df_tmp -
+          0.5) * -motion_controller_slx_B.b_value_c * 2.0;
+      } else {
+        motion_controller_slx_B.Gain2 = 0.0;
+      }
+    } else {
+      motion_controller_slx_B.b_value_k = motion_controller_slx_B.Gain2;
+      motion_controller_slx_B.Gain2 = 0.0;
+    }
+  } else if (b_value) {
+    motion_controller_slx_B.rtb_df_tmp = fabs(motion_controller_slx_B.Gain2);
+    if (rtIsNaN(motion_controller_slx_B.Gain2)) {
+      motion_controller_slx_B.Gain2 = (rtNaN);
+    } else if (motion_controller_slx_B.Gain2 < 0.0) {
+      motion_controller_slx_B.Gain2 = -1.0;
+    } else {
+      motion_controller_slx_B.Gain2 = (motion_controller_slx_B.Gain2 > 0.0);
+    }
+
+    if (motion_controller_slx_B.rtb_df_tmp <= 0.5) {
+      motion_controller_slx_B.b_value_c = motion_controller_slx_B.rtb_df_tmp;
+    } else {
+      motion_controller_slx_B.b_value_c = 0.5;
+    }
+
+    motion_controller_slx_B.b_value_k = motion_controller_slx_B.Gain2 *
+      motion_controller_slx_B.b_value_c * 2.0;
+    if (motion_controller_slx_B.rtb_df_tmp > 0.5) {
+      motion_controller_slx_B.Gain2 = (motion_controller_slx_B.rtb_df_tmp - 0.5)
+        * -motion_controller_slx_B.Gain2 * 2.0;
+    } else {
+      motion_controller_slx_B.Gain2 = 0.0;
+    }
+  } else {
+    motion_controller_slx_B.b_value_k = motion_controller_slx_B.Gain2;
+    motion_controller_slx_B.Gain2 = 0.0;
+  }
+
+  // End of Chart: '<S14>/Chart3'
+
   // MATLABSystem: '<S14>/Get Parameter'
   ParamGet_motion_controller_slx_316.getParameter
     (&motion_controller_slx_B.b_value_c);
 
-  // Product: '<S14>/Product' incorporates:
-  //   Constant: '<S14>/Constant'
-  //   Gain: '<S14>/Gain'
-  //   Gain: '<S14>/Gain2'
+  // Chart: '<S14>/Chart4' incorporates:
   //   MATLABSystem: '<S14>/Get Parameter'
-  //   SignalConversion generated from: '<S4>/Bus Selector'
-  //   Sum: '<S14>/Add'
+  //   MATLABSystem: '<S14>/Get Parameter1'
+  //   Product: '<S14>/Product2'
 
-  motion_controller_slx_B.b_value_k = (static_cast<real_T>
-    (motion_controller_slx_B.In1_m.mapped_channels[0]) -
-    motion_controller_slx_P.Constant_Value_ff) *
-    motion_controller_slx_P.Gain_Gain * motion_controller_slx_P.Gain2_Gain *
-    motion_controller_slx_B.b_value_c;
+  motion_controller_slx_Chart1(motion_controller_slx_B.b_value,
+    motion_controller_slx_B.b_value_k * motion_controller_slx_B.b_value_c,
+    &motion_controller_slx_B.out, &motion_controller_slx_DW.sf_Chart4);
 
   // Chart: '<S14>/Chart1' incorporates:
+  //   MATLABSystem: '<S14>/Get Parameter'
   //   MATLABSystem: '<S14>/Get Parameter1'
+  //   Product: '<S14>/Product'
 
-  if (motion_controller_slx_DW.is_active_c7_motion_controller_ == 0U) {
-    motion_controller_slx_DW.is_active_c7_motion_controller_ = 1U;
-    motion_controller_slx_B.out_o = 0.0;
-  } else {
-    motion_controller_slx_B.b_value_c = motion_controller_slx_B.b_value_k -
-      motion_controller_slx_B.out_o;
-    if (fabs(motion_controller_slx_B.b_value_c) < 0.001) {
-      motion_controller_slx_B.out_o = motion_controller_slx_B.b_value_k;
-    } else if (motion_controller_slx_B.b_value == 0.0) {
-      motion_controller_slx_B.out_o = motion_controller_slx_B.b_value_k;
-    } else {
-      if (rtIsNaN(motion_controller_slx_B.b_value_c)) {
-        motion_controller_slx_B.b_value_c = (rtNaN);
-      } else if (motion_controller_slx_B.b_value_c < 0.0) {
-        motion_controller_slx_B.b_value_c = -1.0;
-      } else {
-        motion_controller_slx_B.b_value_c = (motion_controller_slx_B.b_value_c >
-          0.0);
-      }
-
-      motion_controller_slx_B.out_o += motion_controller_slx_B.b_value_c *
-        motion_controller_slx_B.b_value / 180.0 * 3.1415926535897931 * 0.01;
-    }
-  }
-
-  // End of Chart: '<S14>/Chart1'
+  motion_controller_slx_Chart1(motion_controller_slx_B.b_value,
+    motion_controller_slx_B.Gain2 * motion_controller_slx_B.b_value_c,
+    &motion_controller_slx_B.out_o, &motion_controller_slx_DW.sf_Chart1);
 
   // MATLABSystem: '<S3>/Get Parameter1'
   ParamGet_motion_controller_slx_217.getParameter
@@ -603,7 +739,7 @@ void motion_controller_slx::step()
         motion_controller_slx_B.effort_cmd[3] = 0.0;
       } else if (motion_controller_slx_DW.is_effort_mode ==
                  motion_controller_sl_IN_braking) {
-        if (motion_controller_slx_B.out >= 0.0) {
+        if (motion_controller_slx_B.out_k >= 0.0) {
           motion_controller_slx_DW.is_effort_mode =
             motion_controller_sl_IN_forward;
           motion_controller_slx_B.spd_cmd[0] = 0.0;
@@ -612,7 +748,7 @@ void motion_controller_slx::step()
           motion_controller_slx_B.spd_cmd[3] = 0.0;
         } else {
           motion_controller_slx_B.b_value = 1.5 * fabs
-            (motion_controller_slx_B.out);
+            (motion_controller_slx_B.out_k);
           if (fabs(motion_controller_slx_B.rtb_Gain_c) < 0.5) {
             motion_controller_slx_B.mode = 1;
             motion_controller_slx_B.spd_cmd[0] = 0.0;
@@ -627,14 +763,14 @@ void motion_controller_slx::step()
             motion_controller_slx_B.mode = 2;
           }
 
-          motion_controller_slx_get_angle(motion_controller_slx_B.out_o,
-            motion_controller_slx_B.angle_cmd);
+          motion_controller__get_angle_4w(motion_controller_slx_B.out,
+            motion_controller_slx_B.out_o, motion_controller_slx_B.angle_cmd);
           motion_controller_sl_get_effort(motion_controller_slx_B.b_value,
             motion_controller_slx_B.effort_cmd);
         }
 
         // case IN_forward:
-      } else if (motion_controller_slx_B.out < -0.01) {
+      } else if (motion_controller_slx_B.out_k < -0.01) {
         motion_controller_slx_DW.is_effort_mode =
           motion_controller_sl_IN_braking;
         motion_controller_slx_B.spd_cmd[0] = 0.0;
@@ -642,12 +778,13 @@ void motion_controller_slx::step()
         motion_controller_slx_B.spd_cmd[2] = 0.0;
         motion_controller_slx_B.spd_cmd[3] = 0.0;
       } else {
-        motion_controller_slx_get_angle(motion_controller_slx_B.out_o,
-          motion_controller_slx_B.angle_cmd);
+        motion_controller__get_angle_4w(motion_controller_slx_B.out,
+          motion_controller_slx_B.out_o, motion_controller_slx_B.angle_cmd);
         if (motion_controller_slx_B.In1_m.mapped_channels[6] == 1000) {
-          motion_controller_slx_B.b_value_c = -0.5 * motion_controller_slx_B.out;
+          motion_controller_slx_B.b_value_c = -0.5 *
+            motion_controller_slx_B.out_k;
         } else {
-          motion_controller_slx_B.b_value_c = motion_controller_slx_B.out;
+          motion_controller_slx_B.b_value_c = motion_controller_slx_B.out_k;
         }
 
         motion_controller_sl_get_effort(motion_controller_slx_B.b_value_c,
@@ -709,10 +846,10 @@ void motion_controller_slx::step()
         motion_controller_slx_B.effort_cmd[3] = 0.0;
         motion_controller_slx_B.mode = 0;
       } else {
-        motion_controller_slx_get_angle(motion_controller_slx_B.out_o,
-          motion_controller_slx_B.angle_cmd);
-        motion_controller_slx_get_spd(motion_controller_slx_B.out_o,
-          motion_controller_slx_B.out, motion_controller_slx_B.spd_cmd);
+        motion_controller__get_angle_4w(motion_controller_slx_B.out,
+          motion_controller_slx_B.out_o, motion_controller_slx_B.angle_cmd);
+        motion_controller_slx_get_spd(motion_controller_slx_B.out,
+          motion_controller_slx_B.out_k, motion_controller_slx_B.spd_cmd);
         motion_controller_slx_B.mode = 1;
       }
       break;
@@ -1374,26 +1511,33 @@ void motion_controller_slx::initialize()
     static const char_T prmName_0[11] = "drive_by_2";
     static const char_T prmName_1[7] = "spdMax";
     static const char_T prmName_2[15] = "steer_rate_dps";
-    static const char_T prmName_3[9] = "angleMax";
-    static const char_T prmName_4[10] = "ackermann";
+    static const char_T prmName_3[4] = "FWS";
+    static const char_T prmName_4[9] = "angleMax";
+    static const char_T prmName_5[10] = "ackermann";
 
-    // SystemInitialize for Enabled SubSystem: '<S24>/Enabled Subsystem'
-    // SystemInitialize for SignalConversion generated from: '<S27>/In1' incorporates:
-    //   Outport: '<S27>/Out1'
+    // SystemInitialize for Enabled SubSystem: '<S26>/Enabled Subsystem'
+    // SystemInitialize for SignalConversion generated from: '<S29>/In1' incorporates:
+    //   Outport: '<S29>/Out1'
 
     motion_controller_slx_B.In1_m = motion_controller_slx_P.Out1_Y0_f;
 
-    // End of SystemInitialize for SubSystem: '<S24>/Enabled Subsystem'
+    // End of SystemInitialize for SubSystem: '<S26>/Enabled Subsystem'
 
-    // SystemInitialize for Enabled SubSystem: '<S25>/Enabled Subsystem'
-    // SystemInitialize for SignalConversion generated from: '<S28>/In1' incorporates:
-    //   Outport: '<S28>/Out1'
+    // SystemInitialize for Enabled SubSystem: '<S27>/Enabled Subsystem'
+    // SystemInitialize for SignalConversion generated from: '<S30>/In1' incorporates:
+    //   Outport: '<S30>/Out1'
 
     motion_controller_slx_B.In1 = motion_controller_slx_P.Out1_Y0;
 
-    // End of SystemInitialize for SubSystem: '<S25>/Enabled Subsystem'
+    // End of SystemInitialize for SubSystem: '<S27>/Enabled Subsystem'
 
     // SystemInitialize for Atomic SubSystem: '<Root>/controller'
+    // SystemInitialize for Chart: '<S14>/Chart4'
+    motion_controller_s_Chart1_Init(&motion_controller_slx_B.out);
+
+    // SystemInitialize for Chart: '<S14>/Chart1'
+    motion_controller_s_Chart1_Init(&motion_controller_slx_B.out_o);
+
     // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S3>/get_effort' incorporates:
     //   SubSystem: '<S3>/get_effort'
 
@@ -1405,14 +1549,14 @@ void motion_controller_slx::initialize()
     motion_controller_slx_DW.obj_e.matlabCodegenIsDeleted = false;
     motion_controller_slx_DW.obj_e.isInitialized = 1;
     ParamGet_motion_controller_slx_298.initParam(&prmName[0]);
-    ParamGet_motion_controller_slx_298.setInitialValue(0.1);
+    ParamGet_motion_controller_slx_298.setInitialValue(0.0);
     motion_controller_slx_DW.obj_e.isSetupComplete = true;
 
     // Start for MATLABSystem: '<S14>/Get Parameter2'
     motion_controller_slx_DW.obj_c.matlabCodegenIsDeleted = false;
     motion_controller_slx_DW.obj_c.isInitialized = 1;
     ParamGet_motion_controller_slx_301.initParam(&prmName_0[0]);
-    ParamGet_motion_controller_slx_301.setInitialValue(1.0);
+    ParamGet_motion_controller_slx_301.setInitialValue(0.0);
     motion_controller_slx_DW.obj_c.isSetupComplete = true;
 
     // Start for MATLABSystem: '<S14>/Get Parameter3'
@@ -1426,20 +1570,27 @@ void motion_controller_slx::initialize()
     motion_controller_slx_DW.obj_o.matlabCodegenIsDeleted = false;
     motion_controller_slx_DW.obj_o.isInitialized = 1;
     ParamGet_motion_controller_slx_317.initParam(&prmName_2[0]);
-    ParamGet_motion_controller_slx_317.setInitialValue(0.5);
+    ParamGet_motion_controller_slx_317.setInitialValue(0.0);
     motion_controller_slx_DW.obj_o.isSetupComplete = true;
+
+    // Start for MATLABSystem: '<S14>/Get Parameter5'
+    motion_controller_slx_DW.obj_g.matlabCodegenIsDeleted = false;
+    motion_controller_slx_DW.obj_g.isInitialized = 1;
+    ParamGet_motion_controller_slx_329.initParam(&prmName_3[0]);
+    ParamGet_motion_controller_slx_329.setInitialValue(true);
+    motion_controller_slx_DW.obj_g.isSetupComplete = true;
 
     // Start for MATLABSystem: '<S14>/Get Parameter'
     motion_controller_slx_DW.obj_m.matlabCodegenIsDeleted = false;
     motion_controller_slx_DW.obj_m.isInitialized = 1;
-    ParamGet_motion_controller_slx_316.initParam(&prmName_3[0]);
+    ParamGet_motion_controller_slx_316.initParam(&prmName_4[0]);
     ParamGet_motion_controller_slx_316.setInitialValue(0.6);
     motion_controller_slx_DW.obj_m.isSetupComplete = true;
 
     // Start for MATLABSystem: '<S3>/Get Parameter1'
     motion_controller_slx_DW.obj_f.matlabCodegenIsDeleted = false;
     motion_controller_slx_DW.obj_f.isInitialized = 1;
-    ParamGet_motion_controller_slx_217.initParam(&prmName_4[0]);
+    ParamGet_motion_controller_slx_217.initParam(&prmName_5[0]);
     ParamGet_motion_controller_slx_217.setInitialValue(1.0);
     motion_controller_slx_DW.obj_f.isSetupComplete = true;
 
@@ -1457,10 +1608,10 @@ void motion_controller_slx::initialize()
 
     // End of SystemInitialize for SubSystem: '<Root>/cmd_pub'
 
-    // Start for MATLABSystem: '<S24>/SourceBlock'
+    // Start for MATLABSystem: '<S26>/SourceBlock'
     motion_cont_SystemCore_setup_o0(&motion_controller_slx_DW.obj_n);
 
-    // Start for MATLABSystem: '<S25>/SourceBlock'
+    // Start for MATLABSystem: '<S27>/SourceBlock'
     motion_con_SystemCore_setup_o0a(&motion_controller_slx_DW.obj_mo);
   }
 }
@@ -1468,19 +1619,19 @@ void motion_controller_slx::initialize()
 // Model terminate function
 void motion_controller_slx::terminate()
 {
-  // Terminate for MATLABSystem: '<S24>/SourceBlock'
+  // Terminate for MATLABSystem: '<S26>/SourceBlock'
   if (!motion_controller_slx_DW.obj_n.matlabCodegenIsDeleted) {
     motion_controller_slx_DW.obj_n.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S24>/SourceBlock'
+  // End of Terminate for MATLABSystem: '<S26>/SourceBlock'
 
-  // Terminate for MATLABSystem: '<S25>/SourceBlock'
+  // Terminate for MATLABSystem: '<S27>/SourceBlock'
   if (!motion_controller_slx_DW.obj_mo.matlabCodegenIsDeleted) {
     motion_controller_slx_DW.obj_mo.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S25>/SourceBlock'
+  // End of Terminate for MATLABSystem: '<S27>/SourceBlock'
 
   // Terminate for Atomic SubSystem: '<Root>/controller'
   // Terminate for MATLABSystem: '<S14>/Get Parameter4'
@@ -1510,6 +1661,13 @@ void motion_controller_slx::terminate()
   }
 
   // End of Terminate for MATLABSystem: '<S14>/Get Parameter1'
+
+  // Terminate for MATLABSystem: '<S14>/Get Parameter5'
+  if (!motion_controller_slx_DW.obj_g.matlabCodegenIsDeleted) {
+    motion_controller_slx_DW.obj_g.matlabCodegenIsDeleted = true;
+  }
+
+  // End of Terminate for MATLABSystem: '<S14>/Get Parameter5'
 
   // Terminate for MATLABSystem: '<S14>/Get Parameter'
   if (!motion_controller_slx_DW.obj_m.matlabCodegenIsDeleted) {
