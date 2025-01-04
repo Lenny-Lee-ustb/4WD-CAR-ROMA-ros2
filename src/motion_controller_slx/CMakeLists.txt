@@ -20,8 +20,10 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_ros REQUIRED)
 find_package( custom_interfaces REQUIRED)
+find_package( nav_msgs REQUIRED)
 find_package( rclcpp REQUIRED)
 find_package( sbus_interface REQUIRED)
+find_package( sensor_msgs REQUIRED)
 include_directories("include/motion_controller_slx")
 set (CMAKE_SKIP_BUILD_RPATH false)
 set (CMAKE_BUILD_WITH_INSTALL_RPATH true)
@@ -72,8 +74,10 @@ target_compile_options(motion_controller_slx PRIVATE
 ament_target_dependencies(
   motion_controller_slx
   "custom_interfaces"
+  "nav_msgs"
   "rclcpp"
   "sbus_interface"
+  "sensor_msgs"
 )
 target_include_directories(motion_controller_slx PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -102,4 +106,4 @@ add_custom_command(
 				   )				   
 endforeach(file_i)
 ament_package()
-# Generated on Wed May 22 23:51:47 2024
+# Generated on Tue Dec 03 20:50:08 2024

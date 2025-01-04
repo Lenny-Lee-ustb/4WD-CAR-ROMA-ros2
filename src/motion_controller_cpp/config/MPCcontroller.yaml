@@ -1,0 +1,32 @@
+motion_controller_withPIC:
+  ros__parameters:
+    Weight_Y: 60.0
+    Weight_Vy: 10.0
+    Weight_Yaw: 20.0
+    Weight_YawRate: 10.0
+    Weight_df: 10.0
+    Weight_dr: 10.0
+    Weight_ddf: 5.0
+    Weight_ddr: 5.0
+    mpc_lbub: 0.047123
+    tireBf: -49.824
+    tireCf: 1.128
+    tireMuf: 0.431
+    tireBr: -40.215
+    tireCr: 1.177
+    tireMur: 0.399
+    spdMax: 4.5
+    spdMax1: 4.5
+    angleMax: 0.7
+    angleMaxMpc: 0.7
+    ackermann: 1.0
+    effortMax: 1.6
+    steer_rate_dps: 0.0
+    acc_rate_mps: 0.0
+    drive_by_2: False
+    FWS: True
+    picActivationDAy: 0.28
+    picActivationDomegaz: 0.02225
+    testWithDrive: True
+    noControl: False
+    isMpcN20Else10: True

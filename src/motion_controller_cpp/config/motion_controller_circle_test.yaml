@@ -1,10 +1,10 @@
 motion_controller_circle_test : # node name
   ros__parameters:
     ackermann: 1.0
-    spdMax: 2.0
+    spdMax: 3.0
     
-    angleMax: 0.5
+    angleMax: 0.515
     effortMax: 0.3
-    steer_rate_dps: 1.0
-    acc_rate_mps: 0.01
+    steer_rate_dps: 0.5
+    acc_rate_mps: 0.0
     

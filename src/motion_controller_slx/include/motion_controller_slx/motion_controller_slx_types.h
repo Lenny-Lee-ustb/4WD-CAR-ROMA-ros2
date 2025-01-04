@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slx'.
 //
-// Model version                  : 2.185
+// Model version                  : 2.251
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed May 22 23:51:40 2024
+// C/C++ source code generated on : Tue Dec  3 20:49:54 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -56,6 +56,150 @@ struct SL_Bus_std_msgs_Header
 
   // IsVarLen=1:VarLenCategory=length:VarLenElem=frame_id
   SL_Bus_ROSVariableLengthArrayInfo frame_id_SL_Info;
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Point_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Point_
+
+// MsgType=geometry_msgs/Point
+struct SL_Bus_geometry_msgs_Point
+{
+  real_T x;
+  real_T y;
+  real_T z;
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Quaternion_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Quaternion_
+
+// MsgType=geometry_msgs/Quaternion
+struct SL_Bus_geometry_msgs_Quaternion
+{
+  real_T x;
+  real_T y;
+  real_T z;
+  real_T w;
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Pose_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Pose_
+
+// MsgType=geometry_msgs/Pose
+struct SL_Bus_geometry_msgs_Pose
+{
+  // MsgType=geometry_msgs/Point
+  SL_Bus_geometry_msgs_Point position;
+
+  // MsgType=geometry_msgs/Quaternion
+  SL_Bus_geometry_msgs_Quaternion orientation;
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_PoseWithCovariance_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_PoseWithCovariance_
+
+// MsgType=geometry_msgs/PoseWithCovariance
+struct SL_Bus_geometry_msgs_PoseWithCovariance
+{
+  // MsgType=geometry_msgs/Pose
+  SL_Bus_geometry_msgs_Pose pose;
+  real_T covariance[36];
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Vector3_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Vector3_
+
+// MsgType=geometry_msgs/Vector3
+struct SL_Bus_geometry_msgs_Vector3
+{
+  real_T x;
+  real_T y;
+  real_T z;
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Twist_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Twist_
+
+// MsgType=geometry_msgs/Twist
+struct SL_Bus_geometry_msgs_Twist
+{
+  // MsgType=geometry_msgs/Vector3
+  SL_Bus_geometry_msgs_Vector3 linear;
+
+  // MsgType=geometry_msgs/Vector3
+  SL_Bus_geometry_msgs_Vector3 angular;
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_TwistWithCovariance_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_TwistWithCovariance_
+
+// MsgType=geometry_msgs/TwistWithCovariance
+struct SL_Bus_geometry_msgs_TwistWithCovariance
+{
+  // MsgType=geometry_msgs/Twist
+  SL_Bus_geometry_msgs_Twist twist;
+  real_T covariance[36];
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_nav_msgs_Odometry_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_nav_msgs_Odometry_
+
+// MsgType=nav_msgs/Odometry
+struct SL_Bus_nav_msgs_Odometry
+{
+  // MsgType=std_msgs/Header
+  SL_Bus_std_msgs_Header header;
+
+  // PrimitiveROSType=string:IsVarLen=1:VarLenCategory=data:VarLenElem=child_frame_id_SL_Info:TruncateAction=warn 
+  uint8_T child_frame_id[128];
+
+  // IsVarLen=1:VarLenCategory=length:VarLenElem=child_frame_id
+  SL_Bus_ROSVariableLengthArrayInfo child_frame_id_SL_Info;
+
+  // MsgType=geometry_msgs/PoseWithCovariance
+  SL_Bus_geometry_msgs_PoseWithCovariance pose;
+
+  // MsgType=geometry_msgs/TwistWithCovariance
+  SL_Bus_geometry_msgs_TwistWithCovariance twist;
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_sensor_msgs_Imu_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_sensor_msgs_Imu_
+
+// MsgType=sensor_msgs/Imu
+struct SL_Bus_sensor_msgs_Imu
+{
+  // MsgType=std_msgs/Header
+  SL_Bus_std_msgs_Header header;
+
+  // MsgType=geometry_msgs/Quaternion
+  SL_Bus_geometry_msgs_Quaternion orientation;
+  real_T orientation_covariance[9];
+
+  // MsgType=geometry_msgs/Vector3
+  SL_Bus_geometry_msgs_Vector3 angular_velocity;
+  real_T angular_velocity_covariance[9];
+
+  // MsgType=geometry_msgs/Vector3
+  SL_Bus_geometry_msgs_Vector3 linear_acceleration;
+  real_T linear_acceleration_covariance[9];
 };
 
 #endif
@@ -164,20 +308,8 @@ struct ros_slros2_internal_block_Get_T
 
 #endif                                // struct_ros_slros2_internal_block_Get_T
 
-// Custom Type definition for MATLABSystem: '<S27>/SourceBlock'
+// Custom Type definition for MATLABSystem: '<S31>/SourceBlock'
 #include "rmw/qos_profiles.h"
-#ifndef struct_ros_slros2_internal_block_Pub_T
-#define struct_ros_slros2_internal_block_Pub_T
-
-struct ros_slros2_internal_block_Pub_T
-{
-  boolean_T matlabCodegenIsDeleted;
-  int32_T isInitialized;
-  boolean_T isSetupComplete;
-};
-
-#endif                                // struct_ros_slros2_internal_block_Pub_T
-
 #ifndef struct_ros_slros2_internal_block_Sub_T
 #define struct_ros_slros2_internal_block_Sub_T
 
@@ -190,10 +322,22 @@ struct ros_slros2_internal_block_Sub_T
 
 #endif                                // struct_ros_slros2_internal_block_Sub_T
 
-// Parameters for system: '<S2>/For Each Subsystem'
+#ifndef struct_ros_slros2_internal_block_Pub_T
+#define struct_ros_slros2_internal_block_Pub_T
+
+struct ros_slros2_internal_block_Pub_T
+{
+  boolean_T matlabCodegenIsDeleted;
+  int32_T isInitialized;
+  boolean_T isSetupComplete;
+};
+
+#endif                                // struct_ros_slros2_internal_block_Pub_T
+
+// Parameters for system: '<S3>/For Each Subsystem'
 typedef struct P_CoreSubsys_motion_controlle_T_ P_CoreSubsys_motion_controlle_T;
 
-// Parameters for system: '<S2>/For Each Subsystem1'
+// Parameters for system: '<S3>/For Each Subsystem1'
 typedef struct P_CoreSubsys_motion_control_g_T_ P_CoreSubsys_motion_control_g_T;
 
 // Parameters (default storage)

@@ -39,7 +39,8 @@ class Filter(Node):
         data.linear_acceleration.z = float((self.imu_filter_coeffs @ self.imu_data_buffer.linear_acceleration_z)[0])
         data.orientation.x = float((self.imu_filter_coeffs @ self.imu_data_buffer.roll_rad)[0]) #/np.pi)*180
         data.orientation.y = float((self.imu_filter_coeffs @ self.imu_data_buffer.pitch_rad)[0]) #/np.pi)*180
-        data.orientation.z = float((self.imu_filter_coeffs @ self.imu_data_buffer.yaw_rad)[0]) #/np.pi)*180
+        # data.orientation.z = float((self.imu_filter_coeffs @ self.imu_data_buffer.yaw_rad)[0]) #/np.pi)*180
+        data.orientation.z = float(self.imu_data_buffer.yaw_rad[0])
         data.orientation.w = 0.
         self.publishers_imu.publish(data)
 

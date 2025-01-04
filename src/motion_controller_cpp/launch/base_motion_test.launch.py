@@ -2,6 +2,8 @@ import os
 from launch import LaunchDescription
 from ament_index_python.packages import get_package_share_directory
 from launch_ros.actions import Node
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     ld = LaunchDescription()
@@ -19,25 +21,6 @@ def generate_launch_description():
         emulate_tty=True,
         parameters=[sbus_config]
     )
-
-    # motion_controller_node = Node(
-    #     package="motion_controller_cpp",
-    #     executable="motion_controller",
-    #     parameters=[
-    #         {"speedMax":3.5},
-    #         {"angleMax":0.75}
-    #     ]
-    # )
-    # motion_controller_node = Node(
-    #     package="motion_controller_node",
-    #     executable="motion_controller_node",
-    #     parameters=[
-    #         {"spdMax":3.5},
-    #         {"angleMax":0.6},
-    #         {"effortMax":0.6},
-    #         {"ackermann_enable":1.0}            
-    #     ]
-    # )
 
     servo_config = os.path.join(
         get_package_share_directory('motion_controller_cpp'),
@@ -86,12 +69,26 @@ def generate_launch_description():
         output='screen'
     )
 
+    config = os.path.join(
+        get_package_share_directory('realsense2_camera'),
+        'launch',
+    )
+    camera = IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([config, '/rs_launch.py'])
+        )
+    filter_node = Node(
+        package="filter_py",
+        executable="filter_py",
+        output='screen'
+    )
+    
     ld.add_action(sbus_bridge_node)
-    # ld.add_action(motion_controller_node)
     ld.add_action(servo_485_node)
     ld.add_action(motor_can_node)
     ld.add_action(imu_node)
     ld.add_action(battery_node)
     ld.add_action(wheel_node)
+    ld.add_entity(camera)
+    ld.add_action(filter_node)
 
     return ld

@@ -1,5 +1,5 @@
 // Copyright 2022-2023 The MathWorks, Inc.
-// Generated 22-May-2024 23:51:45
+// Generated 03-Dec-2024 20:50:02
 #ifndef _SLROS2_INITIALIZE_H_
 #define _SLROS2_INITIALIZE_H_
 #include "motion_controller_slx_types.h"
@@ -37,6 +37,10 @@ inline rclcpp::QoS getQOSSettingsFromRMW(const rmw_qos_profile_t& qosProfile) {
 extern SimulinkPublisher<custom_interfaces::msg::ActuatorCommand,SL_Bus_custom_interfaces_ActuatorCommand> Pub_motion_controller_slx_4;
 // motion_controller_slx/cmd_pub/Publish2
 extern SimulinkPublisher<custom_interfaces::msg::ActuatorCommand,SL_Bus_custom_interfaces_ActuatorCommand> Pub_motion_controller_slx_148;
+// motion_controller_slx/Subsystem/Subscribe
+extern SimulinkSubscriber<nav_msgs::msg::Odometry,SL_Bus_nav_msgs_Odometry> Sub_motion_controller_slx_368;
+// motion_controller_slx/Subsystem/Subscribe1
+extern SimulinkSubscriber<sensor_msgs::msg::Imu,SL_Bus_sensor_msgs_Imu> Sub_motion_controller_slx_369;
 // motion_controller_slx/subscription/Subscribe
 extern SimulinkSubscriber<sbus_interface::msg::Sbus,SL_Bus_sbus_interface_Sbus> Sub_motion_controller_slx_1;
 // motion_controller_slx/subscription/Subscribe1
@@ -48,7 +52,7 @@ extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_3
 // For Block motion_controller_slx/controller/Subsystem/Get Parameter1
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_317;
 // For Block motion_controller_slx/controller/Subsystem/Get Parameter2
-extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_301;
+extern SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_slx_301;
 // For Block motion_controller_slx/controller/Subsystem/Get Parameter3
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_194;
 // For Block motion_controller_slx/controller/Subsystem/Get Parameter4
@@ -57,4 +61,14 @@ extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_2
 extern SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_slx_329;
 // For Block motion_controller_slx/controller/get_effort/Get Parameter
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_202;
+// For Block motion_controller_slx/controller/get_effort/Get Parameter1
+extern SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_slx_353;
+// For Block motion_controller_slx/controller/get_effort/Get Parameter2
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_354;
+// For Block motion_controller_slx/controller/get_effort/Get Parameter3
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_355;
+// For Block motion_controller_slx/controller/get_effort/Get Parameter4
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_365;
+// For Block motion_controller_slx/controller/get_effort/Get Parameter5
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_393;
 #endif

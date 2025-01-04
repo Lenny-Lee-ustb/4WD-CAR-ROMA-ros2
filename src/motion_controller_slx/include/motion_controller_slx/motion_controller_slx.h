@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slx'.
 //
-// Model version                  : 2.185
+// Model version                  : 2.251
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Wed May 22 23:51:40 2024
+// C/C++ source code generated on : Tue Dec  3 20:49:54 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -41,91 +41,105 @@ extern "C"
 #define rtmSetErrorStatus(rtm, val)    ((rtm)->errorStatus = (val))
 #endif
 
-// Block signals for system '<S2>/Current Time'
+// Block signals for system '<S3>/Current Time'
 struct B_CurrentTime_motion_controll_T {
-  SL_Bus_builtin_interfaces_Time CurrentTime;// '<S2>/Current Time'
+  SL_Bus_builtin_interfaces_Time CurrentTime;// '<S3>/Current Time'
 };
 
-// Block states (default storage) for system '<S2>/Current Time'
+// Block states (default storage) for system '<S3>/Current Time'
 struct DW_CurrentTime_motion_control_T {
-  ros_slros2_internal_block_Cur_T obj; // '<S2>/Current Time'
-  boolean_T objisempty;                // '<S2>/Current Time'
-};
-
-// Block states (default storage) for system '<S14>/Chart1'
-struct DW_Chart1_motion_controller_s_T {
-  uint8_T is_active_c7_motion_controller_;// '<S14>/Chart1'
+  ros_slros2_internal_block_Cur_T obj; // '<S3>/Current Time'
+  boolean_T objisempty;                // '<S3>/Current Time'
 };
 
 // Block signals (default storage)
 struct B_motion_controller_slx_T {
-  SL_Bus_custom_interfaces_ActuatorState In1;// '<S30>/In1'
+  SL_Bus_custom_interfaces_ActuatorState In1;// '<S34>/In1'
   SL_Bus_custom_interfaces_ActuatorState b_varargout_2;
-  SL_Bus_custom_interfaces_ActuatorCommand BusAssignment1;// '<S2>/Bus Assignment1' 
-  SL_Bus_custom_interfaces_Actuator ImpAsg_InsertedFor_actuaor_[4];// '<S8>/Bus Assignment1' 
-  SL_Bus_sbus_interface_Sbus In1_m;    // '<S29>/In1'
-  SL_Bus_sbus_interface_Sbus b_varargout_2_m;
+  SL_Bus_nav_msgs_Odometry In1_g;      // '<S8>/In1'
+  SL_Bus_nav_msgs_Odometry b_varargout_2_m;
+  SL_Bus_custom_interfaces_ActuatorCommand BusAssignment1;// '<S3>/Bus Assignment1' 
+  SL_Bus_custom_interfaces_Actuator ImpAsg_InsertedFor_actuaor_[4];// '<S13>/Bus Assignment1' 
+  SL_Bus_sensor_msgs_Imu In1_m;        // '<S9>/In1'
+  SL_Bus_sensor_msgs_Imu b_varargout_2_c;
+  SL_Bus_sbus_interface_Sbus In1_me;   // '<S33>/In1'
+  SL_Bus_sbus_interface_Sbus b_varargout_2_k;
   real_T ImpAsg_InsertedFor_Out1_at_[16];
-  real_T out;                          // '<S14>/Chart4'
-  real_T out_k;                        // '<S14>/Chart2'
-  real_T out_o;                        // '<S14>/Chart1'
-  real_T GetParameter1;                // '<S3>/Get Parameter1'
-  real_T angle_cmd[4];                 // '<S3>/Chart'
-  real_T spd_cmd[4];                   // '<S3>/Chart'
-  real_T effort_cmd[4];                // '<S3>/Chart'
+  real_T angle_cmd[4];                 // '<S4>/Chart'
+  real_T spd_cmd[4];                   // '<S4>/Chart'
+  real_T effort_cmd[4];                // '<S4>/Chart'
+  real_T rtb_ImpAsg_InsertedFor_Out1_a_c[4];
+  real_T out;                          // '<S19>/Chart2'
+  real_T GetParameter1;                // '<S4>/Get Parameter1'
+  real_T Fzf;
+  real_T Fzr;
+  real_T effort;
+  real_T y;
+  real_T b_y;
   real_T b_value;
+  real_T b_value_m;
   real_T b_value_c;
   real_T b_value_k;
-  real_T Gain2;                        // '<S14>/Gain2'
-  real_T rtb_df_tmp;
-  real_T rtb_Gain_c;
+  real_T b_value_cx;
+  real_T direction;
+  real_T rate;
+  real_T b_value_b;
+  real_T b_value_p;
+  real_T Gain2;                        // '<S19>/Gain2'
   int32_T ForEach_itr;
-  int8_T mode;                         // '<S3>/Chart'
-  B_CurrentTime_motion_controll_T CurrentTime1;// '<S2>/Current Time'
-  B_CurrentTime_motion_controll_T CurrentTime;// '<S2>/Current Time'
+  int32_T ForEach_itr_j_c;
+  int32_T ForEach_itr_p_f;
+  int8_T mode;                         // '<S4>/Chart'
+  B_CurrentTime_motion_controll_T CurrentTime1;// '<S3>/Current Time'
+  B_CurrentTime_motion_controll_T CurrentTime;// '<S3>/Current Time'
 };
 
 // Block states (default storage) for system '<Root>'
 struct DW_motion_controller_slx_T {
-  ros_slros2_internal_block_Get_T obj; // '<S16>/Get Parameter'
-  ros_slros2_internal_block_Get_T obj_g;// '<S14>/Get Parameter5'
-  ros_slros2_internal_block_Get_T obj_e;// '<S14>/Get Parameter4'
-  ros_slros2_internal_block_Get_T obj_l;// '<S14>/Get Parameter3'
-  ros_slros2_internal_block_Get_T obj_c;// '<S14>/Get Parameter2'
-  ros_slros2_internal_block_Get_T obj_o;// '<S14>/Get Parameter1'
-  ros_slros2_internal_block_Get_T obj_m;// '<S14>/Get Parameter'
-  ros_slros2_internal_block_Get_T obj_f;// '<S3>/Get Parameter1'
-  ros_slros2_internal_block_Pub_T obj_ca;// '<S10>/SinkBlock'
-  ros_slros2_internal_block_Pub_T obj_b;// '<S9>/SinkBlock'
-  ros_slros2_internal_block_Sub_T obj_mo;// '<S27>/SourceBlock'
-  ros_slros2_internal_block_Sub_T obj_n;// '<S26>/SourceBlock'
-  real_T sum;                          // '<S3>/Chart'
-  real_T counter;                      // '<S3>/Chart'
-  real_T check;                        // '<S3>/Chart'
-  uint8_T is_active_c8_motion_controller_;// '<S14>/Chart3'
-  uint8_T is_active_c6_motion_controller_;// '<S14>/Chart2'
-  uint8_T is_active_c3_motion_controller_;// '<S3>/Chart'
-  uint8_T is_Is_ready;                 // '<S3>/Chart'
-  uint8_T is_cmd;                      // '<S3>/Chart'
-  uint8_T is_effort_mode;              // '<S3>/Chart'
-  boolean_T ready;                     // '<S3>/Chart'
-  DW_Chart1_motion_controller_s_T sf_Chart4;// '<S14>/Chart4'
-  DW_Chart1_motion_controller_s_T sf_Chart1;// '<S14>/Chart1'
-  DW_CurrentTime_motion_control_T CurrentTime1;// '<S2>/Current Time'
-  DW_CurrentTime_motion_control_T CurrentTime;// '<S2>/Current Time'
+  ros_slros2_internal_block_Get_T obj; // '<S21>/Get Parameter5'
+  ros_slros2_internal_block_Get_T obj_d;// '<S21>/Get Parameter4'
+  ros_slros2_internal_block_Get_T obj_l;// '<S21>/Get Parameter3'
+  ros_slros2_internal_block_Get_T obj_a;// '<S21>/Get Parameter2'
+  ros_slros2_internal_block_Get_T obj_p;// '<S21>/Get Parameter1'
+  ros_slros2_internal_block_Get_T obj_d2;// '<S21>/Get Parameter'
+  ros_slros2_internal_block_Get_T obj_g;// '<S19>/Get Parameter5'
+  ros_slros2_internal_block_Get_T obj_e;// '<S19>/Get Parameter4'
+  ros_slros2_internal_block_Get_T obj_l4;// '<S19>/Get Parameter3'
+  ros_slros2_internal_block_Get_T obj_c;// '<S19>/Get Parameter2'
+  ros_slros2_internal_block_Get_T obj_o;// '<S19>/Get Parameter1'
+  ros_slros2_internal_block_Get_T obj_m;// '<S19>/Get Parameter'
+  ros_slros2_internal_block_Get_T obj_f;// '<S4>/Get Parameter1'
+  ros_slros2_internal_block_Sub_T obj_mo;// '<S31>/SourceBlock'
+  ros_slros2_internal_block_Sub_T obj_n;// '<S30>/SourceBlock'
+  ros_slros2_internal_block_Sub_T obj_ed;// '<S7>/SourceBlock'
+  ros_slros2_internal_block_Sub_T obj_os;// '<S6>/SourceBlock'
+  ros_slros2_internal_block_Pub_T obj_ca;// '<S15>/SinkBlock'
+  ros_slros2_internal_block_Pub_T obj_b;// '<S14>/SinkBlock'
+  real_T angle_out;                    // '<S19>/MATLAB Function'
+  real_T sum;                          // '<S4>/Chart'
+  real_T counter;                      // '<S4>/Chart'
+  real_T check;                        // '<S4>/Chart'
+  uint8_T is_active_c6_motion_controller_;// '<S19>/Chart2'
+  uint8_T is_active_c3_motion_controller_;// '<S4>/Chart'
+  uint8_T is_Is_ready;                 // '<S4>/Chart'
+  uint8_T is_cmd;                      // '<S4>/Chart'
+  uint8_T is_effort_mode;              // '<S4>/Chart'
+  boolean_T ready;                     // '<S4>/Chart'
+  DW_CurrentTime_motion_control_T CurrentTime1;// '<S3>/Current Time'
+  DW_CurrentTime_motion_control_T CurrentTime;// '<S3>/Current Time'
 };
 
-// Parameters for system: '<S2>/For Each Subsystem'
+// Parameters for system: '<S3>/For Each Subsystem'
 struct P_CoreSubsys_motion_controlle_T_ {
   SL_Bus_custom_interfaces_Actuator Constant_Value;// Computed Parameter: Constant_Value
-                                                      //  Referenced by: '<S11>/Constant'
+                                                      //  Referenced by: '<S16>/Constant'
 
 };
 
-// Parameters for system: '<S2>/For Each Subsystem1'
+// Parameters for system: '<S3>/For Each Subsystem1'
 struct P_CoreSubsys_motion_control_g_T_ {
   SL_Bus_custom_interfaces_Actuator Constant_Value;// Computed Parameter: Constant_Value
-                                                      //  Referenced by: '<S12>/Constant'
+                                                      //  Referenced by: '<S17>/Constant'
 
 };
 
@@ -133,79 +147,124 @@ struct P_CoreSubsys_motion_control_g_T_ {
 struct P_motion_controller_slx_T_ {
   real_T L;                            // Variable: L
                                           //  Referenced by:
-                                          //    '<S15>/MATLAB Function'
-                                          //    '<S17>/MATLAB Function'
+                                          //    '<S20>/MATLAB Function'
+                                          //    '<S21>/getFz'
+                                          //    '<S22>/MATLAB Function'
 
   real_T Tw;                           // Variable: Tw
                                           //  Referenced by:
-                                          //    '<S15>/MATLAB Function'
-                                          //    '<S17>/MATLAB Function'
+                                          //    '<S20>/MATLAB Function'
+                                          //    '<S22>/MATLAB Function'
+
+  real_T a;                            // Variable: a
+                                          //  Referenced by: '<S21>/getFz'
 
   real_T b;                            // Variable: b
-                                          //  Referenced by: '<S17>/MATLAB Function'
+                                          //  Referenced by:
+                                          //    '<S21>/getFz'
+                                          //    '<S22>/MATLAB Function'
+
+  real_T g;                            // Variable: g
+                                          //  Referenced by: '<S21>/getFz'
+
+  real_T h;                            // Variable: h
+                                          //  Referenced by: '<S21>/getFz'
+
+  real_T m;                            // Variable: m
+                                          //  Referenced by: '<S21>/getFz'
 
   int16_T CompareToConstant_const;    // Mask Parameter: CompareToConstant_const
                                          //  Referenced by: '<S1>/Constant'
 
   SL_Bus_custom_interfaces_ActuatorState Out1_Y0;// Computed Parameter: Out1_Y0
-                                                    //  Referenced by: '<S30>/Out1'
+                                                    //  Referenced by: '<S34>/Out1'
 
   SL_Bus_custom_interfaces_ActuatorState Constant_Value;// Computed Parameter: Constant_Value
-                                                           //  Referenced by: '<S27>/Constant'
+                                                           //  Referenced by: '<S31>/Constant'
 
-  SL_Bus_custom_interfaces_ActuatorCommand Constant_Value_f;// Computed Parameter: Constant_Value_f
-                                                               //  Referenced by: '<S6>/Constant'
+  SL_Bus_nav_msgs_Odometry Out1_Y0_i;  // Computed Parameter: Out1_Y0_i
+                                          //  Referenced by: '<S8>/Out1'
+
+  SL_Bus_nav_msgs_Odometry Constant_Value_f;// Computed Parameter: Constant_Value_f
+                                               //  Referenced by: '<S6>/Constant'
+
+  SL_Bus_custom_interfaces_ActuatorCommand Constant_Value_f3;// Computed Parameter: Constant_Value_f3
+                                                                //  Referenced by: '<S11>/Constant'
 
   SL_Bus_custom_interfaces_ActuatorCommand Constant_Value_i;// Computed Parameter: Constant_Value_i
-                                                               //  Referenced by: '<S5>/Constant'
+                                                               //  Referenced by: '<S10>/Constant'
+
+  SL_Bus_sensor_msgs_Imu Out1_Y0_p;    // Computed Parameter: Out1_Y0_p
+                                          //  Referenced by: '<S9>/Out1'
+
+  SL_Bus_sensor_msgs_Imu Constant_Value_f5;// Computed Parameter: Constant_Value_f5
+                                              //  Referenced by: '<S7>/Constant'
 
   SL_Bus_sbus_interface_Sbus Out1_Y0_f;// Computed Parameter: Out1_Y0_f
-                                          //  Referenced by: '<S29>/Out1'
+                                          //  Referenced by: '<S33>/Out1'
 
   SL_Bus_sbus_interface_Sbus Constant_Value_d;// Computed Parameter: Constant_Value_d
-                                                 //  Referenced by: '<S26>/Constant'
+                                                 //  Referenced by: '<S30>/Constant'
 
   real_T Saturation2_UpperSat;         // Expression: 3
-                                          //  Referenced by: '<S2>/Saturation2'
+                                          //  Referenced by: '<S3>/Saturation2'
 
   real_T Saturation2_LowerSat;         // Expression: -3
-                                          //  Referenced by: '<S2>/Saturation2'
+                                          //  Referenced by: '<S3>/Saturation2'
 
   real_T Saturation1_UpperSat;         // Expression: 8
-                                          //  Referenced by: '<S2>/Saturation1'
+                                          //  Referenced by: '<S3>/Saturation1'
 
   real_T Saturation1_LowerSat;         // Expression: -8
-                                          //  Referenced by: '<S2>/Saturation1'
+                                          //  Referenced by: '<S3>/Saturation1'
 
   real_T Saturation_UpperSat;          // Expression: 0.75
-                                          //  Referenced by: '<S2>/Saturation'
+                                          //  Referenced by: '<S3>/Saturation'
 
   real_T Saturation_LowerSat;          // Expression: -0.75
-                                          //  Referenced by: '<S2>/Saturation'
+                                          //  Referenced by: '<S3>/Saturation'
 
-  real_T Constant_Value_o;             // Expression: 0
-                                          //  Referenced by: '<S17>/Constant'
+  real_T MATLABFunction_J;             // Expression: J
+                                          //  Referenced by: '<S21>/MATLAB Function'
 
-  real_T Constant2_Value;              // Expression: 500
-                                          //  Referenced by: '<S14>/Constant2'
+  real_T MATLABFunction_Re;            // Expression: Re
+                                          //  Referenced by: '<S21>/MATLAB Function'
+
+  real_T Constant_Value_m;             // Expression: 0.00399/4
+                                          //  Referenced by: '<S21>/Constant'
+
+  real_T Constant1_Value;              // Expression: 0.0104/4
+                                          //  Referenced by: '<S21>/Constant1'
+
+  real_T Constant2_Value;              // Expression: Re
+                                          //  Referenced by: '<S21>/Constant2'
+
+  real_T Gain_Gain;                    // Expression: 0.036675
+                                          //  Referenced by: '<S21>/Gain'
+
+  real_T Constant3_Value;              // Expression: 0.21275
+                                          //  Referenced by: '<S21>/Constant3'
+
+  real_T Gain_Gain_m;                  // Expression: 0
+                                          //  Referenced by: '<S22>/Gain'
+
+  real_T Constant2_Value_f;            // Expression: 500
+                                          //  Referenced by: '<S19>/Constant2'
 
   real_T Gain1_Gain;                   // Expression: 1/500
-                                          //  Referenced by: '<S14>/Gain1'
+                                          //  Referenced by: '<S19>/Gain1'
 
   real_T Constant_Value_ff;            // Expression: 500
-                                          //  Referenced by: '<S14>/Constant'
+                                          //  Referenced by: '<S19>/Constant'
 
-  real_T Gain_Gain;                    // Expression: 1/500
-                                          //  Referenced by: '<S14>/Gain'
+  real_T Gain_Gain_f;                  // Expression: 1/500
+                                          //  Referenced by: '<S19>/Gain'
 
   real_T Gain2_Gain;                   // Expression: -1
-                                          //  Referenced by: '<S14>/Gain2'
+                                          //  Referenced by: '<S19>/Gain2'
 
-  real_T Gain_Gain_n[4];               // Expression: ones(1,4)/4
-                                          //  Referenced by: '<S4>/Gain'
-
-  P_CoreSubsys_motion_control_g_T CoreSubsys_p;// '<S2>/For Each Subsystem1'
-  P_CoreSubsys_motion_controlle_T CoreSubsys;// '<S2>/For Each Subsystem'
+  P_CoreSubsys_motion_control_g_T CoreSubsys_p;// '<S3>/For Each Subsystem1'
+  P_CoreSubsys_motion_controlle_T CoreSubsys;// '<S3>/For Each Subsystem'
 };
 
 // Real-time Model Data Structure
@@ -247,37 +306,34 @@ class motion_controller_slx
   // Tunable parameters
   static P_motion_controller_slx_T motion_controller_slx_P;
 
-  // private member function(s) for subsystem '<S2>/Current Time'
+  // private member function(s) for subsystem '<S3>/Current Time'
   static void motion_control_CurrentTime_Init(DW_CurrentTime_motion_control_T
     *localDW);
   void motion_controller_s_CurrentTime(B_CurrentTime_motion_controll_T *localB);
   static void motion_control_CurrentTime_Term(DW_CurrentTime_motion_control_T
     *localDW);
 
-  // private member function(s) for subsystem '<S14>/Chart1'
-  static void motion_controller_s_Chart1_Init(real_T *rty_out);
-  static void motion_controller_slx_Chart1(real_T rtu_steer_rate_dps, real_T
-    rtu_angle, real_T *rty_out, DW_Chart1_motion_controller_s_T *localDW);
-
-  // private member function(s) for subsystem '<S3>/get_angle_4w'
+  // private member function(s) for subsystem '<S4>/get_angle_4w'
   void motion_controller__get_angle_4w(real_T rtu_delta_f, real_T rtu_delta_r,
     real_T rty_angle_cmd[4]) const;
 
-  // private member function(s) for subsystem '<S3>/get_effort'
+  // private member function(s) for subsystem '<S4>/get_effort'
   void motion_controll_get_effort_Init();
-  void motion_controller_sl_get_effort(real_T rtu_longdrive, real_T
-    rty_effort_cmd[4]);
+  void motion_controller_sl_get_effort(real_T rtu_longdrive, real_T rtu_vx,
+    real_T rtu_dvx, const real_T rtu_omega4w[4], real_T rty_effort_cmd[4]);
   void motion_controll_get_effort_Term();
 
-  // private member function(s) for subsystem '<S3>/get_spd'
+  // private member function(s) for subsystem '<S4>/get_spd'
   void motion_controller_slx_get_spd(real_T rtu_angle, real_T rtu_longdrive,
     real_T rty_spd_cmd[4]) const;
 
   // private member function(s) for subsystem '<Root>'
-  void motion_control_SystemCore_setup(ros_slros2_internal_block_Pub_T *obj);
-  void motion_contr_SystemCore_setup_o(ros_slros2_internal_block_Pub_T *obj);
-  void motion_cont_SystemCore_setup_o0(ros_slros2_internal_block_Sub_T *obj);
-  void motion_con_SystemCore_setup_o0a(ros_slros2_internal_block_Sub_T *obj);
+  void motion_cont_SystemCore_setup_o0(ros_slros2_internal_block_Pub_T *obj);
+  void motion_con_SystemCore_setup_o0a(ros_slros2_internal_block_Pub_T *obj);
+  void motion_co_SystemCore_setup_o0aj(ros_slros2_internal_block_Sub_T *obj);
+  void motion_c_SystemCore_setup_o0ajj(ros_slros2_internal_block_Sub_T *obj);
+  void motion_contr_SystemCore_setup_o(ros_slros2_internal_block_Sub_T *obj);
+  void motion_control_SystemCore_setup(ros_slros2_internal_block_Sub_T *obj);
 
   // Real-Time Model
   RT_MODEL_motion_controller_sl_T motion_controller_slx_M;
@@ -289,28 +345,27 @@ extern volatile boolean_T runModel;
 //-
 //  These blocks were eliminated from the model due to optimizations:
 //
-//  Block '<Root>/Display' : Unused code path elimination
-//  Block '<Root>/Display1' : Unused code path elimination
-//  Block '<Root>/Display2' : Unused code path elimination
-//  Block '<Root>/Display3' : Unused code path elimination
-//  Block '<Root>/Display4' : Unused code path elimination
-//  Block '<Root>/Scope' : Unused code path elimination
-//  Block '<S28>/Display' : Unused code path elimination
-//  Block '<S28>/Display1' : Unused code path elimination
-//  Block '<S28>/Display10' : Unused code path elimination
-//  Block '<S28>/Display11' : Unused code path elimination
-//  Block '<S28>/Display12' : Unused code path elimination
-//  Block '<S28>/Display13' : Unused code path elimination
-//  Block '<S28>/Display14' : Unused code path elimination
-//  Block '<S28>/Display15' : Unused code path elimination
-//  Block '<S28>/Display2' : Unused code path elimination
-//  Block '<S28>/Display3' : Unused code path elimination
-//  Block '<S28>/Display4' : Unused code path elimination
-//  Block '<S28>/Display5' : Unused code path elimination
-//  Block '<S28>/Display6' : Unused code path elimination
-//  Block '<S28>/Display7' : Unused code path elimination
-//  Block '<S28>/Display8' : Unused code path elimination
-//  Block '<S28>/Display9' : Unused code path elimination
+//  Block '<S19>/Display' : Unused code path elimination
+//  Block '<S19>/Display1' : Unused code path elimination
+//  Block '<S21>/Display' : Unused code path elimination
+//  Block '<S21>/Display1' : Unused code path elimination
+//  Block '<S32>/Display' : Unused code path elimination
+//  Block '<S32>/Display1' : Unused code path elimination
+//  Block '<S32>/Display10' : Unused code path elimination
+//  Block '<S32>/Display11' : Unused code path elimination
+//  Block '<S32>/Display12' : Unused code path elimination
+//  Block '<S32>/Display13' : Unused code path elimination
+//  Block '<S32>/Display14' : Unused code path elimination
+//  Block '<S32>/Display15' : Unused code path elimination
+//  Block '<S32>/Display2' : Unused code path elimination
+//  Block '<S32>/Display3' : Unused code path elimination
+//  Block '<S32>/Display4' : Unused code path elimination
+//  Block '<S32>/Display5' : Unused code path elimination
+//  Block '<S32>/Display6' : Unused code path elimination
+//  Block '<S32>/Display7' : Unused code path elimination
+//  Block '<S32>/Display8' : Unused code path elimination
+//  Block '<S32>/Display9' : Unused code path elimination
+//  Block '<S4>/Reshape' : Reshape block reduction
 
 
 //-
@@ -329,35 +384,39 @@ extern volatile boolean_T runModel;
 //
 //  '<Root>' : 'motion_controller_slx'
 //  '<S1>'   : 'motion_controller_slx/Compare To Constant'
-//  '<S2>'   : 'motion_controller_slx/cmd_pub'
-//  '<S3>'   : 'motion_controller_slx/controller'
-//  '<S4>'   : 'motion_controller_slx/subscription'
-//  '<S5>'   : 'motion_controller_slx/cmd_pub/Blank Message1'
-//  '<S6>'   : 'motion_controller_slx/cmd_pub/Blank Message2'
-//  '<S7>'   : 'motion_controller_slx/cmd_pub/For Each Subsystem'
-//  '<S8>'   : 'motion_controller_slx/cmd_pub/For Each Subsystem1'
-//  '<S9>'   : 'motion_controller_slx/cmd_pub/Publish'
-//  '<S10>'  : 'motion_controller_slx/cmd_pub/Publish2'
-//  '<S11>'  : 'motion_controller_slx/cmd_pub/For Each Subsystem/Blank Message4'
-//  '<S12>'  : 'motion_controller_slx/cmd_pub/For Each Subsystem1/Blank Message4'
-//  '<S13>'  : 'motion_controller_slx/controller/Chart'
-//  '<S14>'  : 'motion_controller_slx/controller/Subsystem'
-//  '<S15>'  : 'motion_controller_slx/controller/get_angle_4w'
-//  '<S16>'  : 'motion_controller_slx/controller/get_effort'
-//  '<S17>'  : 'motion_controller_slx/controller/get_spd'
-//  '<S18>'  : 'motion_controller_slx/controller/Subsystem/Chart1'
-//  '<S19>'  : 'motion_controller_slx/controller/Subsystem/Chart2'
-//  '<S20>'  : 'motion_controller_slx/controller/Subsystem/Chart3'
-//  '<S21>'  : 'motion_controller_slx/controller/Subsystem/Chart4'
-//  '<S22>'  : 'motion_controller_slx/controller/get_angle_4w/MATLAB Function'
-//  '<S23>'  : 'motion_controller_slx/controller/get_effort/MATLAB Function'
-//  '<S24>'  : 'motion_controller_slx/controller/get_spd/MATLAB Function'
-//  '<S25>'  : 'motion_controller_slx/subscription/For Each Subsystem'
-//  '<S26>'  : 'motion_controller_slx/subscription/Subscribe'
-//  '<S27>'  : 'motion_controller_slx/subscription/Subscribe1'
-//  '<S28>'  : 'motion_controller_slx/subscription/display'
-//  '<S29>'  : 'motion_controller_slx/subscription/Subscribe/Enabled Subsystem'
-//  '<S30>'  : 'motion_controller_slx/subscription/Subscribe1/Enabled Subsystem'
+//  '<S2>'   : 'motion_controller_slx/Subsystem'
+//  '<S3>'   : 'motion_controller_slx/cmd_pub'
+//  '<S4>'   : 'motion_controller_slx/controller'
+//  '<S5>'   : 'motion_controller_slx/subscription'
+//  '<S6>'   : 'motion_controller_slx/Subsystem/Subscribe'
+//  '<S7>'   : 'motion_controller_slx/Subsystem/Subscribe1'
+//  '<S8>'   : 'motion_controller_slx/Subsystem/Subscribe/Enabled Subsystem'
+//  '<S9>'   : 'motion_controller_slx/Subsystem/Subscribe1/Enabled Subsystem'
+//  '<S10>'  : 'motion_controller_slx/cmd_pub/Blank Message1'
+//  '<S11>'  : 'motion_controller_slx/cmd_pub/Blank Message2'
+//  '<S12>'  : 'motion_controller_slx/cmd_pub/For Each Subsystem'
+//  '<S13>'  : 'motion_controller_slx/cmd_pub/For Each Subsystem1'
+//  '<S14>'  : 'motion_controller_slx/cmd_pub/Publish'
+//  '<S15>'  : 'motion_controller_slx/cmd_pub/Publish2'
+//  '<S16>'  : 'motion_controller_slx/cmd_pub/For Each Subsystem/Blank Message4'
+//  '<S17>'  : 'motion_controller_slx/cmd_pub/For Each Subsystem1/Blank Message4'
+//  '<S18>'  : 'motion_controller_slx/controller/Chart'
+//  '<S19>'  : 'motion_controller_slx/controller/Subsystem'
+//  '<S20>'  : 'motion_controller_slx/controller/get_angle_4w'
+//  '<S21>'  : 'motion_controller_slx/controller/get_effort'
+//  '<S22>'  : 'motion_controller_slx/controller/get_spd'
+//  '<S23>'  : 'motion_controller_slx/controller/Subsystem/Chart2'
+//  '<S24>'  : 'motion_controller_slx/controller/Subsystem/MATLAB Function'
+//  '<S25>'  : 'motion_controller_slx/controller/get_angle_4w/MATLAB Function'
+//  '<S26>'  : 'motion_controller_slx/controller/get_effort/MATLAB Function'
+//  '<S27>'  : 'motion_controller_slx/controller/get_effort/getFz'
+//  '<S28>'  : 'motion_controller_slx/controller/get_spd/MATLAB Function'
+//  '<S29>'  : 'motion_controller_slx/subscription/For Each Subsystem'
+//  '<S30>'  : 'motion_controller_slx/subscription/Subscribe'
+//  '<S31>'  : 'motion_controller_slx/subscription/Subscribe1'
+//  '<S32>'  : 'motion_controller_slx/subscription/display'
+//  '<S33>'  : 'motion_controller_slx/subscription/Subscribe/Enabled Subsystem'
+//  '<S34>'  : 'motion_controller_slx/subscription/Subscribe1/Enabled Subsystem'
 
 #endif                                 // RTW_HEADER_motion_controller_slx_h_
 
