@@ -1,8 +1,14 @@
 // Copyright 2022-2023 The MathWorks, Inc.
-// Generated 04-Jan-2025 16:58:15
+// Generated 06-Jan-2025 15:09:11
 #include "slros2_initialize.h"
 // motion_controller_withPIC/StateFlow/Publish2
 SimulinkPublisher<geometry_msgs::msg::Twist,SL_Bus_geometry_msgs_Twist> Pub_motion_controller_withPIC_545;
+// motion_controller_withPIC/StateFlow1/Publish2
+SimulinkPublisher<sensor_msgs::msg::Imu,SL_Bus_sensor_msgs_Imu> Pub_motion_controller_withPIC_831;
+// motion_controller_withPIC/StateFlow2/Publish2
+SimulinkPublisher<sensor_msgs::msg::Imu,SL_Bus_sensor_msgs_Imu> Pub_motion_controller_withPIC_839;
+// motion_controller_withPIC/StateFlow5/Publish2
+SimulinkPublisher<sensor_msgs::msg::Imu,SL_Bus_sensor_msgs_Imu> Pub_motion_controller_withPIC_932;
 // motion_controller_withPIC/cmd_pub/Publish
 SimulinkPublisher<custom_interfaces::msg::ActuatorCommand,SL_Bus_custom_interfaces_ActuatorCommand> Pub_motion_controller_withPIC_4;
 // motion_controller_withPIC/cmd_pub/Publish2
@@ -35,6 +41,12 @@ SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_619;
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_631;
 // For Block motion_controller_withPIC/Get Parameter16
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_632;
+// For Block motion_controller_withPIC/Get Parameter17
+SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_withPIC_910;
+// For Block motion_controller_withPIC/Get Parameter18
+SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_withPIC_940;
+// For Block motion_controller_withPIC/Get Parameter19
+SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_924;
 // For Block motion_controller_withPIC/Get Parameter2
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_559;
 // For Block motion_controller_withPIC/Get Parameter3
@@ -43,6 +55,8 @@ SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_560;
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_561;
 // For Block motion_controller_withPIC/Get Parameter5
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_562;
+// For Block motion_controller_withPIC/Get Parameter6
+SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_907;
 // For Block motion_controller_withPIC/Get Parameter7
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_605;
 // For Block motion_controller_withPIC/Get Parameter8
@@ -55,6 +69,8 @@ SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_withPIC_625;
 SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_withPIC_629;
 // For Block motion_controller_withPIC/Subsystem2/Get Parameter3
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_621;
+// For Block motion_controller_withPIC/Subsystem5/Get Parameter20
+SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_916;
 // For Block motion_controller_withPIC/controller/Get Parameter1
 SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_217;
 // For Block motion_controller_withPIC/controller/Subsystem/Get Parameter

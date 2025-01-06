@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_withPIC'.
 //
-// Model version                  : 2.323
+// Model version                  : 2.353
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Sat Jan  4 16:58:07 2025
+// C/C++ source code generated on : Mon Jan  6 15:09:04 2025
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -88,19 +88,6 @@ struct SL_Bus_std_msgs_Header
 
 #endif
 
-#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Point_
-#define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Point_
-
-// MsgType=geometry_msgs/Point
-struct SL_Bus_geometry_msgs_Point
-{
-  real_T x;
-  real_T y;
-  real_T z;
-};
-
-#endif
-
 #ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Quaternion_
 #define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Quaternion_
 
@@ -111,6 +98,43 @@ struct SL_Bus_geometry_msgs_Quaternion
   real_T y;
   real_T z;
   real_T w;
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_sensor_msgs_Imu_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_sensor_msgs_Imu_
+
+// MsgType=sensor_msgs/Imu
+struct SL_Bus_sensor_msgs_Imu
+{
+  // MsgType=std_msgs/Header
+  SL_Bus_std_msgs_Header header;
+
+  // MsgType=geometry_msgs/Quaternion
+  SL_Bus_geometry_msgs_Quaternion orientation;
+  real_T orientation_covariance[9];
+
+  // MsgType=geometry_msgs/Vector3
+  SL_Bus_geometry_msgs_Vector3 angular_velocity;
+  real_T angular_velocity_covariance[9];
+
+  // MsgType=geometry_msgs/Vector3
+  SL_Bus_geometry_msgs_Vector3 linear_acceleration;
+  real_T linear_acceleration_covariance[9];
+};
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Point_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Point_
+
+// MsgType=geometry_msgs/Point
+struct SL_Bus_geometry_msgs_Point
+{
+  real_T x;
+  real_T y;
+  real_T z;
 };
 
 #endif
@@ -176,30 +200,6 @@ struct SL_Bus_nav_msgs_Odometry
 
   // MsgType=geometry_msgs/TwistWithCovariance
   SL_Bus_geometry_msgs_TwistWithCovariance twist;
-};
-
-#endif
-
-#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_sensor_msgs_Imu_
-#define DEFINED_TYPEDEF_FOR_SL_Bus_sensor_msgs_Imu_
-
-// MsgType=sensor_msgs/Imu
-struct SL_Bus_sensor_msgs_Imu
-{
-  // MsgType=std_msgs/Header
-  SL_Bus_std_msgs_Header header;
-
-  // MsgType=geometry_msgs/Quaternion
-  SL_Bus_geometry_msgs_Quaternion orientation;
-  real_T orientation_covariance[9];
-
-  // MsgType=geometry_msgs/Vector3
-  SL_Bus_geometry_msgs_Vector3 angular_velocity;
-  real_T angular_velocity_covariance[9];
-
-  // MsgType=geometry_msgs/Vector3
-  SL_Bus_geometry_msgs_Vector3 linear_acceleration;
-  real_T linear_acceleration_covariance[9];
 };
 
 #endif
@@ -308,7 +308,7 @@ struct ros_slros2_internal_block_Get_T
 
 #endif                                // struct_ros_slros2_internal_block_Get_T
 
-// Custom Type definition for MATLABSystem: '<S56>/SourceBlock'
+// Custom Type definition for MATLABSystem: '<S69>/SourceBlock'
 #include "rmw/qos_profiles.h"
 #ifndef struct_ros_slros2_internal_block_Pub_T
 #define struct_ros_slros2_internal_block_Pub_T
@@ -334,7 +334,7 @@ struct ros_slros2_internal_block_Sub_T
 
 #endif                                // struct_ros_slros2_internal_block_Sub_T
 
-// Custom Type definition for MATLAB Function: '<S48>/solvex'
+// Custom Type definition for MATLAB Function: '<S61>/solvex'
 #ifndef struct_s5cJJO9CAPQxuVG0iaeiP4F_motio_T
 #define struct_s5cJJO9CAPQxuVG0iaeiP4F_motio_T
 
@@ -391,7 +391,7 @@ struct s8kZFjDlzP6eNfOekUiP5MF_motio_T
 
 #endif                                // struct_s8kZFjDlzP6eNfOekUiP5MF_motio_T
 
-// Custom Type definition for MATLAB Function: '<S49>/solvex'
+// Custom Type definition for MATLAB Function: '<S62>/solvex'
 #ifndef struct_sL9bDKomAYkxZSVrG9w6En_motion_T
 #define struct_sL9bDKomAYkxZSVrG9w6En_motion_T
 
@@ -461,7 +461,7 @@ struct sTy13TWZ7KObOACj8wDaLQC_motio_T
 
 #endif                                // struct_sTy13TWZ7KObOACj8wDaLQC_motio_T
 
-// Custom Type definition for MATLAB Function: '<S48>/solvex'
+// Custom Type definition for MATLAB Function: '<S61>/solvex'
 #ifndef struct_s2uO2c2bmaUl7sY5vOWIzHG_motio_T
 #define struct_s2uO2c2bmaUl7sY5vOWIzHG_motio_T
 
@@ -492,7 +492,7 @@ struct sFlCINAYeIgPgx0UwEHpaMF_motio_T
 
 #endif                                // struct_sFlCINAYeIgPgx0UwEHpaMF_motio_T
 
-// Custom Type definition for MATLAB Function: '<S49>/solvex'
+// Custom Type definition for MATLAB Function: '<S62>/solvex'
 #ifndef struct_sIZAIOglGM5dPDQlNukc9SD_motio_T
 #define struct_sIZAIOglGM5dPDQlNukc9SD_motio_T
 
@@ -560,7 +560,7 @@ struct sSOeZ9WO10chPn9Si6PKiCB_motio_T
 
 #endif                                // struct_sSOeZ9WO10chPn9Si6PKiCB_motio_T
 
-// Custom Type definition for MATLAB Function: '<S48>/solvex'
+// Custom Type definition for MATLAB Function: '<S61>/solvex'
 #ifndef struct_sT1ziU4p6vTWuD880X9yNJ_motion_T
 #define struct_sT1ziU4p6vTWuD880X9yNJ_motion_T
 
@@ -605,7 +605,7 @@ struct sT1ziU4p6vTWuD880X9yNJ_motion_T
 
 #endif                                // struct_sT1ziU4p6vTWuD880X9yNJ_motion_T
 
-// Custom Type definition for MATLAB Function: '<S49>/solvex'
+// Custom Type definition for MATLAB Function: '<S62>/solvex'
 #ifndef struct_sVIU4VBONGRsUytHTQmMJFH_motio_T
 #define struct_sVIU4VBONGRsUytHTQmMJFH_motio_T
 
@@ -650,10 +650,10 @@ struct sVIU4VBONGRsUytHTQmMJFH_motio_T
 
 #endif                                // struct_sVIU4VBONGRsUytHTQmMJFH_motio_T
 
-// Parameters for system: '<S8>/For Each Subsystem'
+// Parameters for system: '<S14>/For Each Subsystem'
 typedef struct P_CoreSubsys_motion_control_g_T_ P_CoreSubsys_motion_control_g_T;
 
-// Parameters for system: '<S8>/For Each Subsystem1'
+// Parameters for system: '<S14>/For Each Subsystem1'
 typedef struct P_CoreSubsys_motion_contro_gm_T_ P_CoreSubsys_motion_contro_gm_T;
 
 // Parameters (default storage)

@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_withPIC'.
 //
-// Model version                  : 2.323
+// Model version                  : 2.353
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Sat Jan  4 16:58:07 2025
+// C/C++ source code generated on : Mon Jan  6 15:09:04 2025
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -22,69 +22,85 @@
 P_motion_controller_withPIC_T motion_controller_withPIC::
   motion_controller_withPIC_P = {
   // Variable: B
-  //  Referenced by: '<S10>/update'
+  //  Referenced by:
+  //    '<Root>/update'
+  //    '<S16>/update'
 
   0.341,
 
   // Variable: Izz
-  //  Referenced by: '<S10>/update'
+  //  Referenced by:
+  //    '<Root>/update'
+  //    '<S16>/update'
 
   0.752,
 
   // Variable: Krsf
-  //  Referenced by: '<S10>/update'
+  //  Referenced by:
+  //    '<Root>/update'
+  //    '<S16>/update'
 
   0.5,
 
   // Variable: L
   //  Referenced by:
-  //    '<S10>/update'
-  //    '<S34>/MATLAB Function'
-  //    '<S36>/MATLAB Function'
+  //    '<Root>/update'
+  //    '<S16>/update'
+  //    '<S47>/MATLAB Function'
+  //    '<S49>/MATLAB Function'
 
   0.492,
 
   // Variable: Tw
   //  Referenced by:
-  //    '<S34>/MATLAB Function'
-  //    '<S36>/MATLAB Function'
+  //    '<S47>/MATLAB Function'
+  //    '<S49>/MATLAB Function'
 
   0.341,
 
   // Variable: a
-  //  Referenced by: '<S10>/update'
+  //  Referenced by:
+  //    '<Root>/update'
+  //    '<S16>/update'
 
   0.246,
 
   // Variable: b
   //  Referenced by:
-  //    '<S10>/update'
-  //    '<S36>/MATLAB Function'
+  //    '<Root>/update'
+  //    '<S16>/update'
+  //    '<S49>/MATLAB Function'
 
   0.246,
 
   // Variable: g
-  //  Referenced by: '<S10>/update'
+  //  Referenced by:
+  //    '<Root>/update'
+  //    '<S16>/update'
 
   9.8,
 
   // Variable: hCG
-  //  Referenced by: '<S10>/update'
+  //  Referenced by:
+  //    '<Root>/update'
+  //    '<S16>/update'
 
   0.0839,
 
   // Variable: m
-  //  Referenced by: '<S10>/update'
+  //  Referenced by:
+  //    '<Root>/update'
+  //    '<S16>/update'
 
   10.56,
 
   // Mask Parameter: CompareToConstant_const
-  //  Referenced by: '<S42>/Constant'
+  //  Referenced by: '<S55>/Constant'
 
   0.0,
 
   // Mask Parameter: CompareToConstant1_const
-  //  Referenced by: '<S23>/Constant'
+  //  Referenced by: '<S36>/Constant'
 
   300.0,
 
@@ -94,7 +110,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   0,
 
   // Computed Parameter: Out1_Y0
-  //  Referenced by: '<S22>/Out1'
+  //  Referenced by: '<S35>/Out1'
 
   {
     {
@@ -435,7 +451,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Out1_Y0_k
-  //  Referenced by: '<S59>/Out1'
+  //  Referenced by: '<S72>/Out1'
 
   {
     {
@@ -776,7 +792,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value
-  //  Referenced by: '<S19>/Constant'
+  //  Referenced by: '<S32>/Constant'
 
   {
     {
@@ -1117,7 +1133,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_h
-  //  Referenced by: '<S56>/Constant'
+  //  Referenced by: '<S69>/Constant'
 
   {
     {
@@ -1458,7 +1474,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Out1_Y0_i
-  //  Referenced by: '<S20>/Out1'
+  //  Referenced by: '<S33>/Out1'
 
   {
     {
@@ -1546,7 +1562,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_n
-  //  Referenced by: '<S17>/Constant'
+  //  Referenced by: '<S30>/Constant'
 
   {
     {
@@ -1634,7 +1650,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_f
-  //  Referenced by: '<S25>/Constant'
+  //  Referenced by: '<S38>/Constant'
 
   {
     {
@@ -1743,7 +1759,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_i
-  //  Referenced by: '<S24>/Constant'
+  //  Referenced by: '<S37>/Constant'
 
   {
     {
@@ -1852,7 +1868,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Out1_Y0_e
-  //  Referenced by: '<S21>/Out1'
+  //  Referenced by: '<S34>/Out1'
 
   {
     {
@@ -1911,7 +1927,184 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_e
-  //  Referenced by: '<S18>/Constant'
+  //  Referenced by: '<S31>/Constant'
+
+  {
+    {
+      {
+        0,                             // sec
+        0U                             // nanosec
+      },                               // stamp
+
+      {
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U }
+      ,                                // frame_id
+
+      {
+        0U,                            // CurrentLength
+        0U                             // ReceivedLength
+      }                                // frame_id_SL_Info
+    },                                 // header
+
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0,                             // z
+      0.0                              // w
+    },                                 // orientation
+
+    {
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+    ,                                  // orientation_covariance
+
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0                              // z
+    },                                 // angular_velocity
+
+    {
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+    ,                                  // angular_velocity_covariance
+
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0                              // z
+    },                                 // linear_acceleration
+
+    {
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+    // linear_acceleration_covariance
+  },
+
+  // Computed Parameter: Constant_Value_d
+  //  Referenced by: '<S21>/Constant'
+
+  {
+    {
+      {
+        0,                             // sec
+        0U                             // nanosec
+      },                               // stamp
+
+      {
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U }
+      ,                                // frame_id
+
+      {
+        0U,                            // CurrentLength
+        0U                             // ReceivedLength
+      }                                // frame_id_SL_Info
+    },                                 // header
+
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0,                             // z
+      0.0                              // w
+    },                                 // orientation
+
+    {
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+    ,                                  // orientation_covariance
+
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0                              // z
+    },                                 // angular_velocity
+
+    {
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+    ,                                  // angular_velocity_covariance
+
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0                              // z
+    },                                 // linear_acceleration
+
+    {
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+    // linear_acceleration_covariance
+  },
+
+  // Computed Parameter: Constant_Value_eh
+  //  Referenced by: '<S23>/Constant'
+
+  {
+    {
+      {
+        0,                             // sec
+        0U                             // nanosec
+      },                               // stamp
+
+      {
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
+        0U, 0U }
+      ,                                // frame_id
+
+      {
+        0U,                            // CurrentLength
+        0U                             // ReceivedLength
+      }                                // frame_id_SL_Info
+    },                                 // header
+
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0,                             // z
+      0.0                              // w
+    },                                 // orientation
+
+    {
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+    ,                                  // orientation_covariance
+
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0                              // z
+    },                                 // angular_velocity
+
+    {
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+    ,                                  // angular_velocity_covariance
+
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0                              // z
+    },                                 // linear_acceleration
+
+    {
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+    // linear_acceleration_covariance
+  },
+
+  // Computed Parameter: Constant_Value_m
+  //  Referenced by: '<S25>/Constant'
 
   {
     {
@@ -1970,7 +2163,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Out1_Y0_f
-  //  Referenced by: '<S58>/Out1'
+  //  Referenced by: '<S71>/Out1'
 
   {
     {
@@ -2007,8 +2200,8 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
     false                              // frame_lost
   },
 
-  // Computed Parameter: Constant_Value_d
-  //  Referenced by: '<S55>/Constant'
+  // Computed Parameter: Constant_Value_dx
+  //  Referenced by: '<S68>/Constant'
 
   {
     {
@@ -2046,7 +2239,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_a
-  //  Referenced by: '<S12>/Constant'
+  //  Referenced by: '<S19>/Constant'
 
   {
     {
@@ -2063,169 +2256,209 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Expression: 0
-  //  Referenced by: '<S6>/Gain2'
+  //  Referenced by: '<S10>/Gain2'
 
   0.0,
 
   // Expression: 0.4
-  //  Referenced by: '<S6>/Gain1'
+  //  Referenced by: '<S10>/Gain1'
 
   0.4,
 
   // Expression: 0
-  //  Referenced by: '<S6>/Gain'
+  //  Referenced by: '<S10>/Gain'
 
   0.0,
 
   // Expression: 2
-  //  Referenced by: '<S6>/Constant'
+  //  Referenced by: '<S10>/Constant'
 
   2.0,
 
+  // Expression: -0.02
+  //  Referenced by: '<Root>/Dead Zone'
+
+  -0.02,
+
+  // Expression: 0.02
+  //  Referenced by: '<Root>/Dead Zone'
+
+  0.02,
+
   // Expression: 3
-  //  Referenced by: '<S8>/Saturation2'
+  //  Referenced by: '<S14>/Saturation2'
 
   3.0,
 
   // Expression: -3
-  //  Referenced by: '<S8>/Saturation2'
+  //  Referenced by: '<S14>/Saturation2'
 
   -3.0,
 
   // Expression: 8
-  //  Referenced by: '<S8>/Saturation1'
+  //  Referenced by: '<S14>/Saturation1'
 
   8.0,
 
   // Expression: -8
-  //  Referenced by: '<S8>/Saturation1'
+  //  Referenced by: '<S14>/Saturation1'
 
   -8.0,
 
   // Expression: 0.75
-  //  Referenced by: '<S8>/Saturation'
+  //  Referenced by: '<S14>/Saturation'
 
   0.75,
 
   // Expression: -0.75
-  //  Referenced by: '<S8>/Saturation'
+  //  Referenced by: '<S14>/Saturation'
 
   -0.75,
 
   // Expression: J
-  //  Referenced by: '<S35>/MATLAB Function'
+  //  Referenced by: '<S48>/MATLAB Function'
 
   0.00101,
 
   // Expression: Re
-  //  Referenced by: '<S35>/MATLAB Function'
+  //  Referenced by: '<S48>/MATLAB Function'
 
   0.065,
 
   // Expression: 0
-  //  Referenced by: '<S35>/Constant4'
+  //  Referenced by: '<S48>/Constant4'
 
   0.0,
 
   // Expression: 0
-  //  Referenced by: '<S36>/Gain'
+  //  Referenced by: '<S49>/Gain'
 
   0.0,
 
   // Expression: 500
-  //  Referenced by: '<S33>/Constant2'
+  //  Referenced by: '<S46>/Constant2'
 
   500.0,
 
   // Expression: 1/500
-  //  Referenced by: '<S33>/Gain1'
+  //  Referenced by: '<S46>/Gain1'
 
   0.002,
 
   // Expression: 500
-  //  Referenced by: '<S33>/Constant'
+  //  Referenced by: '<S46>/Constant'
 
   500.0,
 
   // Expression: 1/500
-  //  Referenced by: '<S33>/Gain'
+  //  Referenced by: '<S46>/Gain'
 
   0.002,
 
   // Expression: -1
-  //  Referenced by: '<S33>/Gain2'
+  //  Referenced by: '<S46>/Gain2'
 
   -1.0,
 
   // Expression: 0
-  //  Referenced by: '<S9>/Constant'
+  //  Referenced by: '<S15>/Constant'
 
   0.0,
 
   // Expression: -1
-  //  Referenced by: '<S48>/Gain1'
+  //  Referenced by: '<S61>/Gain1'
 
   -1.0,
 
   // Expression: -1
-  //  Referenced by: '<S49>/Gain1'
+  //  Referenced by: '<S62>/Gain1'
 
   -1.0,
 
   // Expression: 1e-9
-  //  Referenced by: '<S10>/Constant2'
+  //  Referenced by: '<S16>/Constant2'
 
   1.0E-9,
 
-  // Computed Parameter: Ay_check_Y0
-  //  Referenced by: '<S10>/Ay_check'
+  // Expression: 0
+  //  Referenced by: '<S16>/Unit Delay'
 
   0.0,
 
   // Expression: 0
-  //  Referenced by: '<S10>/Unit Delay'
-
-  0.0,
-
-  // Expression: 0
-  //  Referenced by: '<S10>/Unit Delay1'
+  //  Referenced by: '<S16>/Unit Delay1'
 
   0.0,
 
   // Computed Parameter: Merge_InitialOutput
-  //  Referenced by: '<S46>/Merge'
+  //  Referenced by: '<S59>/Merge'
 
   0.0,
 
   // Expression: 500
-  //  Referenced by: '<S7>/Constant1'
+  //  Referenced by: '<S11>/Constant1'
 
   500.0,
 
   // Expression: 0.411
-  //  Referenced by: '<S5>/Constant'
+  //  Referenced by: '<S9>/Constant'
 
   0.411,
+
+  // Expression: 1
+  //  Referenced by: '<Root>/Saturation'
+
+  1.0,
+
+  // Expression: 0
+  //  Referenced by: '<Root>/Saturation'
+
+  0.0,
+
+  // Expression: -0.1
+  //  Referenced by: '<S9>/Dead Zone1'
+
+  -0.1,
+
+  // Expression: 0.1
+  //  Referenced by: '<S9>/Dead Zone1'
+
+  0.1,
+
+  // Expression: -0.05
+  //  Referenced by: '<S9>/Dead Zone3'
+
+  -0.05,
+
+  // Expression: 0.05
+  //  Referenced by: '<S9>/Dead Zone3'
+
+  0.05,
+
+  // Expression: 0.411
+  //  Referenced by: '<S13>/Constant1'
+
+  0.411,
+
+  // Expression: 0.4
+  //  Referenced by: '<S10>/Saturation'
+
+  0.4,
+
+  // Expression: -0.4
+  //  Referenced by: '<S10>/Saturation'
+
+  -0.4,
 
   // Expression: 0.01
   //  Referenced by: '<Root>/Constant2'
 
   0.01,
 
-  // Expression: 0.4
-  //  Referenced by: '<S6>/Saturation'
-
-  0.4,
-
-  // Expression: -0.4
-  //  Referenced by: '<S6>/Saturation'
-
-  -0.4,
-
-  // Start of '<S27>/CoreSubsys'
+  // Start of '<S40>/CoreSubsys'
   {
     // Computed Parameter: Constant_Value
-    //  Referenced by: '<S31>/Constant'
+    //  Referenced by: '<S44>/Constant'
 
     {
       {
@@ -2250,12 +2483,12 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   }
   ,
 
-  // End of '<S27>/CoreSubsys'
+  // End of '<S40>/CoreSubsys'
 
-  // Start of '<S26>/CoreSubsys'
+  // Start of '<S39>/CoreSubsys'
   {
     // Computed Parameter: Constant_Value
-    //  Referenced by: '<S30>/Constant'
+    //  Referenced by: '<S43>/Constant'
 
     {
       {
@@ -2278,7 +2511,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
       0.0                              // effort
     }
   }
-  // End of '<S26>/CoreSubsys'
+  // End of '<S39>/CoreSubsys'
 };
 
 //

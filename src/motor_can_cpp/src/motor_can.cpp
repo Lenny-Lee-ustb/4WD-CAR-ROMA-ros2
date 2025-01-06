@@ -90,7 +90,7 @@ private:
     void command_callback(const custom_interfaces::msg::ActuatorCommand::SharedPtr motor_cmd)
     {
         int motorNum = motor_cmd->actuator_command.size();
-        is_cmd_active = 20;
+        is_cmd_active = 30;
         for (auto i = 0; i < motorNum; i++)
         {
             motor[i].drive_mode = motor_cmd->drive_mode;
@@ -110,7 +110,7 @@ private:
                 motor[i].speedDes = 0.0;
             }
         }
-
+        
         if (motor[0].drive_mode==0)
         {
             for (auto i = 0; i < 4; i++){
@@ -135,6 +135,13 @@ private:
             }
         }
 
+        if (is_cmd_active<=10){ //If no control command is received within 20ms, Torque is set to 0
+            for (auto i = 0; i < 4; i++)
+            {
+                motor[i].torqueDes = 0.0;
+                motor[i].curTx = motor[i].MotorTorqueTune();
+            }
+        }
         for (int j = 0; j < 4; j++)
         {
             txFrame.data[2 * j] = motor[j].curTx >> 8;     // 控制电流值高 8 位

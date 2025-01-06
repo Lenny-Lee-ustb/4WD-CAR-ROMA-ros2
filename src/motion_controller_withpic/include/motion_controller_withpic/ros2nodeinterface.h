@@ -4,9 +4,9 @@
 //
 // Code generated for Simulink model 'motion_controller_withPIC'.
 //
-// Model version                  : 2.323
+// Model version                  : 2.353
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Sat Jan 04 16:58:16 2025
+// C/C++ source code generated on : Mon Jan 06 15:09:12 2025
 //
 #ifndef _ROS2_MATLAB_NODEINTERFACE_
 #define _ROS2_MATLAB_NODEINTERFACE_
