@@ -1,5 +1,5 @@
 // Copyright 2022-2023 The MathWorks, Inc.
-// Generated 06-Jan-2025 15:09:11
+// Generated 09-Jan-2025 15:54:34
 #ifndef _SLROS2_INITIALIZE_H_
 #define _SLROS2_INITIALIZE_H_
 #include "motion_controller_withPIC_types.h"
@@ -81,6 +81,12 @@ extern SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_withPI
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_924;
 // For Block motion_controller_withPIC/Get Parameter2
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_559;
+// For Block motion_controller_withPIC/Get Parameter20
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_941;
+// For Block motion_controller_withPIC/Get Parameter21
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_942;
+// For Block motion_controller_withPIC/Get Parameter22
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_943;
 // For Block motion_controller_withPIC/Get Parameter3
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_560;
 // For Block motion_controller_withPIC/Get Parameter4
@@ -95,6 +101,10 @@ extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withP
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_606;
 // For Block motion_controller_withPIC/Get Parameter9
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_614;
+// For Block motion_controller_withPIC/Subsystem1/Get Parameter1
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_948;
+// For Block motion_controller_withPIC/Subsystem1/Get Parameter22
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_946;
 // For Block motion_controller_withPIC/Subsystem2/Get Parameter1
 extern SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_withPIC_625;
 // For Block motion_controller_withPIC/Subsystem2/Get Parameter2
@@ -129,6 +139,8 @@ extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withP
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_637;
 // For Block motion_controller_withPIC/picController/Get Parameter1
 extern SimulinkParameterGetter<boolean_T,bool> ParamGet_motion_controller_withPIC_709;
+// For Block motion_controller_withPIC/picController/Get Parameter2
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_944;
 // For Block motion_controller_withPIC/picController/Get Parameter6
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_withPIC_556;
 #endif

@@ -2,11 +2,11 @@
 //
 // File ros2nodeinterface.h
 //
-// Code generated for Simulink model 'motion_controller_withPIC'.
+// Code generated for Simulink model 'motion_controller_withTD3'.
 //
-// Model version                  : 2.369
+// Model version                  : 2.376
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Thu Jan 09 15:54:35 2025
+// C/C++ source code generated on : Fri Apr 04 17:42:04 2025
 //
 #ifndef _ROS2_MATLAB_NODEINTERFACE_
 #define _ROS2_MATLAB_NODEINTERFACE_
@@ -26,8 +26,8 @@
 #pragma GCC diagnostic ignored "-Wshadow"
 #endif //_MSC_VER
 #include "rclcpp/rclcpp.hpp"
-class motion_controller_withPIC;
-#include "motion_controller_withPIC_types.h"
+class motion_controller_withTD3;
+#include "motion_controller_withTD3_types.h"
 #include "slros_busmsg_conversion.h"
 #include "custom_interfaces/msg/actuator_command.hpp"
 #include "custom_interfaces/msg/actuator_state.hpp"
@@ -69,7 +69,7 @@ namespace matlab {
     NodeInterface& operator=(const NodeInterface& );
     //
     rclcpp::Node::SharedPtr mNode;
-    std::shared_ptr<motion_controller_withPIC> mModel;
+    std::shared_ptr<motion_controller_withTD3> mModel;
     rclcpp::executors::MultiThreadedExecutor::SharedPtr mExec;
     //
     Semaphore mBaseRateSem;
@@ -96,7 +96,7 @@ namespace matlab {
       return mNode;
     }
     //
-    std::shared_ptr<motion_controller_withPIC> getModel() {
+    std::shared_ptr<motion_controller_withTD3> getModel() {
       return mModel;
     }
   }; //class NodeInterface

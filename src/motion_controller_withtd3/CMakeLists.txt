@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(motion_controller_withpic)
+project(motion_controller_withtd3)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 # Set CMAKE_BUILD_TYPE
 set(CMAKE_BUILD_TYPE Release)
@@ -25,45 +25,41 @@ find_package( nav_msgs REQUIRED)
 find_package( rclcpp REQUIRED)
 find_package( sbus_interface REQUIRED)
 find_package( sensor_msgs REQUIRED)
-include_directories("include/motion_controller_withpic")
+include_directories("include/motion_controller_withtd3")
 set (CMAKE_SKIP_BUILD_RPATH false)
 set (CMAKE_BUILD_WITH_INSTALL_RPATH true)
 set (CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set (CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 # Node
-add_executable(motion_controller_withPIC 
+add_executable(motion_controller_withTD3 
 src/slros2_generic_param.cpp
 src/main.cpp
-src/motion_controller_withPIC.cpp
-src/motion_controller_withPIC_data.cpp
+src/motion_controller_withTD3.cpp
+src/motion_controller_withTD3_data.cpp
 src/ros2nodeinterface.cpp
 src/slros2_initialize.cpp
 src/slros_busmsg_conversion.cpp
-src/countsort_JblpZJs7.cpp
-src/countsort_Ormz6pKD.cpp
-src/div_nde_s32_floor.cpp
+src/div_s32_floor.cpp
+src/microKernel12.cpp
+src/microKernel13.cpp
+src/microKernel14.cpp
+src/microKernel15.cpp
+src/microKernel16.cpp
 src/rtGetInf.cpp
 src/rtGetNaN.cpp
 src/rt_atan2d_snf.cpp
 src/rt_nonfinite.cpp
-src/rt_roundd_snf.cpp
-src/strcmp_1LovgLAH.cpp
-src/xgemv_CxqfdDRY.cpp
-src/xgemv_DWEvxrPL.cpp
-src/xgemv_L5SThEQW.cpp
-src/xgemv_WOwAYNtc.cpp
-src/xgemv_bQMFK39u.cpp
-src/xgemv_szX0RER2.cpp
 )
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-target_compile_options(motion_controller_withPIC PUBLIC 
+target_compile_options(motion_controller_withTD3 PUBLIC 
   $<$<OR:$<COMPILE_LANGUAGE:CXX>,$<COMPILE_LANGUAGE:C>>:
   -Wall -Wextra -Wpedantic
   >)
 endif()
-target_compile_options(motion_controller_withPIC PRIVATE
+target_compile_options(motion_controller_withTD3 PRIVATE
   $<$<OR:$<COMPILE_LANGUAGE:CXX>,$<COMPILE_LANGUAGE:C>>:
-  -DMODEL=motion_controller_withPIC
+  -DMW_DL_DATA_PATH=C:/Users/roma/Desktop/j2/DEPLOY~1
+  -DMODEL=motion_controller_withTD3
   -DNUMST=1
   -DNCSTATES=0
   -DHAVESTDIO
@@ -84,7 +80,7 @@ target_compile_options(motion_controller_withPIC PRIVATE
   -fpermissive  >
   )
 ament_target_dependencies(
-  motion_controller_withPIC
+  motion_controller_withTD3
   "custom_interfaces"
   "geometry_msgs"
   "nav_msgs"
@@ -92,13 +88,13 @@ ament_target_dependencies(
   "sbus_interface"
   "sensor_msgs"
 )
-target_include_directories(motion_controller_withPIC PUBLIC
+target_include_directories(motion_controller_withTD3 PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-target_link_libraries(motion_controller_withPIC 
+target_link_libraries(motion_controller_withTD3 
 	${CMAKE_DL_LIBS}
     )
-install(TARGETS motion_controller_withPIC
+install(TARGETS motion_controller_withTD3
   EXPORT export_${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME})
 ament_export_include_directories(
@@ -106,17 +102,17 @@ ament_export_include_directories(
 )
 foreach(file_i ${CUDA_BINS})
 add_custom_command(
-                   TARGET motion_controller_withPIC
+                   TARGET motion_controller_withTD3
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND}
-                   ARGS -E copy ${PROJECT_SOURCE_DIR}/src/${file_i} ${CMAKE_INSTALL_PREFIX}/motion_controller_withPIC_ert_rtw/${file_i}
+                   ARGS -E copy ${PROJECT_SOURCE_DIR}/src/${file_i} ${CMAKE_INSTALL_PREFIX}/motion_controller_withTD3_ert_rtw/${file_i}
 				   )
 add_custom_command(
-                   TARGET motion_controller_withPIC
+                   TARGET motion_controller_withTD3
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND}
-                   ARGS -E copy ${PROJECT_SOURCE_DIR}/src/${file_i} ${CMAKE_INSTALL_PREFIX}/codegen/exe/motion_controller_withPIC/${file_i}
+                   ARGS -E copy ${PROJECT_SOURCE_DIR}/src/${file_i} ${CMAKE_INSTALL_PREFIX}/codegen/exe/motion_controller_withTD3/${file_i}
 				   )				   
 endforeach(file_i)
 ament_package()
-# Generated on Thu Jan 09 15:54:38 2025
+# Generated on Fri Apr 04 17:42:06 2025

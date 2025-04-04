@@ -3,21 +3,21 @@
 // course requirements at degree granting institutions only.  Not for
 // government, commercial, or other organizational use.
 //
-// File: motion_controller_withPIC_types.h
+// File: motion_controller_withTD3_types.h
 //
-// Code generated for Simulink model 'motion_controller_withPIC'.
+// Code generated for Simulink model 'motion_controller_withTD3'.
 //
-// Model version                  : 2.369
+// Model version                  : 2.376
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Thu Jan  9 15:54:26 2025
+// C/C++ source code generated on : Fri Apr  4 17:41:57 2025
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
 // Code generation objectives: Unspecified
 // Validation result: Not run
 //
-#ifndef RTW_HEADER_motion_controller_withPIC_types_h_
-#define RTW_HEADER_motion_controller_withPIC_types_h_
+#ifndef RTW_HEADER_motion_controller_withTD3_types_h_
+#define RTW_HEADER_motion_controller_withTD3_types_h_
 #include "rtwtypes.h"
 #ifndef DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Vector3_
 #define DEFINED_TYPEDEF_FOR_SL_Bus_geometry_msgs_Vector3_
@@ -308,7 +308,7 @@ struct ros_slros2_internal_block_Get_T
 
 #endif                                // struct_ros_slros2_internal_block_Get_T
 
-// Custom Type definition for MATLABSystem: '<S70>/SourceBlock'
+// Custom Type definition for MATLABSystem: '<S56>/SourceBlock'
 #include "rmw/qos_profiles.h"
 #ifndef struct_ros_slros2_internal_block_Pub_T
 #define struct_ros_slros2_internal_block_Pub_T
@@ -334,335 +334,89 @@ struct ros_slros2_internal_block_Sub_T
 
 #endif                                // struct_ros_slros2_internal_block_Sub_T
 
-// Custom Type definition for MATLAB Function: '<S62>/solvex'
-#ifndef struct_s5cJJO9CAPQxuVG0iaeiP4F_motio_T
-#define struct_s5cJJO9CAPQxuVG0iaeiP4F_motio_T
+// Custom Type definition for MATLAB Function: '<S52>/PolicyWrapper'
+#ifndef struct_dlarray_1_motion_controller_w_T
+#define struct_dlarray_1_motion_controller_w_T
 
-struct s5cJJO9CAPQxuVG0iaeiP4F_motio_T
+struct dlarray_1_motion_controller_w_T
 {
-  real_T xstar[41];
-  real_T fstar;
-  real_T firstorderopt;
-  real_T lambda[161];
-  int32_T state;
-  real_T maxConstr;
-  int32_T iterations;
-  real_T searchDir[41];
+  real32_T Data[2];
 };
 
-#endif                                // struct_s5cJJO9CAPQxuVG0iaeiP4F_motio_T
+#endif                                // struct_dlarray_1_motion_controller_w_T
 
-#ifndef struct_sKnhLiTH4yv7eF1oV2a74RG_motio_T
-#define struct_sKnhLiTH4yv7eF1oV2a74RG_motio_T
+#ifndef struct_cell_wrap_2_motion_controller_T
+#define struct_cell_wrap_2_motion_controller_T
 
-struct sKnhLiTH4yv7eF1oV2a74RG_motio_T
+struct cell_wrap_2_motion_controller_T
 {
-  real_T grad[41];
-  real_T Hx[40];
-  boolean_T hasLinear;
-  int32_T nvar;
-  int32_T maxVar;
-  real_T beta;
-  real_T rho;
-  int32_T objtype;
-  int32_T prev_objtype;
-  int32_T prev_nvar;
-  boolean_T prev_hasLinear;
-  real_T gammaScalar;
+  real_T f1[2];
 };
 
-#endif                                // struct_sKnhLiTH4yv7eF1oV2a74RG_motio_T
+#endif                                // struct_cell_wrap_2_motion_controller_T
 
-#ifndef struct_s8kZFjDlzP6eNfOekUiP5MF_motio_T
-#define struct_s8kZFjDlzP6eNfOekUiP5MF_motio_T
+#ifndef struct_c_coder_internal_ctarget_dlne_T
+#define struct_c_coder_internal_ctarget_dlne_T
 
-struct s8kZFjDlzP6eNfOekUiP5MF_motio_T
+struct c_coder_internal_ctarget_dlne_T
 {
-  real_T FMat[1681];
-  int32_T ldm;
-  int32_T ndims;
-  int32_T info;
-  real_T scaleFactor;
-  boolean_T ConvexCheck;
-  real_T regTol_;
-  real_T workspace_[1968];
-  real_T workspace2_[1968];
+  boolean_T matlabCodegenIsDeleted;
+  boolean_T IsNetworkInitialized;
 };
 
-#endif                                // struct_s8kZFjDlzP6eNfOekUiP5MF_motio_T
+#endif                                // struct_c_coder_internal_ctarget_dlne_T
 
-// Custom Type definition for MATLAB Function: '<S63>/solvex'
-#ifndef struct_sL9bDKomAYkxZSVrG9w6En_motion_T
-#define struct_sL9bDKomAYkxZSVrG9w6En_motion_T
+#ifndef struct_rl_codegen_model_DLNetworkMod_T
+#define struct_rl_codegen_model_DLNetworkMod_T
 
-struct sL9bDKomAYkxZSVrG9w6En_motion_T
+struct rl_codegen_model_DLNetworkMod_T
 {
-  int32_T MaxIterations;
-  real_T ConstrRelTolFactor;
-  real_T ProbRelTolFactor;
-  boolean_T RemainFeasible;
+  boolean_T matlabCodegenIsDeleted;
+  int32_T isInitialized;
+  boolean_T isSetupComplete;
+  c_coder_internal_ctarget_dlne_T *InternalNetwork_;
 };
 
-#endif                                // struct_sL9bDKomAYkxZSVrG9w6En_motion_T
+#endif                                // struct_rl_codegen_model_DLNetworkMod_T
 
-#ifndef struct_sYqpSPVJXu9aOn60zG4DpzD_motio_T
-#define struct_sYqpSPVJXu9aOn60zG4DpzD_motio_T
+#ifndef struct_c_rl_codegen_policy_internal__T
+#define struct_c_rl_codegen_policy_internal__T
 
-struct sYqpSPVJXu9aOn60zG4DpzD_motio_T
+struct c_rl_codegen_policy_internal__T
 {
-  real_T xstar[21];
-  real_T fstar;
-  real_T firstorderopt;
-  real_T lambda[81];
-  int32_T state;
-  real_T maxConstr;
-  int32_T iterations;
-  real_T searchDir[21];
+  cell_wrap_2_motion_controller_T UpperLimits_;
+  cell_wrap_2_motion_controller_T LowerLimits_;
 };
 
-#endif                                // struct_sYqpSPVJXu9aOn60zG4DpzD_motio_T
+#endif                                // struct_c_rl_codegen_policy_internal__T
 
-#ifndef struct_s3PrFoa9w5ssw8XLEJooNqH_motio_T
-#define struct_s3PrFoa9w5ssw8XLEJooNqH_motio_T
+#ifndef struct_c_rl_codegen_policy_rlDetermi_T
+#define struct_c_rl_codegen_policy_rlDetermi_T
 
-struct s3PrFoa9w5ssw8XLEJooNqH_motio_T
+struct c_rl_codegen_policy_rlDetermi_T
 {
-  real_T grad[21];
-  real_T Hx[20];
-  boolean_T hasLinear;
-  int32_T nvar;
-  int32_T maxVar;
-  real_T beta;
-  real_T rho;
-  int32_T objtype;
-  int32_T prev_objtype;
-  int32_T prev_nvar;
-  boolean_T prev_hasLinear;
-  real_T gammaScalar;
+  boolean_T matlabCodegenIsDeleted;
+  int32_T isInitialized;
+  boolean_T isSetupComplete;
+  rl_codegen_model_DLNetworkMod_T *Model_;
+  c_rl_codegen_policy_internal__T ActionBounder_;
 };
 
-#endif                                // struct_s3PrFoa9w5ssw8XLEJooNqH_motio_T
+#endif                                // struct_c_rl_codegen_policy_rlDetermi_T
 
-#ifndef struct_sTy13TWZ7KObOACj8wDaLQC_motio_T
-#define struct_sTy13TWZ7KObOACj8wDaLQC_motio_T
-
-struct sTy13TWZ7KObOACj8wDaLQC_motio_T
-{
-  real_T FMat[441];
-  int32_T ldm;
-  int32_T ndims;
-  int32_T info;
-  real_T scaleFactor;
-  boolean_T ConvexCheck;
-  real_T regTol_;
-  real_T workspace_[1008];
-  real_T workspace2_[1008];
-};
-
-#endif                                // struct_sTy13TWZ7KObOACj8wDaLQC_motio_T
-
-// Custom Type definition for MATLAB Function: '<S62>/solvex'
-#ifndef struct_s2uO2c2bmaUl7sY5vOWIzHG_motio_T
-#define struct_s2uO2c2bmaUl7sY5vOWIzHG_motio_T
-
-struct s2uO2c2bmaUl7sY5vOWIzHG_motio_T
-{
-  int32_T ldq;
-  real_T QR[6601];
-  real_T Q[1681];
-  int32_T jpvt[161];
-  int32_T mrows;
-  int32_T ncols;
-  real_T tau[41];
-  int32_T minRowCol;
-  boolean_T usedPivoting;
-};
-
-#endif                                // struct_s2uO2c2bmaUl7sY5vOWIzHG_motio_T
-
-#ifndef struct_sFlCINAYeIgPgx0UwEHpaMF_motio_T
-#define struct_sFlCINAYeIgPgx0UwEHpaMF_motio_T
-
-struct sFlCINAYeIgPgx0UwEHpaMF_motio_T
-{
-  real_T workspace_double[6601];
-  int32_T workspace_int[161];
-  int32_T workspace_sort[161];
-};
-
-#endif                                // struct_sFlCINAYeIgPgx0UwEHpaMF_motio_T
-
-// Custom Type definition for MATLAB Function: '<S63>/solvex'
-#ifndef struct_sIZAIOglGM5dPDQlNukc9SD_motio_T
-#define struct_sIZAIOglGM5dPDQlNukc9SD_motio_T
-
-struct sIZAIOglGM5dPDQlNukc9SD_motio_T
-{
-  int32_T ldq;
-  real_T QR[1701];
-  real_T Q[441];
-  int32_T jpvt[81];
-  int32_T mrows;
-  int32_T ncols;
-  real_T tau[21];
-  int32_T minRowCol;
-  boolean_T usedPivoting;
-};
-
-#endif                                // struct_sIZAIOglGM5dPDQlNukc9SD_motio_T
-
-#ifndef struct_s3cSGkBdKxRj6Qn3zsJRowG_motio_T
-#define struct_s3cSGkBdKxRj6Qn3zsJRowG_motio_T
-
-struct s3cSGkBdKxRj6Qn3zsJRowG_motio_T
-{
-  real_T workspace_double[1701];
-  int32_T workspace_int[81];
-  int32_T workspace_sort[81];
-};
-
-#endif                                // struct_s3cSGkBdKxRj6Qn3zsJRowG_motio_T
-
-#ifndef struct_sSOeZ9WO10chPn9Si6PKiCB_motio_T
-#define struct_sSOeZ9WO10chPn9Si6PKiCB_motio_T
-
-struct sSOeZ9WO10chPn9Si6PKiCB_motio_T
-{
-  real_T InitDamping;
-  char_T FiniteDifferenceType[7];
-  boolean_T SpecifyObjectiveGradient;
-  boolean_T ScaleProblem;
-  boolean_T SpecifyConstraintGradient;
-  boolean_T NonFiniteSupport;
-  boolean_T IterDisplaySQP;
-  real_T FiniteDifferenceStepSize;
-  real_T MaxFunctionEvaluations;
-  boolean_T IterDisplayQP;
-  real_T PricingTolerance;
-  char_T Algorithm[10];
-  real_T ObjectiveLimit;
-  real_T ConstraintTolerance;
-  real_T OptimalityTolerance;
-  real_T StepTolerance;
-  real_T MaxIterations;
-  real_T FunctionTolerance;
-  char_T SolverName[8];
-  boolean_T CheckGradients;
-  char_T Diagnostics[3];
-  real_T DiffMaxChange;
-  real_T DiffMinChange;
-  char_T Display[5];
-  char_T FunValCheck[3];
-  boolean_T UseParallel;
-  char_T LinearSolver[4];
-  char_T SubproblemAlgorithm[2];
-};
-
-#endif                                // struct_sSOeZ9WO10chPn9Si6PKiCB_motio_T
-
-// Custom Type definition for MATLAB Function: '<S62>/solvex'
-#ifndef struct_sT1ziU4p6vTWuD880X9yNJ_motion_T
-#define struct_sT1ziU4p6vTWuD880X9yNJ_motion_T
-
-struct sT1ziU4p6vTWuD880X9yNJ_motion_T
-{
-  int32_T mConstr;
-  int32_T mConstrOrig;
-  int32_T mConstrMax;
-  int32_T nVar;
-  int32_T nVarOrig;
-  int32_T nVarMax;
-  int32_T ldA;
-  real_T Aineq[3280];
-  real_T bineq[80];
-  real_T lb[41];
-  real_T ub[41];
-  int32_T indexLB[41];
-  int32_T indexUB[41];
-  int32_T indexFixed[41];
-  int32_T mEqRemoved;
-  real_T ATwset[6601];
-  real_T bwset[161];
-  int32_T nActiveConstr;
-  real_T maxConstrWorkspace[161];
-  int32_T sizes[5];
-  int32_T sizesNormal[5];
-  int32_T sizesPhaseOne[5];
-  int32_T sizesRegularized[5];
-  int32_T sizesRegPhaseOne[5];
-  int32_T isActiveIdx[6];
-  int32_T isActiveIdxNormal[6];
-  int32_T isActiveIdxPhaseOne[6];
-  int32_T isActiveIdxRegularized[6];
-  int32_T isActiveIdxRegPhaseOne[6];
-  boolean_T isActiveConstr[161];
-  int32_T Wid[161];
-  int32_T Wlocalidx[161];
-  int32_T nWConstr[5];
-  int32_T probType;
-  real_T SLACK0;
-};
-
-#endif                                // struct_sT1ziU4p6vTWuD880X9yNJ_motion_T
-
-// Custom Type definition for MATLAB Function: '<S63>/solvex'
-#ifndef struct_sVIU4VBONGRsUytHTQmMJFH_motio_T
-#define struct_sVIU4VBONGRsUytHTQmMJFH_motio_T
-
-struct sVIU4VBONGRsUytHTQmMJFH_motio_T
-{
-  int32_T mConstr;
-  int32_T mConstrOrig;
-  int32_T mConstrMax;
-  int32_T nVar;
-  int32_T nVarOrig;
-  int32_T nVarMax;
-  int32_T ldA;
-  real_T Aineq[840];
-  real_T bineq[40];
-  real_T lb[21];
-  real_T ub[21];
-  int32_T indexLB[21];
-  int32_T indexUB[21];
-  int32_T indexFixed[21];
-  int32_T mEqRemoved;
-  real_T ATwset[1701];
-  real_T bwset[81];
-  int32_T nActiveConstr;
-  real_T maxConstrWorkspace[81];
-  int32_T sizes[5];
-  int32_T sizesNormal[5];
-  int32_T sizesPhaseOne[5];
-  int32_T sizesRegularized[5];
-  int32_T sizesRegPhaseOne[5];
-  int32_T isActiveIdx[6];
-  int32_T isActiveIdxNormal[6];
-  int32_T isActiveIdxPhaseOne[6];
-  int32_T isActiveIdxRegularized[6];
-  int32_T isActiveIdxRegPhaseOne[6];
-  boolean_T isActiveConstr[81];
-  int32_T Wid[81];
-  int32_T Wlocalidx[81];
-  int32_T nWConstr[5];
-  int32_T probType;
-  real_T SLACK0;
-};
-
-#endif                                // struct_sVIU4VBONGRsUytHTQmMJFH_motio_T
-
-// Parameters for system: '<S14>/For Each Subsystem'
+// Parameters for system: '<S12>/For Each Subsystem'
 typedef struct P_CoreSubsys_motion_control_g_T_ P_CoreSubsys_motion_control_g_T;
 
-// Parameters for system: '<S14>/For Each Subsystem1'
+// Parameters for system: '<S12>/For Each Subsystem1'
 typedef struct P_CoreSubsys_motion_contro_gm_T_ P_CoreSubsys_motion_contro_gm_T;
 
 // Parameters (default storage)
-typedef struct P_motion_controller_withPIC_T_ P_motion_controller_withPIC_T;
+typedef struct P_motion_controller_withTD3_T_ P_motion_controller_withTD3_T;
 
 // Forward declaration for rtModel
 typedef struct tag_RTM_motion_controller_wit_T RT_MODEL_motion_controller_wi_T;
 
-#endif                         // RTW_HEADER_motion_controller_withPIC_types_h_
+#endif                         // RTW_HEADER_motion_controller_withTD3_types_h_
 
 //
 // File trailer for generated code.

@@ -3,114 +3,61 @@
 // course requirements at degree granting institutions only.  Not for
 // government, commercial, or other organizational use.
 //
-// File: motion_controller_withPIC_data.cpp
+// File: motion_controller_withTD3_data.cpp
 //
-// Code generated for Simulink model 'motion_controller_withPIC'.
+// Code generated for Simulink model 'motion_controller_withTD3'.
 //
-// Model version                  : 2.369
+// Model version                  : 2.376
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Thu Jan  9 15:54:26 2025
+// C/C++ source code generated on : Fri Apr  4 17:41:57 2025
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
 // Code generation objectives: Unspecified
 // Validation result: Not run
 //
-#include "motion_controller_withPIC.h"
+#include "motion_controller_withTD3.h"
 
 // Block parameters (default storage)
-P_motion_controller_withPIC_T motion_controller_withPIC::
-  motion_controller_withPIC_P = {
+P_motion_controller_withTD3_T motion_controller_withTD3::
+  motion_controller_withTD3_P = {
   // Variable: B
-  //  Referenced by:
-  //    '<Root>/update'
-  //    '<S16>/update'
+  //  Referenced by: '<S14>/MATLAB Function'
 
   0.341,
 
-  // Variable: Izz
-  //  Referenced by:
-  //    '<Root>/update'
-  //    '<S16>/update'
-
-  0.752,
-
-  // Variable: Krsf
-  //  Referenced by:
-  //    '<Root>/update'
-  //    '<S16>/update'
-
-  0.5,
-
   // Variable: L
   //  Referenced by:
-  //    '<Root>/update'
-  //    '<S16>/update'
-  //    '<S48>/MATLAB Function'
-  //    '<S50>/MATLAB Function'
+  //    '<S14>/MATLAB Function'
+  //    '<S43>/MATLAB Function'
+  //    '<S45>/MATLAB Function'
 
   0.492,
 
   // Variable: Tw
   //  Referenced by:
-  //    '<S48>/MATLAB Function'
-  //    '<S50>/MATLAB Function'
+  //    '<S43>/MATLAB Function'
+  //    '<S45>/MATLAB Function'
 
   0.341,
 
-  // Variable: a
-  //  Referenced by:
-  //    '<Root>/update'
-  //    '<S16>/update'
-
-  0.246,
-
   // Variable: b
-  //  Referenced by:
-  //    '<Root>/update'
-  //    '<S16>/update'
-  //    '<S50>/MATLAB Function'
+  //  Referenced by: '<S45>/MATLAB Function'
 
   0.246,
-
-  // Variable: g
-  //  Referenced by:
-  //    '<Root>/update'
-  //    '<S16>/update'
-
-  9.8,
-
-  // Variable: hCG
-  //  Referenced by:
-  //    '<Root>/update'
-  //    '<S16>/update'
-
-  0.0839,
-
-  // Variable: m
-  //  Referenced by:
-  //    '<Root>/update'
-  //    '<S16>/update'
-
-  10.56,
-
-  // Mask Parameter: CompareToConstant_const
-  //  Referenced by: '<S56>/Constant'
-
-  0.0,
 
   // Mask Parameter: CompareToConstant1_const
-  //  Referenced by: '<S37>/Constant'
+  //  Referenced by: '<S32>/Constant'
 
   300.0,
 
-  // Mask Parameter: CompareToConstant_const_m
+  // Mask Parameter: CompareToConstant_const
   //  Referenced by: '<S2>/Constant'
 
   0,
 
   // Computed Parameter: Out1_Y0
-  //  Referenced by: '<S36>/Out1'
+  //  Referenced by: '<S31>/Out1'
 
   {
     {
@@ -451,7 +398,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Out1_Y0_k
-  //  Referenced by: '<S73>/Out1'
+  //  Referenced by: '<S59>/Out1'
 
   {
     {
@@ -792,7 +739,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value
-  //  Referenced by: '<S33>/Constant'
+  //  Referenced by: '<S56>/Constant'
 
   {
     {
@@ -1132,8 +1079,8 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
     }                                  // actuator_state_SL_Info
   },
 
-  // Computed Parameter: Constant_Value_h
-  //  Referenced by: '<S70>/Constant'
+  // Computed Parameter: Constant_Value_b
+  //  Referenced by: '<S28>/Constant'
 
   {
     {
@@ -1474,7 +1421,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Out1_Y0_i
-  //  Referenced by: '<S34>/Out1'
+  //  Referenced by: '<S29>/Out1'
 
   {
     {
@@ -1562,7 +1509,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_n
-  //  Referenced by: '<S31>/Constant'
+  //  Referenced by: '<S26>/Constant'
 
   {
     {
@@ -1650,7 +1597,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_f
-  //  Referenced by: '<S39>/Constant'
+  //  Referenced by: '<S34>/Constant'
 
   {
     {
@@ -1759,7 +1706,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_i
-  //  Referenced by: '<S38>/Constant'
+  //  Referenced by: '<S33>/Constant'
 
   {
     {
@@ -1868,7 +1815,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Out1_Y0_e
-  //  Referenced by: '<S35>/Out1'
+  //  Referenced by: '<S30>/Out1'
 
   {
     {
@@ -1927,125 +1874,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_e
-  //  Referenced by: '<S32>/Constant'
-
-  {
-    {
-      {
-        0,                             // sec
-        0U                             // nanosec
-      },                               // stamp
-
-      {
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U }
-      ,                                // frame_id
-
-      {
-        0U,                            // CurrentLength
-        0U                             // ReceivedLength
-      }                                // frame_id_SL_Info
-    },                                 // header
-
-    {
-      0.0,                             // x
-      0.0,                             // y
-      0.0,                             // z
-      0.0                              // w
-    },                                 // orientation
-
-    {
-      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
-    ,                                  // orientation_covariance
-
-    {
-      0.0,                             // x
-      0.0,                             // y
-      0.0                              // z
-    },                                 // angular_velocity
-
-    {
-      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
-    ,                                  // angular_velocity_covariance
-
-    {
-      0.0,                             // x
-      0.0,                             // y
-      0.0                              // z
-    },                                 // linear_acceleration
-
-    {
-      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
-    // linear_acceleration_covariance
-  },
-
-  // Computed Parameter: Constant_Value_d
-  //  Referenced by: '<S21>/Constant'
-
-  {
-    {
-      {
-        0,                             // sec
-        0U                             // nanosec
-      },                               // stamp
-
-      {
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-        0U, 0U }
-      ,                                // frame_id
-
-      {
-        0U,                            // CurrentLength
-        0U                             // ReceivedLength
-      }                                // frame_id_SL_Info
-    },                                 // header
-
-    {
-      0.0,                             // x
-      0.0,                             // y
-      0.0,                             // z
-      0.0                              // w
-    },                                 // orientation
-
-    {
-      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
-    ,                                  // orientation_covariance
-
-    {
-      0.0,                             // x
-      0.0,                             // y
-      0.0                              // z
-    },                                 // angular_velocity
-
-    {
-      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
-    ,                                  // angular_velocity_covariance
-
-    {
-      0.0,                             // x
-      0.0,                             // y
-      0.0                              // z
-    },                                 // linear_acceleration
-
-    {
-      0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
-    // linear_acceleration_covariance
-  },
-
-  // Computed Parameter: Constant_Value_eh
-  //  Referenced by: '<S23>/Constant'
+  //  Referenced by: '<S27>/Constant'
 
   {
     {
@@ -2104,7 +1933,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_m
-  //  Referenced by: '<S25>/Constant'
+  //  Referenced by: '<S20>/Constant'
 
   {
     {
@@ -2163,7 +1992,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Out1_Y0_f
-  //  Referenced by: '<S72>/Out1'
+  //  Referenced by: '<S58>/Out1'
 
   {
     {
@@ -2200,8 +2029,8 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
     false                              // frame_lost
   },
 
-  // Computed Parameter: Constant_Value_dx
-  //  Referenced by: '<S69>/Constant'
+  // Computed Parameter: Constant_Value_d
+  //  Referenced by: '<S55>/Constant'
 
   {
     {
@@ -2239,7 +2068,24 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Computed Parameter: Constant_Value_a
-  //  Referenced by: '<S19>/Constant'
+  //  Referenced by: '<S16>/Constant'
+
+  {
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0                              // z
+    },                                 // linear
+
+    {
+      0.0,                             // x
+      0.0,                             // y
+      0.0                              // z
+    }                                  // angular
+  },
+
+  // Computed Parameter: Constant_Value_ik
+  //  Referenced by: '<S18>/Constant'
 
   {
     {
@@ -2256,152 +2102,157 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   },
 
   // Expression: 0
-  //  Referenced by: '<S10>/Gain2'
+  //  Referenced by: '<S9>/Gain2'
 
   0.0,
 
   // Expression: 0.4
-  //  Referenced by: '<S10>/Gain1'
+  //  Referenced by: '<S9>/Gain1'
 
   0.4,
 
   // Expression: 0
-  //  Referenced by: '<S10>/Gain'
+  //  Referenced by: '<S9>/Gain'
 
   0.0,
 
   // Expression: 2
-  //  Referenced by: '<S10>/Constant'
+  //  Referenced by: '<S9>/Constant'
 
   2.0,
 
-  // Expression: -0.02
-  //  Referenced by: '<Root>/Dead Zone'
-
-  -0.02,
-
-  // Expression: 0.02
-  //  Referenced by: '<Root>/Dead Zone'
-
-  0.02,
-
   // Expression: 3
-  //  Referenced by: '<S14>/Saturation2'
+  //  Referenced by: '<S12>/Saturation2'
 
   3.0,
 
   // Expression: -3
-  //  Referenced by: '<S14>/Saturation2'
+  //  Referenced by: '<S12>/Saturation2'
 
   -3.0,
 
   // Expression: 8
-  //  Referenced by: '<S14>/Saturation1'
+  //  Referenced by: '<S12>/Saturation1'
 
   8.0,
 
   // Expression: -8
-  //  Referenced by: '<S14>/Saturation1'
+  //  Referenced by: '<S12>/Saturation1'
 
   -8.0,
 
   // Expression: 0.75
-  //  Referenced by: '<S14>/Saturation'
+  //  Referenced by: '<S12>/Saturation'
 
   0.75,
 
   // Expression: -0.75
-  //  Referenced by: '<S14>/Saturation'
+  //  Referenced by: '<S12>/Saturation'
 
   -0.75,
 
   // Expression: J
-  //  Referenced by: '<S49>/MATLAB Function'
+  //  Referenced by: '<S44>/MATLAB Function'
 
   0.00101,
 
   // Expression: Re
-  //  Referenced by: '<S49>/MATLAB Function'
+  //  Referenced by: '<S44>/MATLAB Function'
 
   0.065,
 
   // Expression: 0
-  //  Referenced by: '<S49>/Constant4'
+  //  Referenced by: '<S44>/Constant4'
 
   0.0,
 
   // Expression: 0
-  //  Referenced by: '<S50>/Gain'
+  //  Referenced by: '<S45>/Gain'
 
   0.0,
 
   // Expression: 500
-  //  Referenced by: '<S47>/Constant2'
+  //  Referenced by: '<S42>/Constant2'
 
   500.0,
 
   // Expression: 1/500
-  //  Referenced by: '<S47>/Gain1'
+  //  Referenced by: '<S42>/Gain1'
 
   0.002,
 
   // Expression: 500
-  //  Referenced by: '<S47>/Constant'
+  //  Referenced by: '<S42>/Constant'
 
   500.0,
 
   // Expression: 1/500
-  //  Referenced by: '<S47>/Gain'
+  //  Referenced by: '<S42>/Gain'
 
   0.002,
 
   // Expression: -1
-  //  Referenced by: '<S47>/Gain2'
+  //  Referenced by: '<S42>/Gain2'
 
   -1.0,
 
   // Expression: 0
-  //  Referenced by: '<S15>/Constant'
+  //  Referenced by: '<S13>/Constant'
 
   0.0,
 
-  // Expression: -1
-  //  Referenced by: '<S62>/Gain1'
+  // Computed Parameter: steer_Y0
+  //  Referenced by: '<S14>/steer'
 
-  -1.0,
+  0.0,
 
-  // Expression: -1
-  //  Referenced by: '<S63>/Gain1'
+  // Computed Parameter: DiscreteTimeIntegrator1_gainval
+  //  Referenced by: '<S14>/Discrete-Time Integrator1'
 
-  -1.0,
-
-  // Expression: 1e-9
-  //  Referenced by: '<S16>/Constant2'
-
-  1.0E-9,
+  0.01,
 
   // Expression: 0
-  //  Referenced by: '<S16>/Unit Delay'
+  //  Referenced by: '<S14>/Discrete-Time Integrator1'
 
   0.0,
+
+  // Expression: 0.5
+  //  Referenced by: '<S14>/Discrete-Time Integrator1'
+
+  0.5,
+
+  // Expression: -0.5
+  //  Referenced by: '<S14>/Discrete-Time Integrator1'
+
+  -0.5,
+
+  // Computed Parameter: DiscreteTimeIntegrator2_gainval
+  //  Referenced by: '<S14>/Discrete-Time Integrator2'
+
+  0.01,
 
   // Expression: 0
-  //  Referenced by: '<S16>/Unit Delay1'
+  //  Referenced by: '<S14>/Discrete-Time Integrator2'
 
   0.0,
 
-  // Computed Parameter: Merge_InitialOutput
-  //  Referenced by: '<S60>/Merge'
+  // Expression: 0.5
+  //  Referenced by: '<S14>/Discrete-Time Integrator2'
 
-  0.0,
+  0.5,
+
+  // Expression: -0.5
+  //  Referenced by: '<S14>/Discrete-Time Integrator2'
+
+  -0.5,
 
   // Expression: 500
-  //  Referenced by: '<S11>/Constant1'
+  //  Referenced by: '<S10>/Constant1'
 
   500.0,
 
   // Expression: 0.411
-  //  Referenced by: '<S9>/Constant'
+  //  Referenced by: '<S8>/Constant'
 
   0.411,
 
@@ -2415,30 +2266,45 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
 
   0.0,
 
+  // Expression: 167
+  //  Referenced by: '<Root>/Constant'
+
+  167.0,
+
   // Expression: 0.411
-  //  Referenced by: '<S13>/Constant1'
+  //  Referenced by: '<S11>/Constant1'
 
   0.411,
 
+  // Expression: 0
+  //  Referenced by: '<Root>/Constant1'
+
+  0.0,
+
+  // Expression: 0
+  //  Referenced by: '<Root>/Constant3'
+
+  0.0,
+
+  // Expression: 0
+  //  Referenced by: '<Root>/Constant5'
+
+  0.0,
+
   // Expression: 0.4
-  //  Referenced by: '<S10>/Saturation'
+  //  Referenced by: '<S9>/Saturation'
 
   0.4,
 
   // Expression: -0.4
-  //  Referenced by: '<S10>/Saturation'
+  //  Referenced by: '<S9>/Saturation'
 
   -0.4,
 
-  // Expression: 0.01
-  //  Referenced by: '<Root>/Constant2'
-
-  0.01,
-
-  // Start of '<S41>/CoreSubsys'
+  // Start of '<S36>/CoreSubsys'
   {
     // Computed Parameter: Constant_Value
-    //  Referenced by: '<S45>/Constant'
+    //  Referenced by: '<S40>/Constant'
 
     {
       {
@@ -2463,12 +2329,12 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
   }
   ,
 
-  // End of '<S41>/CoreSubsys'
+  // End of '<S36>/CoreSubsys'
 
-  // Start of '<S40>/CoreSubsys'
+  // Start of '<S35>/CoreSubsys'
   {
     // Computed Parameter: Constant_Value
-    //  Referenced by: '<S44>/Constant'
+    //  Referenced by: '<S39>/Constant'
 
     {
       {
@@ -2491,7 +2357,7 @@ P_motion_controller_withPIC_T motion_controller_withPIC::
       0.0                              // effort
     }
   }
-  // End of '<S40>/CoreSubsys'
+  // End of '<S35>/CoreSubsys'
 };
 
 //

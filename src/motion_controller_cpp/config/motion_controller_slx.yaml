@@ -8,7 +8,7 @@ motion_controller_slx:
     acc_rate_mps: 0.0
     drive_by_2: False
     FWS: True
-    isTcsEnabled: True
+    isTcsEnabled: False
     tcsK1Sgne: 0.8
     tcsK2e: 10.0
     tcsFxEstimatedMu: 0.66

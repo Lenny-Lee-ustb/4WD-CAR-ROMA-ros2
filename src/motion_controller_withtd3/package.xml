@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>motion_controller_withpic</name>
+  <name>motion_controller_withtd3</name>
   <version>1.0.0</version>
   <description>TODO</description>
   <maintainer email="ros2user@test.com">ROS User</maintainer>
@@ -19,4 +19,4 @@
     <build_type>ament_cmake</build_type>
   </export>
 </package>
-<!-- Generated on Thu Jan 09 15:54:38 2025 -->
+<!-- Generated on Fri Apr 04 17:42:06 2025 -->

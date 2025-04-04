@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_withPIC'.
 //
-// Model version                  : 2.353
+// Model version                  : 2.369
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Mon Jan  6 15:09:04 2025
+// C/C++ source code generated on : Thu Jan  9 15:54:26 2025
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -30,8 +30,8 @@ extern "C"
 #include <math.h>
 #include "rt_atan2d_snf.h"
 #include <string.h>
-#include "rt_roundd_snf.h"
 #include <emmintrin.h>
+#include "rt_roundd_snf.h"
 #include "rmw/qos_profiles.h"
 #include <stddef.h>
 #include "strcmp_1LovgLAH.h"
@@ -102,10 +102,10 @@ void motion_controller_withPIC::motion_controller__get_angle_4w(real_T
   real_T deltaRL;
   real_T deltaRR;
 
-  // MATLAB Function: '<S47>/MATLAB Function' incorporates:
-  //   SignalConversion generated from: '<S47>/ackermann_enable'
-  //   SignalConversion generated from: '<S47>/delta_f'
-  //   SignalConversion generated from: '<S47>/delta_r'
+  // MATLAB Function: '<S48>/MATLAB Function' incorporates:
+  //   SignalConversion generated from: '<S48>/ackermann_enable'
+  //   SignalConversion generated from: '<S48>/delta_f'
+  //   SignalConversion generated from: '<S48>/delta_r'
 
   if (motion_controller_withPIC_B.GetParameter1 == 1.0) {
     real_T deltaFL_tmp;
@@ -134,9 +134,9 @@ void motion_controller_withPIC::motion_controller__get_angle_4w(real_T
       motion_controller_withPIC_P.Tw;
     deltaFL_tmp = 2.0 * motion_controller_withPIC_P.L - deltaFR_tmp;
 
-    // SignalConversion generated from: '<S47>/angle_cmd' incorporates:
-    //   SignalConversion generated from: '<S47>/delta_f'
-    //   SignalConversion generated from: '<S47>/delta_r'
+    // SignalConversion generated from: '<S48>/angle_cmd' incorporates:
+    //   SignalConversion generated from: '<S48>/delta_f'
+    //   SignalConversion generated from: '<S48>/delta_r'
 
     rty_angle_cmd[0] = atan(deltaRL_tmp / deltaFL_tmp) * deltaFR;
     deltaFR_tmp += 2.0 * motion_controller_withPIC_P.L;
@@ -145,8 +145,8 @@ void motion_controller_withPIC::motion_controller__get_angle_4w(real_T
     deltaRL = atan(deltaRL_tmp / deltaFL_tmp) * deltaRR;
     deltaRR *= atan(deltaRL_tmp / deltaFR_tmp);
   } else {
-    // SignalConversion generated from: '<S47>/angle_cmd' incorporates:
-    //   SignalConversion generated from: '<S47>/delta_f'
+    // SignalConversion generated from: '<S48>/angle_cmd' incorporates:
+    //   SignalConversion generated from: '<S48>/delta_f'
 
     rty_angle_cmd[0] = rtu_delta_f;
     deltaFR = rtu_delta_f;
@@ -154,8 +154,8 @@ void motion_controller_withPIC::motion_controller__get_angle_4w(real_T
     deltaRL = rtu_delta_r;
   }
 
-  // SignalConversion generated from: '<S47>/angle_cmd' incorporates:
-  //   MATLAB Function: '<S47>/MATLAB Function'
+  // SignalConversion generated from: '<S48>/angle_cmd' incorporates:
+  //   MATLAB Function: '<S48>/MATLAB Function'
 
   rty_angle_cmd[1] = deltaFR;
   rty_angle_cmd[2] = deltaRR;
@@ -170,28 +170,28 @@ void motion_controller_withPIC::motion_controll_get_effort_Init()
   static const char_T prmName_1[7] = "tcsK2e";
   static const char_T prmName_2[16] = "tcsKappaDesired";
 
-  // Start for MATLABSystem: '<S48>/Get Parameter'
+  // Start for MATLABSystem: '<S49>/Get Parameter'
   motion_controller_withPIC_DW.obj_d.matlabCodegenIsDeleted = false;
   motion_controller_withPIC_DW.obj_d.isInitialized = 1;
   ParamGet_motion_controller_withPIC_202.initParam(&prmName[0]);
   ParamGet_motion_controller_withPIC_202.setInitialValue(0.6);
   motion_controller_withPIC_DW.obj_d.isSetupComplete = true;
 
-  // Start for MATLABSystem: '<S48>/Get Parameter2'
+  // Start for MATLABSystem: '<S49>/Get Parameter2'
   motion_controller_withPIC_DW.obj_ae.matlabCodegenIsDeleted = false;
   motion_controller_withPIC_DW.obj_ae.isInitialized = 1;
   ParamGet_motion_controller_withPIC_354.initParam(&prmName_0[0]);
   ParamGet_motion_controller_withPIC_354.setInitialValue(0.8);
   motion_controller_withPIC_DW.obj_ae.isSetupComplete = true;
 
-  // Start for MATLABSystem: '<S48>/Get Parameter3'
+  // Start for MATLABSystem: '<S49>/Get Parameter3'
   motion_controller_withPIC_DW.obj_lw.matlabCodegenIsDeleted = false;
   motion_controller_withPIC_DW.obj_lw.isInitialized = 1;
   ParamGet_motion_controller_withPIC_355.initParam(&prmName_1[0]);
   ParamGet_motion_controller_withPIC_355.setInitialValue(10.0);
   motion_controller_withPIC_DW.obj_lw.isSetupComplete = true;
 
-  // Start for MATLABSystem: '<S48>/Get Parameter5'
+  // Start for MATLABSystem: '<S49>/Get Parameter5'
   motion_controller_withPIC_DW.obj_a.matlabCodegenIsDeleted = false;
   motion_controller_withPIC_DW.obj_a.isInitialized = 1;
   ParamGet_motion_controller_withPIC_393.initParam(&prmName_2[0]);
@@ -204,32 +204,32 @@ void motion_controller_withPIC::motion_controller_wi_get_effort(real_T
   rtu_longdrive, real_T rtu_vx, real_T rtu_dvx, const real_T rtu_omega4w[4],
   real_T rty_effort_cmd[4])
 {
-  // MATLABSystem: '<S48>/Get Parameter'
+  // MATLABSystem: '<S49>/Get Parameter'
   ParamGet_motion_controller_withPIC_202.getParameter
     (&motion_controller_withPIC_B.b_value);
 
-  // MATLABSystem: '<S48>/Get Parameter2'
+  // MATLABSystem: '<S49>/Get Parameter2'
   ParamGet_motion_controller_withPIC_354.getParameter
     (&motion_controller_withPIC_B.b_value_c);
 
-  // MATLABSystem: '<S48>/Get Parameter3'
+  // MATLABSystem: '<S49>/Get Parameter3'
   ParamGet_motion_controller_withPIC_355.getParameter
     (&motion_controller_withPIC_B.b_value_k);
 
-  // MATLABSystem: '<S48>/Get Parameter5'
+  // MATLABSystem: '<S49>/Get Parameter5'
   ParamGet_motion_controller_withPIC_393.getParameter
     (&motion_controller_withPIC_B.b_value_cx);
 
-  // MATLAB Function: '<S48>/MATLAB Function' incorporates:
-  //   Constant: '<S48>/Constant4'
-  //   MATLABSystem: '<S48>/Get Parameter'
-  //   MATLABSystem: '<S48>/Get Parameter2'
-  //   MATLABSystem: '<S48>/Get Parameter3'
-  //   MATLABSystem: '<S48>/Get Parameter5'
-  //   SignalConversion generated from: '<S48>/angle1'
-  //   SignalConversion generated from: '<S48>/angle2'
-  //   SignalConversion generated from: '<S48>/angle3'
-  //   SignalConversion generated from: '<S48>/angle'
+  // MATLAB Function: '<S49>/MATLAB Function' incorporates:
+  //   Constant: '<S49>/Constant4'
+  //   MATLABSystem: '<S49>/Get Parameter'
+  //   MATLABSystem: '<S49>/Get Parameter2'
+  //   MATLABSystem: '<S49>/Get Parameter3'
+  //   MATLABSystem: '<S49>/Get Parameter5'
+  //   SignalConversion generated from: '<S49>/angle1'
+  //   SignalConversion generated from: '<S49>/angle2'
+  //   SignalConversion generated from: '<S49>/angle3'
+  //   SignalConversion generated from: '<S49>/angle'
 
   motion_controller_withPIC_B.effort = rtu_longdrive *
     motion_controller_withPIC_B.b_value;
@@ -408,77 +408,77 @@ void motion_controller_withPIC::motion_controller_wi_get_effort(real_T
     }
 
     if (motion_controller_withPIC_B.effort <= sat_idx_0) {
-      // SignalConversion generated from: '<S48>/angle_cmd'
+      // SignalConversion generated from: '<S49>/angle_cmd'
       rty_effort_cmd[0] = motion_controller_withPIC_B.effort;
     } else {
-      // SignalConversion generated from: '<S48>/angle_cmd'
+      // SignalConversion generated from: '<S49>/angle_cmd'
       rty_effort_cmd[0] = sat_idx_0;
     }
 
     if (motion_controller_withPIC_B.effort <= sat_idx_1) {
-      // SignalConversion generated from: '<S48>/angle_cmd'
+      // SignalConversion generated from: '<S49>/angle_cmd'
       rty_effort_cmd[1] = -motion_controller_withPIC_B.effort;
     } else {
-      // SignalConversion generated from: '<S48>/angle_cmd'
+      // SignalConversion generated from: '<S49>/angle_cmd'
       rty_effort_cmd[1] = -sat_idx_1;
     }
 
     if (motion_controller_withPIC_B.effort <= sat_idx_2) {
-      // SignalConversion generated from: '<S48>/angle_cmd'
+      // SignalConversion generated from: '<S49>/angle_cmd'
       rty_effort_cmd[2] = -motion_controller_withPIC_B.effort;
     } else {
-      // SignalConversion generated from: '<S48>/angle_cmd'
+      // SignalConversion generated from: '<S49>/angle_cmd'
       rty_effort_cmd[2] = -sat_idx_2;
     }
 
     if (motion_controller_withPIC_B.effort <= sat_idx_3) {
-      // SignalConversion generated from: '<S48>/angle_cmd'
+      // SignalConversion generated from: '<S49>/angle_cmd'
       rty_effort_cmd[3] = motion_controller_withPIC_B.effort;
     } else {
-      // SignalConversion generated from: '<S48>/angle_cmd'
+      // SignalConversion generated from: '<S49>/angle_cmd'
       rty_effort_cmd[3] = sat_idx_3;
     }
   } else {
-    // SignalConversion generated from: '<S48>/angle_cmd'
+    // SignalConversion generated from: '<S49>/angle_cmd'
     rty_effort_cmd[0] = motion_controller_withPIC_B.effort;
     rty_effort_cmd[1] = -motion_controller_withPIC_B.effort;
     rty_effort_cmd[2] = -motion_controller_withPIC_B.effort;
     rty_effort_cmd[3] = motion_controller_withPIC_B.effort;
   }
 
-  // End of MATLAB Function: '<S48>/MATLAB Function'
+  // End of MATLAB Function: '<S49>/MATLAB Function'
 }
 
 // Termination for Simulink Function: '<S15>/get_effort'
 void motion_controller_withPIC::motion_controll_get_effort_Term()
 {
-  // Terminate for MATLABSystem: '<S48>/Get Parameter'
+  // Terminate for MATLABSystem: '<S49>/Get Parameter'
   if (!motion_controller_withPIC_DW.obj_d.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_d.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S48>/Get Parameter'
+  // End of Terminate for MATLABSystem: '<S49>/Get Parameter'
 
-  // Terminate for MATLABSystem: '<S48>/Get Parameter2'
+  // Terminate for MATLABSystem: '<S49>/Get Parameter2'
   if (!motion_controller_withPIC_DW.obj_ae.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_ae.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S48>/Get Parameter2'
+  // End of Terminate for MATLABSystem: '<S49>/Get Parameter2'
 
-  // Terminate for MATLABSystem: '<S48>/Get Parameter3'
+  // Terminate for MATLABSystem: '<S49>/Get Parameter3'
   if (!motion_controller_withPIC_DW.obj_lw.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_lw.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S48>/Get Parameter3'
+  // End of Terminate for MATLABSystem: '<S49>/Get Parameter3'
 
-  // Terminate for MATLABSystem: '<S48>/Get Parameter5'
+  // Terminate for MATLABSystem: '<S49>/Get Parameter5'
   if (!motion_controller_withPIC_DW.obj_a.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_a.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S48>/Get Parameter5'
+  // End of Terminate for MATLABSystem: '<S49>/Get Parameter5'
 }
 
 // Output and update for Simulink Function: '<S15>/get_spd'
@@ -491,11 +491,11 @@ void motion_controller_withPIC::motion_controller_withP_get_spd(real_T rtu_angle
   real_T vRR;
   real_T vRR_tmp;
 
-  // MATLAB Function: '<S49>/MATLAB Function' incorporates:
-  //   Gain: '<S49>/Gain'
-  //   SignalConversion generated from: '<S49>/ackermann_enable'
-  //   SignalConversion generated from: '<S49>/angle'
-  //   SignalConversion generated from: '<S49>/longdrive'
+  // MATLAB Function: '<S50>/MATLAB Function' incorporates:
+  //   Gain: '<S50>/Gain'
+  //   SignalConversion generated from: '<S50>/ackermann_enable'
+  //   SignalConversion generated from: '<S50>/angle'
+  //   SignalConversion generated from: '<S50>/longdrive'
 
   if (motion_controller_withPIC_P.Gain_Gain_m *
       motion_controller_withPIC_B.GetParameter1 == 1.0) {
@@ -521,14 +521,14 @@ void motion_controller_withPIC::motion_controller_withP_get_spd(real_T rtu_angle
       vRR_tmp;
     vFR = vRR / cos(vFR);
 
-    // SignalConversion generated from: '<S49>/spd_cmd' incorporates:
-    //   SignalConversion generated from: '<S49>/angle'
-    //   SignalConversion generated from: '<S49>/longdrive'
+    // SignalConversion generated from: '<S50>/spd_cmd' incorporates:
+    //   SignalConversion generated from: '<S50>/angle'
+    //   SignalConversion generated from: '<S50>/longdrive'
 
     rty_spd_cmd[0] = vRL / cos(b_x);
   } else {
-    // SignalConversion generated from: '<S49>/spd_cmd' incorporates:
-    //   SignalConversion generated from: '<S49>/longdrive'
+    // SignalConversion generated from: '<S50>/spd_cmd' incorporates:
+    //   SignalConversion generated from: '<S50>/longdrive'
 
     rty_spd_cmd[0] = rtu_longdrive;
     vFR = rtu_longdrive;
@@ -536,15 +536,15 @@ void motion_controller_withPIC::motion_controller_withP_get_spd(real_T rtu_angle
     vRR = rtu_longdrive;
   }
 
-  // SignalConversion generated from: '<S49>/spd_cmd' incorporates:
-  //   MATLAB Function: '<S49>/MATLAB Function'
+  // SignalConversion generated from: '<S50>/spd_cmd' incorporates:
+  //   MATLAB Function: '<S50>/MATLAB Function'
 
   rty_spd_cmd[1] = -vFR;
   rty_spd_cmd[2] = -vRR;
   rty_spd_cmd[3] = vRL;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motio_modifyOverheadPhaseOne__j
   (sVIU4VBONGRsUytHTQmMJFH_motio_T *obj)
 {
@@ -577,7 +577,7 @@ void motion_controller_withPIC::motio_modifyOverheadPhaseOne__j
   obj->isActiveConstr[obj->isActiveIdx[4] - 2] = false;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_control_setProblemType_k
   (sVIU4VBONGRsUytHTQmMJFH_motio_T *obj, int32_T PROBLEM_TYPE)
 {
@@ -708,7 +708,7 @@ void motion_controller_withPIC::motion_control_setProblemType_k
   obj->probType = PROBLEM_TYPE;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 real_T motion_controller_withPIC::motion_controlle_xnrm2_hNM7iFHJ(int32_T n,
   const real_T x[1701], int32_T ix0)
 {
@@ -718,29 +718,29 @@ real_T motion_controller_withPIC::motion_controlle_xnrm2_hNM7iFHJ(int32_T n,
     if (n == 1) {
       y = fabs(x[ix0 - 1]);
     } else {
-      motion_controller_withPIC_B.scale_f = 3.3121686421112381E-170;
-      motion_controller_withPIC_B.kend_l = (ix0 + n) - 1;
-      for (motion_controller_withPIC_B.k_p = ix0;
-           motion_controller_withPIC_B.k_p <= motion_controller_withPIC_B.kend_l;
-           motion_controller_withPIC_B.k_p++) {
-        motion_controller_withPIC_B.absxk_c = fabs
-          (x[motion_controller_withPIC_B.k_p - 1]);
-        if (motion_controller_withPIC_B.absxk_c >
-            motion_controller_withPIC_B.scale_f) {
-          motion_controller_withPIC_B.t_n = motion_controller_withPIC_B.scale_f /
-            motion_controller_withPIC_B.absxk_c;
-          y = y * motion_controller_withPIC_B.t_n *
-            motion_controller_withPIC_B.t_n + 1.0;
-          motion_controller_withPIC_B.scale_f =
-            motion_controller_withPIC_B.absxk_c;
+      motion_controller_withPIC_B.scale_n = 3.3121686421112381E-170;
+      motion_controller_withPIC_B.kend_p = (ix0 + n) - 1;
+      for (motion_controller_withPIC_B.k_l = ix0;
+           motion_controller_withPIC_B.k_l <= motion_controller_withPIC_B.kend_p;
+           motion_controller_withPIC_B.k_l++) {
+        motion_controller_withPIC_B.absxk_h = fabs
+          (x[motion_controller_withPIC_B.k_l - 1]);
+        if (motion_controller_withPIC_B.absxk_h >
+            motion_controller_withPIC_B.scale_n) {
+          motion_controller_withPIC_B.t_k = motion_controller_withPIC_B.scale_n /
+            motion_controller_withPIC_B.absxk_h;
+          y = y * motion_controller_withPIC_B.t_k *
+            motion_controller_withPIC_B.t_k + 1.0;
+          motion_controller_withPIC_B.scale_n =
+            motion_controller_withPIC_B.absxk_h;
         } else {
-          motion_controller_withPIC_B.t_n = motion_controller_withPIC_B.absxk_c /
-            motion_controller_withPIC_B.scale_f;
-          y += motion_controller_withPIC_B.t_n * motion_controller_withPIC_B.t_n;
+          motion_controller_withPIC_B.t_k = motion_controller_withPIC_B.absxk_h /
+            motion_controller_withPIC_B.scale_n;
+          y += motion_controller_withPIC_B.t_k * motion_controller_withPIC_B.t_k;
         }
       }
 
-      y = motion_controller_withPIC_B.scale_f * sqrt(y);
+      y = motion_controller_withPIC_B.scale_n * sqrt(y);
     }
   }
 
@@ -751,26 +751,26 @@ real_T motion_controller_withPIC::motion_controller_rt_hypotd_snf(real_T u0,
   real_T u1)
 {
   real_T y;
-  motion_controller_withPIC_B.a_e = fabs(u0);
+  motion_controller_withPIC_B.a_j = fabs(u0);
   motion_controller_withPIC_B.b = fabs(u1);
-  if (motion_controller_withPIC_B.a_e < motion_controller_withPIC_B.b) {
-    motion_controller_withPIC_B.a_e /= motion_controller_withPIC_B.b;
-    y = sqrt(motion_controller_withPIC_B.a_e * motion_controller_withPIC_B.a_e +
+  if (motion_controller_withPIC_B.a_j < motion_controller_withPIC_B.b) {
+    motion_controller_withPIC_B.a_j /= motion_controller_withPIC_B.b;
+    y = sqrt(motion_controller_withPIC_B.a_j * motion_controller_withPIC_B.a_j +
              1.0) * motion_controller_withPIC_B.b;
-  } else if (motion_controller_withPIC_B.a_e > motion_controller_withPIC_B.b) {
-    motion_controller_withPIC_B.b /= motion_controller_withPIC_B.a_e;
+  } else if (motion_controller_withPIC_B.a_j > motion_controller_withPIC_B.b) {
+    motion_controller_withPIC_B.b /= motion_controller_withPIC_B.a_j;
     y = sqrt(motion_controller_withPIC_B.b * motion_controller_withPIC_B.b + 1.0)
-      * motion_controller_withPIC_B.a_e;
+      * motion_controller_withPIC_B.a_j;
   } else if (rtIsNaN(motion_controller_withPIC_B.b)) {
     y = (rtNaN);
   } else {
-    y = motion_controller_withPIC_B.a_e * 1.4142135623730951;
+    y = motion_controller_withPIC_B.a_j * 1.4142135623730951;
   }
 
   return y;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 real_T motion_controller_withPIC::motion_control_xzlarfg_Bt3Hq0Z4(int32_T n,
   real_T *alpha1, real_T x[1701], int32_T ix0)
 {
@@ -789,36 +789,36 @@ real_T motion_controller_withPIC::motion_control_xzlarfg_Bt3Hq0Z4(int32_T n,
       }
 
       if (fabs(motion_controller_withPIC_B.xnorm_f) < 1.0020841800044864E-292) {
-        motion_controller_withPIC_B.knt_h = 0;
+        motion_controller_withPIC_B.knt_j = 0;
         motion_controller_withPIC_B.scalarLB_j = (ix0 + n) - 2;
         do {
-          motion_controller_withPIC_B.knt_h++;
-          motion_controller_withPIC_B.vectorUB_n =
+          motion_controller_withPIC_B.knt_j++;
+          motion_controller_withPIC_B.vectorUB_l =
             ((((motion_controller_withPIC_B.scalarLB_j - ix0) + 1) / 2) << 1) +
             ix0;
-          motion_controller_withPIC_B.vectorUB_tmp_j =
-            motion_controller_withPIC_B.vectorUB_n - 2;
-          for (motion_controller_withPIC_B.d_d = ix0;
-               motion_controller_withPIC_B.d_d <=
-               motion_controller_withPIC_B.vectorUB_tmp_j;
-               motion_controller_withPIC_B.d_d += 2) {
-            tmp = _mm_loadu_pd(&x[motion_controller_withPIC_B.d_d - 1]);
-            _mm_storeu_pd(&x[motion_controller_withPIC_B.d_d - 1], _mm_mul_pd
+          motion_controller_withPIC_B.vectorUB_tmp_p =
+            motion_controller_withPIC_B.vectorUB_l - 2;
+          for (motion_controller_withPIC_B.d_n = ix0;
+               motion_controller_withPIC_B.d_n <=
+               motion_controller_withPIC_B.vectorUB_tmp_p;
+               motion_controller_withPIC_B.d_n += 2) {
+            tmp = _mm_loadu_pd(&x[motion_controller_withPIC_B.d_n - 1]);
+            _mm_storeu_pd(&x[motion_controller_withPIC_B.d_n - 1], _mm_mul_pd
                           (tmp, _mm_set1_pd(9.9792015476736E+291)));
           }
 
-          for (motion_controller_withPIC_B.d_d =
-               motion_controller_withPIC_B.vectorUB_n;
-               motion_controller_withPIC_B.d_d <=
+          for (motion_controller_withPIC_B.d_n =
+               motion_controller_withPIC_B.vectorUB_l;
+               motion_controller_withPIC_B.d_n <=
                motion_controller_withPIC_B.scalarLB_j;
-               motion_controller_withPIC_B.d_d++) {
-            x[motion_controller_withPIC_B.d_d - 1] *= 9.9792015476736E+291;
+               motion_controller_withPIC_B.d_n++) {
+            x[motion_controller_withPIC_B.d_n - 1] *= 9.9792015476736E+291;
           }
 
           motion_controller_withPIC_B.xnorm_f *= 9.9792015476736E+291;
           *alpha1 *= 9.9792015476736E+291;
         } while ((fabs(motion_controller_withPIC_B.xnorm_f) <
-                  1.0020841800044864E-292) && (motion_controller_withPIC_B.knt_h
+                  1.0020841800044864E-292) && (motion_controller_withPIC_B.knt_j
                   < 20));
 
         motion_controller_withPIC_B.xnorm_f = motion_controller_rt_hypotd_snf
@@ -830,29 +830,29 @@ real_T motion_controller_withPIC::motion_control_xzlarfg_Bt3Hq0Z4(int32_T n,
 
         tau = (motion_controller_withPIC_B.xnorm_f - *alpha1) /
           motion_controller_withPIC_B.xnorm_f;
-        motion_controller_withPIC_B.a_i = 1.0 / (*alpha1 -
+        motion_controller_withPIC_B.a_c = 1.0 / (*alpha1 -
           motion_controller_withPIC_B.xnorm_f);
-        for (motion_controller_withPIC_B.d_d = ix0;
-             motion_controller_withPIC_B.d_d <=
-             motion_controller_withPIC_B.vectorUB_tmp_j;
-             motion_controller_withPIC_B.d_d += 2) {
-          tmp = _mm_loadu_pd(&x[motion_controller_withPIC_B.d_d - 1]);
-          _mm_storeu_pd(&x[motion_controller_withPIC_B.d_d - 1], _mm_mul_pd(tmp,
-            _mm_set1_pd(motion_controller_withPIC_B.a_i)));
+        for (motion_controller_withPIC_B.d_n = ix0;
+             motion_controller_withPIC_B.d_n <=
+             motion_controller_withPIC_B.vectorUB_tmp_p;
+             motion_controller_withPIC_B.d_n += 2) {
+          tmp = _mm_loadu_pd(&x[motion_controller_withPIC_B.d_n - 1]);
+          _mm_storeu_pd(&x[motion_controller_withPIC_B.d_n - 1], _mm_mul_pd(tmp,
+            _mm_set1_pd(motion_controller_withPIC_B.a_c)));
         }
 
-        for (motion_controller_withPIC_B.d_d =
-             motion_controller_withPIC_B.vectorUB_n;
-             motion_controller_withPIC_B.d_d <=
+        for (motion_controller_withPIC_B.d_n =
+             motion_controller_withPIC_B.vectorUB_l;
+             motion_controller_withPIC_B.d_n <=
              motion_controller_withPIC_B.scalarLB_j;
-             motion_controller_withPIC_B.d_d++) {
-          x[motion_controller_withPIC_B.d_d - 1] *=
-            motion_controller_withPIC_B.a_i;
+             motion_controller_withPIC_B.d_n++) {
+          x[motion_controller_withPIC_B.d_n - 1] *=
+            motion_controller_withPIC_B.a_c;
         }
 
-        for (motion_controller_withPIC_B.d_d = 0;
-             motion_controller_withPIC_B.d_d < motion_controller_withPIC_B.knt_h;
-             motion_controller_withPIC_B.d_d++) {
+        for (motion_controller_withPIC_B.d_n = 0;
+             motion_controller_withPIC_B.d_n < motion_controller_withPIC_B.knt_j;
+             motion_controller_withPIC_B.d_n++) {
           motion_controller_withPIC_B.xnorm_f *= 1.0020841800044864E-292;
         }
 
@@ -860,29 +860,29 @@ real_T motion_controller_withPIC::motion_control_xzlarfg_Bt3Hq0Z4(int32_T n,
       } else {
         tau = (motion_controller_withPIC_B.xnorm_f - *alpha1) /
           motion_controller_withPIC_B.xnorm_f;
-        motion_controller_withPIC_B.a_i = 1.0 / (*alpha1 -
+        motion_controller_withPIC_B.a_c = 1.0 / (*alpha1 -
           motion_controller_withPIC_B.xnorm_f);
-        motion_controller_withPIC_B.d_d = (ix0 + n) - 2;
+        motion_controller_withPIC_B.d_n = (ix0 + n) - 2;
         motion_controller_withPIC_B.scalarLB_j =
-          ((((motion_controller_withPIC_B.d_d - ix0) + 1) / 2) << 1) + ix0;
-        motion_controller_withPIC_B.vectorUB_n =
+          ((((motion_controller_withPIC_B.d_n - ix0) + 1) / 2) << 1) + ix0;
+        motion_controller_withPIC_B.vectorUB_l =
           motion_controller_withPIC_B.scalarLB_j - 2;
-        for (motion_controller_withPIC_B.knt_h = ix0;
-             motion_controller_withPIC_B.knt_h <=
-             motion_controller_withPIC_B.vectorUB_n;
-             motion_controller_withPIC_B.knt_h += 2) {
-          tmp = _mm_loadu_pd(&x[motion_controller_withPIC_B.knt_h - 1]);
-          _mm_storeu_pd(&x[motion_controller_withPIC_B.knt_h - 1], _mm_mul_pd
-                        (tmp, _mm_set1_pd(motion_controller_withPIC_B.a_i)));
+        for (motion_controller_withPIC_B.knt_j = ix0;
+             motion_controller_withPIC_B.knt_j <=
+             motion_controller_withPIC_B.vectorUB_l;
+             motion_controller_withPIC_B.knt_j += 2) {
+          tmp = _mm_loadu_pd(&x[motion_controller_withPIC_B.knt_j - 1]);
+          _mm_storeu_pd(&x[motion_controller_withPIC_B.knt_j - 1], _mm_mul_pd
+                        (tmp, _mm_set1_pd(motion_controller_withPIC_B.a_c)));
         }
 
-        for (motion_controller_withPIC_B.knt_h =
+        for (motion_controller_withPIC_B.knt_j =
              motion_controller_withPIC_B.scalarLB_j;
-             motion_controller_withPIC_B.knt_h <=
-             motion_controller_withPIC_B.d_d; motion_controller_withPIC_B.knt_h
+             motion_controller_withPIC_B.knt_j <=
+             motion_controller_withPIC_B.d_n; motion_controller_withPIC_B.knt_j
              ++) {
-          x[motion_controller_withPIC_B.knt_h - 1] *=
-            motion_controller_withPIC_B.a_i;
+          x[motion_controller_withPIC_B.knt_j - 1] *=
+            motion_controller_withPIC_B.a_c;
         }
 
         *alpha1 = motion_controller_withPIC_B.xnorm_f;
@@ -893,7 +893,7 @@ real_T motion_controller_withPIC::motion_control_xzlarfg_Bt3Hq0Z4(int32_T n,
   return tau;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controll_xzlarf_ROZS8xVG(int32_T m,
   int32_T n, int32_T iv0, real_T tau, real_T C[1701], int32_T ic0, real_T work
   [81])
@@ -901,24 +901,24 @@ void motion_controller_withPIC::motion_controll_xzlarf_ROZS8xVG(int32_T m,
   if (tau != 0.0) {
     boolean_T exitg2;
     motion_controller_withPIC_B.lastv = m;
-    motion_controller_withPIC_B.lastc_a = iv0 + m;
+    motion_controller_withPIC_B.lastc_b = iv0 + m;
     while ((motion_controller_withPIC_B.lastv > 0) &&
-           (C[motion_controller_withPIC_B.lastc_a - 2] == 0.0)) {
+           (C[motion_controller_withPIC_B.lastc_b - 2] == 0.0)) {
       motion_controller_withPIC_B.lastv--;
-      motion_controller_withPIC_B.lastc_a--;
+      motion_controller_withPIC_B.lastc_b--;
     }
 
-    motion_controller_withPIC_B.lastc_a = n;
+    motion_controller_withPIC_B.lastc_b = n;
     exitg2 = false;
-    while ((!exitg2) && (motion_controller_withPIC_B.lastc_a > 0)) {
+    while ((!exitg2) && (motion_controller_withPIC_B.lastc_b > 0)) {
       int32_T exitg1;
-      motion_controller_withPIC_B.coltop_g =
-        (motion_controller_withPIC_B.lastc_a - 1) * 21 + ic0;
-      motion_controller_withPIC_B.b_ia = motion_controller_withPIC_B.coltop_g;
+      motion_controller_withPIC_B.coltop_f =
+        (motion_controller_withPIC_B.lastc_b - 1) * 21 + ic0;
+      motion_controller_withPIC_B.b_ia = motion_controller_withPIC_B.coltop_f;
       do {
         exitg1 = 0;
         if (motion_controller_withPIC_B.b_ia <=
-            (motion_controller_withPIC_B.coltop_g +
+            (motion_controller_withPIC_B.coltop_f +
              motion_controller_withPIC_B.lastv) - 1) {
           if (C[motion_controller_withPIC_B.b_ia - 1] != 0.0) {
             exitg1 = 1;
@@ -926,7 +926,7 @@ void motion_controller_withPIC::motion_controll_xzlarf_ROZS8xVG(int32_T m,
             motion_controller_withPIC_B.b_ia++;
           }
         } else {
-          motion_controller_withPIC_B.lastc_a--;
+          motion_controller_withPIC_B.lastc_b--;
           exitg1 = 2;
         }
       } while (exitg1 == 0);
@@ -936,113 +936,114 @@ void motion_controller_withPIC::motion_controll_xzlarf_ROZS8xVG(int32_T m,
       }
     }
 
-    motion_controller_withPIC_B.lastc_a--;
+    motion_controller_withPIC_B.lastc_b--;
   } else {
     motion_controller_withPIC_B.lastv = 0;
-    motion_controller_withPIC_B.lastc_a = -1;
+    motion_controller_withPIC_B.lastc_b = -1;
   }
 
   if (motion_controller_withPIC_B.lastv > 0) {
-    if (motion_controller_withPIC_B.lastc_a + 1 != 0) {
-      if (motion_controller_withPIC_B.lastc_a >= 0) {
+    if (motion_controller_withPIC_B.lastc_b + 1 != 0) {
+      if (motion_controller_withPIC_B.lastc_b >= 0) {
         memset(&work[0], 0, static_cast<uint32_T>
-               (motion_controller_withPIC_B.lastc_a + 1) * sizeof(real_T));
+               (motion_controller_withPIC_B.lastc_b + 1) * sizeof(real_T));
       }
 
-      motion_controller_withPIC_B.jA_f = 21 *
-        motion_controller_withPIC_B.lastc_a + ic0;
-      for (motion_controller_withPIC_B.coltop_g = ic0;
-           motion_controller_withPIC_B.coltop_g <=
-           motion_controller_withPIC_B.jA_f;
-           motion_controller_withPIC_B.coltop_g += 21) {
-        motion_controller_withPIC_B.c_ga = 0.0;
-        motion_controller_withPIC_B.d_b = (motion_controller_withPIC_B.coltop_g
+      motion_controller_withPIC_B.jA_c = 21 *
+        motion_controller_withPIC_B.lastc_b + ic0;
+      for (motion_controller_withPIC_B.coltop_f = ic0;
+           motion_controller_withPIC_B.coltop_f <=
+           motion_controller_withPIC_B.jA_c;
+           motion_controller_withPIC_B.coltop_f += 21) {
+        motion_controller_withPIC_B.c_e = 0.0;
+        motion_controller_withPIC_B.d_gu = (motion_controller_withPIC_B.coltop_f
           + motion_controller_withPIC_B.lastv) - 1;
         for (motion_controller_withPIC_B.b_ia =
-             motion_controller_withPIC_B.coltop_g;
-             motion_controller_withPIC_B.b_ia <= motion_controller_withPIC_B.d_b;
-             motion_controller_withPIC_B.b_ia++) {
-          motion_controller_withPIC_B.c_ga += C[((iv0 +
+             motion_controller_withPIC_B.coltop_f;
+             motion_controller_withPIC_B.b_ia <=
+             motion_controller_withPIC_B.d_gu; motion_controller_withPIC_B.b_ia
+             ++) {
+          motion_controller_withPIC_B.c_e += C[((iv0 +
             motion_controller_withPIC_B.b_ia) -
-            motion_controller_withPIC_B.coltop_g) - 1] *
+            motion_controller_withPIC_B.coltop_f) - 1] *
             C[motion_controller_withPIC_B.b_ia - 1];
         }
 
         motion_controller_withPIC_B.b_ia = div_nde_s32_floor
-          (motion_controller_withPIC_B.coltop_g - ic0, 21);
+          (motion_controller_withPIC_B.coltop_f - ic0, 21);
         work[motion_controller_withPIC_B.b_ia] +=
-          motion_controller_withPIC_B.c_ga;
+          motion_controller_withPIC_B.c_e;
       }
     }
 
     if (!(-tau == 0.0)) {
-      motion_controller_withPIC_B.jA_f = ic0;
-      for (motion_controller_withPIC_B.coltop_g = 0;
-           motion_controller_withPIC_B.coltop_g <=
-           motion_controller_withPIC_B.lastc_a;
-           motion_controller_withPIC_B.coltop_g++) {
-        motion_controller_withPIC_B.c_ga =
-          work[motion_controller_withPIC_B.coltop_g];
-        if (motion_controller_withPIC_B.c_ga != 0.0) {
-          motion_controller_withPIC_B.c_ga *= -tau;
-          motion_controller_withPIC_B.d_b = motion_controller_withPIC_B.lastv +
-            motion_controller_withPIC_B.jA_f;
+      motion_controller_withPIC_B.jA_c = ic0;
+      for (motion_controller_withPIC_B.coltop_f = 0;
+           motion_controller_withPIC_B.coltop_f <=
+           motion_controller_withPIC_B.lastc_b;
+           motion_controller_withPIC_B.coltop_f++) {
+        motion_controller_withPIC_B.c_e =
+          work[motion_controller_withPIC_B.coltop_f];
+        if (motion_controller_withPIC_B.c_e != 0.0) {
+          motion_controller_withPIC_B.c_e *= -tau;
+          motion_controller_withPIC_B.d_gu = motion_controller_withPIC_B.lastv +
+            motion_controller_withPIC_B.jA_c;
           for (motion_controller_withPIC_B.b_ia =
-               motion_controller_withPIC_B.jA_f;
+               motion_controller_withPIC_B.jA_c;
                motion_controller_withPIC_B.b_ia <
-               motion_controller_withPIC_B.d_b; motion_controller_withPIC_B.b_ia
-               ++) {
+               motion_controller_withPIC_B.d_gu;
+               motion_controller_withPIC_B.b_ia++) {
             C[motion_controller_withPIC_B.b_ia - 1] += C[((iv0 +
               motion_controller_withPIC_B.b_ia) -
-              motion_controller_withPIC_B.jA_f) - 1] *
-              motion_controller_withPIC_B.c_ga;
+              motion_controller_withPIC_B.jA_c) - 1] *
+              motion_controller_withPIC_B.c_e;
           }
         }
 
-        motion_controller_withPIC_B.jA_f += 21;
+        motion_controller_withPIC_B.jA_c += 21;
       }
     }
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controller__qrf_nGv3LI5p(real_T A[1701],
   int32_T m, int32_T n, int32_T nfxd, real_T tau[21])
 {
   memset(&motion_controller_withPIC_B.work_h[0], 0, 81U * sizeof(real_T));
-  motion_controller_withPIC_B.b_jk = static_cast<uint8_T>(nfxd);
-  for (motion_controller_withPIC_B.i_k = 0; motion_controller_withPIC_B.i_k <
-       motion_controller_withPIC_B.b_jk; motion_controller_withPIC_B.i_k++) {
-    motion_controller_withPIC_B.ii_f = motion_controller_withPIC_B.i_k * 21 +
-      motion_controller_withPIC_B.i_k;
-    motion_controller_withPIC_B.mmi_c = m - motion_controller_withPIC_B.i_k;
-    if (motion_controller_withPIC_B.i_k + 1 < m) {
-      motion_controller_withPIC_B.b_atmp_h = A[motion_controller_withPIC_B.ii_f];
-      motion_controller_withPIC_B.tau_h = motion_control_xzlarfg_Bt3Hq0Z4
-        (motion_controller_withPIC_B.mmi_c,
-         &motion_controller_withPIC_B.b_atmp_h, A,
-         motion_controller_withPIC_B.ii_f + 2);
-      tau[motion_controller_withPIC_B.i_k] = motion_controller_withPIC_B.tau_h;
-      A[motion_controller_withPIC_B.ii_f] = motion_controller_withPIC_B.b_atmp_h;
+  motion_controller_withPIC_B.b_hj = static_cast<uint8_T>(nfxd);
+  for (motion_controller_withPIC_B.i_d1 = 0; motion_controller_withPIC_B.i_d1 <
+       motion_controller_withPIC_B.b_hj; motion_controller_withPIC_B.i_d1++) {
+    motion_controller_withPIC_B.ii_j = motion_controller_withPIC_B.i_d1 * 21 +
+      motion_controller_withPIC_B.i_d1;
+    motion_controller_withPIC_B.mmi_k = m - motion_controller_withPIC_B.i_d1;
+    if (motion_controller_withPIC_B.i_d1 + 1 < m) {
+      motion_controller_withPIC_B.b_atmp_f = A[motion_controller_withPIC_B.ii_j];
+      motion_controller_withPIC_B.tau_i = motion_control_xzlarfg_Bt3Hq0Z4
+        (motion_controller_withPIC_B.mmi_k,
+         &motion_controller_withPIC_B.b_atmp_f, A,
+         motion_controller_withPIC_B.ii_j + 2);
+      tau[motion_controller_withPIC_B.i_d1] = motion_controller_withPIC_B.tau_i;
+      A[motion_controller_withPIC_B.ii_j] = motion_controller_withPIC_B.b_atmp_f;
     } else {
-      motion_controller_withPIC_B.tau_h = 0.0;
-      tau[motion_controller_withPIC_B.i_k] = 0.0;
+      motion_controller_withPIC_B.tau_i = 0.0;
+      tau[motion_controller_withPIC_B.i_d1] = 0.0;
     }
 
-    if (motion_controller_withPIC_B.i_k + 1 < n) {
-      motion_controller_withPIC_B.b_atmp_h = A[motion_controller_withPIC_B.ii_f];
-      A[motion_controller_withPIC_B.ii_f] = 1.0;
-      motion_controll_xzlarf_ROZS8xVG(motion_controller_withPIC_B.mmi_c, (n -
-        motion_controller_withPIC_B.i_k) - 1, motion_controller_withPIC_B.ii_f +
-        1, motion_controller_withPIC_B.tau_h, A,
-        motion_controller_withPIC_B.ii_f + 22,
+    if (motion_controller_withPIC_B.i_d1 + 1 < n) {
+      motion_controller_withPIC_B.b_atmp_f = A[motion_controller_withPIC_B.ii_j];
+      A[motion_controller_withPIC_B.ii_j] = 1.0;
+      motion_controll_xzlarf_ROZS8xVG(motion_controller_withPIC_B.mmi_k, (n -
+        motion_controller_withPIC_B.i_d1) - 1, motion_controller_withPIC_B.ii_j
+        + 1, motion_controller_withPIC_B.tau_i, A,
+        motion_controller_withPIC_B.ii_j + 22,
         motion_controller_withPIC_B.work_h);
-      A[motion_controller_withPIC_B.ii_f] = motion_controller_withPIC_B.b_atmp_h;
+      A[motion_controller_withPIC_B.ii_j] = motion_controller_withPIC_B.b_atmp_f;
     }
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controller_w_factorQRE_c
   (sIZAIOglGM5dPDQlNukc9SD_motio_T *obj, int32_T mrows, int32_T ncols)
 {
@@ -1058,261 +1059,259 @@ void motion_controller_withPIC::motion_controller_w_factorQRE_c
     obj->mrows = mrows;
     obj->ncols = ncols;
     if (mrows <= ncols) {
-      motion_controller_withPIC_B.u1_p = mrows;
+      motion_controller_withPIC_B.u1_k = mrows;
     } else {
-      motion_controller_withPIC_B.u1_p = ncols;
+      motion_controller_withPIC_B.u1_k = ncols;
     }
 
-    obj->minRowCol = motion_controller_withPIC_B.u1_p;
+    obj->minRowCol = motion_controller_withPIC_B.u1_k;
     memset(&obj->tau[0], 0, 21U * sizeof(real_T));
-    if (motion_controller_withPIC_B.u1_p < 1) {
+    if (motion_controller_withPIC_B.u1_k < 1) {
       motion_controller_withPIC_B.nfxd_g = (ncols / 4) << 2;
-      motion_controller_withPIC_B.i_m4 = motion_controller_withPIC_B.nfxd_g - 4;
-      for (motion_controller_withPIC_B.u1_p = 0;
-           motion_controller_withPIC_B.u1_p <= motion_controller_withPIC_B.i_m4;
-           motion_controller_withPIC_B.u1_p += 4) {
+      motion_controller_withPIC_B.i_a = motion_controller_withPIC_B.nfxd_g - 4;
+      for (motion_controller_withPIC_B.u1_k = 0;
+           motion_controller_withPIC_B.u1_k <= motion_controller_withPIC_B.i_a;
+           motion_controller_withPIC_B.u1_k += 4) {
         tmp = _mm_add_epi32(_mm_add_epi32(_mm_set1_epi32
-          (motion_controller_withPIC_B.u1_p), _mm_loadu_si128((const __m128i *)
+          (motion_controller_withPIC_B.u1_k), _mm_loadu_si128((const __m128i *)
           &offsets[0])), _mm_set1_epi32(1));
-        _mm_storeu_si128((__m128i *)&obj->jpvt[motion_controller_withPIC_B.u1_p],
+        _mm_storeu_si128((__m128i *)&obj->jpvt[motion_controller_withPIC_B.u1_k],
                          tmp);
       }
 
-      for (motion_controller_withPIC_B.u1_p = motion_controller_withPIC_B.nfxd_g;
-           motion_controller_withPIC_B.u1_p < ncols;
-           motion_controller_withPIC_B.u1_p++) {
-        obj->jpvt[motion_controller_withPIC_B.u1_p] =
-          motion_controller_withPIC_B.u1_p + 1;
+      for (motion_controller_withPIC_B.u1_k = motion_controller_withPIC_B.nfxd_g;
+           motion_controller_withPIC_B.u1_k < ncols;
+           motion_controller_withPIC_B.u1_k++) {
+        obj->jpvt[motion_controller_withPIC_B.u1_k] =
+          motion_controller_withPIC_B.u1_k + 1;
       }
     } else {
       motion_controller_withPIC_B.nfxd_g = -1;
-      for (motion_controller_withPIC_B.i_m4 = 0;
-           motion_controller_withPIC_B.i_m4 < ncols;
-           motion_controller_withPIC_B.i_m4++) {
-        if (obj->jpvt[motion_controller_withPIC_B.i_m4] != 0) {
+      for (motion_controller_withPIC_B.i_a = 0; motion_controller_withPIC_B.i_a <
+           ncols; motion_controller_withPIC_B.i_a++) {
+        if (obj->jpvt[motion_controller_withPIC_B.i_a] != 0) {
           motion_controller_withPIC_B.nfxd_g++;
-          if (motion_controller_withPIC_B.i_m4 + 1 !=
+          if (motion_controller_withPIC_B.i_a + 1 !=
               motion_controller_withPIC_B.nfxd_g + 1) {
-            motion_controller_withPIC_B.ix_k = motion_controller_withPIC_B.i_m4 *
+            motion_controller_withPIC_B.ix_k = motion_controller_withPIC_B.i_a *
               21;
-            motion_controller_withPIC_B.iy_d =
+            motion_controller_withPIC_B.iy_p =
               motion_controller_withPIC_B.nfxd_g * 21;
-            for (motion_controller_withPIC_B.mmi_g = 0;
-                 motion_controller_withPIC_B.mmi_g < mrows;
-                 motion_controller_withPIC_B.mmi_g++) {
-              motion_controller_withPIC_B.temp_tmp_k =
+            for (motion_controller_withPIC_B.mmi_c = 0;
+                 motion_controller_withPIC_B.mmi_c < mrows;
+                 motion_controller_withPIC_B.mmi_c++) {
+              motion_controller_withPIC_B.temp_tmp_f =
                 motion_controller_withPIC_B.ix_k +
-                motion_controller_withPIC_B.mmi_g;
-              motion_controller_withPIC_B.temp_e = obj->
-                QR[motion_controller_withPIC_B.temp_tmp_k];
-              motion_controller_withPIC_B.itemp_c =
-                motion_controller_withPIC_B.iy_d +
-                motion_controller_withPIC_B.mmi_g;
-              obj->QR[motion_controller_withPIC_B.temp_tmp_k] = obj->
-                QR[motion_controller_withPIC_B.itemp_c];
-              obj->QR[motion_controller_withPIC_B.itemp_c] =
-                motion_controller_withPIC_B.temp_e;
+                motion_controller_withPIC_B.mmi_c;
+              motion_controller_withPIC_B.temp_h = obj->
+                QR[motion_controller_withPIC_B.temp_tmp_f];
+              motion_controller_withPIC_B.itemp_d =
+                motion_controller_withPIC_B.iy_p +
+                motion_controller_withPIC_B.mmi_c;
+              obj->QR[motion_controller_withPIC_B.temp_tmp_f] = obj->
+                QR[motion_controller_withPIC_B.itemp_d];
+              obj->QR[motion_controller_withPIC_B.itemp_d] =
+                motion_controller_withPIC_B.temp_h;
             }
 
-            obj->jpvt[motion_controller_withPIC_B.i_m4] = obj->
+            obj->jpvt[motion_controller_withPIC_B.i_a] = obj->
               jpvt[motion_controller_withPIC_B.nfxd_g];
             obj->jpvt[motion_controller_withPIC_B.nfxd_g] =
-              motion_controller_withPIC_B.i_m4 + 1;
+              motion_controller_withPIC_B.i_a + 1;
           } else {
-            obj->jpvt[motion_controller_withPIC_B.i_m4] =
-              motion_controller_withPIC_B.i_m4 + 1;
+            obj->jpvt[motion_controller_withPIC_B.i_a] =
+              motion_controller_withPIC_B.i_a + 1;
           }
         } else {
-          obj->jpvt[motion_controller_withPIC_B.i_m4] =
-            motion_controller_withPIC_B.i_m4 + 1;
+          obj->jpvt[motion_controller_withPIC_B.i_a] =
+            motion_controller_withPIC_B.i_a + 1;
         }
       }
 
       if (motion_controller_withPIC_B.nfxd_g + 1 <=
-          motion_controller_withPIC_B.u1_p) {
+          motion_controller_withPIC_B.u1_k) {
         motion_controller_withPIC_B.nfxd_g++;
       } else {
-        motion_controller_withPIC_B.nfxd_g = motion_controller_withPIC_B.u1_p;
+        motion_controller_withPIC_B.nfxd_g = motion_controller_withPIC_B.u1_k;
       }
 
       memset(&obj->tau[0], 0, 21U * sizeof(real_T));
       motion_controller__qrf_nGv3LI5p(obj->QR, mrows, ncols,
         motion_controller_withPIC_B.nfxd_g, obj->tau);
-      if (motion_controller_withPIC_B.nfxd_g < motion_controller_withPIC_B.u1_p)
+      if (motion_controller_withPIC_B.nfxd_g < motion_controller_withPIC_B.u1_k)
       {
         memset(&motion_controller_withPIC_B.work_n[0], 0, 81U * sizeof(real_T));
         memset(&motion_controller_withPIC_B.vn1_b[0], 0, 81U * sizeof(real_T));
         memset(&motion_controller_withPIC_B.vn2_l[0], 0, 81U * sizeof(real_T));
-        for (motion_controller_withPIC_B.i_m4 =
+        for (motion_controller_withPIC_B.i_a =
              motion_controller_withPIC_B.nfxd_g + 1;
-             motion_controller_withPIC_B.i_m4 <= ncols;
-             motion_controller_withPIC_B.i_m4++) {
-          motion_controller_withPIC_B.temp_e = motion_controlle_xnrm2_hNM7iFHJ
+             motion_controller_withPIC_B.i_a <= ncols;
+             motion_controller_withPIC_B.i_a++) {
+          motion_controller_withPIC_B.temp_h = motion_controlle_xnrm2_hNM7iFHJ
             (mrows - motion_controller_withPIC_B.nfxd_g, obj->QR,
-             ((motion_controller_withPIC_B.i_m4 - 1) * 21 +
+             ((motion_controller_withPIC_B.i_a - 1) * 21 +
               motion_controller_withPIC_B.nfxd_g) + 1);
-          motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.i_m4 - 1]
-            = motion_controller_withPIC_B.temp_e;
-          motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.i_m4 - 1]
-            = motion_controller_withPIC_B.temp_e;
+          motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.i_a - 1]
+            = motion_controller_withPIC_B.temp_h;
+          motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.i_a - 1]
+            = motion_controller_withPIC_B.temp_h;
         }
 
-        for (motion_controller_withPIC_B.i_m4 =
+        for (motion_controller_withPIC_B.i_a =
              motion_controller_withPIC_B.nfxd_g + 1;
-             motion_controller_withPIC_B.i_m4 <=
-             motion_controller_withPIC_B.u1_p; motion_controller_withPIC_B.i_m4
-             ++) {
-          motion_controller_withPIC_B.temp_tmp_k =
-            (motion_controller_withPIC_B.i_m4 - 1) * 21;
+             motion_controller_withPIC_B.i_a <= motion_controller_withPIC_B.u1_k;
+             motion_controller_withPIC_B.i_a++) {
+          motion_controller_withPIC_B.temp_tmp_f =
+            (motion_controller_withPIC_B.i_a - 1) * 21;
           motion_controller_withPIC_B.ix_k =
-            (motion_controller_withPIC_B.temp_tmp_k +
-             motion_controller_withPIC_B.i_m4) - 1;
-          motion_controller_withPIC_B.iy_d = ncols -
-            motion_controller_withPIC_B.i_m4;
-          motion_controller_withPIC_B.mmi_g = mrows -
-            motion_controller_withPIC_B.i_m4;
-          if (motion_controller_withPIC_B.iy_d + 1 < 1) {
-            motion_controller_withPIC_B.pvt_g = -2;
+            (motion_controller_withPIC_B.temp_tmp_f +
+             motion_controller_withPIC_B.i_a) - 1;
+          motion_controller_withPIC_B.iy_p = ncols -
+            motion_controller_withPIC_B.i_a;
+          motion_controller_withPIC_B.mmi_c = mrows -
+            motion_controller_withPIC_B.i_a;
+          if (motion_controller_withPIC_B.iy_p + 1 < 1) {
+            motion_controller_withPIC_B.pvt_k = -2;
           } else {
-            motion_controller_withPIC_B.pvt_g = -1;
-            if (motion_controller_withPIC_B.iy_d + 1 > 1) {
-              motion_controller_withPIC_B.temp_e = fabs
-                (motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.i_m4
+            motion_controller_withPIC_B.pvt_k = -1;
+            if (motion_controller_withPIC_B.iy_p + 1 > 1) {
+              motion_controller_withPIC_B.temp_h = fabs
+                (motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.i_a
                  - 1]);
-              for (motion_controller_withPIC_B.itemp_c = 2;
-                   motion_controller_withPIC_B.itemp_c <=
-                   motion_controller_withPIC_B.iy_d + 1;
-                   motion_controller_withPIC_B.itemp_c++) {
-                motion_controller_withPIC_B.s_n = fabs
+              for (motion_controller_withPIC_B.itemp_d = 2;
+                   motion_controller_withPIC_B.itemp_d <=
+                   motion_controller_withPIC_B.iy_p + 1;
+                   motion_controller_withPIC_B.itemp_d++) {
+                motion_controller_withPIC_B.s_h = fabs
                   (motion_controller_withPIC_B.vn1_b
-                   [(motion_controller_withPIC_B.i_m4 +
-                     motion_controller_withPIC_B.itemp_c) - 2]);
-                if (motion_controller_withPIC_B.s_n >
-                    motion_controller_withPIC_B.temp_e) {
-                  motion_controller_withPIC_B.pvt_g =
-                    motion_controller_withPIC_B.itemp_c - 2;
-                  motion_controller_withPIC_B.temp_e =
-                    motion_controller_withPIC_B.s_n;
+                   [(motion_controller_withPIC_B.i_a +
+                     motion_controller_withPIC_B.itemp_d) - 2]);
+                if (motion_controller_withPIC_B.s_h >
+                    motion_controller_withPIC_B.temp_h) {
+                  motion_controller_withPIC_B.pvt_k =
+                    motion_controller_withPIC_B.itemp_d - 2;
+                  motion_controller_withPIC_B.temp_h =
+                    motion_controller_withPIC_B.s_h;
                 }
               }
             }
           }
 
-          motion_controller_withPIC_B.pvt_g += motion_controller_withPIC_B.i_m4;
-          if (motion_controller_withPIC_B.pvt_g + 1 !=
-              motion_controller_withPIC_B.i_m4) {
-            motion_controller_withPIC_B.c_ix_k =
-              motion_controller_withPIC_B.pvt_g * 21;
-            for (motion_controller_withPIC_B.c_k_p = 0;
-                 motion_controller_withPIC_B.c_k_p < mrows;
-                 motion_controller_withPIC_B.c_k_p++) {
-              motion_controller_withPIC_B.b_temp_tmp_a =
-                motion_controller_withPIC_B.c_ix_k +
-                motion_controller_withPIC_B.c_k_p;
-              motion_controller_withPIC_B.temp_e = obj->
-                QR[motion_controller_withPIC_B.b_temp_tmp_a];
-              motion_controller_withPIC_B.itemp_c =
-                motion_controller_withPIC_B.temp_tmp_k +
-                motion_controller_withPIC_B.c_k_p;
-              obj->QR[motion_controller_withPIC_B.b_temp_tmp_a] = obj->
-                QR[motion_controller_withPIC_B.itemp_c];
-              obj->QR[motion_controller_withPIC_B.itemp_c] =
-                motion_controller_withPIC_B.temp_e;
+          motion_controller_withPIC_B.pvt_k += motion_controller_withPIC_B.i_a;
+          if (motion_controller_withPIC_B.pvt_k + 1 !=
+              motion_controller_withPIC_B.i_a) {
+            motion_controller_withPIC_B.c_ix_p =
+              motion_controller_withPIC_B.pvt_k * 21;
+            for (motion_controller_withPIC_B.c_k_m = 0;
+                 motion_controller_withPIC_B.c_k_m < mrows;
+                 motion_controller_withPIC_B.c_k_m++) {
+              motion_controller_withPIC_B.b_temp_tmp_c =
+                motion_controller_withPIC_B.c_ix_p +
+                motion_controller_withPIC_B.c_k_m;
+              motion_controller_withPIC_B.temp_h = obj->
+                QR[motion_controller_withPIC_B.b_temp_tmp_c];
+              motion_controller_withPIC_B.itemp_d =
+                motion_controller_withPIC_B.temp_tmp_f +
+                motion_controller_withPIC_B.c_k_m;
+              obj->QR[motion_controller_withPIC_B.b_temp_tmp_c] = obj->
+                QR[motion_controller_withPIC_B.itemp_d];
+              obj->QR[motion_controller_withPIC_B.itemp_d] =
+                motion_controller_withPIC_B.temp_h;
             }
 
-            motion_controller_withPIC_B.itemp_c = obj->
-              jpvt[motion_controller_withPIC_B.pvt_g];
-            obj->jpvt[motion_controller_withPIC_B.pvt_g] = obj->
-              jpvt[motion_controller_withPIC_B.i_m4 - 1];
-            obj->jpvt[motion_controller_withPIC_B.i_m4 - 1] =
-              motion_controller_withPIC_B.itemp_c;
-            motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.pvt_g]
+            motion_controller_withPIC_B.itemp_d = obj->
+              jpvt[motion_controller_withPIC_B.pvt_k];
+            obj->jpvt[motion_controller_withPIC_B.pvt_k] = obj->
+              jpvt[motion_controller_withPIC_B.i_a - 1];
+            obj->jpvt[motion_controller_withPIC_B.i_a - 1] =
+              motion_controller_withPIC_B.itemp_d;
+            motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.pvt_k]
               =
-              motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.i_m4
+              motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.i_a
               - 1];
-            motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.pvt_g]
+            motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.pvt_k]
               =
-              motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.i_m4
+              motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.i_a
               - 1];
           }
 
-          if (motion_controller_withPIC_B.i_m4 < mrows) {
-            motion_controller_withPIC_B.temp_e = obj->
+          if (motion_controller_withPIC_B.i_a < mrows) {
+            motion_controller_withPIC_B.temp_h = obj->
               QR[motion_controller_withPIC_B.ix_k];
-            obj->tau[motion_controller_withPIC_B.i_m4 - 1] =
-              motion_control_xzlarfg_Bt3Hq0Z4(motion_controller_withPIC_B.mmi_g
-              + 1, &motion_controller_withPIC_B.temp_e, obj->QR,
+            obj->tau[motion_controller_withPIC_B.i_a - 1] =
+              motion_control_xzlarfg_Bt3Hq0Z4(motion_controller_withPIC_B.mmi_c
+              + 1, &motion_controller_withPIC_B.temp_h, obj->QR,
               motion_controller_withPIC_B.ix_k + 2);
             obj->QR[motion_controller_withPIC_B.ix_k] =
-              motion_controller_withPIC_B.temp_e;
+              motion_controller_withPIC_B.temp_h;
           } else {
-            obj->tau[motion_controller_withPIC_B.i_m4 - 1] = 0.0;
+            obj->tau[motion_controller_withPIC_B.i_a - 1] = 0.0;
           }
 
-          if (motion_controller_withPIC_B.i_m4 < ncols) {
-            motion_controller_withPIC_B.temp_e = obj->
+          if (motion_controller_withPIC_B.i_a < ncols) {
+            motion_controller_withPIC_B.temp_h = obj->
               QR[motion_controller_withPIC_B.ix_k];
             obj->QR[motion_controller_withPIC_B.ix_k] = 1.0;
-            motion_controll_xzlarf_ROZS8xVG(motion_controller_withPIC_B.mmi_g +
-              1, motion_controller_withPIC_B.iy_d,
+            motion_controll_xzlarf_ROZS8xVG(motion_controller_withPIC_B.mmi_c +
+              1, motion_controller_withPIC_B.iy_p,
               motion_controller_withPIC_B.ix_k + 1, obj->
-              tau[motion_controller_withPIC_B.i_m4 - 1], obj->QR,
+              tau[motion_controller_withPIC_B.i_a - 1], obj->QR,
               motion_controller_withPIC_B.ix_k + 22,
               motion_controller_withPIC_B.work_n);
             obj->QR[motion_controller_withPIC_B.ix_k] =
-              motion_controller_withPIC_B.temp_e;
+              motion_controller_withPIC_B.temp_h;
           }
 
-          for (motion_controller_withPIC_B.itemp_c =
-               motion_controller_withPIC_B.i_m4 + 1;
-               motion_controller_withPIC_B.itemp_c <= ncols;
-               motion_controller_withPIC_B.itemp_c++) {
+          for (motion_controller_withPIC_B.itemp_d =
+               motion_controller_withPIC_B.i_a + 1;
+               motion_controller_withPIC_B.itemp_d <= ncols;
+               motion_controller_withPIC_B.itemp_d++) {
             motion_controller_withPIC_B.ix_k =
-              (motion_controller_withPIC_B.itemp_c - 1) * 21 +
-              motion_controller_withPIC_B.i_m4;
-            motion_controller_withPIC_B.temp_e =
-              motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.itemp_c
+              (motion_controller_withPIC_B.itemp_d - 1) * 21 +
+              motion_controller_withPIC_B.i_a;
+            motion_controller_withPIC_B.temp_h =
+              motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.itemp_d
               - 1];
-            if (motion_controller_withPIC_B.temp_e != 0.0) {
-              motion_controller_withPIC_B.s_n = fabs(obj->
+            if (motion_controller_withPIC_B.temp_h != 0.0) {
+              motion_controller_withPIC_B.s_h = fabs(obj->
                 QR[motion_controller_withPIC_B.ix_k - 1]) /
-                motion_controller_withPIC_B.temp_e;
-              motion_controller_withPIC_B.s_n = 1.0 -
-                motion_controller_withPIC_B.s_n *
-                motion_controller_withPIC_B.s_n;
-              if (motion_controller_withPIC_B.s_n < 0.0) {
-                motion_controller_withPIC_B.s_n = 0.0;
+                motion_controller_withPIC_B.temp_h;
+              motion_controller_withPIC_B.s_h = 1.0 -
+                motion_controller_withPIC_B.s_h *
+                motion_controller_withPIC_B.s_h;
+              if (motion_controller_withPIC_B.s_h < 0.0) {
+                motion_controller_withPIC_B.s_h = 0.0;
               }
 
-              motion_controller_withPIC_B.temp2_f =
-                motion_controller_withPIC_B.temp_e /
-                motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.itemp_c
+              motion_controller_withPIC_B.temp2_n =
+                motion_controller_withPIC_B.temp_h /
+                motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.itemp_d
                 - 1];
-              motion_controller_withPIC_B.temp2_f =
-                motion_controller_withPIC_B.temp2_f *
-                motion_controller_withPIC_B.temp2_f *
-                motion_controller_withPIC_B.s_n;
-              if (motion_controller_withPIC_B.temp2_f <= 1.4901161193847656E-8)
+              motion_controller_withPIC_B.temp2_n =
+                motion_controller_withPIC_B.temp2_n *
+                motion_controller_withPIC_B.temp2_n *
+                motion_controller_withPIC_B.s_h;
+              if (motion_controller_withPIC_B.temp2_n <= 1.4901161193847656E-8)
               {
-                if (motion_controller_withPIC_B.i_m4 < mrows) {
-                  motion_controller_withPIC_B.temp_e =
+                if (motion_controller_withPIC_B.i_a < mrows) {
+                  motion_controller_withPIC_B.temp_h =
                     motion_controlle_xnrm2_hNM7iFHJ
-                    (motion_controller_withPIC_B.mmi_g, obj->QR,
+                    (motion_controller_withPIC_B.mmi_c, obj->QR,
                      motion_controller_withPIC_B.ix_k + 1);
-                  motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.itemp_c
-                    - 1] = motion_controller_withPIC_B.temp_e;
-                  motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.itemp_c
-                    - 1] = motion_controller_withPIC_B.temp_e;
+                  motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.itemp_d
+                    - 1] = motion_controller_withPIC_B.temp_h;
+                  motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.itemp_d
+                    - 1] = motion_controller_withPIC_B.temp_h;
                 } else {
-                  motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.itemp_c
+                  motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.itemp_d
                     - 1] = 0.0;
-                  motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.itemp_c
+                  motion_controller_withPIC_B.vn2_l[motion_controller_withPIC_B.itemp_d
                     - 1] = 0.0;
                 }
               } else {
-                motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.itemp_c
-                  - 1] = motion_controller_withPIC_B.temp_e * sqrt
-                  (motion_controller_withPIC_B.s_n);
+                motion_controller_withPIC_B.vn1_b[motion_controller_withPIC_B.itemp_d
+                  - 1] = motion_controller_withPIC_B.temp_h * sqrt
+                  (motion_controller_withPIC_B.s_h);
               }
             }
           }
@@ -1322,83 +1321,83 @@ void motion_controller_withPIC::motion_controller_w_factorQRE_c
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controller_w_computeQ__l
   (sIZAIOglGM5dPDQlNukc9SD_motio_T *obj, int32_T nrows)
 {
-  motion_controller_withPIC_B.i_is = obj->minRowCol;
-  for (motion_controller_withPIC_B.idx_m = 0; motion_controller_withPIC_B.idx_m <
-       motion_controller_withPIC_B.i_is; motion_controller_withPIC_B.idx_m++) {
-    motion_controller_withPIC_B.iQR0_j = 21 * motion_controller_withPIC_B.idx_m
-      + motion_controller_withPIC_B.idx_m;
-    motion_controller_withPIC_B.ia_i = obj->mrows -
-      motion_controller_withPIC_B.idx_m;
-    if (motion_controller_withPIC_B.ia_i - 2 >= 0) {
-      memcpy(&obj->Q[motion_controller_withPIC_B.iQR0_j + 1], &obj->
-             QR[motion_controller_withPIC_B.iQR0_j + 1], static_cast<uint32_T>
-             (((motion_controller_withPIC_B.ia_i +
-                motion_controller_withPIC_B.iQR0_j) -
-               motion_controller_withPIC_B.iQR0_j) - 1) * sizeof(real_T));
+  motion_controller_withPIC_B.i_dl = obj->minRowCol;
+  for (motion_controller_withPIC_B.idx_b = 0; motion_controller_withPIC_B.idx_b <
+       motion_controller_withPIC_B.i_dl; motion_controller_withPIC_B.idx_b++) {
+    motion_controller_withPIC_B.iQR0_i = 21 * motion_controller_withPIC_B.idx_b
+      + motion_controller_withPIC_B.idx_b;
+    motion_controller_withPIC_B.ia_o = obj->mrows -
+      motion_controller_withPIC_B.idx_b;
+    if (motion_controller_withPIC_B.ia_o - 2 >= 0) {
+      memcpy(&obj->Q[motion_controller_withPIC_B.iQR0_i + 1], &obj->
+             QR[motion_controller_withPIC_B.iQR0_i + 1], static_cast<uint32_T>
+             (((motion_controller_withPIC_B.ia_o +
+                motion_controller_withPIC_B.iQR0_i) -
+               motion_controller_withPIC_B.iQR0_i) - 1) * sizeof(real_T));
     }
   }
 
-  motion_controller_withPIC_B.idx_m = obj->mrows;
+  motion_controller_withPIC_B.idx_b = obj->mrows;
   if (nrows >= 1) {
-    for (motion_controller_withPIC_B.itau_b = motion_controller_withPIC_B.i_is;
-         motion_controller_withPIC_B.itau_b < nrows;
-         motion_controller_withPIC_B.itau_b++) {
-      motion_controller_withPIC_B.ia_i = motion_controller_withPIC_B.itau_b * 21;
-      memset(&obj->Q[motion_controller_withPIC_B.ia_i], 0, static_cast<uint32_T>
-             ((motion_controller_withPIC_B.idx_m +
-               motion_controller_withPIC_B.ia_i) -
-              motion_controller_withPIC_B.ia_i) * sizeof(real_T));
-      obj->Q[motion_controller_withPIC_B.ia_i +
-        motion_controller_withPIC_B.itau_b] = 1.0;
+    for (motion_controller_withPIC_B.itau_g = motion_controller_withPIC_B.i_dl;
+         motion_controller_withPIC_B.itau_g < nrows;
+         motion_controller_withPIC_B.itau_g++) {
+      motion_controller_withPIC_B.ia_o = motion_controller_withPIC_B.itau_g * 21;
+      memset(&obj->Q[motion_controller_withPIC_B.ia_o], 0, static_cast<uint32_T>
+             ((motion_controller_withPIC_B.idx_b +
+               motion_controller_withPIC_B.ia_o) -
+              motion_controller_withPIC_B.ia_o) * sizeof(real_T));
+      obj->Q[motion_controller_withPIC_B.ia_o +
+        motion_controller_withPIC_B.itau_g] = 1.0;
     }
 
-    motion_controller_withPIC_B.itau_b = obj->minRowCol - 1;
+    motion_controller_withPIC_B.itau_g = obj->minRowCol - 1;
     memset(&motion_controller_withPIC_B.work_ny[0], 0, 21U * sizeof(real_T));
-    motion_controller_withPIC_B.i_is = obj->minRowCol;
-    while (motion_controller_withPIC_B.i_is >= 1) {
-      motion_controller_withPIC_B.iQR0_j = ((motion_controller_withPIC_B.i_is -
-        1) * 21 + motion_controller_withPIC_B.i_is) - 1;
-      if (motion_controller_withPIC_B.i_is < nrows) {
-        obj->Q[motion_controller_withPIC_B.iQR0_j] = 1.0;
-        motion_controller_withPIC_B.ia_i = motion_controller_withPIC_B.idx_m -
-          motion_controller_withPIC_B.i_is;
-        if (obj->tau[motion_controller_withPIC_B.itau_b] != 0.0) {
+    motion_controller_withPIC_B.i_dl = obj->minRowCol;
+    while (motion_controller_withPIC_B.i_dl >= 1) {
+      motion_controller_withPIC_B.iQR0_i = ((motion_controller_withPIC_B.i_dl -
+        1) * 21 + motion_controller_withPIC_B.i_dl) - 1;
+      if (motion_controller_withPIC_B.i_dl < nrows) {
+        obj->Q[motion_controller_withPIC_B.iQR0_i] = 1.0;
+        motion_controller_withPIC_B.ia_o = motion_controller_withPIC_B.idx_b -
+          motion_controller_withPIC_B.i_dl;
+        if (obj->tau[motion_controller_withPIC_B.itau_g] != 0.0) {
           boolean_T exitg2;
-          motion_controller_withPIC_B.lastc_o =
-            motion_controller_withPIC_B.iQR0_j +
-            motion_controller_withPIC_B.ia_i;
-          while ((motion_controller_withPIC_B.ia_i + 1 > 0) && (obj->
-                  Q[motion_controller_withPIC_B.lastc_o] == 0.0)) {
-            motion_controller_withPIC_B.ia_i--;
-            motion_controller_withPIC_B.lastc_o--;
+          motion_controller_withPIC_B.lastc_e =
+            motion_controller_withPIC_B.iQR0_i +
+            motion_controller_withPIC_B.ia_o;
+          while ((motion_controller_withPIC_B.ia_o + 1 > 0) && (obj->
+                  Q[motion_controller_withPIC_B.lastc_e] == 0.0)) {
+            motion_controller_withPIC_B.ia_o--;
+            motion_controller_withPIC_B.lastc_e--;
           }
 
-          motion_controller_withPIC_B.lastc_o = nrows -
-            motion_controller_withPIC_B.i_is;
+          motion_controller_withPIC_B.lastc_e = nrows -
+            motion_controller_withPIC_B.i_dl;
           exitg2 = false;
-          while ((!exitg2) && (motion_controller_withPIC_B.lastc_o > 0)) {
+          while ((!exitg2) && (motion_controller_withPIC_B.lastc_e > 0)) {
             int32_T exitg1;
             motion_controller_withPIC_B.coltop_e =
-              ((motion_controller_withPIC_B.lastc_o - 1) * 21 +
-               motion_controller_withPIC_B.iQR0_j) + 22;
+              ((motion_controller_withPIC_B.lastc_e - 1) * 21 +
+               motion_controller_withPIC_B.iQR0_i) + 22;
             motion_controller_withPIC_B.c_ia_i =
               motion_controller_withPIC_B.coltop_e;
             do {
               exitg1 = 0;
               if (motion_controller_withPIC_B.c_ia_i <=
                   motion_controller_withPIC_B.coltop_e +
-                  motion_controller_withPIC_B.ia_i) {
+                  motion_controller_withPIC_B.ia_o) {
                 if (obj->Q[motion_controller_withPIC_B.c_ia_i - 1] != 0.0) {
                   exitg1 = 1;
                 } else {
                   motion_controller_withPIC_B.c_ia_i++;
                 }
               } else {
-                motion_controller_withPIC_B.lastc_o--;
+                motion_controller_withPIC_B.lastc_e--;
                 exitg1 = 2;
               }
             } while (exitg1 == 0);
@@ -1408,121 +1407,121 @@ void motion_controller_withPIC::motion_controller_w_computeQ__l
             }
           }
 
-          motion_controller_withPIC_B.lastc_o--;
+          motion_controller_withPIC_B.lastc_e--;
         } else {
-          motion_controller_withPIC_B.ia_i = -1;
-          motion_controller_withPIC_B.lastc_o = -1;
+          motion_controller_withPIC_B.ia_o = -1;
+          motion_controller_withPIC_B.lastc_e = -1;
         }
 
-        if (motion_controller_withPIC_B.ia_i + 1 > 0) {
-          if (motion_controller_withPIC_B.lastc_o + 1 != 0) {
-            if (motion_controller_withPIC_B.lastc_o >= 0) {
+        if (motion_controller_withPIC_B.ia_o + 1 > 0) {
+          if (motion_controller_withPIC_B.lastc_e + 1 != 0) {
+            if (motion_controller_withPIC_B.lastc_e >= 0) {
               memset(&motion_controller_withPIC_B.work_ny[0], 0, static_cast<
-                     uint32_T>(motion_controller_withPIC_B.lastc_o + 1) * sizeof
+                     uint32_T>(motion_controller_withPIC_B.lastc_e + 1) * sizeof
                      (real_T));
             }
 
             motion_controller_withPIC_B.c_ia_i = (21 *
-              motion_controller_withPIC_B.lastc_o +
-              motion_controller_withPIC_B.iQR0_j) + 22;
+              motion_controller_withPIC_B.lastc_e +
+              motion_controller_withPIC_B.iQR0_i) + 22;
             for (motion_controller_withPIC_B.coltop_e =
-                 motion_controller_withPIC_B.iQR0_j + 22;
+                 motion_controller_withPIC_B.iQR0_i + 22;
                  motion_controller_withPIC_B.coltop_e <=
                  motion_controller_withPIC_B.c_ia_i;
                  motion_controller_withPIC_B.coltop_e += 21) {
-              motion_controller_withPIC_B.b_c_f = 0.0;
-              motion_controller_withPIC_B.f_g =
+              motion_controller_withPIC_B.b_c_l = 0.0;
+              motion_controller_withPIC_B.f_i =
                 motion_controller_withPIC_B.coltop_e +
-                motion_controller_withPIC_B.ia_i;
-              for (motion_controller_withPIC_B.jA_e =
+                motion_controller_withPIC_B.ia_o;
+              for (motion_controller_withPIC_B.jA_m =
                    motion_controller_withPIC_B.coltop_e;
-                   motion_controller_withPIC_B.jA_e <=
-                   motion_controller_withPIC_B.f_g;
-                   motion_controller_withPIC_B.jA_e++) {
-                motion_controller_withPIC_B.b_c_f += obj->Q
-                  [(motion_controller_withPIC_B.iQR0_j +
-                    motion_controller_withPIC_B.jA_e) -
+                   motion_controller_withPIC_B.jA_m <=
+                   motion_controller_withPIC_B.f_i;
+                   motion_controller_withPIC_B.jA_m++) {
+                motion_controller_withPIC_B.b_c_l += obj->Q
+                  [(motion_controller_withPIC_B.iQR0_i +
+                    motion_controller_withPIC_B.jA_m) -
                   motion_controller_withPIC_B.coltop_e] * obj->
-                  Q[motion_controller_withPIC_B.jA_e - 1];
+                  Q[motion_controller_withPIC_B.jA_m - 1];
               }
 
-              motion_controller_withPIC_B.jA_e = div_nde_s32_floor
+              motion_controller_withPIC_B.jA_m = div_nde_s32_floor
                 ((motion_controller_withPIC_B.coltop_e -
-                  motion_controller_withPIC_B.iQR0_j) - 22, 21);
-              motion_controller_withPIC_B.work_ny[motion_controller_withPIC_B.jA_e]
-                += motion_controller_withPIC_B.b_c_f;
+                  motion_controller_withPIC_B.iQR0_i) - 22, 21);
+              motion_controller_withPIC_B.work_ny[motion_controller_withPIC_B.jA_m]
+                += motion_controller_withPIC_B.b_c_l;
             }
           }
 
-          if (!(-obj->tau[motion_controller_withPIC_B.itau_b] == 0.0)) {
-            motion_controller_withPIC_B.jA_e =
-              motion_controller_withPIC_B.iQR0_j + 22;
+          if (!(-obj->tau[motion_controller_withPIC_B.itau_g] == 0.0)) {
+            motion_controller_withPIC_B.jA_m =
+              motion_controller_withPIC_B.iQR0_i + 22;
             for (motion_controller_withPIC_B.coltop_e = 0;
                  motion_controller_withPIC_B.coltop_e <=
-                 motion_controller_withPIC_B.lastc_o;
+                 motion_controller_withPIC_B.lastc_e;
                  motion_controller_withPIC_B.coltop_e++) {
-              motion_controller_withPIC_B.b_c_f =
+              motion_controller_withPIC_B.b_c_l =
                 motion_controller_withPIC_B.work_ny[motion_controller_withPIC_B.coltop_e];
-              if (motion_controller_withPIC_B.b_c_f != 0.0) {
-                motion_controller_withPIC_B.b_c_f *= -obj->
-                  tau[motion_controller_withPIC_B.itau_b];
-                motion_controller_withPIC_B.f_g =
-                  motion_controller_withPIC_B.ia_i +
-                  motion_controller_withPIC_B.jA_e;
+              if (motion_controller_withPIC_B.b_c_l != 0.0) {
+                motion_controller_withPIC_B.b_c_l *= -obj->
+                  tau[motion_controller_withPIC_B.itau_g];
+                motion_controller_withPIC_B.f_i =
+                  motion_controller_withPIC_B.ia_o +
+                  motion_controller_withPIC_B.jA_m;
                 for (motion_controller_withPIC_B.c_ia_i =
-                     motion_controller_withPIC_B.jA_e;
+                     motion_controller_withPIC_B.jA_m;
                      motion_controller_withPIC_B.c_ia_i <=
-                     motion_controller_withPIC_B.f_g;
+                     motion_controller_withPIC_B.f_i;
                      motion_controller_withPIC_B.c_ia_i++) {
                   obj->Q[motion_controller_withPIC_B.c_ia_i - 1] += obj->Q
-                    [(motion_controller_withPIC_B.iQR0_j +
+                    [(motion_controller_withPIC_B.iQR0_i +
                       motion_controller_withPIC_B.c_ia_i) -
-                    motion_controller_withPIC_B.jA_e] *
-                    motion_controller_withPIC_B.b_c_f;
+                    motion_controller_withPIC_B.jA_m] *
+                    motion_controller_withPIC_B.b_c_l;
                 }
               }
 
-              motion_controller_withPIC_B.jA_e += 21;
+              motion_controller_withPIC_B.jA_m += 21;
             }
           }
         }
       }
 
-      if (motion_controller_withPIC_B.i_is < motion_controller_withPIC_B.idx_m)
+      if (motion_controller_withPIC_B.i_dl < motion_controller_withPIC_B.idx_b)
       {
-        motion_controller_withPIC_B.lastc_o =
-          ((motion_controller_withPIC_B.iQR0_j +
-            motion_controller_withPIC_B.idx_m) -
-           motion_controller_withPIC_B.i_is) + 1;
-        for (motion_controller_withPIC_B.ia_i =
-             motion_controller_withPIC_B.iQR0_j + 2;
-             motion_controller_withPIC_B.ia_i <=
-             motion_controller_withPIC_B.lastc_o;
-             motion_controller_withPIC_B.ia_i++) {
-          obj->Q[motion_controller_withPIC_B.ia_i - 1] *= -obj->
-            tau[motion_controller_withPIC_B.itau_b];
+        motion_controller_withPIC_B.lastc_e =
+          ((motion_controller_withPIC_B.iQR0_i +
+            motion_controller_withPIC_B.idx_b) -
+           motion_controller_withPIC_B.i_dl) + 1;
+        for (motion_controller_withPIC_B.ia_o =
+             motion_controller_withPIC_B.iQR0_i + 2;
+             motion_controller_withPIC_B.ia_o <=
+             motion_controller_withPIC_B.lastc_e;
+             motion_controller_withPIC_B.ia_o++) {
+          obj->Q[motion_controller_withPIC_B.ia_o - 1] *= -obj->
+            tau[motion_controller_withPIC_B.itau_g];
         }
       }
 
-      obj->Q[motion_controller_withPIC_B.iQR0_j] = 1.0 - obj->
-        tau[motion_controller_withPIC_B.itau_b];
-      motion_controller_withPIC_B.lastc_o = static_cast<uint8_T>
-        (motion_controller_withPIC_B.i_is - 1);
-      for (motion_controller_withPIC_B.ia_i = 0;
-           motion_controller_withPIC_B.ia_i <
-           motion_controller_withPIC_B.lastc_o; motion_controller_withPIC_B.ia_i
+      obj->Q[motion_controller_withPIC_B.iQR0_i] = 1.0 - obj->
+        tau[motion_controller_withPIC_B.itau_g];
+      motion_controller_withPIC_B.lastc_e = static_cast<uint8_T>
+        (motion_controller_withPIC_B.i_dl - 1);
+      for (motion_controller_withPIC_B.ia_o = 0;
+           motion_controller_withPIC_B.ia_o <
+           motion_controller_withPIC_B.lastc_e; motion_controller_withPIC_B.ia_o
            ++) {
-        obj->Q[(motion_controller_withPIC_B.iQR0_j -
-                motion_controller_withPIC_B.ia_i) - 1] = 0.0;
+        obj->Q[(motion_controller_withPIC_B.iQR0_i -
+                motion_controller_withPIC_B.ia_o) - 1] = 0.0;
       }
 
-      motion_controller_withPIC_B.itau_b--;
-      motion_controller_withPIC_B.i_is--;
+      motion_controller_withPIC_B.itau_g--;
+      motion_controller_withPIC_B.i_dl--;
     }
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 int32_T motion_controller_withPIC::motion_ComputeNumDependentEq__d
   (sIZAIOglGM5dPDQlNukc9SD_motio_T *qrmanager, const real_T beqf[81], int32_T
    mConstr, int32_T nVar)
@@ -1577,7 +1576,7 @@ int32_T motion_controller_withPIC::motion_ComputeNumDependentEq__d
   return numDependent;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controlle_removeConstr_n
   (sVIU4VBONGRsUytHTQmMJFH_motio_T *obj, int32_T idx_global)
 {
@@ -1599,7 +1598,7 @@ void motion_controller_withPIC::motion_controlle_removeConstr_n
   obj->nWConstr[TYPE_tmp]--;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_control_removeEqConstr_i
   (sVIU4VBONGRsUytHTQmMJFH_motio_T *obj, int32_T idx_global)
 {
@@ -1640,7 +1639,7 @@ void motion_controller_withPIC::motion_control_removeEqConstr_i
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_c_RemoveDependentIneq__e
   (sVIU4VBONGRsUytHTQmMJFH_motio_T *workingset, sIZAIOglGM5dPDQlNukc9SD_motio_T *
    qrmanager, s3cSGkBdKxRj6Qn3zsJRowG_motio_T *memspace, real_T tolfactor)
@@ -1651,7 +1650,7 @@ void motion_controller_withPIC::motion_c_RemoveDependentIneq__e
   motion_controller_withPIC_B.nVar = workingset->nVar;
   if ((workingset->nWConstr[2] + workingset->nWConstr[3]) + workingset->
       nWConstr[4] > 0) {
-    motion_controller_withPIC_B.tol_p = tolfactor * static_cast<real_T>
+    motion_controller_withPIC_B.tol_e = tolfactor * static_cast<real_T>
       (workingset->nVar) * 2.2204460492503131E-16;
     for (motion_controller_withPIC_B.nDepIneq = 0;
          motion_controller_withPIC_B.nDepIneq <
@@ -1673,11 +1672,11 @@ void motion_controller_withPIC::motion_c_RemoveDependentIneq__e
          motion_controller_withPIC_B.nDepIneq++) {
       motion_controller_withPIC_B.iy0_tmp_g = 21 *
         motion_controller_withPIC_B.nDepIneq;
-      motion_controller_withPIC_B.c_i = static_cast<uint8_T>
+      motion_controller_withPIC_B.c_ge = static_cast<uint8_T>
         (motion_controller_withPIC_B.nVar);
       memcpy(&qrmanager->QR[motion_controller_withPIC_B.iy0_tmp_g],
              &workingset->ATwset[motion_controller_withPIC_B.iy0_tmp_g],
-             static_cast<uint32_T>((motion_controller_withPIC_B.c_i +
+             static_cast<uint32_T>((motion_controller_withPIC_B.c_ge +
                motion_controller_withPIC_B.iy0_tmp_g) -
               motion_controller_withPIC_B.iy0_tmp_g) * sizeof(real_T));
     }
@@ -1702,7 +1701,7 @@ void motion_controller_withPIC::motion_c_RemoveDependentIneq__e
       while ((motion_controller_withPIC_B.nActiveConstr_tmp + 1 >
               motion_controller_withPIC_B.nFixedConstr) && (fabs(qrmanager->
                QR[motion_controller_withPIC_B.nVar]) <
-              motion_controller_withPIC_B.tol_p)) {
+              motion_controller_withPIC_B.tol_e)) {
         motion_controller_withPIC_B.nDepIneq++;
         memspace->workspace_int[motion_controller_withPIC_B.nDepIneq - 1] =
           qrmanager->jpvt[motion_controller_withPIC_B.nActiveConstr_tmp];
@@ -1726,7 +1725,7 @@ void motion_controller_withPIC::motion_c_RemoveDependentIneq__e
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controller_wi_factorQR_c
   (sIZAIOglGM5dPDQlNukc9SD_motio_T *obj, const real_T A[1701], int32_T mrows,
    int32_T ncols)
@@ -1735,23 +1734,23 @@ void motion_controller_withPIC::motion_controller_wi_factorQR_c
 
   __m128i tmp;
   boolean_T guard1;
-  motion_controller_withPIC_B.k_c = mrows * ncols;
+  motion_controller_withPIC_B.k_d = mrows * ncols;
   guard1 = false;
-  if (motion_controller_withPIC_B.k_c > 0) {
-    for (motion_controller_withPIC_B.i_d0 = 0; motion_controller_withPIC_B.i_d0 <
-         ncols; motion_controller_withPIC_B.i_d0++) {
+  if (motion_controller_withPIC_B.k_d > 0) {
+    for (motion_controller_withPIC_B.i_a2 = 0; motion_controller_withPIC_B.i_a2 <
+         ncols; motion_controller_withPIC_B.i_a2++) {
       motion_controller_withPIC_B.ix0_tmp = 21 *
-        motion_controller_withPIC_B.i_d0;
-      motion_controller_withPIC_B.k_c = static_cast<uint8_T>(mrows);
+        motion_controller_withPIC_B.i_a2;
+      motion_controller_withPIC_B.k_d = static_cast<uint8_T>(mrows);
       memcpy(&obj->QR[motion_controller_withPIC_B.ix0_tmp],
              &A[motion_controller_withPIC_B.ix0_tmp], static_cast<uint32_T>
-             ((motion_controller_withPIC_B.k_c +
+             ((motion_controller_withPIC_B.k_d +
                motion_controller_withPIC_B.ix0_tmp) -
               motion_controller_withPIC_B.ix0_tmp) * sizeof(real_T));
     }
 
     guard1 = true;
-  } else if (motion_controller_withPIC_B.k_c == 0) {
+  } else if (motion_controller_withPIC_B.k_d == 0) {
     obj->mrows = mrows;
     obj->ncols = ncols;
     obj->minRowCol = 0;
@@ -1763,107 +1762,107 @@ void motion_controller_withPIC::motion_controller_wi_factorQR_c
     obj->usedPivoting = false;
     obj->mrows = mrows;
     obj->ncols = ncols;
-    motion_controller_withPIC_B.k_c = (ncols / 4) << 2;
-    motion_controller_withPIC_B.ix0_tmp = motion_controller_withPIC_B.k_c - 4;
-    for (motion_controller_withPIC_B.i_d0 = 0; motion_controller_withPIC_B.i_d0 <=
-         motion_controller_withPIC_B.ix0_tmp; motion_controller_withPIC_B.i_d0 +=
+    motion_controller_withPIC_B.k_d = (ncols / 4) << 2;
+    motion_controller_withPIC_B.ix0_tmp = motion_controller_withPIC_B.k_d - 4;
+    for (motion_controller_withPIC_B.i_a2 = 0; motion_controller_withPIC_B.i_a2 <=
+         motion_controller_withPIC_B.ix0_tmp; motion_controller_withPIC_B.i_a2 +=
          4) {
       tmp = _mm_add_epi32(_mm_add_epi32(_mm_set1_epi32
-        (motion_controller_withPIC_B.i_d0), _mm_loadu_si128((const __m128i *)
+        (motion_controller_withPIC_B.i_a2), _mm_loadu_si128((const __m128i *)
         &offsets[0])), _mm_set1_epi32(1));
-      _mm_storeu_si128((__m128i *)&obj->jpvt[motion_controller_withPIC_B.i_d0],
+      _mm_storeu_si128((__m128i *)&obj->jpvt[motion_controller_withPIC_B.i_a2],
                        tmp);
     }
 
-    for (motion_controller_withPIC_B.i_d0 = motion_controller_withPIC_B.k_c;
-         motion_controller_withPIC_B.i_d0 < ncols;
-         motion_controller_withPIC_B.i_d0++) {
-      obj->jpvt[motion_controller_withPIC_B.i_d0] =
-        motion_controller_withPIC_B.i_d0 + 1;
+    for (motion_controller_withPIC_B.i_a2 = motion_controller_withPIC_B.k_d;
+         motion_controller_withPIC_B.i_a2 < ncols;
+         motion_controller_withPIC_B.i_a2++) {
+      obj->jpvt[motion_controller_withPIC_B.i_a2] =
+        motion_controller_withPIC_B.i_a2 + 1;
     }
 
     if (mrows <= ncols) {
-      motion_controller_withPIC_B.k_c = mrows;
+      motion_controller_withPIC_B.k_d = mrows;
     } else {
-      motion_controller_withPIC_B.k_c = ncols;
+      motion_controller_withPIC_B.k_d = ncols;
     }
 
-    obj->minRowCol = motion_controller_withPIC_B.k_c;
+    obj->minRowCol = motion_controller_withPIC_B.k_d;
     memset(&obj->tau[0], 0, 21U * sizeof(real_T));
-    if (motion_controller_withPIC_B.k_c >= 1) {
+    if (motion_controller_withPIC_B.k_d >= 1) {
       memset(&obj->tau[0], 0, 21U * sizeof(real_T));
       motion_controller__qrf_nGv3LI5p(obj->QR, mrows, ncols,
-        motion_controller_withPIC_B.k_c, obj->tau);
+        motion_controller_withPIC_B.k_d, obj->tau);
     }
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controlle_xgemv_7iafTBwP(int32_T m, const
   real_T A[840], const real_T x[1701], real_T y[81])
 {
-  for (motion_controller_withPIC_B.b_iy_b = 0;
-       motion_controller_withPIC_B.b_iy_b <= 38;
-       motion_controller_withPIC_B.b_iy_b += 2) {
+  for (motion_controller_withPIC_B.b_iy_p = 0;
+       motion_controller_withPIC_B.b_iy_p <= 38;
+       motion_controller_withPIC_B.b_iy_p += 2) {
     __m128d tmp;
-    tmp = _mm_loadu_pd(&y[motion_controller_withPIC_B.b_iy_b]);
-    _mm_storeu_pd(&y[motion_controller_withPIC_B.b_iy_b], _mm_mul_pd(tmp,
+    tmp = _mm_loadu_pd(&y[motion_controller_withPIC_B.b_iy_p]);
+    _mm_storeu_pd(&y[motion_controller_withPIC_B.b_iy_p], _mm_mul_pd(tmp,
       _mm_set1_pd(-1.0)));
   }
 
-  for (motion_controller_withPIC_B.b_iy_b = 0;
-       motion_controller_withPIC_B.b_iy_b <= 819;
-       motion_controller_withPIC_B.b_iy_b += 21) {
-    motion_controller_withPIC_B.c_o = 0.0;
-    motion_controller_withPIC_B.b_p = motion_controller_withPIC_B.b_iy_b + m;
-    for (motion_controller_withPIC_B.ia_p = motion_controller_withPIC_B.b_iy_b +
-         1; motion_controller_withPIC_B.ia_p <= motion_controller_withPIC_B.b_p;
-         motion_controller_withPIC_B.ia_p++) {
-      motion_controller_withPIC_B.c_o += x[(motion_controller_withPIC_B.ia_p -
-        motion_controller_withPIC_B.b_iy_b) - 1] *
-        A[motion_controller_withPIC_B.ia_p - 1];
+  for (motion_controller_withPIC_B.b_iy_p = 0;
+       motion_controller_withPIC_B.b_iy_p <= 819;
+       motion_controller_withPIC_B.b_iy_p += 21) {
+    motion_controller_withPIC_B.c_j3 = 0.0;
+    motion_controller_withPIC_B.b_p2 = motion_controller_withPIC_B.b_iy_p + m;
+    for (motion_controller_withPIC_B.ia_ap = motion_controller_withPIC_B.b_iy_p
+         + 1; motion_controller_withPIC_B.ia_ap <=
+         motion_controller_withPIC_B.b_p2; motion_controller_withPIC_B.ia_ap++)
+    {
+      motion_controller_withPIC_B.c_j3 += x[(motion_controller_withPIC_B.ia_ap -
+        motion_controller_withPIC_B.b_iy_p) - 1] *
+        A[motion_controller_withPIC_B.ia_ap - 1];
     }
 
-    motion_controller_withPIC_B.ia_p = div_nde_s32_floor
-      (motion_controller_withPIC_B.b_iy_b, 21);
-    y[motion_controller_withPIC_B.ia_p] += motion_controller_withPIC_B.c_o;
+    motion_controller_withPIC_B.ia_ap = div_nde_s32_floor
+      (motion_controller_withPIC_B.b_iy_p, 21);
+    y[motion_controller_withPIC_B.ia_ap] += motion_controller_withPIC_B.c_j3;
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controlle_xgemv_vyHQ2Zvi(int32_T m, const
   real_T A[840], const real_T x[1701], real_T y[81])
 {
-  for (motion_controller_withPIC_B.b_iy_m = 0;
-       motion_controller_withPIC_B.b_iy_m <= 38;
-       motion_controller_withPIC_B.b_iy_m += 2) {
+  for (motion_controller_withPIC_B.b_iy_c = 0;
+       motion_controller_withPIC_B.b_iy_c <= 38;
+       motion_controller_withPIC_B.b_iy_c += 2) {
     __m128d tmp;
-    tmp = _mm_loadu_pd(&y[motion_controller_withPIC_B.b_iy_m]);
-    _mm_storeu_pd(&y[motion_controller_withPIC_B.b_iy_m], _mm_mul_pd(tmp,
+    tmp = _mm_loadu_pd(&y[motion_controller_withPIC_B.b_iy_c]);
+    _mm_storeu_pd(&y[motion_controller_withPIC_B.b_iy_c], _mm_mul_pd(tmp,
       _mm_set1_pd(-1.0)));
   }
 
-  for (motion_controller_withPIC_B.b_iy_m = 0;
-       motion_controller_withPIC_B.b_iy_m <= 819;
-       motion_controller_withPIC_B.b_iy_m += 21) {
-    motion_controller_withPIC_B.c_h = 0.0;
-    motion_controller_withPIC_B.b_ch = motion_controller_withPIC_B.b_iy_m + m;
-    for (motion_controller_withPIC_B.ia_g4 = motion_controller_withPIC_B.b_iy_m
-         + 1; motion_controller_withPIC_B.ia_g4 <=
-         motion_controller_withPIC_B.b_ch; motion_controller_withPIC_B.ia_g4++)
-    {
-      motion_controller_withPIC_B.c_h += x[(motion_controller_withPIC_B.ia_g4 -
-        motion_controller_withPIC_B.b_iy_m) + 80] *
-        A[motion_controller_withPIC_B.ia_g4 - 1];
+  for (motion_controller_withPIC_B.b_iy_c = 0;
+       motion_controller_withPIC_B.b_iy_c <= 819;
+       motion_controller_withPIC_B.b_iy_c += 21) {
+    motion_controller_withPIC_B.c_hn = 0.0;
+    motion_controller_withPIC_B.b_g4 = motion_controller_withPIC_B.b_iy_c + m;
+    for (motion_controller_withPIC_B.ia_b = motion_controller_withPIC_B.b_iy_c +
+         1; motion_controller_withPIC_B.ia_b <= motion_controller_withPIC_B.b_g4;
+         motion_controller_withPIC_B.ia_b++) {
+      motion_controller_withPIC_B.c_hn += x[(motion_controller_withPIC_B.ia_b -
+        motion_controller_withPIC_B.b_iy_c) + 80] *
+        A[motion_controller_withPIC_B.ia_b - 1];
     }
 
-    motion_controller_withPIC_B.ia_g4 = div_nde_s32_floor
-      (motion_controller_withPIC_B.b_iy_m, 21);
-    y[motion_controller_withPIC_B.ia_g4] += motion_controller_withPIC_B.c_h;
+    motion_controller_withPIC_B.ia_b = div_nde_s32_floor
+      (motion_controller_withPIC_B.b_iy_c, 21);
+    y[motion_controller_withPIC_B.ia_b] += motion_controller_withPIC_B.c_hn;
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 boolean_T motion_controller_withPIC::motio_feasibleX0ForWorkingSet_c(real_T
   workspace[1701], real_T xCurrent[21], sVIU4VBONGRsUytHTQmMJFH_motio_T
   *workingset, sIZAIOglGM5dPDQlNukc9SD_motio_T *qrmanager)
@@ -1875,105 +1874,105 @@ boolean_T motion_controller_withPIC::motio_feasibleX0ForWorkingSet_c(real_T
 
   __m128i tmp_1;
   int32_T exitg1;
-  motion_controller_withPIC_B.mWConstr_tmp_tmp_k = workingset->nActiveConstr - 1;
-  motion_controller_withPIC_B.nVar_tmp_tmp_c = workingset->nVar;
+  motion_controller_withPIC_B.mWConstr_tmp_tmp_j = workingset->nActiveConstr - 1;
+  motion_controller_withPIC_B.nVar_tmp_tmp_m = workingset->nVar;
   nonDegenerateWset = true;
   if (workingset->nActiveConstr != 0) {
-    for (motion_controller_withPIC_B.idx_h = 0;
-         motion_controller_withPIC_B.idx_h <=
-         motion_controller_withPIC_B.mWConstr_tmp_tmp_k;
-         motion_controller_withPIC_B.idx_h++) {
-      workspace[motion_controller_withPIC_B.idx_h] = workingset->
-        bwset[motion_controller_withPIC_B.idx_h];
-      workspace[motion_controller_withPIC_B.idx_h + 81] = workingset->
-        bwset[motion_controller_withPIC_B.idx_h];
+    for (motion_controller_withPIC_B.idx_f = 0;
+         motion_controller_withPIC_B.idx_f <=
+         motion_controller_withPIC_B.mWConstr_tmp_tmp_j;
+         motion_controller_withPIC_B.idx_f++) {
+      workspace[motion_controller_withPIC_B.idx_f] = workingset->
+        bwset[motion_controller_withPIC_B.idx_f];
+      workspace[motion_controller_withPIC_B.idx_f + 81] = workingset->
+        bwset[motion_controller_withPIC_B.idx_f];
     }
 
     if (workingset->nActiveConstr != 0) {
-      motion_controller_withPIC_B.d_n = (workingset->nActiveConstr - 1) * 21 + 1;
-      for (motion_controller_withPIC_B.iac_f = 1;
-           motion_controller_withPIC_B.iac_f <= motion_controller_withPIC_B.d_n;
-           motion_controller_withPIC_B.iac_f += 21) {
-        motion_controller_withPIC_B.c_k = 0.0;
-        motion_controller_withPIC_B.jBcol_a = (motion_controller_withPIC_B.iac_f
-          + motion_controller_withPIC_B.nVar_tmp_tmp_c) - 1;
-        for (motion_controller_withPIC_B.idx_h =
-             motion_controller_withPIC_B.iac_f;
-             motion_controller_withPIC_B.idx_h <=
-             motion_controller_withPIC_B.jBcol_a;
-             motion_controller_withPIC_B.idx_h++) {
-          motion_controller_withPIC_B.c_k += workingset->
-            ATwset[motion_controller_withPIC_B.idx_h - 1] *
-            xCurrent[motion_controller_withPIC_B.idx_h -
-            motion_controller_withPIC_B.iac_f];
+      motion_controller_withPIC_B.d_a = (workingset->nActiveConstr - 1) * 21 + 1;
+      for (motion_controller_withPIC_B.iac_m = 1;
+           motion_controller_withPIC_B.iac_m <= motion_controller_withPIC_B.d_a;
+           motion_controller_withPIC_B.iac_m += 21) {
+        motion_controller_withPIC_B.c_h = 0.0;
+        motion_controller_withPIC_B.jBcol_g = (motion_controller_withPIC_B.iac_m
+          + motion_controller_withPIC_B.nVar_tmp_tmp_m) - 1;
+        for (motion_controller_withPIC_B.idx_f =
+             motion_controller_withPIC_B.iac_m;
+             motion_controller_withPIC_B.idx_f <=
+             motion_controller_withPIC_B.jBcol_g;
+             motion_controller_withPIC_B.idx_f++) {
+          motion_controller_withPIC_B.c_h += workingset->
+            ATwset[motion_controller_withPIC_B.idx_f - 1] *
+            xCurrent[motion_controller_withPIC_B.idx_f -
+            motion_controller_withPIC_B.iac_m];
         }
 
-        motion_controller_withPIC_B.idx_h = div_nde_s32_floor
-          (motion_controller_withPIC_B.iac_f - 1, 21);
-        workspace[motion_controller_withPIC_B.idx_h] -=
-          motion_controller_withPIC_B.c_k;
+        motion_controller_withPIC_B.idx_f = div_nde_s32_floor
+          (motion_controller_withPIC_B.iac_m - 1, 21);
+        workspace[motion_controller_withPIC_B.idx_f] -=
+          motion_controller_withPIC_B.c_h;
       }
     }
 
     if (workingset->nActiveConstr >= workingset->nVar) {
-      motion_controller_withPIC_B.d_n = static_cast<uint8_T>(workingset->nVar);
-      for (motion_controller_withPIC_B.idx_h = 0;
-           motion_controller_withPIC_B.idx_h < motion_controller_withPIC_B.d_n;
-           motion_controller_withPIC_B.idx_h++) {
-        motion_controller_withPIC_B.jBcol_a = 21 *
-          motion_controller_withPIC_B.idx_h;
-        for (motion_controller_withPIC_B.iac_f = 0;
-             motion_controller_withPIC_B.iac_f <=
-             motion_controller_withPIC_B.mWConstr_tmp_tmp_k;
-             motion_controller_withPIC_B.iac_f++) {
-          qrmanager->QR[motion_controller_withPIC_B.iac_f +
-            motion_controller_withPIC_B.jBcol_a] = workingset->ATwset[21 *
-            motion_controller_withPIC_B.iac_f +
-            motion_controller_withPIC_B.idx_h];
+      motion_controller_withPIC_B.d_a = static_cast<uint8_T>(workingset->nVar);
+      for (motion_controller_withPIC_B.idx_f = 0;
+           motion_controller_withPIC_B.idx_f < motion_controller_withPIC_B.d_a;
+           motion_controller_withPIC_B.idx_f++) {
+        motion_controller_withPIC_B.jBcol_g = 21 *
+          motion_controller_withPIC_B.idx_f;
+        for (motion_controller_withPIC_B.iac_m = 0;
+             motion_controller_withPIC_B.iac_m <=
+             motion_controller_withPIC_B.mWConstr_tmp_tmp_j;
+             motion_controller_withPIC_B.iac_m++) {
+          qrmanager->QR[motion_controller_withPIC_B.iac_m +
+            motion_controller_withPIC_B.jBcol_g] = workingset->ATwset[21 *
+            motion_controller_withPIC_B.iac_m +
+            motion_controller_withPIC_B.idx_f];
         }
       }
 
       qrmanager->usedPivoting = false;
       qrmanager->mrows = workingset->nActiveConstr;
       qrmanager->ncols = workingset->nVar;
-      motion_controller_withPIC_B.jBcol_a = (static_cast<uint8_T>
+      motion_controller_withPIC_B.jBcol_g = (static_cast<uint8_T>
         (workingset->nVar) / 4) << 2;
-      motion_controller_withPIC_B.iAcol_m = motion_controller_withPIC_B.jBcol_a
+      motion_controller_withPIC_B.iAcol_n = motion_controller_withPIC_B.jBcol_g
         - 4;
-      for (motion_controller_withPIC_B.idx_h = 0;
-           motion_controller_withPIC_B.idx_h <=
-           motion_controller_withPIC_B.iAcol_m;
-           motion_controller_withPIC_B.idx_h += 4) {
+      for (motion_controller_withPIC_B.idx_f = 0;
+           motion_controller_withPIC_B.idx_f <=
+           motion_controller_withPIC_B.iAcol_n;
+           motion_controller_withPIC_B.idx_f += 4) {
         tmp_1 = _mm_add_epi32(_mm_add_epi32(_mm_set1_epi32
-          (motion_controller_withPIC_B.idx_h), _mm_loadu_si128((const __m128i *)
+          (motion_controller_withPIC_B.idx_f), _mm_loadu_si128((const __m128i *)
           &offsets[0])), _mm_set1_epi32(1));
         _mm_storeu_si128((__m128i *)&qrmanager->
-                         jpvt[motion_controller_withPIC_B.idx_h], tmp_1);
+                         jpvt[motion_controller_withPIC_B.idx_f], tmp_1);
       }
 
-      for (motion_controller_withPIC_B.idx_h =
-           motion_controller_withPIC_B.jBcol_a;
-           motion_controller_withPIC_B.idx_h < motion_controller_withPIC_B.d_n;
-           motion_controller_withPIC_B.idx_h++) {
-        qrmanager->jpvt[motion_controller_withPIC_B.idx_h] =
-          motion_controller_withPIC_B.idx_h + 1;
+      for (motion_controller_withPIC_B.idx_f =
+           motion_controller_withPIC_B.jBcol_g;
+           motion_controller_withPIC_B.idx_f < motion_controller_withPIC_B.d_a;
+           motion_controller_withPIC_B.idx_f++) {
+        qrmanager->jpvt[motion_controller_withPIC_B.idx_f] =
+          motion_controller_withPIC_B.idx_f + 1;
       }
 
       if (workingset->nActiveConstr <= workingset->nVar) {
-        motion_controller_withPIC_B.idx_h = workingset->nActiveConstr;
+        motion_controller_withPIC_B.idx_f = workingset->nActiveConstr;
       } else {
-        motion_controller_withPIC_B.idx_h = workingset->nVar;
+        motion_controller_withPIC_B.idx_f = workingset->nVar;
       }
 
-      qrmanager->minRowCol = motion_controller_withPIC_B.idx_h;
+      qrmanager->minRowCol = motion_controller_withPIC_B.idx_f;
       memcpy(&motion_controller_withPIC_B.B_g[0], &qrmanager->QR[0], 1701U *
              sizeof(real_T));
       memset(&qrmanager->tau[0], 0, 21U * sizeof(real_T));
-      if (motion_controller_withPIC_B.idx_h >= 1) {
+      if (motion_controller_withPIC_B.idx_f >= 1) {
         memset(&qrmanager->tau[0], 0, 21U * sizeof(real_T));
         motion_controller__qrf_nGv3LI5p(motion_controller_withPIC_B.B_g,
           workingset->nActiveConstr, workingset->nVar,
-          motion_controller_withPIC_B.idx_h, qrmanager->tau);
+          motion_controller_withPIC_B.idx_f, qrmanager->tau);
       }
 
       memcpy(&qrmanager->QR[0], &motion_controller_withPIC_B.B_g[0], 1701U *
@@ -1981,85 +1980,85 @@ boolean_T motion_controller_withPIC::motio_feasibleX0ForWorkingSet_c(real_T
       motion_controller_w_computeQ__l(qrmanager, qrmanager->mrows);
       memcpy(&motion_controller_withPIC_B.B_g[0], &workspace[0], 1701U * sizeof
              (real_T));
-      for (motion_controller_withPIC_B.idx_h = 0;
-           motion_controller_withPIC_B.idx_h <= 81;
-           motion_controller_withPIC_B.idx_h += 81) {
-        motion_controller_withPIC_B.d_n = motion_controller_withPIC_B.idx_h +
-          motion_controller_withPIC_B.nVar_tmp_tmp_c;
-        for (motion_controller_withPIC_B.iac_f =
-             motion_controller_withPIC_B.idx_h + 1;
-             motion_controller_withPIC_B.iac_f <=
-             motion_controller_withPIC_B.d_n; motion_controller_withPIC_B.iac_f
+      for (motion_controller_withPIC_B.idx_f = 0;
+           motion_controller_withPIC_B.idx_f <= 81;
+           motion_controller_withPIC_B.idx_f += 81) {
+        motion_controller_withPIC_B.d_a = motion_controller_withPIC_B.idx_f +
+          motion_controller_withPIC_B.nVar_tmp_tmp_m;
+        for (motion_controller_withPIC_B.iac_m =
+             motion_controller_withPIC_B.idx_f + 1;
+             motion_controller_withPIC_B.iac_m <=
+             motion_controller_withPIC_B.d_a; motion_controller_withPIC_B.iac_m
              ++) {
-          workspace[motion_controller_withPIC_B.iac_f - 1] = 0.0;
+          workspace[motion_controller_withPIC_B.iac_m - 1] = 0.0;
         }
       }
 
-      motion_controller_withPIC_B.jBcol_a = -1;
-      for (motion_controller_withPIC_B.idx_h = 0;
-           motion_controller_withPIC_B.idx_h <= 81;
-           motion_controller_withPIC_B.idx_h += 81) {
-        motion_controller_withPIC_B.iAcol_m = -1;
-        motion_controller_withPIC_B.br_g = motion_controller_withPIC_B.idx_h +
-          motion_controller_withPIC_B.nVar_tmp_tmp_c;
-        for (motion_controller_withPIC_B.iac_f =
-             motion_controller_withPIC_B.idx_h + 1;
-             motion_controller_withPIC_B.iac_f <=
-             motion_controller_withPIC_B.br_g; motion_controller_withPIC_B.iac_f
+      motion_controller_withPIC_B.jBcol_g = -1;
+      for (motion_controller_withPIC_B.idx_f = 0;
+           motion_controller_withPIC_B.idx_f <= 81;
+           motion_controller_withPIC_B.idx_f += 81) {
+        motion_controller_withPIC_B.iAcol_n = -1;
+        motion_controller_withPIC_B.br_c = motion_controller_withPIC_B.idx_f +
+          motion_controller_withPIC_B.nVar_tmp_tmp_m;
+        for (motion_controller_withPIC_B.iac_m =
+             motion_controller_withPIC_B.idx_f + 1;
+             motion_controller_withPIC_B.iac_m <=
+             motion_controller_withPIC_B.br_c; motion_controller_withPIC_B.iac_m
              ++) {
-          motion_controller_withPIC_B.c_k = 0.0;
-          for (motion_controller_withPIC_B.d_n = 0;
-               motion_controller_withPIC_B.d_n <=
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k;
-               motion_controller_withPIC_B.d_n++) {
-            motion_controller_withPIC_B.c_k += qrmanager->Q
-              [(motion_controller_withPIC_B.d_n +
-                motion_controller_withPIC_B.iAcol_m) + 1] *
-              motion_controller_withPIC_B.B_g[(motion_controller_withPIC_B.d_n +
-              motion_controller_withPIC_B.jBcol_a) + 1];
+          motion_controller_withPIC_B.c_h = 0.0;
+          for (motion_controller_withPIC_B.d_a = 0;
+               motion_controller_withPIC_B.d_a <=
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j;
+               motion_controller_withPIC_B.d_a++) {
+            motion_controller_withPIC_B.c_h += qrmanager->Q
+              [(motion_controller_withPIC_B.d_a +
+                motion_controller_withPIC_B.iAcol_n) + 1] *
+              motion_controller_withPIC_B.B_g[(motion_controller_withPIC_B.d_a +
+              motion_controller_withPIC_B.jBcol_g) + 1];
           }
 
-          workspace[motion_controller_withPIC_B.iac_f - 1] +=
-            motion_controller_withPIC_B.c_k;
-          motion_controller_withPIC_B.iAcol_m += 21;
+          workspace[motion_controller_withPIC_B.iac_m - 1] +=
+            motion_controller_withPIC_B.c_h;
+          motion_controller_withPIC_B.iAcol_n += 21;
         }
 
-        motion_controller_withPIC_B.jBcol_a += 81;
+        motion_controller_withPIC_B.jBcol_g += 81;
       }
 
-      for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-           motion_controller_withPIC_B.mWConstr_tmp_tmp_k < 2;
-           motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-        motion_controller_withPIC_B.iAcol_m = 81 *
-          motion_controller_withPIC_B.mWConstr_tmp_tmp_k - 1;
-        for (motion_controller_withPIC_B.d_n =
-             motion_controller_withPIC_B.nVar_tmp_tmp_c;
-             motion_controller_withPIC_B.d_n >= 1;
-             motion_controller_withPIC_B.d_n--) {
-          motion_controller_withPIC_B.br_g = (motion_controller_withPIC_B.d_n -
+      for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+           motion_controller_withPIC_B.mWConstr_tmp_tmp_j < 2;
+           motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+        motion_controller_withPIC_B.iAcol_n = 81 *
+          motion_controller_withPIC_B.mWConstr_tmp_tmp_j - 1;
+        for (motion_controller_withPIC_B.d_a =
+             motion_controller_withPIC_B.nVar_tmp_tmp_m;
+             motion_controller_withPIC_B.d_a >= 1;
+             motion_controller_withPIC_B.d_a--) {
+          motion_controller_withPIC_B.br_c = (motion_controller_withPIC_B.d_a -
             1) * 21;
-          motion_controller_withPIC_B.idx_h = motion_controller_withPIC_B.d_n +
-            motion_controller_withPIC_B.iAcol_m;
-          motion_controller_withPIC_B.c_k =
-            workspace[motion_controller_withPIC_B.idx_h];
-          if (motion_controller_withPIC_B.c_k != 0.0) {
-            workspace[motion_controller_withPIC_B.idx_h] =
-              motion_controller_withPIC_B.c_k / qrmanager->QR
-              [(motion_controller_withPIC_B.d_n +
-                motion_controller_withPIC_B.br_g) - 1];
-            motion_controller_withPIC_B.ar_n = static_cast<uint8_T>
-              (motion_controller_withPIC_B.d_n - 1);
-            for (motion_controller_withPIC_B.jBcol_a = 0;
-                 motion_controller_withPIC_B.jBcol_a <
-                 motion_controller_withPIC_B.ar_n;
-                 motion_controller_withPIC_B.jBcol_a++) {
-              motion_controller_withPIC_B.iac_f =
-                (motion_controller_withPIC_B.jBcol_a +
-                 motion_controller_withPIC_B.iAcol_m) + 1;
-              workspace[motion_controller_withPIC_B.iac_f] -= qrmanager->
-                QR[motion_controller_withPIC_B.jBcol_a +
-                motion_controller_withPIC_B.br_g] *
-                workspace[motion_controller_withPIC_B.idx_h];
+          motion_controller_withPIC_B.idx_f = motion_controller_withPIC_B.d_a +
+            motion_controller_withPIC_B.iAcol_n;
+          motion_controller_withPIC_B.c_h =
+            workspace[motion_controller_withPIC_B.idx_f];
+          if (motion_controller_withPIC_B.c_h != 0.0) {
+            workspace[motion_controller_withPIC_B.idx_f] =
+              motion_controller_withPIC_B.c_h / qrmanager->QR
+              [(motion_controller_withPIC_B.d_a +
+                motion_controller_withPIC_B.br_c) - 1];
+            motion_controller_withPIC_B.ar_d = static_cast<uint8_T>
+              (motion_controller_withPIC_B.d_a - 1);
+            for (motion_controller_withPIC_B.jBcol_g = 0;
+                 motion_controller_withPIC_B.jBcol_g <
+                 motion_controller_withPIC_B.ar_d;
+                 motion_controller_withPIC_B.jBcol_g++) {
+              motion_controller_withPIC_B.iac_m =
+                (motion_controller_withPIC_B.jBcol_g +
+                 motion_controller_withPIC_B.iAcol_n) + 1;
+              workspace[motion_controller_withPIC_B.iac_m] -= qrmanager->
+                QR[motion_controller_withPIC_B.jBcol_g +
+                motion_controller_withPIC_B.br_c] *
+                workspace[motion_controller_withPIC_B.idx_f];
             }
           }
         }
@@ -2068,373 +2067,373 @@ boolean_T motion_controller_withPIC::motio_feasibleX0ForWorkingSet_c(real_T
       motion_controller_wi_factorQR_c(qrmanager, workingset->ATwset,
         workingset->nVar, workingset->nActiveConstr);
       motion_controller_w_computeQ__l(qrmanager, qrmanager->minRowCol);
-      for (motion_controller_withPIC_B.idx_h = 0;
-           motion_controller_withPIC_B.idx_h < 2;
-           motion_controller_withPIC_B.idx_h++) {
-        motion_controller_withPIC_B.jBcol_a = 81 *
-          motion_controller_withPIC_B.idx_h;
-        for (motion_controller_withPIC_B.iac_f = 0;
-             motion_controller_withPIC_B.iac_f <=
-             motion_controller_withPIC_B.mWConstr_tmp_tmp_k;
-             motion_controller_withPIC_B.iac_f++) {
-          motion_controller_withPIC_B.iAcol_m = 21 *
-            motion_controller_withPIC_B.iac_f;
-          motion_controller_withPIC_B.br_g = motion_controller_withPIC_B.iac_f +
-            motion_controller_withPIC_B.jBcol_a;
-          motion_controller_withPIC_B.c_k =
-            workspace[motion_controller_withPIC_B.br_g];
-          motion_controller_withPIC_B.ar_n = static_cast<uint8_T>
-            (motion_controller_withPIC_B.iac_f);
-          for (motion_controller_withPIC_B.d_n = 0;
-               motion_controller_withPIC_B.d_n <
-               motion_controller_withPIC_B.ar_n; motion_controller_withPIC_B.d_n
+      for (motion_controller_withPIC_B.idx_f = 0;
+           motion_controller_withPIC_B.idx_f < 2;
+           motion_controller_withPIC_B.idx_f++) {
+        motion_controller_withPIC_B.jBcol_g = 81 *
+          motion_controller_withPIC_B.idx_f;
+        for (motion_controller_withPIC_B.iac_m = 0;
+             motion_controller_withPIC_B.iac_m <=
+             motion_controller_withPIC_B.mWConstr_tmp_tmp_j;
+             motion_controller_withPIC_B.iac_m++) {
+          motion_controller_withPIC_B.iAcol_n = 21 *
+            motion_controller_withPIC_B.iac_m;
+          motion_controller_withPIC_B.br_c = motion_controller_withPIC_B.iac_m +
+            motion_controller_withPIC_B.jBcol_g;
+          motion_controller_withPIC_B.c_h =
+            workspace[motion_controller_withPIC_B.br_c];
+          motion_controller_withPIC_B.ar_d = static_cast<uint8_T>
+            (motion_controller_withPIC_B.iac_m);
+          for (motion_controller_withPIC_B.d_a = 0;
+               motion_controller_withPIC_B.d_a <
+               motion_controller_withPIC_B.ar_d; motion_controller_withPIC_B.d_a
                ++) {
-            motion_controller_withPIC_B.c_k -= qrmanager->
-              QR[motion_controller_withPIC_B.d_n +
-              motion_controller_withPIC_B.iAcol_m] *
-              workspace[motion_controller_withPIC_B.d_n +
-              motion_controller_withPIC_B.jBcol_a];
+            motion_controller_withPIC_B.c_h -= qrmanager->
+              QR[motion_controller_withPIC_B.d_a +
+              motion_controller_withPIC_B.iAcol_n] *
+              workspace[motion_controller_withPIC_B.d_a +
+              motion_controller_withPIC_B.jBcol_g];
           }
 
-          workspace[motion_controller_withPIC_B.br_g] =
-            motion_controller_withPIC_B.c_k / qrmanager->
-            QR[motion_controller_withPIC_B.iac_f +
-            motion_controller_withPIC_B.iAcol_m];
+          workspace[motion_controller_withPIC_B.br_c] =
+            motion_controller_withPIC_B.c_h / qrmanager->
+            QR[motion_controller_withPIC_B.iac_m +
+            motion_controller_withPIC_B.iAcol_n];
         }
       }
 
       memcpy(&motion_controller_withPIC_B.B_g[0], &workspace[0], 1701U * sizeof
              (real_T));
-      for (motion_controller_withPIC_B.idx_h = 0;
-           motion_controller_withPIC_B.idx_h <= 81;
-           motion_controller_withPIC_B.idx_h += 81) {
-        motion_controller_withPIC_B.d_n = motion_controller_withPIC_B.idx_h +
-          motion_controller_withPIC_B.nVar_tmp_tmp_c;
-        for (motion_controller_withPIC_B.iac_f =
-             motion_controller_withPIC_B.idx_h + 1;
-             motion_controller_withPIC_B.iac_f <=
-             motion_controller_withPIC_B.d_n; motion_controller_withPIC_B.iac_f
+      for (motion_controller_withPIC_B.idx_f = 0;
+           motion_controller_withPIC_B.idx_f <= 81;
+           motion_controller_withPIC_B.idx_f += 81) {
+        motion_controller_withPIC_B.d_a = motion_controller_withPIC_B.idx_f +
+          motion_controller_withPIC_B.nVar_tmp_tmp_m;
+        for (motion_controller_withPIC_B.iac_m =
+             motion_controller_withPIC_B.idx_f + 1;
+             motion_controller_withPIC_B.iac_m <=
+             motion_controller_withPIC_B.d_a; motion_controller_withPIC_B.iac_m
              ++) {
-          workspace[motion_controller_withPIC_B.iac_f - 1] = 0.0;
+          workspace[motion_controller_withPIC_B.iac_m - 1] = 0.0;
         }
       }
 
-      motion_controller_withPIC_B.br_g = 1;
-      for (motion_controller_withPIC_B.idx_h = 0;
-           motion_controller_withPIC_B.idx_h <= 81;
-           motion_controller_withPIC_B.idx_h += 81) {
-        motion_controller_withPIC_B.ar_n = -1;
-        motion_controller_withPIC_B.h_c = motion_controller_withPIC_B.br_g +
-          motion_controller_withPIC_B.mWConstr_tmp_tmp_k;
-        for (motion_controller_withPIC_B.iac_f =
-             motion_controller_withPIC_B.br_g; motion_controller_withPIC_B.iac_f
-             <= motion_controller_withPIC_B.h_c;
-             motion_controller_withPIC_B.iac_f++) {
-          motion_controller_withPIC_B.l_d4 = motion_controller_withPIC_B.idx_h +
-            motion_controller_withPIC_B.nVar_tmp_tmp_c;
-          motion_controller_withPIC_B.jBcol_a =
-            ((((motion_controller_withPIC_B.l_d4 -
-                motion_controller_withPIC_B.idx_h) / 2) << 1) +
-             motion_controller_withPIC_B.idx_h) + 1;
-          motion_controller_withPIC_B.iAcol_m =
-            motion_controller_withPIC_B.jBcol_a - 2;
-          for (motion_controller_withPIC_B.d_n =
-               motion_controller_withPIC_B.idx_h + 1;
-               motion_controller_withPIC_B.d_n <=
-               motion_controller_withPIC_B.iAcol_m;
-               motion_controller_withPIC_B.d_n += 2) {
-            tmp = _mm_loadu_pd(&qrmanager->Q[(motion_controller_withPIC_B.ar_n +
-              motion_controller_withPIC_B.d_n) -
-                               motion_controller_withPIC_B.idx_h]);
-            tmp_0 = _mm_loadu_pd(&workspace[motion_controller_withPIC_B.d_n - 1]);
-            _mm_storeu_pd(&workspace[motion_controller_withPIC_B.d_n - 1],
+      motion_controller_withPIC_B.br_c = 1;
+      for (motion_controller_withPIC_B.idx_f = 0;
+           motion_controller_withPIC_B.idx_f <= 81;
+           motion_controller_withPIC_B.idx_f += 81) {
+        motion_controller_withPIC_B.ar_d = -1;
+        motion_controller_withPIC_B.h_k = motion_controller_withPIC_B.br_c +
+          motion_controller_withPIC_B.mWConstr_tmp_tmp_j;
+        for (motion_controller_withPIC_B.iac_m =
+             motion_controller_withPIC_B.br_c; motion_controller_withPIC_B.iac_m
+             <= motion_controller_withPIC_B.h_k;
+             motion_controller_withPIC_B.iac_m++) {
+          motion_controller_withPIC_B.l_c = motion_controller_withPIC_B.idx_f +
+            motion_controller_withPIC_B.nVar_tmp_tmp_m;
+          motion_controller_withPIC_B.jBcol_g =
+            ((((motion_controller_withPIC_B.l_c -
+                motion_controller_withPIC_B.idx_f) / 2) << 1) +
+             motion_controller_withPIC_B.idx_f) + 1;
+          motion_controller_withPIC_B.iAcol_n =
+            motion_controller_withPIC_B.jBcol_g - 2;
+          for (motion_controller_withPIC_B.d_a =
+               motion_controller_withPIC_B.idx_f + 1;
+               motion_controller_withPIC_B.d_a <=
+               motion_controller_withPIC_B.iAcol_n;
+               motion_controller_withPIC_B.d_a += 2) {
+            tmp = _mm_loadu_pd(&qrmanager->Q[(motion_controller_withPIC_B.ar_d +
+              motion_controller_withPIC_B.d_a) -
+                               motion_controller_withPIC_B.idx_f]);
+            tmp_0 = _mm_loadu_pd(&workspace[motion_controller_withPIC_B.d_a - 1]);
+            _mm_storeu_pd(&workspace[motion_controller_withPIC_B.d_a - 1],
                           _mm_add_pd(_mm_mul_pd(tmp, _mm_set1_pd
-              (motion_controller_withPIC_B.B_g[motion_controller_withPIC_B.iac_f
+              (motion_controller_withPIC_B.B_g[motion_controller_withPIC_B.iac_m
                - 1])), tmp_0));
           }
 
-          for (motion_controller_withPIC_B.d_n =
-               motion_controller_withPIC_B.jBcol_a;
-               motion_controller_withPIC_B.d_n <=
-               motion_controller_withPIC_B.l_d4; motion_controller_withPIC_B.d_n
+          for (motion_controller_withPIC_B.d_a =
+               motion_controller_withPIC_B.jBcol_g;
+               motion_controller_withPIC_B.d_a <=
+               motion_controller_withPIC_B.l_c; motion_controller_withPIC_B.d_a
                ++) {
-            workspace[motion_controller_withPIC_B.d_n - 1] += qrmanager->Q
-              [(motion_controller_withPIC_B.ar_n +
-                motion_controller_withPIC_B.d_n) -
-              motion_controller_withPIC_B.idx_h] *
-              motion_controller_withPIC_B.B_g[motion_controller_withPIC_B.iac_f
+            workspace[motion_controller_withPIC_B.d_a - 1] += qrmanager->Q
+              [(motion_controller_withPIC_B.ar_d +
+                motion_controller_withPIC_B.d_a) -
+              motion_controller_withPIC_B.idx_f] *
+              motion_controller_withPIC_B.B_g[motion_controller_withPIC_B.iac_m
               - 1];
           }
 
-          motion_controller_withPIC_B.ar_n += 21;
+          motion_controller_withPIC_B.ar_d += 21;
         }
 
-        motion_controller_withPIC_B.br_g += 81;
+        motion_controller_withPIC_B.br_c += 81;
       }
     }
 
-    motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
+    motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
     do {
       exitg1 = 0;
-      if (motion_controller_withPIC_B.mWConstr_tmp_tmp_k <= static_cast<uint8_T>
-          (motion_controller_withPIC_B.nVar_tmp_tmp_c) - 1) {
-        if (rtIsInf(workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k]) ||
-            rtIsNaN(workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k]))
+      if (motion_controller_withPIC_B.mWConstr_tmp_tmp_j <= static_cast<uint8_T>
+          (motion_controller_withPIC_B.nVar_tmp_tmp_m) - 1) {
+        if (rtIsInf(workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j]) ||
+            rtIsNaN(workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j]))
         {
           nonDegenerateWset = false;
           exitg1 = 1;
         } else {
-          motion_controller_withPIC_B.c_k =
-            workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k + 81];
-          if (rtIsInf(motion_controller_withPIC_B.c_k) || rtIsNaN
-              (motion_controller_withPIC_B.c_k)) {
+          motion_controller_withPIC_B.c_h =
+            workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j + 81];
+          if (rtIsInf(motion_controller_withPIC_B.c_h) || rtIsNaN
+              (motion_controller_withPIC_B.c_h)) {
             nonDegenerateWset = false;
             exitg1 = 1;
           } else {
-            motion_controller_withPIC_B.mWConstr_tmp_tmp_k++;
+            motion_controller_withPIC_B.mWConstr_tmp_tmp_j++;
           }
         }
       } else {
-        motion_controller_withPIC_B.jBcol_a =
-          (motion_controller_withPIC_B.nVar_tmp_tmp_c / 2) << 1;
-        motion_controller_withPIC_B.iAcol_m =
-          motion_controller_withPIC_B.jBcol_a - 2;
-        for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-             motion_controller_withPIC_B.mWConstr_tmp_tmp_k <=
-             motion_controller_withPIC_B.iAcol_m;
-             motion_controller_withPIC_B.mWConstr_tmp_tmp_k += 2) {
+        motion_controller_withPIC_B.jBcol_g =
+          (motion_controller_withPIC_B.nVar_tmp_tmp_m / 2) << 1;
+        motion_controller_withPIC_B.iAcol_n =
+          motion_controller_withPIC_B.jBcol_g - 2;
+        for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+             motion_controller_withPIC_B.mWConstr_tmp_tmp_j <=
+             motion_controller_withPIC_B.iAcol_n;
+             motion_controller_withPIC_B.mWConstr_tmp_tmp_j += 2) {
           tmp = _mm_loadu_pd
-            (&workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k]);
+            (&workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j]);
           tmp_0 = _mm_loadu_pd
-            (&xCurrent[motion_controller_withPIC_B.mWConstr_tmp_tmp_k]);
+            (&xCurrent[motion_controller_withPIC_B.mWConstr_tmp_tmp_j]);
           _mm_storeu_pd
-            (&workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k],
+            (&workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j],
              _mm_add_pd(tmp, tmp_0));
         }
 
-        for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k =
-             motion_controller_withPIC_B.jBcol_a;
-             motion_controller_withPIC_B.mWConstr_tmp_tmp_k <
-             motion_controller_withPIC_B.nVar_tmp_tmp_c;
-             motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-          workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] +=
-            xCurrent[motion_controller_withPIC_B.mWConstr_tmp_tmp_k];
+        for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j =
+             motion_controller_withPIC_B.jBcol_g;
+             motion_controller_withPIC_B.mWConstr_tmp_tmp_j <
+             motion_controller_withPIC_B.nVar_tmp_tmp_m;
+             motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+          workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] +=
+            xCurrent[motion_controller_withPIC_B.mWConstr_tmp_tmp_j];
         }
 
         if (workingset->probType == 2) {
-          motion_controller_withPIC_B.c_k = 0.0;
+          motion_controller_withPIC_B.c_h = 0.0;
           memcpy(&workingset->maxConstrWorkspace[0], &workingset->bineq[0], 40U *
                  sizeof(real_T));
           motion_controlle_xgemv_7iafTBwP(20, workingset->Aineq, workspace,
             workingset->maxConstrWorkspace);
-          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k < 40;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-            motion_controller_withPIC_B.u1_h = workingset->
-              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k]
-              - workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k + 20];
+          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j < 40;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+            motion_controller_withPIC_B.u1_d = workingset->
+              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j]
+              - workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j + 20];
             workingset->
-              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k]
-              = motion_controller_withPIC_B.u1_h;
-            if ((!(motion_controller_withPIC_B.c_k >=
-                   motion_controller_withPIC_B.u1_h)) && (!rtIsNaN
-                 (motion_controller_withPIC_B.u1_h))) {
-              motion_controller_withPIC_B.c_k = motion_controller_withPIC_B.u1_h;
+              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j]
+              = motion_controller_withPIC_B.u1_d;
+            if ((!(motion_controller_withPIC_B.c_h >=
+                   motion_controller_withPIC_B.u1_d)) && (!rtIsNaN
+                 (motion_controller_withPIC_B.u1_d))) {
+              motion_controller_withPIC_B.c_h = motion_controller_withPIC_B.u1_d;
             }
           }
         } else {
-          motion_controller_withPIC_B.c_k = 0.0;
+          motion_controller_withPIC_B.c_h = 0.0;
           memcpy(&workingset->maxConstrWorkspace[0], &workingset->bineq[0], 40U *
                  sizeof(real_T));
           motion_controlle_xgemv_7iafTBwP(workingset->nVar, workingset->Aineq,
             workspace, workingset->maxConstrWorkspace);
-          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k < 40;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-            motion_controller_withPIC_B.u1_h = workingset->
-              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k];
-            if ((!(motion_controller_withPIC_B.c_k >=
-                   motion_controller_withPIC_B.u1_h)) && (!rtIsNaN
-                 (motion_controller_withPIC_B.u1_h))) {
-              motion_controller_withPIC_B.c_k = motion_controller_withPIC_B.u1_h;
+          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j < 40;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+            motion_controller_withPIC_B.u1_d = workingset->
+              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j];
+            if ((!(motion_controller_withPIC_B.c_h >=
+                   motion_controller_withPIC_B.u1_d)) && (!rtIsNaN
+                 (motion_controller_withPIC_B.u1_d))) {
+              motion_controller_withPIC_B.c_h = motion_controller_withPIC_B.u1_d;
             }
           }
         }
 
         if (workingset->sizes[3] > 0) {
-          motion_controller_withPIC_B.idx_h = static_cast<uint8_T>
+          motion_controller_withPIC_B.idx_f = static_cast<uint8_T>
             (workingset->sizes[3]);
-          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k <
-               motion_controller_withPIC_B.idx_h;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-            motion_controller_withPIC_B.u1_h = -workspace[workingset->
-              indexLB[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] - 1] -
+          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j <
+               motion_controller_withPIC_B.idx_f;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+            motion_controller_withPIC_B.u1_d = -workspace[workingset->
+              indexLB[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] - 1] -
               workingset->lb[workingset->
-              indexLB[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] - 1];
-            if ((!(motion_controller_withPIC_B.c_k >=
-                   motion_controller_withPIC_B.u1_h)) && (!rtIsNaN
-                 (motion_controller_withPIC_B.u1_h))) {
-              motion_controller_withPIC_B.c_k = motion_controller_withPIC_B.u1_h;
+              indexLB[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] - 1];
+            if ((!(motion_controller_withPIC_B.c_h >=
+                   motion_controller_withPIC_B.u1_d)) && (!rtIsNaN
+                 (motion_controller_withPIC_B.u1_d))) {
+              motion_controller_withPIC_B.c_h = motion_controller_withPIC_B.u1_d;
             }
           }
         }
 
         if (workingset->sizes[4] > 0) {
-          motion_controller_withPIC_B.idx_h = static_cast<uint8_T>
+          motion_controller_withPIC_B.idx_f = static_cast<uint8_T>
             (workingset->sizes[4]);
-          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k <
-               motion_controller_withPIC_B.idx_h;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-            motion_controller_withPIC_B.u1_h = workspace[workingset->
-              indexUB[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] - 1] -
+          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j <
+               motion_controller_withPIC_B.idx_f;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+            motion_controller_withPIC_B.u1_d = workspace[workingset->
+              indexUB[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] - 1] -
               workingset->ub[workingset->
-              indexUB[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] - 1];
-            if ((!(motion_controller_withPIC_B.c_k >=
-                   motion_controller_withPIC_B.u1_h)) && (!rtIsNaN
-                 (motion_controller_withPIC_B.u1_h))) {
-              motion_controller_withPIC_B.c_k = motion_controller_withPIC_B.u1_h;
+              indexUB[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] - 1];
+            if ((!(motion_controller_withPIC_B.c_h >=
+                   motion_controller_withPIC_B.u1_d)) && (!rtIsNaN
+                 (motion_controller_withPIC_B.u1_d))) {
+              motion_controller_withPIC_B.c_h = motion_controller_withPIC_B.u1_d;
             }
           }
         }
 
         if (workingset->sizes[0] > 0) {
-          motion_controller_withPIC_B.idx_h = static_cast<uint8_T>
+          motion_controller_withPIC_B.idx_f = static_cast<uint8_T>
             (workingset->sizes[0]);
-          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k <
-               motion_controller_withPIC_B.idx_h;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-            motion_controller_withPIC_B.u1_h = fabs(workspace
+          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j <
+               motion_controller_withPIC_B.idx_f;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+            motion_controller_withPIC_B.u1_d = fabs(workspace
               [workingset->
-              indexFixed[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] - 1] -
+              indexFixed[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] - 1] -
               workingset->ub[workingset->
-              indexFixed[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] - 1]);
-            if ((!(motion_controller_withPIC_B.c_k >=
-                   motion_controller_withPIC_B.u1_h)) && (!rtIsNaN
-                 (motion_controller_withPIC_B.u1_h))) {
-              motion_controller_withPIC_B.c_k = motion_controller_withPIC_B.u1_h;
+              indexFixed[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] - 1]);
+            if ((!(motion_controller_withPIC_B.c_h >=
+                   motion_controller_withPIC_B.u1_d)) && (!rtIsNaN
+                 (motion_controller_withPIC_B.u1_d))) {
+              motion_controller_withPIC_B.c_h = motion_controller_withPIC_B.u1_d;
             }
           }
         }
 
         if (workingset->probType == 2) {
-          motion_controller_withPIC_B.d_v_j = 0.0;
+          motion_controller_withPIC_B.d_v_f = 0.0;
           memcpy(&workingset->maxConstrWorkspace[0], &workingset->bineq[0], 40U *
                  sizeof(real_T));
           motion_controlle_xgemv_vyHQ2Zvi(20, workingset->Aineq, workspace,
             workingset->maxConstrWorkspace);
-          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k < 40;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-            motion_controller_withPIC_B.u1_h = workingset->
-              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k]
-              - workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k + 101];
+          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j < 40;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+            motion_controller_withPIC_B.u1_d = workingset->
+              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j]
+              - workspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j + 101];
             workingset->
-              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k]
-              = motion_controller_withPIC_B.u1_h;
-            if ((!(motion_controller_withPIC_B.d_v_j >=
-                   motion_controller_withPIC_B.u1_h)) && (!rtIsNaN
-                 (motion_controller_withPIC_B.u1_h))) {
-              motion_controller_withPIC_B.d_v_j =
-                motion_controller_withPIC_B.u1_h;
+              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j]
+              = motion_controller_withPIC_B.u1_d;
+            if ((!(motion_controller_withPIC_B.d_v_f >=
+                   motion_controller_withPIC_B.u1_d)) && (!rtIsNaN
+                 (motion_controller_withPIC_B.u1_d))) {
+              motion_controller_withPIC_B.d_v_f =
+                motion_controller_withPIC_B.u1_d;
             }
           }
         } else {
-          motion_controller_withPIC_B.d_v_j = 0.0;
+          motion_controller_withPIC_B.d_v_f = 0.0;
           memcpy(&workingset->maxConstrWorkspace[0], &workingset->bineq[0], 40U *
                  sizeof(real_T));
           motion_controlle_xgemv_vyHQ2Zvi(workingset->nVar, workingset->Aineq,
             workspace, workingset->maxConstrWorkspace);
-          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k < 40;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-            motion_controller_withPIC_B.u1_h = workingset->
-              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_k];
-            if ((!(motion_controller_withPIC_B.d_v_j >=
-                   motion_controller_withPIC_B.u1_h)) && (!rtIsNaN
-                 (motion_controller_withPIC_B.u1_h))) {
-              motion_controller_withPIC_B.d_v_j =
-                motion_controller_withPIC_B.u1_h;
+          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j < 40;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+            motion_controller_withPIC_B.u1_d = workingset->
+              maxConstrWorkspace[motion_controller_withPIC_B.mWConstr_tmp_tmp_j];
+            if ((!(motion_controller_withPIC_B.d_v_f >=
+                   motion_controller_withPIC_B.u1_d)) && (!rtIsNaN
+                 (motion_controller_withPIC_B.u1_d))) {
+              motion_controller_withPIC_B.d_v_f =
+                motion_controller_withPIC_B.u1_d;
             }
           }
         }
 
         if (workingset->sizes[3] > 0) {
-          motion_controller_withPIC_B.idx_h = static_cast<uint8_T>
+          motion_controller_withPIC_B.idx_f = static_cast<uint8_T>
             (workingset->sizes[3]);
-          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k <
-               motion_controller_withPIC_B.idx_h;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-            motion_controller_withPIC_B.u1_h = -workspace[workingset->
-              indexLB[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] + 80] -
+          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j <
+               motion_controller_withPIC_B.idx_f;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+            motion_controller_withPIC_B.u1_d = -workspace[workingset->
+              indexLB[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] + 80] -
               workingset->lb[workingset->
-              indexLB[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] - 1];
-            if ((!(motion_controller_withPIC_B.d_v_j >=
-                   motion_controller_withPIC_B.u1_h)) && (!rtIsNaN
-                 (motion_controller_withPIC_B.u1_h))) {
-              motion_controller_withPIC_B.d_v_j =
-                motion_controller_withPIC_B.u1_h;
+              indexLB[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] - 1];
+            if ((!(motion_controller_withPIC_B.d_v_f >=
+                   motion_controller_withPIC_B.u1_d)) && (!rtIsNaN
+                 (motion_controller_withPIC_B.u1_d))) {
+              motion_controller_withPIC_B.d_v_f =
+                motion_controller_withPIC_B.u1_d;
             }
           }
         }
 
         if (workingset->sizes[4] > 0) {
-          motion_controller_withPIC_B.idx_h = static_cast<uint8_T>
+          motion_controller_withPIC_B.idx_f = static_cast<uint8_T>
             (workingset->sizes[4]);
-          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k <
-               motion_controller_withPIC_B.idx_h;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-            motion_controller_withPIC_B.u1_h = workspace[workingset->
-              indexUB[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] + 80] -
+          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j <
+               motion_controller_withPIC_B.idx_f;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+            motion_controller_withPIC_B.u1_d = workspace[workingset->
+              indexUB[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] + 80] -
               workingset->ub[workingset->
-              indexUB[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] - 1];
-            if ((!(motion_controller_withPIC_B.d_v_j >=
-                   motion_controller_withPIC_B.u1_h)) && (!rtIsNaN
-                 (motion_controller_withPIC_B.u1_h))) {
-              motion_controller_withPIC_B.d_v_j =
-                motion_controller_withPIC_B.u1_h;
+              indexUB[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] - 1];
+            if ((!(motion_controller_withPIC_B.d_v_f >=
+                   motion_controller_withPIC_B.u1_d)) && (!rtIsNaN
+                 (motion_controller_withPIC_B.u1_d))) {
+              motion_controller_withPIC_B.d_v_f =
+                motion_controller_withPIC_B.u1_d;
             }
           }
         }
 
         if (workingset->sizes[0] > 0) {
-          motion_controller_withPIC_B.idx_h = static_cast<uint8_T>
+          motion_controller_withPIC_B.idx_f = static_cast<uint8_T>
             (workingset->sizes[0]);
-          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_k = 0;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k <
-               motion_controller_withPIC_B.idx_h;
-               motion_controller_withPIC_B.mWConstr_tmp_tmp_k++) {
-            motion_controller_withPIC_B.u1_h = fabs(workspace
+          for (motion_controller_withPIC_B.mWConstr_tmp_tmp_j = 0;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j <
+               motion_controller_withPIC_B.idx_f;
+               motion_controller_withPIC_B.mWConstr_tmp_tmp_j++) {
+            motion_controller_withPIC_B.u1_d = fabs(workspace
               [workingset->
-              indexFixed[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] + 80] -
+              indexFixed[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] + 80] -
               workingset->ub[workingset->
-              indexFixed[motion_controller_withPIC_B.mWConstr_tmp_tmp_k] - 1]);
-            if ((!(motion_controller_withPIC_B.d_v_j >=
-                   motion_controller_withPIC_B.u1_h)) && (!rtIsNaN
-                 (motion_controller_withPIC_B.u1_h))) {
-              motion_controller_withPIC_B.d_v_j =
-                motion_controller_withPIC_B.u1_h;
+              indexFixed[motion_controller_withPIC_B.mWConstr_tmp_tmp_j] - 1]);
+            if ((!(motion_controller_withPIC_B.d_v_f >=
+                   motion_controller_withPIC_B.u1_d)) && (!rtIsNaN
+                 (motion_controller_withPIC_B.u1_d))) {
+              motion_controller_withPIC_B.d_v_f =
+                motion_controller_withPIC_B.u1_d;
             }
           }
         }
 
-        if ((motion_controller_withPIC_B.c_k <= 2.2204460492503131E-16) ||
-            (motion_controller_withPIC_B.c_k < motion_controller_withPIC_B.d_v_j))
+        if ((motion_controller_withPIC_B.c_h <= 2.2204460492503131E-16) ||
+            (motion_controller_withPIC_B.c_h < motion_controller_withPIC_B.d_v_f))
         {
-          motion_controller_withPIC_B.mWConstr_tmp_tmp_k = static_cast<uint8_T>
-            (motion_controller_withPIC_B.nVar_tmp_tmp_c);
+          motion_controller_withPIC_B.mWConstr_tmp_tmp_j = static_cast<uint8_T>
+            (motion_controller_withPIC_B.nVar_tmp_tmp_m);
           memcpy(&xCurrent[0], &workspace[0], static_cast<uint32_T>
-                 (motion_controller_withPIC_B.mWConstr_tmp_tmp_k) * sizeof
+                 (motion_controller_withPIC_B.mWConstr_tmp_tmp_j) * sizeof
                  (real_T));
         } else {
-          motion_controller_withPIC_B.mWConstr_tmp_tmp_k = static_cast<uint8_T>
-            (motion_controller_withPIC_B.nVar_tmp_tmp_c);
+          motion_controller_withPIC_B.mWConstr_tmp_tmp_j = static_cast<uint8_T>
+            (motion_controller_withPIC_B.nVar_tmp_tmp_m);
           memcpy(&xCurrent[0], &workspace[81], static_cast<uint32_T>
-                 (motion_controller_withPIC_B.mWConstr_tmp_tmp_k) * sizeof
+                 (motion_controller_withPIC_B.mWConstr_tmp_tmp_j) * sizeof
                  (real_T));
         }
 
@@ -2446,7 +2445,7 @@ boolean_T motion_controller_withPIC::motio_feasibleX0ForWorkingSet_c(real_T
   return nonDegenerateWset;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 real_T motion_controller_withPIC::motion_maxConstraintViolation_n
   (sVIU4VBONGRsUytHTQmMJFH_motio_T *obj, const real_T x[21])
 {
@@ -2510,7 +2509,7 @@ real_T motion_controller_withPIC::motion_maxConstraintViolation_n
   return v;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_co_PresolveWorkingSet_gj
   (sYqpSPVJXu9aOn60zG4DpzD_motio_T *solution, s3cSGkBdKxRj6Qn3zsJRowG_motio_T
    *memspace, sVIU4VBONGRsUytHTQmMJFH_motio_T *workingset,
@@ -2527,96 +2526,95 @@ void motion_controller_withPIC::motion_co_PresolveWorkingSet_gj
   memset(&qrmanager->tau[0], 0, 21U * sizeof(real_T));
   qrmanager->minRowCol = 0;
   qrmanager->usedPivoting = false;
-  motion_controller_withPIC_B.i_a = workingset->nWConstr[0];
-  motion_controller_withPIC_B.idx_row_k = 0;
+  motion_controller_withPIC_B.i_dm = workingset->nWConstr[0];
+  motion_controller_withPIC_B.idx_row_c = 0;
   if (workingset->nWConstr[0] > 0) {
-    motion_controller_withPIC_B.idxEndIneq_ji = static_cast<uint8_T>
+    motion_controller_withPIC_B.idxEndIneq_a = static_cast<uint8_T>
       (workingset->nWConstr[0]);
     motion_controller_withPIC_B.d_tmp = static_cast<uint8_T>(workingset->nVar);
-    for (motion_controller_withPIC_B.idx_row_k = 0;
-         motion_controller_withPIC_B.idx_row_k <
-         motion_controller_withPIC_B.idxEndIneq_ji;
-         motion_controller_withPIC_B.idx_row_k++) {
-      for (motion_controller_withPIC_B.idxStartIneq_c = 0;
-           motion_controller_withPIC_B.idxStartIneq_c <
+    for (motion_controller_withPIC_B.idx_row_c = 0;
+         motion_controller_withPIC_B.idx_row_c <
+         motion_controller_withPIC_B.idxEndIneq_a;
+         motion_controller_withPIC_B.idx_row_c++) {
+      for (motion_controller_withPIC_B.idxStartIneq_j = 0;
+           motion_controller_withPIC_B.idxStartIneq_j <
            motion_controller_withPIC_B.d_tmp;
-           motion_controller_withPIC_B.idxStartIneq_c++) {
-        qrmanager->QR[motion_controller_withPIC_B.idx_row_k + 21 *
-          motion_controller_withPIC_B.idxStartIneq_c] = workingset->ATwset[21 *
-          motion_controller_withPIC_B.idx_row_k +
-          motion_controller_withPIC_B.idxStartIneq_c];
+           motion_controller_withPIC_B.idxStartIneq_j++) {
+        qrmanager->QR[motion_controller_withPIC_B.idx_row_c + 21 *
+          motion_controller_withPIC_B.idxStartIneq_j] = workingset->ATwset[21 *
+          motion_controller_withPIC_B.idx_row_c +
+          motion_controller_withPIC_B.idxStartIneq_j];
       }
     }
 
-    motion_controller_withPIC_B.idx_row_k = motion_ComputeNumDependentEq__d
+    motion_controller_withPIC_B.idx_row_c = motion_ComputeNumDependentEq__d
       (qrmanager, workingset->bwset, workingset->nWConstr[0], workingset->nVar);
-    if (motion_controller_withPIC_B.idx_row_k > 0) {
-      for (motion_controller_withPIC_B.idxStartIneq_c = 0;
-           motion_controller_withPIC_B.idxStartIneq_c <
-           motion_controller_withPIC_B.idxEndIneq_ji;
-           motion_controller_withPIC_B.idxStartIneq_c++) {
-        motion_controller_withPIC_B.iy0_tmp_d = 21 *
-          motion_controller_withPIC_B.idxStartIneq_c;
-        memcpy(&qrmanager->QR[motion_controller_withPIC_B.iy0_tmp_d],
-               &workingset->ATwset[motion_controller_withPIC_B.iy0_tmp_d],
+    if (motion_controller_withPIC_B.idx_row_c > 0) {
+      for (motion_controller_withPIC_B.idxStartIneq_j = 0;
+           motion_controller_withPIC_B.idxStartIneq_j <
+           motion_controller_withPIC_B.idxEndIneq_a;
+           motion_controller_withPIC_B.idxStartIneq_j++) {
+        motion_controller_withPIC_B.iy0_tmp_c = 21 *
+          motion_controller_withPIC_B.idxStartIneq_j;
+        memcpy(&qrmanager->QR[motion_controller_withPIC_B.iy0_tmp_c],
+               &workingset->ATwset[motion_controller_withPIC_B.iy0_tmp_c],
                static_cast<uint32_T>((motion_controller_withPIC_B.d_tmp +
-                 motion_controller_withPIC_B.iy0_tmp_d) -
-                motion_controller_withPIC_B.iy0_tmp_d) * sizeof(real_T));
+                 motion_controller_withPIC_B.iy0_tmp_c) -
+                motion_controller_withPIC_B.iy0_tmp_c) * sizeof(real_T));
       }
 
-      for (motion_controller_withPIC_B.idxStartIneq_c = 0;
-           motion_controller_withPIC_B.idxStartIneq_c <
-           motion_controller_withPIC_B.i_a;
-           motion_controller_withPIC_B.idxStartIneq_c++) {
-        qrmanager->jpvt[motion_controller_withPIC_B.idxStartIneq_c] = 1;
+      for (motion_controller_withPIC_B.idxStartIneq_j = 0;
+           motion_controller_withPIC_B.idxStartIneq_j <
+           motion_controller_withPIC_B.i_dm;
+           motion_controller_withPIC_B.idxStartIneq_j++) {
+        qrmanager->jpvt[motion_controller_withPIC_B.idxStartIneq_j] = 1;
       }
 
-      motion_controller_withPIC_B.idxEndIneq_ji = workingset->nWConstr[0] + 1;
-      if (motion_controller_withPIC_B.idxEndIneq_ji <=
-          motion_controller_withPIC_B.i_a) {
-        memset(&qrmanager->jpvt[motion_controller_withPIC_B.idxEndIneq_ji + -1],
-               0, static_cast<uint32_T>((motion_controller_withPIC_B.i_a -
-                 motion_controller_withPIC_B.idxEndIneq_ji) + 1) * sizeof
-               (int32_T));
+      motion_controller_withPIC_B.idxEndIneq_a = workingset->nWConstr[0] + 1;
+      if (motion_controller_withPIC_B.idxEndIneq_a <=
+          motion_controller_withPIC_B.i_dm) {
+        memset(&qrmanager->jpvt[motion_controller_withPIC_B.idxEndIneq_a + -1],
+               0, static_cast<uint32_T>((motion_controller_withPIC_B.i_dm -
+                 motion_controller_withPIC_B.idxEndIneq_a) + 1) * sizeof(int32_T));
       }
 
       motion_controller_w_factorQRE_c(qrmanager, workingset->nVar,
         workingset->nWConstr[0]);
-      for (motion_controller_withPIC_B.idxStartIneq_c = 0;
-           motion_controller_withPIC_B.idxStartIneq_c <
-           motion_controller_withPIC_B.idx_row_k;
-           motion_controller_withPIC_B.idxStartIneq_c++) {
-        memspace->workspace_int[motion_controller_withPIC_B.idxStartIneq_c] =
-          qrmanager->jpvt[(motion_controller_withPIC_B.i_a -
-                           motion_controller_withPIC_B.idx_row_k) +
-          motion_controller_withPIC_B.idxStartIneq_c];
+      for (motion_controller_withPIC_B.idxStartIneq_j = 0;
+           motion_controller_withPIC_B.idxStartIneq_j <
+           motion_controller_withPIC_B.idx_row_c;
+           motion_controller_withPIC_B.idxStartIneq_j++) {
+        memspace->workspace_int[motion_controller_withPIC_B.idxStartIneq_j] =
+          qrmanager->jpvt[(motion_controller_withPIC_B.i_dm -
+                           motion_controller_withPIC_B.idx_row_c) +
+          motion_controller_withPIC_B.idxStartIneq_j];
       }
 
       countsort_JblpZJs7(memspace->workspace_int,
-                         motion_controller_withPIC_B.idx_row_k,
+                         motion_controller_withPIC_B.idx_row_c,
                          memspace->workspace_sort, 1, workingset->nWConstr[0]);
-      for (motion_controller_withPIC_B.i_a =
-           motion_controller_withPIC_B.idx_row_k;
-           motion_controller_withPIC_B.i_a >= 1; motion_controller_withPIC_B.i_a
-           --) {
+      for (motion_controller_withPIC_B.i_dm =
+           motion_controller_withPIC_B.idx_row_c;
+           motion_controller_withPIC_B.i_dm >= 1;
+           motion_controller_withPIC_B.i_dm--) {
         motion_control_removeEqConstr_i(workingset, memspace->
-          workspace_int[motion_controller_withPIC_B.i_a - 1]);
+          workspace_int[motion_controller_withPIC_B.i_dm - 1]);
       }
     }
   }
 
-  if ((motion_controller_withPIC_B.idx_row_k != -1) &&
+  if ((motion_controller_withPIC_B.idx_row_c != -1) &&
       (workingset->nActiveConstr <= 21)) {
     motion_c_RemoveDependentIneq__e(workingset, qrmanager, memspace, 100.0);
-    motion_controller_withPIC_B.okWorkingSet_h = motio_feasibleX0ForWorkingSet_c
+    motion_controller_withPIC_B.okWorkingSet_n = motio_feasibleX0ForWorkingSet_c
       (memspace->workspace_double, solution->xstar, workingset, qrmanager);
     guard1 = false;
-    if (!motion_controller_withPIC_B.okWorkingSet_h) {
+    if (!motion_controller_withPIC_B.okWorkingSet_n) {
       motion_c_RemoveDependentIneq__e(workingset, qrmanager, memspace, 1000.0);
-      motion_controller_withPIC_B.okWorkingSet_h =
+      motion_controller_withPIC_B.okWorkingSet_n =
         motio_feasibleX0ForWorkingSet_c(memspace->workspace_double,
         solution->xstar, workingset, qrmanager);
-      if (!motion_controller_withPIC_B.okWorkingSet_h) {
+      if (!motion_controller_withPIC_B.okWorkingSet_n) {
         solution->state = -7;
       } else {
         guard1 = true;
@@ -2637,29 +2635,29 @@ void motion_controller_withPIC::motion_co_PresolveWorkingSet_gj
     }
   } else {
     solution->state = -3;
-    motion_controller_withPIC_B.idx_row_k = workingset->nWConstr[0] +
+    motion_controller_withPIC_B.idx_row_c = workingset->nWConstr[0] +
       workingset->nWConstr[1];
-    motion_controller_withPIC_B.idxStartIneq_c =
-      motion_controller_withPIC_B.idx_row_k + 1;
-    motion_controller_withPIC_B.idxEndIneq_ji = workingset->nActiveConstr;
-    for (motion_controller_withPIC_B.i_a =
-         motion_controller_withPIC_B.idxStartIneq_c;
-         motion_controller_withPIC_B.i_a <=
-         motion_controller_withPIC_B.idxEndIneq_ji;
-         motion_controller_withPIC_B.i_a++) {
+    motion_controller_withPIC_B.idxStartIneq_j =
+      motion_controller_withPIC_B.idx_row_c + 1;
+    motion_controller_withPIC_B.idxEndIneq_a = workingset->nActiveConstr;
+    for (motion_controller_withPIC_B.i_dm =
+         motion_controller_withPIC_B.idxStartIneq_j;
+         motion_controller_withPIC_B.i_dm <=
+         motion_controller_withPIC_B.idxEndIneq_a;
+         motion_controller_withPIC_B.i_dm++) {
       workingset->isActiveConstr[(workingset->isActiveIdx[workingset->
-        Wid[motion_controller_withPIC_B.i_a - 1] - 1] + workingset->
-        Wlocalidx[motion_controller_withPIC_B.i_a - 1]) - 2] = false;
+        Wid[motion_controller_withPIC_B.i_dm - 1] - 1] + workingset->
+        Wlocalidx[motion_controller_withPIC_B.i_dm - 1]) - 2] = false;
     }
 
     workingset->nWConstr[2] = 0;
     workingset->nWConstr[3] = 0;
     workingset->nWConstr[4] = 0;
-    workingset->nActiveConstr = motion_controller_withPIC_B.idx_row_k;
+    workingset->nActiveConstr = motion_controller_withPIC_B.idx_row_c;
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controller_linearForm__l(int32_T obj_nvar,
   real_T workspace[1701], const real_T H[400], const real_T f[20], const real_T
   x[21])
@@ -2684,7 +2682,7 @@ void motion_controller_withPIC::motion_controller_linearForm__l(int32_T obj_nvar
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 real_T motion_controller_withPIC::motion_controller_computeFval_n(const
   s3PrFoa9w5ssw8XLEJooNqH_motio_T *obj, real_T workspace[1701], const real_T H
   [400], const real_T f[20], const real_T x[21])
@@ -2720,7 +2718,7 @@ real_T motion_controller_withPIC::motion_controller_computeFval_n(const
   return val;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_co_computeGrad_StoreHx_k
   (s3PrFoa9w5ssw8XLEJooNqH_motio_T *obj, const real_T H[400], const real_T f[20],
    const real_T x[21])
@@ -2797,7 +2795,7 @@ void motion_controller_withPIC::motion_co_computeGrad_StoreHx_k
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 real_T motion_controller_withPIC::motion_co_computeFval_ReuseHx_n(const
   s3PrFoa9w5ssw8XLEJooNqH_motio_T *obj, real_T workspace[1701], const real_T f
   [20], const real_T x[21])
@@ -2892,7 +2890,7 @@ real_T motion_controller_withPIC::motion_co_computeFval_ReuseHx_n(const
   return val;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controlle_xrotg_ds3XgDMS(real_T *a,
   real_T *b, real_T *c, real_T *s)
 {
@@ -2903,27 +2901,27 @@ void motion_controller_withPIC::motion_controlle_xrotg_ds3XgDMS(real_T *a,
     motion_controller_withPIC_B.roe = *a;
   }
 
-  motion_controller_withPIC_B.scale_d = motion_controller_withPIC_B.absa +
+  motion_controller_withPIC_B.scale_f = motion_controller_withPIC_B.absa +
     motion_controller_withPIC_B.absb;
-  if (motion_controller_withPIC_B.scale_d == 0.0) {
+  if (motion_controller_withPIC_B.scale_f == 0.0) {
     *s = 0.0;
     *c = 1.0;
     *a = 0.0;
     *b = 0.0;
   } else {
     motion_controller_withPIC_B.ads = motion_controller_withPIC_B.absa /
-      motion_controller_withPIC_B.scale_d;
+      motion_controller_withPIC_B.scale_f;
     motion_controller_withPIC_B.bds = motion_controller_withPIC_B.absb /
-      motion_controller_withPIC_B.scale_d;
-    motion_controller_withPIC_B.scale_d *= sqrt(motion_controller_withPIC_B.ads *
+      motion_controller_withPIC_B.scale_f;
+    motion_controller_withPIC_B.scale_f *= sqrt(motion_controller_withPIC_B.ads *
       motion_controller_withPIC_B.ads + motion_controller_withPIC_B.bds *
       motion_controller_withPIC_B.bds);
     if (motion_controller_withPIC_B.roe < 0.0) {
-      motion_controller_withPIC_B.scale_d = -motion_controller_withPIC_B.scale_d;
+      motion_controller_withPIC_B.scale_f = -motion_controller_withPIC_B.scale_f;
     }
 
-    *c = *a / motion_controller_withPIC_B.scale_d;
-    *s = *b / motion_controller_withPIC_B.scale_d;
+    *c = *a / motion_controller_withPIC_B.scale_f;
+    *s = *b / motion_controller_withPIC_B.scale_f;
     if (motion_controller_withPIC_B.absa > motion_controller_withPIC_B.absb) {
       *b = *s;
     } else if (*c != 0.0) {
@@ -2932,11 +2930,11 @@ void motion_controller_withPIC::motion_controlle_xrotg_ds3XgDMS(real_T *a,
       *b = 1.0;
     }
 
-    *a = motion_controller_withPIC_B.scale_d;
+    *a = motion_controller_withPIC_B.scale_f;
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_contr_deleteColMoveEnd_a
   (sIZAIOglGM5dPDQlNukc9SD_motio_T *obj, int32_T idx)
 {
@@ -3053,106 +3051,106 @@ void motion_controller_withPIC::motion_contr_deleteColMoveEnd_a
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controlle_fullColLDL2__a
   (sTy13TWZ7KObOACj8wDaLQC_motio_T *obj, int32_T NColsRemain, real_T REG_PRIMAL)
 {
-  for (motion_controller_withPIC_B.lastDiag_a = 0;
-       motion_controller_withPIC_B.lastDiag_a < NColsRemain;
-       motion_controller_withPIC_B.lastDiag_a++) {
-    motion_controller_withPIC_B.LD_diagOffset_b = 22 *
-      motion_controller_withPIC_B.lastDiag_a;
-    motion_controller_withPIC_B.temp_m = obj->
-      FMat[motion_controller_withPIC_B.LD_diagOffset_b];
-    if (fabs(motion_controller_withPIC_B.temp_m) <= obj->regTol_) {
-      motion_controller_withPIC_B.temp_m += REG_PRIMAL;
-      obj->FMat[motion_controller_withPIC_B.LD_diagOffset_b] =
-        motion_controller_withPIC_B.temp_m;
+  for (motion_controller_withPIC_B.lastDiag_i = 0;
+       motion_controller_withPIC_B.lastDiag_i < NColsRemain;
+       motion_controller_withPIC_B.lastDiag_i++) {
+    motion_controller_withPIC_B.LD_diagOffset_a = 22 *
+      motion_controller_withPIC_B.lastDiag_i;
+    motion_controller_withPIC_B.temp_g = obj->
+      FMat[motion_controller_withPIC_B.LD_diagOffset_a];
+    if (fabs(motion_controller_withPIC_B.temp_g) <= obj->regTol_) {
+      motion_controller_withPIC_B.temp_g += REG_PRIMAL;
+      obj->FMat[motion_controller_withPIC_B.LD_diagOffset_a] =
+        motion_controller_withPIC_B.temp_g;
     }
 
-    motion_controller_withPIC_B.alpha1_l = -1.0 /
-      motion_controller_withPIC_B.temp_m;
-    motion_controller_withPIC_B.subMatrixDim_a = (NColsRemain -
-      motion_controller_withPIC_B.lastDiag_a) - 2;
-    for (motion_controller_withPIC_B.b_k_i = 0;
-         motion_controller_withPIC_B.b_k_i <=
-         motion_controller_withPIC_B.subMatrixDim_a;
-         motion_controller_withPIC_B.b_k_i++) {
-      obj->workspace_[motion_controller_withPIC_B.b_k_i] = obj->FMat
-        [(motion_controller_withPIC_B.LD_diagOffset_b +
-          motion_controller_withPIC_B.b_k_i) + 1];
+    motion_controller_withPIC_B.alpha1_n = -1.0 /
+      motion_controller_withPIC_B.temp_g;
+    motion_controller_withPIC_B.subMatrixDim_i = (NColsRemain -
+      motion_controller_withPIC_B.lastDiag_i) - 2;
+    for (motion_controller_withPIC_B.b_k_l = 0;
+         motion_controller_withPIC_B.b_k_l <=
+         motion_controller_withPIC_B.subMatrixDim_i;
+         motion_controller_withPIC_B.b_k_l++) {
+      obj->workspace_[motion_controller_withPIC_B.b_k_l] = obj->FMat
+        [(motion_controller_withPIC_B.LD_diagOffset_a +
+          motion_controller_withPIC_B.b_k_l) + 1];
     }
 
-    if (!(motion_controller_withPIC_B.alpha1_l == 0.0)) {
-      motion_controller_withPIC_B.jA_i =
-        motion_controller_withPIC_B.LD_diagOffset_b + 23;
-      for (motion_controller_withPIC_B.b_k_i = 0;
-           motion_controller_withPIC_B.b_k_i <=
-           motion_controller_withPIC_B.subMatrixDim_a;
-           motion_controller_withPIC_B.b_k_i++) {
-        motion_controller_withPIC_B.temp_m = obj->
-          workspace_[motion_controller_withPIC_B.b_k_i];
-        if (motion_controller_withPIC_B.temp_m != 0.0) {
-          motion_controller_withPIC_B.temp_m *=
-            motion_controller_withPIC_B.alpha1_l;
-          motion_controller_withPIC_B.b_l =
-            motion_controller_withPIC_B.subMatrixDim_a +
-            motion_controller_withPIC_B.jA_i;
+    if (!(motion_controller_withPIC_B.alpha1_n == 0.0)) {
+      motion_controller_withPIC_B.jA_o =
+        motion_controller_withPIC_B.LD_diagOffset_a + 23;
+      for (motion_controller_withPIC_B.b_k_l = 0;
+           motion_controller_withPIC_B.b_k_l <=
+           motion_controller_withPIC_B.subMatrixDim_i;
+           motion_controller_withPIC_B.b_k_l++) {
+        motion_controller_withPIC_B.temp_g = obj->
+          workspace_[motion_controller_withPIC_B.b_k_l];
+        if (motion_controller_withPIC_B.temp_g != 0.0) {
+          motion_controller_withPIC_B.temp_g *=
+            motion_controller_withPIC_B.alpha1_n;
+          motion_controller_withPIC_B.b_p =
+            motion_controller_withPIC_B.subMatrixDim_i +
+            motion_controller_withPIC_B.jA_o;
           for (motion_controller_withPIC_B.ijA_o =
-               motion_controller_withPIC_B.jA_i;
+               motion_controller_withPIC_B.jA_o;
                motion_controller_withPIC_B.ijA_o <=
-               motion_controller_withPIC_B.b_l;
+               motion_controller_withPIC_B.b_p;
                motion_controller_withPIC_B.ijA_o++) {
             obj->FMat[motion_controller_withPIC_B.ijA_o - 1] += obj->
               workspace_[motion_controller_withPIC_B.ijA_o -
-              motion_controller_withPIC_B.jA_i] *
-              motion_controller_withPIC_B.temp_m;
+              motion_controller_withPIC_B.jA_o] *
+              motion_controller_withPIC_B.temp_g;
           }
         }
 
-        motion_controller_withPIC_B.jA_i += 21;
+        motion_controller_withPIC_B.jA_o += 21;
       }
     }
 
-    motion_controller_withPIC_B.alpha1_l = 1.0 / obj->
-      FMat[motion_controller_withPIC_B.LD_diagOffset_b];
-    motion_controller_withPIC_B.b_k_i =
-      motion_controller_withPIC_B.LD_diagOffset_b +
-      motion_controller_withPIC_B.subMatrixDim_a;
-    motion_controller_withPIC_B.ijA_o = (((((motion_controller_withPIC_B.b_k_i -
-      motion_controller_withPIC_B.LD_diagOffset_b) + 1) / 2) << 1) +
-      motion_controller_withPIC_B.LD_diagOffset_b) + 2;
-    motion_controller_withPIC_B.jA_i = motion_controller_withPIC_B.ijA_o - 2;
-    for (motion_controller_withPIC_B.subMatrixDim_a =
-         motion_controller_withPIC_B.LD_diagOffset_b + 2;
-         motion_controller_withPIC_B.subMatrixDim_a <=
-         motion_controller_withPIC_B.jA_i;
-         motion_controller_withPIC_B.subMatrixDim_a += 2) {
+    motion_controller_withPIC_B.alpha1_n = 1.0 / obj->
+      FMat[motion_controller_withPIC_B.LD_diagOffset_a];
+    motion_controller_withPIC_B.b_k_l =
+      motion_controller_withPIC_B.LD_diagOffset_a +
+      motion_controller_withPIC_B.subMatrixDim_i;
+    motion_controller_withPIC_B.ijA_o = (((((motion_controller_withPIC_B.b_k_l -
+      motion_controller_withPIC_B.LD_diagOffset_a) + 1) / 2) << 1) +
+      motion_controller_withPIC_B.LD_diagOffset_a) + 2;
+    motion_controller_withPIC_B.jA_o = motion_controller_withPIC_B.ijA_o - 2;
+    for (motion_controller_withPIC_B.subMatrixDim_i =
+         motion_controller_withPIC_B.LD_diagOffset_a + 2;
+         motion_controller_withPIC_B.subMatrixDim_i <=
+         motion_controller_withPIC_B.jA_o;
+         motion_controller_withPIC_B.subMatrixDim_i += 2) {
       __m128d tmp;
-      tmp = _mm_loadu_pd(&obj->FMat[motion_controller_withPIC_B.subMatrixDim_a -
+      tmp = _mm_loadu_pd(&obj->FMat[motion_controller_withPIC_B.subMatrixDim_i -
                          1]);
-      _mm_storeu_pd(&obj->FMat[motion_controller_withPIC_B.subMatrixDim_a - 1],
+      _mm_storeu_pd(&obj->FMat[motion_controller_withPIC_B.subMatrixDim_i - 1],
                     _mm_mul_pd(tmp, _mm_set1_pd
-        (motion_controller_withPIC_B.alpha1_l)));
+        (motion_controller_withPIC_B.alpha1_n)));
     }
 
-    for (motion_controller_withPIC_B.subMatrixDim_a =
+    for (motion_controller_withPIC_B.subMatrixDim_i =
          motion_controller_withPIC_B.ijA_o;
-         motion_controller_withPIC_B.subMatrixDim_a <=
-         motion_controller_withPIC_B.b_k_i + 2;
-         motion_controller_withPIC_B.subMatrixDim_a++) {
-      obj->FMat[motion_controller_withPIC_B.subMatrixDim_a - 1] *=
-        motion_controller_withPIC_B.alpha1_l;
+         motion_controller_withPIC_B.subMatrixDim_i <=
+         motion_controller_withPIC_B.b_k_l + 2;
+         motion_controller_withPIC_B.subMatrixDim_i++) {
+      obj->FMat[motion_controller_withPIC_B.subMatrixDim_i - 1] *=
+        motion_controller_withPIC_B.alpha1_n;
     }
   }
 
-  motion_controller_withPIC_B.lastDiag_a = (NColsRemain - 1) * 22;
-  if (fabs(obj->FMat[motion_controller_withPIC_B.lastDiag_a]) <= obj->regTol_) {
-    obj->FMat[motion_controller_withPIC_B.lastDiag_a] += REG_PRIMAL;
+  motion_controller_withPIC_B.lastDiag_i = (NColsRemain - 1) * 22;
+  if (fabs(obj->FMat[motion_controller_withPIC_B.lastDiag_i]) <= obj->regTol_) {
+    obj->FMat[motion_controller_withPIC_B.lastDiag_i] += REG_PRIMAL;
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_control_compute_deltax_o(const real_T H
   [400], sYqpSPVJXu9aOn60zG4DpzD_motio_T *solution,
   s3cSGkBdKxRj6Qn3zsJRowG_motio_T *memspace, const
@@ -3162,111 +3160,111 @@ void motion_controller_withPIC::motion_control_compute_deltax_o(const real_T H
   __m128d tmp;
   __m128d tmp_0;
   int32_T exitg1;
-  motion_controller_withPIC_B.nVar_b = qrmanager->mrows - 1;
-  motion_controller_withPIC_B.mNull_tmp_o = qrmanager->mrows - qrmanager->ncols;
-  if (motion_controller_withPIC_B.mNull_tmp_o <= 0) {
-    if (motion_controller_withPIC_B.nVar_b >= 0) {
+  motion_controller_withPIC_B.nVar_n0 = qrmanager->mrows - 1;
+  motion_controller_withPIC_B.mNull_tmp_a = qrmanager->mrows - qrmanager->ncols;
+  if (motion_controller_withPIC_B.mNull_tmp_a <= 0) {
+    if (motion_controller_withPIC_B.nVar_n0 >= 0) {
       memset(&solution->searchDir[0], 0, static_cast<uint32_T>
-             (motion_controller_withPIC_B.nVar_b + 1) * sizeof(real_T));
+             (motion_controller_withPIC_B.nVar_n0 + 1) * sizeof(real_T));
     }
   } else {
-    motion_controller_withPIC_B.b_ar_l = (qrmanager->mrows / 2) << 1;
-    motion_controller_withPIC_B.vectorUB_iy = motion_controller_withPIC_B.b_ar_l
+    motion_controller_withPIC_B.b_ar_i = (qrmanager->mrows / 2) << 1;
+    motion_controller_withPIC_B.vectorUB_b4 = motion_controller_withPIC_B.b_ar_i
       - 2;
-    for (motion_controller_withPIC_B.A_maxDiag_idx_f = 0;
-         motion_controller_withPIC_B.A_maxDiag_idx_f <=
-         motion_controller_withPIC_B.vectorUB_iy;
-         motion_controller_withPIC_B.A_maxDiag_idx_f += 2) {
+    for (motion_controller_withPIC_B.A_maxDiag_idx_i = 0;
+         motion_controller_withPIC_B.A_maxDiag_idx_i <=
+         motion_controller_withPIC_B.vectorUB_b4;
+         motion_controller_withPIC_B.A_maxDiag_idx_i += 2) {
       tmp_0 = _mm_loadu_pd(&objective->
-                           grad[motion_controller_withPIC_B.A_maxDiag_idx_f]);
+                           grad[motion_controller_withPIC_B.A_maxDiag_idx_i]);
       _mm_storeu_pd(&solution->
-                    searchDir[motion_controller_withPIC_B.A_maxDiag_idx_f],
+                    searchDir[motion_controller_withPIC_B.A_maxDiag_idx_i],
                     _mm_mul_pd(tmp_0, _mm_set1_pd(-1.0)));
     }
 
-    for (motion_controller_withPIC_B.A_maxDiag_idx_f =
-         motion_controller_withPIC_B.b_ar_l;
-         motion_controller_withPIC_B.A_maxDiag_idx_f <=
-         motion_controller_withPIC_B.nVar_b;
-         motion_controller_withPIC_B.A_maxDiag_idx_f++) {
-      solution->searchDir[motion_controller_withPIC_B.A_maxDiag_idx_f] =
-        -objective->grad[motion_controller_withPIC_B.A_maxDiag_idx_f];
+    for (motion_controller_withPIC_B.A_maxDiag_idx_i =
+         motion_controller_withPIC_B.b_ar_i;
+         motion_controller_withPIC_B.A_maxDiag_idx_i <=
+         motion_controller_withPIC_B.nVar_n0;
+         motion_controller_withPIC_B.A_maxDiag_idx_i++) {
+      solution->searchDir[motion_controller_withPIC_B.A_maxDiag_idx_i] =
+        -objective->grad[motion_controller_withPIC_B.A_maxDiag_idx_i];
     }
 
     if (qrmanager->ncols <= 0) {
       if (objective->objtype == 3) {
-        motion_controller_withPIC_B.temp_g = 1.4901161193847656E-6 *
+        motion_controller_withPIC_B.temp_m4 = 1.4901161193847656E-6 *
           static_cast<real_T>(qrmanager->mrows);
         cholmanager->ndims = qrmanager->mrows;
-        for (motion_controller_withPIC_B.mNull_tmp_o = 0;
-             motion_controller_withPIC_B.mNull_tmp_o <=
-             motion_controller_withPIC_B.nVar_b;
-             motion_controller_withPIC_B.mNull_tmp_o++) {
-          motion_controller_withPIC_B.nullStartIdx_j =
-            (motion_controller_withPIC_B.nVar_b + 1) *
-            motion_controller_withPIC_B.mNull_tmp_o;
-          motion_controller_withPIC_B.nVars_n = 21 *
-            motion_controller_withPIC_B.mNull_tmp_o;
-          for (motion_controller_withPIC_B.A_maxDiag_idx_f = 0;
-               motion_controller_withPIC_B.A_maxDiag_idx_f <=
-               motion_controller_withPIC_B.nVar_b;
-               motion_controller_withPIC_B.A_maxDiag_idx_f++) {
-            cholmanager->FMat[motion_controller_withPIC_B.nVars_n +
-              motion_controller_withPIC_B.A_maxDiag_idx_f] =
-              H[motion_controller_withPIC_B.A_maxDiag_idx_f +
-              motion_controller_withPIC_B.nullStartIdx_j];
+        for (motion_controller_withPIC_B.mNull_tmp_a = 0;
+             motion_controller_withPIC_B.mNull_tmp_a <=
+             motion_controller_withPIC_B.nVar_n0;
+             motion_controller_withPIC_B.mNull_tmp_a++) {
+          motion_controller_withPIC_B.nullStartIdx_f =
+            (motion_controller_withPIC_B.nVar_n0 + 1) *
+            motion_controller_withPIC_B.mNull_tmp_a;
+          motion_controller_withPIC_B.nVars_e = 21 *
+            motion_controller_withPIC_B.mNull_tmp_a;
+          for (motion_controller_withPIC_B.A_maxDiag_idx_i = 0;
+               motion_controller_withPIC_B.A_maxDiag_idx_i <=
+               motion_controller_withPIC_B.nVar_n0;
+               motion_controller_withPIC_B.A_maxDiag_idx_i++) {
+            cholmanager->FMat[motion_controller_withPIC_B.nVars_e +
+              motion_controller_withPIC_B.A_maxDiag_idx_i] =
+              H[motion_controller_withPIC_B.A_maxDiag_idx_i +
+              motion_controller_withPIC_B.nullStartIdx_f];
           }
         }
 
         if (qrmanager->mrows < 1) {
-          motion_controller_withPIC_B.A_maxDiag_idx_f = -1;
+          motion_controller_withPIC_B.A_maxDiag_idx_i = -1;
         } else {
-          motion_controller_withPIC_B.A_maxDiag_idx_f = 0;
+          motion_controller_withPIC_B.A_maxDiag_idx_i = 0;
           if (qrmanager->mrows > 1) {
-            motion_controller_withPIC_B.smax_h = fabs(cholmanager->FMat[0]);
-            for (motion_controller_withPIC_B.mNull_tmp_o = 2;
-                 motion_controller_withPIC_B.mNull_tmp_o <=
-                 motion_controller_withPIC_B.nVar_b + 1;
-                 motion_controller_withPIC_B.mNull_tmp_o++) {
-              motion_controller_withPIC_B.s_m = fabs(cholmanager->FMat
-                [(motion_controller_withPIC_B.mNull_tmp_o - 1) * 22]);
-              if (motion_controller_withPIC_B.s_m >
-                  motion_controller_withPIC_B.smax_h) {
-                motion_controller_withPIC_B.A_maxDiag_idx_f =
-                  motion_controller_withPIC_B.mNull_tmp_o - 1;
-                motion_controller_withPIC_B.smax_h =
-                  motion_controller_withPIC_B.s_m;
+            motion_controller_withPIC_B.smax_g = fabs(cholmanager->FMat[0]);
+            for (motion_controller_withPIC_B.mNull_tmp_a = 2;
+                 motion_controller_withPIC_B.mNull_tmp_a <=
+                 motion_controller_withPIC_B.nVar_n0 + 1;
+                 motion_controller_withPIC_B.mNull_tmp_a++) {
+              motion_controller_withPIC_B.s_l = fabs(cholmanager->FMat
+                [(motion_controller_withPIC_B.mNull_tmp_a - 1) * 22]);
+              if (motion_controller_withPIC_B.s_l >
+                  motion_controller_withPIC_B.smax_g) {
+                motion_controller_withPIC_B.A_maxDiag_idx_i =
+                  motion_controller_withPIC_B.mNull_tmp_a - 1;
+                motion_controller_withPIC_B.smax_g =
+                  motion_controller_withPIC_B.s_l;
               }
             }
           }
         }
 
-        motion_controller_withPIC_B.smax_h = fabs(cholmanager->FMat[21 *
-          motion_controller_withPIC_B.A_maxDiag_idx_f +
-          motion_controller_withPIC_B.A_maxDiag_idx_f]) * 2.2204460492503131E-16;
-        motion_controller_withPIC_B.s_m = fabs
-          (motion_controller_withPIC_B.temp_g);
-        if (motion_controller_withPIC_B.smax_h >=
-            motion_controller_withPIC_B.s_m) {
-          cholmanager->regTol_ = motion_controller_withPIC_B.smax_h;
+        motion_controller_withPIC_B.smax_g = fabs(cholmanager->FMat[21 *
+          motion_controller_withPIC_B.A_maxDiag_idx_i +
+          motion_controller_withPIC_B.A_maxDiag_idx_i]) * 2.2204460492503131E-16;
+        motion_controller_withPIC_B.s_l = fabs
+          (motion_controller_withPIC_B.temp_m4);
+        if (motion_controller_withPIC_B.smax_g >=
+            motion_controller_withPIC_B.s_l) {
+          cholmanager->regTol_ = motion_controller_withPIC_B.smax_g;
         } else {
-          cholmanager->regTol_ = motion_controller_withPIC_B.s_m;
+          cholmanager->regTol_ = motion_controller_withPIC_B.s_l;
         }
 
         motion_controlle_fullColLDL2__a(cholmanager, qrmanager->mrows,
-          motion_controller_withPIC_B.temp_g);
+          motion_controller_withPIC_B.temp_m4);
         if (cholmanager->ConvexCheck) {
-          motion_controller_withPIC_B.mNull_tmp_o = 0;
+          motion_controller_withPIC_B.mNull_tmp_a = 0;
           do {
             exitg1 = 0;
-            if (motion_controller_withPIC_B.mNull_tmp_o <=
-                motion_controller_withPIC_B.nVar_b) {
-              if (cholmanager->FMat[21 * motion_controller_withPIC_B.mNull_tmp_o
-                  + motion_controller_withPIC_B.mNull_tmp_o] <= 0.0) {
-                cholmanager->info = -motion_controller_withPIC_B.mNull_tmp_o - 1;
+            if (motion_controller_withPIC_B.mNull_tmp_a <=
+                motion_controller_withPIC_B.nVar_n0) {
+              if (cholmanager->FMat[21 * motion_controller_withPIC_B.mNull_tmp_a
+                  + motion_controller_withPIC_B.mNull_tmp_a] <= 0.0) {
+                cholmanager->info = -motion_controller_withPIC_B.mNull_tmp_a - 1;
                 exitg1 = 1;
               } else {
-                motion_controller_withPIC_B.mNull_tmp_o++;
+                motion_controller_withPIC_B.mNull_tmp_a++;
               }
             } else {
               cholmanager->ConvexCheck = false;
@@ -3278,280 +3276,279 @@ void motion_controller_withPIC::motion_control_compute_deltax_o(const real_T H
         if (cholmanager->info != 0) {
           solution->state = -6;
         } else {
-          motion_controller_withPIC_B.nVar_b = cholmanager->ndims - 1;
+          motion_controller_withPIC_B.nVar_n0 = cholmanager->ndims - 1;
           if (cholmanager->ndims != 0) {
-            for (motion_controller_withPIC_B.mNull_tmp_o = 0;
-                 motion_controller_withPIC_B.mNull_tmp_o <=
-                 motion_controller_withPIC_B.nVar_b;
-                 motion_controller_withPIC_B.mNull_tmp_o++) {
-              motion_controller_withPIC_B.nullStartIdx_j =
-                motion_controller_withPIC_B.mNull_tmp_o * 21 +
-                motion_controller_withPIC_B.mNull_tmp_o;
-              motion_controller_withPIC_B.nVars_n =
-                motion_controller_withPIC_B.nVar_b -
-                motion_controller_withPIC_B.mNull_tmp_o;
-              for (motion_controller_withPIC_B.A_maxDiag_idx_f = 0;
-                   motion_controller_withPIC_B.A_maxDiag_idx_f <
-                   motion_controller_withPIC_B.nVars_n;
-                   motion_controller_withPIC_B.A_maxDiag_idx_f++) {
-                motion_controller_withPIC_B.b_A_maxDiag_idx_e =
-                  (motion_controller_withPIC_B.A_maxDiag_idx_f +
-                   motion_controller_withPIC_B.mNull_tmp_o) + 1;
+            for (motion_controller_withPIC_B.mNull_tmp_a = 0;
+                 motion_controller_withPIC_B.mNull_tmp_a <=
+                 motion_controller_withPIC_B.nVar_n0;
+                 motion_controller_withPIC_B.mNull_tmp_a++) {
+              motion_controller_withPIC_B.nullStartIdx_f =
+                motion_controller_withPIC_B.mNull_tmp_a * 21 +
+                motion_controller_withPIC_B.mNull_tmp_a;
+              motion_controller_withPIC_B.nVars_e =
+                motion_controller_withPIC_B.nVar_n0 -
+                motion_controller_withPIC_B.mNull_tmp_a;
+              for (motion_controller_withPIC_B.A_maxDiag_idx_i = 0;
+                   motion_controller_withPIC_B.A_maxDiag_idx_i <
+                   motion_controller_withPIC_B.nVars_e;
+                   motion_controller_withPIC_B.A_maxDiag_idx_i++) {
+                motion_controller_withPIC_B.b_A_maxDiag_idx_a =
+                  (motion_controller_withPIC_B.A_maxDiag_idx_i +
+                   motion_controller_withPIC_B.mNull_tmp_a) + 1;
                 solution->
-                  searchDir[motion_controller_withPIC_B.b_A_maxDiag_idx_e] -=
-                  cholmanager->FMat[(motion_controller_withPIC_B.A_maxDiag_idx_f
-                                     + motion_controller_withPIC_B.nullStartIdx_j)
+                  searchDir[motion_controller_withPIC_B.b_A_maxDiag_idx_a] -=
+                  cholmanager->FMat[(motion_controller_withPIC_B.A_maxDiag_idx_i
+                                     + motion_controller_withPIC_B.nullStartIdx_f)
                   + 1] * solution->
-                  searchDir[motion_controller_withPIC_B.mNull_tmp_o];
+                  searchDir[motion_controller_withPIC_B.mNull_tmp_a];
               }
             }
           }
 
-          motion_controller_withPIC_B.nVar_b = cholmanager->ndims;
-          for (motion_controller_withPIC_B.mNull_tmp_o = 0;
-               motion_controller_withPIC_B.mNull_tmp_o <
-               motion_controller_withPIC_B.nVar_b;
-               motion_controller_withPIC_B.mNull_tmp_o++) {
-            solution->searchDir[motion_controller_withPIC_B.mNull_tmp_o] /=
-              cholmanager->FMat[21 * motion_controller_withPIC_B.mNull_tmp_o +
-              motion_controller_withPIC_B.mNull_tmp_o];
+          motion_controller_withPIC_B.nVar_n0 = cholmanager->ndims;
+          for (motion_controller_withPIC_B.mNull_tmp_a = 0;
+               motion_controller_withPIC_B.mNull_tmp_a <
+               motion_controller_withPIC_B.nVar_n0;
+               motion_controller_withPIC_B.mNull_tmp_a++) {
+            solution->searchDir[motion_controller_withPIC_B.mNull_tmp_a] /=
+              cholmanager->FMat[21 * motion_controller_withPIC_B.mNull_tmp_a +
+              motion_controller_withPIC_B.mNull_tmp_a];
           }
 
           if (cholmanager->ndims != 0) {
-            for (motion_controller_withPIC_B.mNull_tmp_o =
-                 motion_controller_withPIC_B.nVar_b;
-                 motion_controller_withPIC_B.mNull_tmp_o >= 1;
-                 motion_controller_withPIC_B.mNull_tmp_o--) {
-              motion_controller_withPIC_B.nullStartIdx_j =
-                (motion_controller_withPIC_B.mNull_tmp_o - 1) * 21;
-              motion_controller_withPIC_B.temp_g = solution->
-                searchDir[motion_controller_withPIC_B.mNull_tmp_o - 1];
-              for (motion_controller_withPIC_B.A_maxDiag_idx_f =
-                   motion_controller_withPIC_B.nVar_b;
-                   motion_controller_withPIC_B.A_maxDiag_idx_f >=
-                   motion_controller_withPIC_B.mNull_tmp_o + 1;
-                   motion_controller_withPIC_B.A_maxDiag_idx_f--) {
-                motion_controller_withPIC_B.temp_g -= cholmanager->FMat
-                  [(motion_controller_withPIC_B.nullStartIdx_j +
-                    motion_controller_withPIC_B.A_maxDiag_idx_f) - 1] *
+            for (motion_controller_withPIC_B.mNull_tmp_a =
+                 motion_controller_withPIC_B.nVar_n0;
+                 motion_controller_withPIC_B.mNull_tmp_a >= 1;
+                 motion_controller_withPIC_B.mNull_tmp_a--) {
+              motion_controller_withPIC_B.nullStartIdx_f =
+                (motion_controller_withPIC_B.mNull_tmp_a - 1) * 21;
+              motion_controller_withPIC_B.temp_m4 = solution->
+                searchDir[motion_controller_withPIC_B.mNull_tmp_a - 1];
+              for (motion_controller_withPIC_B.A_maxDiag_idx_i =
+                   motion_controller_withPIC_B.nVar_n0;
+                   motion_controller_withPIC_B.A_maxDiag_idx_i >=
+                   motion_controller_withPIC_B.mNull_tmp_a + 1;
+                   motion_controller_withPIC_B.A_maxDiag_idx_i--) {
+                motion_controller_withPIC_B.temp_m4 -= cholmanager->FMat
+                  [(motion_controller_withPIC_B.nullStartIdx_f +
+                    motion_controller_withPIC_B.A_maxDiag_idx_i) - 1] *
                   solution->
-                  searchDir[motion_controller_withPIC_B.A_maxDiag_idx_f - 1];
+                  searchDir[motion_controller_withPIC_B.A_maxDiag_idx_i - 1];
               }
 
-              solution->searchDir[motion_controller_withPIC_B.mNull_tmp_o - 1] =
-                motion_controller_withPIC_B.temp_g;
+              solution->searchDir[motion_controller_withPIC_B.mNull_tmp_a - 1] =
+                motion_controller_withPIC_B.temp_m4;
             }
           }
         }
       }
     } else {
-      motion_controller_withPIC_B.A_maxDiag_idx_f = 21 * qrmanager->ncols;
-      motion_controller_withPIC_B.nullStartIdx_j =
-        motion_controller_withPIC_B.A_maxDiag_idx_f + 1;
+      motion_controller_withPIC_B.A_maxDiag_idx_i = 21 * qrmanager->ncols;
+      motion_controller_withPIC_B.nullStartIdx_f =
+        motion_controller_withPIC_B.A_maxDiag_idx_i + 1;
       if (objective->objtype == 5) {
-        for (motion_controller_withPIC_B.nullStartIdx_j = 0;
-             motion_controller_withPIC_B.nullStartIdx_j <
-             motion_controller_withPIC_B.mNull_tmp_o;
-             motion_controller_withPIC_B.nullStartIdx_j++) {
-          memspace->workspace_double[motion_controller_withPIC_B.nullStartIdx_j]
+        for (motion_controller_withPIC_B.nullStartIdx_f = 0;
+             motion_controller_withPIC_B.nullStartIdx_f <
+             motion_controller_withPIC_B.mNull_tmp_a;
+             motion_controller_withPIC_B.nullStartIdx_f++) {
+          memspace->workspace_double[motion_controller_withPIC_B.nullStartIdx_f]
             = -qrmanager->Q[(qrmanager->ncols +
-                             motion_controller_withPIC_B.nullStartIdx_j) * 21 +
-            motion_controller_withPIC_B.nVar_b];
+                             motion_controller_withPIC_B.nullStartIdx_f) * 21 +
+            motion_controller_withPIC_B.nVar_n0];
         }
 
-        xgemv_CxqfdDRY(qrmanager->mrows, motion_controller_withPIC_B.mNull_tmp_o,
-                       qrmanager->Q, motion_controller_withPIC_B.A_maxDiag_idx_f
+        xgemv_CxqfdDRY(qrmanager->mrows, motion_controller_withPIC_B.mNull_tmp_a,
+                       qrmanager->Q, motion_controller_withPIC_B.A_maxDiag_idx_i
                        + 1, memspace->workspace_double, solution->searchDir);
       } else {
         if (objective->objtype == 3) {
-          motion_controller_withPIC_B.nVars_n = qrmanager->mrows;
+          motion_controller_withPIC_B.nVars_e = qrmanager->mrows;
           if ((qrmanager->mrows != 0) &&
-              (motion_controller_withPIC_B.mNull_tmp_o != 0)) {
-            motion_controller_withPIC_B.br_a =
-              motion_controller_withPIC_B.A_maxDiag_idx_f;
-            motion_controller_withPIC_B.lastColC_i =
-              (motion_controller_withPIC_B.mNull_tmp_o - 1) * 81;
-            for (motion_controller_withPIC_B.b_A_maxDiag_idx_e = 0;
-                 motion_controller_withPIC_B.b_A_maxDiag_idx_e <=
-                 motion_controller_withPIC_B.lastColC_i;
-                 motion_controller_withPIC_B.b_A_maxDiag_idx_e += 81) {
-              motion_controller_withPIC_B.e_ix_a =
-                motion_controller_withPIC_B.b_A_maxDiag_idx_e +
-                motion_controller_withPIC_B.nVars_n;
-              for (motion_controller_withPIC_B.ic_k =
-                   motion_controller_withPIC_B.b_A_maxDiag_idx_e + 1;
-                   motion_controller_withPIC_B.ic_k <=
-                   motion_controller_withPIC_B.e_ix_a;
-                   motion_controller_withPIC_B.ic_k++) {
-                memspace->workspace_double[motion_controller_withPIC_B.ic_k - 1]
+              (motion_controller_withPIC_B.mNull_tmp_a != 0)) {
+            motion_controller_withPIC_B.br_k =
+              motion_controller_withPIC_B.A_maxDiag_idx_i;
+            motion_controller_withPIC_B.lastColC_f =
+              (motion_controller_withPIC_B.mNull_tmp_a - 1) * 81;
+            for (motion_controller_withPIC_B.b_A_maxDiag_idx_a = 0;
+                 motion_controller_withPIC_B.b_A_maxDiag_idx_a <=
+                 motion_controller_withPIC_B.lastColC_f;
+                 motion_controller_withPIC_B.b_A_maxDiag_idx_a += 81) {
+              motion_controller_withPIC_B.e_ix_o =
+                motion_controller_withPIC_B.b_A_maxDiag_idx_a +
+                motion_controller_withPIC_B.nVars_e;
+              for (motion_controller_withPIC_B.ic_j =
+                   motion_controller_withPIC_B.b_A_maxDiag_idx_a + 1;
+                   motion_controller_withPIC_B.ic_j <=
+                   motion_controller_withPIC_B.e_ix_o;
+                   motion_controller_withPIC_B.ic_j++) {
+                memspace->workspace_double[motion_controller_withPIC_B.ic_j - 1]
                   = 0.0;
               }
             }
 
-            for (motion_controller_withPIC_B.b_A_maxDiag_idx_e = 0;
-                 motion_controller_withPIC_B.b_A_maxDiag_idx_e <=
-                 motion_controller_withPIC_B.lastColC_i;
-                 motion_controller_withPIC_B.b_A_maxDiag_idx_e += 81) {
-              motion_controller_withPIC_B.ar_f = -1;
-              motion_controller_withPIC_B.h_cg =
-                motion_controller_withPIC_B.br_a +
-                motion_controller_withPIC_B.nVars_n;
-              for (motion_controller_withPIC_B.ic_k =
-                   motion_controller_withPIC_B.br_a + 1;
-                   motion_controller_withPIC_B.ic_k <=
-                   motion_controller_withPIC_B.h_cg;
-                   motion_controller_withPIC_B.ic_k++) {
-                motion_controller_withPIC_B.i_j1 =
-                  motion_controller_withPIC_B.b_A_maxDiag_idx_e +
-                  motion_controller_withPIC_B.nVars_n;
-                motion_controller_withPIC_B.b_ar_l =
-                  ((((motion_controller_withPIC_B.i_j1 -
-                      motion_controller_withPIC_B.b_A_maxDiag_idx_e) / 2) << 1)
-                   + motion_controller_withPIC_B.b_A_maxDiag_idx_e) + 1;
-                motion_controller_withPIC_B.vectorUB_iy =
-                  motion_controller_withPIC_B.b_ar_l - 2;
-                for (motion_controller_withPIC_B.e_ix_a =
-                     motion_controller_withPIC_B.b_A_maxDiag_idx_e + 1;
-                     motion_controller_withPIC_B.e_ix_a <=
-                     motion_controller_withPIC_B.vectorUB_iy;
-                     motion_controller_withPIC_B.e_ix_a += 2) {
-                  tmp_0 = _mm_loadu_pd(&H[(motion_controller_withPIC_B.ar_f +
-                    motion_controller_withPIC_B.e_ix_a) -
-                                       motion_controller_withPIC_B.b_A_maxDiag_idx_e]);
+            for (motion_controller_withPIC_B.b_A_maxDiag_idx_a = 0;
+                 motion_controller_withPIC_B.b_A_maxDiag_idx_a <=
+                 motion_controller_withPIC_B.lastColC_f;
+                 motion_controller_withPIC_B.b_A_maxDiag_idx_a += 81) {
+              motion_controller_withPIC_B.ar_c = -1;
+              motion_controller_withPIC_B.h_l = motion_controller_withPIC_B.br_k
+                + motion_controller_withPIC_B.nVars_e;
+              for (motion_controller_withPIC_B.ic_j =
+                   motion_controller_withPIC_B.br_k + 1;
+                   motion_controller_withPIC_B.ic_j <=
+                   motion_controller_withPIC_B.h_l;
+                   motion_controller_withPIC_B.ic_j++) {
+                motion_controller_withPIC_B.i_ai =
+                  motion_controller_withPIC_B.b_A_maxDiag_idx_a +
+                  motion_controller_withPIC_B.nVars_e;
+                motion_controller_withPIC_B.b_ar_i =
+                  ((((motion_controller_withPIC_B.i_ai -
+                      motion_controller_withPIC_B.b_A_maxDiag_idx_a) / 2) << 1)
+                   + motion_controller_withPIC_B.b_A_maxDiag_idx_a) + 1;
+                motion_controller_withPIC_B.vectorUB_b4 =
+                  motion_controller_withPIC_B.b_ar_i - 2;
+                for (motion_controller_withPIC_B.e_ix_o =
+                     motion_controller_withPIC_B.b_A_maxDiag_idx_a + 1;
+                     motion_controller_withPIC_B.e_ix_o <=
+                     motion_controller_withPIC_B.vectorUB_b4;
+                     motion_controller_withPIC_B.e_ix_o += 2) {
+                  tmp_0 = _mm_loadu_pd(&H[(motion_controller_withPIC_B.ar_c +
+                    motion_controller_withPIC_B.e_ix_o) -
+                                       motion_controller_withPIC_B.b_A_maxDiag_idx_a]);
                   tmp = _mm_loadu_pd(&memspace->
-                                     workspace_double[motion_controller_withPIC_B.e_ix_a
+                                     workspace_double[motion_controller_withPIC_B.e_ix_o
                                      - 1]);
                   _mm_storeu_pd(&memspace->
-                                workspace_double[motion_controller_withPIC_B.e_ix_a
+                                workspace_double[motion_controller_withPIC_B.e_ix_o
                                 - 1], _mm_add_pd(_mm_mul_pd(tmp_0, _mm_set1_pd
-                    (qrmanager->Q[motion_controller_withPIC_B.ic_k - 1])), tmp));
+                    (qrmanager->Q[motion_controller_withPIC_B.ic_j - 1])), tmp));
                 }
 
-                for (motion_controller_withPIC_B.e_ix_a =
-                     motion_controller_withPIC_B.b_ar_l;
-                     motion_controller_withPIC_B.e_ix_a <=
-                     motion_controller_withPIC_B.i_j1;
-                     motion_controller_withPIC_B.e_ix_a++) {
-                  memspace->workspace_double[motion_controller_withPIC_B.e_ix_a
-                    - 1] += H[(motion_controller_withPIC_B.ar_f +
-                               motion_controller_withPIC_B.e_ix_a) -
-                    motion_controller_withPIC_B.b_A_maxDiag_idx_e] *
-                    qrmanager->Q[motion_controller_withPIC_B.ic_k - 1];
+                for (motion_controller_withPIC_B.e_ix_o =
+                     motion_controller_withPIC_B.b_ar_i;
+                     motion_controller_withPIC_B.e_ix_o <=
+                     motion_controller_withPIC_B.i_ai;
+                     motion_controller_withPIC_B.e_ix_o++) {
+                  memspace->workspace_double[motion_controller_withPIC_B.e_ix_o
+                    - 1] += H[(motion_controller_withPIC_B.ar_c +
+                               motion_controller_withPIC_B.e_ix_o) -
+                    motion_controller_withPIC_B.b_A_maxDiag_idx_a] *
+                    qrmanager->Q[motion_controller_withPIC_B.ic_j - 1];
                 }
 
-                motion_controller_withPIC_B.ar_f +=
-                  motion_controller_withPIC_B.nVars_n;
+                motion_controller_withPIC_B.ar_c +=
+                  motion_controller_withPIC_B.nVars_e;
               }
 
-              motion_controller_withPIC_B.br_a += 21;
+              motion_controller_withPIC_B.br_k += 21;
             }
           }
 
-          if (motion_controller_withPIC_B.mNull_tmp_o != 0) {
-            motion_controller_withPIC_B.br_a =
-              (motion_controller_withPIC_B.mNull_tmp_o - 1) * 21;
-            for (motion_controller_withPIC_B.b_A_maxDiag_idx_e = 0;
-                 motion_controller_withPIC_B.b_A_maxDiag_idx_e <=
-                 motion_controller_withPIC_B.br_a;
-                 motion_controller_withPIC_B.b_A_maxDiag_idx_e += 21) {
-              motion_controller_withPIC_B.e_ix_a =
-                motion_controller_withPIC_B.b_A_maxDiag_idx_e +
-                motion_controller_withPIC_B.mNull_tmp_o;
-              for (motion_controller_withPIC_B.ic_k =
-                   motion_controller_withPIC_B.b_A_maxDiag_idx_e + 1;
-                   motion_controller_withPIC_B.ic_k <=
-                   motion_controller_withPIC_B.e_ix_a;
-                   motion_controller_withPIC_B.ic_k++) {
-                cholmanager->FMat[motion_controller_withPIC_B.ic_k - 1] = 0.0;
+          if (motion_controller_withPIC_B.mNull_tmp_a != 0) {
+            motion_controller_withPIC_B.br_k =
+              (motion_controller_withPIC_B.mNull_tmp_a - 1) * 21;
+            for (motion_controller_withPIC_B.b_A_maxDiag_idx_a = 0;
+                 motion_controller_withPIC_B.b_A_maxDiag_idx_a <=
+                 motion_controller_withPIC_B.br_k;
+                 motion_controller_withPIC_B.b_A_maxDiag_idx_a += 21) {
+              motion_controller_withPIC_B.e_ix_o =
+                motion_controller_withPIC_B.b_A_maxDiag_idx_a +
+                motion_controller_withPIC_B.mNull_tmp_a;
+              for (motion_controller_withPIC_B.ic_j =
+                   motion_controller_withPIC_B.b_A_maxDiag_idx_a + 1;
+                   motion_controller_withPIC_B.ic_j <=
+                   motion_controller_withPIC_B.e_ix_o;
+                   motion_controller_withPIC_B.ic_j++) {
+                cholmanager->FMat[motion_controller_withPIC_B.ic_j - 1] = 0.0;
               }
             }
 
-            motion_controller_withPIC_B.lastColC_i = -1;
-            for (motion_controller_withPIC_B.b_A_maxDiag_idx_e = 0;
-                 motion_controller_withPIC_B.b_A_maxDiag_idx_e <=
-                 motion_controller_withPIC_B.br_a;
-                 motion_controller_withPIC_B.b_A_maxDiag_idx_e += 21) {
-              motion_controller_withPIC_B.b_ar_l =
-                motion_controller_withPIC_B.A_maxDiag_idx_f;
-              motion_controller_withPIC_B.vectorUB_iy =
-                motion_controller_withPIC_B.b_A_maxDiag_idx_e +
-                motion_controller_withPIC_B.mNull_tmp_o;
-              for (motion_controller_withPIC_B.ic_k =
-                   motion_controller_withPIC_B.b_A_maxDiag_idx_e + 1;
-                   motion_controller_withPIC_B.ic_k <=
-                   motion_controller_withPIC_B.vectorUB_iy;
-                   motion_controller_withPIC_B.ic_k++) {
-                motion_controller_withPIC_B.temp_g = 0.0;
-                for (motion_controller_withPIC_B.e_ix_a = 0;
-                     motion_controller_withPIC_B.e_ix_a <
-                     motion_controller_withPIC_B.nVars_n;
-                     motion_controller_withPIC_B.e_ix_a++) {
-                  motion_controller_withPIC_B.temp_g +=
+            motion_controller_withPIC_B.lastColC_f = -1;
+            for (motion_controller_withPIC_B.b_A_maxDiag_idx_a = 0;
+                 motion_controller_withPIC_B.b_A_maxDiag_idx_a <=
+                 motion_controller_withPIC_B.br_k;
+                 motion_controller_withPIC_B.b_A_maxDiag_idx_a += 21) {
+              motion_controller_withPIC_B.b_ar_i =
+                motion_controller_withPIC_B.A_maxDiag_idx_i;
+              motion_controller_withPIC_B.vectorUB_b4 =
+                motion_controller_withPIC_B.b_A_maxDiag_idx_a +
+                motion_controller_withPIC_B.mNull_tmp_a;
+              for (motion_controller_withPIC_B.ic_j =
+                   motion_controller_withPIC_B.b_A_maxDiag_idx_a + 1;
+                   motion_controller_withPIC_B.ic_j <=
+                   motion_controller_withPIC_B.vectorUB_b4;
+                   motion_controller_withPIC_B.ic_j++) {
+                motion_controller_withPIC_B.temp_m4 = 0.0;
+                for (motion_controller_withPIC_B.e_ix_o = 0;
+                     motion_controller_withPIC_B.e_ix_o <
+                     motion_controller_withPIC_B.nVars_e;
+                     motion_controller_withPIC_B.e_ix_o++) {
+                  motion_controller_withPIC_B.temp_m4 +=
                     memspace->workspace_double
-                    [(motion_controller_withPIC_B.e_ix_a +
-                      motion_controller_withPIC_B.lastColC_i) + 1] *
-                    qrmanager->Q[motion_controller_withPIC_B.e_ix_a +
-                    motion_controller_withPIC_B.b_ar_l];
+                    [(motion_controller_withPIC_B.e_ix_o +
+                      motion_controller_withPIC_B.lastColC_f) + 1] *
+                    qrmanager->Q[motion_controller_withPIC_B.e_ix_o +
+                    motion_controller_withPIC_B.b_ar_i];
                 }
 
-                cholmanager->FMat[motion_controller_withPIC_B.ic_k - 1] +=
-                  motion_controller_withPIC_B.temp_g;
-                motion_controller_withPIC_B.b_ar_l += 21;
+                cholmanager->FMat[motion_controller_withPIC_B.ic_j - 1] +=
+                  motion_controller_withPIC_B.temp_m4;
+                motion_controller_withPIC_B.b_ar_i += 21;
               }
 
-              motion_controller_withPIC_B.lastColC_i += 81;
+              motion_controller_withPIC_B.lastColC_f += 81;
             }
           }
         }
 
-        motion_controller_withPIC_B.temp_g = 1.4901161193847656E-6 *
-          static_cast<real_T>(motion_controller_withPIC_B.mNull_tmp_o);
-        cholmanager->ndims = motion_controller_withPIC_B.mNull_tmp_o;
-        motion_controller_withPIC_B.b_A_maxDiag_idx_e = 0;
-        if (motion_controller_withPIC_B.mNull_tmp_o > 1) {
-          motion_controller_withPIC_B.smax_h = fabs(cholmanager->FMat[0]);
-          for (motion_controller_withPIC_B.nVars_n = 2;
-               motion_controller_withPIC_B.nVars_n <=
-               motion_controller_withPIC_B.mNull_tmp_o;
-               motion_controller_withPIC_B.nVars_n++) {
-            motion_controller_withPIC_B.s_m = fabs(cholmanager->FMat
-              [(motion_controller_withPIC_B.nVars_n - 1) * 22]);
-            if (motion_controller_withPIC_B.s_m >
-                motion_controller_withPIC_B.smax_h) {
-              motion_controller_withPIC_B.b_A_maxDiag_idx_e =
-                motion_controller_withPIC_B.nVars_n - 1;
-              motion_controller_withPIC_B.smax_h =
-                motion_controller_withPIC_B.s_m;
+        motion_controller_withPIC_B.temp_m4 = 1.4901161193847656E-6 *
+          static_cast<real_T>(motion_controller_withPIC_B.mNull_tmp_a);
+        cholmanager->ndims = motion_controller_withPIC_B.mNull_tmp_a;
+        motion_controller_withPIC_B.b_A_maxDiag_idx_a = 0;
+        if (motion_controller_withPIC_B.mNull_tmp_a > 1) {
+          motion_controller_withPIC_B.smax_g = fabs(cholmanager->FMat[0]);
+          for (motion_controller_withPIC_B.nVars_e = 2;
+               motion_controller_withPIC_B.nVars_e <=
+               motion_controller_withPIC_B.mNull_tmp_a;
+               motion_controller_withPIC_B.nVars_e++) {
+            motion_controller_withPIC_B.s_l = fabs(cholmanager->FMat
+              [(motion_controller_withPIC_B.nVars_e - 1) * 22]);
+            if (motion_controller_withPIC_B.s_l >
+                motion_controller_withPIC_B.smax_g) {
+              motion_controller_withPIC_B.b_A_maxDiag_idx_a =
+                motion_controller_withPIC_B.nVars_e - 1;
+              motion_controller_withPIC_B.smax_g =
+                motion_controller_withPIC_B.s_l;
             }
           }
         }
 
-        motion_controller_withPIC_B.smax_h = fabs(cholmanager->FMat[21 *
-          motion_controller_withPIC_B.b_A_maxDiag_idx_e +
-          motion_controller_withPIC_B.b_A_maxDiag_idx_e]) *
+        motion_controller_withPIC_B.smax_g = fabs(cholmanager->FMat[21 *
+          motion_controller_withPIC_B.b_A_maxDiag_idx_a +
+          motion_controller_withPIC_B.b_A_maxDiag_idx_a]) *
           2.2204460492503131E-16;
-        if (motion_controller_withPIC_B.smax_h >=
-            motion_controller_withPIC_B.temp_g) {
-          cholmanager->regTol_ = motion_controller_withPIC_B.smax_h;
+        if (motion_controller_withPIC_B.smax_g >=
+            motion_controller_withPIC_B.temp_m4) {
+          cholmanager->regTol_ = motion_controller_withPIC_B.smax_g;
         } else {
-          cholmanager->regTol_ = motion_controller_withPIC_B.temp_g;
+          cholmanager->regTol_ = motion_controller_withPIC_B.temp_m4;
         }
 
         motion_controlle_fullColLDL2__a(cholmanager,
-          motion_controller_withPIC_B.mNull_tmp_o,
-          motion_controller_withPIC_B.temp_g);
+          motion_controller_withPIC_B.mNull_tmp_a,
+          motion_controller_withPIC_B.temp_m4);
         if (cholmanager->ConvexCheck) {
-          motion_controller_withPIC_B.nVars_n = 0;
+          motion_controller_withPIC_B.nVars_e = 0;
           do {
             exitg1 = 0;
-            if (motion_controller_withPIC_B.nVars_n <=
-                motion_controller_withPIC_B.mNull_tmp_o - 1) {
-              if (cholmanager->FMat[21 * motion_controller_withPIC_B.nVars_n +
-                  motion_controller_withPIC_B.nVars_n] <= 0.0) {
-                cholmanager->info = -motion_controller_withPIC_B.nVars_n - 1;
+            if (motion_controller_withPIC_B.nVars_e <=
+                motion_controller_withPIC_B.mNull_tmp_a - 1) {
+              if (cholmanager->FMat[21 * motion_controller_withPIC_B.nVars_e +
+                  motion_controller_withPIC_B.nVars_e] <= 0.0) {
+                cholmanager->info = -motion_controller_withPIC_B.nVars_e - 1;
                 exitg1 = 1;
               } else {
-                motion_controller_withPIC_B.nVars_n++;
+                motion_controller_withPIC_B.nVars_e++;
               }
             } else {
               cholmanager->ConvexCheck = false;
@@ -3565,107 +3562,107 @@ void motion_controller_withPIC::motion_control_compute_deltax_o(const real_T H
         } else {
           if (qrmanager->mrows != 0) {
             memset(&memspace->workspace_double[0], 0, static_cast<uint32_T>
-                   (motion_controller_withPIC_B.mNull_tmp_o) * sizeof(real_T));
-            motion_controller_withPIC_B.ic_k =
-              ((motion_controller_withPIC_B.mNull_tmp_o - 1) * 21 +
-               motion_controller_withPIC_B.A_maxDiag_idx_f) + 1;
-            for (motion_controller_withPIC_B.nVars_n =
-                 motion_controller_withPIC_B.nullStartIdx_j;
-                 motion_controller_withPIC_B.nVars_n <=
-                 motion_controller_withPIC_B.ic_k;
-                 motion_controller_withPIC_B.nVars_n += 21) {
-              motion_controller_withPIC_B.temp_g = 0.0;
-              motion_controller_withPIC_B.e_ix_a =
-                motion_controller_withPIC_B.nVars_n +
-                motion_controller_withPIC_B.nVar_b;
-              for (motion_controller_withPIC_B.b_A_maxDiag_idx_e =
-                   motion_controller_withPIC_B.nVars_n;
-                   motion_controller_withPIC_B.b_A_maxDiag_idx_e <=
-                   motion_controller_withPIC_B.e_ix_a;
-                   motion_controller_withPIC_B.b_A_maxDiag_idx_e++) {
-                motion_controller_withPIC_B.temp_g += qrmanager->
-                  Q[motion_controller_withPIC_B.b_A_maxDiag_idx_e - 1] *
-                  objective->grad[motion_controller_withPIC_B.b_A_maxDiag_idx_e
-                  - motion_controller_withPIC_B.nVars_n];
+                   (motion_controller_withPIC_B.mNull_tmp_a) * sizeof(real_T));
+            motion_controller_withPIC_B.ic_j =
+              ((motion_controller_withPIC_B.mNull_tmp_a - 1) * 21 +
+               motion_controller_withPIC_B.A_maxDiag_idx_i) + 1;
+            for (motion_controller_withPIC_B.nVars_e =
+                 motion_controller_withPIC_B.nullStartIdx_f;
+                 motion_controller_withPIC_B.nVars_e <=
+                 motion_controller_withPIC_B.ic_j;
+                 motion_controller_withPIC_B.nVars_e += 21) {
+              motion_controller_withPIC_B.temp_m4 = 0.0;
+              motion_controller_withPIC_B.e_ix_o =
+                motion_controller_withPIC_B.nVars_e +
+                motion_controller_withPIC_B.nVar_n0;
+              for (motion_controller_withPIC_B.b_A_maxDiag_idx_a =
+                   motion_controller_withPIC_B.nVars_e;
+                   motion_controller_withPIC_B.b_A_maxDiag_idx_a <=
+                   motion_controller_withPIC_B.e_ix_o;
+                   motion_controller_withPIC_B.b_A_maxDiag_idx_a++) {
+                motion_controller_withPIC_B.temp_m4 += qrmanager->
+                  Q[motion_controller_withPIC_B.b_A_maxDiag_idx_a - 1] *
+                  objective->grad[motion_controller_withPIC_B.b_A_maxDiag_idx_a
+                  - motion_controller_withPIC_B.nVars_e];
               }
 
-              motion_controller_withPIC_B.b_A_maxDiag_idx_e = div_nde_s32_floor
-                ((motion_controller_withPIC_B.nVars_n -
-                  motion_controller_withPIC_B.A_maxDiag_idx_f) - 1, 21);
+              motion_controller_withPIC_B.b_A_maxDiag_idx_a = div_nde_s32_floor
+                ((motion_controller_withPIC_B.nVars_e -
+                  motion_controller_withPIC_B.A_maxDiag_idx_i) - 1, 21);
               memspace->
-                workspace_double[motion_controller_withPIC_B.b_A_maxDiag_idx_e] -=
-                motion_controller_withPIC_B.temp_g;
+                workspace_double[motion_controller_withPIC_B.b_A_maxDiag_idx_a] -=
+                motion_controller_withPIC_B.temp_m4;
             }
           }
 
-          motion_controller_withPIC_B.nVars_n = cholmanager->ndims - 1;
+          motion_controller_withPIC_B.nVars_e = cholmanager->ndims - 1;
           if (cholmanager->ndims != 0) {
-            for (motion_controller_withPIC_B.nVar_b = 0;
-                 motion_controller_withPIC_B.nVar_b <=
-                 motion_controller_withPIC_B.nVars_n;
-                 motion_controller_withPIC_B.nVar_b++) {
-              motion_controller_withPIC_B.b_A_maxDiag_idx_e =
-                motion_controller_withPIC_B.nVar_b * 21 +
-                motion_controller_withPIC_B.nVar_b;
-              motion_controller_withPIC_B.ic_k =
-                motion_controller_withPIC_B.nVars_n -
-                motion_controller_withPIC_B.nVar_b;
-              for (motion_controller_withPIC_B.nullStartIdx_j = 0;
-                   motion_controller_withPIC_B.nullStartIdx_j <
-                   motion_controller_withPIC_B.ic_k;
-                   motion_controller_withPIC_B.nullStartIdx_j++) {
-                motion_controller_withPIC_B.e_ix_a =
-                  (motion_controller_withPIC_B.nullStartIdx_j +
-                   motion_controller_withPIC_B.nVar_b) + 1;
-                memspace->workspace_double[motion_controller_withPIC_B.e_ix_a] -=
-                  cholmanager->FMat[(motion_controller_withPIC_B.nullStartIdx_j
-                                     + motion_controller_withPIC_B.b_A_maxDiag_idx_e)
+            for (motion_controller_withPIC_B.nVar_n0 = 0;
+                 motion_controller_withPIC_B.nVar_n0 <=
+                 motion_controller_withPIC_B.nVars_e;
+                 motion_controller_withPIC_B.nVar_n0++) {
+              motion_controller_withPIC_B.b_A_maxDiag_idx_a =
+                motion_controller_withPIC_B.nVar_n0 * 21 +
+                motion_controller_withPIC_B.nVar_n0;
+              motion_controller_withPIC_B.ic_j =
+                motion_controller_withPIC_B.nVars_e -
+                motion_controller_withPIC_B.nVar_n0;
+              for (motion_controller_withPIC_B.nullStartIdx_f = 0;
+                   motion_controller_withPIC_B.nullStartIdx_f <
+                   motion_controller_withPIC_B.ic_j;
+                   motion_controller_withPIC_B.nullStartIdx_f++) {
+                motion_controller_withPIC_B.e_ix_o =
+                  (motion_controller_withPIC_B.nullStartIdx_f +
+                   motion_controller_withPIC_B.nVar_n0) + 1;
+                memspace->workspace_double[motion_controller_withPIC_B.e_ix_o] -=
+                  cholmanager->FMat[(motion_controller_withPIC_B.nullStartIdx_f
+                                     + motion_controller_withPIC_B.b_A_maxDiag_idx_a)
                   + 1] * memspace->
-                  workspace_double[motion_controller_withPIC_B.nVar_b];
+                  workspace_double[motion_controller_withPIC_B.nVar_n0];
               }
             }
           }
 
-          motion_controller_withPIC_B.nVars_n = cholmanager->ndims;
-          for (motion_controller_withPIC_B.nVar_b = 0;
-               motion_controller_withPIC_B.nVar_b <
-               motion_controller_withPIC_B.nVars_n;
-               motion_controller_withPIC_B.nVar_b++) {
-            memspace->workspace_double[motion_controller_withPIC_B.nVar_b] /=
-              cholmanager->FMat[21 * motion_controller_withPIC_B.nVar_b +
-              motion_controller_withPIC_B.nVar_b];
+          motion_controller_withPIC_B.nVars_e = cholmanager->ndims;
+          for (motion_controller_withPIC_B.nVar_n0 = 0;
+               motion_controller_withPIC_B.nVar_n0 <
+               motion_controller_withPIC_B.nVars_e;
+               motion_controller_withPIC_B.nVar_n0++) {
+            memspace->workspace_double[motion_controller_withPIC_B.nVar_n0] /=
+              cholmanager->FMat[21 * motion_controller_withPIC_B.nVar_n0 +
+              motion_controller_withPIC_B.nVar_n0];
           }
 
           if (cholmanager->ndims != 0) {
-            for (motion_controller_withPIC_B.nVar_b =
-                 motion_controller_withPIC_B.nVars_n;
-                 motion_controller_withPIC_B.nVar_b >= 1;
-                 motion_controller_withPIC_B.nVar_b--) {
-              motion_controller_withPIC_B.b_A_maxDiag_idx_e =
-                (motion_controller_withPIC_B.nVar_b - 1) * 21;
-              motion_controller_withPIC_B.temp_g = memspace->
-                workspace_double[motion_controller_withPIC_B.nVar_b - 1];
-              for (motion_controller_withPIC_B.nullStartIdx_j =
-                   motion_controller_withPIC_B.nVars_n;
-                   motion_controller_withPIC_B.nullStartIdx_j >=
-                   motion_controller_withPIC_B.nVar_b + 1;
-                   motion_controller_withPIC_B.nullStartIdx_j--) {
-                motion_controller_withPIC_B.temp_g -= cholmanager->FMat
-                  [(motion_controller_withPIC_B.b_A_maxDiag_idx_e +
-                    motion_controller_withPIC_B.nullStartIdx_j) - 1] *
+            for (motion_controller_withPIC_B.nVar_n0 =
+                 motion_controller_withPIC_B.nVars_e;
+                 motion_controller_withPIC_B.nVar_n0 >= 1;
+                 motion_controller_withPIC_B.nVar_n0--) {
+              motion_controller_withPIC_B.b_A_maxDiag_idx_a =
+                (motion_controller_withPIC_B.nVar_n0 - 1) * 21;
+              motion_controller_withPIC_B.temp_m4 = memspace->
+                workspace_double[motion_controller_withPIC_B.nVar_n0 - 1];
+              for (motion_controller_withPIC_B.nullStartIdx_f =
+                   motion_controller_withPIC_B.nVars_e;
+                   motion_controller_withPIC_B.nullStartIdx_f >=
+                   motion_controller_withPIC_B.nVar_n0 + 1;
+                   motion_controller_withPIC_B.nullStartIdx_f--) {
+                motion_controller_withPIC_B.temp_m4 -= cholmanager->FMat
+                  [(motion_controller_withPIC_B.b_A_maxDiag_idx_a +
+                    motion_controller_withPIC_B.nullStartIdx_f) - 1] *
                   memspace->
-                  workspace_double[motion_controller_withPIC_B.nullStartIdx_j -
+                  workspace_double[motion_controller_withPIC_B.nullStartIdx_f -
                   1];
               }
 
-              memspace->workspace_double[motion_controller_withPIC_B.nVar_b - 1]
-                = motion_controller_withPIC_B.temp_g;
+              memspace->workspace_double[motion_controller_withPIC_B.nVar_n0 - 1]
+                = motion_controller_withPIC_B.temp_m4;
             }
           }
 
           xgemv_CxqfdDRY(qrmanager->mrows,
-                         motion_controller_withPIC_B.mNull_tmp_o, qrmanager->Q,
-                         motion_controller_withPIC_B.A_maxDiag_idx_f + 1,
+                         motion_controller_withPIC_B.mNull_tmp_a, qrmanager->Q,
+                         motion_controller_withPIC_B.A_maxDiag_idx_i + 1,
                          memspace->workspace_double, solution->searchDir);
         }
       }
@@ -3673,7 +3670,7 @@ void motion_controller_withPIC::motion_control_compute_deltax_o(const real_T H
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 real_T motion_controller_withPIC::motion_controlle_xnrm2_rY1rIeLd(int32_T n,
   const real_T x[21])
 {
@@ -3683,68 +3680,68 @@ real_T motion_controller_withPIC::motion_controlle_xnrm2_rY1rIeLd(int32_T n,
     if (n == 1) {
       y = fabs(x[0]);
     } else {
-      motion_controller_withPIC_B.scale_j = 3.3121686421112381E-170;
-      motion_controller_withPIC_B.b_ly = static_cast<uint8_T>(n);
-      for (motion_controller_withPIC_B.k_e = 0; motion_controller_withPIC_B.k_e <
-           motion_controller_withPIC_B.b_ly; motion_controller_withPIC_B.k_e++)
-      {
-        motion_controller_withPIC_B.absxk_o = fabs
-          (x[motion_controller_withPIC_B.k_e]);
-        if (motion_controller_withPIC_B.absxk_o >
-            motion_controller_withPIC_B.scale_j) {
-          motion_controller_withPIC_B.t_f = motion_controller_withPIC_B.scale_j /
-            motion_controller_withPIC_B.absxk_o;
-          y = y * motion_controller_withPIC_B.t_f *
-            motion_controller_withPIC_B.t_f + 1.0;
-          motion_controller_withPIC_B.scale_j =
-            motion_controller_withPIC_B.absxk_o;
+      motion_controller_withPIC_B.scale_fr = 3.3121686421112381E-170;
+      motion_controller_withPIC_B.b_e = static_cast<uint8_T>(n);
+      for (motion_controller_withPIC_B.k_dt = 0;
+           motion_controller_withPIC_B.k_dt < motion_controller_withPIC_B.b_e;
+           motion_controller_withPIC_B.k_dt++) {
+        motion_controller_withPIC_B.absxk_m = fabs
+          (x[motion_controller_withPIC_B.k_dt]);
+        if (motion_controller_withPIC_B.absxk_m >
+            motion_controller_withPIC_B.scale_fr) {
+          motion_controller_withPIC_B.t_a = motion_controller_withPIC_B.scale_fr
+            / motion_controller_withPIC_B.absxk_m;
+          y = y * motion_controller_withPIC_B.t_a *
+            motion_controller_withPIC_B.t_a + 1.0;
+          motion_controller_withPIC_B.scale_fr =
+            motion_controller_withPIC_B.absxk_m;
         } else {
-          motion_controller_withPIC_B.t_f = motion_controller_withPIC_B.absxk_o /
-            motion_controller_withPIC_B.scale_j;
-          y += motion_controller_withPIC_B.t_f * motion_controller_withPIC_B.t_f;
+          motion_controller_withPIC_B.t_a = motion_controller_withPIC_B.absxk_m /
+            motion_controller_withPIC_B.scale_fr;
+          y += motion_controller_withPIC_B.t_a * motion_controller_withPIC_B.t_a;
         }
       }
 
-      y = motion_controller_withPIC_B.scale_j * sqrt(y);
+      y = motion_controller_withPIC_B.scale_fr * sqrt(y);
     }
   }
 
   return y;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controlle_xgemv_BberjsMK(int32_T m, const
   real_T A[840], const real_T x[21], real_T y[1701])
 {
-  for (motion_controller_withPIC_B.b_iy_a = 0;
-       motion_controller_withPIC_B.b_iy_a <= 38;
-       motion_controller_withPIC_B.b_iy_a += 2) {
+  for (motion_controller_withPIC_B.b_iy_g = 0;
+       motion_controller_withPIC_B.b_iy_g <= 38;
+       motion_controller_withPIC_B.b_iy_g += 2) {
     __m128d tmp;
-    tmp = _mm_loadu_pd(&y[motion_controller_withPIC_B.b_iy_a]);
-    _mm_storeu_pd(&y[motion_controller_withPIC_B.b_iy_a], _mm_mul_pd(tmp,
+    tmp = _mm_loadu_pd(&y[motion_controller_withPIC_B.b_iy_g]);
+    _mm_storeu_pd(&y[motion_controller_withPIC_B.b_iy_g], _mm_mul_pd(tmp,
       _mm_set1_pd(-1.0)));
   }
 
-  for (motion_controller_withPIC_B.b_iy_a = 0;
-       motion_controller_withPIC_B.b_iy_a <= 819;
-       motion_controller_withPIC_B.b_iy_a += 21) {
-    motion_controller_withPIC_B.c_a = 0.0;
-    motion_controller_withPIC_B.b_g = motion_controller_withPIC_B.b_iy_a + m;
-    for (motion_controller_withPIC_B.ia_b = motion_controller_withPIC_B.b_iy_a +
-         1; motion_controller_withPIC_B.ia_b <= motion_controller_withPIC_B.b_g;
-         motion_controller_withPIC_B.ia_b++) {
-      motion_controller_withPIC_B.c_a += x[(motion_controller_withPIC_B.ia_b -
-        motion_controller_withPIC_B.b_iy_a) - 1] *
-        A[motion_controller_withPIC_B.ia_b - 1];
+  for (motion_controller_withPIC_B.b_iy_g = 0;
+       motion_controller_withPIC_B.b_iy_g <= 819;
+       motion_controller_withPIC_B.b_iy_g += 21) {
+    motion_controller_withPIC_B.c_g = 0.0;
+    motion_controller_withPIC_B.b_bp = motion_controller_withPIC_B.b_iy_g + m;
+    for (motion_controller_withPIC_B.ia_k = motion_controller_withPIC_B.b_iy_g +
+         1; motion_controller_withPIC_B.ia_k <= motion_controller_withPIC_B.b_bp;
+         motion_controller_withPIC_B.ia_k++) {
+      motion_controller_withPIC_B.c_g += x[(motion_controller_withPIC_B.ia_k -
+        motion_controller_withPIC_B.b_iy_g) - 1] *
+        A[motion_controller_withPIC_B.ia_k - 1];
     }
 
-    motion_controller_withPIC_B.ia_b = div_nde_s32_floor
-      (motion_controller_withPIC_B.b_iy_a, 21);
-    y[motion_controller_withPIC_B.ia_b] += motion_controller_withPIC_B.c_a;
+    motion_controller_withPIC_B.ia_k = div_nde_s32_floor
+      (motion_controller_withPIC_B.b_iy_g, 21);
+    y[motion_controller_withPIC_B.ia_k] += motion_controller_withPIC_B.c_g;
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controller_w_ratiotest_f(const real_T
   solution_xstar[21], const real_T solution_searchDir[21], real_T workspace[1701],
   int32_T workingset_nVar, const real_T workingset_Aineq[840], const real_T
@@ -3759,288 +3756,288 @@ void motion_controller_withPIC::motion_controller_w_ratiotest_f(const real_T
   *newBlocking = false;
   *constrType = 0;
   *constrIdx = 0;
-  motion_controller_withPIC_B.p_max_m = 0.0;
-  motion_controller_withPIC_B.denomTol_f = 2.2204460492503131E-13 *
+  motion_controller_withPIC_B.p_max_g = 0.0;
+  motion_controller_withPIC_B.denomTol_j = 2.2204460492503131E-13 *
     motion_controlle_xnrm2_rY1rIeLd(workingset_nVar, solution_searchDir);
   if (workingset_nWConstr[2] < 40) {
     memcpy(&workspace[0], &workingset_bineq[0], 40U * sizeof(real_T));
     motion_controlle_xgemv_BberjsMK(workingset_nVar, workingset_Aineq,
       solution_xstar, workspace);
     memset(&workspace[81], 0, 40U * sizeof(real_T));
-    for (motion_controller_withPIC_B.k_g = 0; motion_controller_withPIC_B.k_g <=
-         819; motion_controller_withPIC_B.k_g += 21) {
-      motion_controller_withPIC_B.b_c_m = 0.0;
-      motion_controller_withPIC_B.d_o2 = motion_controller_withPIC_B.k_g +
+    for (motion_controller_withPIC_B.k_o = 0; motion_controller_withPIC_B.k_o <=
+         819; motion_controller_withPIC_B.k_o += 21) {
+      motion_controller_withPIC_B.b_c_a = 0.0;
+      motion_controller_withPIC_B.d_g = motion_controller_withPIC_B.k_o +
         workingset_nVar;
-      for (motion_controller_withPIC_B.ia_g = motion_controller_withPIC_B.k_g +
-           1; motion_controller_withPIC_B.ia_g <=
-           motion_controller_withPIC_B.d_o2; motion_controller_withPIC_B.ia_g++)
+      for (motion_controller_withPIC_B.ia_a = motion_controller_withPIC_B.k_o +
+           1; motion_controller_withPIC_B.ia_a <=
+           motion_controller_withPIC_B.d_g; motion_controller_withPIC_B.ia_a++)
       {
-        motion_controller_withPIC_B.b_c_m += solution_searchDir
-          [(motion_controller_withPIC_B.ia_g - motion_controller_withPIC_B.k_g)
-          - 1] * workingset_Aineq[motion_controller_withPIC_B.ia_g - 1];
+        motion_controller_withPIC_B.b_c_a += solution_searchDir
+          [(motion_controller_withPIC_B.ia_a - motion_controller_withPIC_B.k_o)
+          - 1] * workingset_Aineq[motion_controller_withPIC_B.ia_a - 1];
       }
 
-      motion_controller_withPIC_B.ia_g = div_nde_s32_floor
-        (motion_controller_withPIC_B.k_g, 21) + 81;
-      workspace[motion_controller_withPIC_B.ia_g] +=
-        motion_controller_withPIC_B.b_c_m;
+      motion_controller_withPIC_B.ia_a = div_nde_s32_floor
+        (motion_controller_withPIC_B.k_o, 21) + 81;
+      workspace[motion_controller_withPIC_B.ia_a] +=
+        motion_controller_withPIC_B.b_c_a;
     }
 
-    for (motion_controller_withPIC_B.k_g = 0; motion_controller_withPIC_B.k_g <
-         40; motion_controller_withPIC_B.k_g++) {
-      motion_controller_withPIC_B.workspace_o =
-        workspace[motion_controller_withPIC_B.k_g + 81];
-      if ((motion_controller_withPIC_B.workspace_o >
-           motion_controller_withPIC_B.denomTol_f) &&
+    for (motion_controller_withPIC_B.k_o = 0; motion_controller_withPIC_B.k_o <
+         40; motion_controller_withPIC_B.k_o++) {
+      motion_controller_withPIC_B.workspace_j =
+        workspace[motion_controller_withPIC_B.k_o + 81];
+      if ((motion_controller_withPIC_B.workspace_j >
+           motion_controller_withPIC_B.denomTol_j) &&
           (!workingset_isActiveConstr[(workingset_isActiveIdx[2] +
-            motion_controller_withPIC_B.k_g) - 1])) {
-        motion_controller_withPIC_B.phaseOneCorrectionX_g =
-          workspace[motion_controller_withPIC_B.k_g];
-        motion_controller_withPIC_B.b_c_m = fabs
-          (motion_controller_withPIC_B.phaseOneCorrectionX_g - *toldelta);
-        motion_controller_withPIC_B.phaseOneCorrectionP_j = (1.0E-8 -
-          motion_controller_withPIC_B.phaseOneCorrectionX_g) + *toldelta;
-        if ((motion_controller_withPIC_B.b_c_m <=
-             motion_controller_withPIC_B.phaseOneCorrectionP_j) || rtIsNaN
-            (motion_controller_withPIC_B.phaseOneCorrectionP_j)) {
-          motion_controller_withPIC_B.phaseOneCorrectionP_j =
-            motion_controller_withPIC_B.b_c_m;
+            motion_controller_withPIC_B.k_o) - 1])) {
+        motion_controller_withPIC_B.phaseOneCorrectionX_c =
+          workspace[motion_controller_withPIC_B.k_o];
+        motion_controller_withPIC_B.b_c_a = fabs
+          (motion_controller_withPIC_B.phaseOneCorrectionX_c - *toldelta);
+        motion_controller_withPIC_B.phaseOneCorrectionP_e = (1.0E-8 -
+          motion_controller_withPIC_B.phaseOneCorrectionX_c) + *toldelta;
+        if ((motion_controller_withPIC_B.b_c_a <=
+             motion_controller_withPIC_B.phaseOneCorrectionP_e) || rtIsNaN
+            (motion_controller_withPIC_B.phaseOneCorrectionP_e)) {
+          motion_controller_withPIC_B.phaseOneCorrectionP_e =
+            motion_controller_withPIC_B.b_c_a;
         }
 
-        motion_controller_withPIC_B.b_c_m =
-          motion_controller_withPIC_B.phaseOneCorrectionP_j /
-          motion_controller_withPIC_B.workspace_o;
-        if ((motion_controller_withPIC_B.b_c_m <= *alpha) && (fabs
-             (motion_controller_withPIC_B.workspace_o) >
-             motion_controller_withPIC_B.p_max_m)) {
-          *alpha = motion_controller_withPIC_B.b_c_m;
+        motion_controller_withPIC_B.b_c_a =
+          motion_controller_withPIC_B.phaseOneCorrectionP_e /
+          motion_controller_withPIC_B.workspace_j;
+        if ((motion_controller_withPIC_B.b_c_a <= *alpha) && (fabs
+             (motion_controller_withPIC_B.workspace_j) >
+             motion_controller_withPIC_B.p_max_g)) {
+          *alpha = motion_controller_withPIC_B.b_c_a;
           *constrType = 3;
-          *constrIdx = motion_controller_withPIC_B.k_g + 1;
+          *constrIdx = motion_controller_withPIC_B.k_o + 1;
           *newBlocking = true;
         }
 
-        motion_controller_withPIC_B.b_c_m = fabs
-          (motion_controller_withPIC_B.phaseOneCorrectionX_g);
-        if ((!(motion_controller_withPIC_B.b_c_m <= 1.0E-8 -
-               motion_controller_withPIC_B.phaseOneCorrectionX_g)) && (!rtIsNaN
-             (1.0E-8 - motion_controller_withPIC_B.phaseOneCorrectionX_g))) {
-          motion_controller_withPIC_B.b_c_m = 1.0E-8 -
-            motion_controller_withPIC_B.phaseOneCorrectionX_g;
+        motion_controller_withPIC_B.b_c_a = fabs
+          (motion_controller_withPIC_B.phaseOneCorrectionX_c);
+        if ((!(motion_controller_withPIC_B.b_c_a <= 1.0E-8 -
+               motion_controller_withPIC_B.phaseOneCorrectionX_c)) && (!rtIsNaN
+             (1.0E-8 - motion_controller_withPIC_B.phaseOneCorrectionX_c))) {
+          motion_controller_withPIC_B.b_c_a = 1.0E-8 -
+            motion_controller_withPIC_B.phaseOneCorrectionX_c;
         }
 
-        motion_controller_withPIC_B.b_c_m /=
-          motion_controller_withPIC_B.workspace_o;
-        if (motion_controller_withPIC_B.b_c_m < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_m;
+        motion_controller_withPIC_B.b_c_a /=
+          motion_controller_withPIC_B.workspace_j;
+        if (motion_controller_withPIC_B.b_c_a < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_a;
           *constrType = 3;
-          *constrIdx = motion_controller_withPIC_B.k_g + 1;
+          *constrIdx = motion_controller_withPIC_B.k_o + 1;
           *newBlocking = true;
-          motion_controller_withPIC_B.p_max_m = fabs
-            (motion_controller_withPIC_B.workspace_o);
+          motion_controller_withPIC_B.p_max_g = fabs
+            (motion_controller_withPIC_B.workspace_j);
         }
       }
     }
   }
 
   if (workingset_nWConstr[3] < workingset_sizes[3]) {
-    motion_controller_withPIC_B.phaseOneCorrectionX_g =
+    motion_controller_withPIC_B.phaseOneCorrectionX_c =
       solution_xstar[workingset_nVar - 1] * 0.0;
-    motion_controller_withPIC_B.phaseOneCorrectionP_j =
+    motion_controller_withPIC_B.phaseOneCorrectionP_e =
       solution_searchDir[workingset_nVar - 1] * 0.0;
-    motion_controller_withPIC_B.ia_g = workingset_sizes[3];
-    for (motion_controller_withPIC_B.k_g = 0; motion_controller_withPIC_B.k_g <=
-         motion_controller_withPIC_B.ia_g - 2; motion_controller_withPIC_B.k_g++)
+    motion_controller_withPIC_B.ia_a = workingset_sizes[3];
+    for (motion_controller_withPIC_B.k_o = 0; motion_controller_withPIC_B.k_o <=
+         motion_controller_withPIC_B.ia_a - 2; motion_controller_withPIC_B.k_o++)
     {
-      motion_controller_withPIC_B.d_o2 =
-        workingset_indexLB[motion_controller_withPIC_B.k_g];
-      motion_controller_withPIC_B.pk_corrected_c =
-        -solution_searchDir[motion_controller_withPIC_B.d_o2 - 1] -
-        motion_controller_withPIC_B.phaseOneCorrectionP_j;
-      if ((motion_controller_withPIC_B.pk_corrected_c >
-           motion_controller_withPIC_B.denomTol_f) &&
+      motion_controller_withPIC_B.d_g =
+        workingset_indexLB[motion_controller_withPIC_B.k_o];
+      motion_controller_withPIC_B.pk_corrected_m =
+        -solution_searchDir[motion_controller_withPIC_B.d_g - 1] -
+        motion_controller_withPIC_B.phaseOneCorrectionP_e;
+      if ((motion_controller_withPIC_B.pk_corrected_m >
+           motion_controller_withPIC_B.denomTol_j) &&
           (!workingset_isActiveConstr[(workingset_isActiveIdx[3] +
-            motion_controller_withPIC_B.k_g) - 1])) {
-        motion_controller_withPIC_B.workspace_o =
-          -solution_xstar[motion_controller_withPIC_B.d_o2 - 1] -
-          workingset_lb[motion_controller_withPIC_B.d_o2 - 1];
-        motion_controller_withPIC_B.ratio_e =
-          (motion_controller_withPIC_B.workspace_o - *toldelta) -
-          motion_controller_withPIC_B.phaseOneCorrectionX_g;
-        motion_controller_withPIC_B.b_c_m = fabs
-          (motion_controller_withPIC_B.ratio_e);
-        if ((!(motion_controller_withPIC_B.b_c_m <= 1.0E-8 -
-               motion_controller_withPIC_B.ratio_e)) && (!rtIsNaN(1.0E-8 -
-              motion_controller_withPIC_B.ratio_e))) {
-          motion_controller_withPIC_B.b_c_m = 1.0E-8 -
-            motion_controller_withPIC_B.ratio_e;
+            motion_controller_withPIC_B.k_o) - 1])) {
+        motion_controller_withPIC_B.workspace_j =
+          -solution_xstar[motion_controller_withPIC_B.d_g - 1] -
+          workingset_lb[motion_controller_withPIC_B.d_g - 1];
+        motion_controller_withPIC_B.ratio_o =
+          (motion_controller_withPIC_B.workspace_j - *toldelta) -
+          motion_controller_withPIC_B.phaseOneCorrectionX_c;
+        motion_controller_withPIC_B.b_c_a = fabs
+          (motion_controller_withPIC_B.ratio_o);
+        if ((!(motion_controller_withPIC_B.b_c_a <= 1.0E-8 -
+               motion_controller_withPIC_B.ratio_o)) && (!rtIsNaN(1.0E-8 -
+              motion_controller_withPIC_B.ratio_o))) {
+          motion_controller_withPIC_B.b_c_a = 1.0E-8 -
+            motion_controller_withPIC_B.ratio_o;
         }
 
-        motion_controller_withPIC_B.b_c_m /=
-          motion_controller_withPIC_B.pk_corrected_c;
-        if ((motion_controller_withPIC_B.b_c_m <= *alpha) && (fabs
-             (motion_controller_withPIC_B.pk_corrected_c) >
-             motion_controller_withPIC_B.p_max_m)) {
-          *alpha = motion_controller_withPIC_B.b_c_m;
+        motion_controller_withPIC_B.b_c_a /=
+          motion_controller_withPIC_B.pk_corrected_m;
+        if ((motion_controller_withPIC_B.b_c_a <= *alpha) && (fabs
+             (motion_controller_withPIC_B.pk_corrected_m) >
+             motion_controller_withPIC_B.p_max_g)) {
+          *alpha = motion_controller_withPIC_B.b_c_a;
           *constrType = 4;
-          *constrIdx = motion_controller_withPIC_B.k_g + 1;
+          *constrIdx = motion_controller_withPIC_B.k_o + 1;
           *newBlocking = true;
         }
 
-        motion_controller_withPIC_B.ratio_e =
-          motion_controller_withPIC_B.workspace_o -
-          motion_controller_withPIC_B.phaseOneCorrectionX_g;
-        motion_controller_withPIC_B.b_c_m = fabs
-          (motion_controller_withPIC_B.ratio_e);
-        if ((!(motion_controller_withPIC_B.b_c_m <= 1.0E-8 -
-               motion_controller_withPIC_B.ratio_e)) && (!rtIsNaN(1.0E-8 -
-              motion_controller_withPIC_B.ratio_e))) {
-          motion_controller_withPIC_B.b_c_m = 1.0E-8 -
-            motion_controller_withPIC_B.ratio_e;
+        motion_controller_withPIC_B.ratio_o =
+          motion_controller_withPIC_B.workspace_j -
+          motion_controller_withPIC_B.phaseOneCorrectionX_c;
+        motion_controller_withPIC_B.b_c_a = fabs
+          (motion_controller_withPIC_B.ratio_o);
+        if ((!(motion_controller_withPIC_B.b_c_a <= 1.0E-8 -
+               motion_controller_withPIC_B.ratio_o)) && (!rtIsNaN(1.0E-8 -
+              motion_controller_withPIC_B.ratio_o))) {
+          motion_controller_withPIC_B.b_c_a = 1.0E-8 -
+            motion_controller_withPIC_B.ratio_o;
         }
 
-        motion_controller_withPIC_B.b_c_m /=
-          motion_controller_withPIC_B.pk_corrected_c;
-        if (motion_controller_withPIC_B.b_c_m < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_m;
+        motion_controller_withPIC_B.b_c_a /=
+          motion_controller_withPIC_B.pk_corrected_m;
+        if (motion_controller_withPIC_B.b_c_a < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_a;
           *constrType = 4;
-          *constrIdx = motion_controller_withPIC_B.k_g + 1;
+          *constrIdx = motion_controller_withPIC_B.k_o + 1;
           *newBlocking = true;
-          motion_controller_withPIC_B.p_max_m = fabs
-            (motion_controller_withPIC_B.pk_corrected_c);
+          motion_controller_withPIC_B.p_max_g = fabs
+            (motion_controller_withPIC_B.pk_corrected_m);
         }
       }
     }
 
-    motion_controller_withPIC_B.ia_g = workingset_indexLB[workingset_sizes[3] -
+    motion_controller_withPIC_B.ia_a = workingset_indexLB[workingset_sizes[3] -
       1] - 1;
-    motion_controller_withPIC_B.phaseOneCorrectionX_g =
-      solution_searchDir[motion_controller_withPIC_B.ia_g];
-    if ((-motion_controller_withPIC_B.phaseOneCorrectionX_g >
-         motion_controller_withPIC_B.denomTol_f) && (!workingset_isActiveConstr
+    motion_controller_withPIC_B.phaseOneCorrectionX_c =
+      solution_searchDir[motion_controller_withPIC_B.ia_a];
+    if ((-motion_controller_withPIC_B.phaseOneCorrectionX_c >
+         motion_controller_withPIC_B.denomTol_j) && (!workingset_isActiveConstr
          [(workingset_isActiveIdx[3] + workingset_sizes[3]) - 2])) {
-      motion_controller_withPIC_B.workspace_o =
-        -solution_xstar[motion_controller_withPIC_B.ia_g] -
-        workingset_lb[motion_controller_withPIC_B.ia_g];
-      motion_controller_withPIC_B.ratio_e =
-        motion_controller_withPIC_B.workspace_o - *toldelta;
-      motion_controller_withPIC_B.b_c_m = fabs
-        (motion_controller_withPIC_B.ratio_e);
-      if ((!(motion_controller_withPIC_B.b_c_m <= 1.0E-8 -
-             motion_controller_withPIC_B.ratio_e)) && (!rtIsNaN(1.0E-8 -
-            motion_controller_withPIC_B.ratio_e))) {
-        motion_controller_withPIC_B.b_c_m = 1.0E-8 -
-          motion_controller_withPIC_B.ratio_e;
+      motion_controller_withPIC_B.workspace_j =
+        -solution_xstar[motion_controller_withPIC_B.ia_a] -
+        workingset_lb[motion_controller_withPIC_B.ia_a];
+      motion_controller_withPIC_B.ratio_o =
+        motion_controller_withPIC_B.workspace_j - *toldelta;
+      motion_controller_withPIC_B.b_c_a = fabs
+        (motion_controller_withPIC_B.ratio_o);
+      if ((!(motion_controller_withPIC_B.b_c_a <= 1.0E-8 -
+             motion_controller_withPIC_B.ratio_o)) && (!rtIsNaN(1.0E-8 -
+            motion_controller_withPIC_B.ratio_o))) {
+        motion_controller_withPIC_B.b_c_a = 1.0E-8 -
+          motion_controller_withPIC_B.ratio_o;
       }
 
-      motion_controller_withPIC_B.b_c_m /=
-        -motion_controller_withPIC_B.phaseOneCorrectionX_g;
-      if ((motion_controller_withPIC_B.b_c_m <= *alpha) && (fabs
-           (motion_controller_withPIC_B.phaseOneCorrectionX_g) >
-           motion_controller_withPIC_B.p_max_m)) {
-        *alpha = motion_controller_withPIC_B.b_c_m;
+      motion_controller_withPIC_B.b_c_a /=
+        -motion_controller_withPIC_B.phaseOneCorrectionX_c;
+      if ((motion_controller_withPIC_B.b_c_a <= *alpha) && (fabs
+           (motion_controller_withPIC_B.phaseOneCorrectionX_c) >
+           motion_controller_withPIC_B.p_max_g)) {
+        *alpha = motion_controller_withPIC_B.b_c_a;
         *constrType = 4;
         *constrIdx = workingset_sizes[3];
         *newBlocking = true;
       }
 
-      motion_controller_withPIC_B.b_c_m = fabs
-        (motion_controller_withPIC_B.workspace_o);
-      if ((!(motion_controller_withPIC_B.b_c_m <= 1.0E-8 -
-             motion_controller_withPIC_B.workspace_o)) && (!rtIsNaN(1.0E-8 -
-            motion_controller_withPIC_B.workspace_o))) {
-        motion_controller_withPIC_B.b_c_m = 1.0E-8 -
-          motion_controller_withPIC_B.workspace_o;
+      motion_controller_withPIC_B.b_c_a = fabs
+        (motion_controller_withPIC_B.workspace_j);
+      if ((!(motion_controller_withPIC_B.b_c_a <= 1.0E-8 -
+             motion_controller_withPIC_B.workspace_j)) && (!rtIsNaN(1.0E-8 -
+            motion_controller_withPIC_B.workspace_j))) {
+        motion_controller_withPIC_B.b_c_a = 1.0E-8 -
+          motion_controller_withPIC_B.workspace_j;
       }
 
-      motion_controller_withPIC_B.b_c_m /=
-        -motion_controller_withPIC_B.phaseOneCorrectionX_g;
-      if (motion_controller_withPIC_B.b_c_m < *alpha) {
-        *alpha = motion_controller_withPIC_B.b_c_m;
+      motion_controller_withPIC_B.b_c_a /=
+        -motion_controller_withPIC_B.phaseOneCorrectionX_c;
+      if (motion_controller_withPIC_B.b_c_a < *alpha) {
+        *alpha = motion_controller_withPIC_B.b_c_a;
         *constrType = 4;
         *constrIdx = workingset_sizes[3];
         *newBlocking = true;
-        motion_controller_withPIC_B.p_max_m = fabs
-          (motion_controller_withPIC_B.phaseOneCorrectionX_g);
+        motion_controller_withPIC_B.p_max_g = fabs
+          (motion_controller_withPIC_B.phaseOneCorrectionX_c);
       }
     }
   }
 
   if (workingset_nWConstr[4] < workingset_sizes[4]) {
-    motion_controller_withPIC_B.phaseOneCorrectionX_g =
+    motion_controller_withPIC_B.phaseOneCorrectionX_c =
       solution_xstar[workingset_nVar - 1] * 0.0;
-    motion_controller_withPIC_B.phaseOneCorrectionP_j =
+    motion_controller_withPIC_B.phaseOneCorrectionP_e =
       solution_searchDir[workingset_nVar - 1] * 0.0;
-    motion_controller_withPIC_B.ia_g = static_cast<uint8_T>(workingset_sizes[4]);
-    for (motion_controller_withPIC_B.k_g = 0; motion_controller_withPIC_B.k_g <
-         motion_controller_withPIC_B.ia_g; motion_controller_withPIC_B.k_g++) {
-      motion_controller_withPIC_B.d_o2 =
-        workingset_indexUB[motion_controller_withPIC_B.k_g];
-      motion_controller_withPIC_B.pk_corrected_c =
-        solution_searchDir[motion_controller_withPIC_B.d_o2 - 1] -
-        motion_controller_withPIC_B.phaseOneCorrectionP_j;
-      if ((motion_controller_withPIC_B.pk_corrected_c >
-           motion_controller_withPIC_B.denomTol_f) &&
+    motion_controller_withPIC_B.ia_a = static_cast<uint8_T>(workingset_sizes[4]);
+    for (motion_controller_withPIC_B.k_o = 0; motion_controller_withPIC_B.k_o <
+         motion_controller_withPIC_B.ia_a; motion_controller_withPIC_B.k_o++) {
+      motion_controller_withPIC_B.d_g =
+        workingset_indexUB[motion_controller_withPIC_B.k_o];
+      motion_controller_withPIC_B.pk_corrected_m =
+        solution_searchDir[motion_controller_withPIC_B.d_g - 1] -
+        motion_controller_withPIC_B.phaseOneCorrectionP_e;
+      if ((motion_controller_withPIC_B.pk_corrected_m >
+           motion_controller_withPIC_B.denomTol_j) &&
           (!workingset_isActiveConstr[(workingset_isActiveIdx[4] +
-            motion_controller_withPIC_B.k_g) - 1])) {
-        motion_controller_withPIC_B.workspace_o =
-          solution_xstar[motion_controller_withPIC_B.d_o2 - 1] -
-          workingset_ub[motion_controller_withPIC_B.d_o2 - 1];
-        motion_controller_withPIC_B.ratio_e =
-          (motion_controller_withPIC_B.workspace_o - *toldelta) -
-          motion_controller_withPIC_B.phaseOneCorrectionX_g;
-        motion_controller_withPIC_B.b_c_m = fabs
-          (motion_controller_withPIC_B.ratio_e);
-        if ((!(motion_controller_withPIC_B.b_c_m <= 1.0E-8 -
-               motion_controller_withPIC_B.ratio_e)) && (!rtIsNaN(1.0E-8 -
-              motion_controller_withPIC_B.ratio_e))) {
-          motion_controller_withPIC_B.b_c_m = 1.0E-8 -
-            motion_controller_withPIC_B.ratio_e;
+            motion_controller_withPIC_B.k_o) - 1])) {
+        motion_controller_withPIC_B.workspace_j =
+          solution_xstar[motion_controller_withPIC_B.d_g - 1] -
+          workingset_ub[motion_controller_withPIC_B.d_g - 1];
+        motion_controller_withPIC_B.ratio_o =
+          (motion_controller_withPIC_B.workspace_j - *toldelta) -
+          motion_controller_withPIC_B.phaseOneCorrectionX_c;
+        motion_controller_withPIC_B.b_c_a = fabs
+          (motion_controller_withPIC_B.ratio_o);
+        if ((!(motion_controller_withPIC_B.b_c_a <= 1.0E-8 -
+               motion_controller_withPIC_B.ratio_o)) && (!rtIsNaN(1.0E-8 -
+              motion_controller_withPIC_B.ratio_o))) {
+          motion_controller_withPIC_B.b_c_a = 1.0E-8 -
+            motion_controller_withPIC_B.ratio_o;
         }
 
-        motion_controller_withPIC_B.b_c_m /=
-          motion_controller_withPIC_B.pk_corrected_c;
-        if ((motion_controller_withPIC_B.b_c_m <= *alpha) && (fabs
-             (motion_controller_withPIC_B.pk_corrected_c) >
-             motion_controller_withPIC_B.p_max_m)) {
-          *alpha = motion_controller_withPIC_B.b_c_m;
+        motion_controller_withPIC_B.b_c_a /=
+          motion_controller_withPIC_B.pk_corrected_m;
+        if ((motion_controller_withPIC_B.b_c_a <= *alpha) && (fabs
+             (motion_controller_withPIC_B.pk_corrected_m) >
+             motion_controller_withPIC_B.p_max_g)) {
+          *alpha = motion_controller_withPIC_B.b_c_a;
           *constrType = 5;
-          *constrIdx = motion_controller_withPIC_B.k_g + 1;
+          *constrIdx = motion_controller_withPIC_B.k_o + 1;
           *newBlocking = true;
         }
 
-        motion_controller_withPIC_B.ratio_e =
-          motion_controller_withPIC_B.workspace_o -
-          motion_controller_withPIC_B.phaseOneCorrectionX_g;
-        motion_controller_withPIC_B.b_c_m = fabs
-          (motion_controller_withPIC_B.ratio_e);
-        if ((!(motion_controller_withPIC_B.b_c_m <= 1.0E-8 -
-               motion_controller_withPIC_B.ratio_e)) && (!rtIsNaN(1.0E-8 -
-              motion_controller_withPIC_B.ratio_e))) {
-          motion_controller_withPIC_B.b_c_m = 1.0E-8 -
-            motion_controller_withPIC_B.ratio_e;
+        motion_controller_withPIC_B.ratio_o =
+          motion_controller_withPIC_B.workspace_j -
+          motion_controller_withPIC_B.phaseOneCorrectionX_c;
+        motion_controller_withPIC_B.b_c_a = fabs
+          (motion_controller_withPIC_B.ratio_o);
+        if ((!(motion_controller_withPIC_B.b_c_a <= 1.0E-8 -
+               motion_controller_withPIC_B.ratio_o)) && (!rtIsNaN(1.0E-8 -
+              motion_controller_withPIC_B.ratio_o))) {
+          motion_controller_withPIC_B.b_c_a = 1.0E-8 -
+            motion_controller_withPIC_B.ratio_o;
         }
 
-        motion_controller_withPIC_B.b_c_m /=
-          motion_controller_withPIC_B.pk_corrected_c;
-        if (motion_controller_withPIC_B.b_c_m < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_m;
+        motion_controller_withPIC_B.b_c_a /=
+          motion_controller_withPIC_B.pk_corrected_m;
+        if (motion_controller_withPIC_B.b_c_a < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_a;
           *constrType = 5;
-          *constrIdx = motion_controller_withPIC_B.k_g + 1;
+          *constrIdx = motion_controller_withPIC_B.k_o + 1;
           *newBlocking = true;
-          motion_controller_withPIC_B.p_max_m = fabs
-            (motion_controller_withPIC_B.pk_corrected_c);
+          motion_controller_withPIC_B.p_max_g = fabs
+            (motion_controller_withPIC_B.pk_corrected_m);
         }
       }
     }
   }
 
   *toldelta += 6.608625846508183E-7;
-  if (motion_controller_withPIC_B.p_max_m > 0.0) {
-    motion_controller_withPIC_B.phaseOneCorrectionP_j = 6.608625846508183E-7 /
-      motion_controller_withPIC_B.p_max_m;
-    if (!(*alpha >= motion_controller_withPIC_B.phaseOneCorrectionP_j)) {
-      *alpha = motion_controller_withPIC_B.phaseOneCorrectionP_j;
+  if (motion_controller_withPIC_B.p_max_g > 0.0) {
+    motion_controller_withPIC_B.phaseOneCorrectionP_e = 6.608625846508183E-7 /
+      motion_controller_withPIC_B.p_max_g;
+    if (!(*alpha >= motion_controller_withPIC_B.phaseOneCorrectionP_e)) {
+      *alpha = motion_controller_withPIC_B.phaseOneCorrectionP_e;
     }
   }
 
@@ -4050,7 +4047,7 @@ void motion_controller_withPIC::motion_controller_w_ratiotest_f(const real_T
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_cont_feasibleratiotest_d(const real_T
   solution_xstar[21], const real_T solution_searchDir[21], real_T workspace[1701],
   int32_T workingset_nVar, const real_T workingset_Aineq[840], const real_T
@@ -4065,58 +4062,58 @@ void motion_controller_withPIC::motion_cont_feasibleratiotest_d(const real_T
   *newBlocking = false;
   *constrType = 0;
   *constrIdx = 0;
-  motion_controller_withPIC_B.denomTol_i = 2.2204460492503131E-13 *
+  motion_controller_withPIC_B.denomTol_f = 2.2204460492503131E-13 *
     motion_controlle_xnrm2_rY1rIeLd(workingset_nVar, solution_searchDir);
   if (workingset_nWConstr[2] < 40) {
     memcpy(&workspace[0], &workingset_bineq[0], 40U * sizeof(real_T));
     motion_controlle_xgemv_BberjsMK(workingset_nVar, workingset_Aineq,
       solution_xstar, workspace);
     memset(&workspace[81], 0, 40U * sizeof(real_T));
-    for (motion_controller_withPIC_B.k_ce = 0; motion_controller_withPIC_B.k_ce <=
-         819; motion_controller_withPIC_B.k_ce += 21) {
-      motion_controller_withPIC_B.b_c_e = 0.0;
-      motion_controller_withPIC_B.d_g = motion_controller_withPIC_B.k_ce +
+    for (motion_controller_withPIC_B.k_g = 0; motion_controller_withPIC_B.k_g <=
+         819; motion_controller_withPIC_B.k_g += 21) {
+      motion_controller_withPIC_B.b_c_o = 0.0;
+      motion_controller_withPIC_B.d_c = motion_controller_withPIC_B.k_g +
         workingset_nVar;
-      for (motion_controller_withPIC_B.ia_c5 = motion_controller_withPIC_B.k_ce
-           + 1; motion_controller_withPIC_B.ia_c5 <=
-           motion_controller_withPIC_B.d_g; motion_controller_withPIC_B.ia_c5++)
+      for (motion_controller_withPIC_B.ia_l = motion_controller_withPIC_B.k_g +
+           1; motion_controller_withPIC_B.ia_l <=
+           motion_controller_withPIC_B.d_c; motion_controller_withPIC_B.ia_l++)
       {
-        motion_controller_withPIC_B.b_c_e += solution_searchDir
-          [(motion_controller_withPIC_B.ia_c5 - motion_controller_withPIC_B.k_ce)
-          - 1] * workingset_Aineq[motion_controller_withPIC_B.ia_c5 - 1];
+        motion_controller_withPIC_B.b_c_o += solution_searchDir
+          [(motion_controller_withPIC_B.ia_l - motion_controller_withPIC_B.k_g)
+          - 1] * workingset_Aineq[motion_controller_withPIC_B.ia_l - 1];
       }
 
-      motion_controller_withPIC_B.ia_c5 = div_nde_s32_floor
-        (motion_controller_withPIC_B.k_ce, 21) + 81;
-      workspace[motion_controller_withPIC_B.ia_c5] +=
-        motion_controller_withPIC_B.b_c_e;
+      motion_controller_withPIC_B.ia_l = div_nde_s32_floor
+        (motion_controller_withPIC_B.k_g, 21) + 81;
+      workspace[motion_controller_withPIC_B.ia_l] +=
+        motion_controller_withPIC_B.b_c_o;
     }
 
-    for (motion_controller_withPIC_B.k_ce = 0; motion_controller_withPIC_B.k_ce <
-         40; motion_controller_withPIC_B.k_ce++) {
-      motion_controller_withPIC_B.phaseOneCorrectionX_m =
-        workspace[motion_controller_withPIC_B.k_ce + 81];
-      if ((motion_controller_withPIC_B.phaseOneCorrectionX_m >
-           motion_controller_withPIC_B.denomTol_i) &&
+    for (motion_controller_withPIC_B.k_g = 0; motion_controller_withPIC_B.k_g <
+         40; motion_controller_withPIC_B.k_g++) {
+      motion_controller_withPIC_B.phaseOneCorrectionX_on =
+        workspace[motion_controller_withPIC_B.k_g + 81];
+      if ((motion_controller_withPIC_B.phaseOneCorrectionX_on >
+           motion_controller_withPIC_B.denomTol_f) &&
           (!workingset_isActiveConstr[(workingset_isActiveIdx[2] +
-            motion_controller_withPIC_B.k_ce) - 1])) {
-        motion_controller_withPIC_B.phaseOneCorrectionP_f =
-          workspace[motion_controller_withPIC_B.k_ce];
-        motion_controller_withPIC_B.b_c_e = fabs
-          (motion_controller_withPIC_B.phaseOneCorrectionP_f);
-        if ((!(motion_controller_withPIC_B.b_c_e <= 1.0E-8 -
-               motion_controller_withPIC_B.phaseOneCorrectionP_f)) && (!rtIsNaN
-             (1.0E-8 - motion_controller_withPIC_B.phaseOneCorrectionP_f))) {
-          motion_controller_withPIC_B.b_c_e = 1.0E-8 -
-            motion_controller_withPIC_B.phaseOneCorrectionP_f;
+            motion_controller_withPIC_B.k_g) - 1])) {
+        motion_controller_withPIC_B.phaseOneCorrectionP_i =
+          workspace[motion_controller_withPIC_B.k_g];
+        motion_controller_withPIC_B.b_c_o = fabs
+          (motion_controller_withPIC_B.phaseOneCorrectionP_i);
+        if ((!(motion_controller_withPIC_B.b_c_o <= 1.0E-8 -
+               motion_controller_withPIC_B.phaseOneCorrectionP_i)) && (!rtIsNaN
+             (1.0E-8 - motion_controller_withPIC_B.phaseOneCorrectionP_i))) {
+          motion_controller_withPIC_B.b_c_o = 1.0E-8 -
+            motion_controller_withPIC_B.phaseOneCorrectionP_i;
         }
 
-        motion_controller_withPIC_B.b_c_e /=
-          motion_controller_withPIC_B.phaseOneCorrectionX_m;
-        if (motion_controller_withPIC_B.b_c_e < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_e;
+        motion_controller_withPIC_B.b_c_o /=
+          motion_controller_withPIC_B.phaseOneCorrectionX_on;
+        if (motion_controller_withPIC_B.b_c_o < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_o;
           *constrType = 3;
-          *constrIdx = motion_controller_withPIC_B.k_ce + 1;
+          *constrIdx = motion_controller_withPIC_B.k_g + 1;
           *newBlocking = true;
         }
       }
@@ -4124,70 +4121,70 @@ void motion_controller_withPIC::motion_cont_feasibleratiotest_d(const real_T
   }
 
   if (workingset_nWConstr[3] < workingset_sizes[3]) {
-    motion_controller_withPIC_B.phaseOneCorrectionX_m =
+    motion_controller_withPIC_B.phaseOneCorrectionX_on =
       solution_xstar[workingset_nVar - 1] * static_cast<real_T>(isPhaseOne);
-    motion_controller_withPIC_B.phaseOneCorrectionP_f =
+    motion_controller_withPIC_B.phaseOneCorrectionP_i =
       solution_searchDir[workingset_nVar - 1] * static_cast<real_T>(isPhaseOne);
-    motion_controller_withPIC_B.ia_c5 = workingset_sizes[3];
-    for (motion_controller_withPIC_B.k_ce = 0; motion_controller_withPIC_B.k_ce <=
-         motion_controller_withPIC_B.ia_c5 - 2; motion_controller_withPIC_B.k_ce
-         ++) {
-      motion_controller_withPIC_B.d_g =
-        workingset_indexLB[motion_controller_withPIC_B.k_ce];
-      motion_controller_withPIC_B.pk_corrected_on =
-        -solution_searchDir[motion_controller_withPIC_B.d_g - 1] -
-        motion_controller_withPIC_B.phaseOneCorrectionP_f;
-      if ((motion_controller_withPIC_B.pk_corrected_on >
-           motion_controller_withPIC_B.denomTol_i) &&
+    motion_controller_withPIC_B.ia_l = workingset_sizes[3];
+    for (motion_controller_withPIC_B.k_g = 0; motion_controller_withPIC_B.k_g <=
+         motion_controller_withPIC_B.ia_l - 2; motion_controller_withPIC_B.k_g++)
+    {
+      motion_controller_withPIC_B.d_c =
+        workingset_indexLB[motion_controller_withPIC_B.k_g];
+      motion_controller_withPIC_B.pk_corrected_e =
+        -solution_searchDir[motion_controller_withPIC_B.d_c - 1] -
+        motion_controller_withPIC_B.phaseOneCorrectionP_i;
+      if ((motion_controller_withPIC_B.pk_corrected_e >
+           motion_controller_withPIC_B.denomTol_f) &&
           (!workingset_isActiveConstr[(workingset_isActiveIdx[3] +
-            motion_controller_withPIC_B.k_ce) - 1])) {
-        motion_controller_withPIC_B.ratio_i =
-          (-solution_xstar[motion_controller_withPIC_B.d_g - 1] -
-           workingset_lb[motion_controller_withPIC_B.d_g - 1]) -
-          motion_controller_withPIC_B.phaseOneCorrectionX_m;
-        motion_controller_withPIC_B.b_c_e = fabs
-          (motion_controller_withPIC_B.ratio_i);
-        if ((!(motion_controller_withPIC_B.b_c_e <= 1.0E-8 -
-               motion_controller_withPIC_B.ratio_i)) && (!rtIsNaN(1.0E-8 -
-              motion_controller_withPIC_B.ratio_i))) {
-          motion_controller_withPIC_B.b_c_e = 1.0E-8 -
-            motion_controller_withPIC_B.ratio_i;
+            motion_controller_withPIC_B.k_g) - 1])) {
+        motion_controller_withPIC_B.ratio_j =
+          (-solution_xstar[motion_controller_withPIC_B.d_c - 1] -
+           workingset_lb[motion_controller_withPIC_B.d_c - 1]) -
+          motion_controller_withPIC_B.phaseOneCorrectionX_on;
+        motion_controller_withPIC_B.b_c_o = fabs
+          (motion_controller_withPIC_B.ratio_j);
+        if ((!(motion_controller_withPIC_B.b_c_o <= 1.0E-8 -
+               motion_controller_withPIC_B.ratio_j)) && (!rtIsNaN(1.0E-8 -
+              motion_controller_withPIC_B.ratio_j))) {
+          motion_controller_withPIC_B.b_c_o = 1.0E-8 -
+            motion_controller_withPIC_B.ratio_j;
         }
 
-        motion_controller_withPIC_B.b_c_e /=
-          motion_controller_withPIC_B.pk_corrected_on;
-        if (motion_controller_withPIC_B.b_c_e < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_e;
+        motion_controller_withPIC_B.b_c_o /=
+          motion_controller_withPIC_B.pk_corrected_e;
+        if (motion_controller_withPIC_B.b_c_o < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_o;
           *constrType = 4;
-          *constrIdx = motion_controller_withPIC_B.k_ce + 1;
+          *constrIdx = motion_controller_withPIC_B.k_g + 1;
           *newBlocking = true;
         }
       }
     }
 
-    motion_controller_withPIC_B.ia_c5 = workingset_indexLB[workingset_sizes[3] -
+    motion_controller_withPIC_B.ia_l = workingset_indexLB[workingset_sizes[3] -
       1] - 1;
-    motion_controller_withPIC_B.phaseOneCorrectionX_m =
-      -solution_searchDir[motion_controller_withPIC_B.ia_c5];
-    if ((motion_controller_withPIC_B.phaseOneCorrectionX_m >
-         motion_controller_withPIC_B.denomTol_i) && (!workingset_isActiveConstr
+    motion_controller_withPIC_B.phaseOneCorrectionX_on =
+      -solution_searchDir[motion_controller_withPIC_B.ia_l];
+    if ((motion_controller_withPIC_B.phaseOneCorrectionX_on >
+         motion_controller_withPIC_B.denomTol_f) && (!workingset_isActiveConstr
          [(workingset_isActiveIdx[3] + workingset_sizes[3]) - 2])) {
-      motion_controller_withPIC_B.ratio_i =
-        -solution_xstar[motion_controller_withPIC_B.ia_c5] -
-        workingset_lb[motion_controller_withPIC_B.ia_c5];
-      motion_controller_withPIC_B.b_c_e = fabs
-        (motion_controller_withPIC_B.ratio_i);
-      if ((!(motion_controller_withPIC_B.b_c_e <= 1.0E-8 -
-             motion_controller_withPIC_B.ratio_i)) && (!rtIsNaN(1.0E-8 -
-            motion_controller_withPIC_B.ratio_i))) {
-        motion_controller_withPIC_B.b_c_e = 1.0E-8 -
-          motion_controller_withPIC_B.ratio_i;
+      motion_controller_withPIC_B.ratio_j =
+        -solution_xstar[motion_controller_withPIC_B.ia_l] -
+        workingset_lb[motion_controller_withPIC_B.ia_l];
+      motion_controller_withPIC_B.b_c_o = fabs
+        (motion_controller_withPIC_B.ratio_j);
+      if ((!(motion_controller_withPIC_B.b_c_o <= 1.0E-8 -
+             motion_controller_withPIC_B.ratio_j)) && (!rtIsNaN(1.0E-8 -
+            motion_controller_withPIC_B.ratio_j))) {
+        motion_controller_withPIC_B.b_c_o = 1.0E-8 -
+          motion_controller_withPIC_B.ratio_j;
       }
 
-      motion_controller_withPIC_B.b_c_e /=
-        motion_controller_withPIC_B.phaseOneCorrectionX_m;
-      if (motion_controller_withPIC_B.b_c_e < *alpha) {
-        *alpha = motion_controller_withPIC_B.b_c_e;
+      motion_controller_withPIC_B.b_c_o /=
+        motion_controller_withPIC_B.phaseOneCorrectionX_on;
+      if (motion_controller_withPIC_B.b_c_o < *alpha) {
+        *alpha = motion_controller_withPIC_B.b_c_o;
         *constrType = 4;
         *constrIdx = workingset_sizes[3];
         *newBlocking = true;
@@ -4196,42 +4193,41 @@ void motion_controller_withPIC::motion_cont_feasibleratiotest_d(const real_T
   }
 
   if (workingset_nWConstr[4] < workingset_sizes[4]) {
-    motion_controller_withPIC_B.phaseOneCorrectionX_m =
+    motion_controller_withPIC_B.phaseOneCorrectionX_on =
       solution_xstar[workingset_nVar - 1] * static_cast<real_T>(isPhaseOne);
-    motion_controller_withPIC_B.phaseOneCorrectionP_f =
+    motion_controller_withPIC_B.phaseOneCorrectionP_i =
       solution_searchDir[workingset_nVar - 1] * static_cast<real_T>(isPhaseOne);
-    motion_controller_withPIC_B.ia_c5 = static_cast<uint8_T>(workingset_sizes[4]);
-    for (motion_controller_withPIC_B.k_ce = 0; motion_controller_withPIC_B.k_ce <
-         motion_controller_withPIC_B.ia_c5; motion_controller_withPIC_B.k_ce++)
-    {
-      motion_controller_withPIC_B.d_g =
-        workingset_indexUB[motion_controller_withPIC_B.k_ce];
-      motion_controller_withPIC_B.pk_corrected_on =
-        solution_searchDir[motion_controller_withPIC_B.d_g - 1] -
-        motion_controller_withPIC_B.phaseOneCorrectionP_f;
-      if ((motion_controller_withPIC_B.pk_corrected_on >
-           motion_controller_withPIC_B.denomTol_i) &&
+    motion_controller_withPIC_B.ia_l = static_cast<uint8_T>(workingset_sizes[4]);
+    for (motion_controller_withPIC_B.k_g = 0; motion_controller_withPIC_B.k_g <
+         motion_controller_withPIC_B.ia_l; motion_controller_withPIC_B.k_g++) {
+      motion_controller_withPIC_B.d_c =
+        workingset_indexUB[motion_controller_withPIC_B.k_g];
+      motion_controller_withPIC_B.pk_corrected_e =
+        solution_searchDir[motion_controller_withPIC_B.d_c - 1] -
+        motion_controller_withPIC_B.phaseOneCorrectionP_i;
+      if ((motion_controller_withPIC_B.pk_corrected_e >
+           motion_controller_withPIC_B.denomTol_f) &&
           (!workingset_isActiveConstr[(workingset_isActiveIdx[4] +
-            motion_controller_withPIC_B.k_ce) - 1])) {
-        motion_controller_withPIC_B.ratio_i =
-          (solution_xstar[motion_controller_withPIC_B.d_g - 1] -
-           workingset_ub[motion_controller_withPIC_B.d_g - 1]) -
-          motion_controller_withPIC_B.phaseOneCorrectionX_m;
-        motion_controller_withPIC_B.b_c_e = fabs
-          (motion_controller_withPIC_B.ratio_i);
-        if ((!(motion_controller_withPIC_B.b_c_e <= 1.0E-8 -
-               motion_controller_withPIC_B.ratio_i)) && (!rtIsNaN(1.0E-8 -
-              motion_controller_withPIC_B.ratio_i))) {
-          motion_controller_withPIC_B.b_c_e = 1.0E-8 -
-            motion_controller_withPIC_B.ratio_i;
+            motion_controller_withPIC_B.k_g) - 1])) {
+        motion_controller_withPIC_B.ratio_j =
+          (solution_xstar[motion_controller_withPIC_B.d_c - 1] -
+           workingset_ub[motion_controller_withPIC_B.d_c - 1]) -
+          motion_controller_withPIC_B.phaseOneCorrectionX_on;
+        motion_controller_withPIC_B.b_c_o = fabs
+          (motion_controller_withPIC_B.ratio_j);
+        if ((!(motion_controller_withPIC_B.b_c_o <= 1.0E-8 -
+               motion_controller_withPIC_B.ratio_j)) && (!rtIsNaN(1.0E-8 -
+              motion_controller_withPIC_B.ratio_j))) {
+          motion_controller_withPIC_B.b_c_o = 1.0E-8 -
+            motion_controller_withPIC_B.ratio_j;
         }
 
-        motion_controller_withPIC_B.b_c_e /=
-          motion_controller_withPIC_B.pk_corrected_on;
-        if (motion_controller_withPIC_B.b_c_e < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_e;
+        motion_controller_withPIC_B.b_c_o /=
+          motion_controller_withPIC_B.pk_corrected_e;
+        if (motion_controller_withPIC_B.b_c_o < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_o;
           *constrType = 5;
-          *constrIdx = motion_controller_withPIC_B.k_ce + 1;
+          *constrIdx = motion_controller_withPIC_B.k_g + 1;
           *newBlocking = true;
         }
       }
@@ -4246,7 +4242,7 @@ void motion_controller_withPIC::motion_cont_feasibleratiotest_d(const real_T
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::mo_addBoundToActiveSetMatrix__i
   (sVIU4VBONGRsUytHTQmMJFH_motio_T *obj, int32_T TYPE, int32_T idx_local)
 {
@@ -4291,7 +4287,7 @@ void motion_controller_withPIC::mo_addBoundToActiveSetMatrix__i
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controlle_compute_lambda(real_T
   workspace[1701], sYqpSPVJXu9aOn60zG4DpzD_motio_T *solution, const
   s3PrFoa9w5ssw8XLEJooNqH_motio_T *objective, const
@@ -4393,7 +4389,7 @@ void motion_controller_withPIC::motion_controlle_compute_lambda(real_T
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controller_wit_iterate_b(const real_T H
   [400], const real_T f[20], sYqpSPVJXu9aOn60zG4DpzD_motio_T *solution,
   s3cSGkBdKxRj6Qn3zsJRowG_motio_T *memspace, sVIU4VBONGRsUytHTQmMJFH_motio_T
@@ -4407,13 +4403,13 @@ void motion_controller_withPIC::motion_controller_wit_iterate_b(const real_T H
   __m128d tmp_0;
   int32_T exitg1;
   boolean_T guard1;
-  motion_controller_withPIC_B.subProblemChanged_b = true;
-  motion_controller_withPIC_B.updateFval_i = true;
-  motion_controller_withPIC_B.activeSetChangeID_a = 0;
-  motion_controller_withPIC_B.TYPE_i = objective->objtype;
-  motion_controller_withPIC_B.tolDelta_h = 6.7434957617430445E-7;
-  motion_controller_withPIC_B.nVar_i = workingset->nVar;
-  motion_controller_withPIC_B.globalActiveConstrIdx_f = 0;
+  motion_controller_withPIC_B.subProblemChanged_i = true;
+  motion_controller_withPIC_B.updateFval_n = true;
+  motion_controller_withPIC_B.activeSetChangeID_n = 0;
+  motion_controller_withPIC_B.TYPE_b = objective->objtype;
+  motion_controller_withPIC_B.tolDelta_o = 6.7434957617430445E-7;
+  motion_controller_withPIC_B.nVar_f = workingset->nVar;
+  motion_controller_withPIC_B.globalActiveConstrIdx_k = 0;
   motion_co_computeGrad_StoreHx_k(objective, H, f, solution->xstar);
   solution->fstar = motion_co_computeFval_ReuseHx_n(objective,
     memspace->workspace_double, f, solution->xstar);
@@ -4428,10 +4424,10 @@ void motion_controller_withPIC::motion_controller_wit_iterate_b(const real_T H
     exitg1 = 0;
     if (solution->state == -5) {
       guard1 = false;
-      if (motion_controller_withPIC_B.subProblemChanged_b) {
-        switch (motion_controller_withPIC_B.activeSetChangeID_a) {
+      if (motion_controller_withPIC_B.subProblemChanged_i) {
+        switch (motion_controller_withPIC_B.activeSetChangeID_n) {
          case 1:
-          motion_controller_withPIC_B.Qk0_k = (workingset->nActiveConstr - 1) *
+          motion_controller_withPIC_B.Qk0_d = (workingset->nActiveConstr - 1) *
             21;
           if (qrmanager->mrows <= qrmanager->ncols + 1) {
             qrmanager->minRowCol = qrmanager->mrows;
@@ -4441,99 +4437,99 @@ void motion_controller_withPIC::motion_controller_wit_iterate_b(const real_T H
 
           motion_controller_withPIC_B.iy0 = 21 * qrmanager->ncols;
           if (qrmanager->mrows != 0) {
-            motion_controller_withPIC_B.iyend_b =
+            motion_controller_withPIC_B.iyend_h =
               motion_controller_withPIC_B.iy0 + qrmanager->mrows;
             if (motion_controller_withPIC_B.iy0 + 1 <=
-                motion_controller_withPIC_B.iyend_b) {
+                motion_controller_withPIC_B.iyend_h) {
               memset(&qrmanager->QR[motion_controller_withPIC_B.iy0], 0,
-                     static_cast<uint32_T>(motion_controller_withPIC_B.iyend_b -
+                     static_cast<uint32_T>(motion_controller_withPIC_B.iyend_h -
                       motion_controller_withPIC_B.iy0) * sizeof(real_T));
             }
 
-            motion_controller_withPIC_B.l_d = (qrmanager->mrows - 1) * 21 + 1;
-            for (motion_controller_withPIC_B.localActiveConstrIdx_n = 1;
-                 motion_controller_withPIC_B.localActiveConstrIdx_n <=
-                 motion_controller_withPIC_B.l_d;
-                 motion_controller_withPIC_B.localActiveConstrIdx_n += 21) {
-              motion_controller_withPIC_B.normDelta_b = 0.0;
+            motion_controller_withPIC_B.l_n = (qrmanager->mrows - 1) * 21 + 1;
+            for (motion_controller_withPIC_B.localActiveConstrIdx_i = 1;
+                 motion_controller_withPIC_B.localActiveConstrIdx_i <=
+                 motion_controller_withPIC_B.l_n;
+                 motion_controller_withPIC_B.localActiveConstrIdx_i += 21) {
+              motion_controller_withPIC_B.normDelta_n = 0.0;
               motion_controller_withPIC_B.m =
-                (motion_controller_withPIC_B.localActiveConstrIdx_n +
+                (motion_controller_withPIC_B.localActiveConstrIdx_i +
                  qrmanager->mrows) - 1;
-              for (motion_controller_withPIC_B.iyend_b =
-                   motion_controller_withPIC_B.localActiveConstrIdx_n;
-                   motion_controller_withPIC_B.iyend_b <=
+              for (motion_controller_withPIC_B.iyend_h =
+                   motion_controller_withPIC_B.localActiveConstrIdx_i;
+                   motion_controller_withPIC_B.iyend_h <=
                    motion_controller_withPIC_B.m;
-                   motion_controller_withPIC_B.iyend_b++) {
-                motion_controller_withPIC_B.normDelta_b += workingset->ATwset
-                  [(motion_controller_withPIC_B.Qk0_k +
-                    motion_controller_withPIC_B.iyend_b) -
-                  motion_controller_withPIC_B.localActiveConstrIdx_n] *
-                  qrmanager->Q[motion_controller_withPIC_B.iyend_b - 1];
+                   motion_controller_withPIC_B.iyend_h++) {
+                motion_controller_withPIC_B.normDelta_n += workingset->ATwset
+                  [(motion_controller_withPIC_B.Qk0_d +
+                    motion_controller_withPIC_B.iyend_h) -
+                  motion_controller_withPIC_B.localActiveConstrIdx_i] *
+                  qrmanager->Q[motion_controller_withPIC_B.iyend_h - 1];
               }
 
-              motion_controller_withPIC_B.iyend_b = div_nde_s32_floor
-                (motion_controller_withPIC_B.localActiveConstrIdx_n - 1, 21) +
+              motion_controller_withPIC_B.iyend_h = div_nde_s32_floor
+                (motion_controller_withPIC_B.localActiveConstrIdx_i - 1, 21) +
                 motion_controller_withPIC_B.iy0;
-              qrmanager->QR[motion_controller_withPIC_B.iyend_b] +=
-                motion_controller_withPIC_B.normDelta_b;
+              qrmanager->QR[motion_controller_withPIC_B.iyend_h] +=
+                motion_controller_withPIC_B.normDelta_n;
             }
           }
 
           qrmanager->ncols++;
           qrmanager->jpvt[qrmanager->ncols - 1] = qrmanager->ncols;
-          motion_controller_withPIC_B.iyend_b = qrmanager->mrows - 2;
-          while (motion_controller_withPIC_B.iyend_b + 2 > qrmanager->ncols) {
-            motion_controller_withPIC_B.localActiveConstrIdx_n =
-              (qrmanager->ncols - 1) * 21 + motion_controller_withPIC_B.iyend_b;
-            motion_controller_withPIC_B.temp_n = qrmanager->
-              QR[motion_controller_withPIC_B.localActiveConstrIdx_n + 1];
+          motion_controller_withPIC_B.iyend_h = qrmanager->mrows - 2;
+          while (motion_controller_withPIC_B.iyend_h + 2 > qrmanager->ncols) {
+            motion_controller_withPIC_B.localActiveConstrIdx_i =
+              (qrmanager->ncols - 1) * 21 + motion_controller_withPIC_B.iyend_h;
+            motion_controller_withPIC_B.temp_k = qrmanager->
+              QR[motion_controller_withPIC_B.localActiveConstrIdx_i + 1];
             motion_controlle_xrotg_ds3XgDMS(&qrmanager->
-              QR[motion_controller_withPIC_B.localActiveConstrIdx_n],
-              &motion_controller_withPIC_B.temp_n,
-              &motion_controller_withPIC_B.normDelta_b,
-              &motion_controller_withPIC_B.s_o);
-            qrmanager->QR[motion_controller_withPIC_B.localActiveConstrIdx_n + 1]
-              = motion_controller_withPIC_B.temp_n;
-            motion_controller_withPIC_B.Qk0_k = 21 *
-              motion_controller_withPIC_B.iyend_b;
+              QR[motion_controller_withPIC_B.localActiveConstrIdx_i],
+              &motion_controller_withPIC_B.temp_k,
+              &motion_controller_withPIC_B.normDelta_n,
+              &motion_controller_withPIC_B.s_m);
+            qrmanager->QR[motion_controller_withPIC_B.localActiveConstrIdx_i + 1]
+              = motion_controller_withPIC_B.temp_k;
+            motion_controller_withPIC_B.Qk0_d = 21 *
+              motion_controller_withPIC_B.iyend_h;
             motion_controller_withPIC_B.iy0 = qrmanager->mrows;
             if (qrmanager->mrows >= 1) {
-              for (motion_controller_withPIC_B.localActiveConstrIdx_n = 0;
-                   motion_controller_withPIC_B.localActiveConstrIdx_n <
+              for (motion_controller_withPIC_B.localActiveConstrIdx_i = 0;
+                   motion_controller_withPIC_B.localActiveConstrIdx_i <
                    motion_controller_withPIC_B.iy0;
-                   motion_controller_withPIC_B.localActiveConstrIdx_n++) {
-                motion_controller_withPIC_B.l_d =
-                  motion_controller_withPIC_B.Qk0_k +
-                  motion_controller_withPIC_B.localActiveConstrIdx_n;
-                motion_controller_withPIC_B.temp_tmp_m = qrmanager->
-                  Q[motion_controller_withPIC_B.l_d + 21];
-                motion_controller_withPIC_B.temp_n =
-                  motion_controller_withPIC_B.temp_tmp_m *
-                  motion_controller_withPIC_B.s_o + qrmanager->
-                  Q[motion_controller_withPIC_B.l_d] *
-                  motion_controller_withPIC_B.normDelta_b;
-                qrmanager->Q[motion_controller_withPIC_B.l_d + 21] =
-                  motion_controller_withPIC_B.temp_tmp_m *
-                  motion_controller_withPIC_B.normDelta_b - qrmanager->
-                  Q[motion_controller_withPIC_B.l_d] *
-                  motion_controller_withPIC_B.s_o;
-                qrmanager->Q[motion_controller_withPIC_B.l_d] =
-                  motion_controller_withPIC_B.temp_n;
+                   motion_controller_withPIC_B.localActiveConstrIdx_i++) {
+                motion_controller_withPIC_B.l_n =
+                  motion_controller_withPIC_B.Qk0_d +
+                  motion_controller_withPIC_B.localActiveConstrIdx_i;
+                motion_controller_withPIC_B.temp_tmp_j = qrmanager->
+                  Q[motion_controller_withPIC_B.l_n + 21];
+                motion_controller_withPIC_B.temp_k =
+                  motion_controller_withPIC_B.temp_tmp_j *
+                  motion_controller_withPIC_B.s_m + qrmanager->
+                  Q[motion_controller_withPIC_B.l_n] *
+                  motion_controller_withPIC_B.normDelta_n;
+                qrmanager->Q[motion_controller_withPIC_B.l_n + 21] =
+                  motion_controller_withPIC_B.temp_tmp_j *
+                  motion_controller_withPIC_B.normDelta_n - qrmanager->
+                  Q[motion_controller_withPIC_B.l_n] *
+                  motion_controller_withPIC_B.s_m;
+                qrmanager->Q[motion_controller_withPIC_B.l_n] =
+                  motion_controller_withPIC_B.temp_k;
               }
             }
 
-            motion_controller_withPIC_B.iyend_b--;
+            motion_controller_withPIC_B.iyend_h--;
           }
           break;
 
          case -1:
           motion_contr_deleteColMoveEnd_a(qrmanager,
-            motion_controller_withPIC_B.globalActiveConstrIdx_f);
+            motion_controller_withPIC_B.globalActiveConstrIdx_k);
           break;
 
          default:
           motion_controller_wi_factorQR_c(qrmanager, workingset->ATwset,
-            motion_controller_withPIC_B.nVar_i, workingset->nActiveConstr);
+            motion_controller_withPIC_B.nVar_f, workingset->nActiveConstr);
           motion_controller_w_computeQ__l(qrmanager, qrmanager->mrows);
           break;
         }
@@ -4543,144 +4539,144 @@ void motion_controller_withPIC::motion_controller_wit_iterate_b(const real_T H
         if (solution->state != -5) {
           exitg1 = 1;
         } else {
-          motion_controller_withPIC_B.normDelta_b =
-            motion_controlle_xnrm2_rY1rIeLd(motion_controller_withPIC_B.nVar_i,
+          motion_controller_withPIC_B.normDelta_n =
+            motion_controlle_xnrm2_rY1rIeLd(motion_controller_withPIC_B.nVar_f,
             solution->searchDir);
           guard1 = true;
         }
       } else {
-        motion_controller_withPIC_B.iyend_b = static_cast<uint8_T>
-          (motion_controller_withPIC_B.nVar_i);
+        motion_controller_withPIC_B.iyend_h = static_cast<uint8_T>
+          (motion_controller_withPIC_B.nVar_f);
         memset(&solution->searchDir[0], 0, static_cast<uint32_T>
-               (motion_controller_withPIC_B.iyend_b) * sizeof(real_T));
-        motion_controller_withPIC_B.normDelta_b = 0.0;
+               (motion_controller_withPIC_B.iyend_h) * sizeof(real_T));
+        motion_controller_withPIC_B.normDelta_n = 0.0;
         guard1 = true;
       }
 
       if (guard1) {
-        if ((!motion_controller_withPIC_B.subProblemChanged_b) ||
-            (motion_controller_withPIC_B.normDelta_b < options_StepTolerance) ||
-            (workingset->nActiveConstr >= motion_controller_withPIC_B.nVar_i)) {
+        if ((!motion_controller_withPIC_B.subProblemChanged_i) ||
+            (motion_controller_withPIC_B.normDelta_n < options_StepTolerance) ||
+            (workingset->nActiveConstr >= motion_controller_withPIC_B.nVar_f)) {
           motion_controlle_compute_lambda(memspace->workspace_double, solution,
             objective, qrmanager);
           if ((solution->state != -7) || (workingset->nActiveConstr >
-               motion_controller_withPIC_B.nVar_i)) {
-            motion_controller_withPIC_B.iyend_b = 0;
-            motion_controller_withPIC_B.normDelta_b = 0.0 *
+               motion_controller_withPIC_B.nVar_f)) {
+            motion_controller_withPIC_B.iyend_h = 0;
+            motion_controller_withPIC_B.normDelta_n = 0.0 *
               runTimeOptions_ProbRelTolFactor * static_cast<real_T>
-              (motion_controller_withPIC_B.TYPE_i != 5);
-            motion_controller_withPIC_B.Qk0_k = (workingset->nWConstr[0] +
+              (motion_controller_withPIC_B.TYPE_b != 5);
+            motion_controller_withPIC_B.Qk0_d = (workingset->nWConstr[0] +
               workingset->nWConstr[1]) + 1;
             motion_controller_withPIC_B.iy0 = workingset->nActiveConstr;
-            for (motion_controller_withPIC_B.localActiveConstrIdx_n =
-                 motion_controller_withPIC_B.Qk0_k;
-                 motion_controller_withPIC_B.localActiveConstrIdx_n <=
+            for (motion_controller_withPIC_B.localActiveConstrIdx_i =
+                 motion_controller_withPIC_B.Qk0_d;
+                 motion_controller_withPIC_B.localActiveConstrIdx_i <=
                  motion_controller_withPIC_B.iy0;
-                 motion_controller_withPIC_B.localActiveConstrIdx_n++) {
-              motion_controller_withPIC_B.s_o = solution->
-                lambda[motion_controller_withPIC_B.localActiveConstrIdx_n - 1];
-              if (motion_controller_withPIC_B.s_o <
-                  motion_controller_withPIC_B.normDelta_b) {
-                motion_controller_withPIC_B.normDelta_b =
-                  motion_controller_withPIC_B.s_o;
-                motion_controller_withPIC_B.iyend_b =
-                  motion_controller_withPIC_B.localActiveConstrIdx_n;
+                 motion_controller_withPIC_B.localActiveConstrIdx_i++) {
+              motion_controller_withPIC_B.s_m = solution->
+                lambda[motion_controller_withPIC_B.localActiveConstrIdx_i - 1];
+              if (motion_controller_withPIC_B.s_m <
+                  motion_controller_withPIC_B.normDelta_n) {
+                motion_controller_withPIC_B.normDelta_n =
+                  motion_controller_withPIC_B.s_m;
+                motion_controller_withPIC_B.iyend_h =
+                  motion_controller_withPIC_B.localActiveConstrIdx_i;
               }
             }
 
-            if (motion_controller_withPIC_B.iyend_b == 0) {
+            if (motion_controller_withPIC_B.iyend_h == 0) {
               solution->state = 1;
             } else {
-              motion_controller_withPIC_B.activeSetChangeID_a = -1;
-              motion_controller_withPIC_B.globalActiveConstrIdx_f =
-                motion_controller_withPIC_B.iyend_b;
-              motion_controller_withPIC_B.subProblemChanged_b = true;
+              motion_controller_withPIC_B.activeSetChangeID_n = -1;
+              motion_controller_withPIC_B.globalActiveConstrIdx_k =
+                motion_controller_withPIC_B.iyend_h;
+              motion_controller_withPIC_B.subProblemChanged_i = true;
               motion_controlle_removeConstr_n(workingset,
-                motion_controller_withPIC_B.iyend_b);
-              solution->lambda[motion_controller_withPIC_B.iyend_b - 1] = 0.0;
+                motion_controller_withPIC_B.iyend_h);
+              solution->lambda[motion_controller_withPIC_B.iyend_h - 1] = 0.0;
             }
           } else {
-            motion_controller_withPIC_B.iyend_b = workingset->nActiveConstr;
-            motion_controller_withPIC_B.activeSetChangeID_a = 0;
-            motion_controller_withPIC_B.globalActiveConstrIdx_f =
+            motion_controller_withPIC_B.iyend_h = workingset->nActiveConstr;
+            motion_controller_withPIC_B.activeSetChangeID_n = 0;
+            motion_controller_withPIC_B.globalActiveConstrIdx_k =
               workingset->nActiveConstr;
-            motion_controller_withPIC_B.subProblemChanged_b = true;
+            motion_controller_withPIC_B.subProblemChanged_i = true;
             motion_controlle_removeConstr_n(workingset,
               workingset->nActiveConstr);
-            solution->lambda[motion_controller_withPIC_B.iyend_b - 1] = 0.0;
+            solution->lambda[motion_controller_withPIC_B.iyend_h - 1] = 0.0;
           }
 
-          motion_controller_withPIC_B.updateFval_i = false;
+          motion_controller_withPIC_B.updateFval_n = false;
         } else {
-          motion_controller_withPIC_B.updateFval_i =
-            (motion_controller_withPIC_B.TYPE_i == 5);
-          if (motion_controller_withPIC_B.updateFval_i ||
+          motion_controller_withPIC_B.updateFval_n =
+            (motion_controller_withPIC_B.TYPE_b == 5);
+          if (motion_controller_withPIC_B.updateFval_n ||
               runTimeOptions_RemainFeasible) {
             motion_cont_feasibleratiotest_d(solution->xstar, solution->searchDir,
               memspace->workspace_double, workingset->nVar, workingset->Aineq,
               workingset->bineq, workingset->lb, workingset->ub,
               workingset->indexLB, workingset->indexUB, workingset->sizes,
               workingset->isActiveIdx, workingset->isActiveConstr,
-              workingset->nWConstr, motion_controller_withPIC_B.updateFval_i,
-              &motion_controller_withPIC_B.normDelta_b,
-              &motion_controller_withPIC_B.newBlocking_n,
-              &motion_controller_withPIC_B.iyend_b,
-              &motion_controller_withPIC_B.localActiveConstrIdx_n);
+              workingset->nWConstr, motion_controller_withPIC_B.updateFval_n,
+              &motion_controller_withPIC_B.normDelta_n,
+              &motion_controller_withPIC_B.newBlocking_h,
+              &motion_controller_withPIC_B.iyend_h,
+              &motion_controller_withPIC_B.localActiveConstrIdx_i);
           } else {
             motion_controller_w_ratiotest_f(solution->xstar, solution->searchDir,
               memspace->workspace_double, workingset->nVar, workingset->Aineq,
               workingset->bineq, workingset->lb, workingset->ub,
               workingset->indexLB, workingset->indexUB, workingset->sizes,
               workingset->isActiveIdx, workingset->isActiveConstr,
-              workingset->nWConstr, &motion_controller_withPIC_B.tolDelta_h,
-              &motion_controller_withPIC_B.normDelta_b,
-              &motion_controller_withPIC_B.newBlocking_n,
-              &motion_controller_withPIC_B.iyend_b,
-              &motion_controller_withPIC_B.localActiveConstrIdx_n);
+              workingset->nWConstr, &motion_controller_withPIC_B.tolDelta_o,
+              &motion_controller_withPIC_B.normDelta_n,
+              &motion_controller_withPIC_B.newBlocking_h,
+              &motion_controller_withPIC_B.iyend_h,
+              &motion_controller_withPIC_B.localActiveConstrIdx_i);
           }
 
-          if (motion_controller_withPIC_B.newBlocking_n) {
-            switch (motion_controller_withPIC_B.iyend_b) {
+          if (motion_controller_withPIC_B.newBlocking_h) {
+            switch (motion_controller_withPIC_B.iyend_h) {
              case 3:
               workingset->nWConstr[2]++;
               workingset->isActiveConstr[(workingset->isActiveIdx[2] +
-                motion_controller_withPIC_B.localActiveConstrIdx_n) - 2] = true;
+                motion_controller_withPIC_B.localActiveConstrIdx_i) - 2] = true;
               workingset->nActiveConstr++;
               workingset->Wid[workingset->nActiveConstr - 1] = 3;
               workingset->Wlocalidx[workingset->nActiveConstr - 1] =
-                motion_controller_withPIC_B.localActiveConstrIdx_n;
-              motion_controller_withPIC_B.iyend_b =
-                (motion_controller_withPIC_B.localActiveConstrIdx_n - 1) * 21;
-              motion_controller_withPIC_B.Qk0_k = (workingset->nActiveConstr - 1)
+                motion_controller_withPIC_B.localActiveConstrIdx_i;
+              motion_controller_withPIC_B.iyend_h =
+                (motion_controller_withPIC_B.localActiveConstrIdx_i - 1) * 21;
+              motion_controller_withPIC_B.Qk0_d = (workingset->nActiveConstr - 1)
                 * 21;
               motion_controller_withPIC_B.iy0 = workingset->nVar - 1;
-              for (motion_controller_withPIC_B.activeSetChangeID_a = 0;
-                   motion_controller_withPIC_B.activeSetChangeID_a <=
+              for (motion_controller_withPIC_B.activeSetChangeID_n = 0;
+                   motion_controller_withPIC_B.activeSetChangeID_n <=
                    motion_controller_withPIC_B.iy0;
-                   motion_controller_withPIC_B.activeSetChangeID_a++) {
-                workingset->ATwset[motion_controller_withPIC_B.Qk0_k +
-                  motion_controller_withPIC_B.activeSetChangeID_a] =
-                  workingset->Aineq[motion_controller_withPIC_B.iyend_b +
-                  motion_controller_withPIC_B.activeSetChangeID_a];
+                   motion_controller_withPIC_B.activeSetChangeID_n++) {
+                workingset->ATwset[motion_controller_withPIC_B.Qk0_d +
+                  motion_controller_withPIC_B.activeSetChangeID_n] =
+                  workingset->Aineq[motion_controller_withPIC_B.iyend_h +
+                  motion_controller_withPIC_B.activeSetChangeID_n];
               }
 
               workingset->bwset[workingset->nActiveConstr - 1] =
                 workingset->
-                bineq[motion_controller_withPIC_B.localActiveConstrIdx_n - 1];
+                bineq[motion_controller_withPIC_B.localActiveConstrIdx_i - 1];
               break;
 
              case 4:
               mo_addBoundToActiveSetMatrix__i(workingset, 4,
-                motion_controller_withPIC_B.localActiveConstrIdx_n);
+                motion_controller_withPIC_B.localActiveConstrIdx_i);
               break;
 
              default:
               mo_addBoundToActiveSetMatrix__i(workingset, 5,
-                motion_controller_withPIC_B.localActiveConstrIdx_n);
+                motion_controller_withPIC_B.localActiveConstrIdx_i);
               break;
             }
 
-            motion_controller_withPIC_B.activeSetChangeID_a = 1;
+            motion_controller_withPIC_B.activeSetChangeID_n = 1;
           } else {
             if (objective->objtype == 5) {
               if (motion_controlle_xnrm2_rY1rIeLd(objective->nvar,
@@ -4692,44 +4688,44 @@ void motion_controller_withPIC::motion_controller_wit_iterate_b(const real_T H
               }
             }
 
-            motion_controller_withPIC_B.subProblemChanged_b = false;
+            motion_controller_withPIC_B.subProblemChanged_i = false;
             if (workingset->nActiveConstr == 0) {
               solution->state = 1;
             }
           }
 
-          if (!(motion_controller_withPIC_B.normDelta_b == 0.0)) {
-            motion_controller_withPIC_B.iyend_b =
-              (motion_controller_withPIC_B.nVar_i / 2) << 1;
-            motion_controller_withPIC_B.Qk0_k =
-              motion_controller_withPIC_B.iyend_b - 2;
-            for (motion_controller_withPIC_B.localActiveConstrIdx_n = 0;
-                 motion_controller_withPIC_B.localActiveConstrIdx_n <=
-                 motion_controller_withPIC_B.Qk0_k;
-                 motion_controller_withPIC_B.localActiveConstrIdx_n += 2) {
+          if (!(motion_controller_withPIC_B.normDelta_n == 0.0)) {
+            motion_controller_withPIC_B.iyend_h =
+              (motion_controller_withPIC_B.nVar_f / 2) << 1;
+            motion_controller_withPIC_B.Qk0_d =
+              motion_controller_withPIC_B.iyend_h - 2;
+            for (motion_controller_withPIC_B.localActiveConstrIdx_i = 0;
+                 motion_controller_withPIC_B.localActiveConstrIdx_i <=
+                 motion_controller_withPIC_B.Qk0_d;
+                 motion_controller_withPIC_B.localActiveConstrIdx_i += 2) {
               tmp = _mm_loadu_pd(&solution->
-                                 searchDir[motion_controller_withPIC_B.localActiveConstrIdx_n]);
+                                 searchDir[motion_controller_withPIC_B.localActiveConstrIdx_i]);
               tmp_0 = _mm_loadu_pd(&solution->
-                                   xstar[motion_controller_withPIC_B.localActiveConstrIdx_n]);
+                                   xstar[motion_controller_withPIC_B.localActiveConstrIdx_i]);
               _mm_storeu_pd(&solution->
-                            xstar[motion_controller_withPIC_B.localActiveConstrIdx_n],
+                            xstar[motion_controller_withPIC_B.localActiveConstrIdx_i],
                             _mm_add_pd(_mm_mul_pd(_mm_set1_pd
-                (motion_controller_withPIC_B.normDelta_b), tmp), tmp_0));
+                (motion_controller_withPIC_B.normDelta_n), tmp), tmp_0));
             }
 
-            for (motion_controller_withPIC_B.localActiveConstrIdx_n =
-                 motion_controller_withPIC_B.iyend_b;
-                 motion_controller_withPIC_B.localActiveConstrIdx_n <
-                 motion_controller_withPIC_B.nVar_i;
-                 motion_controller_withPIC_B.localActiveConstrIdx_n++) {
-              solution->xstar[motion_controller_withPIC_B.localActiveConstrIdx_n]
-                += motion_controller_withPIC_B.normDelta_b * solution->
-                searchDir[motion_controller_withPIC_B.localActiveConstrIdx_n];
+            for (motion_controller_withPIC_B.localActiveConstrIdx_i =
+                 motion_controller_withPIC_B.iyend_h;
+                 motion_controller_withPIC_B.localActiveConstrIdx_i <
+                 motion_controller_withPIC_B.nVar_f;
+                 motion_controller_withPIC_B.localActiveConstrIdx_i++) {
+              solution->xstar[motion_controller_withPIC_B.localActiveConstrIdx_i]
+                += motion_controller_withPIC_B.normDelta_n * solution->
+                searchDir[motion_controller_withPIC_B.localActiveConstrIdx_i];
             }
           }
 
           motion_co_computeGrad_StoreHx_k(objective, H, f, solution->xstar);
-          motion_controller_withPIC_B.updateFval_i = true;
+          motion_controller_withPIC_B.updateFval_n = true;
         }
 
         solution->iterations++;
@@ -4741,46 +4737,46 @@ void motion_controller_withPIC::motion_controller_wit_iterate_b(const real_T H
         if (solution->iterations - solution->iterations / 50 * 50 == 0) {
           solution->maxConstr = motion_maxConstraintViolation_n(workingset,
             solution->xstar);
-          motion_controller_withPIC_B.normDelta_b = solution->maxConstr;
+          motion_controller_withPIC_B.normDelta_n = solution->maxConstr;
           if (objective->objtype == 5) {
-            motion_controller_withPIC_B.normDelta_b = solution->maxConstr -
+            motion_controller_withPIC_B.normDelta_n = solution->maxConstr -
               solution->xstar[objective->nvar - 1];
           }
 
-          if (motion_controller_withPIC_B.normDelta_b > 1.0E-8 *
+          if (motion_controller_withPIC_B.normDelta_n > 1.0E-8 *
               runTimeOptions_ConstrRelTolFact) {
-            motion_controller_withPIC_B.iyend_b = static_cast<uint8_T>
+            motion_controller_withPIC_B.iyend_h = static_cast<uint8_T>
               (objective->nvar);
-            if (motion_controller_withPIC_B.iyend_b - 1 >= 0) {
+            if (motion_controller_withPIC_B.iyend_h - 1 >= 0) {
               memcpy(&solution->searchDir[0], &solution->xstar[0],
-                     static_cast<uint32_T>(motion_controller_withPIC_B.iyend_b) *
+                     static_cast<uint32_T>(motion_controller_withPIC_B.iyend_h) *
                      sizeof(real_T));
             }
 
-            motion_controller_withPIC_B.newBlocking_n =
+            motion_controller_withPIC_B.newBlocking_h =
               motio_feasibleX0ForWorkingSet_c(memspace->workspace_double,
               solution->searchDir, workingset, qrmanager);
-            if ((!motion_controller_withPIC_B.newBlocking_n) && (solution->state
+            if ((!motion_controller_withPIC_B.newBlocking_h) && (solution->state
                  != 0)) {
               solution->state = -2;
             }
 
-            motion_controller_withPIC_B.activeSetChangeID_a = 0;
-            motion_controller_withPIC_B.normDelta_b =
+            motion_controller_withPIC_B.activeSetChangeID_n = 0;
+            motion_controller_withPIC_B.normDelta_n =
               motion_maxConstraintViolation_n(workingset, solution->searchDir);
-            if (motion_controller_withPIC_B.normDelta_b < solution->maxConstr) {
-              if (motion_controller_withPIC_B.iyend_b - 1 >= 0) {
+            if (motion_controller_withPIC_B.normDelta_n < solution->maxConstr) {
+              if (motion_controller_withPIC_B.iyend_h - 1 >= 0) {
                 memcpy(&solution->xstar[0], &solution->searchDir[0],
-                       static_cast<uint32_T>(motion_controller_withPIC_B.iyend_b)
+                       static_cast<uint32_T>(motion_controller_withPIC_B.iyend_h)
                        * sizeof(real_T));
               }
 
-              solution->maxConstr = motion_controller_withPIC_B.normDelta_b;
+              solution->maxConstr = motion_controller_withPIC_B.normDelta_n;
             }
           }
         }
 
-        if (motion_controller_withPIC_B.updateFval_i) {
+        if (motion_controller_withPIC_B.updateFval_n) {
           solution->fstar = motion_co_computeFval_ReuseHx_n(objective,
             memspace->workspace_double, f, solution->xstar);
           if ((solution->fstar < options_ObjectiveLimit) && ((solution->state !=
@@ -4790,7 +4786,7 @@ void motion_controller_withPIC::motion_controller_wit_iterate_b(const real_T H
         }
       }
     } else {
-      if (!motion_controller_withPIC_B.updateFval_i) {
+      if (!motion_controller_withPIC_B.updateFval_n) {
         solution->fstar = motion_co_computeFval_ReuseHx_n(objective,
           memspace->workspace_double, f, solution->xstar);
       }
@@ -4800,7 +4796,7 @@ void motion_controller_withPIC::motion_controller_wit_iterate_b(const real_T H
   } while (exitg1 == 0);
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_c_PresolveWorkingSet_gjp
   (sYqpSPVJXu9aOn60zG4DpzD_motio_T *solution, s3cSGkBdKxRj6Qn3zsJRowG_motio_T
    *memspace, sVIU4VBONGRsUytHTQmMJFH_motio_T *workingset,
@@ -4808,37 +4804,37 @@ void motion_controller_withPIC::motion_c_PresolveWorkingSet_gjp
 {
   boolean_T guard1;
   solution->state = 82;
-  motion_controller_withPIC_B.mWorkingFixed_o = workingset->nWConstr[0];
+  motion_controller_withPIC_B.mWorkingFixed_e = workingset->nWConstr[0];
   motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp = workingset->nWConstr[0]
     + workingset->nWConstr[1];
-  motion_controller_withPIC_B.idxStartIneq_g = 0;
+  motion_controller_withPIC_B.idxStartIneq_i = 0;
   if (motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp > 0) {
     motion_controller_withPIC_B.c_tmp = static_cast<uint8_T>(workingset->nVar);
-    for (motion_controller_withPIC_B.idxStartIneq_g = 0;
-         motion_controller_withPIC_B.idxStartIneq_g <
+    for (motion_controller_withPIC_B.idxStartIneq_i = 0;
+         motion_controller_withPIC_B.idxStartIneq_i <
          motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp;
-         motion_controller_withPIC_B.idxStartIneq_g++) {
-      for (motion_controller_withPIC_B.idxEndIneq_e = 0;
-           motion_controller_withPIC_B.idxEndIneq_e <
+         motion_controller_withPIC_B.idxStartIneq_i++) {
+      for (motion_controller_withPIC_B.idxEndIneq_g = 0;
+           motion_controller_withPIC_B.idxEndIneq_g <
            motion_controller_withPIC_B.c_tmp;
-           motion_controller_withPIC_B.idxEndIneq_e++) {
-        qrmanager->QR[motion_controller_withPIC_B.idxStartIneq_g + 21 *
-          motion_controller_withPIC_B.idxEndIneq_e] = workingset->ATwset[21 *
-          motion_controller_withPIC_B.idxStartIneq_g +
-          motion_controller_withPIC_B.idxEndIneq_e];
+           motion_controller_withPIC_B.idxEndIneq_g++) {
+        qrmanager->QR[motion_controller_withPIC_B.idxStartIneq_i + 21 *
+          motion_controller_withPIC_B.idxEndIneq_g] = workingset->ATwset[21 *
+          motion_controller_withPIC_B.idxStartIneq_i +
+          motion_controller_withPIC_B.idxEndIneq_g];
       }
     }
 
-    motion_controller_withPIC_B.idxStartIneq_g = motion_ComputeNumDependentEq__d
+    motion_controller_withPIC_B.idxStartIneq_i = motion_ComputeNumDependentEq__d
       (qrmanager, workingset->bwset,
        motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp, workingset->nVar);
-    if (motion_controller_withPIC_B.idxStartIneq_g > 0) {
-      for (motion_controller_withPIC_B.idxEndIneq_e = 0;
-           motion_controller_withPIC_B.idxEndIneq_e <
+    if (motion_controller_withPIC_B.idxStartIneq_i > 0) {
+      for (motion_controller_withPIC_B.idxEndIneq_g = 0;
+           motion_controller_withPIC_B.idxEndIneq_g <
            motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp;
-           motion_controller_withPIC_B.idxEndIneq_e++) {
+           motion_controller_withPIC_B.idxEndIneq_g++) {
         motion_controller_withPIC_B.iy0_tmp = 21 *
-          motion_controller_withPIC_B.idxEndIneq_e;
+          motion_controller_withPIC_B.idxEndIneq_g;
         memcpy(&qrmanager->QR[motion_controller_withPIC_B.iy0_tmp],
                &workingset->ATwset[motion_controller_withPIC_B.iy0_tmp],
                static_cast<uint32_T>((motion_controller_withPIC_B.c_tmp +
@@ -4846,40 +4842,40 @@ void motion_controller_withPIC::motion_c_PresolveWorkingSet_gjp
                 motion_controller_withPIC_B.iy0_tmp) * sizeof(real_T));
       }
 
-      for (motion_controller_withPIC_B.idxEndIneq_e = 0;
-           motion_controller_withPIC_B.idxEndIneq_e <
-           motion_controller_withPIC_B.mWorkingFixed_o;
-           motion_controller_withPIC_B.idxEndIneq_e++) {
-        qrmanager->jpvt[motion_controller_withPIC_B.idxEndIneq_e] = 1;
+      for (motion_controller_withPIC_B.idxEndIneq_g = 0;
+           motion_controller_withPIC_B.idxEndIneq_g <
+           motion_controller_withPIC_B.mWorkingFixed_e;
+           motion_controller_withPIC_B.idxEndIneq_g++) {
+        qrmanager->jpvt[motion_controller_withPIC_B.idxEndIneq_g] = 1;
       }
 
-      motion_controller_withPIC_B.idxEndIneq_e = workingset->nWConstr[0] + 1;
-      if (motion_controller_withPIC_B.idxEndIneq_e <=
+      motion_controller_withPIC_B.idxEndIneq_g = workingset->nWConstr[0] + 1;
+      if (motion_controller_withPIC_B.idxEndIneq_g <=
           motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp) {
-        memset(&qrmanager->jpvt[motion_controller_withPIC_B.idxEndIneq_e + -1],
+        memset(&qrmanager->jpvt[motion_controller_withPIC_B.idxEndIneq_g + -1],
                0, static_cast<uint32_T>
                ((motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp -
-                 motion_controller_withPIC_B.idxEndIneq_e) + 1) * sizeof(int32_T));
+                 motion_controller_withPIC_B.idxEndIneq_g) + 1) * sizeof(int32_T));
       }
 
       motion_controller_w_factorQRE_c(qrmanager, workingset->nVar,
         motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp);
-      for (motion_controller_withPIC_B.idxEndIneq_e = 0;
-           motion_controller_withPIC_B.idxEndIneq_e <
-           motion_controller_withPIC_B.idxStartIneq_g;
-           motion_controller_withPIC_B.idxEndIneq_e++) {
-        memspace->workspace_int[motion_controller_withPIC_B.idxEndIneq_e] =
+      for (motion_controller_withPIC_B.idxEndIneq_g = 0;
+           motion_controller_withPIC_B.idxEndIneq_g <
+           motion_controller_withPIC_B.idxStartIneq_i;
+           motion_controller_withPIC_B.idxEndIneq_g++) {
+        memspace->workspace_int[motion_controller_withPIC_B.idxEndIneq_g] =
           qrmanager->jpvt[(motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp -
-                           motion_controller_withPIC_B.idxStartIneq_g) +
-          motion_controller_withPIC_B.idxEndIneq_e];
+                           motion_controller_withPIC_B.idxStartIneq_i) +
+          motion_controller_withPIC_B.idxEndIneq_g];
       }
 
       countsort_JblpZJs7(memspace->workspace_int,
-                         motion_controller_withPIC_B.idxStartIneq_g,
+                         motion_controller_withPIC_B.idxStartIneq_i,
                          memspace->workspace_sort, 1,
                          motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp);
       for (motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp =
-           motion_controller_withPIC_B.idxStartIneq_g;
+           motion_controller_withPIC_B.idxStartIneq_i;
            motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp >= 1;
            motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp--) {
         motion_control_removeEqConstr_i(workingset, memspace->
@@ -4888,18 +4884,18 @@ void motion_controller_withPIC::motion_c_PresolveWorkingSet_gjp
     }
   }
 
-  if ((motion_controller_withPIC_B.idxStartIneq_g != -1) &&
+  if ((motion_controller_withPIC_B.idxStartIneq_i != -1) &&
       (workingset->nActiveConstr <= 21)) {
     motion_c_RemoveDependentIneq__e(workingset, qrmanager, memspace, 100.0);
-    motion_controller_withPIC_B.okWorkingSet_k = motio_feasibleX0ForWorkingSet_c
+    motion_controller_withPIC_B.okWorkingSet_b = motio_feasibleX0ForWorkingSet_c
       (memspace->workspace_double, solution->xstar, workingset, qrmanager);
     guard1 = false;
-    if (!motion_controller_withPIC_B.okWorkingSet_k) {
+    if (!motion_controller_withPIC_B.okWorkingSet_b) {
       motion_c_RemoveDependentIneq__e(workingset, qrmanager, memspace, 1000.0);
-      motion_controller_withPIC_B.okWorkingSet_k =
+      motion_controller_withPIC_B.okWorkingSet_b =
         motio_feasibleX0ForWorkingSet_c(memspace->workspace_double,
         solution->xstar, workingset, qrmanager);
-      if (!motion_controller_withPIC_B.okWorkingSet_k) {
+      if (!motion_controller_withPIC_B.okWorkingSet_b) {
         solution->state = -7;
       } else {
         guard1 = true;
@@ -4911,22 +4907,22 @@ void motion_controller_withPIC::motion_c_PresolveWorkingSet_gjp
     if (guard1) {
       if (workingset->nWConstr[0] + workingset->nWConstr[1] == workingset->nVar)
       {
-        motion_controller_withPIC_B.constrViolation_i =
+        motion_controller_withPIC_B.constrViolation_f =
           motion_maxConstraintViolation_n(workingset, solution->xstar);
-        if (motion_controller_withPIC_B.constrViolation_i > 1.0E-8) {
+        if (motion_controller_withPIC_B.constrViolation_f > 1.0E-8) {
           solution->state = -2;
         }
       }
     }
   } else {
     solution->state = -3;
-    motion_controller_withPIC_B.idxStartIneq_g = (workingset->nWConstr[0] +
+    motion_controller_withPIC_B.idxStartIneq_i = (workingset->nWConstr[0] +
       workingset->nWConstr[1]) + 1;
-    motion_controller_withPIC_B.idxEndIneq_e = workingset->nActiveConstr;
+    motion_controller_withPIC_B.idxEndIneq_g = workingset->nActiveConstr;
     for (motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp =
-         motion_controller_withPIC_B.idxStartIneq_g;
+         motion_controller_withPIC_B.idxStartIneq_i;
          motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp <=
-         motion_controller_withPIC_B.idxEndIneq_e;
+         motion_controller_withPIC_B.idxEndIneq_g;
          motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp++) {
       workingset->isActiveConstr[(workingset->isActiveIdx[workingset->
         Wid[motion_controller_withPIC_B.mTotalWorkingEq_tmp_tmp - 1] - 1] +
@@ -4942,7 +4938,7 @@ void motion_controller_withPIC::motion_c_PresolveWorkingSet_gjp
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_c_computeFirstOrderOpt_k
   (sYqpSPVJXu9aOn60zG4DpzD_motio_T *solution, const
    s3PrFoa9w5ssw8XLEJooNqH_motio_T *objective, int32_T workingset_nVar, const
@@ -4993,7 +4989,7 @@ void motion_controller_withPIC::motion_c_computeFirstOrderOpt_k
   solution->firstorderopt = infNorm;
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controller_with_driver_e(const real_T H
   [400], const real_T f[20], sYqpSPVJXu9aOn60zG4DpzD_motio_T *solution,
   s3cSGkBdKxRj6Qn3zsJRowG_motio_T *memspace, sVIU4VBONGRsUytHTQmMJFH_motio_T
@@ -5033,23 +5029,23 @@ void motion_controller_withPIC::motion_controller_with_driver_e(const real_T H
   objective->prev_hasLinear = false;
   objective->gammaScalar = 0.0;
   solution->iterations = 0;
-  motion_controller_withPIC_B.i_m = workingset->nVar;
-  motion_controller_withPIC_B.idxStartIneq_p = static_cast<uint8_T>
+  motion_controller_withPIC_B.i_g = workingset->nVar;
+  motion_controller_withPIC_B.idxStartIneq_m = static_cast<uint8_T>
     (workingset->sizes[0]);
   for (motion_controller_withPIC_B.mConstr = 0;
        motion_controller_withPIC_B.mConstr <
-       motion_controller_withPIC_B.idxStartIneq_p;
+       motion_controller_withPIC_B.idxStartIneq_m;
        motion_controller_withPIC_B.mConstr++) {
     solution->xstar[workingset->indexFixed[motion_controller_withPIC_B.mConstr]
       - 1] = workingset->ub[workingset->
       indexFixed[motion_controller_withPIC_B.mConstr] - 1];
   }
 
-  motion_controller_withPIC_B.idxStartIneq_p = static_cast<uint8_T>
+  motion_controller_withPIC_B.idxStartIneq_m = static_cast<uint8_T>
     (workingset->sizes[3]);
   for (motion_controller_withPIC_B.mConstr = 0;
        motion_controller_withPIC_B.mConstr <
-       motion_controller_withPIC_B.idxStartIneq_p;
+       motion_controller_withPIC_B.idxStartIneq_m;
        motion_controller_withPIC_B.mConstr++) {
     if (workingset->isActiveConstr[(workingset->isActiveIdx[3] +
          motion_controller_withPIC_B.mConstr) - 1]) {
@@ -5059,11 +5055,11 @@ void motion_controller_withPIC::motion_controller_with_driver_e(const real_T H
     }
   }
 
-  motion_controller_withPIC_B.idxStartIneq_p = static_cast<uint8_T>
+  motion_controller_withPIC_B.idxStartIneq_m = static_cast<uint8_T>
     (workingset->sizes[4]);
   for (motion_controller_withPIC_B.mConstr = 0;
        motion_controller_withPIC_B.mConstr <
-       motion_controller_withPIC_B.idxStartIneq_p;
+       motion_controller_withPIC_B.idxStartIneq_m;
        motion_controller_withPIC_B.mConstr++) {
     if (workingset->isActiveConstr[(workingset->isActiveIdx[4] +
          motion_controller_withPIC_B.mConstr) - 1]) {
@@ -5084,13 +5080,13 @@ void motion_controller_withPIC::motion_controller_with_driver_e(const real_T H
       motion_controller_withPIC_B.b_workingset = *workingset;
       motion_control_setProblemType_k(&motion_controller_withPIC_B.b_workingset,
         1);
-      motion_controller_withPIC_B.idxStartIneq_p =
+      motion_controller_withPIC_B.idxStartIneq_m =
         (motion_controller_withPIC_B.b_workingset.nWConstr[0] +
          motion_controller_withPIC_B.b_workingset.nWConstr[1]) + 1;
       motion_controller_withPIC_B.idxEndIneq_o =
         motion_controller_withPIC_B.b_workingset.nActiveConstr;
       for (motion_controller_withPIC_B.mConstr =
-           motion_controller_withPIC_B.idxStartIneq_p;
+           motion_controller_withPIC_B.idxStartIneq_m;
            motion_controller_withPIC_B.mConstr <=
            motion_controller_withPIC_B.idxEndIneq_o;
            motion_controller_withPIC_B.mConstr++) {
@@ -5178,7 +5174,7 @@ void motion_controller_withPIC::motion_controller_with_driver_e(const real_T H
         } else {
           if (solution->maxConstr > 0.0) {
             motion_controller_withPIC_B.mConstr = static_cast<uint8_T>
-              (motion_controller_withPIC_B.i_m);
+              (motion_controller_withPIC_B.i_g);
             if (motion_controller_withPIC_B.mConstr - 1 >= 0) {
               memcpy(&solution->searchDir[0], &solution->xstar[0],
                      static_cast<uint32_T>(motion_controller_withPIC_B.mConstr) *
@@ -5188,11 +5184,11 @@ void motion_controller_withPIC::motion_controller_with_driver_e(const real_T H
             motion_c_PresolveWorkingSet_gjp(solution, memspace,
               &motion_controller_withPIC_B.b_workingset, qrmanager);
             *workingset = motion_controller_withPIC_B.b_workingset;
-            motion_controller_withPIC_B.maxConstr_new_h =
+            motion_controller_withPIC_B.maxConstr_new_p =
               motion_maxConstraintViolation_n(workingset, solution->xstar);
-            if (motion_controller_withPIC_B.maxConstr_new_h >=
+            if (motion_controller_withPIC_B.maxConstr_new_p >=
                 solution->maxConstr) {
-              solution->maxConstr = motion_controller_withPIC_B.maxConstr_new_h;
+              solution->maxConstr = motion_controller_withPIC_B.maxConstr_new_p;
               if (motion_controller_withPIC_B.mConstr - 1 >= 0) {
                 memcpy(&solution->xstar[0], &solution->searchDir[0],
                        static_cast<uint32_T>(motion_controller_withPIC_B.mConstr)
@@ -5214,16 +5210,16 @@ void motion_controller_withPIC::motion_controller_with_driver_e(const real_T H
         options->StepTolerance, runTimeOptions_ConstrRelTolFact,
         runTimeOptions_ProbRelTolFactor, true);
       motion_controller_withPIC_B.b_bool = false;
-      motion_controller_withPIC_B.i_m = 0;
+      motion_controller_withPIC_B.i_g = 0;
       do {
         exitg2 = 0;
-        if (motion_controller_withPIC_B.i_m < 8) {
+        if (motion_controller_withPIC_B.i_g < 8) {
           if (j[static_cast<int32_T>(options->
-               SolverName[motion_controller_withPIC_B.i_m])] != j
-              [static_cast<int32_T>(l[motion_controller_withPIC_B.i_m])]) {
+               SolverName[motion_controller_withPIC_B.i_g])] != j
+              [static_cast<int32_T>(l[motion_controller_withPIC_B.i_g])]) {
             exitg2 = 1;
           } else {
-            motion_controller_withPIC_B.i_m++;
+            motion_controller_withPIC_B.i_g++;
           }
         } else {
           motion_controller_withPIC_B.b_bool = true;
@@ -5246,29 +5242,29 @@ void motion_controller_withPIC::motion_controller_with_driver_e(const real_T H
           motion_c_PresolveWorkingSet_gjp(solution, memspace, workingset,
             qrmanager);
           motion_controller_withPIC_B.mConstr = workingset->probType;
-          motion_controller_withPIC_B.idxStartIneq_p = workingset->nVar;
+          motion_controller_withPIC_B.idxStartIneq_m = workingset->nVar;
           solution->xstar[20] = solution->maxConstr + 1.0;
           if (workingset->probType == 3) {
-            motion_controller_withPIC_B.i_m = 1;
+            motion_controller_withPIC_B.i_g = 1;
           } else {
-            motion_controller_withPIC_B.i_m = 4;
+            motion_controller_withPIC_B.i_g = 4;
           }
 
           motion_control_setProblemType_k(workingset,
-            motion_controller_withPIC_B.i_m);
+            motion_controller_withPIC_B.i_g);
           motion_controller_withPIC_B.idxEndIneq_o = workingset->nWConstr[0] +
             workingset->nWConstr[1];
           motion_controller_withPIC_B.b_idxStartIneq =
             motion_controller_withPIC_B.idxEndIneq_o + 1;
           motion_controller_withPIC_B.b_idxEndIneq = workingset->nActiveConstr;
-          for (motion_controller_withPIC_B.i_m =
+          for (motion_controller_withPIC_B.i_g =
                motion_controller_withPIC_B.b_idxStartIneq;
-               motion_controller_withPIC_B.i_m <=
+               motion_controller_withPIC_B.i_g <=
                motion_controller_withPIC_B.b_idxEndIneq;
-               motion_controller_withPIC_B.i_m++) {
+               motion_controller_withPIC_B.i_g++) {
             workingset->isActiveConstr[(workingset->isActiveIdx[workingset->
-              Wid[motion_controller_withPIC_B.i_m - 1] - 1] +
-              workingset->Wlocalidx[motion_controller_withPIC_B.i_m - 1]) - 2] =
+              Wid[motion_controller_withPIC_B.i_g - 1] - 1] +
+              workingset->Wlocalidx[motion_controller_withPIC_B.i_g - 1]) - 2] =
               false;
           }
 
@@ -5293,29 +5289,29 @@ void motion_controller_withPIC::motion_controller_with_driver_e(const real_T H
             false);
           if (workingset->isActiveConstr[(workingset->isActiveIdx[3] +
                workingset->sizes[3]) - 2]) {
-            motion_controller_withPIC_B.i_m = workingset->sizes[0];
+            motion_controller_withPIC_B.i_g = workingset->sizes[0];
             exitg1 = false;
-            while ((!exitg1) && (motion_controller_withPIC_B.i_m + 1 <=
+            while ((!exitg1) && (motion_controller_withPIC_B.i_g + 1 <=
                                  workingset->nActiveConstr)) {
-              if ((workingset->Wid[motion_controller_withPIC_B.i_m] == 4) &&
-                  (workingset->Wlocalidx[motion_controller_withPIC_B.i_m] ==
+              if ((workingset->Wid[motion_controller_withPIC_B.i_g] == 4) &&
+                  (workingset->Wlocalidx[motion_controller_withPIC_B.i_g] ==
                    workingset->sizes[3])) {
                 motion_controlle_removeConstr_n(workingset,
-                  motion_controller_withPIC_B.i_m + 1);
+                  motion_controller_withPIC_B.i_g + 1);
                 exitg1 = true;
               } else {
-                motion_controller_withPIC_B.i_m++;
+                motion_controller_withPIC_B.i_g++;
               }
             }
           }
 
-          motion_controller_withPIC_B.i_m = workingset->nActiveConstr;
-          while ((motion_controller_withPIC_B.i_m > workingset->sizes[0]) &&
-                 (motion_controller_withPIC_B.i_m >
-                  motion_controller_withPIC_B.idxStartIneq_p)) {
+          motion_controller_withPIC_B.i_g = workingset->nActiveConstr;
+          while ((motion_controller_withPIC_B.i_g > workingset->sizes[0]) &&
+                 (motion_controller_withPIC_B.i_g >
+                  motion_controller_withPIC_B.idxStartIneq_m)) {
             motion_controlle_removeConstr_n(workingset,
-              motion_controller_withPIC_B.i_m);
-            motion_controller_withPIC_B.i_m--;
+              motion_controller_withPIC_B.i_g);
+            motion_controller_withPIC_B.i_g--;
           }
 
           solution->maxConstr = solution->xstar[20];
@@ -5339,7 +5335,7 @@ void motion_controller_withPIC::motion_controller_with_driver_e(const real_T H
   }
 }
 
-// Function for MATLAB Function: '<S62>/solvex'
+// Function for MATLAB Function: '<S63>/solvex'
 void motion_controller_withPIC::motion_controller_wi_quadprog_k(const real_T H
   [400], const real_T f[20], const real_T Aineq[800], const real_T bineq[40],
   const real_T lb[20], const real_T ub[20], real_T x0[20], const
@@ -5348,20 +5344,20 @@ void motion_controller_withPIC::motion_controller_wi_quadprog_k(const real_T H
   __m128d tmp;
   boolean_T exitg1;
   boolean_T guard1;
-  motion_controller_withPIC_B.exitflag_k = (rtInf);
-  motion_controller_withPIC_B.c_k_n = 0;
+  motion_controller_withPIC_B.exitflag_o = (rtInf);
+  motion_controller_withPIC_B.c_k_p = 0;
   exitg1 = false;
-  while ((!exitg1) && (motion_controller_withPIC_B.c_k_n < 20)) {
-    if (lb[motion_controller_withPIC_B.c_k_n] >
-        ub[motion_controller_withPIC_B.c_k_n]) {
-      motion_controller_withPIC_B.exitflag_k = -2.0;
+  while ((!exitg1) && (motion_controller_withPIC_B.c_k_p < 20)) {
+    if (lb[motion_controller_withPIC_B.c_k_p] >
+        ub[motion_controller_withPIC_B.c_k_p]) {
+      motion_controller_withPIC_B.exitflag_o = -2.0;
       exitg1 = true;
     } else {
-      motion_controller_withPIC_B.c_k_n++;
+      motion_controller_withPIC_B.c_k_p++;
     }
   }
 
-  if (!(motion_controller_withPIC_B.exitflag_k == -2.0)) {
+  if (!(motion_controller_withPIC_B.exitflag_o == -2.0)) {
     motion_controller_withPIC_B.solution_l.fstar = 0.0;
     motion_controller_withPIC_B.solution_l.firstorderopt = 0.0;
     memset(&motion_controller_withPIC_B.solution_l.lambda[0], 0, 81U * sizeof
@@ -5405,9 +5401,9 @@ void motion_controller_withPIC::motion_controller_wi_quadprog_k(const real_T H
            (int32_T));
     memset(&motion_controller_withPIC_B.WorkingSet_p.Wlocalidx[0], 0, 81U *
            sizeof(int32_T));
-    for (motion_controller_withPIC_B.i_i = 0; motion_controller_withPIC_B.i_i <
-         5; motion_controller_withPIC_B.i_i++) {
-      motion_controller_withPIC_B.WorkingSet_p.nWConstr[motion_controller_withPIC_B.i_i]
+    for (motion_controller_withPIC_B.i_o = 0; motion_controller_withPIC_B.i_o <
+         5; motion_controller_withPIC_B.i_o++) {
+      motion_controller_withPIC_B.WorkingSet_p.nWConstr[motion_controller_withPIC_B.i_o]
         = 0;
     }
 
@@ -5419,25 +5415,25 @@ void motion_controller_withPIC::motion_controller_wi_quadprog_k(const real_T H
            (int32_T));
     memset(&motion_controller_withPIC_B.WorkingSet_p.indexFixed[0], 0, 21U *
            sizeof(int32_T));
-    motion_controller_withPIC_B.c_k_n = 40;
-    motion_controller_withPIC_B.idxFillStart_j = 0;
-    motion_controller_withPIC_B.colOffsetATw_e = 0;
-    for (motion_controller_withPIC_B.i_i = 0; motion_controller_withPIC_B.i_i <
-         20; motion_controller_withPIC_B.i_i++) {
-      motion_controller_withPIC_B.exitflag_k =
-        lb[motion_controller_withPIC_B.i_i];
+    motion_controller_withPIC_B.c_k_p = 40;
+    motion_controller_withPIC_B.idxFillStart_i = 0;
+    motion_controller_withPIC_B.colOffsetATw_n = 0;
+    for (motion_controller_withPIC_B.i_o = 0; motion_controller_withPIC_B.i_o <
+         20; motion_controller_withPIC_B.i_o++) {
+      motion_controller_withPIC_B.exitflag_o =
+        lb[motion_controller_withPIC_B.i_o];
       guard1 = false;
-      if ((!rtIsInf(motion_controller_withPIC_B.exitflag_k)) && (!rtIsNaN
-           (motion_controller_withPIC_B.exitflag_k))) {
-        if (fabs(motion_controller_withPIC_B.exitflag_k -
-                 ub[motion_controller_withPIC_B.i_i]) < 1.0E-8) {
-          motion_controller_withPIC_B.colOffsetATw_e++;
-          motion_controller_withPIC_B.WorkingSet_p.indexFixed[motion_controller_withPIC_B.colOffsetATw_e
-            - 1] = motion_controller_withPIC_B.i_i + 1;
+      if ((!rtIsInf(motion_controller_withPIC_B.exitflag_o)) && (!rtIsNaN
+           (motion_controller_withPIC_B.exitflag_o))) {
+        if (fabs(motion_controller_withPIC_B.exitflag_o -
+                 ub[motion_controller_withPIC_B.i_o]) < 1.0E-8) {
+          motion_controller_withPIC_B.colOffsetATw_n++;
+          motion_controller_withPIC_B.WorkingSet_p.indexFixed[motion_controller_withPIC_B.colOffsetATw_n
+            - 1] = motion_controller_withPIC_B.i_o + 1;
         } else {
-          motion_controller_withPIC_B.c_k_n++;
-          motion_controller_withPIC_B.WorkingSet_p.indexLB[motion_controller_withPIC_B.c_k_n
-            - 41] = motion_controller_withPIC_B.i_i + 1;
+          motion_controller_withPIC_B.c_k_p++;
+          motion_controller_withPIC_B.WorkingSet_p.indexLB[motion_controller_withPIC_B.c_k_p
+            - 41] = motion_controller_withPIC_B.i_o + 1;
           guard1 = true;
         }
       } else {
@@ -5445,196 +5441,196 @@ void motion_controller_withPIC::motion_controller_wi_quadprog_k(const real_T H
       }
 
       if (guard1) {
-        motion_controller_withPIC_B.exitflag_k =
-          ub[motion_controller_withPIC_B.i_i];
-        if ((!rtIsInf(motion_controller_withPIC_B.exitflag_k)) && (!rtIsNaN
-             (motion_controller_withPIC_B.exitflag_k))) {
-          motion_controller_withPIC_B.idxFillStart_j++;
-          motion_controller_withPIC_B.WorkingSet_p.indexUB[motion_controller_withPIC_B.idxFillStart_j
-            - 1] = motion_controller_withPIC_B.i_i + 1;
+        motion_controller_withPIC_B.exitflag_o =
+          ub[motion_controller_withPIC_B.i_o];
+        if ((!rtIsInf(motion_controller_withPIC_B.exitflag_o)) && (!rtIsNaN
+             (motion_controller_withPIC_B.exitflag_o))) {
+          motion_controller_withPIC_B.idxFillStart_i++;
+          motion_controller_withPIC_B.WorkingSet_p.indexUB[motion_controller_withPIC_B.idxFillStart_i
+            - 1] = motion_controller_withPIC_B.i_o + 1;
         }
       }
     }
 
-    motion_controller_withPIC_B.i_i = (motion_controller_withPIC_B.c_k_n +
-      motion_controller_withPIC_B.idxFillStart_j) +
-      motion_controller_withPIC_B.colOffsetATw_e;
+    motion_controller_withPIC_B.i_o = (motion_controller_withPIC_B.c_k_p +
+      motion_controller_withPIC_B.idxFillStart_i) +
+      motion_controller_withPIC_B.colOffsetATw_n;
     motion_controller_withPIC_B.WorkingSet_p.mConstr =
-      motion_controller_withPIC_B.i_i;
+      motion_controller_withPIC_B.i_o;
     motion_controller_withPIC_B.WorkingSet_p.mConstrOrig =
-      motion_controller_withPIC_B.i_i;
+      motion_controller_withPIC_B.i_o;
     motion_controller_withPIC_B.WorkingSet_p.mConstrMax = 81;
     motion_controller_withPIC_B.WorkingSet_p.sizes[0] =
-      motion_controller_withPIC_B.colOffsetATw_e;
+      motion_controller_withPIC_B.colOffsetATw_n;
     motion_controller_withPIC_B.WorkingSet_p.sizes[1] = 0;
     motion_controller_withPIC_B.WorkingSet_p.sizes[2] = 40;
     motion_controller_withPIC_B.WorkingSet_p.sizes[3] =
-      motion_controller_withPIC_B.c_k_n - 40;
+      motion_controller_withPIC_B.c_k_p - 40;
     motion_controller_withPIC_B.WorkingSet_p.sizes[4] =
-      motion_controller_withPIC_B.idxFillStart_j;
-    for (motion_controller_withPIC_B.i_i = 0; motion_controller_withPIC_B.i_i <
-         5; motion_controller_withPIC_B.i_i++) {
-      motion_controller_withPIC_B.WorkingSet_p.sizesNormal[motion_controller_withPIC_B.i_i]
+      motion_controller_withPIC_B.idxFillStart_i;
+    for (motion_controller_withPIC_B.i_o = 0; motion_controller_withPIC_B.i_o <
+         5; motion_controller_withPIC_B.i_o++) {
+      motion_controller_withPIC_B.WorkingSet_p.sizesNormal[motion_controller_withPIC_B.i_o]
         =
-        motion_controller_withPIC_B.WorkingSet_p.sizes[motion_controller_withPIC_B.i_i];
+        motion_controller_withPIC_B.WorkingSet_p.sizes[motion_controller_withPIC_B.i_o];
     }
 
     motion_controller_withPIC_B.WorkingSet_p.sizesPhaseOne[0] =
-      motion_controller_withPIC_B.colOffsetATw_e;
+      motion_controller_withPIC_B.colOffsetATw_n;
     motion_controller_withPIC_B.WorkingSet_p.sizesPhaseOne[1] = 0;
     motion_controller_withPIC_B.WorkingSet_p.sizesPhaseOne[2] = 40;
     motion_controller_withPIC_B.WorkingSet_p.sizesPhaseOne[3] =
-      motion_controller_withPIC_B.c_k_n - 39;
+      motion_controller_withPIC_B.c_k_p - 39;
     motion_controller_withPIC_B.WorkingSet_p.sizesPhaseOne[4] =
-      motion_controller_withPIC_B.idxFillStart_j;
+      motion_controller_withPIC_B.idxFillStart_i;
     motion_controller_withPIC_B.WorkingSet_p.sizesRegularized[0] =
-      motion_controller_withPIC_B.colOffsetATw_e;
+      motion_controller_withPIC_B.colOffsetATw_n;
     motion_controller_withPIC_B.WorkingSet_p.sizesRegularized[1] = 0;
     motion_controller_withPIC_B.WorkingSet_p.sizesRegularized[2] = 40;
     motion_controller_withPIC_B.WorkingSet_p.sizesRegularized[3] =
-      motion_controller_withPIC_B.c_k_n;
+      motion_controller_withPIC_B.c_k_p;
     motion_controller_withPIC_B.WorkingSet_p.sizesRegularized[4] =
-      motion_controller_withPIC_B.idxFillStart_j;
+      motion_controller_withPIC_B.idxFillStart_i;
     motion_controller_withPIC_B.WorkingSet_p.sizesRegPhaseOne[0] =
-      motion_controller_withPIC_B.colOffsetATw_e;
+      motion_controller_withPIC_B.colOffsetATw_n;
     motion_controller_withPIC_B.WorkingSet_p.sizesRegPhaseOne[1] = 0;
     motion_controller_withPIC_B.WorkingSet_p.sizesRegPhaseOne[2] = 40;
     motion_controller_withPIC_B.WorkingSet_p.sizesRegPhaseOne[3] =
-      motion_controller_withPIC_B.c_k_n + 1;
+      motion_controller_withPIC_B.c_k_p + 1;
     motion_controller_withPIC_B.WorkingSet_p.sizesRegPhaseOne[4] =
-      motion_controller_withPIC_B.idxFillStart_j;
+      motion_controller_withPIC_B.idxFillStart_i;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[0] = 1;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[1] =
-      motion_controller_withPIC_B.colOffsetATw_e;
+      motion_controller_withPIC_B.colOffsetATw_n;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[2] = 0;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[3] = 40;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[4] =
-      motion_controller_withPIC_B.c_k_n - 40;
+      motion_controller_withPIC_B.c_k_p - 40;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[5] =
-      motion_controller_withPIC_B.idxFillStart_j;
-    for (motion_controller_withPIC_B.i_i = 0; motion_controller_withPIC_B.i_i <
-         6; motion_controller_withPIC_B.i_i++) {
-      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_i]
+      motion_controller_withPIC_B.idxFillStart_i;
+    for (motion_controller_withPIC_B.i_o = 0; motion_controller_withPIC_B.i_o <
+         6; motion_controller_withPIC_B.i_o++) {
+      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_o]
         =
-        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[motion_controller_withPIC_B.i_i];
+        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[motion_controller_withPIC_B.i_o];
     }
 
-    for (motion_controller_withPIC_B.i_i = 0; motion_controller_withPIC_B.i_i <
-         5; motion_controller_withPIC_B.i_i++) {
-      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_i
+    for (motion_controller_withPIC_B.i_o = 0; motion_controller_withPIC_B.i_o <
+         5; motion_controller_withPIC_B.i_o++) {
+      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_o
         + 1] +=
-        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_i];
+        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_o];
     }
 
-    for (motion_controller_withPIC_B.i_i = 0; motion_controller_withPIC_B.i_i <
-         6; motion_controller_withPIC_B.i_i++) {
-      motion_controller_withPIC_B.WorkingSet_p.isActiveIdx[motion_controller_withPIC_B.i_i]
+    for (motion_controller_withPIC_B.i_o = 0; motion_controller_withPIC_B.i_o <
+         6; motion_controller_withPIC_B.i_o++) {
+      motion_controller_withPIC_B.WorkingSet_p.isActiveIdx[motion_controller_withPIC_B.i_o]
         =
-        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_i];
+        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_o];
     }
 
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[0] = 1;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[1] =
-      motion_controller_withPIC_B.colOffsetATw_e;
+      motion_controller_withPIC_B.colOffsetATw_n;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[2] = 0;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[3] = 40;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[4] =
-      motion_controller_withPIC_B.c_k_n - 39;
+      motion_controller_withPIC_B.c_k_p - 39;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[5] =
-      motion_controller_withPIC_B.idxFillStart_j;
-    for (motion_controller_withPIC_B.i_i = 0; motion_controller_withPIC_B.i_i <
-         5; motion_controller_withPIC_B.i_i++) {
-      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[motion_controller_withPIC_B.i_i
+      motion_controller_withPIC_B.idxFillStart_i;
+    for (motion_controller_withPIC_B.i_o = 0; motion_controller_withPIC_B.i_o <
+         5; motion_controller_withPIC_B.i_o++) {
+      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[motion_controller_withPIC_B.i_o
         + 1] +=
-        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[motion_controller_withPIC_B.i_i];
-      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_i
+        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxNormal[motion_controller_withPIC_B.i_o];
+      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_o
         + 1] +=
-        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_i];
+        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_o];
     }
 
-    for (motion_controller_withPIC_B.i_i = 0; motion_controller_withPIC_B.i_i <
-         6; motion_controller_withPIC_B.i_i++) {
-      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxPhaseOne[motion_controller_withPIC_B.i_i]
+    for (motion_controller_withPIC_B.i_o = 0; motion_controller_withPIC_B.i_o <
+         6; motion_controller_withPIC_B.i_o++) {
+      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxPhaseOne[motion_controller_withPIC_B.i_o]
         =
-        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_i];
+        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_o];
     }
 
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[0] = 1;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[1] =
-      motion_controller_withPIC_B.colOffsetATw_e;
+      motion_controller_withPIC_B.colOffsetATw_n;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[2] = 0;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[3] = 40;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[4] =
-      motion_controller_withPIC_B.c_k_n;
+      motion_controller_withPIC_B.c_k_p;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[5] =
-      motion_controller_withPIC_B.idxFillStart_j;
-    for (motion_controller_withPIC_B.i_i = 0; motion_controller_withPIC_B.i_i <
-         5; motion_controller_withPIC_B.i_i++) {
-      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_i
+      motion_controller_withPIC_B.idxFillStart_i;
+    for (motion_controller_withPIC_B.i_o = 0; motion_controller_withPIC_B.i_o <
+         5; motion_controller_withPIC_B.i_o++) {
+      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_o
         + 1] +=
-        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_i];
+        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_o];
     }
 
-    for (motion_controller_withPIC_B.i_i = 0; motion_controller_withPIC_B.i_i <
-         6; motion_controller_withPIC_B.i_i++) {
-      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegularized[motion_controller_withPIC_B.i_i]
+    for (motion_controller_withPIC_B.i_o = 0; motion_controller_withPIC_B.i_o <
+         6; motion_controller_withPIC_B.i_o++) {
+      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegularized[motion_controller_withPIC_B.i_o]
         =
-        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_i];
+        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_o];
     }
 
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[0] = 1;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[1] =
-      motion_controller_withPIC_B.colOffsetATw_e;
+      motion_controller_withPIC_B.colOffsetATw_n;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[2] = 0;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[3] = 40;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[4] =
-      motion_controller_withPIC_B.c_k_n + 1;
+      motion_controller_withPIC_B.c_k_p + 1;
     motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[5] =
-      motion_controller_withPIC_B.idxFillStart_j;
-    for (motion_controller_withPIC_B.c_k_n = 0;
-         motion_controller_withPIC_B.c_k_n < 5;
-         motion_controller_withPIC_B.c_k_n++) {
-      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.c_k_n
+      motion_controller_withPIC_B.idxFillStart_i;
+    for (motion_controller_withPIC_B.c_k_p = 0;
+         motion_controller_withPIC_B.c_k_p < 5;
+         motion_controller_withPIC_B.c_k_p++) {
+      motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.c_k_p
         + 1] +=
-        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.c_k_n];
+        motion_controller_withPIC_B.WorkingSet_p.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.c_k_p];
     }
 
-    for (motion_controller_withPIC_B.c_k_n = 0;
-         motion_controller_withPIC_B.c_k_n < 20;
-         motion_controller_withPIC_B.c_k_n++) {
-      for (motion_controller_withPIC_B.idxFillStart_j = 0;
-           motion_controller_withPIC_B.idxFillStart_j < 40;
-           motion_controller_withPIC_B.idxFillStart_j++) {
-        motion_controller_withPIC_B.WorkingSet_p.Aineq[motion_controller_withPIC_B.c_k_n
-          + 21 * motion_controller_withPIC_B.idxFillStart_j] = Aineq[40 *
-          motion_controller_withPIC_B.c_k_n +
-          motion_controller_withPIC_B.idxFillStart_j];
+    for (motion_controller_withPIC_B.c_k_p = 0;
+         motion_controller_withPIC_B.c_k_p < 20;
+         motion_controller_withPIC_B.c_k_p++) {
+      for (motion_controller_withPIC_B.idxFillStart_i = 0;
+           motion_controller_withPIC_B.idxFillStart_i < 40;
+           motion_controller_withPIC_B.idxFillStart_i++) {
+        motion_controller_withPIC_B.WorkingSet_p.Aineq[motion_controller_withPIC_B.c_k_p
+          + 21 * motion_controller_withPIC_B.idxFillStart_i] = Aineq[40 *
+          motion_controller_withPIC_B.c_k_p +
+          motion_controller_withPIC_B.idxFillStart_i];
       }
     }
 
     memcpy(&motion_controller_withPIC_B.WorkingSet_p.bineq[0], &bineq[0], 40U *
            sizeof(real_T));
-    for (motion_controller_withPIC_B.c_k_n = 0;
-         motion_controller_withPIC_B.c_k_n <= 18;
-         motion_controller_withPIC_B.c_k_n += 2) {
-      tmp = _mm_loadu_pd(&lb[motion_controller_withPIC_B.c_k_n]);
+    for (motion_controller_withPIC_B.c_k_p = 0;
+         motion_controller_withPIC_B.c_k_p <= 18;
+         motion_controller_withPIC_B.c_k_p += 2) {
+      tmp = _mm_loadu_pd(&lb[motion_controller_withPIC_B.c_k_p]);
       _mm_storeu_pd
-        (&motion_controller_withPIC_B.WorkingSet_p.lb[motion_controller_withPIC_B.c_k_n],
+        (&motion_controller_withPIC_B.WorkingSet_p.lb[motion_controller_withPIC_B.c_k_p],
          _mm_mul_pd(tmp, _mm_set1_pd(-1.0)));
-      tmp = _mm_loadu_pd(&ub[motion_controller_withPIC_B.c_k_n]);
+      tmp = _mm_loadu_pd(&ub[motion_controller_withPIC_B.c_k_p]);
       _mm_storeu_pd
-        (&motion_controller_withPIC_B.WorkingSet_p.ub[motion_controller_withPIC_B.c_k_n],
+        (&motion_controller_withPIC_B.WorkingSet_p.ub[motion_controller_withPIC_B.c_k_p],
          tmp);
     }
 
     motion_control_setProblemType_k(&motion_controller_withPIC_B.WorkingSet_p, 3);
-    motion_controller_withPIC_B.idxFillStart_j =
+    motion_controller_withPIC_B.idxFillStart_i =
       motion_controller_withPIC_B.WorkingSet_p.isActiveIdx[2];
-    for (motion_controller_withPIC_B.c_k_n =
-         motion_controller_withPIC_B.idxFillStart_j;
-         motion_controller_withPIC_B.c_k_n < 82;
-         motion_controller_withPIC_B.c_k_n++) {
-      motion_controller_withPIC_B.WorkingSet_p.isActiveConstr[motion_controller_withPIC_B.c_k_n
+    for (motion_controller_withPIC_B.c_k_p =
+         motion_controller_withPIC_B.idxFillStart_i;
+         motion_controller_withPIC_B.c_k_p < 82;
+         motion_controller_withPIC_B.c_k_p++) {
+      motion_controller_withPIC_B.WorkingSet_p.isActiveConstr[motion_controller_withPIC_B.c_k_p
         - 1] = false;
     }
 
@@ -5646,120 +5642,120 @@ void motion_controller_withPIC::motion_controller_wi_quadprog_k(const real_T H
     motion_controller_withPIC_B.WorkingSet_p.nWConstr[4] = 0;
     motion_controller_withPIC_B.WorkingSet_p.nActiveConstr =
       motion_controller_withPIC_B.WorkingSet_p.nWConstr[0];
-    motion_controller_withPIC_B.idxFillStart_j = static_cast<uint8_T>
+    motion_controller_withPIC_B.idxFillStart_i = static_cast<uint8_T>
       (motion_controller_withPIC_B.WorkingSet_p.sizes[0]);
-    for (motion_controller_withPIC_B.c_k_n = 0;
-         motion_controller_withPIC_B.c_k_n <
-         motion_controller_withPIC_B.idxFillStart_j;
-         motion_controller_withPIC_B.c_k_n++) {
-      motion_controller_withPIC_B.WorkingSet_p.Wid[motion_controller_withPIC_B.c_k_n]
+    for (motion_controller_withPIC_B.c_k_p = 0;
+         motion_controller_withPIC_B.c_k_p <
+         motion_controller_withPIC_B.idxFillStart_i;
+         motion_controller_withPIC_B.c_k_p++) {
+      motion_controller_withPIC_B.WorkingSet_p.Wid[motion_controller_withPIC_B.c_k_p]
         = 1;
-      motion_controller_withPIC_B.WorkingSet_p.Wlocalidx[motion_controller_withPIC_B.c_k_n]
-        = motion_controller_withPIC_B.c_k_n + 1;
-      motion_controller_withPIC_B.WorkingSet_p.isActiveConstr[motion_controller_withPIC_B.c_k_n]
+      motion_controller_withPIC_B.WorkingSet_p.Wlocalidx[motion_controller_withPIC_B.c_k_p]
+        = motion_controller_withPIC_B.c_k_p + 1;
+      motion_controller_withPIC_B.WorkingSet_p.isActiveConstr[motion_controller_withPIC_B.c_k_p]
         = true;
-      motion_controller_withPIC_B.colOffsetATw_e = 21 *
-        motion_controller_withPIC_B.c_k_n;
-      motion_controller_withPIC_B.i_i =
-        motion_controller_withPIC_B.WorkingSet_p.indexFixed[motion_controller_withPIC_B.c_k_n];
-      if (motion_controller_withPIC_B.i_i - 2 >= 0) {
+      motion_controller_withPIC_B.colOffsetATw_n = 21 *
+        motion_controller_withPIC_B.c_k_p;
+      motion_controller_withPIC_B.i_o =
+        motion_controller_withPIC_B.WorkingSet_p.indexFixed[motion_controller_withPIC_B.c_k_p];
+      if (motion_controller_withPIC_B.i_o - 2 >= 0) {
         memset
-          (&motion_controller_withPIC_B.WorkingSet_p.ATwset[motion_controller_withPIC_B.colOffsetATw_e],
-           0, static_cast<uint32_T>(((motion_controller_withPIC_B.i_i +
-              motion_controller_withPIC_B.colOffsetATw_e) -
-             motion_controller_withPIC_B.colOffsetATw_e) - 1) * sizeof(real_T));
+          (&motion_controller_withPIC_B.WorkingSet_p.ATwset[motion_controller_withPIC_B.colOffsetATw_n],
+           0, static_cast<uint32_T>(((motion_controller_withPIC_B.i_o +
+              motion_controller_withPIC_B.colOffsetATw_n) -
+             motion_controller_withPIC_B.colOffsetATw_n) - 1) * sizeof(real_T));
       }
 
       motion_controller_withPIC_B.WorkingSet_p.ATwset
-        [(motion_controller_withPIC_B.WorkingSet_p.indexFixed[motion_controller_withPIC_B.c_k_n]
-          + motion_controller_withPIC_B.colOffsetATw_e) - 1] = 1.0;
-      motion_controller_withPIC_B.i_i =
-        motion_controller_withPIC_B.WorkingSet_p.indexFixed[motion_controller_withPIC_B.c_k_n]
+        [(motion_controller_withPIC_B.WorkingSet_p.indexFixed[motion_controller_withPIC_B.c_k_p]
+          + motion_controller_withPIC_B.colOffsetATw_n) - 1] = 1.0;
+      motion_controller_withPIC_B.i_o =
+        motion_controller_withPIC_B.WorkingSet_p.indexFixed[motion_controller_withPIC_B.c_k_p]
         + 1;
       motion_controller_withPIC_B.e_i =
         motion_controller_withPIC_B.WorkingSet_p.nVar;
-      if (motion_controller_withPIC_B.i_i <= motion_controller_withPIC_B.e_i) {
+      if (motion_controller_withPIC_B.i_o <= motion_controller_withPIC_B.e_i) {
         memset(&motion_controller_withPIC_B.WorkingSet_p.ATwset
-               [(motion_controller_withPIC_B.i_i +
-                 motion_controller_withPIC_B.colOffsetATw_e) + -1], 0,
+               [(motion_controller_withPIC_B.i_o +
+                 motion_controller_withPIC_B.colOffsetATw_n) + -1], 0,
                static_cast<uint32_T>((((motion_controller_withPIC_B.e_i +
-                   motion_controller_withPIC_B.colOffsetATw_e) -
-                  motion_controller_withPIC_B.i_i) -
-                 motion_controller_withPIC_B.colOffsetATw_e) + 1) * sizeof
+                   motion_controller_withPIC_B.colOffsetATw_n) -
+                  motion_controller_withPIC_B.i_o) -
+                 motion_controller_withPIC_B.colOffsetATw_n) + 1) * sizeof
                (real_T));
       }
 
-      motion_controller_withPIC_B.WorkingSet_p.bwset[motion_controller_withPIC_B.c_k_n]
+      motion_controller_withPIC_B.WorkingSet_p.bwset[motion_controller_withPIC_B.c_k_p]
         =
         motion_controller_withPIC_B.WorkingSet_p.ub[motion_controller_withPIC_B.WorkingSet_p.indexFixed
-        [motion_controller_withPIC_B.c_k_n] - 1];
+        [motion_controller_withPIC_B.c_k_p] - 1];
     }
 
     motion_controller_withPIC_B.WorkingSet_p.SLACK0 = 0.0;
-    motion_controller_withPIC_B.exitflag_k = 1.0;
-    for (motion_controller_withPIC_B.c_k_n = 0;
-         motion_controller_withPIC_B.c_k_n < 40;
-         motion_controller_withPIC_B.c_k_n++) {
-      motion_controller_withPIC_B.colSum_j = 0.0;
-      motion_controller_withPIC_B.colOffsetATw_e = 21 *
-        motion_controller_withPIC_B.c_k_n;
-      for (motion_controller_withPIC_B.idxFillStart_j = 0;
-           motion_controller_withPIC_B.idxFillStart_j < 20;
-           motion_controller_withPIC_B.idxFillStart_j++) {
-        motion_controller_withPIC_B.colSum_j += fabs
-          (motion_controller_withPIC_B.WorkingSet_p.Aineq[motion_controller_withPIC_B.idxFillStart_j
-           + motion_controller_withPIC_B.colOffsetATw_e]);
+    motion_controller_withPIC_B.exitflag_o = 1.0;
+    for (motion_controller_withPIC_B.c_k_p = 0;
+         motion_controller_withPIC_B.c_k_p < 40;
+         motion_controller_withPIC_B.c_k_p++) {
+      motion_controller_withPIC_B.colSum_c = 0.0;
+      motion_controller_withPIC_B.colOffsetATw_n = 21 *
+        motion_controller_withPIC_B.c_k_p;
+      for (motion_controller_withPIC_B.idxFillStart_i = 0;
+           motion_controller_withPIC_B.idxFillStart_i < 20;
+           motion_controller_withPIC_B.idxFillStart_i++) {
+        motion_controller_withPIC_B.colSum_c += fabs
+          (motion_controller_withPIC_B.WorkingSet_p.Aineq[motion_controller_withPIC_B.idxFillStart_i
+           + motion_controller_withPIC_B.colOffsetATw_n]);
       }
 
-      if ((!(motion_controller_withPIC_B.exitflag_k >=
-             motion_controller_withPIC_B.colSum_j)) && (!rtIsNaN
-           (motion_controller_withPIC_B.colSum_j))) {
-        motion_controller_withPIC_B.exitflag_k =
-          motion_controller_withPIC_B.colSum_j;
-      }
-    }
-
-    motion_controller_withPIC_B.colSum_j = 0.0;
-    motion_controller_withPIC_B.f_infnrm_o = 0.0;
-    for (motion_controller_withPIC_B.c_k_n = 0;
-         motion_controller_withPIC_B.c_k_n < 20;
-         motion_controller_withPIC_B.c_k_n++) {
-      motion_controller_withPIC_B.b_colSum_c = 0.0;
-      for (motion_controller_withPIC_B.idxFillStart_j = 0;
-           motion_controller_withPIC_B.idxFillStart_j < 20;
-           motion_controller_withPIC_B.idxFillStart_j++) {
-        motion_controller_withPIC_B.b_colSum_c += fabs(H[20 *
-          motion_controller_withPIC_B.c_k_n +
-          motion_controller_withPIC_B.idxFillStart_j]);
-      }
-
-      if ((!(motion_controller_withPIC_B.colSum_j >=
-             motion_controller_withPIC_B.b_colSum_c)) && (!rtIsNaN
-           (motion_controller_withPIC_B.b_colSum_c))) {
-        motion_controller_withPIC_B.colSum_j =
-          motion_controller_withPIC_B.b_colSum_c;
-      }
-
-      motion_controller_withPIC_B.b_colSum_c = fabs
-        (f[motion_controller_withPIC_B.c_k_n]);
-      if ((!(motion_controller_withPIC_B.f_infnrm_o >=
-             motion_controller_withPIC_B.b_colSum_c)) && (!rtIsNaN
-           (motion_controller_withPIC_B.b_colSum_c))) {
-        motion_controller_withPIC_B.f_infnrm_o =
-          motion_controller_withPIC_B.b_colSum_c;
+      if ((!(motion_controller_withPIC_B.exitflag_o >=
+             motion_controller_withPIC_B.colSum_c)) && (!rtIsNaN
+           (motion_controller_withPIC_B.colSum_c))) {
+        motion_controller_withPIC_B.exitflag_o =
+          motion_controller_withPIC_B.colSum_c;
       }
     }
 
-    if (motion_controller_withPIC_B.exitflag_k >=
-        motion_controller_withPIC_B.f_infnrm_o) {
-      motion_controller_withPIC_B.f_infnrm_o =
-        motion_controller_withPIC_B.exitflag_k;
+    motion_controller_withPIC_B.colSum_c = 0.0;
+    motion_controller_withPIC_B.f_infnrm_h = 0.0;
+    for (motion_controller_withPIC_B.c_k_p = 0;
+         motion_controller_withPIC_B.c_k_p < 20;
+         motion_controller_withPIC_B.c_k_p++) {
+      motion_controller_withPIC_B.b_colSum_i = 0.0;
+      for (motion_controller_withPIC_B.idxFillStart_i = 0;
+           motion_controller_withPIC_B.idxFillStart_i < 20;
+           motion_controller_withPIC_B.idxFillStart_i++) {
+        motion_controller_withPIC_B.b_colSum_i += fabs(H[20 *
+          motion_controller_withPIC_B.c_k_p +
+          motion_controller_withPIC_B.idxFillStart_i]);
+      }
+
+      if ((!(motion_controller_withPIC_B.colSum_c >=
+             motion_controller_withPIC_B.b_colSum_i)) && (!rtIsNaN
+           (motion_controller_withPIC_B.b_colSum_i))) {
+        motion_controller_withPIC_B.colSum_c =
+          motion_controller_withPIC_B.b_colSum_i;
+      }
+
+      motion_controller_withPIC_B.b_colSum_i = fabs
+        (f[motion_controller_withPIC_B.c_k_p]);
+      if ((!(motion_controller_withPIC_B.f_infnrm_h >=
+             motion_controller_withPIC_B.b_colSum_i)) && (!rtIsNaN
+           (motion_controller_withPIC_B.b_colSum_i))) {
+        motion_controller_withPIC_B.f_infnrm_h =
+          motion_controller_withPIC_B.b_colSum_i;
+      }
     }
 
-    if (motion_controller_withPIC_B.f_infnrm_o >=
-        motion_controller_withPIC_B.colSum_j) {
-      motion_controller_withPIC_B.colSum_j =
-        motion_controller_withPIC_B.f_infnrm_o;
+    if (motion_controller_withPIC_B.exitflag_o >=
+        motion_controller_withPIC_B.f_infnrm_h) {
+      motion_controller_withPIC_B.f_infnrm_h =
+        motion_controller_withPIC_B.exitflag_o;
+    }
+
+    if (motion_controller_withPIC_B.f_infnrm_h >=
+        motion_controller_withPIC_B.colSum_c) {
+      motion_controller_withPIC_B.colSum_c =
+        motion_controller_withPIC_B.f_infnrm_h;
     }
 
     motion_controller_withPIC_B.options_m = *options;
@@ -5769,8 +5765,8 @@ void motion_controller_withPIC::motion_controller_wi_quadprog_k(const real_T H
       &motion_controller_withPIC_B.WorkingSet_p,
       &motion_controller_withPIC_B.CholRegManager_c,
       &motion_controller_withPIC_B.options_m,
-      motion_controller_withPIC_B.exitflag_k,
-      motion_controller_withPIC_B.colSum_j,
+      motion_controller_withPIC_B.exitflag_o,
+      motion_controller_withPIC_B.colSum_c,
       &motion_controller_withPIC_B.QRManager_f,
       &motion_controller_withPIC_B.QPObjective_e);
     memcpy(&x0[0], &motion_controller_withPIC_B.solution_l.xstar[0], 20U *
@@ -5778,7 +5774,7 @@ void motion_controller_withPIC::motion_controller_wi_quadprog_k(const real_T H
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion__modifyOverheadPhaseOne_
   (sT1ziU4p6vTWuD880X9yNJ_motion_T *obj)
 {
@@ -5811,7 +5807,7 @@ void motion_controller_withPIC::motion__modifyOverheadPhaseOne_
   obj->isActiveConstr[obj->isActiveIdx[4] - 2] = false;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controlle_setProblemType
   (sT1ziU4p6vTWuD880X9yNJ_motion_T *obj, int32_T PROBLEM_TYPE)
 {
@@ -5942,7 +5938,7 @@ void motion_controller_withPIC::motion_controlle_setProblemType
   obj->probType = PROBLEM_TYPE;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 real_T motion_controller_withPIC::motion_controlle_xnrm2_h59MJ9zm(int32_T n,
   const real_T x[6601], int32_T ix0)
 {
@@ -5954,22 +5950,23 @@ real_T motion_controller_withPIC::motion_controlle_xnrm2_h59MJ9zm(int32_T n,
     } else {
       motion_controller_withPIC_B.scale = 3.3121686421112381E-170;
       motion_controller_withPIC_B.kend = (ix0 + n) - 1;
-      for (motion_controller_withPIC_B.k_b = ix0;
-           motion_controller_withPIC_B.k_b <= motion_controller_withPIC_B.kend;
-           motion_controller_withPIC_B.k_b++) {
+      for (motion_controller_withPIC_B.k_e = ix0;
+           motion_controller_withPIC_B.k_e <= motion_controller_withPIC_B.kend;
+           motion_controller_withPIC_B.k_e++) {
         motion_controller_withPIC_B.absxk = fabs
-          (x[motion_controller_withPIC_B.k_b - 1]);
+          (x[motion_controller_withPIC_B.k_e - 1]);
         if (motion_controller_withPIC_B.absxk >
             motion_controller_withPIC_B.scale) {
-          motion_controller_withPIC_B.t_h = motion_controller_withPIC_B.scale /
+          motion_controller_withPIC_B.t_jw = motion_controller_withPIC_B.scale /
             motion_controller_withPIC_B.absxk;
-          y = y * motion_controller_withPIC_B.t_h *
-            motion_controller_withPIC_B.t_h + 1.0;
+          y = y * motion_controller_withPIC_B.t_jw *
+            motion_controller_withPIC_B.t_jw + 1.0;
           motion_controller_withPIC_B.scale = motion_controller_withPIC_B.absxk;
         } else {
-          motion_controller_withPIC_B.t_h = motion_controller_withPIC_B.absxk /
+          motion_controller_withPIC_B.t_jw = motion_controller_withPIC_B.absxk /
             motion_controller_withPIC_B.scale;
-          y += motion_controller_withPIC_B.t_h * motion_controller_withPIC_B.t_h;
+          y += motion_controller_withPIC_B.t_jw *
+            motion_controller_withPIC_B.t_jw;
         }
       }
 
@@ -5980,7 +5977,7 @@ real_T motion_controller_withPIC::motion_controlle_xnrm2_h59MJ9zm(int32_T n,
   return y;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 real_T motion_controller_withPIC::motion_control_xzlarfg_91xlzxZq(int32_T n,
   real_T *alpha1, real_T x[6601], int32_T ix0)
 {
@@ -6007,21 +6004,21 @@ real_T motion_controller_withPIC::motion_control_xzlarfg_91xlzxZq(int32_T n,
             ix0;
           motion_controller_withPIC_B.vectorUB_tmp =
             motion_controller_withPIC_B.vectorUB - 2;
-          for (motion_controller_withPIC_B.d_o = ix0;
-               motion_controller_withPIC_B.d_o <=
+          for (motion_controller_withPIC_B.d_j = ix0;
+               motion_controller_withPIC_B.d_j <=
                motion_controller_withPIC_B.vectorUB_tmp;
-               motion_controller_withPIC_B.d_o += 2) {
-            tmp = _mm_loadu_pd(&x[motion_controller_withPIC_B.d_o - 1]);
-            _mm_storeu_pd(&x[motion_controller_withPIC_B.d_o - 1], _mm_mul_pd
+               motion_controller_withPIC_B.d_j += 2) {
+            tmp = _mm_loadu_pd(&x[motion_controller_withPIC_B.d_j - 1]);
+            _mm_storeu_pd(&x[motion_controller_withPIC_B.d_j - 1], _mm_mul_pd
                           (tmp, _mm_set1_pd(9.9792015476736E+291)));
           }
 
-          for (motion_controller_withPIC_B.d_o =
+          for (motion_controller_withPIC_B.d_j =
                motion_controller_withPIC_B.vectorUB;
-               motion_controller_withPIC_B.d_o <=
+               motion_controller_withPIC_B.d_j <=
                motion_controller_withPIC_B.scalarLB;
-               motion_controller_withPIC_B.d_o++) {
-            x[motion_controller_withPIC_B.d_o - 1] *= 9.9792015476736E+291;
+               motion_controller_withPIC_B.d_j++) {
+            x[motion_controller_withPIC_B.d_j - 1] *= 9.9792015476736E+291;
           }
 
           motion_controller_withPIC_B.xnorm *= 9.9792015476736E+291;
@@ -6040,27 +6037,27 @@ real_T motion_controller_withPIC::motion_control_xzlarfg_91xlzxZq(int32_T n,
           motion_controller_withPIC_B.xnorm;
         motion_controller_withPIC_B.a = 1.0 / (*alpha1 -
           motion_controller_withPIC_B.xnorm);
-        for (motion_controller_withPIC_B.d_o = ix0;
-             motion_controller_withPIC_B.d_o <=
+        for (motion_controller_withPIC_B.d_j = ix0;
+             motion_controller_withPIC_B.d_j <=
              motion_controller_withPIC_B.vectorUB_tmp;
-             motion_controller_withPIC_B.d_o += 2) {
-          tmp = _mm_loadu_pd(&x[motion_controller_withPIC_B.d_o - 1]);
-          _mm_storeu_pd(&x[motion_controller_withPIC_B.d_o - 1], _mm_mul_pd(tmp,
+             motion_controller_withPIC_B.d_j += 2) {
+          tmp = _mm_loadu_pd(&x[motion_controller_withPIC_B.d_j - 1]);
+          _mm_storeu_pd(&x[motion_controller_withPIC_B.d_j - 1], _mm_mul_pd(tmp,
             _mm_set1_pd(motion_controller_withPIC_B.a)));
         }
 
-        for (motion_controller_withPIC_B.d_o =
+        for (motion_controller_withPIC_B.d_j =
              motion_controller_withPIC_B.vectorUB;
-             motion_controller_withPIC_B.d_o <=
+             motion_controller_withPIC_B.d_j <=
              motion_controller_withPIC_B.scalarLB;
-             motion_controller_withPIC_B.d_o++) {
-          x[motion_controller_withPIC_B.d_o - 1] *=
+             motion_controller_withPIC_B.d_j++) {
+          x[motion_controller_withPIC_B.d_j - 1] *=
             motion_controller_withPIC_B.a;
         }
 
-        for (motion_controller_withPIC_B.d_o = 0;
-             motion_controller_withPIC_B.d_o < motion_controller_withPIC_B.knt;
-             motion_controller_withPIC_B.d_o++) {
+        for (motion_controller_withPIC_B.d_j = 0;
+             motion_controller_withPIC_B.d_j < motion_controller_withPIC_B.knt;
+             motion_controller_withPIC_B.d_j++) {
           motion_controller_withPIC_B.xnorm *= 1.0020841800044864E-292;
         }
 
@@ -6070,9 +6067,9 @@ real_T motion_controller_withPIC::motion_control_xzlarfg_91xlzxZq(int32_T n,
           motion_controller_withPIC_B.xnorm;
         motion_controller_withPIC_B.a = 1.0 / (*alpha1 -
           motion_controller_withPIC_B.xnorm);
-        motion_controller_withPIC_B.d_o = (ix0 + n) - 2;
+        motion_controller_withPIC_B.d_j = (ix0 + n) - 2;
         motion_controller_withPIC_B.scalarLB =
-          ((((motion_controller_withPIC_B.d_o - ix0) + 1) / 2) << 1) + ix0;
+          ((((motion_controller_withPIC_B.d_j - ix0) + 1) / 2) << 1) + ix0;
         motion_controller_withPIC_B.vectorUB =
           motion_controller_withPIC_B.scalarLB - 2;
         for (motion_controller_withPIC_B.knt = ix0;
@@ -6086,7 +6083,7 @@ real_T motion_controller_withPIC::motion_control_xzlarfg_91xlzxZq(int32_T n,
 
         for (motion_controller_withPIC_B.knt =
              motion_controller_withPIC_B.scalarLB;
-             motion_controller_withPIC_B.knt <= motion_controller_withPIC_B.d_o;
+             motion_controller_withPIC_B.knt <= motion_controller_withPIC_B.d_j;
              motion_controller_withPIC_B.knt++) {
           x[motion_controller_withPIC_B.knt - 1] *=
             motion_controller_withPIC_B.a;
@@ -6100,40 +6097,40 @@ real_T motion_controller_withPIC::motion_control_xzlarfg_91xlzxZq(int32_T n,
   return tau;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controll_xzlarf_xH4hoCMV(int32_T m,
   int32_T n, int32_T iv0, real_T tau, real_T C[6601], int32_T ic0, real_T work
   [161])
 {
   if (tau != 0.0) {
     boolean_T exitg2;
-    motion_controller_withPIC_B.lastv_n = m;
-    motion_controller_withPIC_B.lastc_h = iv0 + m;
-    while ((motion_controller_withPIC_B.lastv_n > 0) &&
-           (C[motion_controller_withPIC_B.lastc_h - 2] == 0.0)) {
-      motion_controller_withPIC_B.lastv_n--;
-      motion_controller_withPIC_B.lastc_h--;
+    motion_controller_withPIC_B.lastv_h = m;
+    motion_controller_withPIC_B.lastc_m = iv0 + m;
+    while ((motion_controller_withPIC_B.lastv_h > 0) &&
+           (C[motion_controller_withPIC_B.lastc_m - 2] == 0.0)) {
+      motion_controller_withPIC_B.lastv_h--;
+      motion_controller_withPIC_B.lastc_m--;
     }
 
-    motion_controller_withPIC_B.lastc_h = n;
+    motion_controller_withPIC_B.lastc_m = n;
     exitg2 = false;
-    while ((!exitg2) && (motion_controller_withPIC_B.lastc_h > 0)) {
+    while ((!exitg2) && (motion_controller_withPIC_B.lastc_m > 0)) {
       int32_T exitg1;
-      motion_controller_withPIC_B.coltop_f =
-        (motion_controller_withPIC_B.lastc_h - 1) * 41 + ic0;
-      motion_controller_withPIC_B.b_ia_b = motion_controller_withPIC_B.coltop_f;
+      motion_controller_withPIC_B.coltop_b =
+        (motion_controller_withPIC_B.lastc_m - 1) * 41 + ic0;
+      motion_controller_withPIC_B.b_ia_e = motion_controller_withPIC_B.coltop_b;
       do {
         exitg1 = 0;
-        if (motion_controller_withPIC_B.b_ia_b <=
-            (motion_controller_withPIC_B.coltop_f +
-             motion_controller_withPIC_B.lastv_n) - 1) {
-          if (C[motion_controller_withPIC_B.b_ia_b - 1] != 0.0) {
+        if (motion_controller_withPIC_B.b_ia_e <=
+            (motion_controller_withPIC_B.coltop_b +
+             motion_controller_withPIC_B.lastv_h) - 1) {
+          if (C[motion_controller_withPIC_B.b_ia_e - 1] != 0.0) {
             exitg1 = 1;
           } else {
-            motion_controller_withPIC_B.b_ia_b++;
+            motion_controller_withPIC_B.b_ia_e++;
           }
         } else {
-          motion_controller_withPIC_B.lastc_h--;
+          motion_controller_withPIC_B.lastc_m--;
           exitg1 = 2;
         }
       } while (exitg1 == 0);
@@ -6143,104 +6140,104 @@ void motion_controller_withPIC::motion_controll_xzlarf_xH4hoCMV(int32_T m,
       }
     }
 
-    motion_controller_withPIC_B.lastc_h--;
+    motion_controller_withPIC_B.lastc_m--;
   } else {
-    motion_controller_withPIC_B.lastv_n = 0;
-    motion_controller_withPIC_B.lastc_h = -1;
+    motion_controller_withPIC_B.lastv_h = 0;
+    motion_controller_withPIC_B.lastc_m = -1;
   }
 
-  if (motion_controller_withPIC_B.lastv_n > 0) {
-    if (motion_controller_withPIC_B.lastc_h + 1 != 0) {
-      if (motion_controller_withPIC_B.lastc_h >= 0) {
+  if (motion_controller_withPIC_B.lastv_h > 0) {
+    if (motion_controller_withPIC_B.lastc_m + 1 != 0) {
+      if (motion_controller_withPIC_B.lastc_m >= 0) {
         memset(&work[0], 0, static_cast<uint32_T>
-               (motion_controller_withPIC_B.lastc_h + 1) * sizeof(real_T));
+               (motion_controller_withPIC_B.lastc_m + 1) * sizeof(real_T));
       }
 
-      motion_controller_withPIC_B.jA_ec = 41 *
-        motion_controller_withPIC_B.lastc_h + ic0;
-      for (motion_controller_withPIC_B.coltop_f = ic0;
-           motion_controller_withPIC_B.coltop_f <=
-           motion_controller_withPIC_B.jA_ec;
-           motion_controller_withPIC_B.coltop_f += 41) {
+      motion_controller_withPIC_B.jA_n = 41 *
+        motion_controller_withPIC_B.lastc_m + ic0;
+      for (motion_controller_withPIC_B.coltop_b = ic0;
+           motion_controller_withPIC_B.coltop_b <=
+           motion_controller_withPIC_B.jA_n;
+           motion_controller_withPIC_B.coltop_b += 41) {
         motion_controller_withPIC_B.c_j = 0.0;
-        motion_controller_withPIC_B.d_m = (motion_controller_withPIC_B.coltop_f
-          + motion_controller_withPIC_B.lastv_n) - 1;
-        for (motion_controller_withPIC_B.b_ia_b =
-             motion_controller_withPIC_B.coltop_f;
-             motion_controller_withPIC_B.b_ia_b <=
-             motion_controller_withPIC_B.d_m; motion_controller_withPIC_B.b_ia_b
+        motion_controller_withPIC_B.d_f = (motion_controller_withPIC_B.coltop_b
+          + motion_controller_withPIC_B.lastv_h) - 1;
+        for (motion_controller_withPIC_B.b_ia_e =
+             motion_controller_withPIC_B.coltop_b;
+             motion_controller_withPIC_B.b_ia_e <=
+             motion_controller_withPIC_B.d_f; motion_controller_withPIC_B.b_ia_e
              ++) {
           motion_controller_withPIC_B.c_j += C[((iv0 +
-            motion_controller_withPIC_B.b_ia_b) -
-            motion_controller_withPIC_B.coltop_f) - 1] *
-            C[motion_controller_withPIC_B.b_ia_b - 1];
+            motion_controller_withPIC_B.b_ia_e) -
+            motion_controller_withPIC_B.coltop_b) - 1] *
+            C[motion_controller_withPIC_B.b_ia_e - 1];
         }
 
-        motion_controller_withPIC_B.b_ia_b = div_nde_s32_floor
-          (motion_controller_withPIC_B.coltop_f - ic0, 41);
-        work[motion_controller_withPIC_B.b_ia_b] +=
+        motion_controller_withPIC_B.b_ia_e = div_nde_s32_floor
+          (motion_controller_withPIC_B.coltop_b - ic0, 41);
+        work[motion_controller_withPIC_B.b_ia_e] +=
           motion_controller_withPIC_B.c_j;
       }
     }
 
     if (!(-tau == 0.0)) {
-      motion_controller_withPIC_B.jA_ec = ic0;
-      for (motion_controller_withPIC_B.coltop_f = 0;
-           motion_controller_withPIC_B.coltop_f <=
-           motion_controller_withPIC_B.lastc_h;
-           motion_controller_withPIC_B.coltop_f++) {
+      motion_controller_withPIC_B.jA_n = ic0;
+      for (motion_controller_withPIC_B.coltop_b = 0;
+           motion_controller_withPIC_B.coltop_b <=
+           motion_controller_withPIC_B.lastc_m;
+           motion_controller_withPIC_B.coltop_b++) {
         motion_controller_withPIC_B.c_j =
-          work[motion_controller_withPIC_B.coltop_f];
+          work[motion_controller_withPIC_B.coltop_b];
         if (motion_controller_withPIC_B.c_j != 0.0) {
           motion_controller_withPIC_B.c_j *= -tau;
-          motion_controller_withPIC_B.d_m = motion_controller_withPIC_B.lastv_n
-            + motion_controller_withPIC_B.jA_ec;
-          for (motion_controller_withPIC_B.b_ia_b =
-               motion_controller_withPIC_B.jA_ec;
-               motion_controller_withPIC_B.b_ia_b <
-               motion_controller_withPIC_B.d_m;
-               motion_controller_withPIC_B.b_ia_b++) {
-            C[motion_controller_withPIC_B.b_ia_b - 1] += C[((iv0 +
-              motion_controller_withPIC_B.b_ia_b) -
-              motion_controller_withPIC_B.jA_ec) - 1] *
+          motion_controller_withPIC_B.d_f = motion_controller_withPIC_B.lastv_h
+            + motion_controller_withPIC_B.jA_n;
+          for (motion_controller_withPIC_B.b_ia_e =
+               motion_controller_withPIC_B.jA_n;
+               motion_controller_withPIC_B.b_ia_e <
+               motion_controller_withPIC_B.d_f;
+               motion_controller_withPIC_B.b_ia_e++) {
+            C[motion_controller_withPIC_B.b_ia_e - 1] += C[((iv0 +
+              motion_controller_withPIC_B.b_ia_e) -
+              motion_controller_withPIC_B.jA_n) - 1] *
               motion_controller_withPIC_B.c_j;
           }
         }
 
-        motion_controller_withPIC_B.jA_ec += 41;
+        motion_controller_withPIC_B.jA_n += 41;
       }
     }
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller__qrf_ELz1YOWw(real_T A[6601],
   int32_T m, int32_T n, int32_T nfxd, real_T tau[41])
 {
   memset(&motion_controller_withPIC_B.work_d[0], 0, 161U * sizeof(real_T));
-  motion_controller_withPIC_B.b_nk = static_cast<uint8_T>(nfxd);
-  for (motion_controller_withPIC_B.i_j = 0; motion_controller_withPIC_B.i_j <
-       motion_controller_withPIC_B.b_nk; motion_controller_withPIC_B.i_j++) {
-    motion_controller_withPIC_B.ii = motion_controller_withPIC_B.i_j * 41 +
-      motion_controller_withPIC_B.i_j;
-    motion_controller_withPIC_B.mmi_p = m - motion_controller_withPIC_B.i_j;
-    if (motion_controller_withPIC_B.i_j + 1 < m) {
+  motion_controller_withPIC_B.b_o = static_cast<uint8_T>(nfxd);
+  for (motion_controller_withPIC_B.i_b = 0; motion_controller_withPIC_B.i_b <
+       motion_controller_withPIC_B.b_o; motion_controller_withPIC_B.i_b++) {
+    motion_controller_withPIC_B.ii = motion_controller_withPIC_B.i_b * 41 +
+      motion_controller_withPIC_B.i_b;
+    motion_controller_withPIC_B.mmi_j = m - motion_controller_withPIC_B.i_b;
+    if (motion_controller_withPIC_B.i_b + 1 < m) {
       motion_controller_withPIC_B.b_atmp = A[motion_controller_withPIC_B.ii];
       motion_controller_withPIC_B.tau = motion_control_xzlarfg_91xlzxZq
-        (motion_controller_withPIC_B.mmi_p, &motion_controller_withPIC_B.b_atmp,
+        (motion_controller_withPIC_B.mmi_j, &motion_controller_withPIC_B.b_atmp,
          A, motion_controller_withPIC_B.ii + 2);
-      tau[motion_controller_withPIC_B.i_j] = motion_controller_withPIC_B.tau;
+      tau[motion_controller_withPIC_B.i_b] = motion_controller_withPIC_B.tau;
       A[motion_controller_withPIC_B.ii] = motion_controller_withPIC_B.b_atmp;
     } else {
       motion_controller_withPIC_B.tau = 0.0;
-      tau[motion_controller_withPIC_B.i_j] = 0.0;
+      tau[motion_controller_withPIC_B.i_b] = 0.0;
     }
 
-    if (motion_controller_withPIC_B.i_j + 1 < n) {
+    if (motion_controller_withPIC_B.i_b + 1 < n) {
       motion_controller_withPIC_B.b_atmp = A[motion_controller_withPIC_B.ii];
       A[motion_controller_withPIC_B.ii] = 1.0;
-      motion_controll_xzlarf_xH4hoCMV(motion_controller_withPIC_B.mmi_p, (n -
-        motion_controller_withPIC_B.i_j) - 1, motion_controller_withPIC_B.ii + 1,
+      motion_controll_xzlarf_xH4hoCMV(motion_controller_withPIC_B.mmi_j, (n -
+        motion_controller_withPIC_B.i_b) - 1, motion_controller_withPIC_B.ii + 1,
         motion_controller_withPIC_B.tau, A, motion_controller_withPIC_B.ii + 42,
         motion_controller_withPIC_B.work_d);
       A[motion_controller_withPIC_B.ii] = motion_controller_withPIC_B.b_atmp;
@@ -6248,7 +6245,7 @@ void motion_controller_withPIC::motion_controller__qrf_ELz1YOWw(real_T A[6601],
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller_wit_factorQRE
   (s2uO2c2bmaUl7sY5vOWIzHG_motio_T *obj, int32_T mrows, int32_T ncols)
 {
@@ -6264,122 +6261,121 @@ void motion_controller_withPIC::motion_controller_wit_factorQRE
     obj->mrows = mrows;
     obj->ncols = ncols;
     if (mrows <= ncols) {
-      motion_controller_withPIC_B.u1_i = mrows;
+      motion_controller_withPIC_B.u1_b = mrows;
     } else {
-      motion_controller_withPIC_B.u1_i = ncols;
+      motion_controller_withPIC_B.u1_b = ncols;
     }
 
-    obj->minRowCol = motion_controller_withPIC_B.u1_i;
+    obj->minRowCol = motion_controller_withPIC_B.u1_b;
     memset(&obj->tau[0], 0, 41U * sizeof(real_T));
-    if (motion_controller_withPIC_B.u1_i < 1) {
+    if (motion_controller_withPIC_B.u1_b < 1) {
       motion_controller_withPIC_B.nfxd = (ncols / 4) << 2;
-      motion_controller_withPIC_B.i_dn = motion_controller_withPIC_B.nfxd - 4;
-      for (motion_controller_withPIC_B.u1_i = 0;
-           motion_controller_withPIC_B.u1_i <= motion_controller_withPIC_B.i_dn;
-           motion_controller_withPIC_B.u1_i += 4) {
+      motion_controller_withPIC_B.i_h = motion_controller_withPIC_B.nfxd - 4;
+      for (motion_controller_withPIC_B.u1_b = 0;
+           motion_controller_withPIC_B.u1_b <= motion_controller_withPIC_B.i_h;
+           motion_controller_withPIC_B.u1_b += 4) {
         tmp = _mm_add_epi32(_mm_add_epi32(_mm_set1_epi32
-          (motion_controller_withPIC_B.u1_i), _mm_loadu_si128((const __m128i *)
+          (motion_controller_withPIC_B.u1_b), _mm_loadu_si128((const __m128i *)
           &offsets[0])), _mm_set1_epi32(1));
-        _mm_storeu_si128((__m128i *)&obj->jpvt[motion_controller_withPIC_B.u1_i],
+        _mm_storeu_si128((__m128i *)&obj->jpvt[motion_controller_withPIC_B.u1_b],
                          tmp);
       }
 
-      for (motion_controller_withPIC_B.u1_i = motion_controller_withPIC_B.nfxd;
-           motion_controller_withPIC_B.u1_i < ncols;
-           motion_controller_withPIC_B.u1_i++) {
-        obj->jpvt[motion_controller_withPIC_B.u1_i] =
-          motion_controller_withPIC_B.u1_i + 1;
+      for (motion_controller_withPIC_B.u1_b = motion_controller_withPIC_B.nfxd;
+           motion_controller_withPIC_B.u1_b < ncols;
+           motion_controller_withPIC_B.u1_b++) {
+        obj->jpvt[motion_controller_withPIC_B.u1_b] =
+          motion_controller_withPIC_B.u1_b + 1;
       }
     } else {
       motion_controller_withPIC_B.nfxd = -1;
-      for (motion_controller_withPIC_B.i_dn = 0;
-           motion_controller_withPIC_B.i_dn < ncols;
-           motion_controller_withPIC_B.i_dn++) {
-        if (obj->jpvt[motion_controller_withPIC_B.i_dn] != 0) {
+      for (motion_controller_withPIC_B.i_h = 0; motion_controller_withPIC_B.i_h <
+           ncols; motion_controller_withPIC_B.i_h++) {
+        if (obj->jpvt[motion_controller_withPIC_B.i_h] != 0) {
           motion_controller_withPIC_B.nfxd++;
-          if (motion_controller_withPIC_B.i_dn + 1 !=
+          if (motion_controller_withPIC_B.i_h + 1 !=
               motion_controller_withPIC_B.nfxd + 1) {
-            motion_controller_withPIC_B.ix_a = motion_controller_withPIC_B.i_dn *
+            motion_controller_withPIC_B.ix_i = motion_controller_withPIC_B.i_h *
               41;
             motion_controller_withPIC_B.iy = motion_controller_withPIC_B.nfxd *
               41;
             for (motion_controller_withPIC_B.mmi = 0;
                  motion_controller_withPIC_B.mmi < mrows;
                  motion_controller_withPIC_B.mmi++) {
-              motion_controller_withPIC_B.temp_tmp_b =
-                motion_controller_withPIC_B.ix_a +
+              motion_controller_withPIC_B.temp_tmp_p =
+                motion_controller_withPIC_B.ix_i +
                 motion_controller_withPIC_B.mmi;
               motion_controller_withPIC_B.temp = obj->
-                QR[motion_controller_withPIC_B.temp_tmp_b];
+                QR[motion_controller_withPIC_B.temp_tmp_p];
               motion_controller_withPIC_B.itemp = motion_controller_withPIC_B.iy
                 + motion_controller_withPIC_B.mmi;
-              obj->QR[motion_controller_withPIC_B.temp_tmp_b] = obj->
+              obj->QR[motion_controller_withPIC_B.temp_tmp_p] = obj->
                 QR[motion_controller_withPIC_B.itemp];
               obj->QR[motion_controller_withPIC_B.itemp] =
                 motion_controller_withPIC_B.temp;
             }
 
-            obj->jpvt[motion_controller_withPIC_B.i_dn] = obj->
+            obj->jpvt[motion_controller_withPIC_B.i_h] = obj->
               jpvt[motion_controller_withPIC_B.nfxd];
             obj->jpvt[motion_controller_withPIC_B.nfxd] =
-              motion_controller_withPIC_B.i_dn + 1;
+              motion_controller_withPIC_B.i_h + 1;
           } else {
-            obj->jpvt[motion_controller_withPIC_B.i_dn] =
-              motion_controller_withPIC_B.i_dn + 1;
+            obj->jpvt[motion_controller_withPIC_B.i_h] =
+              motion_controller_withPIC_B.i_h + 1;
           }
         } else {
-          obj->jpvt[motion_controller_withPIC_B.i_dn] =
-            motion_controller_withPIC_B.i_dn + 1;
+          obj->jpvt[motion_controller_withPIC_B.i_h] =
+            motion_controller_withPIC_B.i_h + 1;
         }
       }
 
       if (motion_controller_withPIC_B.nfxd + 1 <=
-          motion_controller_withPIC_B.u1_i) {
+          motion_controller_withPIC_B.u1_b) {
         motion_controller_withPIC_B.nfxd++;
       } else {
-        motion_controller_withPIC_B.nfxd = motion_controller_withPIC_B.u1_i;
+        motion_controller_withPIC_B.nfxd = motion_controller_withPIC_B.u1_b;
       }
 
       memset(&obj->tau[0], 0, 41U * sizeof(real_T));
       motion_controller__qrf_ELz1YOWw(obj->QR, mrows, ncols,
         motion_controller_withPIC_B.nfxd, obj->tau);
-      if (motion_controller_withPIC_B.nfxd < motion_controller_withPIC_B.u1_i) {
+      if (motion_controller_withPIC_B.nfxd < motion_controller_withPIC_B.u1_b) {
         memset(&motion_controller_withPIC_B.work[0], 0, 161U * sizeof(real_T));
         memset(&motion_controller_withPIC_B.vn1[0], 0, 161U * sizeof(real_T));
         memset(&motion_controller_withPIC_B.vn2[0], 0, 161U * sizeof(real_T));
-        for (motion_controller_withPIC_B.i_dn = motion_controller_withPIC_B.nfxd
-             + 1; motion_controller_withPIC_B.i_dn <= ncols;
-             motion_controller_withPIC_B.i_dn++) {
+        for (motion_controller_withPIC_B.i_h = motion_controller_withPIC_B.nfxd
+             + 1; motion_controller_withPIC_B.i_h <= ncols;
+             motion_controller_withPIC_B.i_h++) {
           motion_controller_withPIC_B.temp = motion_controlle_xnrm2_h59MJ9zm
             (mrows - motion_controller_withPIC_B.nfxd, obj->QR,
-             ((motion_controller_withPIC_B.i_dn - 1) * 41 +
+             ((motion_controller_withPIC_B.i_h - 1) * 41 +
               motion_controller_withPIC_B.nfxd) + 1);
-          motion_controller_withPIC_B.vn1[motion_controller_withPIC_B.i_dn - 1] =
+          motion_controller_withPIC_B.vn1[motion_controller_withPIC_B.i_h - 1] =
             motion_controller_withPIC_B.temp;
-          motion_controller_withPIC_B.vn2[motion_controller_withPIC_B.i_dn - 1] =
+          motion_controller_withPIC_B.vn2[motion_controller_withPIC_B.i_h - 1] =
             motion_controller_withPIC_B.temp;
         }
 
-        for (motion_controller_withPIC_B.i_dn = motion_controller_withPIC_B.nfxd
-             + 1; motion_controller_withPIC_B.i_dn <=
-             motion_controller_withPIC_B.u1_i; motion_controller_withPIC_B.i_dn
-             ++) {
-          motion_controller_withPIC_B.temp_tmp_b =
-            (motion_controller_withPIC_B.i_dn - 1) * 41;
-          motion_controller_withPIC_B.ix_a =
-            (motion_controller_withPIC_B.temp_tmp_b +
-             motion_controller_withPIC_B.i_dn) - 1;
+        for (motion_controller_withPIC_B.i_h = motion_controller_withPIC_B.nfxd
+             + 1; motion_controller_withPIC_B.i_h <=
+             motion_controller_withPIC_B.u1_b; motion_controller_withPIC_B.i_h++)
+        {
+          motion_controller_withPIC_B.temp_tmp_p =
+            (motion_controller_withPIC_B.i_h - 1) * 41;
+          motion_controller_withPIC_B.ix_i =
+            (motion_controller_withPIC_B.temp_tmp_p +
+             motion_controller_withPIC_B.i_h) - 1;
           motion_controller_withPIC_B.iy = ncols -
-            motion_controller_withPIC_B.i_dn;
+            motion_controller_withPIC_B.i_h;
           motion_controller_withPIC_B.mmi = mrows -
-            motion_controller_withPIC_B.i_dn;
+            motion_controller_withPIC_B.i_h;
           if (motion_controller_withPIC_B.iy + 1 < 1) {
             motion_controller_withPIC_B.pvt = -2;
           } else {
             motion_controller_withPIC_B.pvt = -1;
             if (motion_controller_withPIC_B.iy + 1 > 1) {
               motion_controller_withPIC_B.temp = fabs
-                (motion_controller_withPIC_B.vn1[motion_controller_withPIC_B.i_dn
+                (motion_controller_withPIC_B.vn1[motion_controller_withPIC_B.i_h
                  - 1]);
               for (motion_controller_withPIC_B.itemp = 2;
                    motion_controller_withPIC_B.itemp <=
@@ -6387,7 +6383,7 @@ void motion_controller_withPIC::motion_controller_wit_factorQRE
                    motion_controller_withPIC_B.itemp++) {
                 motion_controller_withPIC_B.s = fabs
                   (motion_controller_withPIC_B.vn1
-                   [(motion_controller_withPIC_B.i_dn +
+                   [(motion_controller_withPIC_B.i_h +
                      motion_controller_withPIC_B.itemp) - 2]);
                 if (motion_controller_withPIC_B.s >
                     motion_controller_withPIC_B.temp) {
@@ -6400,23 +6396,23 @@ void motion_controller_withPIC::motion_controller_wit_factorQRE
             }
           }
 
-          motion_controller_withPIC_B.pvt += motion_controller_withPIC_B.i_dn;
+          motion_controller_withPIC_B.pvt += motion_controller_withPIC_B.i_h;
           if (motion_controller_withPIC_B.pvt + 1 !=
-              motion_controller_withPIC_B.i_dn) {
+              motion_controller_withPIC_B.i_h) {
             motion_controller_withPIC_B.c_ix = motion_controller_withPIC_B.pvt *
               41;
-            for (motion_controller_withPIC_B.c_k_h = 0;
-                 motion_controller_withPIC_B.c_k_h < mrows;
-                 motion_controller_withPIC_B.c_k_h++) {
-              motion_controller_withPIC_B.b_temp_tmp_h =
+            for (motion_controller_withPIC_B.c_k_d = 0;
+                 motion_controller_withPIC_B.c_k_d < mrows;
+                 motion_controller_withPIC_B.c_k_d++) {
+              motion_controller_withPIC_B.b_temp_tmp_n =
                 motion_controller_withPIC_B.c_ix +
-                motion_controller_withPIC_B.c_k_h;
+                motion_controller_withPIC_B.c_k_d;
               motion_controller_withPIC_B.temp = obj->
-                QR[motion_controller_withPIC_B.b_temp_tmp_h];
+                QR[motion_controller_withPIC_B.b_temp_tmp_n];
               motion_controller_withPIC_B.itemp =
-                motion_controller_withPIC_B.temp_tmp_b +
-                motion_controller_withPIC_B.c_k_h;
-              obj->QR[motion_controller_withPIC_B.b_temp_tmp_h] = obj->
+                motion_controller_withPIC_B.temp_tmp_p +
+                motion_controller_withPIC_B.c_k_d;
+              obj->QR[motion_controller_withPIC_B.b_temp_tmp_n] = obj->
                 QR[motion_controller_withPIC_B.itemp];
               obj->QR[motion_controller_withPIC_B.itemp] =
                 motion_controller_withPIC_B.temp;
@@ -6425,56 +6421,56 @@ void motion_controller_withPIC::motion_controller_wit_factorQRE
             motion_controller_withPIC_B.itemp = obj->
               jpvt[motion_controller_withPIC_B.pvt];
             obj->jpvt[motion_controller_withPIC_B.pvt] = obj->
-              jpvt[motion_controller_withPIC_B.i_dn - 1];
-            obj->jpvt[motion_controller_withPIC_B.i_dn - 1] =
+              jpvt[motion_controller_withPIC_B.i_h - 1];
+            obj->jpvt[motion_controller_withPIC_B.i_h - 1] =
               motion_controller_withPIC_B.itemp;
             motion_controller_withPIC_B.vn1[motion_controller_withPIC_B.pvt] =
-              motion_controller_withPIC_B.vn1[motion_controller_withPIC_B.i_dn -
+              motion_controller_withPIC_B.vn1[motion_controller_withPIC_B.i_h -
               1];
             motion_controller_withPIC_B.vn2[motion_controller_withPIC_B.pvt] =
-              motion_controller_withPIC_B.vn2[motion_controller_withPIC_B.i_dn -
+              motion_controller_withPIC_B.vn2[motion_controller_withPIC_B.i_h -
               1];
           }
 
-          if (motion_controller_withPIC_B.i_dn < mrows) {
+          if (motion_controller_withPIC_B.i_h < mrows) {
             motion_controller_withPIC_B.temp = obj->
-              QR[motion_controller_withPIC_B.ix_a];
-            obj->tau[motion_controller_withPIC_B.i_dn - 1] =
+              QR[motion_controller_withPIC_B.ix_i];
+            obj->tau[motion_controller_withPIC_B.i_h - 1] =
               motion_control_xzlarfg_91xlzxZq(motion_controller_withPIC_B.mmi +
               1, &motion_controller_withPIC_B.temp, obj->QR,
-              motion_controller_withPIC_B.ix_a + 2);
-            obj->QR[motion_controller_withPIC_B.ix_a] =
+              motion_controller_withPIC_B.ix_i + 2);
+            obj->QR[motion_controller_withPIC_B.ix_i] =
               motion_controller_withPIC_B.temp;
           } else {
-            obj->tau[motion_controller_withPIC_B.i_dn - 1] = 0.0;
+            obj->tau[motion_controller_withPIC_B.i_h - 1] = 0.0;
           }
 
-          if (motion_controller_withPIC_B.i_dn < ncols) {
+          if (motion_controller_withPIC_B.i_h < ncols) {
             motion_controller_withPIC_B.temp = obj->
-              QR[motion_controller_withPIC_B.ix_a];
-            obj->QR[motion_controller_withPIC_B.ix_a] = 1.0;
+              QR[motion_controller_withPIC_B.ix_i];
+            obj->QR[motion_controller_withPIC_B.ix_i] = 1.0;
             motion_controll_xzlarf_xH4hoCMV(motion_controller_withPIC_B.mmi + 1,
-              motion_controller_withPIC_B.iy, motion_controller_withPIC_B.ix_a +
-              1, obj->tau[motion_controller_withPIC_B.i_dn - 1], obj->QR,
-              motion_controller_withPIC_B.ix_a + 42,
+              motion_controller_withPIC_B.iy, motion_controller_withPIC_B.ix_i +
+              1, obj->tau[motion_controller_withPIC_B.i_h - 1], obj->QR,
+              motion_controller_withPIC_B.ix_i + 42,
               motion_controller_withPIC_B.work);
-            obj->QR[motion_controller_withPIC_B.ix_a] =
+            obj->QR[motion_controller_withPIC_B.ix_i] =
               motion_controller_withPIC_B.temp;
           }
 
           for (motion_controller_withPIC_B.itemp =
-               motion_controller_withPIC_B.i_dn + 1;
+               motion_controller_withPIC_B.i_h + 1;
                motion_controller_withPIC_B.itemp <= ncols;
                motion_controller_withPIC_B.itemp++) {
-            motion_controller_withPIC_B.ix_a =
+            motion_controller_withPIC_B.ix_i =
               (motion_controller_withPIC_B.itemp - 1) * 41 +
-              motion_controller_withPIC_B.i_dn;
+              motion_controller_withPIC_B.i_h;
             motion_controller_withPIC_B.temp =
               motion_controller_withPIC_B.vn1[motion_controller_withPIC_B.itemp
               - 1];
             if (motion_controller_withPIC_B.temp != 0.0) {
               motion_controller_withPIC_B.s = fabs(obj->
-                QR[motion_controller_withPIC_B.ix_a - 1]) /
+                QR[motion_controller_withPIC_B.ix_i - 1]) /
                 motion_controller_withPIC_B.temp;
               motion_controller_withPIC_B.s = 1.0 -
                 motion_controller_withPIC_B.s * motion_controller_withPIC_B.s;
@@ -6491,11 +6487,11 @@ void motion_controller_withPIC::motion_controller_wit_factorQRE
                 motion_controller_withPIC_B.temp2 *
                 motion_controller_withPIC_B.s;
               if (motion_controller_withPIC_B.temp2 <= 1.4901161193847656E-8) {
-                if (motion_controller_withPIC_B.i_dn < mrows) {
+                if (motion_controller_withPIC_B.i_h < mrows) {
                   motion_controller_withPIC_B.temp =
                     motion_controlle_xnrm2_h59MJ9zm
                     (motion_controller_withPIC_B.mmi, obj->QR,
-                     motion_controller_withPIC_B.ix_a + 1);
+                     motion_controller_withPIC_B.ix_i + 1);
                   motion_controller_withPIC_B.vn1[motion_controller_withPIC_B.itemp
                     - 1] = motion_controller_withPIC_B.temp;
                   motion_controller_withPIC_B.vn2[motion_controller_withPIC_B.itemp
@@ -6519,17 +6515,17 @@ void motion_controller_withPIC::motion_controller_wit_factorQRE
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller_wit_computeQ_
   (s2uO2c2bmaUl7sY5vOWIzHG_motio_T *obj, int32_T nrows)
 {
-  motion_controller_withPIC_B.i_b = obj->minRowCol;
-  for (motion_controller_withPIC_B.idx_e = 0; motion_controller_withPIC_B.idx_e <
-       motion_controller_withPIC_B.i_b; motion_controller_withPIC_B.idx_e++) {
-    motion_controller_withPIC_B.iQR0 = 41 * motion_controller_withPIC_B.idx_e +
-      motion_controller_withPIC_B.idx_e;
+  motion_controller_withPIC_B.i_i = obj->minRowCol;
+  for (motion_controller_withPIC_B.idx_a = 0; motion_controller_withPIC_B.idx_a <
+       motion_controller_withPIC_B.i_i; motion_controller_withPIC_B.idx_a++) {
+    motion_controller_withPIC_B.iQR0 = 41 * motion_controller_withPIC_B.idx_a +
+      motion_controller_withPIC_B.idx_a;
     motion_controller_withPIC_B.ia = obj->mrows -
-      motion_controller_withPIC_B.idx_e;
+      motion_controller_withPIC_B.idx_a;
     if (motion_controller_withPIC_B.ia - 2 >= 0) {
       memcpy(&obj->Q[motion_controller_withPIC_B.iQR0 + 1], &obj->
              QR[motion_controller_withPIC_B.iQR0 + 1], static_cast<uint32_T>
@@ -6539,14 +6535,14 @@ void motion_controller_withPIC::motion_controller_wit_computeQ_
     }
   }
 
-  motion_controller_withPIC_B.idx_e = obj->mrows;
+  motion_controller_withPIC_B.idx_a = obj->mrows;
   if (nrows >= 1) {
-    for (motion_controller_withPIC_B.itau = motion_controller_withPIC_B.i_b;
+    for (motion_controller_withPIC_B.itau = motion_controller_withPIC_B.i_i;
          motion_controller_withPIC_B.itau < nrows;
          motion_controller_withPIC_B.itau++) {
       motion_controller_withPIC_B.ia = motion_controller_withPIC_B.itau * 41;
       memset(&obj->Q[motion_controller_withPIC_B.ia], 0, static_cast<uint32_T>
-             ((motion_controller_withPIC_B.idx_e +
+             ((motion_controller_withPIC_B.idx_a +
                motion_controller_withPIC_B.ia) - motion_controller_withPIC_B.ia)
              * sizeof(real_T));
       obj->Q[motion_controller_withPIC_B.ia + motion_controller_withPIC_B.itau] =
@@ -6555,14 +6551,14 @@ void motion_controller_withPIC::motion_controller_wit_computeQ_
 
     motion_controller_withPIC_B.itau = obj->minRowCol - 1;
     memset(&motion_controller_withPIC_B.work_b[0], 0, 41U * sizeof(real_T));
-    motion_controller_withPIC_B.i_b = obj->minRowCol;
-    while (motion_controller_withPIC_B.i_b >= 1) {
-      motion_controller_withPIC_B.iQR0 = ((motion_controller_withPIC_B.i_b - 1) *
-        41 + motion_controller_withPIC_B.i_b) - 1;
-      if (motion_controller_withPIC_B.i_b < nrows) {
+    motion_controller_withPIC_B.i_i = obj->minRowCol;
+    while (motion_controller_withPIC_B.i_i >= 1) {
+      motion_controller_withPIC_B.iQR0 = ((motion_controller_withPIC_B.i_i - 1) *
+        41 + motion_controller_withPIC_B.i_i) - 1;
+      if (motion_controller_withPIC_B.i_i < nrows) {
         obj->Q[motion_controller_withPIC_B.iQR0] = 1.0;
-        motion_controller_withPIC_B.ia = motion_controller_withPIC_B.idx_e -
-          motion_controller_withPIC_B.i_b;
+        motion_controller_withPIC_B.ia = motion_controller_withPIC_B.idx_a -
+          motion_controller_withPIC_B.i_i;
         if (obj->tau[motion_controller_withPIC_B.itau] != 0.0) {
           boolean_T exitg2;
           motion_controller_withPIC_B.lastc = motion_controller_withPIC_B.iQR0 +
@@ -6574,7 +6570,7 @@ void motion_controller_withPIC::motion_controller_wit_computeQ_
           }
 
           motion_controller_withPIC_B.lastc = nrows -
-            motion_controller_withPIC_B.i_b;
+            motion_controller_withPIC_B.i_i;
           exitg2 = false;
           while ((!exitg2) && (motion_controller_withPIC_B.lastc > 0)) {
             int32_T exitg1;
@@ -6682,9 +6678,9 @@ void motion_controller_withPIC::motion_controller_wit_computeQ_
         }
       }
 
-      if (motion_controller_withPIC_B.i_b < motion_controller_withPIC_B.idx_e) {
+      if (motion_controller_withPIC_B.i_i < motion_controller_withPIC_B.idx_a) {
         motion_controller_withPIC_B.lastc = ((motion_controller_withPIC_B.iQR0 +
-          motion_controller_withPIC_B.idx_e) - motion_controller_withPIC_B.i_b)
+          motion_controller_withPIC_B.idx_a) - motion_controller_withPIC_B.i_i)
           + 1;
         for (motion_controller_withPIC_B.ia = motion_controller_withPIC_B.iQR0 +
              2; motion_controller_withPIC_B.ia <=
@@ -6698,7 +6694,7 @@ void motion_controller_withPIC::motion_controller_wit_computeQ_
       obj->Q[motion_controller_withPIC_B.iQR0] = 1.0 - obj->
         tau[motion_controller_withPIC_B.itau];
       motion_controller_withPIC_B.lastc = static_cast<uint8_T>
-        (motion_controller_withPIC_B.i_b - 1);
+        (motion_controller_withPIC_B.i_i - 1);
       for (motion_controller_withPIC_B.ia = 0; motion_controller_withPIC_B.ia <
            motion_controller_withPIC_B.lastc; motion_controller_withPIC_B.ia++)
       {
@@ -6707,12 +6703,12 @@ void motion_controller_withPIC::motion_controller_wit_computeQ_
       }
 
       motion_controller_withPIC_B.itau--;
-      motion_controller_withPIC_B.i_b--;
+      motion_controller_withPIC_B.i_i--;
     }
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 int32_T motion_controller_withPIC::motion_c_ComputeNumDependentEq_
   (s2uO2c2bmaUl7sY5vOWIzHG_motio_T *qrmanager, const real_T beqf[161], int32_T
    mConstr, int32_T nVar)
@@ -6724,9 +6720,9 @@ int32_T motion_controller_withPIC::motion_c_ComputeNumDependentEq_
     numDependent = 0;
   }
 
-  motion_controller_withPIC_B.b_j5 = static_cast<uint8_T>(nVar);
+  motion_controller_withPIC_B.b_h = static_cast<uint8_T>(nVar);
   memset(&qrmanager->jpvt[0], 0, static_cast<uint32_T>
-         (motion_controller_withPIC_B.b_j5) * sizeof(int32_T));
+         (motion_controller_withPIC_B.b_h) * sizeof(int32_T));
   motion_controller_wit_factorQRE(qrmanager, mConstr, nVar);
   motion_controller_withPIC_B.tol = 100.0 * static_cast<real_T>(nVar) *
     2.2204460492503131E-16;
@@ -6747,12 +6743,11 @@ int32_T motion_controller_withPIC::motion_c_ComputeNumDependentEq_
 
   if (numDependent > 0) {
     motion_controller_wit_computeQ_(qrmanager, qrmanager->mrows);
-    motion_controller_withPIC_B.b_j5 = 0;
+    motion_controller_withPIC_B.b_h = 0;
     exitg1 = false;
-    while ((!exitg1) && (motion_controller_withPIC_B.b_j5 <= numDependent - 1))
-    {
+    while ((!exitg1) && (motion_controller_withPIC_B.b_h <= numDependent - 1)) {
       motion_controller_withPIC_B.ix = ((mConstr -
-        motion_controller_withPIC_B.b_j5) - 1) * 41;
+        motion_controller_withPIC_B.b_h) - 1) * 41;
       motion_controller_withPIC_B.qtb = 0.0;
       for (motion_controller_withPIC_B.totalRank = 0;
            motion_controller_withPIC_B.totalRank < mConstr;
@@ -6768,7 +6763,7 @@ int32_T motion_controller_withPIC::motion_c_ComputeNumDependentEq_
         numDependent = -1;
         exitg1 = true;
       } else {
-        motion_controller_withPIC_B.b_j5++;
+        motion_controller_withPIC_B.b_h++;
       }
     }
   }
@@ -6776,7 +6771,7 @@ int32_T motion_controller_withPIC::motion_c_ComputeNumDependentEq_
   return numDependent;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller__removeConstr
   (sT1ziU4p6vTWuD880X9yNJ_motion_T *obj, int32_T idx_global)
 {
@@ -6798,7 +6793,7 @@ void motion_controller_withPIC::motion_controller__removeConstr
   obj->nWConstr[TYPE_tmp]--;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controlle_removeEqConstr
   (sT1ziU4p6vTWuD880X9yNJ_motion_T *obj, int32_T idx_global)
 {
@@ -6839,7 +6834,7 @@ void motion_controller_withPIC::motion_controlle_removeEqConstr
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_contr_RemoveDependentEq_
   (sFlCINAYeIgPgx0UwEHpaMF_motio_T *memspace, sT1ziU4p6vTWuD880X9yNJ_motion_T
    *workingset, int32_T *nDepInd, s2uO2c2bmaUl7sY5vOWIzHG_motio_T *qrmanager)
@@ -6906,7 +6901,7 @@ void motion_controller_withPIC::motion_contr_RemoveDependentEq_
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_con_RemoveDependentIneq_
   (sT1ziU4p6vTWuD880X9yNJ_motion_T *workingset, s2uO2c2bmaUl7sY5vOWIzHG_motio_T *
    qrmanager, sFlCINAYeIgPgx0UwEHpaMF_motio_T *memspace, real_T tolfactor)
@@ -6971,7 +6966,7 @@ void motion_controller_withPIC::motion_con_RemoveDependentIneq_
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller_with_factorQR
   (s2uO2c2bmaUl7sY5vOWIzHG_motio_T *obj, const real_T A[6601], int32_T mrows,
    int32_T ncols)
@@ -6980,23 +6975,23 @@ void motion_controller_withPIC::motion_controller_with_factorQR
 
   __m128i tmp;
   boolean_T guard1;
-  motion_controller_withPIC_B.k_cg = mrows * ncols;
+  motion_controller_withPIC_B.k_p = mrows * ncols;
   guard1 = false;
-  if (motion_controller_withPIC_B.k_cg > 0) {
-    for (motion_controller_withPIC_B.i_pn = 0; motion_controller_withPIC_B.i_pn <
-         ncols; motion_controller_withPIC_B.i_pn++) {
-      motion_controller_withPIC_B.ix0_tmp_a = 41 *
-        motion_controller_withPIC_B.i_pn;
-      motion_controller_withPIC_B.k_cg = static_cast<uint8_T>(mrows);
-      memcpy(&obj->QR[motion_controller_withPIC_B.ix0_tmp_a],
-             &A[motion_controller_withPIC_B.ix0_tmp_a], static_cast<uint32_T>
-             ((motion_controller_withPIC_B.k_cg +
-               motion_controller_withPIC_B.ix0_tmp_a) -
-              motion_controller_withPIC_B.ix0_tmp_a) * sizeof(real_T));
+  if (motion_controller_withPIC_B.k_p > 0) {
+    for (motion_controller_withPIC_B.i_at = 0; motion_controller_withPIC_B.i_at <
+         ncols; motion_controller_withPIC_B.i_at++) {
+      motion_controller_withPIC_B.ix0_tmp_n = 41 *
+        motion_controller_withPIC_B.i_at;
+      motion_controller_withPIC_B.k_p = static_cast<uint8_T>(mrows);
+      memcpy(&obj->QR[motion_controller_withPIC_B.ix0_tmp_n],
+             &A[motion_controller_withPIC_B.ix0_tmp_n], static_cast<uint32_T>
+             ((motion_controller_withPIC_B.k_p +
+               motion_controller_withPIC_B.ix0_tmp_n) -
+              motion_controller_withPIC_B.ix0_tmp_n) * sizeof(real_T));
     }
 
     guard1 = true;
-  } else if (motion_controller_withPIC_B.k_cg == 0) {
+  } else if (motion_controller_withPIC_B.k_p == 0) {
     obj->mrows = mrows;
     obj->ncols = ncols;
     obj->minRowCol = 0;
@@ -7008,106 +7003,106 @@ void motion_controller_withPIC::motion_controller_with_factorQR
     obj->usedPivoting = false;
     obj->mrows = mrows;
     obj->ncols = ncols;
-    motion_controller_withPIC_B.k_cg = (ncols / 4) << 2;
-    motion_controller_withPIC_B.ix0_tmp_a = motion_controller_withPIC_B.k_cg - 4;
-    for (motion_controller_withPIC_B.i_pn = 0; motion_controller_withPIC_B.i_pn <=
-         motion_controller_withPIC_B.ix0_tmp_a; motion_controller_withPIC_B.i_pn
+    motion_controller_withPIC_B.k_p = (ncols / 4) << 2;
+    motion_controller_withPIC_B.ix0_tmp_n = motion_controller_withPIC_B.k_p - 4;
+    for (motion_controller_withPIC_B.i_at = 0; motion_controller_withPIC_B.i_at <=
+         motion_controller_withPIC_B.ix0_tmp_n; motion_controller_withPIC_B.i_at
          += 4) {
       tmp = _mm_add_epi32(_mm_add_epi32(_mm_set1_epi32
-        (motion_controller_withPIC_B.i_pn), _mm_loadu_si128((const __m128i *)
+        (motion_controller_withPIC_B.i_at), _mm_loadu_si128((const __m128i *)
         &offsets[0])), _mm_set1_epi32(1));
-      _mm_storeu_si128((__m128i *)&obj->jpvt[motion_controller_withPIC_B.i_pn],
+      _mm_storeu_si128((__m128i *)&obj->jpvt[motion_controller_withPIC_B.i_at],
                        tmp);
     }
 
-    for (motion_controller_withPIC_B.i_pn = motion_controller_withPIC_B.k_cg;
-         motion_controller_withPIC_B.i_pn < ncols;
-         motion_controller_withPIC_B.i_pn++) {
-      obj->jpvt[motion_controller_withPIC_B.i_pn] =
-        motion_controller_withPIC_B.i_pn + 1;
+    for (motion_controller_withPIC_B.i_at = motion_controller_withPIC_B.k_p;
+         motion_controller_withPIC_B.i_at < ncols;
+         motion_controller_withPIC_B.i_at++) {
+      obj->jpvt[motion_controller_withPIC_B.i_at] =
+        motion_controller_withPIC_B.i_at + 1;
     }
 
     if (mrows <= ncols) {
-      motion_controller_withPIC_B.k_cg = mrows;
+      motion_controller_withPIC_B.k_p = mrows;
     } else {
-      motion_controller_withPIC_B.k_cg = ncols;
+      motion_controller_withPIC_B.k_p = ncols;
     }
 
-    obj->minRowCol = motion_controller_withPIC_B.k_cg;
+    obj->minRowCol = motion_controller_withPIC_B.k_p;
     memset(&obj->tau[0], 0, 41U * sizeof(real_T));
-    if (motion_controller_withPIC_B.k_cg >= 1) {
+    if (motion_controller_withPIC_B.k_p >= 1) {
       memset(&obj->tau[0], 0, 41U * sizeof(real_T));
       motion_controller__qrf_ELz1YOWw(obj->QR, mrows, ncols,
-        motion_controller_withPIC_B.k_cg, obj->tau);
+        motion_controller_withPIC_B.k_p, obj->tau);
     }
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controlle_xgemv_kCjzUKKr(int32_T m, const
   real_T A[3280], const real_T x[6601], real_T y[161])
 {
-  for (motion_controller_withPIC_B.b_iy_n = 0;
-       motion_controller_withPIC_B.b_iy_n <= 78;
-       motion_controller_withPIC_B.b_iy_n += 2) {
+  for (motion_controller_withPIC_B.b_iy_o = 0;
+       motion_controller_withPIC_B.b_iy_o <= 78;
+       motion_controller_withPIC_B.b_iy_o += 2) {
     __m128d tmp;
-    tmp = _mm_loadu_pd(&y[motion_controller_withPIC_B.b_iy_n]);
-    _mm_storeu_pd(&y[motion_controller_withPIC_B.b_iy_n], _mm_mul_pd(tmp,
+    tmp = _mm_loadu_pd(&y[motion_controller_withPIC_B.b_iy_o]);
+    _mm_storeu_pd(&y[motion_controller_withPIC_B.b_iy_o], _mm_mul_pd(tmp,
       _mm_set1_pd(-1.0)));
   }
 
-  for (motion_controller_withPIC_B.b_iy_n = 0;
-       motion_controller_withPIC_B.b_iy_n <= 3239;
-       motion_controller_withPIC_B.b_iy_n += 41) {
-    motion_controller_withPIC_B.c_ax = 0.0;
-    motion_controller_withPIC_B.b_oi = motion_controller_withPIC_B.b_iy_n + m;
-    for (motion_controller_withPIC_B.ia_e = motion_controller_withPIC_B.b_iy_n +
-         1; motion_controller_withPIC_B.ia_e <= motion_controller_withPIC_B.b_oi;
-         motion_controller_withPIC_B.ia_e++) {
-      motion_controller_withPIC_B.c_ax += x[(motion_controller_withPIC_B.ia_e -
-        motion_controller_withPIC_B.b_iy_n) - 1] *
-        A[motion_controller_withPIC_B.ia_e - 1];
+  for (motion_controller_withPIC_B.b_iy_o = 0;
+       motion_controller_withPIC_B.b_iy_o <= 3239;
+       motion_controller_withPIC_B.b_iy_o += 41) {
+    motion_controller_withPIC_B.c_o = 0.0;
+    motion_controller_withPIC_B.b_en = motion_controller_withPIC_B.b_iy_o + m;
+    for (motion_controller_withPIC_B.ia_m = motion_controller_withPIC_B.b_iy_o +
+         1; motion_controller_withPIC_B.ia_m <= motion_controller_withPIC_B.b_en;
+         motion_controller_withPIC_B.ia_m++) {
+      motion_controller_withPIC_B.c_o += x[(motion_controller_withPIC_B.ia_m -
+        motion_controller_withPIC_B.b_iy_o) - 1] *
+        A[motion_controller_withPIC_B.ia_m - 1];
     }
 
-    motion_controller_withPIC_B.ia_e = div_nde_s32_floor
-      (motion_controller_withPIC_B.b_iy_n, 41);
-    y[motion_controller_withPIC_B.ia_e] += motion_controller_withPIC_B.c_ax;
+    motion_controller_withPIC_B.ia_m = div_nde_s32_floor
+      (motion_controller_withPIC_B.b_iy_o, 41);
+    y[motion_controller_withPIC_B.ia_m] += motion_controller_withPIC_B.c_o;
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controlle_xgemv_vsfN2o0d(int32_T m, const
   real_T A[3280], const real_T x[6601], real_T y[161])
 {
-  for (motion_controller_withPIC_B.b_iy_d = 0;
-       motion_controller_withPIC_B.b_iy_d <= 78;
-       motion_controller_withPIC_B.b_iy_d += 2) {
+  for (motion_controller_withPIC_B.b_iy_m = 0;
+       motion_controller_withPIC_B.b_iy_m <= 78;
+       motion_controller_withPIC_B.b_iy_m += 2) {
     __m128d tmp;
-    tmp = _mm_loadu_pd(&y[motion_controller_withPIC_B.b_iy_d]);
-    _mm_storeu_pd(&y[motion_controller_withPIC_B.b_iy_d], _mm_mul_pd(tmp,
+    tmp = _mm_loadu_pd(&y[motion_controller_withPIC_B.b_iy_m]);
+    _mm_storeu_pd(&y[motion_controller_withPIC_B.b_iy_m], _mm_mul_pd(tmp,
       _mm_set1_pd(-1.0)));
   }
 
-  for (motion_controller_withPIC_B.b_iy_d = 0;
-       motion_controller_withPIC_B.b_iy_d <= 3239;
-       motion_controller_withPIC_B.b_iy_d += 41) {
-    motion_controller_withPIC_B.c_m = 0.0;
-    motion_controller_withPIC_B.b_m = motion_controller_withPIC_B.b_iy_d + m;
-    for (motion_controller_withPIC_B.ia_f = motion_controller_withPIC_B.b_iy_d +
-         1; motion_controller_withPIC_B.ia_f <= motion_controller_withPIC_B.b_m;
-         motion_controller_withPIC_B.ia_f++) {
-      motion_controller_withPIC_B.c_m += x[(motion_controller_withPIC_B.ia_f -
-        motion_controller_withPIC_B.b_iy_d) + 160] *
-        A[motion_controller_withPIC_B.ia_f - 1];
+  for (motion_controller_withPIC_B.b_iy_m = 0;
+       motion_controller_withPIC_B.b_iy_m <= 3239;
+       motion_controller_withPIC_B.b_iy_m += 41) {
+    motion_controller_withPIC_B.c_hi = 0.0;
+    motion_controller_withPIC_B.b_f = motion_controller_withPIC_B.b_iy_m + m;
+    for (motion_controller_withPIC_B.ia_n = motion_controller_withPIC_B.b_iy_m +
+         1; motion_controller_withPIC_B.ia_n <= motion_controller_withPIC_B.b_f;
+         motion_controller_withPIC_B.ia_n++) {
+      motion_controller_withPIC_B.c_hi += x[(motion_controller_withPIC_B.ia_n -
+        motion_controller_withPIC_B.b_iy_m) + 160] *
+        A[motion_controller_withPIC_B.ia_n - 1];
     }
 
-    motion_controller_withPIC_B.ia_f = div_nde_s32_floor
-      (motion_controller_withPIC_B.b_iy_d, 41);
-    y[motion_controller_withPIC_B.ia_f] += motion_controller_withPIC_B.c_m;
+    motion_controller_withPIC_B.ia_n = div_nde_s32_floor
+      (motion_controller_withPIC_B.b_iy_m, 41);
+    y[motion_controller_withPIC_B.ia_n] += motion_controller_withPIC_B.c_hi;
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
   workspace[6601], real_T xCurrent[41], sT1ziU4p6vTWuD880X9yNJ_motion_T
   *workingset, s2uO2c2bmaUl7sY5vOWIzHG_motio_T *qrmanager)
@@ -7134,10 +7129,9 @@ boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
     }
 
     if (workingset->nActiveConstr != 0) {
-      motion_controller_withPIC_B.d_fn = (workingset->nActiveConstr - 1) * 41 +
-        1;
+      motion_controller_withPIC_B.d_e = (workingset->nActiveConstr - 1) * 41 + 1;
       for (motion_controller_withPIC_B.iac = 1; motion_controller_withPIC_B.iac <=
-           motion_controller_withPIC_B.d_fn; motion_controller_withPIC_B.iac +=
+           motion_controller_withPIC_B.d_e; motion_controller_withPIC_B.iac +=
            41) {
         motion_controller_withPIC_B.c = 0.0;
         motion_controller_withPIC_B.jBcol = (motion_controller_withPIC_B.iac +
@@ -7160,9 +7154,9 @@ boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
     }
 
     if (workingset->nActiveConstr >= workingset->nVar) {
-      motion_controller_withPIC_B.d_fn = static_cast<uint8_T>(workingset->nVar);
+      motion_controller_withPIC_B.d_e = static_cast<uint8_T>(workingset->nVar);
       for (motion_controller_withPIC_B.idx_n = 0;
-           motion_controller_withPIC_B.idx_n < motion_controller_withPIC_B.d_fn;
+           motion_controller_withPIC_B.idx_n < motion_controller_withPIC_B.d_e;
            motion_controller_withPIC_B.idx_n++) {
         motion_controller_withPIC_B.jBcol = 41 *
           motion_controller_withPIC_B.idx_n;
@@ -7194,7 +7188,7 @@ boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
       }
 
       for (motion_controller_withPIC_B.idx_n = motion_controller_withPIC_B.jBcol;
-           motion_controller_withPIC_B.idx_n < motion_controller_withPIC_B.d_fn;
+           motion_controller_withPIC_B.idx_n < motion_controller_withPIC_B.d_e;
            motion_controller_withPIC_B.idx_n++) {
         qrmanager->jpvt[motion_controller_withPIC_B.idx_n] =
           motion_controller_withPIC_B.idx_n + 1;
@@ -7225,11 +7219,11 @@ boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
       for (motion_controller_withPIC_B.idx_n = 0;
            motion_controller_withPIC_B.idx_n <= 161;
            motion_controller_withPIC_B.idx_n += 161) {
-        motion_controller_withPIC_B.d_fn = motion_controller_withPIC_B.idx_n +
+        motion_controller_withPIC_B.d_e = motion_controller_withPIC_B.idx_n +
           motion_controller_withPIC_B.nVar_tmp_tmp;
         for (motion_controller_withPIC_B.iac = motion_controller_withPIC_B.idx_n
              + 1; motion_controller_withPIC_B.iac <=
-             motion_controller_withPIC_B.d_fn; motion_controller_withPIC_B.iac++)
+             motion_controller_withPIC_B.d_e; motion_controller_withPIC_B.iac++)
         {
           workspace[motion_controller_withPIC_B.iac - 1] = 0.0;
         }
@@ -7247,14 +7241,14 @@ boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
              motion_controller_withPIC_B.br; motion_controller_withPIC_B.iac++)
         {
           motion_controller_withPIC_B.c = 0.0;
-          for (motion_controller_withPIC_B.d_fn = 0;
-               motion_controller_withPIC_B.d_fn <=
+          for (motion_controller_withPIC_B.d_e = 0;
+               motion_controller_withPIC_B.d_e <=
                motion_controller_withPIC_B.mWConstr_tmp_tmp;
-               motion_controller_withPIC_B.d_fn++) {
+               motion_controller_withPIC_B.d_e++) {
             motion_controller_withPIC_B.c += qrmanager->Q
-              [(motion_controller_withPIC_B.d_fn +
+              [(motion_controller_withPIC_B.d_e +
                 motion_controller_withPIC_B.iAcol) + 1] *
-              motion_controller_withPIC_B.B[(motion_controller_withPIC_B.d_fn +
+              motion_controller_withPIC_B.B[(motion_controller_withPIC_B.d_e +
               motion_controller_withPIC_B.jBcol) + 1];
           }
 
@@ -7271,23 +7265,23 @@ boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
            motion_controller_withPIC_B.mWConstr_tmp_tmp++) {
         motion_controller_withPIC_B.iAcol = 161 *
           motion_controller_withPIC_B.mWConstr_tmp_tmp - 1;
-        for (motion_controller_withPIC_B.d_fn =
+        for (motion_controller_withPIC_B.d_e =
              motion_controller_withPIC_B.nVar_tmp_tmp;
-             motion_controller_withPIC_B.d_fn >= 1;
-             motion_controller_withPIC_B.d_fn--) {
-          motion_controller_withPIC_B.br = (motion_controller_withPIC_B.d_fn - 1)
+             motion_controller_withPIC_B.d_e >= 1;
+             motion_controller_withPIC_B.d_e--) {
+          motion_controller_withPIC_B.br = (motion_controller_withPIC_B.d_e - 1)
             * 41;
-          motion_controller_withPIC_B.idx_n = motion_controller_withPIC_B.d_fn +
+          motion_controller_withPIC_B.idx_n = motion_controller_withPIC_B.d_e +
             motion_controller_withPIC_B.iAcol;
           motion_controller_withPIC_B.c =
             workspace[motion_controller_withPIC_B.idx_n];
           if (motion_controller_withPIC_B.c != 0.0) {
             workspace[motion_controller_withPIC_B.idx_n] =
               motion_controller_withPIC_B.c / qrmanager->QR
-              [(motion_controller_withPIC_B.d_fn +
-                motion_controller_withPIC_B.br) - 1];
+              [(motion_controller_withPIC_B.d_e + motion_controller_withPIC_B.br)
+              - 1];
             motion_controller_withPIC_B.ar = static_cast<uint8_T>
-              (motion_controller_withPIC_B.d_fn - 1);
+              (motion_controller_withPIC_B.d_e - 1);
             for (motion_controller_withPIC_B.jBcol = 0;
                  motion_controller_withPIC_B.jBcol <
                  motion_controller_withPIC_B.ar;
@@ -7324,13 +7318,13 @@ boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
             workspace[motion_controller_withPIC_B.br];
           motion_controller_withPIC_B.ar = static_cast<uint8_T>
             (motion_controller_withPIC_B.iac);
-          for (motion_controller_withPIC_B.d_fn = 0;
-               motion_controller_withPIC_B.d_fn < motion_controller_withPIC_B.ar;
-               motion_controller_withPIC_B.d_fn++) {
+          for (motion_controller_withPIC_B.d_e = 0;
+               motion_controller_withPIC_B.d_e < motion_controller_withPIC_B.ar;
+               motion_controller_withPIC_B.d_e++) {
             motion_controller_withPIC_B.c -= qrmanager->
-              QR[motion_controller_withPIC_B.d_fn +
+              QR[motion_controller_withPIC_B.d_e +
               motion_controller_withPIC_B.iAcol] *
-              workspace[motion_controller_withPIC_B.d_fn +
+              workspace[motion_controller_withPIC_B.d_e +
               motion_controller_withPIC_B.jBcol];
           }
 
@@ -7346,11 +7340,11 @@ boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
       for (motion_controller_withPIC_B.idx_n = 0;
            motion_controller_withPIC_B.idx_n <= 161;
            motion_controller_withPIC_B.idx_n += 161) {
-        motion_controller_withPIC_B.d_fn = motion_controller_withPIC_B.idx_n +
+        motion_controller_withPIC_B.d_e = motion_controller_withPIC_B.idx_n +
           motion_controller_withPIC_B.nVar_tmp_tmp;
         for (motion_controller_withPIC_B.iac = motion_controller_withPIC_B.idx_n
              + 1; motion_controller_withPIC_B.iac <=
-             motion_controller_withPIC_B.d_fn; motion_controller_withPIC_B.iac++)
+             motion_controller_withPIC_B.d_e; motion_controller_withPIC_B.iac++)
         {
           workspace[motion_controller_withPIC_B.iac - 1] = 0.0;
         }
@@ -7366,38 +7360,37 @@ boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
         for (motion_controller_withPIC_B.iac = motion_controller_withPIC_B.br;
              motion_controller_withPIC_B.iac <= motion_controller_withPIC_B.h;
              motion_controller_withPIC_B.iac++) {
-          motion_controller_withPIC_B.l_n = motion_controller_withPIC_B.idx_n +
+          motion_controller_withPIC_B.l_b = motion_controller_withPIC_B.idx_n +
             motion_controller_withPIC_B.nVar_tmp_tmp;
           motion_controller_withPIC_B.jBcol =
-            ((((motion_controller_withPIC_B.l_n -
+            ((((motion_controller_withPIC_B.l_b -
                 motion_controller_withPIC_B.idx_n) / 2) << 1) +
              motion_controller_withPIC_B.idx_n) + 1;
           motion_controller_withPIC_B.iAcol = motion_controller_withPIC_B.jBcol
             - 2;
-          for (motion_controller_withPIC_B.d_fn =
+          for (motion_controller_withPIC_B.d_e =
                motion_controller_withPIC_B.idx_n + 1;
-               motion_controller_withPIC_B.d_fn <=
+               motion_controller_withPIC_B.d_e <=
                motion_controller_withPIC_B.iAcol;
-               motion_controller_withPIC_B.d_fn += 2) {
+               motion_controller_withPIC_B.d_e += 2) {
             tmp = _mm_loadu_pd(&qrmanager->Q[(motion_controller_withPIC_B.ar +
-              motion_controller_withPIC_B.d_fn) -
+              motion_controller_withPIC_B.d_e) -
                                motion_controller_withPIC_B.idx_n]);
-            tmp_0 = _mm_loadu_pd(&workspace[motion_controller_withPIC_B.d_fn - 1]);
-            _mm_storeu_pd(&workspace[motion_controller_withPIC_B.d_fn - 1],
+            tmp_0 = _mm_loadu_pd(&workspace[motion_controller_withPIC_B.d_e - 1]);
+            _mm_storeu_pd(&workspace[motion_controller_withPIC_B.d_e - 1],
                           _mm_add_pd(_mm_mul_pd(tmp, _mm_set1_pd
               (motion_controller_withPIC_B.B[motion_controller_withPIC_B.iac - 1])),
               tmp_0));
           }
 
-          for (motion_controller_withPIC_B.d_fn =
+          for (motion_controller_withPIC_B.d_e =
                motion_controller_withPIC_B.jBcol;
-               motion_controller_withPIC_B.d_fn <=
-               motion_controller_withPIC_B.l_n; motion_controller_withPIC_B.d_fn
+               motion_controller_withPIC_B.d_e <=
+               motion_controller_withPIC_B.l_b; motion_controller_withPIC_B.d_e
                ++) {
-            workspace[motion_controller_withPIC_B.d_fn - 1] += qrmanager->Q
-              [(motion_controller_withPIC_B.ar +
-                motion_controller_withPIC_B.d_fn) -
-              motion_controller_withPIC_B.idx_n] *
+            workspace[motion_controller_withPIC_B.d_e - 1] += qrmanager->Q
+              [(motion_controller_withPIC_B.ar + motion_controller_withPIC_B.d_e)
+              - motion_controller_withPIC_B.idx_n] *
               motion_controller_withPIC_B.B[motion_controller_withPIC_B.iac - 1];
           }
 
@@ -7671,7 +7664,7 @@ boolean_T motion_controller_withPIC::motion__feasibleX0ForWorkingSet(real_T
   return nonDegenerateWset;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 real_T motion_controller_withPIC::motion_c_maxConstraintViolation
   (sT1ziU4p6vTWuD880X9yNJ_motion_T *obj, const real_T x[41])
 {
@@ -7735,7 +7728,7 @@ real_T motion_controller_withPIC::motion_c_maxConstraintViolation
   return v;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_contr_PresolveWorkingSet
   (s5cJJO9CAPQxuVG0iaeiP4F_motio_T *solution, sFlCINAYeIgPgx0UwEHpaMF_motio_T
    *memspace, sT1ziU4p6vTWuD880X9yNJ_motion_T *workingset,
@@ -7795,7 +7788,7 @@ void motion_controller_withPIC::motion_contr_PresolveWorkingSet
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller_w_linearForm_(int32_T obj_nvar,
   real_T workspace[6601], const real_T H[1600], const real_T f[40], const real_T
   x[41])
@@ -7820,7 +7813,7 @@ void motion_controller_withPIC::motion_controller_w_linearForm_(int32_T obj_nvar
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 real_T motion_controller_withPIC::motion_controller_w_computeFval(const
   sKnhLiTH4yv7eF1oV2a74RG_motio_T *obj, real_T workspace[6601], const real_T H
   [1600], const real_T f[40], const real_T x[41])
@@ -7856,7 +7849,7 @@ real_T motion_controller_withPIC::motion_controller_w_computeFval(const
   return val;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_cont_computeGrad_StoreHx
   (sKnhLiTH4yv7eF1oV2a74RG_motio_T *obj, const real_T H[1600], const real_T f[40],
    const real_T x[41])
@@ -7933,7 +7926,7 @@ void motion_controller_withPIC::motion_cont_computeGrad_StoreHx
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 real_T motion_controller_withPIC::motion_cont_computeFval_ReuseHx(const
   sKnhLiTH4yv7eF1oV2a74RG_motio_T *obj, real_T workspace[6601], const real_T f
   [40], const real_T x[41])
@@ -8028,18 +8021,18 @@ real_T motion_controller_withPIC::motion_cont_computeFval_ReuseHx(const
   return val;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_control_deleteColMoveEnd
   (s2uO2c2bmaUl7sY5vOWIzHG_motio_T *obj, int32_T idx)
 {
   if (obj->usedPivoting) {
-    motion_controller_withPIC_B.i_h = 1;
-    while ((motion_controller_withPIC_B.i_h <= obj->ncols) && (obj->
-            jpvt[motion_controller_withPIC_B.i_h - 1] != idx)) {
-      motion_controller_withPIC_B.i_h++;
+    motion_controller_withPIC_B.i_gn = 1;
+    while ((motion_controller_withPIC_B.i_gn <= obj->ncols) && (obj->
+            jpvt[motion_controller_withPIC_B.i_gn - 1] != idx)) {
+      motion_controller_withPIC_B.i_gn++;
     }
 
-    idx = motion_controller_withPIC_B.i_h;
+    idx = motion_controller_withPIC_B.i_gn;
   }
 
   if (idx >= obj->ncols) {
@@ -8047,10 +8040,10 @@ void motion_controller_withPIC::motion_control_deleteColMoveEnd
   } else {
     obj->jpvt[idx - 1] = obj->jpvt[obj->ncols - 1];
     motion_controller_withPIC_B.QRk0 = obj->minRowCol;
-    for (motion_controller_withPIC_B.i_h = 0; motion_controller_withPIC_B.i_h <
-         motion_controller_withPIC_B.QRk0; motion_controller_withPIC_B.i_h++) {
-      obj->QR[motion_controller_withPIC_B.i_h + 41 * (idx - 1)] = obj->QR
-        [(obj->ncols - 1) * 41 + motion_controller_withPIC_B.i_h];
+    for (motion_controller_withPIC_B.i_gn = 0; motion_controller_withPIC_B.i_gn <
+         motion_controller_withPIC_B.QRk0; motion_controller_withPIC_B.i_gn++) {
+      obj->QR[motion_controller_withPIC_B.i_gn + 41 * (idx - 1)] = obj->QR
+        [(obj->ncols - 1) * 41 + motion_controller_withPIC_B.i_gn];
     }
 
     obj->ncols--;
@@ -8062,15 +8055,15 @@ void motion_controller_withPIC::motion_control_deleteColMoveEnd
 
     if (idx < obj->mrows) {
       if (obj->mrows - 1 <= obj->ncols) {
-        motion_controller_withPIC_B.i_h = obj->mrows - 1;
+        motion_controller_withPIC_B.i_gn = obj->mrows - 1;
       } else {
-        motion_controller_withPIC_B.i_h = obj->ncols;
+        motion_controller_withPIC_B.i_gn = obj->ncols;
       }
 
-      motion_controller_withPIC_B.k_i = motion_controller_withPIC_B.i_h;
+      motion_controller_withPIC_B.k_c1 = motion_controller_withPIC_B.i_gn;
       motion_controller_withPIC_B.idxRotGCol = (idx - 1) * 41;
-      while (motion_controller_withPIC_B.k_i >= idx) {
-        motion_controller_withPIC_B.QRk0 = motion_controller_withPIC_B.k_i +
+      while (motion_controller_withPIC_B.k_c1 >= idx) {
+        motion_controller_withPIC_B.QRk0 = motion_controller_withPIC_B.k_c1 +
           motion_controller_withPIC_B.idxRotGCol;
         motion_controller_withPIC_B.b_temp = obj->
           QR[motion_controller_withPIC_B.QRk0];
@@ -8080,72 +8073,72 @@ void motion_controller_withPIC::motion_control_deleteColMoveEnd
           &motion_controller_withPIC_B.b_s);
         obj->QR[motion_controller_withPIC_B.QRk0] =
           motion_controller_withPIC_B.b_temp;
-        motion_controller_withPIC_B.e_k = (motion_controller_withPIC_B.k_i - 1) *
-          41;
-        obj->QR[motion_controller_withPIC_B.k_i +
+        motion_controller_withPIC_B.e_k = (motion_controller_withPIC_B.k_c1 - 1)
+          * 41;
+        obj->QR[motion_controller_withPIC_B.k_c1 +
           motion_controller_withPIC_B.e_k] = 0.0;
         motion_controller_withPIC_B.QRk0 = 41 * idx +
-          motion_controller_withPIC_B.k_i;
-        motion_controller_withPIC_B.b_temp_tmp_o = obj->ncols - idx;
-        if (motion_controller_withPIC_B.b_temp_tmp_o >= 1) {
-          for (motion_controller_withPIC_B.b_n_g = 0;
-               motion_controller_withPIC_B.b_n_g <
-               motion_controller_withPIC_B.b_temp_tmp_o;
-               motion_controller_withPIC_B.b_n_g++) {
-            motion_controller_withPIC_B.temp_tmp_c =
-              motion_controller_withPIC_B.b_n_g * 41 +
+          motion_controller_withPIC_B.k_c1;
+        motion_controller_withPIC_B.b_temp_tmp_g = obj->ncols - idx;
+        if (motion_controller_withPIC_B.b_temp_tmp_g >= 1) {
+          for (motion_controller_withPIC_B.b_n = 0;
+               motion_controller_withPIC_B.b_n <
+               motion_controller_withPIC_B.b_temp_tmp_g;
+               motion_controller_withPIC_B.b_n++) {
+            motion_controller_withPIC_B.temp_tmp_o =
+              motion_controller_withPIC_B.b_n * 41 +
               motion_controller_withPIC_B.QRk0;
             motion_controller_withPIC_B.b_temp_tmp = obj->
-              QR[motion_controller_withPIC_B.temp_tmp_c - 1];
+              QR[motion_controller_withPIC_B.temp_tmp_o - 1];
             motion_controller_withPIC_B.b_temp =
               motion_controller_withPIC_B.b_temp_tmp *
               motion_controller_withPIC_B.c_c + obj->
-              QR[motion_controller_withPIC_B.temp_tmp_c] *
+              QR[motion_controller_withPIC_B.temp_tmp_o] *
               motion_controller_withPIC_B.b_s;
-            obj->QR[motion_controller_withPIC_B.temp_tmp_c] = obj->
-              QR[motion_controller_withPIC_B.temp_tmp_c] *
+            obj->QR[motion_controller_withPIC_B.temp_tmp_o] = obj->
+              QR[motion_controller_withPIC_B.temp_tmp_o] *
               motion_controller_withPIC_B.c_c -
               motion_controller_withPIC_B.b_temp_tmp *
               motion_controller_withPIC_B.b_s;
-            obj->QR[motion_controller_withPIC_B.temp_tmp_c - 1] =
+            obj->QR[motion_controller_withPIC_B.temp_tmp_o - 1] =
               motion_controller_withPIC_B.b_temp;
           }
         }
 
-        motion_controller_withPIC_B.b_n_g = obj->mrows;
+        motion_controller_withPIC_B.b_n = obj->mrows;
         if (obj->mrows >= 1) {
           for (motion_controller_withPIC_B.QRk0 = 0;
                motion_controller_withPIC_B.QRk0 <
-               motion_controller_withPIC_B.b_n_g;
-               motion_controller_withPIC_B.QRk0++) {
-            motion_controller_withPIC_B.b_temp_tmp_o =
+               motion_controller_withPIC_B.b_n; motion_controller_withPIC_B.QRk0
+               ++) {
+            motion_controller_withPIC_B.b_temp_tmp_g =
               motion_controller_withPIC_B.e_k + motion_controller_withPIC_B.QRk0;
             motion_controller_withPIC_B.b_temp_tmp = obj->
-              Q[motion_controller_withPIC_B.b_temp_tmp_o + 41];
+              Q[motion_controller_withPIC_B.b_temp_tmp_g + 41];
             motion_controller_withPIC_B.b_temp =
               motion_controller_withPIC_B.b_temp_tmp *
               motion_controller_withPIC_B.b_s + obj->
-              Q[motion_controller_withPIC_B.b_temp_tmp_o] *
+              Q[motion_controller_withPIC_B.b_temp_tmp_g] *
               motion_controller_withPIC_B.c_c;
-            obj->Q[motion_controller_withPIC_B.b_temp_tmp_o + 41] =
+            obj->Q[motion_controller_withPIC_B.b_temp_tmp_g + 41] =
               motion_controller_withPIC_B.b_temp_tmp *
               motion_controller_withPIC_B.c_c - obj->
-              Q[motion_controller_withPIC_B.b_temp_tmp_o] *
+              Q[motion_controller_withPIC_B.b_temp_tmp_g] *
               motion_controller_withPIC_B.b_s;
-            obj->Q[motion_controller_withPIC_B.b_temp_tmp_o] =
+            obj->Q[motion_controller_withPIC_B.b_temp_tmp_g] =
               motion_controller_withPIC_B.b_temp;
           }
         }
 
-        motion_controller_withPIC_B.k_i--;
+        motion_controller_withPIC_B.k_c1--;
       }
 
-      for (motion_controller_withPIC_B.k_i = idx + 1;
-           motion_controller_withPIC_B.k_i <= motion_controller_withPIC_B.i_h;
-           motion_controller_withPIC_B.k_i++) {
+      for (motion_controller_withPIC_B.k_c1 = idx + 1;
+           motion_controller_withPIC_B.k_c1 <= motion_controller_withPIC_B.i_gn;
+           motion_controller_withPIC_B.k_c1++) {
         motion_controller_withPIC_B.idxRotGCol =
-          (motion_controller_withPIC_B.k_i - 1) * 41;
-        motion_controller_withPIC_B.QRk0 = motion_controller_withPIC_B.k_i +
+          (motion_controller_withPIC_B.k_c1 - 1) * 41;
+        motion_controller_withPIC_B.QRk0 = motion_controller_withPIC_B.k_c1 +
           motion_controller_withPIC_B.idxRotGCol;
         motion_controller_withPIC_B.b_temp = obj->
           QR[motion_controller_withPIC_B.QRk0];
@@ -8155,30 +8148,29 @@ void motion_controller_withPIC::motion_control_deleteColMoveEnd
           &motion_controller_withPIC_B.b_s);
         obj->QR[motion_controller_withPIC_B.QRk0] =
           motion_controller_withPIC_B.b_temp;
-        motion_controller_withPIC_B.QRk0 = motion_controller_withPIC_B.k_i * 42;
-        motion_controller_withPIC_B.b_n_g = obj->ncols -
-          motion_controller_withPIC_B.k_i;
-        if (motion_controller_withPIC_B.b_n_g >= 1) {
+        motion_controller_withPIC_B.QRk0 = motion_controller_withPIC_B.k_c1 * 42;
+        motion_controller_withPIC_B.b_n = obj->ncols -
+          motion_controller_withPIC_B.k_c1;
+        if (motion_controller_withPIC_B.b_n >= 1) {
           for (motion_controller_withPIC_B.e_k = 0;
-               motion_controller_withPIC_B.e_k <
-               motion_controller_withPIC_B.b_n_g;
+               motion_controller_withPIC_B.e_k < motion_controller_withPIC_B.b_n;
                motion_controller_withPIC_B.e_k++) {
-            motion_controller_withPIC_B.b_temp_tmp_o =
+            motion_controller_withPIC_B.b_temp_tmp_g =
               motion_controller_withPIC_B.e_k * 41 +
               motion_controller_withPIC_B.QRk0;
             motion_controller_withPIC_B.b_temp_tmp = obj->
-              QR[motion_controller_withPIC_B.b_temp_tmp_o - 1];
+              QR[motion_controller_withPIC_B.b_temp_tmp_g - 1];
             motion_controller_withPIC_B.b_temp =
               motion_controller_withPIC_B.b_temp_tmp *
               motion_controller_withPIC_B.c_c + obj->
-              QR[motion_controller_withPIC_B.b_temp_tmp_o] *
+              QR[motion_controller_withPIC_B.b_temp_tmp_g] *
               motion_controller_withPIC_B.b_s;
-            obj->QR[motion_controller_withPIC_B.b_temp_tmp_o] = obj->
-              QR[motion_controller_withPIC_B.b_temp_tmp_o] *
+            obj->QR[motion_controller_withPIC_B.b_temp_tmp_g] = obj->
+              QR[motion_controller_withPIC_B.b_temp_tmp_g] *
               motion_controller_withPIC_B.c_c -
               motion_controller_withPIC_B.b_temp_tmp *
               motion_controller_withPIC_B.b_s;
-            obj->QR[motion_controller_withPIC_B.b_temp_tmp_o - 1] =
+            obj->QR[motion_controller_withPIC_B.b_temp_tmp_g - 1] =
               motion_controller_withPIC_B.b_temp;
           }
         }
@@ -8189,22 +8181,22 @@ void motion_controller_withPIC::motion_control_deleteColMoveEnd
                motion_controller_withPIC_B.QRk0 <
                motion_controller_withPIC_B.e_k; motion_controller_withPIC_B.QRk0
                ++) {
-            motion_controller_withPIC_B.b_n_g =
+            motion_controller_withPIC_B.b_n =
               motion_controller_withPIC_B.idxRotGCol +
               motion_controller_withPIC_B.QRk0;
             motion_controller_withPIC_B.b_temp_tmp = obj->
-              Q[motion_controller_withPIC_B.b_n_g + 41];
+              Q[motion_controller_withPIC_B.b_n + 41];
             motion_controller_withPIC_B.b_temp =
               motion_controller_withPIC_B.b_temp_tmp *
               motion_controller_withPIC_B.b_s + obj->
-              Q[motion_controller_withPIC_B.b_n_g] *
+              Q[motion_controller_withPIC_B.b_n] *
               motion_controller_withPIC_B.c_c;
-            obj->Q[motion_controller_withPIC_B.b_n_g + 41] =
+            obj->Q[motion_controller_withPIC_B.b_n + 41] =
               motion_controller_withPIC_B.b_temp_tmp *
               motion_controller_withPIC_B.c_c - obj->
-              Q[motion_controller_withPIC_B.b_n_g] *
+              Q[motion_controller_withPIC_B.b_n] *
               motion_controller_withPIC_B.b_s;
-            obj->Q[motion_controller_withPIC_B.b_n_g] =
+            obj->Q[motion_controller_withPIC_B.b_n] =
               motion_controller_withPIC_B.b_temp;
           }
         }
@@ -8213,7 +8205,7 @@ void motion_controller_withPIC::motion_control_deleteColMoveEnd
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller__fullColLDL2_
   (s8kZFjDlzP6eNfOekUiP5MF_motio_T *obj, int32_T NColsRemain, real_T REG_PRIMAL)
 {
@@ -8222,16 +8214,16 @@ void motion_controller_withPIC::motion_controller__fullColLDL2_
        motion_controller_withPIC_B.lastDiag++) {
     motion_controller_withPIC_B.LD_diagOffset = 42 *
       motion_controller_withPIC_B.lastDiag;
-    motion_controller_withPIC_B.temp_i = obj->
+    motion_controller_withPIC_B.temp_m = obj->
       FMat[motion_controller_withPIC_B.LD_diagOffset];
-    if (fabs(motion_controller_withPIC_B.temp_i) <= obj->regTol_) {
-      motion_controller_withPIC_B.temp_i += REG_PRIMAL;
+    if (fabs(motion_controller_withPIC_B.temp_m) <= obj->regTol_) {
+      motion_controller_withPIC_B.temp_m += REG_PRIMAL;
       obj->FMat[motion_controller_withPIC_B.LD_diagOffset] =
-        motion_controller_withPIC_B.temp_i;
+        motion_controller_withPIC_B.temp_m;
     }
 
-    motion_controller_withPIC_B.alpha1_k = -1.0 /
-      motion_controller_withPIC_B.temp_i;
+    motion_controller_withPIC_B.alpha1_h = -1.0 /
+      motion_controller_withPIC_B.temp_m;
     motion_controller_withPIC_B.subMatrixDim = (NColsRemain -
       motion_controller_withPIC_B.lastDiag) - 2;
     for (motion_controller_withPIC_B.b_k = 0; motion_controller_withPIC_B.b_k <=
@@ -8242,53 +8234,53 @@ void motion_controller_withPIC::motion_controller__fullColLDL2_
           motion_controller_withPIC_B.b_k) + 1];
     }
 
-    if (!(motion_controller_withPIC_B.alpha1_k == 0.0)) {
-      motion_controller_withPIC_B.jA_n =
+    if (!(motion_controller_withPIC_B.alpha1_h == 0.0)) {
+      motion_controller_withPIC_B.jA_b =
         motion_controller_withPIC_B.LD_diagOffset + 43;
       for (motion_controller_withPIC_B.b_k = 0; motion_controller_withPIC_B.b_k <=
            motion_controller_withPIC_B.subMatrixDim;
            motion_controller_withPIC_B.b_k++) {
-        motion_controller_withPIC_B.temp_i = obj->
+        motion_controller_withPIC_B.temp_m = obj->
           workspace_[motion_controller_withPIC_B.b_k];
-        if (motion_controller_withPIC_B.temp_i != 0.0) {
-          motion_controller_withPIC_B.temp_i *=
-            motion_controller_withPIC_B.alpha1_k;
-          motion_controller_withPIC_B.b_bi =
+        if (motion_controller_withPIC_B.temp_m != 0.0) {
+          motion_controller_withPIC_B.temp_m *=
+            motion_controller_withPIC_B.alpha1_h;
+          motion_controller_withPIC_B.b_jk =
             motion_controller_withPIC_B.subMatrixDim +
-            motion_controller_withPIC_B.jA_n;
+            motion_controller_withPIC_B.jA_b;
           for (motion_controller_withPIC_B.ijA =
-               motion_controller_withPIC_B.jA_n; motion_controller_withPIC_B.ijA
-               <= motion_controller_withPIC_B.b_bi;
+               motion_controller_withPIC_B.jA_b; motion_controller_withPIC_B.ijA
+               <= motion_controller_withPIC_B.b_jk;
                motion_controller_withPIC_B.ijA++) {
             obj->FMat[motion_controller_withPIC_B.ijA - 1] += obj->
               workspace_[motion_controller_withPIC_B.ijA -
-              motion_controller_withPIC_B.jA_n] *
-              motion_controller_withPIC_B.temp_i;
+              motion_controller_withPIC_B.jA_b] *
+              motion_controller_withPIC_B.temp_m;
           }
         }
 
-        motion_controller_withPIC_B.jA_n += 41;
+        motion_controller_withPIC_B.jA_b += 41;
       }
     }
 
-    motion_controller_withPIC_B.alpha1_k = 1.0 / obj->
+    motion_controller_withPIC_B.alpha1_h = 1.0 / obj->
       FMat[motion_controller_withPIC_B.LD_diagOffset];
     motion_controller_withPIC_B.b_k = motion_controller_withPIC_B.LD_diagOffset
       + motion_controller_withPIC_B.subMatrixDim;
     motion_controller_withPIC_B.ijA = (((((motion_controller_withPIC_B.b_k -
       motion_controller_withPIC_B.LD_diagOffset) + 1) / 2) << 1) +
       motion_controller_withPIC_B.LD_diagOffset) + 2;
-    motion_controller_withPIC_B.jA_n = motion_controller_withPIC_B.ijA - 2;
+    motion_controller_withPIC_B.jA_b = motion_controller_withPIC_B.ijA - 2;
     for (motion_controller_withPIC_B.subMatrixDim =
          motion_controller_withPIC_B.LD_diagOffset + 2;
          motion_controller_withPIC_B.subMatrixDim <=
-         motion_controller_withPIC_B.jA_n;
+         motion_controller_withPIC_B.jA_b;
          motion_controller_withPIC_B.subMatrixDim += 2) {
       __m128d tmp;
       tmp = _mm_loadu_pd(&obj->FMat[motion_controller_withPIC_B.subMatrixDim - 1]);
       _mm_storeu_pd(&obj->FMat[motion_controller_withPIC_B.subMatrixDim - 1],
                     _mm_mul_pd(tmp, _mm_set1_pd
-        (motion_controller_withPIC_B.alpha1_k)));
+        (motion_controller_withPIC_B.alpha1_h)));
     }
 
     for (motion_controller_withPIC_B.subMatrixDim =
@@ -8297,7 +8289,7 @@ void motion_controller_withPIC::motion_controller__fullColLDL2_
          motion_controller_withPIC_B.b_k + 2;
          motion_controller_withPIC_B.subMatrixDim++) {
       obj->FMat[motion_controller_withPIC_B.subMatrixDim - 1] *=
-        motion_controller_withPIC_B.alpha1_k;
+        motion_controller_withPIC_B.alpha1_h;
     }
   }
 
@@ -8307,7 +8299,7 @@ void motion_controller_withPIC::motion_controller__fullColLDL2_
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
   [1600], s5cJJO9CAPQxuVG0iaeiP4F_motio_T *solution,
   sFlCINAYeIgPgx0UwEHpaMF_motio_T *memspace, const
@@ -8317,20 +8309,20 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
   __m128d tmp;
   __m128d tmp_0;
   int32_T exitg1;
-  motion_controller_withPIC_B.nVar_pn = qrmanager->mrows - 1;
+  motion_controller_withPIC_B.nVar_c = qrmanager->mrows - 1;
   motion_controller_withPIC_B.mNull_tmp = qrmanager->mrows - qrmanager->ncols;
   if (motion_controller_withPIC_B.mNull_tmp <= 0) {
-    if (motion_controller_withPIC_B.nVar_pn >= 0) {
+    if (motion_controller_withPIC_B.nVar_c >= 0) {
       memset(&solution->searchDir[0], 0, static_cast<uint32_T>
-             (motion_controller_withPIC_B.nVar_pn + 1) * sizeof(real_T));
+             (motion_controller_withPIC_B.nVar_c + 1) * sizeof(real_T));
     }
   } else {
     motion_controller_withPIC_B.b_ar = (qrmanager->mrows / 2) << 1;
-    motion_controller_withPIC_B.vectorUB_i = motion_controller_withPIC_B.b_ar -
+    motion_controller_withPIC_B.vectorUB_b = motion_controller_withPIC_B.b_ar -
       2;
     for (motion_controller_withPIC_B.A_maxDiag_idx = 0;
          motion_controller_withPIC_B.A_maxDiag_idx <=
-         motion_controller_withPIC_B.vectorUB_i;
+         motion_controller_withPIC_B.vectorUB_b;
          motion_controller_withPIC_B.A_maxDiag_idx += 2) {
       tmp_0 = _mm_loadu_pd(&objective->
                            grad[motion_controller_withPIC_B.A_maxDiag_idx]);
@@ -8342,7 +8334,7 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
     for (motion_controller_withPIC_B.A_maxDiag_idx =
          motion_controller_withPIC_B.b_ar;
          motion_controller_withPIC_B.A_maxDiag_idx <=
-         motion_controller_withPIC_B.nVar_pn;
+         motion_controller_withPIC_B.nVar_c;
          motion_controller_withPIC_B.A_maxDiag_idx++) {
       solution->searchDir[motion_controller_withPIC_B.A_maxDiag_idx] =
         -objective->grad[motion_controller_withPIC_B.A_maxDiag_idx];
@@ -8350,21 +8342,21 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
 
     if (qrmanager->ncols <= 0) {
       if (objective->objtype == 3) {
-        motion_controller_withPIC_B.temp_l = 1.4901161193847656E-6 *
+        motion_controller_withPIC_B.temp_i = 1.4901161193847656E-6 *
           static_cast<real_T>(qrmanager->mrows);
         cholmanager->ndims = qrmanager->mrows;
         for (motion_controller_withPIC_B.mNull_tmp = 0;
              motion_controller_withPIC_B.mNull_tmp <=
-             motion_controller_withPIC_B.nVar_pn;
+             motion_controller_withPIC_B.nVar_c;
              motion_controller_withPIC_B.mNull_tmp++) {
           motion_controller_withPIC_B.nullStartIdx =
-            (motion_controller_withPIC_B.nVar_pn + 1) *
+            (motion_controller_withPIC_B.nVar_c + 1) *
             motion_controller_withPIC_B.mNull_tmp;
           motion_controller_withPIC_B.nVars = 41 *
             motion_controller_withPIC_B.mNull_tmp;
           for (motion_controller_withPIC_B.A_maxDiag_idx = 0;
                motion_controller_withPIC_B.A_maxDiag_idx <=
-               motion_controller_withPIC_B.nVar_pn;
+               motion_controller_withPIC_B.nVar_c;
                motion_controller_withPIC_B.A_maxDiag_idx++) {
             cholmanager->FMat[motion_controller_withPIC_B.nVars +
               motion_controller_withPIC_B.A_maxDiag_idx] =
@@ -8381,16 +8373,16 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
             motion_controller_withPIC_B.smax = fabs(cholmanager->FMat[0]);
             for (motion_controller_withPIC_B.mNull_tmp = 2;
                  motion_controller_withPIC_B.mNull_tmp <=
-                 motion_controller_withPIC_B.nVar_pn + 1;
+                 motion_controller_withPIC_B.nVar_c + 1;
                  motion_controller_withPIC_B.mNull_tmp++) {
-              motion_controller_withPIC_B.s_d = fabs(cholmanager->FMat
+              motion_controller_withPIC_B.s_k = fabs(cholmanager->FMat
                 [(motion_controller_withPIC_B.mNull_tmp - 1) * 42]);
-              if (motion_controller_withPIC_B.s_d >
+              if (motion_controller_withPIC_B.s_k >
                   motion_controller_withPIC_B.smax) {
                 motion_controller_withPIC_B.A_maxDiag_idx =
                   motion_controller_withPIC_B.mNull_tmp - 1;
                 motion_controller_withPIC_B.smax =
-                  motion_controller_withPIC_B.s_d;
+                  motion_controller_withPIC_B.s_k;
               }
             }
           }
@@ -8399,23 +8391,23 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
         motion_controller_withPIC_B.smax = fabs(cholmanager->FMat[41 *
           motion_controller_withPIC_B.A_maxDiag_idx +
           motion_controller_withPIC_B.A_maxDiag_idx]) * 2.2204460492503131E-16;
-        motion_controller_withPIC_B.s_d = fabs
-          (motion_controller_withPIC_B.temp_l);
-        if (motion_controller_withPIC_B.smax >= motion_controller_withPIC_B.s_d)
+        motion_controller_withPIC_B.s_k = fabs
+          (motion_controller_withPIC_B.temp_i);
+        if (motion_controller_withPIC_B.smax >= motion_controller_withPIC_B.s_k)
         {
           cholmanager->regTol_ = motion_controller_withPIC_B.smax;
         } else {
-          cholmanager->regTol_ = motion_controller_withPIC_B.s_d;
+          cholmanager->regTol_ = motion_controller_withPIC_B.s_k;
         }
 
         motion_controller__fullColLDL2_(cholmanager, qrmanager->mrows,
-          motion_controller_withPIC_B.temp_l);
+          motion_controller_withPIC_B.temp_i);
         if (cholmanager->ConvexCheck) {
           motion_controller_withPIC_B.mNull_tmp = 0;
           do {
             exitg1 = 0;
             if (motion_controller_withPIC_B.mNull_tmp <=
-                motion_controller_withPIC_B.nVar_pn) {
+                motion_controller_withPIC_B.nVar_c) {
               if (cholmanager->FMat[41 * motion_controller_withPIC_B.mNull_tmp +
                   motion_controller_withPIC_B.mNull_tmp] <= 0.0) {
                 cholmanager->info = -motion_controller_withPIC_B.mNull_tmp - 1;
@@ -8433,17 +8425,17 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
         if (cholmanager->info != 0) {
           solution->state = -6;
         } else {
-          motion_controller_withPIC_B.nVar_pn = cholmanager->ndims - 1;
+          motion_controller_withPIC_B.nVar_c = cholmanager->ndims - 1;
           if (cholmanager->ndims != 0) {
             for (motion_controller_withPIC_B.mNull_tmp = 0;
                  motion_controller_withPIC_B.mNull_tmp <=
-                 motion_controller_withPIC_B.nVar_pn;
+                 motion_controller_withPIC_B.nVar_c;
                  motion_controller_withPIC_B.mNull_tmp++) {
               motion_controller_withPIC_B.nullStartIdx =
                 motion_controller_withPIC_B.mNull_tmp * 41 +
                 motion_controller_withPIC_B.mNull_tmp;
               motion_controller_withPIC_B.nVars =
-                motion_controller_withPIC_B.nVar_pn -
+                motion_controller_withPIC_B.nVar_c -
                 motion_controller_withPIC_B.mNull_tmp;
               for (motion_controller_withPIC_B.A_maxDiag_idx = 0;
                    motion_controller_withPIC_B.A_maxDiag_idx <
@@ -8461,10 +8453,10 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
             }
           }
 
-          motion_controller_withPIC_B.nVar_pn = cholmanager->ndims;
+          motion_controller_withPIC_B.nVar_c = cholmanager->ndims;
           for (motion_controller_withPIC_B.mNull_tmp = 0;
                motion_controller_withPIC_B.mNull_tmp <
-               motion_controller_withPIC_B.nVar_pn;
+               motion_controller_withPIC_B.nVar_c;
                motion_controller_withPIC_B.mNull_tmp++) {
             solution->searchDir[motion_controller_withPIC_B.mNull_tmp] /=
               cholmanager->FMat[41 * motion_controller_withPIC_B.mNull_tmp +
@@ -8473,19 +8465,19 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
 
           if (cholmanager->ndims != 0) {
             for (motion_controller_withPIC_B.mNull_tmp =
-                 motion_controller_withPIC_B.nVar_pn;
+                 motion_controller_withPIC_B.nVar_c;
                  motion_controller_withPIC_B.mNull_tmp >= 1;
                  motion_controller_withPIC_B.mNull_tmp--) {
               motion_controller_withPIC_B.nullStartIdx =
                 (motion_controller_withPIC_B.mNull_tmp - 1) * 41;
-              motion_controller_withPIC_B.temp_l = solution->
+              motion_controller_withPIC_B.temp_i = solution->
                 searchDir[motion_controller_withPIC_B.mNull_tmp - 1];
               for (motion_controller_withPIC_B.A_maxDiag_idx =
-                   motion_controller_withPIC_B.nVar_pn;
+                   motion_controller_withPIC_B.nVar_c;
                    motion_controller_withPIC_B.A_maxDiag_idx >=
                    motion_controller_withPIC_B.mNull_tmp + 1;
                    motion_controller_withPIC_B.A_maxDiag_idx--) {
-                motion_controller_withPIC_B.temp_l -= cholmanager->FMat
+                motion_controller_withPIC_B.temp_i -= cholmanager->FMat
                   [(motion_controller_withPIC_B.nullStartIdx +
                     motion_controller_withPIC_B.A_maxDiag_idx) - 1] *
                   solution->searchDir[motion_controller_withPIC_B.A_maxDiag_idx
@@ -8493,7 +8485,7 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
               }
 
               solution->searchDir[motion_controller_withPIC_B.mNull_tmp - 1] =
-                motion_controller_withPIC_B.temp_l;
+                motion_controller_withPIC_B.temp_i;
             }
           }
         }
@@ -8510,7 +8502,7 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
           memspace->workspace_double[motion_controller_withPIC_B.nullStartIdx] =
             -qrmanager->Q[(qrmanager->ncols +
                            motion_controller_withPIC_B.nullStartIdx) * 41 +
-            motion_controller_withPIC_B.nVar_pn];
+            motion_controller_withPIC_B.nVar_c];
         }
 
         xgemv_L5SThEQW(qrmanager->mrows, motion_controller_withPIC_B.mNull_tmp,
@@ -8546,29 +8538,29 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
                  motion_controller_withPIC_B.b_A_maxDiag_idx <=
                  motion_controller_withPIC_B.lastColC;
                  motion_controller_withPIC_B.b_A_maxDiag_idx += 161) {
-              motion_controller_withPIC_B.ar_c = -1;
-              motion_controller_withPIC_B.h_n = motion_controller_withPIC_B.br_n
+              motion_controller_withPIC_B.ar_da = -1;
+              motion_controller_withPIC_B.h_i = motion_controller_withPIC_B.br_n
                 + motion_controller_withPIC_B.nVars;
               for (motion_controller_withPIC_B.ic =
                    motion_controller_withPIC_B.br_n + 1;
                    motion_controller_withPIC_B.ic <=
-                   motion_controller_withPIC_B.h_n;
+                   motion_controller_withPIC_B.h_i;
                    motion_controller_withPIC_B.ic++) {
-                motion_controller_withPIC_B.i_da =
+                motion_controller_withPIC_B.i_n =
                   motion_controller_withPIC_B.b_A_maxDiag_idx +
                   motion_controller_withPIC_B.nVars;
                 motion_controller_withPIC_B.b_ar =
-                  ((((motion_controller_withPIC_B.i_da -
+                  ((((motion_controller_withPIC_B.i_n -
                       motion_controller_withPIC_B.b_A_maxDiag_idx) / 2) << 1) +
                    motion_controller_withPIC_B.b_A_maxDiag_idx) + 1;
-                motion_controller_withPIC_B.vectorUB_i =
+                motion_controller_withPIC_B.vectorUB_b =
                   motion_controller_withPIC_B.b_ar - 2;
                 for (motion_controller_withPIC_B.e_ix =
                      motion_controller_withPIC_B.b_A_maxDiag_idx + 1;
                      motion_controller_withPIC_B.e_ix <=
-                     motion_controller_withPIC_B.vectorUB_i;
+                     motion_controller_withPIC_B.vectorUB_b;
                      motion_controller_withPIC_B.e_ix += 2) {
-                  tmp_0 = _mm_loadu_pd(&H[(motion_controller_withPIC_B.ar_c +
+                  tmp_0 = _mm_loadu_pd(&H[(motion_controller_withPIC_B.ar_da +
                     motion_controller_withPIC_B.e_ix) -
                                        motion_controller_withPIC_B.b_A_maxDiag_idx]);
                   tmp = _mm_loadu_pd(&memspace->
@@ -8583,16 +8575,16 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
                 for (motion_controller_withPIC_B.e_ix =
                      motion_controller_withPIC_B.b_ar;
                      motion_controller_withPIC_B.e_ix <=
-                     motion_controller_withPIC_B.i_da;
+                     motion_controller_withPIC_B.i_n;
                      motion_controller_withPIC_B.e_ix++) {
                   memspace->workspace_double[motion_controller_withPIC_B.e_ix -
-                    1] += H[(motion_controller_withPIC_B.ar_c +
+                    1] += H[(motion_controller_withPIC_B.ar_da +
                              motion_controller_withPIC_B.e_ix) -
                     motion_controller_withPIC_B.b_A_maxDiag_idx] * qrmanager->
                     Q[motion_controller_withPIC_B.ic - 1];
                 }
 
-                motion_controller_withPIC_B.ar_c +=
+                motion_controller_withPIC_B.ar_da +=
                   motion_controller_withPIC_B.nVars;
               }
 
@@ -8626,20 +8618,20 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
                  motion_controller_withPIC_B.b_A_maxDiag_idx += 41) {
               motion_controller_withPIC_B.b_ar =
                 motion_controller_withPIC_B.A_maxDiag_idx;
-              motion_controller_withPIC_B.vectorUB_i =
+              motion_controller_withPIC_B.vectorUB_b =
                 motion_controller_withPIC_B.b_A_maxDiag_idx +
                 motion_controller_withPIC_B.mNull_tmp;
               for (motion_controller_withPIC_B.ic =
                    motion_controller_withPIC_B.b_A_maxDiag_idx + 1;
                    motion_controller_withPIC_B.ic <=
-                   motion_controller_withPIC_B.vectorUB_i;
+                   motion_controller_withPIC_B.vectorUB_b;
                    motion_controller_withPIC_B.ic++) {
-                motion_controller_withPIC_B.temp_l = 0.0;
+                motion_controller_withPIC_B.temp_i = 0.0;
                 for (motion_controller_withPIC_B.e_ix = 0;
                      motion_controller_withPIC_B.e_ix <
                      motion_controller_withPIC_B.nVars;
                      motion_controller_withPIC_B.e_ix++) {
-                  motion_controller_withPIC_B.temp_l +=
+                  motion_controller_withPIC_B.temp_i +=
                     memspace->workspace_double[(motion_controller_withPIC_B.e_ix
                     + motion_controller_withPIC_B.lastColC) + 1] * qrmanager->
                     Q[motion_controller_withPIC_B.e_ix +
@@ -8647,7 +8639,7 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
                 }
 
                 cholmanager->FMat[motion_controller_withPIC_B.ic - 1] +=
-                  motion_controller_withPIC_B.temp_l;
+                  motion_controller_withPIC_B.temp_i;
                 motion_controller_withPIC_B.b_ar += 41;
               }
 
@@ -8656,7 +8648,7 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
           }
         }
 
-        motion_controller_withPIC_B.temp_l = 1.4901161193847656E-6 *
+        motion_controller_withPIC_B.temp_i = 1.4901161193847656E-6 *
           static_cast<real_T>(motion_controller_withPIC_B.mNull_tmp);
         cholmanager->ndims = motion_controller_withPIC_B.mNull_tmp;
         motion_controller_withPIC_B.b_A_maxDiag_idx = 0;
@@ -8666,13 +8658,13 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
                motion_controller_withPIC_B.nVars <=
                motion_controller_withPIC_B.mNull_tmp;
                motion_controller_withPIC_B.nVars++) {
-            motion_controller_withPIC_B.s_d = fabs(cholmanager->FMat
+            motion_controller_withPIC_B.s_k = fabs(cholmanager->FMat
               [(motion_controller_withPIC_B.nVars - 1) * 42]);
-            if (motion_controller_withPIC_B.s_d >
+            if (motion_controller_withPIC_B.s_k >
                 motion_controller_withPIC_B.smax) {
               motion_controller_withPIC_B.b_A_maxDiag_idx =
                 motion_controller_withPIC_B.nVars - 1;
-              motion_controller_withPIC_B.smax = motion_controller_withPIC_B.s_d;
+              motion_controller_withPIC_B.smax = motion_controller_withPIC_B.s_k;
             }
           }
         }
@@ -8681,15 +8673,15 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
           motion_controller_withPIC_B.b_A_maxDiag_idx +
           motion_controller_withPIC_B.b_A_maxDiag_idx]) * 2.2204460492503131E-16;
         if (motion_controller_withPIC_B.smax >=
-            motion_controller_withPIC_B.temp_l) {
+            motion_controller_withPIC_B.temp_i) {
           cholmanager->regTol_ = motion_controller_withPIC_B.smax;
         } else {
-          cholmanager->regTol_ = motion_controller_withPIC_B.temp_l;
+          cholmanager->regTol_ = motion_controller_withPIC_B.temp_i;
         }
 
         motion_controller__fullColLDL2_(cholmanager,
           motion_controller_withPIC_B.mNull_tmp,
-          motion_controller_withPIC_B.temp_l);
+          motion_controller_withPIC_B.temp_i);
         if (cholmanager->ConvexCheck) {
           motion_controller_withPIC_B.nVars = 0;
           do {
@@ -8724,16 +8716,16 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
                  motion_controller_withPIC_B.nVars <=
                  motion_controller_withPIC_B.ic;
                  motion_controller_withPIC_B.nVars += 41) {
-              motion_controller_withPIC_B.temp_l = 0.0;
+              motion_controller_withPIC_B.temp_i = 0.0;
               motion_controller_withPIC_B.e_ix =
                 motion_controller_withPIC_B.nVars +
-                motion_controller_withPIC_B.nVar_pn;
+                motion_controller_withPIC_B.nVar_c;
               for (motion_controller_withPIC_B.b_A_maxDiag_idx =
                    motion_controller_withPIC_B.nVars;
                    motion_controller_withPIC_B.b_A_maxDiag_idx <=
                    motion_controller_withPIC_B.e_ix;
                    motion_controller_withPIC_B.b_A_maxDiag_idx++) {
-                motion_controller_withPIC_B.temp_l += qrmanager->
+                motion_controller_withPIC_B.temp_i += qrmanager->
                   Q[motion_controller_withPIC_B.b_A_maxDiag_idx - 1] *
                   objective->grad[motion_controller_withPIC_B.b_A_maxDiag_idx -
                   motion_controller_withPIC_B.nVars];
@@ -8744,70 +8736,70 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
                   motion_controller_withPIC_B.A_maxDiag_idx) - 1, 41);
               memspace->
                 workspace_double[motion_controller_withPIC_B.b_A_maxDiag_idx] -=
-                motion_controller_withPIC_B.temp_l;
+                motion_controller_withPIC_B.temp_i;
             }
           }
 
           motion_controller_withPIC_B.nVars = cholmanager->ndims - 1;
           if (cholmanager->ndims != 0) {
-            for (motion_controller_withPIC_B.nVar_pn = 0;
-                 motion_controller_withPIC_B.nVar_pn <=
+            for (motion_controller_withPIC_B.nVar_c = 0;
+                 motion_controller_withPIC_B.nVar_c <=
                  motion_controller_withPIC_B.nVars;
-                 motion_controller_withPIC_B.nVar_pn++) {
+                 motion_controller_withPIC_B.nVar_c++) {
               motion_controller_withPIC_B.b_A_maxDiag_idx =
-                motion_controller_withPIC_B.nVar_pn * 41 +
-                motion_controller_withPIC_B.nVar_pn;
+                motion_controller_withPIC_B.nVar_c * 41 +
+                motion_controller_withPIC_B.nVar_c;
               motion_controller_withPIC_B.ic = motion_controller_withPIC_B.nVars
-                - motion_controller_withPIC_B.nVar_pn;
+                - motion_controller_withPIC_B.nVar_c;
               for (motion_controller_withPIC_B.nullStartIdx = 0;
                    motion_controller_withPIC_B.nullStartIdx <
                    motion_controller_withPIC_B.ic;
                    motion_controller_withPIC_B.nullStartIdx++) {
                 motion_controller_withPIC_B.e_ix =
                   (motion_controller_withPIC_B.nullStartIdx +
-                   motion_controller_withPIC_B.nVar_pn) + 1;
+                   motion_controller_withPIC_B.nVar_c) + 1;
                 memspace->workspace_double[motion_controller_withPIC_B.e_ix] -=
                   cholmanager->FMat[(motion_controller_withPIC_B.nullStartIdx +
                                      motion_controller_withPIC_B.b_A_maxDiag_idx)
                   + 1] * memspace->
-                  workspace_double[motion_controller_withPIC_B.nVar_pn];
+                  workspace_double[motion_controller_withPIC_B.nVar_c];
               }
             }
           }
 
           motion_controller_withPIC_B.nVars = cholmanager->ndims;
-          for (motion_controller_withPIC_B.nVar_pn = 0;
-               motion_controller_withPIC_B.nVar_pn <
+          for (motion_controller_withPIC_B.nVar_c = 0;
+               motion_controller_withPIC_B.nVar_c <
                motion_controller_withPIC_B.nVars;
-               motion_controller_withPIC_B.nVar_pn++) {
-            memspace->workspace_double[motion_controller_withPIC_B.nVar_pn] /=
-              cholmanager->FMat[41 * motion_controller_withPIC_B.nVar_pn +
-              motion_controller_withPIC_B.nVar_pn];
+               motion_controller_withPIC_B.nVar_c++) {
+            memspace->workspace_double[motion_controller_withPIC_B.nVar_c] /=
+              cholmanager->FMat[41 * motion_controller_withPIC_B.nVar_c +
+              motion_controller_withPIC_B.nVar_c];
           }
 
           if (cholmanager->ndims != 0) {
-            for (motion_controller_withPIC_B.nVar_pn =
+            for (motion_controller_withPIC_B.nVar_c =
                  motion_controller_withPIC_B.nVars;
-                 motion_controller_withPIC_B.nVar_pn >= 1;
-                 motion_controller_withPIC_B.nVar_pn--) {
+                 motion_controller_withPIC_B.nVar_c >= 1;
+                 motion_controller_withPIC_B.nVar_c--) {
               motion_controller_withPIC_B.b_A_maxDiag_idx =
-                (motion_controller_withPIC_B.nVar_pn - 1) * 41;
-              motion_controller_withPIC_B.temp_l = memspace->
-                workspace_double[motion_controller_withPIC_B.nVar_pn - 1];
+                (motion_controller_withPIC_B.nVar_c - 1) * 41;
+              motion_controller_withPIC_B.temp_i = memspace->
+                workspace_double[motion_controller_withPIC_B.nVar_c - 1];
               for (motion_controller_withPIC_B.nullStartIdx =
                    motion_controller_withPIC_B.nVars;
                    motion_controller_withPIC_B.nullStartIdx >=
-                   motion_controller_withPIC_B.nVar_pn + 1;
+                   motion_controller_withPIC_B.nVar_c + 1;
                    motion_controller_withPIC_B.nullStartIdx--) {
-                motion_controller_withPIC_B.temp_l -= cholmanager->FMat
+                motion_controller_withPIC_B.temp_i -= cholmanager->FMat
                   [(motion_controller_withPIC_B.b_A_maxDiag_idx +
                     motion_controller_withPIC_B.nullStartIdx) - 1] *
                   memspace->
                   workspace_double[motion_controller_withPIC_B.nullStartIdx - 1];
               }
 
-              memspace->workspace_double[motion_controller_withPIC_B.nVar_pn - 1]
-                = motion_controller_withPIC_B.temp_l;
+              memspace->workspace_double[motion_controller_withPIC_B.nVar_c - 1]
+                = motion_controller_withPIC_B.temp_i;
             }
           }
 
@@ -8820,7 +8812,7 @@ void motion_controller_withPIC::motion_controlle_compute_deltax(const real_T H
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 real_T motion_controller_withPIC::motion_controlle_xnrm2_DlmxxpnG(int32_T n,
   const real_T x[41])
 {
@@ -8830,37 +8822,36 @@ real_T motion_controller_withPIC::motion_controlle_xnrm2_DlmxxpnG(int32_T n,
     if (n == 1) {
       y = fabs(x[0]);
     } else {
-      motion_controller_withPIC_B.scale_a = 3.3121686421112381E-170;
-      motion_controller_withPIC_B.b_js = static_cast<uint8_T>(n);
-      for (motion_controller_withPIC_B.k_l = 0; motion_controller_withPIC_B.k_l <
-           motion_controller_withPIC_B.b_js; motion_controller_withPIC_B.k_l++)
-      {
-        motion_controller_withPIC_B.absxk_l = fabs
-          (x[motion_controller_withPIC_B.k_l]);
-        if (motion_controller_withPIC_B.absxk_l >
-            motion_controller_withPIC_B.scale_a) {
-          motion_controller_withPIC_B.t_jc = motion_controller_withPIC_B.scale_a
-            / motion_controller_withPIC_B.absxk_l;
-          y = y * motion_controller_withPIC_B.t_jc *
-            motion_controller_withPIC_B.t_jc + 1.0;
-          motion_controller_withPIC_B.scale_a =
-            motion_controller_withPIC_B.absxk_l;
+      motion_controller_withPIC_B.scale_j = 3.3121686421112381E-170;
+      motion_controller_withPIC_B.b_l = static_cast<uint8_T>(n);
+      for (motion_controller_withPIC_B.k_ce = 0;
+           motion_controller_withPIC_B.k_ce < motion_controller_withPIC_B.b_l;
+           motion_controller_withPIC_B.k_ce++) {
+        motion_controller_withPIC_B.absxk_i = fabs
+          (x[motion_controller_withPIC_B.k_ce]);
+        if (motion_controller_withPIC_B.absxk_i >
+            motion_controller_withPIC_B.scale_j) {
+          motion_controller_withPIC_B.t_m = motion_controller_withPIC_B.scale_j /
+            motion_controller_withPIC_B.absxk_i;
+          y = y * motion_controller_withPIC_B.t_m *
+            motion_controller_withPIC_B.t_m + 1.0;
+          motion_controller_withPIC_B.scale_j =
+            motion_controller_withPIC_B.absxk_i;
         } else {
-          motion_controller_withPIC_B.t_jc = motion_controller_withPIC_B.absxk_l
-            / motion_controller_withPIC_B.scale_a;
-          y += motion_controller_withPIC_B.t_jc *
-            motion_controller_withPIC_B.t_jc;
+          motion_controller_withPIC_B.t_m = motion_controller_withPIC_B.absxk_i /
+            motion_controller_withPIC_B.scale_j;
+          y += motion_controller_withPIC_B.t_m * motion_controller_withPIC_B.t_m;
         }
       }
 
-      y = motion_controller_withPIC_B.scale_a * sqrt(y);
+      y = motion_controller_withPIC_B.scale_j * sqrt(y);
     }
   }
 
   return y;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controlle_xgemv_pKPSQiPT(int32_T m, const
   real_T A[3280], const real_T x[41], real_T y[6601])
 {
@@ -8874,23 +8865,23 @@ void motion_controller_withPIC::motion_controlle_xgemv_pKPSQiPT(int32_T m, const
 
   for (motion_controller_withPIC_B.b_iy = 0; motion_controller_withPIC_B.b_iy <=
        3239; motion_controller_withPIC_B.b_iy += 41) {
-    motion_controller_withPIC_B.c_g = 0.0;
-    motion_controller_withPIC_B.b_o = motion_controller_withPIC_B.b_iy + m;
-    for (motion_controller_withPIC_B.ia_o = motion_controller_withPIC_B.b_iy + 1;
-         motion_controller_withPIC_B.ia_o <= motion_controller_withPIC_B.b_o;
-         motion_controller_withPIC_B.ia_o++) {
-      motion_controller_withPIC_B.c_g += x[(motion_controller_withPIC_B.ia_o -
+    motion_controller_withPIC_B.c_m = 0.0;
+    motion_controller_withPIC_B.b_he = motion_controller_withPIC_B.b_iy + m;
+    for (motion_controller_withPIC_B.ia_i = motion_controller_withPIC_B.b_iy + 1;
+         motion_controller_withPIC_B.ia_i <= motion_controller_withPIC_B.b_he;
+         motion_controller_withPIC_B.ia_i++) {
+      motion_controller_withPIC_B.c_m += x[(motion_controller_withPIC_B.ia_i -
         motion_controller_withPIC_B.b_iy) - 1] *
-        A[motion_controller_withPIC_B.ia_o - 1];
+        A[motion_controller_withPIC_B.ia_i - 1];
     }
 
-    motion_controller_withPIC_B.ia_o = div_nde_s32_floor
+    motion_controller_withPIC_B.ia_i = div_nde_s32_floor
       (motion_controller_withPIC_B.b_iy, 41);
-    y[motion_controller_withPIC_B.ia_o] += motion_controller_withPIC_B.c_g;
+    y[motion_controller_withPIC_B.ia_i] += motion_controller_withPIC_B.c_m;
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller_wit_ratiotest(const real_T
   solution_xstar[41], const real_T solution_searchDir[41], real_T workspace[6601],
   int32_T workingset_nVar, const real_T workingset_Aineq[3280], const real_T
@@ -8913,74 +8904,74 @@ void motion_controller_withPIC::motion_controller_wit_ratiotest(const real_T
     motion_controlle_xgemv_pKPSQiPT(workingset_nVar, workingset_Aineq,
       solution_xstar, workspace);
     memset(&workspace[161], 0, 80U * sizeof(real_T));
-    for (motion_controller_withPIC_B.k_py = 0; motion_controller_withPIC_B.k_py <=
-         3239; motion_controller_withPIC_B.k_py += 41) {
-      motion_controller_withPIC_B.b_c_n = 0.0;
-      motion_controller_withPIC_B.d_om = motion_controller_withPIC_B.k_py +
+    for (motion_controller_withPIC_B.k_c = 0; motion_controller_withPIC_B.k_c <=
+         3239; motion_controller_withPIC_B.k_c += 41) {
+      motion_controller_withPIC_B.b_c_d = 0.0;
+      motion_controller_withPIC_B.d_oc = motion_controller_withPIC_B.k_c +
         workingset_nVar;
-      for (motion_controller_withPIC_B.ia_c = motion_controller_withPIC_B.k_py +
-           1; motion_controller_withPIC_B.ia_c <=
-           motion_controller_withPIC_B.d_om; motion_controller_withPIC_B.ia_c++)
+      for (motion_controller_withPIC_B.ia_ol = motion_controller_withPIC_B.k_c +
+           1; motion_controller_withPIC_B.ia_ol <=
+           motion_controller_withPIC_B.d_oc; motion_controller_withPIC_B.ia_ol++)
       {
-        motion_controller_withPIC_B.b_c_n += solution_searchDir
-          [(motion_controller_withPIC_B.ia_c - motion_controller_withPIC_B.k_py)
-          - 1] * workingset_Aineq[motion_controller_withPIC_B.ia_c - 1];
+        motion_controller_withPIC_B.b_c_d += solution_searchDir
+          [(motion_controller_withPIC_B.ia_ol - motion_controller_withPIC_B.k_c)
+          - 1] * workingset_Aineq[motion_controller_withPIC_B.ia_ol - 1];
       }
 
-      motion_controller_withPIC_B.ia_c = div_nde_s32_floor
-        (motion_controller_withPIC_B.k_py, 41) + 161;
-      workspace[motion_controller_withPIC_B.ia_c] +=
-        motion_controller_withPIC_B.b_c_n;
+      motion_controller_withPIC_B.ia_ol = div_nde_s32_floor
+        (motion_controller_withPIC_B.k_c, 41) + 161;
+      workspace[motion_controller_withPIC_B.ia_ol] +=
+        motion_controller_withPIC_B.b_c_d;
     }
 
-    for (motion_controller_withPIC_B.k_py = 0; motion_controller_withPIC_B.k_py <
-         80; motion_controller_withPIC_B.k_py++) {
+    for (motion_controller_withPIC_B.k_c = 0; motion_controller_withPIC_B.k_c <
+         80; motion_controller_withPIC_B.k_c++) {
       motion_controller_withPIC_B.workspace =
-        workspace[motion_controller_withPIC_B.k_py + 161];
+        workspace[motion_controller_withPIC_B.k_c + 161];
       if ((motion_controller_withPIC_B.workspace >
            motion_controller_withPIC_B.denomTol) && (!workingset_isActiveConstr
-           [(workingset_isActiveIdx[2] + motion_controller_withPIC_B.k_py) - 1]))
+           [(workingset_isActiveIdx[2] + motion_controller_withPIC_B.k_c) - 1]))
       {
         motion_controller_withPIC_B.phaseOneCorrectionX =
-          workspace[motion_controller_withPIC_B.k_py];
-        motion_controller_withPIC_B.b_c_n = fabs
+          workspace[motion_controller_withPIC_B.k_c];
+        motion_controller_withPIC_B.b_c_d = fabs
           (motion_controller_withPIC_B.phaseOneCorrectionX - *toldelta);
         motion_controller_withPIC_B.phaseOneCorrectionP = (1.0E-8 -
           motion_controller_withPIC_B.phaseOneCorrectionX) + *toldelta;
-        if ((motion_controller_withPIC_B.b_c_n <=
+        if ((motion_controller_withPIC_B.b_c_d <=
              motion_controller_withPIC_B.phaseOneCorrectionP) || rtIsNaN
             (motion_controller_withPIC_B.phaseOneCorrectionP)) {
           motion_controller_withPIC_B.phaseOneCorrectionP =
-            motion_controller_withPIC_B.b_c_n;
+            motion_controller_withPIC_B.b_c_d;
         }
 
-        motion_controller_withPIC_B.b_c_n =
+        motion_controller_withPIC_B.b_c_d =
           motion_controller_withPIC_B.phaseOneCorrectionP /
           motion_controller_withPIC_B.workspace;
-        if ((motion_controller_withPIC_B.b_c_n <= *alpha) && (fabs
+        if ((motion_controller_withPIC_B.b_c_d <= *alpha) && (fabs
              (motion_controller_withPIC_B.workspace) >
              motion_controller_withPIC_B.p_max)) {
-          *alpha = motion_controller_withPIC_B.b_c_n;
+          *alpha = motion_controller_withPIC_B.b_c_d;
           *constrType = 3;
-          *constrIdx = motion_controller_withPIC_B.k_py + 1;
+          *constrIdx = motion_controller_withPIC_B.k_c + 1;
           *newBlocking = true;
         }
 
-        motion_controller_withPIC_B.b_c_n = fabs
+        motion_controller_withPIC_B.b_c_d = fabs
           (motion_controller_withPIC_B.phaseOneCorrectionX);
-        if ((!(motion_controller_withPIC_B.b_c_n <= 1.0E-8 -
+        if ((!(motion_controller_withPIC_B.b_c_d <= 1.0E-8 -
                motion_controller_withPIC_B.phaseOneCorrectionX)) && (!rtIsNaN
              (1.0E-8 - motion_controller_withPIC_B.phaseOneCorrectionX))) {
-          motion_controller_withPIC_B.b_c_n = 1.0E-8 -
+          motion_controller_withPIC_B.b_c_d = 1.0E-8 -
             motion_controller_withPIC_B.phaseOneCorrectionX;
         }
 
-        motion_controller_withPIC_B.b_c_n /=
+        motion_controller_withPIC_B.b_c_d /=
           motion_controller_withPIC_B.workspace;
-        if (motion_controller_withPIC_B.b_c_n < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_n;
+        if (motion_controller_withPIC_B.b_c_d < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_d;
           *constrType = 3;
-          *constrIdx = motion_controller_withPIC_B.k_py + 1;
+          *constrIdx = motion_controller_withPIC_B.k_c + 1;
           *newBlocking = true;
           motion_controller_withPIC_B.p_max = fabs
             (motion_controller_withPIC_B.workspace);
@@ -8994,63 +8985,63 @@ void motion_controller_withPIC::motion_controller_wit_ratiotest(const real_T
       solution_xstar[workingset_nVar - 1] * 0.0;
     motion_controller_withPIC_B.phaseOneCorrectionP =
       solution_searchDir[workingset_nVar - 1] * 0.0;
-    motion_controller_withPIC_B.ia_c = workingset_sizes[3];
-    for (motion_controller_withPIC_B.k_py = 0; motion_controller_withPIC_B.k_py <=
-         motion_controller_withPIC_B.ia_c - 2; motion_controller_withPIC_B.k_py
+    motion_controller_withPIC_B.ia_ol = workingset_sizes[3];
+    for (motion_controller_withPIC_B.k_c = 0; motion_controller_withPIC_B.k_c <=
+         motion_controller_withPIC_B.ia_ol - 2; motion_controller_withPIC_B.k_c
          ++) {
-      motion_controller_withPIC_B.d_om =
-        workingset_indexLB[motion_controller_withPIC_B.k_py];
+      motion_controller_withPIC_B.d_oc =
+        workingset_indexLB[motion_controller_withPIC_B.k_c];
       motion_controller_withPIC_B.pk_corrected =
-        -solution_searchDir[motion_controller_withPIC_B.d_om - 1] -
+        -solution_searchDir[motion_controller_withPIC_B.d_oc - 1] -
         motion_controller_withPIC_B.phaseOneCorrectionP;
       if ((motion_controller_withPIC_B.pk_corrected >
            motion_controller_withPIC_B.denomTol) && (!workingset_isActiveConstr
-           [(workingset_isActiveIdx[3] + motion_controller_withPIC_B.k_py) - 1]))
+           [(workingset_isActiveIdx[3] + motion_controller_withPIC_B.k_c) - 1]))
       {
         motion_controller_withPIC_B.workspace =
-          -solution_xstar[motion_controller_withPIC_B.d_om - 1] -
-          workingset_lb[motion_controller_withPIC_B.d_om - 1];
+          -solution_xstar[motion_controller_withPIC_B.d_oc - 1] -
+          workingset_lb[motion_controller_withPIC_B.d_oc - 1];
         motion_controller_withPIC_B.ratio =
           (motion_controller_withPIC_B.workspace - *toldelta) -
           motion_controller_withPIC_B.phaseOneCorrectionX;
-        motion_controller_withPIC_B.b_c_n = fabs
+        motion_controller_withPIC_B.b_c_d = fabs
           (motion_controller_withPIC_B.ratio);
-        if ((!(motion_controller_withPIC_B.b_c_n <= 1.0E-8 -
+        if ((!(motion_controller_withPIC_B.b_c_d <= 1.0E-8 -
                motion_controller_withPIC_B.ratio)) && (!rtIsNaN(1.0E-8 -
               motion_controller_withPIC_B.ratio))) {
-          motion_controller_withPIC_B.b_c_n = 1.0E-8 -
+          motion_controller_withPIC_B.b_c_d = 1.0E-8 -
             motion_controller_withPIC_B.ratio;
         }
 
-        motion_controller_withPIC_B.b_c_n /=
+        motion_controller_withPIC_B.b_c_d /=
           motion_controller_withPIC_B.pk_corrected;
-        if ((motion_controller_withPIC_B.b_c_n <= *alpha) && (fabs
+        if ((motion_controller_withPIC_B.b_c_d <= *alpha) && (fabs
              (motion_controller_withPIC_B.pk_corrected) >
              motion_controller_withPIC_B.p_max)) {
-          *alpha = motion_controller_withPIC_B.b_c_n;
+          *alpha = motion_controller_withPIC_B.b_c_d;
           *constrType = 4;
-          *constrIdx = motion_controller_withPIC_B.k_py + 1;
+          *constrIdx = motion_controller_withPIC_B.k_c + 1;
           *newBlocking = true;
         }
 
         motion_controller_withPIC_B.ratio =
           motion_controller_withPIC_B.workspace -
           motion_controller_withPIC_B.phaseOneCorrectionX;
-        motion_controller_withPIC_B.b_c_n = fabs
+        motion_controller_withPIC_B.b_c_d = fabs
           (motion_controller_withPIC_B.ratio);
-        if ((!(motion_controller_withPIC_B.b_c_n <= 1.0E-8 -
+        if ((!(motion_controller_withPIC_B.b_c_d <= 1.0E-8 -
                motion_controller_withPIC_B.ratio)) && (!rtIsNaN(1.0E-8 -
               motion_controller_withPIC_B.ratio))) {
-          motion_controller_withPIC_B.b_c_n = 1.0E-8 -
+          motion_controller_withPIC_B.b_c_d = 1.0E-8 -
             motion_controller_withPIC_B.ratio;
         }
 
-        motion_controller_withPIC_B.b_c_n /=
+        motion_controller_withPIC_B.b_c_d /=
           motion_controller_withPIC_B.pk_corrected;
-        if (motion_controller_withPIC_B.b_c_n < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_n;
+        if (motion_controller_withPIC_B.b_c_d < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_d;
           *constrType = 4;
-          *constrIdx = motion_controller_withPIC_B.k_py + 1;
+          *constrIdx = motion_controller_withPIC_B.k_c + 1;
           *newBlocking = true;
           motion_controller_withPIC_B.p_max = fabs
             (motion_controller_withPIC_B.pk_corrected);
@@ -9058,50 +9049,50 @@ void motion_controller_withPIC::motion_controller_wit_ratiotest(const real_T
       }
     }
 
-    motion_controller_withPIC_B.ia_c = workingset_indexLB[workingset_sizes[3] -
+    motion_controller_withPIC_B.ia_ol = workingset_indexLB[workingset_sizes[3] -
       1] - 1;
     motion_controller_withPIC_B.phaseOneCorrectionX =
-      solution_searchDir[motion_controller_withPIC_B.ia_c];
+      solution_searchDir[motion_controller_withPIC_B.ia_ol];
     if ((-motion_controller_withPIC_B.phaseOneCorrectionX >
          motion_controller_withPIC_B.denomTol) && (!workingset_isActiveConstr
          [(workingset_isActiveIdx[3] + workingset_sizes[3]) - 2])) {
       motion_controller_withPIC_B.workspace =
-        -solution_xstar[motion_controller_withPIC_B.ia_c] -
-        workingset_lb[motion_controller_withPIC_B.ia_c];
+        -solution_xstar[motion_controller_withPIC_B.ia_ol] -
+        workingset_lb[motion_controller_withPIC_B.ia_ol];
       motion_controller_withPIC_B.ratio = motion_controller_withPIC_B.workspace
         - *toldelta;
-      motion_controller_withPIC_B.b_c_n = fabs(motion_controller_withPIC_B.ratio);
-      if ((!(motion_controller_withPIC_B.b_c_n <= 1.0E-8 -
+      motion_controller_withPIC_B.b_c_d = fabs(motion_controller_withPIC_B.ratio);
+      if ((!(motion_controller_withPIC_B.b_c_d <= 1.0E-8 -
              motion_controller_withPIC_B.ratio)) && (!rtIsNaN(1.0E-8 -
             motion_controller_withPIC_B.ratio))) {
-        motion_controller_withPIC_B.b_c_n = 1.0E-8 -
+        motion_controller_withPIC_B.b_c_d = 1.0E-8 -
           motion_controller_withPIC_B.ratio;
       }
 
-      motion_controller_withPIC_B.b_c_n /=
+      motion_controller_withPIC_B.b_c_d /=
         -motion_controller_withPIC_B.phaseOneCorrectionX;
-      if ((motion_controller_withPIC_B.b_c_n <= *alpha) && (fabs
+      if ((motion_controller_withPIC_B.b_c_d <= *alpha) && (fabs
            (motion_controller_withPIC_B.phaseOneCorrectionX) >
            motion_controller_withPIC_B.p_max)) {
-        *alpha = motion_controller_withPIC_B.b_c_n;
+        *alpha = motion_controller_withPIC_B.b_c_d;
         *constrType = 4;
         *constrIdx = workingset_sizes[3];
         *newBlocking = true;
       }
 
-      motion_controller_withPIC_B.b_c_n = fabs
+      motion_controller_withPIC_B.b_c_d = fabs
         (motion_controller_withPIC_B.workspace);
-      if ((!(motion_controller_withPIC_B.b_c_n <= 1.0E-8 -
+      if ((!(motion_controller_withPIC_B.b_c_d <= 1.0E-8 -
              motion_controller_withPIC_B.workspace)) && (!rtIsNaN(1.0E-8 -
             motion_controller_withPIC_B.workspace))) {
-        motion_controller_withPIC_B.b_c_n = 1.0E-8 -
+        motion_controller_withPIC_B.b_c_d = 1.0E-8 -
           motion_controller_withPIC_B.workspace;
       }
 
-      motion_controller_withPIC_B.b_c_n /=
+      motion_controller_withPIC_B.b_c_d /=
         -motion_controller_withPIC_B.phaseOneCorrectionX;
-      if (motion_controller_withPIC_B.b_c_n < *alpha) {
-        *alpha = motion_controller_withPIC_B.b_c_n;
+      if (motion_controller_withPIC_B.b_c_d < *alpha) {
+        *alpha = motion_controller_withPIC_B.b_c_d;
         *constrType = 4;
         *constrIdx = workingset_sizes[3];
         *newBlocking = true;
@@ -9116,62 +9107,62 @@ void motion_controller_withPIC::motion_controller_wit_ratiotest(const real_T
       solution_xstar[workingset_nVar - 1] * 0.0;
     motion_controller_withPIC_B.phaseOneCorrectionP =
       solution_searchDir[workingset_nVar - 1] * 0.0;
-    motion_controller_withPIC_B.ia_c = static_cast<uint8_T>(workingset_sizes[4]);
-    for (motion_controller_withPIC_B.k_py = 0; motion_controller_withPIC_B.k_py <
-         motion_controller_withPIC_B.ia_c; motion_controller_withPIC_B.k_py++) {
-      motion_controller_withPIC_B.d_om =
-        workingset_indexUB[motion_controller_withPIC_B.k_py];
+    motion_controller_withPIC_B.ia_ol = static_cast<uint8_T>(workingset_sizes[4]);
+    for (motion_controller_withPIC_B.k_c = 0; motion_controller_withPIC_B.k_c <
+         motion_controller_withPIC_B.ia_ol; motion_controller_withPIC_B.k_c++) {
+      motion_controller_withPIC_B.d_oc =
+        workingset_indexUB[motion_controller_withPIC_B.k_c];
       motion_controller_withPIC_B.pk_corrected =
-        solution_searchDir[motion_controller_withPIC_B.d_om - 1] -
+        solution_searchDir[motion_controller_withPIC_B.d_oc - 1] -
         motion_controller_withPIC_B.phaseOneCorrectionP;
       if ((motion_controller_withPIC_B.pk_corrected >
            motion_controller_withPIC_B.denomTol) && (!workingset_isActiveConstr
-           [(workingset_isActiveIdx[4] + motion_controller_withPIC_B.k_py) - 1]))
+           [(workingset_isActiveIdx[4] + motion_controller_withPIC_B.k_c) - 1]))
       {
         motion_controller_withPIC_B.workspace =
-          solution_xstar[motion_controller_withPIC_B.d_om - 1] -
-          workingset_ub[motion_controller_withPIC_B.d_om - 1];
+          solution_xstar[motion_controller_withPIC_B.d_oc - 1] -
+          workingset_ub[motion_controller_withPIC_B.d_oc - 1];
         motion_controller_withPIC_B.ratio =
           (motion_controller_withPIC_B.workspace - *toldelta) -
           motion_controller_withPIC_B.phaseOneCorrectionX;
-        motion_controller_withPIC_B.b_c_n = fabs
+        motion_controller_withPIC_B.b_c_d = fabs
           (motion_controller_withPIC_B.ratio);
-        if ((!(motion_controller_withPIC_B.b_c_n <= 1.0E-8 -
+        if ((!(motion_controller_withPIC_B.b_c_d <= 1.0E-8 -
                motion_controller_withPIC_B.ratio)) && (!rtIsNaN(1.0E-8 -
               motion_controller_withPIC_B.ratio))) {
-          motion_controller_withPIC_B.b_c_n = 1.0E-8 -
+          motion_controller_withPIC_B.b_c_d = 1.0E-8 -
             motion_controller_withPIC_B.ratio;
         }
 
-        motion_controller_withPIC_B.b_c_n /=
+        motion_controller_withPIC_B.b_c_d /=
           motion_controller_withPIC_B.pk_corrected;
-        if ((motion_controller_withPIC_B.b_c_n <= *alpha) && (fabs
+        if ((motion_controller_withPIC_B.b_c_d <= *alpha) && (fabs
              (motion_controller_withPIC_B.pk_corrected) >
              motion_controller_withPIC_B.p_max)) {
-          *alpha = motion_controller_withPIC_B.b_c_n;
+          *alpha = motion_controller_withPIC_B.b_c_d;
           *constrType = 5;
-          *constrIdx = motion_controller_withPIC_B.k_py + 1;
+          *constrIdx = motion_controller_withPIC_B.k_c + 1;
           *newBlocking = true;
         }
 
         motion_controller_withPIC_B.ratio =
           motion_controller_withPIC_B.workspace -
           motion_controller_withPIC_B.phaseOneCorrectionX;
-        motion_controller_withPIC_B.b_c_n = fabs
+        motion_controller_withPIC_B.b_c_d = fabs
           (motion_controller_withPIC_B.ratio);
-        if ((!(motion_controller_withPIC_B.b_c_n <= 1.0E-8 -
+        if ((!(motion_controller_withPIC_B.b_c_d <= 1.0E-8 -
                motion_controller_withPIC_B.ratio)) && (!rtIsNaN(1.0E-8 -
               motion_controller_withPIC_B.ratio))) {
-          motion_controller_withPIC_B.b_c_n = 1.0E-8 -
+          motion_controller_withPIC_B.b_c_d = 1.0E-8 -
             motion_controller_withPIC_B.ratio;
         }
 
-        motion_controller_withPIC_B.b_c_n /=
+        motion_controller_withPIC_B.b_c_d /=
           motion_controller_withPIC_B.pk_corrected;
-        if (motion_controller_withPIC_B.b_c_n < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_n;
+        if (motion_controller_withPIC_B.b_c_d < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_d;
           *constrType = 5;
-          *constrIdx = motion_controller_withPIC_B.k_py + 1;
+          *constrIdx = motion_controller_withPIC_B.k_c + 1;
           *newBlocking = true;
           motion_controller_withPIC_B.p_max = fabs
             (motion_controller_withPIC_B.pk_corrected);
@@ -9195,7 +9186,7 @@ void motion_controller_withPIC::motion_controller_wit_ratiotest(const real_T
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_contro_feasibleratiotest(const real_T
   solution_xstar[41], const real_T solution_searchDir[41], real_T workspace[6601],
   int32_T workingset_nVar, const real_T workingset_Aineq[3280], const real_T
@@ -9210,58 +9201,58 @@ void motion_controller_withPIC::motion_contro_feasibleratiotest(const real_T
   *newBlocking = false;
   *constrType = 0;
   *constrIdx = 0;
-  motion_controller_withPIC_B.denomTol_j = 2.2204460492503131E-13 *
+  motion_controller_withPIC_B.denomTol_g = 2.2204460492503131E-13 *
     motion_controlle_xnrm2_DlmxxpnG(workingset_nVar, solution_searchDir);
   if (workingset_nWConstr[2] < 80) {
     memcpy(&workspace[0], &workingset_bineq[0], 80U * sizeof(real_T));
     motion_controlle_xgemv_pKPSQiPT(workingset_nVar, workingset_Aineq,
       solution_xstar, workspace);
     memset(&workspace[161], 0, 80U * sizeof(real_T));
-    for (motion_controller_withPIC_B.k_n = 0; motion_controller_withPIC_B.k_n <=
-         3239; motion_controller_withPIC_B.k_n += 41) {
-      motion_controller_withPIC_B.b_c_c = 0.0;
-      motion_controller_withPIC_B.d_p = motion_controller_withPIC_B.k_n +
+    for (motion_controller_withPIC_B.k_p4 = 0; motion_controller_withPIC_B.k_p4 <=
+         3239; motion_controller_withPIC_B.k_p4 += 41) {
+      motion_controller_withPIC_B.b_c_lu = 0.0;
+      motion_controller_withPIC_B.d_i = motion_controller_withPIC_B.k_p4 +
         workingset_nVar;
-      for (motion_controller_withPIC_B.ia_ih = motion_controller_withPIC_B.k_n +
-           1; motion_controller_withPIC_B.ia_ih <=
-           motion_controller_withPIC_B.d_p; motion_controller_withPIC_B.ia_ih++)
+      for (motion_controller_withPIC_B.ia_j = motion_controller_withPIC_B.k_p4 +
+           1; motion_controller_withPIC_B.ia_j <=
+           motion_controller_withPIC_B.d_i; motion_controller_withPIC_B.ia_j++)
       {
-        motion_controller_withPIC_B.b_c_c += solution_searchDir
-          [(motion_controller_withPIC_B.ia_ih - motion_controller_withPIC_B.k_n)
-          - 1] * workingset_Aineq[motion_controller_withPIC_B.ia_ih - 1];
+        motion_controller_withPIC_B.b_c_lu += solution_searchDir
+          [(motion_controller_withPIC_B.ia_j - motion_controller_withPIC_B.k_p4)
+          - 1] * workingset_Aineq[motion_controller_withPIC_B.ia_j - 1];
       }
 
-      motion_controller_withPIC_B.ia_ih = div_nde_s32_floor
-        (motion_controller_withPIC_B.k_n, 41) + 161;
-      workspace[motion_controller_withPIC_B.ia_ih] +=
-        motion_controller_withPIC_B.b_c_c;
+      motion_controller_withPIC_B.ia_j = div_nde_s32_floor
+        (motion_controller_withPIC_B.k_p4, 41) + 161;
+      workspace[motion_controller_withPIC_B.ia_j] +=
+        motion_controller_withPIC_B.b_c_lu;
     }
 
-    for (motion_controller_withPIC_B.k_n = 0; motion_controller_withPIC_B.k_n <
-         80; motion_controller_withPIC_B.k_n++) {
-      motion_controller_withPIC_B.phaseOneCorrectionX_j =
-        workspace[motion_controller_withPIC_B.k_n + 161];
-      if ((motion_controller_withPIC_B.phaseOneCorrectionX_j >
-           motion_controller_withPIC_B.denomTol_j) &&
+    for (motion_controller_withPIC_B.k_p4 = 0; motion_controller_withPIC_B.k_p4 <
+         80; motion_controller_withPIC_B.k_p4++) {
+      motion_controller_withPIC_B.phaseOneCorrectionX_o =
+        workspace[motion_controller_withPIC_B.k_p4 + 161];
+      if ((motion_controller_withPIC_B.phaseOneCorrectionX_o >
+           motion_controller_withPIC_B.denomTol_g) &&
           (!workingset_isActiveConstr[(workingset_isActiveIdx[2] +
-            motion_controller_withPIC_B.k_n) - 1])) {
-        motion_controller_withPIC_B.phaseOneCorrectionP_g =
-          workspace[motion_controller_withPIC_B.k_n];
-        motion_controller_withPIC_B.b_c_c = fabs
-          (motion_controller_withPIC_B.phaseOneCorrectionP_g);
-        if ((!(motion_controller_withPIC_B.b_c_c <= 1.0E-8 -
-               motion_controller_withPIC_B.phaseOneCorrectionP_g)) && (!rtIsNaN
-             (1.0E-8 - motion_controller_withPIC_B.phaseOneCorrectionP_g))) {
-          motion_controller_withPIC_B.b_c_c = 1.0E-8 -
-            motion_controller_withPIC_B.phaseOneCorrectionP_g;
+            motion_controller_withPIC_B.k_p4) - 1])) {
+        motion_controller_withPIC_B.phaseOneCorrectionP_h =
+          workspace[motion_controller_withPIC_B.k_p4];
+        motion_controller_withPIC_B.b_c_lu = fabs
+          (motion_controller_withPIC_B.phaseOneCorrectionP_h);
+        if ((!(motion_controller_withPIC_B.b_c_lu <= 1.0E-8 -
+               motion_controller_withPIC_B.phaseOneCorrectionP_h)) && (!rtIsNaN
+             (1.0E-8 - motion_controller_withPIC_B.phaseOneCorrectionP_h))) {
+          motion_controller_withPIC_B.b_c_lu = 1.0E-8 -
+            motion_controller_withPIC_B.phaseOneCorrectionP_h;
         }
 
-        motion_controller_withPIC_B.b_c_c /=
-          motion_controller_withPIC_B.phaseOneCorrectionX_j;
-        if (motion_controller_withPIC_B.b_c_c < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_c;
+        motion_controller_withPIC_B.b_c_lu /=
+          motion_controller_withPIC_B.phaseOneCorrectionX_o;
+        if (motion_controller_withPIC_B.b_c_lu < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_lu;
           *constrType = 3;
-          *constrIdx = motion_controller_withPIC_B.k_n + 1;
+          *constrIdx = motion_controller_withPIC_B.k_p4 + 1;
           *newBlocking = true;
         }
       }
@@ -9269,70 +9260,70 @@ void motion_controller_withPIC::motion_contro_feasibleratiotest(const real_T
   }
 
   if (workingset_nWConstr[3] < workingset_sizes[3]) {
-    motion_controller_withPIC_B.phaseOneCorrectionX_j =
+    motion_controller_withPIC_B.phaseOneCorrectionX_o =
       solution_xstar[workingset_nVar - 1] * static_cast<real_T>(isPhaseOne);
-    motion_controller_withPIC_B.phaseOneCorrectionP_g =
+    motion_controller_withPIC_B.phaseOneCorrectionP_h =
       solution_searchDir[workingset_nVar - 1] * static_cast<real_T>(isPhaseOne);
-    motion_controller_withPIC_B.ia_ih = workingset_sizes[3];
-    for (motion_controller_withPIC_B.k_n = 0; motion_controller_withPIC_B.k_n <=
-         motion_controller_withPIC_B.ia_ih - 2; motion_controller_withPIC_B.k_n
+    motion_controller_withPIC_B.ia_j = workingset_sizes[3];
+    for (motion_controller_withPIC_B.k_p4 = 0; motion_controller_withPIC_B.k_p4 <=
+         motion_controller_withPIC_B.ia_j - 2; motion_controller_withPIC_B.k_p4
          ++) {
-      motion_controller_withPIC_B.d_p =
-        workingset_indexLB[motion_controller_withPIC_B.k_n];
-      motion_controller_withPIC_B.pk_corrected_o =
-        -solution_searchDir[motion_controller_withPIC_B.d_p - 1] -
-        motion_controller_withPIC_B.phaseOneCorrectionP_g;
-      if ((motion_controller_withPIC_B.pk_corrected_o >
-           motion_controller_withPIC_B.denomTol_j) &&
+      motion_controller_withPIC_B.d_i =
+        workingset_indexLB[motion_controller_withPIC_B.k_p4];
+      motion_controller_withPIC_B.pk_corrected_c =
+        -solution_searchDir[motion_controller_withPIC_B.d_i - 1] -
+        motion_controller_withPIC_B.phaseOneCorrectionP_h;
+      if ((motion_controller_withPIC_B.pk_corrected_c >
+           motion_controller_withPIC_B.denomTol_g) &&
           (!workingset_isActiveConstr[(workingset_isActiveIdx[3] +
-            motion_controller_withPIC_B.k_n) - 1])) {
-        motion_controller_withPIC_B.ratio_h =
-          (-solution_xstar[motion_controller_withPIC_B.d_p - 1] -
-           workingset_lb[motion_controller_withPIC_B.d_p - 1]) -
-          motion_controller_withPIC_B.phaseOneCorrectionX_j;
-        motion_controller_withPIC_B.b_c_c = fabs
-          (motion_controller_withPIC_B.ratio_h);
-        if ((!(motion_controller_withPIC_B.b_c_c <= 1.0E-8 -
-               motion_controller_withPIC_B.ratio_h)) && (!rtIsNaN(1.0E-8 -
-              motion_controller_withPIC_B.ratio_h))) {
-          motion_controller_withPIC_B.b_c_c = 1.0E-8 -
-            motion_controller_withPIC_B.ratio_h;
+            motion_controller_withPIC_B.k_p4) - 1])) {
+        motion_controller_withPIC_B.ratio_a =
+          (-solution_xstar[motion_controller_withPIC_B.d_i - 1] -
+           workingset_lb[motion_controller_withPIC_B.d_i - 1]) -
+          motion_controller_withPIC_B.phaseOneCorrectionX_o;
+        motion_controller_withPIC_B.b_c_lu = fabs
+          (motion_controller_withPIC_B.ratio_a);
+        if ((!(motion_controller_withPIC_B.b_c_lu <= 1.0E-8 -
+               motion_controller_withPIC_B.ratio_a)) && (!rtIsNaN(1.0E-8 -
+              motion_controller_withPIC_B.ratio_a))) {
+          motion_controller_withPIC_B.b_c_lu = 1.0E-8 -
+            motion_controller_withPIC_B.ratio_a;
         }
 
-        motion_controller_withPIC_B.b_c_c /=
-          motion_controller_withPIC_B.pk_corrected_o;
-        if (motion_controller_withPIC_B.b_c_c < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_c;
+        motion_controller_withPIC_B.b_c_lu /=
+          motion_controller_withPIC_B.pk_corrected_c;
+        if (motion_controller_withPIC_B.b_c_lu < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_lu;
           *constrType = 4;
-          *constrIdx = motion_controller_withPIC_B.k_n + 1;
+          *constrIdx = motion_controller_withPIC_B.k_p4 + 1;
           *newBlocking = true;
         }
       }
     }
 
-    motion_controller_withPIC_B.ia_ih = workingset_indexLB[workingset_sizes[3] -
+    motion_controller_withPIC_B.ia_j = workingset_indexLB[workingset_sizes[3] -
       1] - 1;
-    motion_controller_withPIC_B.phaseOneCorrectionX_j =
-      -solution_searchDir[motion_controller_withPIC_B.ia_ih];
-    if ((motion_controller_withPIC_B.phaseOneCorrectionX_j >
-         motion_controller_withPIC_B.denomTol_j) && (!workingset_isActiveConstr
+    motion_controller_withPIC_B.phaseOneCorrectionX_o =
+      -solution_searchDir[motion_controller_withPIC_B.ia_j];
+    if ((motion_controller_withPIC_B.phaseOneCorrectionX_o >
+         motion_controller_withPIC_B.denomTol_g) && (!workingset_isActiveConstr
          [(workingset_isActiveIdx[3] + workingset_sizes[3]) - 2])) {
-      motion_controller_withPIC_B.ratio_h =
-        -solution_xstar[motion_controller_withPIC_B.ia_ih] -
-        workingset_lb[motion_controller_withPIC_B.ia_ih];
-      motion_controller_withPIC_B.b_c_c = fabs
-        (motion_controller_withPIC_B.ratio_h);
-      if ((!(motion_controller_withPIC_B.b_c_c <= 1.0E-8 -
-             motion_controller_withPIC_B.ratio_h)) && (!rtIsNaN(1.0E-8 -
-            motion_controller_withPIC_B.ratio_h))) {
-        motion_controller_withPIC_B.b_c_c = 1.0E-8 -
-          motion_controller_withPIC_B.ratio_h;
+      motion_controller_withPIC_B.ratio_a =
+        -solution_xstar[motion_controller_withPIC_B.ia_j] -
+        workingset_lb[motion_controller_withPIC_B.ia_j];
+      motion_controller_withPIC_B.b_c_lu = fabs
+        (motion_controller_withPIC_B.ratio_a);
+      if ((!(motion_controller_withPIC_B.b_c_lu <= 1.0E-8 -
+             motion_controller_withPIC_B.ratio_a)) && (!rtIsNaN(1.0E-8 -
+            motion_controller_withPIC_B.ratio_a))) {
+        motion_controller_withPIC_B.b_c_lu = 1.0E-8 -
+          motion_controller_withPIC_B.ratio_a;
       }
 
-      motion_controller_withPIC_B.b_c_c /=
-        motion_controller_withPIC_B.phaseOneCorrectionX_j;
-      if (motion_controller_withPIC_B.b_c_c < *alpha) {
-        *alpha = motion_controller_withPIC_B.b_c_c;
+      motion_controller_withPIC_B.b_c_lu /=
+        motion_controller_withPIC_B.phaseOneCorrectionX_o;
+      if (motion_controller_withPIC_B.b_c_lu < *alpha) {
+        *alpha = motion_controller_withPIC_B.b_c_lu;
         *constrType = 4;
         *constrIdx = workingset_sizes[3];
         *newBlocking = true;
@@ -9341,41 +9332,41 @@ void motion_controller_withPIC::motion_contro_feasibleratiotest(const real_T
   }
 
   if (workingset_nWConstr[4] < workingset_sizes[4]) {
-    motion_controller_withPIC_B.phaseOneCorrectionX_j =
+    motion_controller_withPIC_B.phaseOneCorrectionX_o =
       solution_xstar[workingset_nVar - 1] * static_cast<real_T>(isPhaseOne);
-    motion_controller_withPIC_B.phaseOneCorrectionP_g =
+    motion_controller_withPIC_B.phaseOneCorrectionP_h =
       solution_searchDir[workingset_nVar - 1] * static_cast<real_T>(isPhaseOne);
-    motion_controller_withPIC_B.ia_ih = static_cast<uint8_T>(workingset_sizes[4]);
-    for (motion_controller_withPIC_B.k_n = 0; motion_controller_withPIC_B.k_n <
-         motion_controller_withPIC_B.ia_ih; motion_controller_withPIC_B.k_n++) {
-      motion_controller_withPIC_B.d_p =
-        workingset_indexUB[motion_controller_withPIC_B.k_n];
-      motion_controller_withPIC_B.pk_corrected_o =
-        solution_searchDir[motion_controller_withPIC_B.d_p - 1] -
-        motion_controller_withPIC_B.phaseOneCorrectionP_g;
-      if ((motion_controller_withPIC_B.pk_corrected_o >
-           motion_controller_withPIC_B.denomTol_j) &&
+    motion_controller_withPIC_B.ia_j = static_cast<uint8_T>(workingset_sizes[4]);
+    for (motion_controller_withPIC_B.k_p4 = 0; motion_controller_withPIC_B.k_p4 <
+         motion_controller_withPIC_B.ia_j; motion_controller_withPIC_B.k_p4++) {
+      motion_controller_withPIC_B.d_i =
+        workingset_indexUB[motion_controller_withPIC_B.k_p4];
+      motion_controller_withPIC_B.pk_corrected_c =
+        solution_searchDir[motion_controller_withPIC_B.d_i - 1] -
+        motion_controller_withPIC_B.phaseOneCorrectionP_h;
+      if ((motion_controller_withPIC_B.pk_corrected_c >
+           motion_controller_withPIC_B.denomTol_g) &&
           (!workingset_isActiveConstr[(workingset_isActiveIdx[4] +
-            motion_controller_withPIC_B.k_n) - 1])) {
-        motion_controller_withPIC_B.ratio_h =
-          (solution_xstar[motion_controller_withPIC_B.d_p - 1] -
-           workingset_ub[motion_controller_withPIC_B.d_p - 1]) -
-          motion_controller_withPIC_B.phaseOneCorrectionX_j;
-        motion_controller_withPIC_B.b_c_c = fabs
-          (motion_controller_withPIC_B.ratio_h);
-        if ((!(motion_controller_withPIC_B.b_c_c <= 1.0E-8 -
-               motion_controller_withPIC_B.ratio_h)) && (!rtIsNaN(1.0E-8 -
-              motion_controller_withPIC_B.ratio_h))) {
-          motion_controller_withPIC_B.b_c_c = 1.0E-8 -
-            motion_controller_withPIC_B.ratio_h;
+            motion_controller_withPIC_B.k_p4) - 1])) {
+        motion_controller_withPIC_B.ratio_a =
+          (solution_xstar[motion_controller_withPIC_B.d_i - 1] -
+           workingset_ub[motion_controller_withPIC_B.d_i - 1]) -
+          motion_controller_withPIC_B.phaseOneCorrectionX_o;
+        motion_controller_withPIC_B.b_c_lu = fabs
+          (motion_controller_withPIC_B.ratio_a);
+        if ((!(motion_controller_withPIC_B.b_c_lu <= 1.0E-8 -
+               motion_controller_withPIC_B.ratio_a)) && (!rtIsNaN(1.0E-8 -
+              motion_controller_withPIC_B.ratio_a))) {
+          motion_controller_withPIC_B.b_c_lu = 1.0E-8 -
+            motion_controller_withPIC_B.ratio_a;
         }
 
-        motion_controller_withPIC_B.b_c_c /=
-          motion_controller_withPIC_B.pk_corrected_o;
-        if (motion_controller_withPIC_B.b_c_c < *alpha) {
-          *alpha = motion_controller_withPIC_B.b_c_c;
+        motion_controller_withPIC_B.b_c_lu /=
+          motion_controller_withPIC_B.pk_corrected_c;
+        if (motion_controller_withPIC_B.b_c_lu < *alpha) {
+          *alpha = motion_controller_withPIC_B.b_c_lu;
           *constrType = 5;
-          *constrIdx = motion_controller_withPIC_B.k_n + 1;
+          *constrIdx = motion_controller_withPIC_B.k_p4 + 1;
           *newBlocking = true;
         }
       }
@@ -9390,7 +9381,7 @@ void motion_controller_withPIC::motion_contro_feasibleratiotest(const real_T
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::moti_addBoundToActiveSetMatrix_
   (sT1ziU4p6vTWuD880X9yNJ_motion_T *obj, int32_T TYPE, int32_T idx_local)
 {
@@ -9435,7 +9426,7 @@ void motion_controller_withPIC::moti_addBoundToActiveSetMatrix_
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::moti_checkStoppingAndUpdateFval(int32_T
   *activeSetChangeID, const real_T f[40], s5cJJO9CAPQxuVG0iaeiP4F_motio_T
   *solution, sFlCINAYeIgPgx0UwEHpaMF_motio_T *memspace, const
@@ -9501,7 +9492,7 @@ void motion_controller_withPIC::moti_checkStoppingAndUpdateFval(int32_T
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
   [1600], const real_T f[40], s5cJJO9CAPQxuVG0iaeiP4F_motio_T *solution,
   sFlCINAYeIgPgx0UwEHpaMF_motio_T *memspace, sT1ziU4p6vTWuD880X9yNJ_motion_T
@@ -9522,7 +9513,7 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
   motion_controller_withPIC_B.activeSetChangeID = 0;
   motion_controller_withPIC_B.TYPE = objective->objtype;
   motion_controller_withPIC_B.tolDelta = 6.7434957617430445E-7;
-  motion_controller_withPIC_B.nVar_g = workingset->nVar;
+  motion_controller_withPIC_B.nVar_n = workingset->nVar;
   motion_controller_withPIC_B.globalActiveConstrIdx = 0;
   motion_cont_computeGrad_StoreHx(objective, H, f, solution->xstar);
   solution->fstar = motion_cont_computeFval_ReuseHx(objective,
@@ -9559,10 +9550,10 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
                       motion_controller_withPIC_B.jjA) * sizeof(real_T));
             }
 
-            motion_controller_withPIC_B.i_e = (qrmanager->mrows - 1) * 41 + 1;
+            motion_controller_withPIC_B.i_f = (qrmanager->mrows - 1) * 41 + 1;
             for (motion_controller_withPIC_B.localActiveConstrIdx = 1;
                  motion_controller_withPIC_B.localActiveConstrIdx <=
-                 motion_controller_withPIC_B.i_e;
+                 motion_controller_withPIC_B.i_f;
                  motion_controller_withPIC_B.localActiveConstrIdx += 41) {
               motion_controller_withPIC_B.normDelta = 0.0;
               motion_controller_withPIC_B.d_ix =
@@ -9594,15 +9585,15 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
           while (motion_controller_withPIC_B.iyend + 2 > qrmanager->ncols) {
             motion_controller_withPIC_B.localActiveConstrIdx = (qrmanager->ncols
               - 1) * 41 + motion_controller_withPIC_B.iyend;
-            motion_controller_withPIC_B.temp_k = qrmanager->
+            motion_controller_withPIC_B.temp_b = qrmanager->
               QR[motion_controller_withPIC_B.localActiveConstrIdx + 1];
             motion_controlle_xrotg_ds3XgDMS(&qrmanager->
               QR[motion_controller_withPIC_B.localActiveConstrIdx],
-              &motion_controller_withPIC_B.temp_k,
+              &motion_controller_withPIC_B.temp_b,
               &motion_controller_withPIC_B.normDelta,
-              &motion_controller_withPIC_B.s_h);
+              &motion_controller_withPIC_B.s_hz);
             qrmanager->QR[motion_controller_withPIC_B.localActiveConstrIdx + 1] =
-              motion_controller_withPIC_B.temp_k;
+              motion_controller_withPIC_B.temp_b;
             motion_controller_withPIC_B.Qk0 = 41 *
               motion_controller_withPIC_B.iyend;
             motion_controller_withPIC_B.jjA = qrmanager->mrows;
@@ -9616,18 +9607,18 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
                   motion_controller_withPIC_B.localActiveConstrIdx;
                 motion_controller_withPIC_B.temp_tmp = qrmanager->
                   Q[motion_controller_withPIC_B.d_ix + 41];
-                motion_controller_withPIC_B.temp_k =
+                motion_controller_withPIC_B.temp_b =
                   motion_controller_withPIC_B.temp_tmp *
-                  motion_controller_withPIC_B.s_h + qrmanager->
+                  motion_controller_withPIC_B.s_hz + qrmanager->
                   Q[motion_controller_withPIC_B.d_ix] *
                   motion_controller_withPIC_B.normDelta;
                 qrmanager->Q[motion_controller_withPIC_B.d_ix + 41] =
                   motion_controller_withPIC_B.temp_tmp *
                   motion_controller_withPIC_B.normDelta - qrmanager->
                   Q[motion_controller_withPIC_B.d_ix] *
-                  motion_controller_withPIC_B.s_h;
+                  motion_controller_withPIC_B.s_hz;
                 qrmanager->Q[motion_controller_withPIC_B.d_ix] =
-                  motion_controller_withPIC_B.temp_k;
+                  motion_controller_withPIC_B.temp_b;
               }
             }
 
@@ -9642,7 +9633,7 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
 
          default:
           motion_controller_with_factorQR(qrmanager, workingset->ATwset,
-            motion_controller_withPIC_B.nVar_g, workingset->nActiveConstr);
+            motion_controller_withPIC_B.nVar_n, workingset->nActiveConstr);
           motion_controller_wit_computeQ_(qrmanager, qrmanager->mrows);
           break;
         }
@@ -9653,13 +9644,13 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
           exitg1 = 1;
         } else {
           motion_controller_withPIC_B.normDelta =
-            motion_controlle_xnrm2_DlmxxpnG(motion_controller_withPIC_B.nVar_g,
+            motion_controlle_xnrm2_DlmxxpnG(motion_controller_withPIC_B.nVar_n,
             solution->searchDir);
           guard11 = true;
         }
       } else {
         motion_controller_withPIC_B.iyend = static_cast<uint8_T>
-          (motion_controller_withPIC_B.nVar_g);
+          (motion_controller_withPIC_B.nVar_n);
         memset(&solution->searchDir[0], 0, static_cast<uint32_T>
                (motion_controller_withPIC_B.iyend) * sizeof(real_T));
         motion_controller_withPIC_B.normDelta = 0.0;
@@ -9669,7 +9660,7 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
       if (guard11) {
         if ((!motion_controller_withPIC_B.subProblemChanged) ||
             (motion_controller_withPIC_B.normDelta < options_StepTolerance) ||
-            (workingset->nActiveConstr >= motion_controller_withPIC_B.nVar_g)) {
+            (workingset->nActiveConstr >= motion_controller_withPIC_B.nVar_n)) {
           motion_controller_withPIC_B.localActiveConstrIdx = qrmanager->ncols;
           if (qrmanager->ncols > 0) {
             guard1 = false;
@@ -9807,7 +9798,7 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
           }
 
           if ((solution->state != -7) || (workingset->nActiveConstr >
-               motion_controller_withPIC_B.nVar_g)) {
+               motion_controller_withPIC_B.nVar_n)) {
             motion_controller_withPIC_B.iyend = 0;
             motion_controller_withPIC_B.normDelta = 0.0 *
               runTimeOptions_ProbRelTolFactor * static_cast<real_T>
@@ -9820,12 +9811,12 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
                  motion_controller_withPIC_B.localActiveConstrIdx <=
                  motion_controller_withPIC_B.jjA;
                  motion_controller_withPIC_B.localActiveConstrIdx++) {
-              motion_controller_withPIC_B.s_h = solution->
+              motion_controller_withPIC_B.s_hz = solution->
                 lambda[motion_controller_withPIC_B.localActiveConstrIdx - 1];
-              if (motion_controller_withPIC_B.s_h <
+              if (motion_controller_withPIC_B.s_hz <
                   motion_controller_withPIC_B.normDelta) {
                 motion_controller_withPIC_B.normDelta =
-                  motion_controller_withPIC_B.s_h;
+                  motion_controller_withPIC_B.s_hz;
                 motion_controller_withPIC_B.iyend =
                   motion_controller_withPIC_B.localActiveConstrIdx;
               }
@@ -9943,7 +9934,7 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
 
           if (!(motion_controller_withPIC_B.normDelta == 0.0)) {
             motion_controller_withPIC_B.Qk0 =
-              (motion_controller_withPIC_B.nVar_g / 2) << 1;
+              (motion_controller_withPIC_B.nVar_n / 2) << 1;
             motion_controller_withPIC_B.jjA = motion_controller_withPIC_B.Qk0 -
               2;
             for (motion_controller_withPIC_B.localActiveConstrIdx = 0;
@@ -9963,7 +9954,7 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
             for (motion_controller_withPIC_B.localActiveConstrIdx =
                  motion_controller_withPIC_B.Qk0;
                  motion_controller_withPIC_B.localActiveConstrIdx <
-                 motion_controller_withPIC_B.nVar_g;
+                 motion_controller_withPIC_B.nVar_n;
                  motion_controller_withPIC_B.localActiveConstrIdx++) {
               solution->xstar[motion_controller_withPIC_B.localActiveConstrIdx] +=
                 motion_controller_withPIC_B.normDelta * solution->
@@ -9992,7 +9983,7 @@ void motion_controller_withPIC::motion_controller_withP_iterate(const real_T H
   } while (exitg1 == 0);
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller_with_phaseone(const real_T H
   [1600], const real_T f[40], s5cJJO9CAPQxuVG0iaeiP4F_motio_T *solution,
   sFlCINAYeIgPgx0UwEHpaMF_motio_T *memspace, sT1ziU4p6vTWuD880X9yNJ_motion_T
@@ -10002,18 +9993,18 @@ void motion_controller_withPIC::motion_controller_with_phaseone(const real_T H
   sKnhLiTH4yv7eF1oV2a74RG_motio_T *objective)
 {
   boolean_T exitg1;
-  motion_controller_withPIC_B.nVar_m = workingset->nVar;
+  motion_controller_withPIC_B.nVar_j = workingset->nVar;
   solution->xstar[40] = solution->maxConstr + 1.0;
   motion_controlle_setProblemType(workingset, 1);
-  motion_controller_withPIC_B.idxStartIneq_tmp_b = workingset->nWConstr[0] +
+  motion_controller_withPIC_B.idxStartIneq_tmp_n = workingset->nWConstr[0] +
     workingset->nWConstr[1];
-  motion_controller_withPIC_B.idxStartIneq_d =
-    motion_controller_withPIC_B.idxStartIneq_tmp_b + 1;
-  motion_controller_withPIC_B.idxEndIneq_j = workingset->nActiveConstr;
+  motion_controller_withPIC_B.idxStartIneq_p =
+    motion_controller_withPIC_B.idxStartIneq_tmp_n + 1;
+  motion_controller_withPIC_B.idxEndIneq_b = workingset->nActiveConstr;
   for (motion_controller_withPIC_B.i_p =
-       motion_controller_withPIC_B.idxStartIneq_d;
+       motion_controller_withPIC_B.idxStartIneq_p;
        motion_controller_withPIC_B.i_p <=
-       motion_controller_withPIC_B.idxEndIneq_j; motion_controller_withPIC_B.i_p
+       motion_controller_withPIC_B.idxEndIneq_b; motion_controller_withPIC_B.i_p
        ++) {
     workingset->isActiveConstr[(workingset->isActiveIdx[workingset->
       Wid[motion_controller_withPIC_B.i_p - 1] - 1] + workingset->
@@ -10023,7 +10014,7 @@ void motion_controller_withPIC::motion_controller_with_phaseone(const real_T H
   workingset->nWConstr[2] = 0;
   workingset->nWConstr[3] = 0;
   workingset->nWConstr[4] = 0;
-  workingset->nActiveConstr = motion_controller_withPIC_B.idxStartIneq_tmp_b;
+  workingset->nActiveConstr = motion_controller_withPIC_B.idxStartIneq_tmp_n;
   memset(&objective->grad[0], 0, 41U * sizeof(real_T));
   memset(&objective->Hx[0], 0, 40U * sizeof(real_T));
   objective->maxVar = 41;
@@ -10065,7 +10056,7 @@ void motion_controller_withPIC::motion_controller_with_phaseone(const real_T H
 
   motion_controller_withPIC_B.i_p = workingset->nActiveConstr;
   while ((motion_controller_withPIC_B.i_p > workingset->sizes[0]) &&
-         (motion_controller_withPIC_B.i_p > motion_controller_withPIC_B.nVar_m))
+         (motion_controller_withPIC_B.i_p > motion_controller_withPIC_B.nVar_j))
   {
     motion_controller__removeConstr(workingset, motion_controller_withPIC_B.i_p);
     motion_controller_withPIC_B.i_p--;
@@ -10080,7 +10071,7 @@ void motion_controller_withPIC::motion_controller_with_phaseone(const real_T H
   options->StepTolerance = 1.0E-8;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 int32_T motion_controller_withPIC::motion_con_RemoveDependentEq__j
   (sFlCINAYeIgPgx0UwEHpaMF_motio_T *memspace, sT1ziU4p6vTWuD880X9yNJ_motion_T
    *workingset, s2uO2c2bmaUl7sY5vOWIzHG_motio_T *qrmanager)
@@ -10164,7 +10155,7 @@ int32_T motion_controller_withPIC::motion_con_RemoveDependentEq__j
   return nDepInd;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_con_PresolveWorkingSet_g
   (s5cJJO9CAPQxuVG0iaeiP4F_motio_T *solution, sFlCINAYeIgPgx0UwEHpaMF_motio_T
    *memspace, sT1ziU4p6vTWuD880X9yNJ_motion_T *workingset,
@@ -10172,9 +10163,9 @@ void motion_controller_withPIC::motion_con_PresolveWorkingSet_g
 {
   boolean_T guard1;
   solution->state = 82;
-  motion_controller_withPIC_B.b_n = motion_con_RemoveDependentEq__j(memspace,
+  motion_controller_withPIC_B.b_a = motion_con_RemoveDependentEq__j(memspace,
     workingset, qrmanager);
-  if ((motion_controller_withPIC_B.b_n != -1) && (workingset->nActiveConstr <=
+  if ((motion_controller_withPIC_B.b_a != -1) && (workingset->nActiveConstr <=
        41)) {
     motion_con_RemoveDependentIneq_(workingset, qrmanager, memspace, 100.0);
     motion_controller_withPIC_B.okWorkingSet = motion__feasibleX0ForWorkingSet
@@ -10210,14 +10201,14 @@ void motion_controller_withPIC::motion_con_PresolveWorkingSet_g
     motion_controller_withPIC_B.idxStartIneq =
       motion_controller_withPIC_B.idxStartIneq_tmp + 1;
     motion_controller_withPIC_B.idxEndIneq = workingset->nActiveConstr;
-    for (motion_controller_withPIC_B.b_n =
+    for (motion_controller_withPIC_B.b_a =
          motion_controller_withPIC_B.idxStartIneq;
-         motion_controller_withPIC_B.b_n <=
-         motion_controller_withPIC_B.idxEndIneq; motion_controller_withPIC_B.b_n
+         motion_controller_withPIC_B.b_a <=
+         motion_controller_withPIC_B.idxEndIneq; motion_controller_withPIC_B.b_a
          ++) {
       workingset->isActiveConstr[(workingset->isActiveIdx[workingset->
-        Wid[motion_controller_withPIC_B.b_n - 1] - 1] + workingset->
-        Wlocalidx[motion_controller_withPIC_B.b_n - 1]) - 2] = false;
+        Wid[motion_controller_withPIC_B.b_a - 1] - 1] + workingset->
+        Wlocalidx[motion_controller_withPIC_B.b_a - 1]) - 2] = false;
     }
 
     workingset->nWConstr[2] = 0;
@@ -10227,7 +10218,7 @@ void motion_controller_withPIC::motion_con_PresolveWorkingSet_g
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_con_computeFirstOrderOpt
   (s5cJJO9CAPQxuVG0iaeiP4F_motio_T *solution, const
    sKnhLiTH4yv7eF1oV2a74RG_motio_T *objective, int32_T workingset_nVar, const
@@ -10278,7 +10269,7 @@ void motion_controller_withPIC::motion_con_computeFirstOrderOpt
   solution->firstorderopt = infNorm;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller_wi_phaseone_e(const real_T H
   [1600], const real_T f[40], s5cJJO9CAPQxuVG0iaeiP4F_motio_T *solution,
   sFlCINAYeIgPgx0UwEHpaMF_motio_T *memspace, sT1ziU4p6vTWuD880X9yNJ_motion_T
@@ -10289,36 +10280,36 @@ void motion_controller_withPIC::motion_controller_wi_phaseone_e(const real_T H
 {
   boolean_T exitg1;
   motion_controller_withPIC_B.PROBTYPE_ORIG = workingset->probType;
-  motion_controller_withPIC_B.nVar_p = workingset->nVar;
+  motion_controller_withPIC_B.nVar_l = workingset->nVar;
   solution->xstar[40] = solution->maxConstr + 1.0;
   if (workingset->probType == 3) {
-    motion_controller_withPIC_B.mConstr_l = 1;
+    motion_controller_withPIC_B.mConstr_h = 1;
   } else {
-    motion_controller_withPIC_B.mConstr_l = 4;
+    motion_controller_withPIC_B.mConstr_h = 4;
   }
 
   motion_controlle_setProblemType(workingset,
-    motion_controller_withPIC_B.mConstr_l);
-  motion_controller_withPIC_B.idxStartIneq_tmp_c = workingset->nWConstr[0] +
+    motion_controller_withPIC_B.mConstr_h);
+  motion_controller_withPIC_B.idxStartIneq_tmp_e = workingset->nWConstr[0] +
     workingset->nWConstr[1];
-  motion_controller_withPIC_B.idxStartIneq_l =
-    motion_controller_withPIC_B.idxStartIneq_tmp_c + 1;
-  motion_controller_withPIC_B.idxEndIneq_h = workingset->nActiveConstr;
-  for (motion_controller_withPIC_B.mConstr_l =
-       motion_controller_withPIC_B.idxStartIneq_l;
-       motion_controller_withPIC_B.mConstr_l <=
-       motion_controller_withPIC_B.idxEndIneq_h;
-       motion_controller_withPIC_B.mConstr_l++) {
+  motion_controller_withPIC_B.idxStartIneq_c =
+    motion_controller_withPIC_B.idxStartIneq_tmp_e + 1;
+  motion_controller_withPIC_B.idxEndIneq_g0 = workingset->nActiveConstr;
+  for (motion_controller_withPIC_B.mConstr_h =
+       motion_controller_withPIC_B.idxStartIneq_c;
+       motion_controller_withPIC_B.mConstr_h <=
+       motion_controller_withPIC_B.idxEndIneq_g0;
+       motion_controller_withPIC_B.mConstr_h++) {
     workingset->isActiveConstr[(workingset->isActiveIdx[workingset->
-      Wid[motion_controller_withPIC_B.mConstr_l - 1] - 1] +
-      workingset->Wlocalidx[motion_controller_withPIC_B.mConstr_l - 1]) - 2] =
+      Wid[motion_controller_withPIC_B.mConstr_h - 1] - 1] +
+      workingset->Wlocalidx[motion_controller_withPIC_B.mConstr_h - 1]) - 2] =
       false;
   }
 
   workingset->nWConstr[2] = 0;
   workingset->nWConstr[3] = 0;
   workingset->nWConstr[4] = 0;
-  workingset->nActiveConstr = motion_controller_withPIC_B.idxStartIneq_tmp_c;
+  workingset->nActiveConstr = motion_controller_withPIC_B.idxStartIneq_tmp_e;
   objective->prev_objtype = objective->objtype;
   objective->prev_nvar = objective->nvar;
   objective->prev_hasLinear = objective->hasLinear;
@@ -10337,29 +10328,29 @@ void motion_controller_withPIC::motion_controller_wi_phaseone_e(const real_T H
     runTimeOptions->ProbRelTolFactor, runTimeOptions->RemainFeasible);
   if (workingset->isActiveConstr[(workingset->isActiveIdx[3] + workingset->
        sizes[3]) - 2]) {
-    motion_controller_withPIC_B.mConstr_l = workingset->sizes[0];
+    motion_controller_withPIC_B.mConstr_h = workingset->sizes[0];
     exitg1 = false;
-    while ((!exitg1) && (motion_controller_withPIC_B.mConstr_l + 1 <=
+    while ((!exitg1) && (motion_controller_withPIC_B.mConstr_h + 1 <=
                          workingset->nActiveConstr)) {
-      if ((workingset->Wid[motion_controller_withPIC_B.mConstr_l] == 4) &&
-          (workingset->Wlocalidx[motion_controller_withPIC_B.mConstr_l] ==
+      if ((workingset->Wid[motion_controller_withPIC_B.mConstr_h] == 4) &&
+          (workingset->Wlocalidx[motion_controller_withPIC_B.mConstr_h] ==
            workingset->sizes[3])) {
         motion_controller__removeConstr(workingset,
-          motion_controller_withPIC_B.mConstr_l + 1);
+          motion_controller_withPIC_B.mConstr_h + 1);
         exitg1 = true;
       } else {
-        motion_controller_withPIC_B.mConstr_l++;
+        motion_controller_withPIC_B.mConstr_h++;
       }
     }
   }
 
-  motion_controller_withPIC_B.mConstr_l = workingset->nActiveConstr;
-  while ((motion_controller_withPIC_B.mConstr_l > workingset->sizes[0]) &&
-         (motion_controller_withPIC_B.mConstr_l >
-          motion_controller_withPIC_B.nVar_p)) {
+  motion_controller_withPIC_B.mConstr_h = workingset->nActiveConstr;
+  while ((motion_controller_withPIC_B.mConstr_h > workingset->sizes[0]) &&
+         (motion_controller_withPIC_B.mConstr_h >
+          motion_controller_withPIC_B.nVar_l)) {
     motion_controller__removeConstr(workingset,
-      motion_controller_withPIC_B.mConstr_l);
-    motion_controller_withPIC_B.mConstr_l--;
+      motion_controller_withPIC_B.mConstr_h);
+    motion_controller_withPIC_B.mConstr_h--;
   }
 
   solution->maxConstr = solution->xstar[40];
@@ -10372,7 +10363,7 @@ void motion_controller_withPIC::motion_controller_wi_phaseone_e(const real_T H
   options->StepTolerance = 1.0E-8;
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller_withPI_driver(const real_T H
   [1600], const real_T f[40], s5cJJO9CAPQxuVG0iaeiP4F_motio_T *solution,
   sFlCINAYeIgPgx0UwEHpaMF_motio_T *memspace, sT1ziU4p6vTWuD880X9yNJ_motion_T
@@ -10396,18 +10387,18 @@ void motion_controller_withPIC::motion_controller_withPI_driver(const real_T H
   objective->gammaScalar = 0.0;
   solution->iterations = 0;
   runTimeOptions.RemainFeasible = true;
-  motion_controller_withPIC_B.i_d = workingset->nVar;
-  motion_controller_withPIC_B.c_kb = static_cast<uint8_T>(workingset->sizes[0]);
+  motion_controller_withPIC_B.i_j = workingset->nVar;
+  motion_controller_withPIC_B.c_n = static_cast<uint8_T>(workingset->sizes[0]);
   for (motion_controller_withPIC_B.idx = 0; motion_controller_withPIC_B.idx <
-       motion_controller_withPIC_B.c_kb; motion_controller_withPIC_B.idx++) {
+       motion_controller_withPIC_B.c_n; motion_controller_withPIC_B.idx++) {
     solution->xstar[workingset->indexFixed[motion_controller_withPIC_B.idx] - 1]
       = workingset->ub[workingset->indexFixed[motion_controller_withPIC_B.idx] -
       1];
   }
 
-  motion_controller_withPIC_B.c_kb = static_cast<uint8_T>(workingset->sizes[3]);
+  motion_controller_withPIC_B.c_n = static_cast<uint8_T>(workingset->sizes[3]);
   for (motion_controller_withPIC_B.idx = 0; motion_controller_withPIC_B.idx <
-       motion_controller_withPIC_B.c_kb; motion_controller_withPIC_B.idx++) {
+       motion_controller_withPIC_B.c_n; motion_controller_withPIC_B.idx++) {
     if (workingset->isActiveConstr[(workingset->isActiveIdx[3] +
          motion_controller_withPIC_B.idx) - 1]) {
       solution->xstar[workingset->indexLB[motion_controller_withPIC_B.idx] - 1] =
@@ -10415,9 +10406,9 @@ void motion_controller_withPIC::motion_controller_withPI_driver(const real_T H
     }
   }
 
-  motion_controller_withPIC_B.c_kb = static_cast<uint8_T>(workingset->sizes[4]);
+  motion_controller_withPIC_B.c_n = static_cast<uint8_T>(workingset->sizes[4]);
   for (motion_controller_withPIC_B.idx = 0; motion_controller_withPIC_B.idx <
-       motion_controller_withPIC_B.c_kb; motion_controller_withPIC_B.idx++) {
+       motion_controller_withPIC_B.c_n; motion_controller_withPIC_B.idx++) {
     if (workingset->isActiveConstr[(workingset->isActiveIdx[4] +
          motion_controller_withPIC_B.idx) - 1]) {
       solution->xstar[workingset->indexUB[motion_controller_withPIC_B.idx] - 1] =
@@ -10447,7 +10438,7 @@ void motion_controller_withPIC::motion_controller_withPI_driver(const real_T H
         } else {
           if (solution->maxConstr > 0.0) {
             motion_controller_withPIC_B.idx = static_cast<uint8_T>
-              (motion_controller_withPIC_B.i_d);
+              (motion_controller_withPIC_B.i_j);
             if (motion_controller_withPIC_B.idx - 1 >= 0) {
               memcpy(&solution->searchDir[0], &solution->xstar[0],
                      static_cast<uint32_T>(motion_controller_withPIC_B.idx) *
@@ -10513,7 +10504,7 @@ void motion_controller_withPIC::motion_controller_withPI_driver(const real_T H
   }
 }
 
-// Function for MATLAB Function: '<S61>/solvex'
+// Function for MATLAB Function: '<S62>/solvex'
 void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
   [1600], const real_T f[40], const real_T Aineq[3200], const real_T bineq[80],
   const real_T lb[40], const real_T ub[40], real_T x0[40], const
@@ -10523,15 +10514,15 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
   boolean_T exitg1;
   boolean_T guard1;
   motion_controller_withPIC_B.exitflag = (rtInf);
-  motion_controller_withPIC_B.c_k_j = 0;
+  motion_controller_withPIC_B.c_k = 0;
   exitg1 = false;
-  while ((!exitg1) && (motion_controller_withPIC_B.c_k_j < 40)) {
-    if (lb[motion_controller_withPIC_B.c_k_j] >
-        ub[motion_controller_withPIC_B.c_k_j]) {
+  while ((!exitg1) && (motion_controller_withPIC_B.c_k < 40)) {
+    if (lb[motion_controller_withPIC_B.c_k] > ub[motion_controller_withPIC_B.c_k])
+    {
       motion_controller_withPIC_B.exitflag = -2.0;
       exitg1 = true;
     } else {
-      motion_controller_withPIC_B.c_k_j++;
+      motion_controller_withPIC_B.c_k++;
     }
   }
 
@@ -10577,9 +10568,9 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
            (int32_T));
     memset(&motion_controller_withPIC_B.WorkingSet.Wlocalidx[0], 0, 161U *
            sizeof(int32_T));
-    for (motion_controller_withPIC_B.i_l = 0; motion_controller_withPIC_B.i_l <
-         5; motion_controller_withPIC_B.i_l++) {
-      motion_controller_withPIC_B.WorkingSet.nWConstr[motion_controller_withPIC_B.i_l]
+    for (motion_controller_withPIC_B.i_d = 0; motion_controller_withPIC_B.i_d <
+         5; motion_controller_withPIC_B.i_d++) {
+      motion_controller_withPIC_B.WorkingSet.nWConstr[motion_controller_withPIC_B.i_d]
         = 0;
     }
 
@@ -10591,24 +10582,24 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
            (int32_T));
     memset(&motion_controller_withPIC_B.WorkingSet.indexFixed[0], 0, 41U *
            sizeof(int32_T));
-    motion_controller_withPIC_B.c_k_j = 80;
+    motion_controller_withPIC_B.c_k = 80;
     motion_controller_withPIC_B.idxFillStart = 0;
     motion_controller_withPIC_B.colOffsetATw = 0;
-    for (motion_controller_withPIC_B.i_l = 0; motion_controller_withPIC_B.i_l <
-         40; motion_controller_withPIC_B.i_l++) {
-      motion_controller_withPIC_B.exitflag = lb[motion_controller_withPIC_B.i_l];
+    for (motion_controller_withPIC_B.i_d = 0; motion_controller_withPIC_B.i_d <
+         40; motion_controller_withPIC_B.i_d++) {
+      motion_controller_withPIC_B.exitflag = lb[motion_controller_withPIC_B.i_d];
       guard1 = false;
       if ((!rtIsInf(motion_controller_withPIC_B.exitflag)) && (!rtIsNaN
            (motion_controller_withPIC_B.exitflag))) {
         if (fabs(motion_controller_withPIC_B.exitflag -
-                 ub[motion_controller_withPIC_B.i_l]) < 1.0E-8) {
+                 ub[motion_controller_withPIC_B.i_d]) < 1.0E-8) {
           motion_controller_withPIC_B.colOffsetATw++;
           motion_controller_withPIC_B.WorkingSet.indexFixed[motion_controller_withPIC_B.colOffsetATw
-            - 1] = motion_controller_withPIC_B.i_l + 1;
+            - 1] = motion_controller_withPIC_B.i_d + 1;
         } else {
-          motion_controller_withPIC_B.c_k_j++;
-          motion_controller_withPIC_B.WorkingSet.indexLB[motion_controller_withPIC_B.c_k_j
-            - 81] = motion_controller_withPIC_B.i_l + 1;
+          motion_controller_withPIC_B.c_k++;
+          motion_controller_withPIC_B.WorkingSet.indexLB[motion_controller_withPIC_B.c_k
+            - 81] = motion_controller_withPIC_B.i_d + 1;
           guard1 = true;
         }
       } else {
@@ -10617,37 +10608,37 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
 
       if (guard1) {
         motion_controller_withPIC_B.exitflag =
-          ub[motion_controller_withPIC_B.i_l];
+          ub[motion_controller_withPIC_B.i_d];
         if ((!rtIsInf(motion_controller_withPIC_B.exitflag)) && (!rtIsNaN
              (motion_controller_withPIC_B.exitflag))) {
           motion_controller_withPIC_B.idxFillStart++;
           motion_controller_withPIC_B.WorkingSet.indexUB[motion_controller_withPIC_B.idxFillStart
-            - 1] = motion_controller_withPIC_B.i_l + 1;
+            - 1] = motion_controller_withPIC_B.i_d + 1;
         }
       }
     }
 
-    motion_controller_withPIC_B.i_l = (motion_controller_withPIC_B.c_k_j +
+    motion_controller_withPIC_B.i_d = (motion_controller_withPIC_B.c_k +
       motion_controller_withPIC_B.idxFillStart) +
       motion_controller_withPIC_B.colOffsetATw;
     motion_controller_withPIC_B.WorkingSet.mConstr =
-      motion_controller_withPIC_B.i_l;
+      motion_controller_withPIC_B.i_d;
     motion_controller_withPIC_B.WorkingSet.mConstrOrig =
-      motion_controller_withPIC_B.i_l;
+      motion_controller_withPIC_B.i_d;
     motion_controller_withPIC_B.WorkingSet.mConstrMax = 161;
     motion_controller_withPIC_B.WorkingSet.sizes[0] =
       motion_controller_withPIC_B.colOffsetATw;
     motion_controller_withPIC_B.WorkingSet.sizes[1] = 0;
     motion_controller_withPIC_B.WorkingSet.sizes[2] = 80;
     motion_controller_withPIC_B.WorkingSet.sizes[3] =
-      motion_controller_withPIC_B.c_k_j - 80;
+      motion_controller_withPIC_B.c_k - 80;
     motion_controller_withPIC_B.WorkingSet.sizes[4] =
       motion_controller_withPIC_B.idxFillStart;
-    for (motion_controller_withPIC_B.i_l = 0; motion_controller_withPIC_B.i_l <
-         5; motion_controller_withPIC_B.i_l++) {
-      motion_controller_withPIC_B.WorkingSet.sizesNormal[motion_controller_withPIC_B.i_l]
+    for (motion_controller_withPIC_B.i_d = 0; motion_controller_withPIC_B.i_d <
+         5; motion_controller_withPIC_B.i_d++) {
+      motion_controller_withPIC_B.WorkingSet.sizesNormal[motion_controller_withPIC_B.i_d]
         =
-        motion_controller_withPIC_B.WorkingSet.sizes[motion_controller_withPIC_B.i_l];
+        motion_controller_withPIC_B.WorkingSet.sizes[motion_controller_withPIC_B.i_d];
     }
 
     motion_controller_withPIC_B.WorkingSet.sizesPhaseOne[0] =
@@ -10655,7 +10646,7 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
     motion_controller_withPIC_B.WorkingSet.sizesPhaseOne[1] = 0;
     motion_controller_withPIC_B.WorkingSet.sizesPhaseOne[2] = 80;
     motion_controller_withPIC_B.WorkingSet.sizesPhaseOne[3] =
-      motion_controller_withPIC_B.c_k_j - 79;
+      motion_controller_withPIC_B.c_k - 79;
     motion_controller_withPIC_B.WorkingSet.sizesPhaseOne[4] =
       motion_controller_withPIC_B.idxFillStart;
     motion_controller_withPIC_B.WorkingSet.sizesRegularized[0] =
@@ -10663,7 +10654,7 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
     motion_controller_withPIC_B.WorkingSet.sizesRegularized[1] = 0;
     motion_controller_withPIC_B.WorkingSet.sizesRegularized[2] = 80;
     motion_controller_withPIC_B.WorkingSet.sizesRegularized[3] =
-      motion_controller_withPIC_B.c_k_j;
+      motion_controller_withPIC_B.c_k;
     motion_controller_withPIC_B.WorkingSet.sizesRegularized[4] =
       motion_controller_withPIC_B.idxFillStart;
     motion_controller_withPIC_B.WorkingSet.sizesRegPhaseOne[0] =
@@ -10671,7 +10662,7 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
     motion_controller_withPIC_B.WorkingSet.sizesRegPhaseOne[1] = 0;
     motion_controller_withPIC_B.WorkingSet.sizesRegPhaseOne[2] = 80;
     motion_controller_withPIC_B.WorkingSet.sizesRegPhaseOne[3] =
-      motion_controller_withPIC_B.c_k_j + 1;
+      motion_controller_withPIC_B.c_k + 1;
     motion_controller_withPIC_B.WorkingSet.sizesRegPhaseOne[4] =
       motion_controller_withPIC_B.idxFillStart;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[0] = 1;
@@ -10680,28 +10671,28 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
     motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[2] = 0;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[3] = 80;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[4] =
-      motion_controller_withPIC_B.c_k_j - 80;
+      motion_controller_withPIC_B.c_k - 80;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[5] =
       motion_controller_withPIC_B.idxFillStart;
-    for (motion_controller_withPIC_B.i_l = 0; motion_controller_withPIC_B.i_l <
-         6; motion_controller_withPIC_B.i_l++) {
-      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_l]
+    for (motion_controller_withPIC_B.i_d = 0; motion_controller_withPIC_B.i_d <
+         6; motion_controller_withPIC_B.i_d++) {
+      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_d]
         =
-        motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[motion_controller_withPIC_B.i_l];
+        motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[motion_controller_withPIC_B.i_d];
     }
 
-    for (motion_controller_withPIC_B.i_l = 0; motion_controller_withPIC_B.i_l <
-         5; motion_controller_withPIC_B.i_l++) {
-      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_l
+    for (motion_controller_withPIC_B.i_d = 0; motion_controller_withPIC_B.i_d <
+         5; motion_controller_withPIC_B.i_d++) {
+      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_d
         + 1] +=
-        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_l];
+        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_d];
     }
 
-    for (motion_controller_withPIC_B.i_l = 0; motion_controller_withPIC_B.i_l <
-         6; motion_controller_withPIC_B.i_l++) {
-      motion_controller_withPIC_B.WorkingSet.isActiveIdx[motion_controller_withPIC_B.i_l]
+    for (motion_controller_withPIC_B.i_d = 0; motion_controller_withPIC_B.i_d <
+         6; motion_controller_withPIC_B.i_d++) {
+      motion_controller_withPIC_B.WorkingSet.isActiveIdx[motion_controller_withPIC_B.i_d]
         =
-        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_l];
+        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_d];
     }
 
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[0] = 1;
@@ -10710,24 +10701,24 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[2] = 0;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[3] = 80;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[4] =
-      motion_controller_withPIC_B.c_k_j - 79;
+      motion_controller_withPIC_B.c_k - 79;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[5] =
       motion_controller_withPIC_B.idxFillStart;
-    for (motion_controller_withPIC_B.i_l = 0; motion_controller_withPIC_B.i_l <
-         5; motion_controller_withPIC_B.i_l++) {
-      motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[motion_controller_withPIC_B.i_l
+    for (motion_controller_withPIC_B.i_d = 0; motion_controller_withPIC_B.i_d <
+         5; motion_controller_withPIC_B.i_d++) {
+      motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[motion_controller_withPIC_B.i_d
         + 1] +=
-        motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[motion_controller_withPIC_B.i_l];
-      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_l
+        motion_controller_withPIC_B.WorkingSet.isActiveIdxNormal[motion_controller_withPIC_B.i_d];
+      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_d
         + 1] +=
-        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_l];
+        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_d];
     }
 
-    for (motion_controller_withPIC_B.i_l = 0; motion_controller_withPIC_B.i_l <
-         6; motion_controller_withPIC_B.i_l++) {
-      motion_controller_withPIC_B.WorkingSet.isActiveIdxPhaseOne[motion_controller_withPIC_B.i_l]
+    for (motion_controller_withPIC_B.i_d = 0; motion_controller_withPIC_B.i_d <
+         6; motion_controller_withPIC_B.i_d++) {
+      motion_controller_withPIC_B.WorkingSet.isActiveIdxPhaseOne[motion_controller_withPIC_B.i_d]
         =
-        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_l];
+        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_d];
     }
 
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[0] = 1;
@@ -10736,21 +10727,21 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[2] = 0;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[3] = 80;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[4] =
-      motion_controller_withPIC_B.c_k_j;
+      motion_controller_withPIC_B.c_k;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[5] =
       motion_controller_withPIC_B.idxFillStart;
-    for (motion_controller_withPIC_B.i_l = 0; motion_controller_withPIC_B.i_l <
-         5; motion_controller_withPIC_B.i_l++) {
-      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_l
+    for (motion_controller_withPIC_B.i_d = 0; motion_controller_withPIC_B.i_d <
+         5; motion_controller_withPIC_B.i_d++) {
+      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_d
         + 1] +=
-        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_l];
+        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_d];
     }
 
-    for (motion_controller_withPIC_B.i_l = 0; motion_controller_withPIC_B.i_l <
-         6; motion_controller_withPIC_B.i_l++) {
-      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegularized[motion_controller_withPIC_B.i_l]
+    for (motion_controller_withPIC_B.i_d = 0; motion_controller_withPIC_B.i_d <
+         6; motion_controller_withPIC_B.i_d++) {
+      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegularized[motion_controller_withPIC_B.i_d]
         =
-        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_l];
+        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.i_d];
     }
 
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[0] = 1;
@@ -10759,54 +10750,51 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[2] = 0;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[3] = 80;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[4] =
-      motion_controller_withPIC_B.c_k_j + 1;
+      motion_controller_withPIC_B.c_k + 1;
     motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[5] =
       motion_controller_withPIC_B.idxFillStart;
-    for (motion_controller_withPIC_B.c_k_j = 0;
-         motion_controller_withPIC_B.c_k_j < 5;
-         motion_controller_withPIC_B.c_k_j++) {
-      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.c_k_j
+    for (motion_controller_withPIC_B.c_k = 0; motion_controller_withPIC_B.c_k <
+         5; motion_controller_withPIC_B.c_k++) {
+      motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.c_k
         + 1] +=
-        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.c_k_j];
+        motion_controller_withPIC_B.WorkingSet.isActiveIdxRegPhaseOne[motion_controller_withPIC_B.c_k];
     }
 
-    for (motion_controller_withPIC_B.c_k_j = 0;
-         motion_controller_withPIC_B.c_k_j < 80;
-         motion_controller_withPIC_B.c_k_j++) {
+    for (motion_controller_withPIC_B.c_k = 0; motion_controller_withPIC_B.c_k <
+         80; motion_controller_withPIC_B.c_k++) {
       for (motion_controller_withPIC_B.idxFillStart = 0;
            motion_controller_withPIC_B.idxFillStart < 40;
            motion_controller_withPIC_B.idxFillStart++) {
         motion_controller_withPIC_B.WorkingSet.Aineq[motion_controller_withPIC_B.idxFillStart
-          + 41 * motion_controller_withPIC_B.c_k_j] = Aineq[80 *
+          + 41 * motion_controller_withPIC_B.c_k] = Aineq[80 *
           motion_controller_withPIC_B.idxFillStart +
-          motion_controller_withPIC_B.c_k_j];
+          motion_controller_withPIC_B.c_k];
       }
 
-      motion_controller_withPIC_B.WorkingSet.bineq[motion_controller_withPIC_B.c_k_j]
-        = bineq[motion_controller_withPIC_B.c_k_j];
+      motion_controller_withPIC_B.WorkingSet.bineq[motion_controller_withPIC_B.c_k]
+        = bineq[motion_controller_withPIC_B.c_k];
     }
 
-    for (motion_controller_withPIC_B.c_k_j = 0;
-         motion_controller_withPIC_B.c_k_j <= 38;
-         motion_controller_withPIC_B.c_k_j += 2) {
-      tmp = _mm_loadu_pd(&lb[motion_controller_withPIC_B.c_k_j]);
+    for (motion_controller_withPIC_B.c_k = 0; motion_controller_withPIC_B.c_k <=
+         38; motion_controller_withPIC_B.c_k += 2) {
+      tmp = _mm_loadu_pd(&lb[motion_controller_withPIC_B.c_k]);
       _mm_storeu_pd
-        (&motion_controller_withPIC_B.WorkingSet.lb[motion_controller_withPIC_B.c_k_j],
+        (&motion_controller_withPIC_B.WorkingSet.lb[motion_controller_withPIC_B.c_k],
          _mm_mul_pd(tmp, _mm_set1_pd(-1.0)));
-      tmp = _mm_loadu_pd(&ub[motion_controller_withPIC_B.c_k_j]);
+      tmp = _mm_loadu_pd(&ub[motion_controller_withPIC_B.c_k]);
       _mm_storeu_pd
-        (&motion_controller_withPIC_B.WorkingSet.ub[motion_controller_withPIC_B.c_k_j],
+        (&motion_controller_withPIC_B.WorkingSet.ub[motion_controller_withPIC_B.c_k],
          tmp);
     }
 
     motion_controlle_setProblemType(&motion_controller_withPIC_B.WorkingSet, 3);
     motion_controller_withPIC_B.idxFillStart =
       motion_controller_withPIC_B.WorkingSet.isActiveIdx[2];
-    for (motion_controller_withPIC_B.c_k_j =
+    for (motion_controller_withPIC_B.c_k =
          motion_controller_withPIC_B.idxFillStart;
-         motion_controller_withPIC_B.c_k_j < 162;
-         motion_controller_withPIC_B.c_k_j++) {
-      motion_controller_withPIC_B.WorkingSet.isActiveConstr[motion_controller_withPIC_B.c_k_j
+         motion_controller_withPIC_B.c_k < 162; motion_controller_withPIC_B.c_k
+         ++) {
+      motion_controller_withPIC_B.WorkingSet.isActiveConstr[motion_controller_withPIC_B.c_k
         - 1] = false;
     }
 
@@ -10820,60 +10808,58 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
       motion_controller_withPIC_B.WorkingSet.nWConstr[0];
     motion_controller_withPIC_B.idxFillStart = static_cast<uint8_T>
       (motion_controller_withPIC_B.WorkingSet.sizes[0]);
-    for (motion_controller_withPIC_B.c_k_j = 0;
-         motion_controller_withPIC_B.c_k_j <
+    for (motion_controller_withPIC_B.c_k = 0; motion_controller_withPIC_B.c_k <
          motion_controller_withPIC_B.idxFillStart;
-         motion_controller_withPIC_B.c_k_j++) {
-      motion_controller_withPIC_B.WorkingSet.Wid[motion_controller_withPIC_B.c_k_j]
+         motion_controller_withPIC_B.c_k++) {
+      motion_controller_withPIC_B.WorkingSet.Wid[motion_controller_withPIC_B.c_k]
         = 1;
-      motion_controller_withPIC_B.WorkingSet.Wlocalidx[motion_controller_withPIC_B.c_k_j]
-        = motion_controller_withPIC_B.c_k_j + 1;
-      motion_controller_withPIC_B.WorkingSet.isActiveConstr[motion_controller_withPIC_B.c_k_j]
+      motion_controller_withPIC_B.WorkingSet.Wlocalidx[motion_controller_withPIC_B.c_k]
+        = motion_controller_withPIC_B.c_k + 1;
+      motion_controller_withPIC_B.WorkingSet.isActiveConstr[motion_controller_withPIC_B.c_k]
         = true;
       motion_controller_withPIC_B.colOffsetATw = 41 *
-        motion_controller_withPIC_B.c_k_j;
-      motion_controller_withPIC_B.i_l =
-        motion_controller_withPIC_B.WorkingSet.indexFixed[motion_controller_withPIC_B.c_k_j];
-      if (motion_controller_withPIC_B.i_l - 2 >= 0) {
+        motion_controller_withPIC_B.c_k;
+      motion_controller_withPIC_B.i_d =
+        motion_controller_withPIC_B.WorkingSet.indexFixed[motion_controller_withPIC_B.c_k];
+      if (motion_controller_withPIC_B.i_d - 2 >= 0) {
         memset
           (&motion_controller_withPIC_B.WorkingSet.ATwset[motion_controller_withPIC_B.colOffsetATw],
-           0, static_cast<uint32_T>(((motion_controller_withPIC_B.i_l +
+           0, static_cast<uint32_T>(((motion_controller_withPIC_B.i_d +
               motion_controller_withPIC_B.colOffsetATw) -
              motion_controller_withPIC_B.colOffsetATw) - 1) * sizeof(real_T));
       }
 
       motion_controller_withPIC_B.WorkingSet.ATwset
-        [(motion_controller_withPIC_B.WorkingSet.indexFixed[motion_controller_withPIC_B.c_k_j]
+        [(motion_controller_withPIC_B.WorkingSet.indexFixed[motion_controller_withPIC_B.c_k]
           + motion_controller_withPIC_B.colOffsetATw) - 1] = 1.0;
-      motion_controller_withPIC_B.i_l =
-        motion_controller_withPIC_B.WorkingSet.indexFixed[motion_controller_withPIC_B.c_k_j]
+      motion_controller_withPIC_B.i_d =
+        motion_controller_withPIC_B.WorkingSet.indexFixed[motion_controller_withPIC_B.c_k]
         + 1;
       motion_controller_withPIC_B.e =
         motion_controller_withPIC_B.WorkingSet.nVar;
-      if (motion_controller_withPIC_B.i_l <= motion_controller_withPIC_B.e) {
+      if (motion_controller_withPIC_B.i_d <= motion_controller_withPIC_B.e) {
         memset(&motion_controller_withPIC_B.WorkingSet.ATwset
-               [(motion_controller_withPIC_B.i_l +
+               [(motion_controller_withPIC_B.i_d +
                  motion_controller_withPIC_B.colOffsetATw) + -1], 0,
                static_cast<uint32_T>((((motion_controller_withPIC_B.e +
                    motion_controller_withPIC_B.colOffsetATw) -
-                  motion_controller_withPIC_B.i_l) -
+                  motion_controller_withPIC_B.i_d) -
                  motion_controller_withPIC_B.colOffsetATw) + 1) * sizeof(real_T));
       }
 
-      motion_controller_withPIC_B.WorkingSet.bwset[motion_controller_withPIC_B.c_k_j]
+      motion_controller_withPIC_B.WorkingSet.bwset[motion_controller_withPIC_B.c_k]
         =
         motion_controller_withPIC_B.WorkingSet.ub[motion_controller_withPIC_B.WorkingSet.indexFixed
-        [motion_controller_withPIC_B.c_k_j] - 1];
+        [motion_controller_withPIC_B.c_k] - 1];
     }
 
     motion_controller_withPIC_B.WorkingSet.SLACK0 = 0.0;
     motion_controller_withPIC_B.exitflag = 1.0;
-    for (motion_controller_withPIC_B.c_k_j = 0;
-         motion_controller_withPIC_B.c_k_j < 80;
-         motion_controller_withPIC_B.c_k_j++) {
+    for (motion_controller_withPIC_B.c_k = 0; motion_controller_withPIC_B.c_k <
+         80; motion_controller_withPIC_B.c_k++) {
       motion_controller_withPIC_B.colSum = 0.0;
       motion_controller_withPIC_B.colOffsetATw = 41 *
-        motion_controller_withPIC_B.c_k_j;
+        motion_controller_withPIC_B.c_k;
       for (motion_controller_withPIC_B.idxFillStart = 0;
            motion_controller_withPIC_B.idxFillStart < 40;
            motion_controller_withPIC_B.idxFillStart++) {
@@ -10892,15 +10878,14 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
 
     motion_controller_withPIC_B.colSum = 0.0;
     motion_controller_withPIC_B.f_infnrm = 0.0;
-    for (motion_controller_withPIC_B.c_k_j = 0;
-         motion_controller_withPIC_B.c_k_j < 40;
-         motion_controller_withPIC_B.c_k_j++) {
+    for (motion_controller_withPIC_B.c_k = 0; motion_controller_withPIC_B.c_k <
+         40; motion_controller_withPIC_B.c_k++) {
       motion_controller_withPIC_B.b_colSum = 0.0;
       for (motion_controller_withPIC_B.idxFillStart = 0;
            motion_controller_withPIC_B.idxFillStart < 40;
            motion_controller_withPIC_B.idxFillStart++) {
         motion_controller_withPIC_B.b_colSum += fabs(H[40 *
-          motion_controller_withPIC_B.c_k_j +
+          motion_controller_withPIC_B.c_k +
           motion_controller_withPIC_B.idxFillStart]);
       }
 
@@ -10912,7 +10897,7 @@ void motion_controller_withPIC::motion_controller_with_quadprog(const real_T H
       }
 
       motion_controller_withPIC_B.b_colSum = fabs
-        (f[motion_controller_withPIC_B.c_k_j]);
+        (f[motion_controller_withPIC_B.c_k]);
       if ((!(motion_controller_withPIC_B.f_infnrm >=
              motion_controller_withPIC_B.b_colSum)) && (!rtIsNaN
            (motion_controller_withPIC_B.b_colSum))) {
@@ -10961,16 +10946,16 @@ void motion_controller_withPIC::motion_SystemCore_setup_fxdcjik
   char_T b_zeroDelimTopic[11];
   static const char_T b_zeroDelimTopic_0[11] = "/motor_cmd";
 
-  // Start for MATLABSystem: '<S41>/SinkBlock'
+  // Start for MATLABSystem: '<S42>/SinkBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S41>/SinkBlock'
+  // Start for MATLABSystem: '<S42>/SinkBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)5.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_RELIABLE);
   for (int32_T i = 0; i < 11; i++) {
-    // Start for MATLABSystem: '<S41>/SinkBlock'
+    // Start for MATLABSystem: '<S42>/SinkBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
@@ -10986,16 +10971,16 @@ void motion_controller_withPIC::motio_SystemCore_setup_fxdcjikh
   char_T b_zeroDelimTopic[11];
   static const char_T b_zeroDelimTopic_0[11] = "/servo_cmd";
 
-  // Start for MATLABSystem: '<S42>/SinkBlock'
+  // Start for MATLABSystem: '<S43>/SinkBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S42>/SinkBlock'
+  // Start for MATLABSystem: '<S43>/SinkBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)10.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_RELIABLE);
   for (int32_T i = 0; i < 11; i++) {
-    // Start for MATLABSystem: '<S42>/SinkBlock'
+    // Start for MATLABSystem: '<S43>/SinkBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
@@ -11011,16 +10996,16 @@ void motion_controller_withPIC::motion_co_SystemCore_setup_fxdc
   char_T b_zeroDelimTopic[22];
   static const char_T b_zeroDelimTopic_0[22] = "/t265_odometry_filter";
 
-  // Start for MATLABSystem: '<S30>/SourceBlock'
+  // Start for MATLABSystem: '<S31>/SourceBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S30>/SourceBlock'
+  // Start for MATLABSystem: '<S31>/SourceBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)1.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
   for (int32_T i = 0; i < 22; i++) {
-    // Start for MATLABSystem: '<S30>/SourceBlock'
+    // Start for MATLABSystem: '<S31>/SourceBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
@@ -11036,16 +11021,16 @@ void motion_controller_withPIC::motion_c_SystemCore_setup_fxdcj
   char_T b_zeroDelimTopic[17];
   static const char_T b_zeroDelimTopic_0[17] = "/Imu_data_filter";
 
-  // Start for MATLABSystem: '<S31>/SourceBlock'
+  // Start for MATLABSystem: '<S32>/SourceBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S31>/SourceBlock'
+  // Start for MATLABSystem: '<S32>/SourceBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)1.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
   for (int32_T i = 0; i < 17; i++) {
-    // Start for MATLABSystem: '<S31>/SourceBlock'
+    // Start for MATLABSystem: '<S32>/SourceBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
@@ -11061,16 +11046,16 @@ void motion_controller_withPIC::moti_SystemCore_setup_fxdcjikhl
   char_T b_zeroDelimTopic[6];
   static const char_T b_zeroDelimTopic_0[6] = "/sbus";
 
-  // Start for MATLABSystem: '<S68>/SourceBlock'
+  // Start for MATLABSystem: '<S69>/SourceBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S68>/SourceBlock'
+  // Start for MATLABSystem: '<S69>/SourceBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)1.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
   for (int32_T i = 0; i < 6; i++) {
-    // Start for MATLABSystem: '<S68>/SourceBlock'
+    // Start for MATLABSystem: '<S69>/SourceBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
@@ -11111,16 +11096,16 @@ void motion_controller_withPIC::motion__SystemCore_setup_fxdcji
   char_T b_zeroDelimTopic[13];
   static const char_T b_zeroDelimTopic_0[13] = "/servo_state";
 
-  // Start for MATLABSystem: '<S32>/SourceBlock'
+  // Start for MATLABSystem: '<S33>/SourceBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S32>/SourceBlock'
+  // Start for MATLABSystem: '<S33>/SourceBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)1.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
   for (int32_T i = 0; i < 13; i++) {
-    // Start for MATLABSystem: '<S32>/SourceBlock'
+    // Start for MATLABSystem: '<S33>/SourceBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
@@ -11211,16 +11196,16 @@ void motion_controller_withPIC::mot_SystemCore_setup_fxdcjikhl4
   char_T b_zeroDelimTopic[13];
   static const char_T b_zeroDelimTopic_0[13] = "/motor_state";
 
-  // Start for MATLABSystem: '<S69>/SourceBlock'
+  // Start for MATLABSystem: '<S70>/SourceBlock'
   obj->isInitialized = 1;
   qos_profile = rmw_qos_profile_default;
 
-  // Start for MATLABSystem: '<S69>/SourceBlock'
+  // Start for MATLABSystem: '<S70>/SourceBlock'
   SET_QOS_VALUES(qos_profile, RMW_QOS_POLICY_HISTORY_KEEP_LAST, (size_t)1.0,
                  RMW_QOS_POLICY_DURABILITY_VOLATILE,
                  RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
   for (int32_T i = 0; i < 13; i++) {
-    // Start for MATLABSystem: '<S69>/SourceBlock'
+    // Start for MATLABSystem: '<S70>/SourceBlock'
     b_zeroDelimTopic[i] = b_zeroDelimTopic_0[i];
   }
 
@@ -11239,11 +11224,6 @@ void motion_controller_withPIC::step()
   __m128d tmp_3;
   __m128d tmp_4;
   __m128d tmp_5;
-  static const real_T b[3] = { 0.0200833655642112, 0.0401667311284225,
-    0.0200833655642112 };
-
-  static const real_T c[3] = { 1.0, -1.56101807580072, 0.641351538057563 };
-
   static const int8_T B[4] = { 1, 0, 0, 1 };
 
   static const int8_T A[100] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1,
@@ -11269,28 +11249,10 @@ void motion_controller_withPIC::step()
     0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
 
-  // MATLABSystem: '<S30>/SourceBlock'
+  // MATLABSystem: '<S31>/SourceBlock'
   motion_controller_withPIC_B.LogicalOperator_j =
     Sub_motion_controller_withPIC_514.getLatestMessage
     (&motion_controller_withPIC_B.b_varargout_2_b);
-
-  // Outputs for Enabled SubSystem: '<S30>/Enabled Subsystem' incorporates:
-  //   EnablePort: '<S33>/Enable'
-
-  // Start for MATLABSystem: '<S30>/SourceBlock'
-  if (motion_controller_withPIC_B.LogicalOperator_j) {
-    // SignalConversion generated from: '<S33>/In1'
-    motion_controller_withPIC_B.In1_je =
-      motion_controller_withPIC_B.b_varargout_2_b;
-  }
-
-  // End of Start for MATLABSystem: '<S30>/SourceBlock'
-  // End of Outputs for SubSystem: '<S30>/Enabled Subsystem'
-
-  // MATLABSystem: '<S31>/SourceBlock'
-  motion_controller_withPIC_B.LogicalOperator_j =
-    Sub_motion_controller_withPIC_515.getLatestMessage
-    (&motion_controller_withPIC_B.BusAssignment2);
 
   // Outputs for Enabled SubSystem: '<S31>/Enabled Subsystem' incorporates:
   //   EnablePort: '<S34>/Enable'
@@ -11298,34 +11260,52 @@ void motion_controller_withPIC::step()
   // Start for MATLABSystem: '<S31>/SourceBlock'
   if (motion_controller_withPIC_B.LogicalOperator_j) {
     // SignalConversion generated from: '<S34>/In1'
-    motion_controller_withPIC_B.In1_f =
-      motion_controller_withPIC_B.BusAssignment2;
+    motion_controller_withPIC_B.In1_je =
+      motion_controller_withPIC_B.b_varargout_2_b;
   }
 
   // End of Start for MATLABSystem: '<S31>/SourceBlock'
   // End of Outputs for SubSystem: '<S31>/Enabled Subsystem'
 
-  // MATLABSystem: '<S68>/SourceBlock'
+  // MATLABSystem: '<S32>/SourceBlock'
+  motion_controller_withPIC_B.LogicalOperator_j =
+    Sub_motion_controller_withPIC_515.getLatestMessage
+    (&motion_controller_withPIC_B.BusAssignment2);
+
+  // Outputs for Enabled SubSystem: '<S32>/Enabled Subsystem' incorporates:
+  //   EnablePort: '<S35>/Enable'
+
+  // Start for MATLABSystem: '<S32>/SourceBlock'
+  if (motion_controller_withPIC_B.LogicalOperator_j) {
+    // SignalConversion generated from: '<S35>/In1'
+    motion_controller_withPIC_B.In1_f =
+      motion_controller_withPIC_B.BusAssignment2;
+  }
+
+  // End of Start for MATLABSystem: '<S32>/SourceBlock'
+  // End of Outputs for SubSystem: '<S32>/Enabled Subsystem'
+
+  // MATLABSystem: '<S69>/SourceBlock'
   motion_controller_withPIC_B.LogicalOperator_j =
     Sub_motion_controller_withPIC_1.getLatestMessage
     (&motion_controller_withPIC_B.b_varargout_2_j);
 
-  // Outputs for Enabled SubSystem: '<S68>/Enabled Subsystem' incorporates:
-  //   EnablePort: '<S71>/Enable'
+  // Outputs for Enabled SubSystem: '<S69>/Enabled Subsystem' incorporates:
+  //   EnablePort: '<S72>/Enable'
 
-  // Start for MATLABSystem: '<S68>/SourceBlock'
+  // Start for MATLABSystem: '<S69>/SourceBlock'
   if (motion_controller_withPIC_B.LogicalOperator_j) {
-    // SignalConversion generated from: '<S71>/In1'
+    // SignalConversion generated from: '<S72>/In1'
     motion_controller_withPIC_B.In1_m =
       motion_controller_withPIC_B.b_varargout_2_j;
   }
 
-  // End of Outputs for SubSystem: '<S68>/Enabled Subsystem'
+  // End of Outputs for SubSystem: '<S69>/Enabled Subsystem'
 
-  // RelationalOperator: '<S36>/Compare' incorporates:
+  // RelationalOperator: '<S37>/Compare' incorporates:
   //   Abs: '<S11>/Abs'
   //   Constant: '<S11>/Constant1'
-  //   Constant: '<S36>/Constant'
+  //   Constant: '<S37>/Constant'
   //   SignalConversion generated from: '<S17>/Bus Selector'
   //   Sum: '<S11>/Add'
 
@@ -11395,20 +11375,32 @@ void motion_controller_withPIC::step()
 
   // MATLABSystem: '<Root>/Get Parameter18'
   ParamGet_motion_controller_withPIC_940.getParameter
-    (&motion_controller_withPIC_B.b_value_kw);
+    (&motion_controller_withPIC_B.b_value_k1);
+
+  // MATLABSystem: '<Root>/Get Parameter20'
+  ParamGet_motion_controller_withPIC_941.getParameter
+    (&motion_controller_withPIC_B.b_value_c0);
+
+  // MATLABSystem: '<Root>/Get Parameter21'
+  ParamGet_motion_controller_withPIC_942.getParameter
+    (&motion_controller_withPIC_B.b_value_ct);
+
+  // MATLABSystem: '<Root>/Get Parameter22'
+  ParamGet_motion_controller_withPIC_943.getParameter
+    (&motion_controller_withPIC_B.b_value_p);
 
   // MATLABSystem: '<Root>/Get Parameter19'
   ParamGet_motion_controller_withPIC_924.getParameter
-    (&motion_controller_withPIC_B.b_value_c0);
+    (&motion_controller_withPIC_B.b_value_p5);
 
   // Saturate: '<Root>/Saturation'
-  if (motion_controller_withPIC_B.b_value_c0 >
+  if (motion_controller_withPIC_B.b_value_p5 >
       motion_controller_withPIC_P.Saturation_UpperSat_a) {
-    motion_controller_withPIC_B.b_value_c0 =
+    motion_controller_withPIC_B.b_value_p5 =
       motion_controller_withPIC_P.Saturation_UpperSat_a;
-  } else if (motion_controller_withPIC_B.b_value_c0 <
+  } else if (motion_controller_withPIC_B.b_value_p5 <
              motion_controller_withPIC_P.Saturation_LowerSat_g) {
-    motion_controller_withPIC_B.b_value_c0 =
+    motion_controller_withPIC_B.b_value_p5 =
       motion_controller_withPIC_P.Saturation_LowerSat_g;
   }
 
@@ -11416,79 +11408,324 @@ void motion_controller_withPIC::step()
 
   // MATLAB Function: '<Root>/MATLAB Function2' incorporates:
   //   MATLABSystem: '<Root>/Get Parameter18'
+  //   MATLABSystem: '<Root>/Get Parameter20'
+  //   MATLABSystem: '<Root>/Get Parameter21'
+  //   MATLABSystem: '<Root>/Get Parameter22'
 
-  if (!motion_controller_withPIC_DW.data_not_empty) {
-    for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i < 100;
-         motion_controller_withPIC_B.i++) {
-      motion_controller_withPIC_DW.data[motion_controller_withPIC_B.i] =
+  if (!motion_controller_withPIC_DW.yd_not_empty) {
+    for (motion_controller_withPIC_B.k = 0; motion_controller_withPIC_B.k < 100;
+         motion_controller_withPIC_B.k++) {
+      motion_controller_withPIC_DW.data100[motion_controller_withPIC_B.k] =
         motion_controller_withPIC_B.In1_f.angular_velocity.z;
+      motion_controller_withPIC_B.y_g = (static_cast<real_T>
+        (motion_controller_withPIC_B.k) - 50.0) /
+        motion_controller_withPIC_B.b_value_ct /
+        motion_controller_withPIC_B.b_value_p;
+      motion_controller_withPIC_DW.gaussian_kernel100[motion_controller_withPIC_B.k]
+        = motion_controller_withPIC_B.y_g * motion_controller_withPIC_B.y_g *
+        -0.5;
+      motion_controller_withPIC_DW.gaussian_kernel100[motion_controller_withPIC_B.k]
+        = exp
+        (motion_controller_withPIC_DW.gaussian_kernel100[motion_controller_withPIC_B.k]);
     }
 
-    motion_controller_withPIC_DW.data_not_empty = true;
-    motion_controller_withPIC_DW.yd =
-      motion_controller_withPIC_B.In1_f.angular_velocity.z;
-  }
-
-  if (motion_controller_withPIC_B.b_value_kw) {
-    for (motion_controller_withPIC_B.isMpcEnable = 0;
-         motion_controller_withPIC_B.isMpcEnable < 99;
-         motion_controller_withPIC_B.isMpcEnable++) {
-      motion_controller_withPIC_DW.data[motion_controller_withPIC_B.isMpcEnable]
-        =
-        motion_controller_withPIC_DW.data[motion_controller_withPIC_B.isMpcEnable
+    motion_controller_withPIC_B.y_g =
+      motion_controller_withPIC_DW.gaussian_kernel100[0];
+    for (motion_controller_withPIC_B.p_k = 0; motion_controller_withPIC_B.p_k <
+         99; motion_controller_withPIC_B.p_k++) {
+      motion_controller_withPIC_B.y_g +=
+        motion_controller_withPIC_DW.gaussian_kernel100[motion_controller_withPIC_B.p_k
         + 1];
     }
 
-    motion_controller_withPIC_DW.data[99] =
-      motion_controller_withPIC_B.In1_f.angular_velocity.z;
-    memset(&motion_controller_withPIC_B.b_y1[0], 0, 100U * sizeof(real_T));
-    for (motion_controller_withPIC_B.k = 0; motion_controller_withPIC_B.k < 100;
-         motion_controller_withPIC_B.k++) {
-      if (100 - motion_controller_withPIC_B.k < 3) {
-        motion_controller_withPIC_B.naxpy = 99 - motion_controller_withPIC_B.k;
-      } else {
-        motion_controller_withPIC_B.naxpy = 2;
-      }
-
-      for (motion_controller_withPIC_B.b_kidx = 0;
-           motion_controller_withPIC_B.b_kidx <=
-           motion_controller_withPIC_B.naxpy; motion_controller_withPIC_B.b_kidx
-           ++) {
-        motion_controller_withPIC_B.isMpcEnable = motion_controller_withPIC_B.k
-          + motion_controller_withPIC_B.b_kidx;
-        motion_controller_withPIC_B.b_y1[motion_controller_withPIC_B.isMpcEnable]
-          += motion_controller_withPIC_DW.data[motion_controller_withPIC_B.k] *
-          b[motion_controller_withPIC_B.b_kidx];
-      }
-
-      if (99 - motion_controller_withPIC_B.k < 2) {
-        motion_controller_withPIC_B.naxpy = 98 - motion_controller_withPIC_B.k;
-      } else {
-        motion_controller_withPIC_B.naxpy = 1;
-      }
-
-      motion_controller_withPIC_B.as =
-        -motion_controller_withPIC_B.b_y1[motion_controller_withPIC_B.k];
-      for (motion_controller_withPIC_B.b_j = 0; motion_controller_withPIC_B.b_j <=
-           motion_controller_withPIC_B.naxpy; motion_controller_withPIC_B.b_j++)
-      {
-        motion_controller_withPIC_B.isMpcEnable = (motion_controller_withPIC_B.k
-          + motion_controller_withPIC_B.b_j) + 1;
-        motion_controller_withPIC_B.b_y1[motion_controller_withPIC_B.isMpcEnable]
-          += c[motion_controller_withPIC_B.b_j + 1] *
-          motion_controller_withPIC_B.as;
-      }
+    for (motion_controller_withPIC_B.isMpcEnable = 0;
+         motion_controller_withPIC_B.isMpcEnable <= 98;
+         motion_controller_withPIC_B.isMpcEnable += 2) {
+      tmp_5 = _mm_loadu_pd
+        (&motion_controller_withPIC_DW.gaussian_kernel100[motion_controller_withPIC_B.isMpcEnable]);
+      _mm_storeu_pd
+        (&motion_controller_withPIC_DW.gaussian_kernel100[motion_controller_withPIC_B.isMpcEnable],
+         _mm_div_pd(tmp_5, _mm_set1_pd(motion_controller_withPIC_B.y_g)));
     }
 
-    motion_controller_withPIC_DW.yd = (1.0 -
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_DW.yd
-      + motion_controller_withPIC_B.b_value_c0 *
-      motion_controller_withPIC_B.b_y1[99];
+    for (motion_controller_withPIC_B.p_k = 0; motion_controller_withPIC_B.p_k <
+         200; motion_controller_withPIC_B.p_k++) {
+      motion_controller_withPIC_DW.data200[motion_controller_withPIC_B.p_k] =
+        motion_controller_withPIC_B.In1_f.angular_velocity.z;
+      motion_controller_withPIC_B.y_g = (static_cast<real_T>
+        (motion_controller_withPIC_B.p_k) - 100.0) /
+        motion_controller_withPIC_B.b_value_ct /
+        motion_controller_withPIC_B.b_value_p;
+      motion_controller_withPIC_DW.gaussian_kernel200[motion_controller_withPIC_B.p_k]
+        = motion_controller_withPIC_B.y_g * motion_controller_withPIC_B.y_g *
+        -0.5;
+      motion_controller_withPIC_DW.gaussian_kernel200[motion_controller_withPIC_B.p_k]
+        = exp
+        (motion_controller_withPIC_DW.gaussian_kernel200[motion_controller_withPIC_B.p_k]);
+    }
+
+    motion_controller_withPIC_B.y_g =
+      motion_controller_withPIC_DW.gaussian_kernel200[0];
+    for (motion_controller_withPIC_B.p_k = 0; motion_controller_withPIC_B.p_k <
+         199; motion_controller_withPIC_B.p_k++) {
+      motion_controller_withPIC_B.y_g +=
+        motion_controller_withPIC_DW.gaussian_kernel200[motion_controller_withPIC_B.p_k
+        + 1];
+    }
+
+    for (motion_controller_withPIC_B.isMpcEnable = 0;
+         motion_controller_withPIC_B.isMpcEnable <= 198;
+         motion_controller_withPIC_B.isMpcEnable += 2) {
+      tmp_5 = _mm_loadu_pd
+        (&motion_controller_withPIC_DW.gaussian_kernel200[motion_controller_withPIC_B.isMpcEnable]);
+      _mm_storeu_pd
+        (&motion_controller_withPIC_DW.gaussian_kernel200[motion_controller_withPIC_B.isMpcEnable],
+         _mm_div_pd(tmp_5, _mm_set1_pd(motion_controller_withPIC_B.y_g)));
+    }
+
+    for (motion_controller_withPIC_B.p_k = 0; motion_controller_withPIC_B.p_k <
+         50; motion_controller_withPIC_B.p_k++) {
+      motion_controller_withPIC_DW.data50[motion_controller_withPIC_B.p_k] =
+        motion_controller_withPIC_B.In1_f.angular_velocity.z;
+      motion_controller_withPIC_B.y_g = (static_cast<real_T>
+        (motion_controller_withPIC_B.p_k) - 25.0) /
+        motion_controller_withPIC_B.b_value_ct /
+        motion_controller_withPIC_B.b_value_p;
+      motion_controller_withPIC_DW.gaussian_kernel50[motion_controller_withPIC_B.p_k]
+        = motion_controller_withPIC_B.y_g * motion_controller_withPIC_B.y_g *
+        -0.5;
+      motion_controller_withPIC_DW.gaussian_kernel50[motion_controller_withPIC_B.p_k]
+        = exp
+        (motion_controller_withPIC_DW.gaussian_kernel50[motion_controller_withPIC_B.p_k]);
+    }
+
+    motion_controller_withPIC_B.b_value_ct =
+      motion_controller_withPIC_DW.gaussian_kernel50[0];
+    for (motion_controller_withPIC_B.p_k = 0; motion_controller_withPIC_B.p_k <
+         49; motion_controller_withPIC_B.p_k++) {
+      motion_controller_withPIC_B.b_value_ct +=
+        motion_controller_withPIC_DW.gaussian_kernel50[motion_controller_withPIC_B.p_k
+        + 1];
+    }
+
+    for (motion_controller_withPIC_B.isMpcEnable = 0;
+         motion_controller_withPIC_B.isMpcEnable <= 48;
+         motion_controller_withPIC_B.isMpcEnable += 2) {
+      tmp_5 = _mm_loadu_pd
+        (&motion_controller_withPIC_DW.gaussian_kernel50[motion_controller_withPIC_B.isMpcEnable]);
+      _mm_storeu_pd
+        (&motion_controller_withPIC_DW.gaussian_kernel50[motion_controller_withPIC_B.isMpcEnable],
+         _mm_div_pd(tmp_5, _mm_set1_pd(motion_controller_withPIC_B.b_value_ct)));
+    }
+
+    motion_controller_withPIC_DW.yd =
+      motion_controller_withPIC_B.In1_f.angular_velocity.z;
+    motion_controller_withPIC_DW.yd_not_empty = true;
+  }
+
+  if (motion_controller_withPIC_B.b_value_k1) {
+    if (motion_controller_withPIC_B.b_value_c0 == 50.0) {
+      for (motion_controller_withPIC_B.isMpcEnable = 0;
+           motion_controller_withPIC_B.isMpcEnable < 49;
+           motion_controller_withPIC_B.isMpcEnable++) {
+        motion_controller_withPIC_DW.data50[motion_controller_withPIC_B.isMpcEnable]
+          =
+          motion_controller_withPIC_DW.data50[motion_controller_withPIC_B.isMpcEnable
+          + 1];
+      }
+
+      motion_controller_withPIC_DW.data50[49] =
+        motion_controller_withPIC_B.In1_f.angular_velocity.z;
+      memset(&motion_controller_withPIC_B.c_x[0], 0, 50U * sizeof(real_T));
+      for (motion_controller_withPIC_B.b_kidx = 0;
+           motion_controller_withPIC_B.b_kidx < 25;
+           motion_controller_withPIC_B.b_kidx++) {
+        motion_controller_withPIC_B.p_k = ((motion_controller_withPIC_B.b_kidx +
+          25) / 2) << 1;
+        motion_controller_withPIC_B.isMpcEnable =
+          motion_controller_withPIC_B.p_k - 2;
+        for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <=
+             motion_controller_withPIC_B.isMpcEnable;
+             motion_controller_withPIC_B.i += 2) {
+          tmp_5 = _mm_loadu_pd(&motion_controller_withPIC_DW.data50
+                               [(motion_controller_withPIC_B.i -
+            motion_controller_withPIC_B.b_kidx) + 25]);
+          tmp_5 = _mm_mul_pd(tmp_5, _mm_set1_pd
+                             (motion_controller_withPIC_DW.gaussian_kernel50[motion_controller_withPIC_B.b_kidx]));
+          tmp_4 = _mm_loadu_pd
+            (&motion_controller_withPIC_B.c_x[motion_controller_withPIC_B.i]);
+          _mm_storeu_pd
+            (&motion_controller_withPIC_B.c_x[motion_controller_withPIC_B.i],
+             _mm_add_pd(tmp_5, tmp_4));
+        }
+
+        for (motion_controller_withPIC_B.i = motion_controller_withPIC_B.p_k;
+             motion_controller_withPIC_B.i <= motion_controller_withPIC_B.b_kidx
+             + 24; motion_controller_withPIC_B.i++) {
+          motion_controller_withPIC_B.c_x[motion_controller_withPIC_B.i] +=
+            motion_controller_withPIC_DW.data50[(motion_controller_withPIC_B.i -
+            motion_controller_withPIC_B.b_kidx) + 25] *
+            motion_controller_withPIC_DW.gaussian_kernel50[motion_controller_withPIC_B.b_kidx];
+        }
+      }
+
+      for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i < 25;
+           motion_controller_withPIC_B.i++) {
+        motion_controller_withPIC_B.b_g = 49 - motion_controller_withPIC_B.i;
+        for (motion_controller_withPIC_B.p_k = 0;
+             motion_controller_withPIC_B.p_k <= motion_controller_withPIC_B.b_g;
+             motion_controller_withPIC_B.p_k++) {
+          motion_controller_withPIC_B.isMpcEnable =
+            motion_controller_withPIC_B.i + motion_controller_withPIC_B.p_k;
+          motion_controller_withPIC_B.c_x[motion_controller_withPIC_B.isMpcEnable]
+            +=
+            motion_controller_withPIC_DW.gaussian_kernel50[motion_controller_withPIC_B.i
+            + 25] *
+            motion_controller_withPIC_DW.data50[motion_controller_withPIC_B.p_k];
+        }
+      }
+
+      motion_controller_withPIC_B.k = 50;
+      memcpy(&motion_controller_withPIC_B.t_data[0],
+             &motion_controller_withPIC_B.c_x[0], 50U * sizeof(real_T));
+    } else if (motion_controller_withPIC_B.b_value_c0 == 100.0) {
+      for (motion_controller_withPIC_B.isMpcEnable = 0;
+           motion_controller_withPIC_B.isMpcEnable < 99;
+           motion_controller_withPIC_B.isMpcEnable++) {
+        motion_controller_withPIC_DW.data100[motion_controller_withPIC_B.isMpcEnable]
+          =
+          motion_controller_withPIC_DW.data100[motion_controller_withPIC_B.isMpcEnable
+          + 1];
+      }
+
+      motion_controller_withPIC_DW.data100[99] =
+        motion_controller_withPIC_B.In1_f.angular_velocity.z;
+      memset(&motion_controller_withPIC_B.x[0], 0, 100U * sizeof(real_T));
+      for (motion_controller_withPIC_B.b_kidx = 0;
+           motion_controller_withPIC_B.b_kidx < 50;
+           motion_controller_withPIC_B.b_kidx++) {
+        motion_controller_withPIC_B.p_k = ((motion_controller_withPIC_B.b_kidx +
+          50) / 2) << 1;
+        motion_controller_withPIC_B.isMpcEnable =
+          motion_controller_withPIC_B.p_k - 2;
+        for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <=
+             motion_controller_withPIC_B.isMpcEnable;
+             motion_controller_withPIC_B.i += 2) {
+          tmp_5 = _mm_loadu_pd(&motion_controller_withPIC_DW.data100
+                               [(motion_controller_withPIC_B.i -
+            motion_controller_withPIC_B.b_kidx) + 50]);
+          tmp_5 = _mm_mul_pd(tmp_5, _mm_set1_pd
+                             (motion_controller_withPIC_DW.gaussian_kernel100[motion_controller_withPIC_B.b_kidx]));
+          tmp_4 = _mm_loadu_pd
+            (&motion_controller_withPIC_B.x[motion_controller_withPIC_B.i]);
+          _mm_storeu_pd
+            (&motion_controller_withPIC_B.x[motion_controller_withPIC_B.i],
+             _mm_add_pd(tmp_5, tmp_4));
+        }
+
+        for (motion_controller_withPIC_B.i = motion_controller_withPIC_B.p_k;
+             motion_controller_withPIC_B.i <= motion_controller_withPIC_B.b_kidx
+             + 49; motion_controller_withPIC_B.i++) {
+          motion_controller_withPIC_B.x[motion_controller_withPIC_B.i] +=
+            motion_controller_withPIC_DW.data100[(motion_controller_withPIC_B.i
+            - motion_controller_withPIC_B.b_kidx) + 50] *
+            motion_controller_withPIC_DW.gaussian_kernel100[motion_controller_withPIC_B.b_kidx];
+        }
+      }
+
+      for (motion_controller_withPIC_B.p_k = 0; motion_controller_withPIC_B.p_k <
+           50; motion_controller_withPIC_B.p_k++) {
+        motion_controller_withPIC_B.isMpcEnable = 99 -
+          motion_controller_withPIC_B.p_k;
+        for (motion_controller_withPIC_B.b_kidx = 0;
+             motion_controller_withPIC_B.b_kidx <=
+             motion_controller_withPIC_B.isMpcEnable;
+             motion_controller_withPIC_B.b_kidx++) {
+          motion_controller_withPIC_B.i = motion_controller_withPIC_B.p_k +
+            motion_controller_withPIC_B.b_kidx;
+          motion_controller_withPIC_B.x[motion_controller_withPIC_B.i] +=
+            motion_controller_withPIC_DW.gaussian_kernel100[motion_controller_withPIC_B.p_k
+            + 50] *
+            motion_controller_withPIC_DW.data100[motion_controller_withPIC_B.b_kidx];
+        }
+      }
+
+      motion_controller_withPIC_B.k = 100;
+      memcpy(&motion_controller_withPIC_B.t_data[0],
+             &motion_controller_withPIC_B.x[0], 100U * sizeof(real_T));
+    } else {
+      for (motion_controller_withPIC_B.isMpcEnable = 0;
+           motion_controller_withPIC_B.isMpcEnable < 199;
+           motion_controller_withPIC_B.isMpcEnable++) {
+        motion_controller_withPIC_DW.data200[motion_controller_withPIC_B.isMpcEnable]
+          =
+          motion_controller_withPIC_DW.data200[motion_controller_withPIC_B.isMpcEnable
+          + 1];
+      }
+
+      motion_controller_withPIC_DW.data200[199] =
+        motion_controller_withPIC_B.In1_f.angular_velocity.z;
+      memset(&motion_controller_withPIC_B.t_data[0], 0, 200U * sizeof(real_T));
+      for (motion_controller_withPIC_B.b_kidx = 0;
+           motion_controller_withPIC_B.b_kidx < 100;
+           motion_controller_withPIC_B.b_kidx++) {
+        motion_controller_withPIC_B.p_k = ((motion_controller_withPIC_B.b_kidx +
+          100) / 2) << 1;
+        motion_controller_withPIC_B.isMpcEnable =
+          motion_controller_withPIC_B.p_k - 2;
+        for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <=
+             motion_controller_withPIC_B.isMpcEnable;
+             motion_controller_withPIC_B.i += 2) {
+          tmp_5 = _mm_loadu_pd(&motion_controller_withPIC_DW.data200
+                               [(motion_controller_withPIC_B.i -
+            motion_controller_withPIC_B.b_kidx) + 100]);
+          tmp_5 = _mm_mul_pd(tmp_5, _mm_set1_pd
+                             (motion_controller_withPIC_DW.gaussian_kernel200[motion_controller_withPIC_B.b_kidx]));
+          tmp_4 = _mm_loadu_pd
+            (&motion_controller_withPIC_B.t_data[motion_controller_withPIC_B.i]);
+          _mm_storeu_pd
+            (&motion_controller_withPIC_B.t_data[motion_controller_withPIC_B.i],
+             _mm_add_pd(tmp_5, tmp_4));
+        }
+
+        for (motion_controller_withPIC_B.i = motion_controller_withPIC_B.p_k;
+             motion_controller_withPIC_B.i <= motion_controller_withPIC_B.b_kidx
+             + 99; motion_controller_withPIC_B.i++) {
+          motion_controller_withPIC_B.t_data[motion_controller_withPIC_B.i] +=
+            motion_controller_withPIC_DW.data200[(motion_controller_withPIC_B.i
+            - motion_controller_withPIC_B.b_kidx) + 100] *
+            motion_controller_withPIC_DW.gaussian_kernel200[motion_controller_withPIC_B.b_kidx];
+        }
+      }
+
+      for (motion_controller_withPIC_B.p_k = 0; motion_controller_withPIC_B.p_k <
+           100; motion_controller_withPIC_B.p_k++) {
+        motion_controller_withPIC_B.c_jz = 199 - motion_controller_withPIC_B.p_k;
+        for (motion_controller_withPIC_B.isMpcEnable = 0;
+             motion_controller_withPIC_B.isMpcEnable <=
+             motion_controller_withPIC_B.c_jz;
+             motion_controller_withPIC_B.isMpcEnable++) {
+          motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.p_k +
+            motion_controller_withPIC_B.isMpcEnable;
+          motion_controller_withPIC_B.t_data[motion_controller_withPIC_B.b_kidx]
+            +=
+            motion_controller_withPIC_DW.gaussian_kernel200[motion_controller_withPIC_B.p_k
+            + 100] *
+            motion_controller_withPIC_DW.data200[motion_controller_withPIC_B.isMpcEnable];
+        }
+      }
+
+      motion_controller_withPIC_B.k = 200;
+    }
+
+    motion_controller_withPIC_B.y_g =
+      motion_controller_withPIC_B.t_data[motion_controller_withPIC_B.k - 1];
   } else {
     motion_controller_withPIC_DW.yd = (1.0 -
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_DW.yd
-      + motion_controller_withPIC_B.b_value_c0 *
+      motion_controller_withPIC_B.b_value_p5) * motion_controller_withPIC_DW.yd
+      + motion_controller_withPIC_B.b_value_p5 *
       motion_controller_withPIC_B.In1_f.angular_velocity.z;
+    motion_controller_withPIC_B.y_g = motion_controller_withPIC_DW.yd;
   }
 
   // End of MATLAB Function: '<Root>/MATLAB Function2'
@@ -11499,7 +11736,7 @@ void motion_controller_withPIC::step()
 
   // MATLABSystem: '<Root>/Get Parameter8'
   ParamGet_motion_controller_withPIC_606.getParameter
-    (&motion_controller_withPIC_B.as);
+    (&motion_controller_withPIC_B.b_value_ct);
 
   // Chart: '<Root>/Chart' incorporates:
   //   MATLABSystem: '<Root>/Get Parameter7'
@@ -11509,29 +11746,29 @@ void motion_controller_withPIC::step()
     motion_controller_withPIC_DW.is_active_c18_motion_controller = 1U;
     motion_controller_withPIC_DW.is_c18_motion_controller_withPI =
       motion_controller_withPI_IN_ini;
-    motion_controller_withPIC_B.naxpy = 0;
+    motion_controller_withPIC_B.p_k = 0;
     motion_controller_withPIC_B.isMpcEnable = 0;
     motion_controller_withPIC_DW.enable_b = 0.0;
     motion_controller_withPIC_DW.Ay_l =
       motion_controller_withPIC_B.In1_f.linear_acceleration.y;
-    motion_controller_withPIC_DW.r_l = motion_controller_withPIC_DW.yd;
+    motion_controller_withPIC_DW.r_l = motion_controller_withPIC_B.y_g;
   } else {
     switch (motion_controller_withPIC_DW.is_c18_motion_controller_withPI) {
      case motion_controller_withPI_IN_ini:
-      motion_controller_withPIC_B.naxpy = 0;
+      motion_controller_withPIC_B.p_k = 0;
       motion_controller_withPIC_B.isMpcEnable = 0;
       if (motion_controller_withPIC_DW.enable_b >= 3.0) {
         motion_controller_withPIC_DW.is_c18_motion_controller_withPI =
           motion_controller_with_IN_saver;
-        motion_controller_withPIC_B.naxpy = 1;
+        motion_controller_withPIC_B.p_k = 1;
         motion_controller_withPIC_DW.delay_a = 0.0;
       } else {
         if (fabs(motion_controller_withPIC_B.In1_f.linear_acceleration.y -
                  motion_controller_withPIC_DW.Ay_l) >
             motion_controller_withPIC_B.b_value_c0) {
-          if (fabs(motion_controller_withPIC_DW.yd -
+          if (fabs(motion_controller_withPIC_B.y_g -
                    motion_controller_withPIC_DW.r_l) >
-              motion_controller_withPIC_B.as) {
+              motion_controller_withPIC_B.b_value_ct) {
             motion_controller_withPIC_DW.enable_b++;
           } else {
             motion_controller_withPIC_DW.enable_b = 0.0;
@@ -11542,21 +11779,21 @@ void motion_controller_withPIC::step()
 
         motion_controller_withPIC_DW.Ay_l =
           motion_controller_withPIC_B.In1_f.linear_acceleration.y;
-        motion_controller_withPIC_DW.r_l = motion_controller_withPIC_DW.yd;
+        motion_controller_withPIC_DW.r_l = motion_controller_withPIC_B.y_g;
       }
       break;
 
      case motion_controller_with_IN_saver:
-      motion_controller_withPIC_B.naxpy = 1;
+      motion_controller_withPIC_B.p_k = 1;
       motion_controller_withPIC_B.isMpcEnable = 0;
       if (motion_controller_withPIC_B.Compare) {
         motion_controller_withPIC_DW.is_c18_motion_controller_withPI =
           motion_controller_withPI_IN_ini;
-        motion_controller_withPIC_B.naxpy = 0;
+        motion_controller_withPIC_B.p_k = 0;
         motion_controller_withPIC_DW.enable_b = 0.0;
         motion_controller_withPIC_DW.Ay_l =
           motion_controller_withPIC_B.In1_f.linear_acceleration.y;
-        motion_controller_withPIC_DW.r_l = motion_controller_withPIC_DW.yd;
+        motion_controller_withPIC_DW.r_l = motion_controller_withPIC_B.y_g;
       } else if (motion_controller_withPIC_DW.delay_a > 2.0) {
         motion_controller_withPIC_DW.is_c18_motion_controller_withPI =
           motion_controller_wi_IN_testing;
@@ -11568,17 +11805,17 @@ void motion_controller_withPIC::step()
 
      default:
       // case IN_testing:
-      motion_controller_withPIC_B.naxpy = 1;
+      motion_controller_withPIC_B.p_k = 1;
       motion_controller_withPIC_B.isMpcEnable = 1;
       if (motion_controller_withPIC_B.Compare) {
         motion_controller_withPIC_DW.is_c18_motion_controller_withPI =
           motion_controller_withPI_IN_ini;
-        motion_controller_withPIC_B.naxpy = 0;
+        motion_controller_withPIC_B.p_k = 0;
         motion_controller_withPIC_B.isMpcEnable = 0;
         motion_controller_withPIC_DW.enable_b = 0.0;
         motion_controller_withPIC_DW.Ay_l =
           motion_controller_withPIC_B.In1_f.linear_acceleration.y;
-        motion_controller_withPIC_DW.r_l = motion_controller_withPIC_DW.yd;
+        motion_controller_withPIC_DW.r_l = motion_controller_withPIC_B.y_g;
       }
       break;
     }
@@ -11586,48 +11823,73 @@ void motion_controller_withPIC::step()
 
   // End of Chart: '<Root>/Chart'
 
+  // MATLABSystem: '<S9>/Get Parameter22'
+  ParamGet_motion_controller_withPIC_946.getParameter
+    (&motion_controller_withPIC_B.b_value_c0);
+
+  // MATLABSystem: '<S9>/Get Parameter1'
+  ParamGet_motion_controller_withPIC_948.getParameter
+    (&motion_controller_withPIC_B.b_value_ct);
+
+  // MATLAB Function: '<S9>/MATLAB Function1' incorporates:
+  //   MATLABSystem: '<S9>/Get Parameter1'
+  //   MATLABSystem: '<S9>/Get Parameter22'
+
+  motion_controller_withPIC_B.alpha1 = fabs
+    (motion_controller_withPIC_B.b_value_c0);
+  motion_controller_withPIC_B.alpha1_tmp = fabs
+    (motion_controller_withPIC_B.In1_je.twist.twist.linear.x);
+  if (motion_controller_withPIC_B.alpha1_tmp <
+      motion_controller_withPIC_B.alpha1) {
+    motion_controller_withPIC_B.vxp = 0.0;
+  } else {
+    if (rtIsNaN(motion_controller_withPIC_B.In1_je.twist.twist.linear.x)) {
+      motion_controller_withPIC_B.alpha1_tmp_k = (rtNaN);
+    } else if (motion_controller_withPIC_B.In1_je.twist.twist.linear.x < 0.0) {
+      motion_controller_withPIC_B.alpha1_tmp_k = -1.0;
+    } else {
+      motion_controller_withPIC_B.alpha1_tmp_k =
+        (motion_controller_withPIC_B.In1_je.twist.twist.linear.x > 0.0);
+    }
+
+    motion_controller_withPIC_B.vxp = (motion_controller_withPIC_B.alpha1_tmp -
+      motion_controller_withPIC_B.alpha1) *
+      motion_controller_withPIC_B.alpha1_tmp_k;
+  }
+
+  motion_controller_withPIC_B.alpha1 = fabs
+    (motion_controller_withPIC_B.b_value_ct);
+  motion_controller_withPIC_B.alpha1_tmp = fabs
+    (motion_controller_withPIC_B.In1_je.twist.twist.linear.y);
+  if (motion_controller_withPIC_B.alpha1_tmp <
+      motion_controller_withPIC_B.alpha1) {
+    motion_controller_withPIC_B.vyp = 0.0;
+  } else {
+    if (rtIsNaN(motion_controller_withPIC_B.In1_je.twist.twist.linear.y)) {
+      motion_controller_withPIC_B.alpha1_tmp_k = (rtNaN);
+    } else if (motion_controller_withPIC_B.In1_je.twist.twist.linear.y < 0.0) {
+      motion_controller_withPIC_B.alpha1_tmp_k = -1.0;
+    } else {
+      motion_controller_withPIC_B.alpha1_tmp_k =
+        (motion_controller_withPIC_B.In1_je.twist.twist.linear.y > 0.0);
+    }
+
+    motion_controller_withPIC_B.vyp = (motion_controller_withPIC_B.alpha1_tmp -
+      motion_controller_withPIC_B.alpha1) *
+      motion_controller_withPIC_B.alpha1_tmp_k;
+  }
+
+  // End of MATLAB Function: '<S9>/MATLAB Function1'
+
   // MATLABSystem: '<Root>/Get Parameter6'
   ParamGet_motion_controller_withPIC_907.getParameter
     (&motion_controller_withPIC_B.b_value_c0);
 
-  // DeadZone: '<S9>/Dead Zone1'
-  if (motion_controller_withPIC_B.In1_je.twist.twist.linear.x >
-      motion_controller_withPIC_P.DeadZone1_End) {
-    motion_controller_withPIC_B.alpha1 =
-      motion_controller_withPIC_B.In1_je.twist.twist.linear.x -
-      motion_controller_withPIC_P.DeadZone1_End;
-  } else if (motion_controller_withPIC_B.In1_je.twist.twist.linear.x >=
-             motion_controller_withPIC_P.DeadZone1_Start) {
-    motion_controller_withPIC_B.alpha1 = 0.0;
-  } else {
-    motion_controller_withPIC_B.alpha1 =
-      motion_controller_withPIC_B.In1_je.twist.twist.linear.x -
-      motion_controller_withPIC_P.DeadZone1_Start;
-  }
-
   // Sum: '<Root>/Add' incorporates:
-  //   DeadZone: '<S9>/Dead Zone1'
   //   MATLABSystem: '<Root>/Get Parameter6'
 
-  motion_controller_withPIC_B.Add = motion_controller_withPIC_B.alpha1 +
+  motion_controller_withPIC_B.Add = motion_controller_withPIC_B.vxp +
     motion_controller_withPIC_B.b_value_c0;
-
-  // DeadZone: '<S9>/Dead Zone3'
-  if (motion_controller_withPIC_B.In1_je.twist.twist.linear.y >
-      motion_controller_withPIC_P.DeadZone3_End) {
-    motion_controller_withPIC_B.UnitDelay =
-      motion_controller_withPIC_B.In1_je.twist.twist.linear.y -
-      motion_controller_withPIC_P.DeadZone3_End;
-  } else if (motion_controller_withPIC_B.In1_je.twist.twist.linear.y >=
-             motion_controller_withPIC_P.DeadZone3_Start) {
-    motion_controller_withPIC_B.UnitDelay = 0.0;
-  } else {
-    motion_controller_withPIC_B.UnitDelay =
-      motion_controller_withPIC_B.In1_je.twist.twist.linear.y -
-      motion_controller_withPIC_P.DeadZone3_Start;
-  }
-
-  // End of DeadZone: '<S9>/Dead Zone3'
 
   // MATLABSystem: '<S13>/Get Parameter20'
   ParamGet_motion_controller_withPIC_916.getParameter
@@ -11639,9 +11901,9 @@ void motion_controller_withPIC::step()
   //   Product: '<S13>/Product'
   //   Sum: '<S13>/Add2'
 
-  motion_controller_withPIC_B.Add1 = motion_controller_withPIC_B.UnitDelay -
+  motion_controller_withPIC_B.Add1 = motion_controller_withPIC_B.vyp -
     (motion_controller_withPIC_P.Constant1_Value_n +
-     motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_DW.yd;
+     motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.y_g;
 
   // Outputs for Enabled SubSystem: '<Root>/picController' incorporates:
   //   EnablePort: '<S16>/Enable'
@@ -11690,23 +11952,23 @@ void motion_controller_withPIC::step()
   Pub_motion_controller_withPIC_545.publish
     (&motion_controller_withPIC_B.BusAssignment2_i);
 
-  // MATLABSystem: '<S32>/SourceBlock'
-  motion_controller_withPIC_B.b_value_kw =
+  // MATLABSystem: '<S33>/SourceBlock'
+  motion_controller_withPIC_B.b_value_k1 =
     Sub_motion_controller_withPIC_516.getLatestMessage
     (&motion_controller_withPIC_B.b_varargout_2);
 
-  // Outputs for Enabled SubSystem: '<S32>/Enabled Subsystem' incorporates:
-  //   EnablePort: '<S35>/Enable'
+  // Outputs for Enabled SubSystem: '<S33>/Enabled Subsystem' incorporates:
+  //   EnablePort: '<S36>/Enable'
 
-  // Start for MATLABSystem: '<S32>/SourceBlock'
-  if (motion_controller_withPIC_B.b_value_kw) {
-    // SignalConversion generated from: '<S35>/In1'
+  // Start for MATLABSystem: '<S33>/SourceBlock'
+  if (motion_controller_withPIC_B.b_value_k1) {
+    // SignalConversion generated from: '<S36>/In1'
     motion_controller_withPIC_B.In1_j =
       motion_controller_withPIC_B.b_varargout_2;
   }
 
-  // End of Start for MATLABSystem: '<S32>/SourceBlock'
-  // End of Outputs for SubSystem: '<S32>/Enabled Subsystem'
+  // End of Start for MATLABSystem: '<S33>/SourceBlock'
+  // End of Outputs for SubSystem: '<S33>/Enabled Subsystem'
 
   // Outputs for Iterator SubSystem: '<S9>/For Each Subsystem' incorporates:
   //   ForEach: '<S28>/For Each'
@@ -11727,12 +11989,12 @@ void motion_controller_withPIC::step()
 
   // MATLABSystem: '<Root>/Get Parameter17'
   ParamGet_motion_controller_withPIC_910.getParameter
-    (&motion_controller_withPIC_B.b_value_kw);
+    (&motion_controller_withPIC_B.b_value_k1);
 
   // Switch: '<Root>/Switch' incorporates:
   //   MATLABSystem: '<Root>/Get Parameter17'
 
-  if (motion_controller_withPIC_B.b_value_kw) {
+  if (motion_controller_withPIC_B.b_value_k1) {
     // DeadZone: '<Root>/Dead Zone'
     if (motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[0] >
         motion_controller_withPIC_P.DeadZone_End) {
@@ -11816,23 +12078,23 @@ void motion_controller_withPIC::step()
 
   // MATLABSystem: '<Root>/Get Parameter10'
   ParamGet_motion_controller_withPIC_615.getParameter
-    (&motion_controller_withPIC_B.as);
+    (&motion_controller_withPIC_B.b_value_ct);
 
   // MATLABSystem: '<Root>/Get Parameter11'
   ParamGet_motion_controller_withPIC_616.getParameter
-    (&motion_controller_withPIC_B.b_value_ct);
+    (&motion_controller_withPIC_B.b_value_p);
 
   // MATLABSystem: '<Root>/Get Parameter12'
   ParamGet_motion_controller_withPIC_617.getParameter
-    (&motion_controller_withPIC_B.b_value_p);
+    (&motion_controller_withPIC_B.b_value_p5);
 
   // MATLABSystem: '<Root>/Get Parameter13'
   ParamGet_motion_controller_withPIC_618.getParameter
-    (&motion_controller_withPIC_B.b_value_p5);
+    (&motion_controller_withPIC_B.b_value_af);
 
   // MATLABSystem: '<Root>/Get Parameter14'
   ParamGet_motion_controller_withPIC_619.getParameter
-    (&motion_controller_withPIC_B.b_value_af);
+    (&motion_controller_withPIC_B.b_value_e);
 
   // MATLAB Function: '<Root>/update' incorporates:
   //   MATLAB Function: '<S16>/update'
@@ -11845,37 +12107,37 @@ void motion_controller_withPIC::step()
   //   Trigonometry: '<S12>/Cos1'
 
   motion_controller_withPIC_B.alpha1_tmp = motion_controller_withPIC_P.B / 2.0 *
-    motion_controller_withPIC_DW.yd;
-  motion_controller_withPIC_B.alpha1_tmp_l = motion_controller_withPIC_B.Add -
+    motion_controller_withPIC_B.y_g;
+  motion_controller_withPIC_B.alpha1_tmp_k = motion_controller_withPIC_B.Add -
     motion_controller_withPIC_B.alpha1_tmp;
 
   // Outputs for Enabled SubSystem: '<Root>/picController' incorporates:
   //   EnablePort: '<S16>/Enable'
 
-  motion_controller_withPIC_B.alpha1_tmp_i = motion_controller_withPIC_B.Add *
+  motion_controller_withPIC_B.alpha1_tmp_f = motion_controller_withPIC_B.Add *
     sin(motion_controller_withPIC_B.yaw);
 
   // End of Outputs for SubSystem: '<Root>/picController'
   motion_controller_withPIC_B.alpha1 = rt_atan2d_snf
     ((motion_controller_withPIC_B.Add_i -
-      motion_controller_withPIC_B.alpha1_tmp_i) /
+      motion_controller_withPIC_B.alpha1_tmp_f) /
      motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp +
-     motion_controller_withPIC_P.a * motion_controller_withPIC_DW.yd,
-     motion_controller_withPIC_B.alpha1_tmp_l) -
+     motion_controller_withPIC_P.a * motion_controller_withPIC_B.y_g,
+     motion_controller_withPIC_B.alpha1_tmp_k) -
     motion_controller_withPIC_B.df_j;
   motion_controller_withPIC_B.alpha2_tmp =
     motion_controller_withPIC_B.alpha1_tmp + motion_controller_withPIC_B.Add;
   motion_controller_withPIC_B.alpha1_tmp = rt_atan2d_snf
     ((motion_controller_withPIC_B.Add_i - motion_controller_withPIC_B.Add * sin
       (motion_controller_withPIC_B.yaw)) / cos(motion_controller_withPIC_B.yaw)
-     + motion_controller_withPIC_P.a * motion_controller_withPIC_DW.yd,
+     + motion_controller_withPIC_P.a * motion_controller_withPIC_B.y_g,
      motion_controller_withPIC_B.alpha2_tmp) - motion_controller_withPIC_B.df_j;
   motion_controller_withPIC_B.Add_i = (motion_controller_withPIC_B.Add_i -
     motion_controller_withPIC_B.Add * sin(motion_controller_withPIC_B.yaw)) /
     cos(motion_controller_withPIC_B.yaw) - motion_controller_withPIC_P.b *
-    motion_controller_withPIC_DW.yd;
-  motion_controller_withPIC_B.alpha1_tmp_l = rt_atan2d_snf
-    (motion_controller_withPIC_B.Add_i, motion_controller_withPIC_B.alpha1_tmp_l)
+    motion_controller_withPIC_B.y_g;
+  motion_controller_withPIC_B.alpha1_tmp_k = rt_atan2d_snf
+    (motion_controller_withPIC_B.Add_i, motion_controller_withPIC_B.alpha1_tmp_k)
     - motion_controller_withPIC_B.dr_i;
   motion_controller_withPIC_B.alpha2_tmp = rt_atan2d_snf
     (motion_controller_withPIC_B.Add_i, motion_controller_withPIC_B.alpha2_tmp)
@@ -11885,7 +12147,7 @@ void motion_controller_withPIC::step()
   motion_controller_withPIC_B.Fy1_tmp_tmp = motion_controller_withPIC_P.m *
     motion_controller_withPIC_B.In1_f.linear_acceleration.x *
     motion_controller_withPIC_P.hCG;
-  motion_controller_withPIC_B.b_value_l = (motion_controller_withPIC_B.Add_i *
+  motion_controller_withPIC_B.b_value_o = (motion_controller_withPIC_B.Add_i *
     motion_controller_withPIC_P.b - motion_controller_withPIC_B.Fy1_tmp_tmp) /
     2.0 / motion_controller_withPIC_P.L;
   motion_controller_withPIC_B.Gain2 = motion_controller_withPIC_P.Krsf *
@@ -11896,26 +12158,28 @@ void motion_controller_withPIC::step()
   // Outputs for Enabled SubSystem: '<Root>/picController' incorporates:
   //   EnablePort: '<S16>/Enable'
 
-  motion_controller_withPIC_B.Fy1_tmp = (motion_controller_withPIC_B.b_value_l -
-    motion_controller_withPIC_B.Gain2) * motion_controller_withPIC_B.b_value_ct;
+  motion_controller_withPIC_B.Fy1_tmp = (motion_controller_withPIC_B.b_value_o -
+    motion_controller_withPIC_B.Gain2) * motion_controller_withPIC_B.b_value_p;
 
   // End of Outputs for SubSystem: '<Root>/picController'
-  motion_controller_withPIC_B.b_value_o = sin(atan
+  motion_controller_withPIC_B.b_value_o2 = sin(atan
     (motion_controller_withPIC_B.b_value_c0 * sin
-     (motion_controller_withPIC_B.alpha1)) * motion_controller_withPIC_B.as) *
+     (motion_controller_withPIC_B.alpha1)) *
+    motion_controller_withPIC_B.b_value_ct) *
     motion_controller_withPIC_B.Fy1_tmp;
 
   // Outputs for Enabled SubSystem: '<Root>/picController' incorporates:
   //   EnablePort: '<S16>/Enable'
 
-  motion_controller_withPIC_B.Fy2_tmp = (motion_controller_withPIC_B.b_value_l +
-    motion_controller_withPIC_B.Gain2) * motion_controller_withPIC_B.b_value_ct;
+  motion_controller_withPIC_B.Fy2_tmp = (motion_controller_withPIC_B.b_value_o +
+    motion_controller_withPIC_B.Gain2) * motion_controller_withPIC_B.b_value_p;
 
   // End of Outputs for SubSystem: '<Root>/picController'
-  motion_controller_withPIC_B.b_value_l = sin(atan
+  motion_controller_withPIC_B.b_value_o = sin(atan
     (motion_controller_withPIC_B.b_value_c0 * sin
-     (motion_controller_withPIC_B.alpha1_tmp)) * motion_controller_withPIC_B.as)
-    * motion_controller_withPIC_B.Fy2_tmp;
+     (motion_controller_withPIC_B.alpha1_tmp)) *
+    motion_controller_withPIC_B.b_value_ct) *
+    motion_controller_withPIC_B.Fy2_tmp;
   motion_controller_withPIC_B.Add_i = (motion_controller_withPIC_B.Add_i *
     motion_controller_withPIC_P.a + motion_controller_withPIC_B.Fy1_tmp_tmp) /
     2.0 / motion_controller_withPIC_P.L;
@@ -11929,13 +12193,13 @@ void motion_controller_withPIC::step()
 
   motion_controller_withPIC_B.Fy3_tmp = (motion_controller_withPIC_B.Add_i -
     motion_controller_withPIC_B.Fy1_tmp_tmp) *
-    motion_controller_withPIC_B.b_value_af;
+    motion_controller_withPIC_B.b_value_e;
 
   // End of Outputs for SubSystem: '<Root>/picController'
   motion_controller_withPIC_B.Gain2 = sin(atan
-    (motion_controller_withPIC_B.b_value_p * sin
-     (motion_controller_withPIC_B.alpha1_tmp_l)) *
-    motion_controller_withPIC_B.b_value_p5) *
+    (motion_controller_withPIC_B.b_value_p5 * sin
+     (motion_controller_withPIC_B.alpha1_tmp_k)) *
+    motion_controller_withPIC_B.b_value_af) *
     motion_controller_withPIC_B.Fy3_tmp;
 
   // Outputs for Enabled SubSystem: '<Root>/picController' incorporates:
@@ -11943,13 +12207,13 @@ void motion_controller_withPIC::step()
 
   motion_controller_withPIC_B.Fy4_tmp = (motion_controller_withPIC_B.Add_i +
     motion_controller_withPIC_B.Fy1_tmp_tmp) *
-    motion_controller_withPIC_B.b_value_af;
+    motion_controller_withPIC_B.b_value_e;
 
   // End of Outputs for SubSystem: '<Root>/picController'
   motion_controller_withPIC_B.Add_i = sin(atan
-    (motion_controller_withPIC_B.b_value_p * sin
+    (motion_controller_withPIC_B.b_value_p5 * sin
      (motion_controller_withPIC_B.alpha2_tmp)) *
-    motion_controller_withPIC_B.b_value_p5) *
+    motion_controller_withPIC_B.b_value_af) *
     motion_controller_withPIC_B.Fy4_tmp;
 
   // BusAssignment: '<S6>/Bus Assignment2' incorporates:
@@ -11963,7 +12227,7 @@ void motion_controller_withPIC::step()
   motion_controller_withPIC_B.BusAssignment2.orientation.y =
     motion_controller_withPIC_B.alpha1_tmp;
   motion_controller_withPIC_B.BusAssignment2.orientation.z =
-    motion_controller_withPIC_B.alpha1_tmp_l;
+    motion_controller_withPIC_B.alpha1_tmp_k;
   motion_controller_withPIC_B.BusAssignment2.orientation.w =
     motion_controller_withPIC_B.alpha2_tmp;
 
@@ -11978,9 +12242,9 @@ void motion_controller_withPIC::step()
   motion_controller_withPIC_B.BusAssignment2 =
     motion_controller_withPIC_P.Constant_Value_eh;
   motion_controller_withPIC_B.BusAssignment2.orientation.x =
-    motion_controller_withPIC_B.b_value_o;
+    motion_controller_withPIC_B.b_value_o2;
   motion_controller_withPIC_B.BusAssignment2.orientation.y =
-    motion_controller_withPIC_B.b_value_l;
+    motion_controller_withPIC_B.b_value_o;
   motion_controller_withPIC_B.BusAssignment2.orientation.z =
     motion_controller_withPIC_B.Gain2;
   motion_controller_withPIC_B.BusAssignment2.orientation.w =
@@ -12001,8 +12265,8 @@ void motion_controller_withPIC::step()
   //   MATLAB Function: '<Root>/update'
 
   motion_controller_withPIC_B.BusAssignment2.linear_acceleration.y =
-    ((motion_controller_withPIC_B.b_value_o +
-      motion_controller_withPIC_B.b_value_l) *
+    ((motion_controller_withPIC_B.b_value_o2 +
+      motion_controller_withPIC_B.b_value_o) *
      motion_controller_withPIC_B.alpha1 + (motion_controller_withPIC_B.Gain2 +
       motion_controller_withPIC_B.Add_i) *
      motion_controller_withPIC_B.alpha1_tmp) * (1.0 /
@@ -12014,7 +12278,7 @@ void motion_controller_withPIC::step()
   // MATLAB Function: '<Root>/update' incorporates:
   //   MATLAB Function: '<S16>/update'
 
-  motion_controller_withPIC_B.alpha1_tmp_l = sin
+  motion_controller_withPIC_B.alpha1_tmp_k = sin
     (motion_controller_withPIC_B.df_j);
   motion_controller_withPIC_B.alpha2_tmp = sin(motion_controller_withPIC_B.dr_i);
 
@@ -12022,7 +12286,7 @@ void motion_controller_withPIC::step()
   motion_controller_withPIC_B.rtb_Add_i_tmp = motion_controller_withPIC_P.a *
     motion_controller_withPIC_B.alpha1;
   motion_controller_withPIC_B.Fy1_tmp_tmp_tmp = motion_controller_withPIC_P.B /
-    2.0 * motion_controller_withPIC_B.alpha1_tmp_l;
+    2.0 * motion_controller_withPIC_B.alpha1_tmp_k;
 
   // Outputs for Enabled SubSystem: '<Root>/picController' incorporates:
   //   EnablePort: '<S16>/Enable'
@@ -12034,17 +12298,17 @@ void motion_controller_withPIC::step()
   // End of Outputs for SubSystem: '<Root>/picController'
   motion_controller_withPIC_B.d1 = motion_controller_withPIC_P.B / 2.0 *
     motion_controller_withPIC_B.alpha2_tmp;
-  motion_controller_withPIC_B.Product1 = -motion_controller_withPIC_P.b *
+  motion_controller_withPIC_B.b_value_ax = -motion_controller_withPIC_P.b *
     motion_controller_withPIC_B.alpha1_tmp;
 
   // Outputs for Enabled SubSystem: '<Root>/picController' incorporates:
   //   EnablePort: '<S16>/Enable'
 
-  motion_controller_withPIC_B.d_f = motion_controller_withPIC_B.Product1 -
+  motion_controller_withPIC_B.d_o = motion_controller_withPIC_B.b_value_ax -
     motion_controller_withPIC_B.d1;
   motion_controller_withPIC_B.Fy1_tmp_tmp_tmp +=
     motion_controller_withPIC_B.rtb_Add_i_tmp;
-  motion_controller_withPIC_B.d1 += motion_controller_withPIC_B.Product1;
+  motion_controller_withPIC_B.d1 += motion_controller_withPIC_B.b_value_ax;
 
   // End of Outputs for SubSystem: '<Root>/picController'
 
@@ -12053,10 +12317,10 @@ void motion_controller_withPIC::step()
 
   motion_controller_withPIC_B.BusAssignment2.linear_acceleration.z =
     (((motion_controller_withPIC_B.Fy1_tmp_tmp_tmp *
-       motion_controller_withPIC_B.b_value_o +
+       motion_controller_withPIC_B.b_value_o2 +
        motion_controller_withPIC_B.Fy1_tmp_tmp *
-       motion_controller_withPIC_B.b_value_l) + motion_controller_withPIC_B.d1 *
-      motion_controller_withPIC_B.Gain2) + motion_controller_withPIC_B.d_f *
+       motion_controller_withPIC_B.b_value_o) + motion_controller_withPIC_B.d1 *
+      motion_controller_withPIC_B.Gain2) + motion_controller_withPIC_B.d_o *
      motion_controller_withPIC_B.Add_i) * (1.0 / motion_controller_withPIC_P.Izz);
 
   // MATLABSystem: '<S24>/SinkBlock'
@@ -12069,13 +12333,13 @@ void motion_controller_withPIC::step()
   motion_controller_withPIC_B.BusAssignment2 =
     motion_controller_withPIC_P.Constant_Value_m;
   motion_controller_withPIC_B.BusAssignment2.orientation.x =
-    motion_controller_withPIC_B.UnitDelay;
+    motion_controller_withPIC_B.vxp;
   motion_controller_withPIC_B.BusAssignment2.orientation.y =
-    motion_controller_withPIC_B.Add1;
+    motion_controller_withPIC_B.vyp;
   motion_controller_withPIC_B.BusAssignment2.orientation.z =
     motion_controller_withPIC_B.In1_f.angular_velocity.z;
   motion_controller_withPIC_B.BusAssignment2.orientation.w =
-    motion_controller_withPIC_DW.yd;
+    motion_controller_withPIC_B.y_g;
 
   // MATLABSystem: '<S26>/SinkBlock'
   Pub_motion_controller_withPIC_932.publish
@@ -12086,38 +12350,38 @@ void motion_controller_withPIC::step()
     (motion_controller_withPIC_B.In1_m.failsafe ||
      motion_controller_withPIC_B.In1_m.frame_lost);
 
-  // MATLABSystem: '<S69>/SourceBlock'
-  motion_controller_withPIC_B.b_value_kw =
+  // MATLABSystem: '<S70>/SourceBlock'
+  motion_controller_withPIC_B.b_value_k1 =
     Sub_motion_controller_withPIC_238.getLatestMessage
     (&motion_controller_withPIC_B.b_varargout_2);
 
   // Logic: '<S17>/Logical Operator' incorporates:
-  //   MATLABSystem: '<S68>/SourceBlock'
   //   MATLABSystem: '<S69>/SourceBlock'
+  //   MATLABSystem: '<S70>/SourceBlock'
   //
   motion_controller_withPIC_B.LogicalOperator_j =
     (motion_controller_withPIC_B.LogicalOperator_j &&
-     motion_controller_withPIC_B.b_value_kw);
+     motion_controller_withPIC_B.b_value_k1);
 
-  // Outputs for Enabled SubSystem: '<S69>/Enabled Subsystem' incorporates:
-  //   EnablePort: '<S72>/Enable'
+  // Outputs for Enabled SubSystem: '<S70>/Enabled Subsystem' incorporates:
+  //   EnablePort: '<S73>/Enable'
 
-  // Start for MATLABSystem: '<S69>/SourceBlock'
-  if (motion_controller_withPIC_B.b_value_kw) {
-    // SignalConversion generated from: '<S72>/In1'
+  // Start for MATLABSystem: '<S70>/SourceBlock'
+  if (motion_controller_withPIC_B.b_value_k1) {
+    // SignalConversion generated from: '<S73>/In1'
     motion_controller_withPIC_B.In1 = motion_controller_withPIC_B.b_varargout_2;
   }
 
-  // End of Outputs for SubSystem: '<S69>/Enabled Subsystem'
+  // End of Outputs for SubSystem: '<S70>/Enabled Subsystem'
 
   // Outputs for Iterator SubSystem: '<S17>/For Each Subsystem' incorporates:
-  //   ForEach: '<S67>/For Each'
+  //   ForEach: '<S68>/For Each'
 
   for (motion_controller_withPIC_B.ForEach_itr = 0;
        motion_controller_withPIC_B.ForEach_itr < 16;
        motion_controller_withPIC_B.ForEach_itr++) {
-    // ForEachSliceAssignment generated from: '<S67>/Out1' incorporates:
-    //   ForEachSliceSelector generated from: '<S67>/In1'
+    // ForEachSliceAssignment generated from: '<S68>/Out1' incorporates:
+    //   ForEachSliceSelector generated from: '<S68>/In1'
 
     motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[motion_controller_withPIC_B.ForEach_itr]
       =
@@ -12128,83 +12392,83 @@ void motion_controller_withPIC::step()
   // End of Outputs for SubSystem: '<S17>/For Each Subsystem'
 
   // Outputs for Atomic SubSystem: '<Root>/controller'
-  // MATLABSystem: '<S46>/Get Parameter4'
+  // MATLABSystem: '<S47>/Get Parameter4'
   ParamGet_motion_controller_withPIC_298.getParameter
-    (&motion_controller_withPIC_B.b_value_l);
-
-  // MATLABSystem: '<S46>/Get Parameter2'
-  ParamGet_motion_controller_withPIC_301.getParameter
-    (&motion_controller_withPIC_B.b_value_kw);
-
-  // MATLABSystem: '<S46>/Get Parameter3'
-  ParamGet_motion_controller_withPIC_194.getParameter
     (&motion_controller_withPIC_B.b_value_o);
 
-  // Switch: '<S46>/Switch' incorporates:
-  //   MATLABSystem: '<S46>/Get Parameter2'
+  // MATLABSystem: '<S47>/Get Parameter2'
+  ParamGet_motion_controller_withPIC_301.getParameter
+    (&motion_controller_withPIC_B.b_value_k1);
+
+  // MATLABSystem: '<S47>/Get Parameter3'
+  ParamGet_motion_controller_withPIC_194.getParameter
+    (&motion_controller_withPIC_B.b_value_o2);
+
+  // Switch: '<S47>/Switch' incorporates:
+  //   MATLABSystem: '<S47>/Get Parameter2'
   //   SignalConversion generated from: '<S17>/Bus Selector'
 
-  if (motion_controller_withPIC_B.b_value_kw) {
-    motion_controller_withPIC_B.i_f =
+  if (motion_controller_withPIC_B.b_value_k1) {
+    motion_controller_withPIC_B.i_gr =
       motion_controller_withPIC_B.In1_m.mapped_channels[2];
   } else {
-    motion_controller_withPIC_B.i_f =
+    motion_controller_withPIC_B.i_gr =
       motion_controller_withPIC_B.In1_m.mapped_channels[1];
   }
 
-  // Product: '<S46>/Product1' incorporates:
-  //   Constant: '<S46>/Constant2'
-  //   Gain: '<S46>/Gain1'
-  //   MATLABSystem: '<S46>/Get Parameter3'
-  //   Sum: '<S46>/Add1'
-  //   Switch: '<S46>/Switch'
+  // Product: '<S47>/Product1' incorporates:
+  //   Constant: '<S47>/Constant2'
+  //   Gain: '<S47>/Gain1'
+  //   MATLABSystem: '<S47>/Get Parameter3'
+  //   Sum: '<S47>/Add1'
+  //   Switch: '<S47>/Switch'
 
-  motion_controller_withPIC_B.Product1 = (static_cast<real_T>
-    (motion_controller_withPIC_B.i_f) -
+  motion_controller_withPIC_B.vyp = (static_cast<real_T>
+    (motion_controller_withPIC_B.i_gr) -
     motion_controller_withPIC_P.Constant2_Value) *
     motion_controller_withPIC_P.Gain1_Gain_k *
-    motion_controller_withPIC_B.b_value_o;
+    motion_controller_withPIC_B.b_value_o2;
 
-  // Chart: '<S46>/Chart2' incorporates:
-  //   MATLABSystem: '<S46>/Get Parameter4'
+  // Chart: '<S47>/Chart2' incorporates:
+  //   MATLABSystem: '<S47>/Get Parameter4'
 
   if (motion_controller_withPIC_DW.is_active_c6_motion_controller_ == 0U) {
     motion_controller_withPIC_DW.is_active_c6_motion_controller_ = 1U;
     motion_controller_withPIC_B.out = 0.0;
   } else {
-    motion_controller_withPIC_B.UnitDelay = motion_controller_withPIC_B.Product1
-      - motion_controller_withPIC_B.out;
-    if (fabs(motion_controller_withPIC_B.UnitDelay) < 0.01 *
-        motion_controller_withPIC_B.b_value_l) {
-      motion_controller_withPIC_B.out = motion_controller_withPIC_B.Product1;
-    } else if (motion_controller_withPIC_B.b_value_l == 0.0) {
-      motion_controller_withPIC_B.out = motion_controller_withPIC_B.Product1;
+    motion_controller_withPIC_B.vxp = motion_controller_withPIC_B.vyp -
+      motion_controller_withPIC_B.out;
+    if (fabs(motion_controller_withPIC_B.vxp) < 0.01 *
+        motion_controller_withPIC_B.b_value_o) {
+      motion_controller_withPIC_B.out = motion_controller_withPIC_B.vyp;
+    } else if (motion_controller_withPIC_B.b_value_o == 0.0) {
+      motion_controller_withPIC_B.out = motion_controller_withPIC_B.vyp;
     } else {
-      if (rtIsNaN(motion_controller_withPIC_B.UnitDelay)) {
-        motion_controller_withPIC_B.UnitDelay = (rtNaN);
-      } else if (motion_controller_withPIC_B.UnitDelay < 0.0) {
-        motion_controller_withPIC_B.UnitDelay = -1.0;
+      if (rtIsNaN(motion_controller_withPIC_B.vxp)) {
+        motion_controller_withPIC_B.Gain2 = (rtNaN);
+      } else if (motion_controller_withPIC_B.vxp < 0.0) {
+        motion_controller_withPIC_B.Gain2 = -1.0;
       } else {
-        motion_controller_withPIC_B.UnitDelay =
-          (motion_controller_withPIC_B.UnitDelay > 0.0);
+        motion_controller_withPIC_B.Gain2 = (motion_controller_withPIC_B.vxp >
+          0.0);
       }
 
-      motion_controller_withPIC_B.out += motion_controller_withPIC_B.UnitDelay *
-        motion_controller_withPIC_B.b_value_l * 0.01;
+      motion_controller_withPIC_B.out += motion_controller_withPIC_B.Gain2 *
+        motion_controller_withPIC_B.b_value_o * 0.01;
     }
   }
 
-  // End of Chart: '<S46>/Chart2'
+  // End of Chart: '<S47>/Chart2'
 
-  // MATLABSystem: '<S46>/Get Parameter5'
+  // MATLABSystem: '<S47>/Get Parameter5'
   ParamGet_motion_controller_withPIC_329.getParameter
-    (&motion_controller_withPIC_B.b_value_kw);
+    (&motion_controller_withPIC_B.b_value_k1);
 
-  // Gain: '<S46>/Gain2' incorporates:
-  //   Constant: '<S46>/Constant'
-  //   Gain: '<S46>/Gain'
+  // Gain: '<S47>/Gain2' incorporates:
+  //   Constant: '<S47>/Constant'
+  //   Gain: '<S47>/Gain'
   //   SignalConversion generated from: '<S17>/Bus Selector'
-  //   Sum: '<S46>/Add'
+  //   Sum: '<S47>/Add'
 
   motion_controller_withPIC_B.Gain2 = (static_cast<real_T>
     (motion_controller_withPIC_B.In1_m.mapped_channels[0]) -
@@ -12212,98 +12476,90 @@ void motion_controller_withPIC::step()
     motion_controller_withPIC_P.Gain_Gain_f *
     motion_controller_withPIC_P.Gain2_Gain_b;
 
-  // MATLABSystem: '<S46>/Get Parameter1'
+  // MATLABSystem: '<S47>/Get Parameter1'
   ParamGet_motion_controller_withPIC_317.getParameter
-    (&motion_controller_withPIC_B.b_value_l);
-
-  // MATLABSystem: '<S46>/Get Parameter'
-  ParamGet_motion_controller_withPIC_316.getParameter
     (&motion_controller_withPIC_B.b_value_o);
 
-  // MATLAB Function: '<S46>/MATLAB Function' incorporates:
-  //   MATLABSystem: '<S46>/Get Parameter'
-  //   MATLABSystem: '<S46>/Get Parameter1'
-  //   MATLABSystem: '<S46>/Get Parameter5'
+  // MATLABSystem: '<S47>/Get Parameter'
+  ParamGet_motion_controller_withPIC_316.getParameter
+    (&motion_controller_withPIC_B.b_value_o2);
 
-  if (motion_controller_withPIC_B.b_value_kw) {
-    motion_controller_withPIC_B.Product1 = motion_controller_withPIC_B.b_value_l
-      / 180.0 * 3.1415926535897931 * 0.01 / 2.0;
+  // MATLAB Function: '<S47>/MATLAB Function' incorporates:
+  //   MATLABSystem: '<S47>/Get Parameter'
+  //   MATLABSystem: '<S47>/Get Parameter1'
+  //   MATLABSystem: '<S47>/Get Parameter5'
+
+  if (motion_controller_withPIC_B.b_value_k1) {
+    motion_controller_withPIC_B.vyp = motion_controller_withPIC_B.b_value_o /
+      180.0 * 3.1415926535897931 * 0.01 / 2.0;
   } else {
-    motion_controller_withPIC_B.Product1 = motion_controller_withPIC_B.b_value_l
-      / 180.0 * 3.1415926535897931 * 0.01;
+    motion_controller_withPIC_B.vyp = motion_controller_withPIC_B.b_value_o /
+      180.0 * 3.1415926535897931 * 0.01;
   }
 
-  motion_controller_withPIC_B.UnitDelay = motion_controller_withPIC_B.Gain2 -
+  motion_controller_withPIC_B.vxp = motion_controller_withPIC_B.Gain2 -
     motion_controller_withPIC_DW.angle_out;
-  if (fabs(motion_controller_withPIC_B.UnitDelay) <
-      motion_controller_withPIC_B.Product1) {
+  if (fabs(motion_controller_withPIC_B.vxp) < motion_controller_withPIC_B.vyp) {
     motion_controller_withPIC_DW.angle_out = motion_controller_withPIC_B.Gain2;
-  } else if (motion_controller_withPIC_B.b_value_l <= 0.0) {
+  } else if (motion_controller_withPIC_B.b_value_o <= 0.0) {
     motion_controller_withPIC_DW.angle_out = motion_controller_withPIC_B.Gain2;
   } else {
-    if (rtIsNaN(motion_controller_withPIC_B.UnitDelay)) {
-      motion_controller_withPIC_B.UnitDelay = (rtNaN);
-    } else if (motion_controller_withPIC_B.UnitDelay < 0.0) {
-      motion_controller_withPIC_B.UnitDelay = -1.0;
+    if (rtIsNaN(motion_controller_withPIC_B.vxp)) {
+      motion_controller_withPIC_B.Gain2 = (rtNaN);
+    } else if (motion_controller_withPIC_B.vxp < 0.0) {
+      motion_controller_withPIC_B.Gain2 = -1.0;
     } else {
-      motion_controller_withPIC_B.UnitDelay =
-        (motion_controller_withPIC_B.UnitDelay > 0.0);
+      motion_controller_withPIC_B.Gain2 = (motion_controller_withPIC_B.vxp > 0.0);
     }
 
-    motion_controller_withPIC_DW.angle_out +=
-      motion_controller_withPIC_B.UnitDelay *
-      motion_controller_withPIC_B.Product1 /
-      motion_controller_withPIC_B.b_value_o;
+    motion_controller_withPIC_DW.angle_out += motion_controller_withPIC_B.Gain2 *
+      motion_controller_withPIC_B.vyp / motion_controller_withPIC_B.b_value_o2;
   }
 
-  if (motion_controller_withPIC_B.b_value_kw) {
-    motion_controller_withPIC_B.Product1 = fabs
+  if (motion_controller_withPIC_B.b_value_k1) {
+    motion_controller_withPIC_B.vxp = fabs
       (motion_controller_withPIC_DW.angle_out);
     if (rtIsNaN(motion_controller_withPIC_DW.angle_out)) {
-      motion_controller_withPIC_B.UnitDelay = (rtNaN);
+      motion_controller_withPIC_B.Gain2 = (rtNaN);
     } else if (motion_controller_withPIC_DW.angle_out < 0.0) {
-      motion_controller_withPIC_B.UnitDelay = -1.0;
+      motion_controller_withPIC_B.Gain2 = -1.0;
     } else {
-      motion_controller_withPIC_B.UnitDelay =
+      motion_controller_withPIC_B.Gain2 =
         (motion_controller_withPIC_DW.angle_out > 0.0);
     }
 
-    if (!(motion_controller_withPIC_B.Product1 <= 0.5)) {
-      motion_controller_withPIC_B.Product1 = 0.5;
+    if (!(motion_controller_withPIC_B.vxp <= 0.5)) {
+      motion_controller_withPIC_B.vxp = 0.5;
     }
 
-    motion_controller_withPIC_B.Product1 = motion_controller_withPIC_B.UnitDelay
-      * motion_controller_withPIC_B.Product1 * 2.0;
-    motion_controller_withPIC_B.UnitDelay = fabs
+    motion_controller_withPIC_B.vxp = motion_controller_withPIC_B.Gain2 *
+      motion_controller_withPIC_B.vxp * 2.0;
+    motion_controller_withPIC_B.Gain2 = fabs
       (motion_controller_withPIC_DW.angle_out);
-    if (motion_controller_withPIC_B.UnitDelay > 0.5) {
+    if (motion_controller_withPIC_B.Gain2 > 0.5) {
       if (rtIsNaN(motion_controller_withPIC_DW.angle_out)) {
-        motion_controller_withPIC_B.b_value_l = (rtNaN);
+        motion_controller_withPIC_B.vyp = (rtNaN);
       } else if (motion_controller_withPIC_DW.angle_out < 0.0) {
-        motion_controller_withPIC_B.b_value_l = -1.0;
+        motion_controller_withPIC_B.vyp = -1.0;
       } else {
-        motion_controller_withPIC_B.b_value_l =
+        motion_controller_withPIC_B.vyp =
           (motion_controller_withPIC_DW.angle_out > 0.0);
       }
 
-      motion_controller_withPIC_B.b_value_l =
-        (motion_controller_withPIC_B.UnitDelay - 0.5) *
-        -motion_controller_withPIC_B.b_value_l * 2.0;
+      motion_controller_withPIC_B.vyp = (motion_controller_withPIC_B.Gain2 - 0.5)
+        * -motion_controller_withPIC_B.vyp * 2.0;
     } else {
-      motion_controller_withPIC_B.b_value_l = 0.0;
+      motion_controller_withPIC_B.vyp = 0.0;
     }
   } else {
-    motion_controller_withPIC_B.Product1 =
-      motion_controller_withPIC_DW.angle_out;
-    motion_controller_withPIC_B.b_value_l = 0.0;
+    motion_controller_withPIC_B.vxp = motion_controller_withPIC_DW.angle_out;
+    motion_controller_withPIC_B.vyp = 0.0;
   }
 
-  motion_controller_withPIC_B.UnitDelay = motion_controller_withPIC_B.Product1 *
-    motion_controller_withPIC_B.b_value_o;
-  motion_controller_withPIC_B.Product1 = motion_controller_withPIC_B.b_value_l *
-    motion_controller_withPIC_B.b_value_o;
+  motion_controller_withPIC_B.vxp *= motion_controller_withPIC_B.b_value_o2;
+  motion_controller_withPIC_B.vyp *= motion_controller_withPIC_B.b_value_o2;
 
-  // End of MATLAB Function: '<S46>/MATLAB Function'
+  // End of MATLAB Function: '<S47>/MATLAB Function'
 
   // MATLABSystem: '<S15>/Get Parameter1'
   ParamGet_motion_controller_withPIC_217.getParameter
@@ -12358,22 +12614,22 @@ void motion_controller_withPIC::step()
       motion_controller_withPIC_DW.sum += static_cast<real_T>
         (motion_controller_withPIC_B.LogicalOperator_j);
       if (rtIsNaN(motion_controller_withPIC_DW.counter)) {
-        motion_controller_withPIC_B.b_value_o = (rtNaN);
+        motion_controller_withPIC_B.b_value_o2 = (rtNaN);
       } else if (rtIsInf(motion_controller_withPIC_DW.counter)) {
-        motion_controller_withPIC_B.b_value_o = (rtNaN);
+        motion_controller_withPIC_B.b_value_o2 = (rtNaN);
       } else if (motion_controller_withPIC_DW.counter == 0.0) {
-        motion_controller_withPIC_B.b_value_o = 0.0;
+        motion_controller_withPIC_B.b_value_o2 = 0.0;
       } else {
-        motion_controller_withPIC_B.b_value_o = fmod
+        motion_controller_withPIC_B.b_value_o2 = fmod
           (motion_controller_withPIC_DW.counter, 20.0);
-        if (motion_controller_withPIC_B.b_value_o == 0.0) {
-          motion_controller_withPIC_B.b_value_o = 0.0;
+        if (motion_controller_withPIC_B.b_value_o2 == 0.0) {
+          motion_controller_withPIC_B.b_value_o2 = 0.0;
         } else if (motion_controller_withPIC_DW.counter < 0.0) {
-          motion_controller_withPIC_B.b_value_o += 20.0;
+          motion_controller_withPIC_B.b_value_o2 += 20.0;
         }
       }
 
-      if (motion_controller_withPIC_B.b_value_o == 0.0) {
+      if (motion_controller_withPIC_B.b_value_o2 == 0.0) {
         motion_controller_withPIC_DW.check = motion_controller_withPIC_DW.sum;
         motion_controller_withPIC_DW.sum = 0.0;
       }
@@ -12410,41 +12666,41 @@ void motion_controller_withPIC::step()
           motion_controller_withPIC_B.spd_cmd[2] = 0.0;
           motion_controller_withPIC_B.spd_cmd[3] = 0.0;
         } else {
-          motion_controller_withPIC_B.b_value_o = 1.5 * fabs
+          motion_controller_withPIC_B.b_value_o2 = 1.5 * fabs
             (motion_controller_withPIC_B.out);
-          motion_controller_withPIC_B.b_value_l =
+          motion_controller_withPIC_B.b_value_o =
             (((motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[0] +
                motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[1]) +
               motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[2]) +
              motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[3]) / 4.0;
-          if (fabs(motion_controller_withPIC_B.b_value_l) < 0.5) {
+          if (fabs(motion_controller_withPIC_B.b_value_o) < 0.5) {
             motion_controller_withPIC_B.mode = 1;
             motion_controller_withPIC_B.spd_cmd[0] = 0.0;
             motion_controller_withPIC_B.spd_cmd[1] = 0.0;
             motion_controller_withPIC_B.spd_cmd[2] = 0.0;
             motion_controller_withPIC_B.spd_cmd[3] = 0.0;
-            motion_controller_withPIC_B.b_value_o = 0.0;
-          } else if (motion_controller_withPIC_B.b_value_l > 0.5) {
-            motion_controller_withPIC_B.b_value_o =
-              -motion_controller_withPIC_B.b_value_o;
+            motion_controller_withPIC_B.b_value_o2 = 0.0;
+          } else if (motion_controller_withPIC_B.b_value_o > 0.5) {
+            motion_controller_withPIC_B.b_value_o2 =
+              -motion_controller_withPIC_B.b_value_o2;
             motion_controller_withPIC_B.mode = 2;
-          } else if (motion_controller_withPIC_B.b_value_l < -0.5) {
+          } else if (motion_controller_withPIC_B.b_value_o < -0.5) {
             motion_controller_withPIC_B.mode = 2;
           }
 
-          motion_controller__get_angle_4w(motion_controller_withPIC_B.UnitDelay,
-            motion_controller_withPIC_B.Product1,
+          motion_controller__get_angle_4w(motion_controller_withPIC_B.vxp,
+            motion_controller_withPIC_B.vyp,
             motion_controller_withPIC_B.angle_cmd);
           motion_controller_withPIC_B.effort_cmd[0] =
-            motion_controller_withPIC_B.b_value_o * 1.6;
-          motion_controller_withPIC_B.UnitDelay =
-            -motion_controller_withPIC_B.b_value_o * 1.6;
+            motion_controller_withPIC_B.b_value_o2 * 1.6;
+          motion_controller_withPIC_B.vxp =
+            -motion_controller_withPIC_B.b_value_o2 * 1.6;
           motion_controller_withPIC_B.effort_cmd[1] =
-            motion_controller_withPIC_B.UnitDelay;
+            motion_controller_withPIC_B.vxp;
           motion_controller_withPIC_B.effort_cmd[2] =
-            motion_controller_withPIC_B.UnitDelay;
+            motion_controller_withPIC_B.vxp;
           motion_controller_withPIC_B.effort_cmd[3] =
-            motion_controller_withPIC_B.b_value_o * 1.6;
+            motion_controller_withPIC_B.b_value_o2 * 1.6;
         }
 
         // case IN_forward:
@@ -12456,9 +12712,8 @@ void motion_controller_withPIC::step()
         motion_controller_withPIC_B.spd_cmd[2] = 0.0;
         motion_controller_withPIC_B.spd_cmd[3] = 0.0;
       } else {
-        motion_controller__get_angle_4w(motion_controller_withPIC_B.UnitDelay,
-          motion_controller_withPIC_B.Product1,
-          motion_controller_withPIC_B.angle_cmd);
+        motion_controller__get_angle_4w(motion_controller_withPIC_B.vxp,
+          motion_controller_withPIC_B.vyp, motion_controller_withPIC_B.angle_cmd);
         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_h[0] =
           motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[0] / 0.07;
         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_h[1] =
@@ -12468,14 +12723,13 @@ void motion_controller_withPIC::step()
         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_h[3] =
           motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[3] / 0.07;
         if (motion_controller_withPIC_B.In1_m.mapped_channels[6] == 1000) {
-          motion_controller_withPIC_B.UnitDelay = -0.5 *
+          motion_controller_withPIC_B.Gain2 = -0.5 *
             motion_controller_withPIC_B.out;
         } else {
-          motion_controller_withPIC_B.UnitDelay =
-            motion_controller_withPIC_B.out;
+          motion_controller_withPIC_B.Gain2 = motion_controller_withPIC_B.out;
         }
 
-        motion_controller_wi_get_effort(motion_controller_withPIC_B.UnitDelay,
+        motion_controller_wi_get_effort(motion_controller_withPIC_B.Gain2,
           motion_controller_withPIC_P.Constant_Value_o,
           motion_controller_withPIC_P.Constant_Value_o,
           motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_h,
@@ -12538,10 +12792,9 @@ void motion_controller_withPIC::step()
         motion_controller_withPIC_B.effort_cmd[3] = 0.0;
         motion_controller_withPIC_B.mode = 0;
       } else {
-        motion_controller__get_angle_4w(motion_controller_withPIC_B.UnitDelay,
-          motion_controller_withPIC_B.Product1,
-          motion_controller_withPIC_B.angle_cmd);
-        motion_controller_withP_get_spd(motion_controller_withPIC_B.UnitDelay,
+        motion_controller__get_angle_4w(motion_controller_withPIC_B.vxp,
+          motion_controller_withPIC_B.vyp, motion_controller_withPIC_B.angle_cmd);
+        motion_controller_withP_get_spd(motion_controller_withPIC_B.vxp,
           motion_controller_withPIC_B.out, motion_controller_withPIC_B.spd_cmd);
         motion_controller_withPIC_B.mode = 1;
       }
@@ -12554,11 +12807,11 @@ void motion_controller_withPIC::step()
 
   // MATLABSystem: '<S10>/Get Parameter3'
   ParamGet_motion_controller_withPIC_621.getParameter
-    (&motion_controller_withPIC_B.b_value_l);
+    (&motion_controller_withPIC_B.b_value_o);
 
   // MATLABSystem: '<S10>/Get Parameter1'
   ParamGet_motion_controller_withPIC_625.getParameter
-    (&motion_controller_withPIC_B.b_value_kw);
+    (&motion_controller_withPIC_B.b_value_k1);
 
   // Switch: '<S10>/Switch2' incorporates:
   //   Gain: '<S10>/Gain'
@@ -12567,18 +12820,18 @@ void motion_controller_withPIC::step()
   //   MATLABSystem: '<S10>/Get Parameter3'
   //   Product: '<S10>/Divide'
 
-  if (motion_controller_withPIC_B.b_value_kw) {
+  if (motion_controller_withPIC_B.b_value_k1) {
     motion_controller_withPIC_B.Switch[0] = motion_controller_withPIC_B.spd_cmd
-      [0] / motion_controller_withPIC_B.b_value_l *
+      [0] / motion_controller_withPIC_B.b_value_o *
       motion_controller_withPIC_P.Gain1_Gain;
     motion_controller_withPIC_B.Switch[1] = motion_controller_withPIC_B.spd_cmd
-      [1] / motion_controller_withPIC_B.b_value_l *
+      [1] / motion_controller_withPIC_B.b_value_o *
       motion_controller_withPIC_P.Gain1_Gain;
     motion_controller_withPIC_B.Switch[2] = motion_controller_withPIC_B.spd_cmd
-      [2] / motion_controller_withPIC_B.b_value_l *
+      [2] / motion_controller_withPIC_B.b_value_o *
       motion_controller_withPIC_P.Gain1_Gain;
     motion_controller_withPIC_B.Switch[3] = motion_controller_withPIC_B.spd_cmd
-      [3] / motion_controller_withPIC_B.b_value_l *
+      [3] / motion_controller_withPIC_B.b_value_o *
       motion_controller_withPIC_P.Gain1_Gain;
   } else {
     motion_controller_withPIC_B.Switch[0] =
@@ -12599,11 +12852,11 @@ void motion_controller_withPIC::step()
 
   // MATLABSystem: '<Root>/Get Parameter'
   ParamGet_motion_controller_withPIC_557.getParameter
-    (&motion_controller_withPIC_B.b_value_l);
+    (&motion_controller_withPIC_B.b_value_o);
 
   // MATLABSystem: '<Root>/Get Parameter1'
   ParamGet_motion_controller_withPIC_558.getParameter
-    (&motion_controller_withPIC_B.b_value_o);
+    (&motion_controller_withPIC_B.b_value_o2);
 
   // MATLABSystem: '<Root>/Get Parameter2'
   ParamGet_motion_controller_withPIC_559.getParameter
@@ -12615,19 +12868,19 @@ void motion_controller_withPIC::step()
 
   // MATLABSystem: '<Root>/Get Parameter4'
   ParamGet_motion_controller_withPIC_561.getParameter
-    (&motion_controller_withPIC_B.b_value_e);
+    (&motion_controller_withPIC_B.b_value_ax);
 
   // MATLABSystem: '<Root>/Get Parameter5'
   ParamGet_motion_controller_withPIC_562.getParameter
-    (&motion_controller_withPIC_B.b_value_ax);
+    (&motion_controller_withPIC_B.b_value_as);
 
   // MATLABSystem: '<Root>/Get Parameter15'
   ParamGet_motion_controller_withPIC_631.getParameter
-    (&motion_controller_withPIC_B.b_value_as);
+    (&motion_controller_withPIC_B.b_value_i);
 
   // MATLABSystem: '<Root>/Get Parameter16'
   ParamGet_motion_controller_withPIC_632.getParameter
-    (&motion_controller_withPIC_B.b_value_i);
+    (&motion_controller_withPIC_B.b_value_l);
 
   // Outputs for Enabled SubSystem: '<Root>/picController' incorporates:
   //   EnablePort: '<S16>/Enable'
@@ -12646,15 +12899,19 @@ void motion_controller_withPIC::step()
 
     // MATLABSystem: '<S16>/Get Parameter'
     ParamGet_motion_controller_withPIC_637.getParameter
-      (&motion_controller_withPIC_B.Product1);
+      (&motion_controller_withPIC_B.vyp);
 
     // MATLABSystem: '<S16>/Get Parameter1'
     ParamGet_motion_controller_withPIC_709.getParameter
-      (&motion_controller_withPIC_B.b_value_kw);
+      (&motion_controller_withPIC_B.b_value_k1);
+
+    // MATLABSystem: '<S16>/Get Parameter2'
+    ParamGet_motion_controller_withPIC_944.getParameter
+      (&motion_controller_withPIC_B.b_value_ip);
 
     // MATLABSystem: '<S16>/Get Parameter6'
     ParamGet_motion_controller_withPIC_556.getParameter
-      (&motion_controller_withPIC_B.UnitDelay);
+      (&motion_controller_withPIC_B.vxp);
 
     // MATLAB Function: '<S16>/MATLAB Function' incorporates:
     //   MATLABSystem: '<Root>/Get Parameter'
@@ -12666,43 +12923,65 @@ void motion_controller_withPIC::step()
     //   MATLABSystem: '<Root>/Get Parameter4'
     //   MATLABSystem: '<Root>/Get Parameter5'
 
-    motion_controller_withPIC_B.y_j[0] = motion_controller_withPIC_B.b_value_l;
-    motion_controller_withPIC_B.y_j[1] = motion_controller_withPIC_B.b_value_o;
+    motion_controller_withPIC_B.y_j[0] = motion_controller_withPIC_B.b_value_o;
+    motion_controller_withPIC_B.y_j[1] = motion_controller_withPIC_B.b_value_o2;
     motion_controller_withPIC_B.y_j[2] = motion_controller_withPIC_B.Gain2;
     motion_controller_withPIC_B.y_j[3] = motion_controller_withPIC_B.Add_i;
-    motion_controller_withPIC_B.y_j[4] = motion_controller_withPIC_B.b_value_e;
-    motion_controller_withPIC_B.y_j[5] = motion_controller_withPIC_B.b_value_ax;
+    motion_controller_withPIC_B.y_j[4] = motion_controller_withPIC_B.b_value_ax;
+    motion_controller_withPIC_B.y_j[5] = motion_controller_withPIC_B.b_value_as;
     memset(&motion_controller_withPIC_B.Q[0], 0, 36U * sizeof(real_T));
-    for (motion_controller_withPIC_B.b_kidx = 0;
-         motion_controller_withPIC_B.b_kidx < 6;
-         motion_controller_withPIC_B.b_kidx++) {
-      motion_controller_withPIC_B.Q[motion_controller_withPIC_B.b_kidx + 6 *
-        motion_controller_withPIC_B.b_kidx] =
-        motion_controller_withPIC_B.y_j[motion_controller_withPIC_B.b_kidx];
+    for (motion_controller_withPIC_B.j = 0; motion_controller_withPIC_B.j < 6;
+         motion_controller_withPIC_B.j++) {
+      motion_controller_withPIC_B.Q[motion_controller_withPIC_B.j + 6 *
+        motion_controller_withPIC_B.j] =
+        motion_controller_withPIC_B.y_j[motion_controller_withPIC_B.j];
     }
 
     motion_controller_withPIC_B.R[1] = 0.0;
     motion_controller_withPIC_B.R[2] = 0.0;
-    motion_controller_withPIC_B.R[0] = motion_controller_withPIC_B.b_value_as;
-    motion_controller_withPIC_B.R[3] = motion_controller_withPIC_B.b_value_i;
+    motion_controller_withPIC_B.R[0] = motion_controller_withPIC_B.b_value_i;
+    motion_controller_withPIC_B.R[3] = motion_controller_withPIC_B.b_value_l;
 
     // End of MATLAB Function: '<S16>/MATLAB Function'
 
-    // MATLAB Function: '<S16>/MATLAB Function2'
+    // MATLAB Function: '<S16>/MATLAB Function2' incorporates:
+    //   MATLABSystem: '<S16>/Get Parameter2'
+
+    if (motion_controller_withPIC_B.b_value_ip == 0.0) {
+      motion_controller_withPIC_B.y_j[2] = rt_roundd_snf
+        (motion_controller_withPIC_B.yaw / 2.0 / 3.1415926535897931) * 2.0 *
+        3.1415926535897931;
+    } else if (motion_controller_withPIC_B.b_value_ip == 1.0) {
+      if (rtIsNaN(motion_controller_withPIC_B.yaw)) {
+        motion_controller_withPIC_B.Gain2 = (rtNaN);
+      } else if (motion_controller_withPIC_B.yaw < 0.0) {
+        motion_controller_withPIC_B.Gain2 = -1.0;
+      } else {
+        motion_controller_withPIC_B.Gain2 = (motion_controller_withPIC_B.yaw >
+          0.0);
+      }
+
+      motion_controller_withPIC_B.y_j[2] = motion_controller_withPIC_B.Gain2 *
+        3.1415926535897931;
+    } else {
+      motion_controller_withPIC_B.y_j[2] = rt_roundd_snf
+        (motion_controller_withPIC_B.yaw / 3.1415926535897931) *
+        3.1415926535897931;
+    }
+
     motion_controller_withPIC_B.y_j[0] = 0.0;
     motion_controller_withPIC_B.y_j[1] = 0.0;
-    motion_controller_withPIC_B.y_j[2] = rt_roundd_snf
-      (motion_controller_withPIC_B.yaw / 3.1415926535897931) *
-      3.1415926535897931;
     motion_controller_withPIC_B.y_j[3] = 0.0;
     motion_controller_withPIC_B.y_j[4] = 0.0;
     motion_controller_withPIC_B.y_j[5] = 0.0;
 
-    // Sum: '<S58>/Add' incorporates:
-    //   Product: '<S58>/Product3'
-    //   Product: '<S58>/Product4'
-    //   Trigonometry: '<S58>/Cos'
-    //   Trigonometry: '<S58>/Cos1'
+    // End of MATLAB Function: '<S16>/MATLAB Function2'
+
+    // Sum: '<S59>/Add' incorporates:
+    //   Product: '<S59>/Product3'
+    //   Product: '<S59>/Product4'
+    //   Trigonometry: '<S59>/Cos'
+    //   Trigonometry: '<S59>/Cos1'
 
     motion_controller_withPIC_B.Add1 = sin(motion_controller_withPIC_B.yaw) *
       motion_controller_withPIC_B.Add + cos(motion_controller_withPIC_B.yaw) *
@@ -12715,7 +12994,7 @@ void motion_controller_withPIC::step()
     motion_controller_withPIC_B.Reshape[0] = motion_controller_withPIC_B.yp;
     motion_controller_withPIC_B.Reshape[1] = motion_controller_withPIC_B.Add1;
     motion_controller_withPIC_B.Reshape[2] = motion_controller_withPIC_B.yaw;
-    motion_controller_withPIC_B.Reshape[3] = motion_controller_withPIC_DW.yd;
+    motion_controller_withPIC_B.Reshape[3] = motion_controller_withPIC_B.y_g;
     motion_controller_withPIC_B.Reshape[4] =
       motion_controller_withPIC_DW.UnitDelay_DSTATE;
     motion_controller_withPIC_B.Reshape[5] =
@@ -12723,15 +13002,13 @@ void motion_controller_withPIC::step()
 
     // Switch: '<S16>/Switch' incorporates:
     //   Constant: '<S16>/Constant2'
-    //   Constant: '<S55>/Constant'
-    //   RelationalOperator: '<S55>/Compare'
+    //   Constant: '<S56>/Constant'
+    //   RelationalOperator: '<S56>/Compare'
 
-    if (motion_controller_withPIC_DW.yd ==
+    if (motion_controller_withPIC_B.y_g ==
         motion_controller_withPIC_P.CompareToConstant_const) {
-      motion_controller_withPIC_B.b_value_e =
+      motion_controller_withPIC_B.y_g =
         motion_controller_withPIC_P.Constant2_Value_g;
-    } else {
-      motion_controller_withPIC_B.b_value_e = motion_controller_withPIC_DW.yd;
     }
 
     // End of Switch: '<S16>/Switch'
@@ -12748,17 +13025,17 @@ void motion_controller_withPIC::step()
     //   Trigonometry: '<S12>/Cos1'
 
     motion_controller_withPIC_B.b_value_ax = motion_controller_withPIC_P.B *
-      motion_controller_withPIC_B.b_value_e / 2.0;
+      motion_controller_withPIC_B.y_g / 2.0;
     motion_controller_withPIC_B.b_value_as =
       motion_controller_withPIC_B.b_value_ax - motion_controller_withPIC_B.Add;
     motion_controller_withPIC_B.e_a_tmp = motion_controller_withPIC_B.Add1 -
-      motion_controller_withPIC_B.alpha1_tmp_i;
-    motion_controller_withPIC_B.alpha1_tmp_i = motion_controller_withPIC_P.b *
-      motion_controller_withPIC_B.b_value_e;
-    motion_controller_withPIC_B.e_a_tmp_j = motion_controller_withPIC_B.e_a_tmp /
+      motion_controller_withPIC_B.alpha1_tmp_f;
+    motion_controller_withPIC_B.alpha1_tmp_f = motion_controller_withPIC_P.b *
+      motion_controller_withPIC_B.y_g;
+    motion_controller_withPIC_B.e_a_tmp_f = motion_controller_withPIC_B.e_a_tmp /
       motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-    motion_controller_withPIC_B.e_a = motion_controller_withPIC_B.e_a_tmp_j -
-      motion_controller_withPIC_B.alpha1_tmp_i;
+    motion_controller_withPIC_B.e_a = motion_controller_withPIC_B.e_a_tmp_f -
+      motion_controller_withPIC_B.alpha1_tmp_f;
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
@@ -12768,28 +13045,28 @@ void motion_controller_withPIC::step()
     } else if (motion_controller_withPIC_B.e_a_tmp * 0.0 == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_im =
-        motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp = (rtNaN);
       motion_controller_withPIC_B.rtb_Add_c_im =
-        motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.b_value_i =
-      motion_controller_withPIC_B.alpha1_tmp_i * 0.0;
+      motion_controller_withPIC_B.alpha1_tmp_f * 0.0;
     motion_controller_withPIC_B.f_a = sin(motion_controller_withPIC_B.dr_i -
       rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
                       motion_controller_withPIC_B.rtb_Add_c_re_tmp) -
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
-    motion_controller_withPIC_B.g_a_tmp = motion_controller_withPIC_B.b_value_ax
-      + motion_controller_withPIC_B.Add;
-    motion_controller_withPIC_B.i_a_tmp = (motion_controller_withPIC_B.Add1 -
+    motion_controller_withPIC_B.b_value_l =
+      motion_controller_withPIC_B.b_value_ax + motion_controller_withPIC_B.Add;
+    motion_controller_withPIC_B.b_value_ip = (motion_controller_withPIC_B.Add1 -
       motion_controller_withPIC_B.Add * sin(motion_controller_withPIC_B.yaw)) /
       cos(motion_controller_withPIC_B.yaw) - motion_controller_withPIC_P.b *
-      motion_controller_withPIC_B.b_value_e;
+      motion_controller_withPIC_B.y_g;
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
@@ -12801,16 +13078,16 @@ void motion_controller_withPIC::step()
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_im =
-        motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp = (rtNaN);
       motion_controller_withPIC_B.rtb_Add_c_im =
-        motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.k_a = sin(motion_controller_withPIC_B.dr_i -
       rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
                       motion_controller_withPIC_B.rtb_Add_c_re_tmp) +
                      motion_controller_withPIC_B.b_value_ax) -
@@ -12826,16 +13103,16 @@ void motion_controller_withPIC::step()
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_im =
-        motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp = (rtNaN);
       motion_controller_withPIC_B.rtb_Add_c_im =
-        motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.n_a_tmp = motion_controller_withPIC_P.a *
-      motion_controller_withPIC_B.b_value_e;
-    motion_controller_withPIC_B.n_a_tmp_k = motion_controller_withPIC_B.n_a_tmp *
+      motion_controller_withPIC_B.y_g;
+    motion_controller_withPIC_B.n_a_tmp_a = motion_controller_withPIC_B.n_a_tmp *
       0.0;
     motion_controller_withPIC_B.n_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
@@ -12843,7 +13120,7 @@ void motion_controller_withPIC::step()
                     ((motion_controller_withPIC_B.Add +
                       motion_controller_withPIC_B.rtb_Add_c_re_tmp) -
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     motion_controller_withPIC_B.o_a_tmp = (motion_controller_withPIC_B.Add1 -
       motion_controller_withPIC_B.Add * sin(motion_controller_withPIC_B.yaw)) /
       cos(motion_controller_withPIC_B.yaw) + motion_controller_withPIC_B.n_a_tmp;
@@ -12860,11 +13137,11 @@ void motion_controller_withPIC::step()
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_im =
-        motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp = (rtNaN);
       motion_controller_withPIC_B.rtb_Add_c_im =
-        motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.s_a = sin(motion_controller_withPIC_B.df_j -
@@ -12873,7 +13150,7 @@ void motion_controller_withPIC::step()
                     ((motion_controller_withPIC_B.Add +
                       motion_controller_withPIC_B.rtb_Add_c_re_tmp) +
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
@@ -12882,11 +13159,8 @@ void motion_controller_withPIC::step()
       motion_controller_withPIC_B.rtb_Add_c_im = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_o = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_i =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp;
       motion_controller_withPIC_B.rtb_Add_c_im_f = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_iz =
+      motion_controller_withPIC_B.rtb_Add_c_re_i =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp;
       motion_controller_withPIC_B.rtb_Add_c_im_ff = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_g =
@@ -12901,9 +13175,12 @@ void motion_controller_withPIC::step()
       motion_controller_withPIC_B.rtb_Add_c_re_c =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp;
       motion_controller_withPIC_B.rtb_Add_c_im_fm = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_p =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp;
+      motion_controller_withPIC_B.rtb_Add_c_im_e = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_p = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_o = 0.0;
     } else {
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
@@ -12921,12 +13198,12 @@ void motion_controller_withPIC::step()
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
         motion_controller_withPIC_B.rtb_Add_c_re = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_o =
+        motion_controller_withPIC_B.rtb_Add_c_im_f =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
         motion_controller_withPIC_B.rtb_Add_c_re = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_o =
+        motion_controller_withPIC_B.rtb_Add_c_im_f =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       }
@@ -12934,24 +13211,11 @@ void motion_controller_withPIC::step()
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
         motion_controller_withPIC_B.rtb_Add_c_re_i = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_f =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_i = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_f =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      }
-
-      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
-           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_iz = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_ff =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_iz = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_i = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_ff =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -13011,19 +13275,32 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
+        motion_controller_withPIC_B.rtb_Add_c_re_p = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_e =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      } else {
+        motion_controller_withPIC_B.rtb_Add_c_re_p = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_e =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      }
+
+      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
+           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_p =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_im_o =
+          motion_controller_withPIC_B.e_a_tmp_f;
       } else {
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_p =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_im_o =
+          motion_controller_withPIC_B.e_a_tmp_f;
       }
     }
 
     motion_controller_withPIC_B.bb_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_p -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_o -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
                       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o) +
                      motion_controller_withPIC_B.b_value_ax) -
@@ -13033,22 +13310,22 @@ void motion_controller_withPIC::step()
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_p = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_o = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_p =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_im_o =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_p =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_im_o =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.hb_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_p -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_o -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
                       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o) -
                      motion_controller_withPIC_B.b_value_ax) -
@@ -13058,60 +13335,57 @@ void motion_controller_withPIC::step()
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_p = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_o = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_p =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_im_o =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_p =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_im_o =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.lb_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_p,
+                    motion_controller_withPIC_B.rtb_Add_c_im_o,
                     ((motion_controller_withPIC_B.Add +
                       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o) -
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_p = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_o = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_p =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_im_o =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_p =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_im_o =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.rb_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_p,
+                    motion_controller_withPIC_B.rtb_Add_c_im_o,
                     ((motion_controller_withPIC_B.Add +
                       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o) +
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
       motion_controller_withPIC_B.rtb_Add_c_re_tmp_o =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_p = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_e =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
-      motion_controller_withPIC_B.rtb_Add_c_im_o4 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_o = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_h =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
       motion_controller_withPIC_B.rtb_Add_c_im_l5 = 0.0;
@@ -13124,50 +13398,40 @@ void motion_controller_withPIC::step()
       motion_controller_withPIC_B.rtb_Add_c_re_cs =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
       motion_controller_withPIC_B.rtb_Add_c_im_k = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_p =
+      motion_controller_withPIC_B.rtb_Add_c_re_pc =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
-      motion_controller_withPIC_B.rtb_Add_c_im_px = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_p = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_p4 =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
       motion_controller_withPIC_B.rtb_Add_c_im_a = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_j =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
-      motion_controller_withPIC_B.rtb_Add_c_im_e = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ek = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_ol =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
       motion_controller_withPIC_B.rtb_Add_c_im_b = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_a =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
       motion_controller_withPIC_B.rtb_Add_c_im_g = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_ex =
+      motion_controller_withPIC_B.rtb_Add_c_re_e =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
       motion_controller_withPIC_B.rtb_Add_c_im_fi = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f =
+      motion_controller_withPIC_B.rtb_Add_c_re_h22 =
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ei = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_o;
+      motion_controller_withPIC_B.rtb_Add_c_im_ch = 0.0;
     } else {
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_p =
+        motion_controller_withPIC_B.rtb_Add_c_im_o =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
         motion_controller_withPIC_B.rtb_Add_c_re_tmp_o = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_p =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      }
-
-      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
-           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_e = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_o4 =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_e = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_o4 =
+        motion_controller_withPIC_B.rtb_Add_c_im_o =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       }
@@ -13226,13 +13490,13 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_p = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_px =
+        motion_controller_withPIC_B.rtb_Add_c_re_pc = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_p =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_p = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_px =
+        motion_controller_withPIC_B.rtb_Add_c_re_pc = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_p =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       }
@@ -13253,12 +13517,12 @@ void motion_controller_withPIC::step()
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
         motion_controller_withPIC_B.rtb_Add_c_re_j = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_e =
+        motion_controller_withPIC_B.rtb_Add_c_im_ek =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
         motion_controller_withPIC_B.rtb_Add_c_re_j = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_e =
+        motion_controller_withPIC_B.rtb_Add_c_im_ek =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       }
@@ -13291,12 +13555,12 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_ex = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_e = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_fi =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_ex = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_e = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_fi =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -13304,150 +13568,150 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_h2 =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_h22 = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_ei =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_h2 =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_h22 = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_ei =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      }
+
+      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
+           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_ch =
+          motion_controller_withPIC_B.e_a_tmp_f;
+      } else {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_ch =
+          motion_controller_withPIC_B.e_a_tmp_f;
       }
     }
 
     motion_controller_withPIC_B.yb_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_h2 -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_ch -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l) +
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ch = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ch =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_ch =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.ec_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_h2 -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_ch -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l) -
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ch = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ch =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_ch =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.hc_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_h2,
+                    motion_controller_withPIC_B.rtb_Add_c_im_ch,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l) -
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ch = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ch =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_ch =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.mc_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_h2,
+                    motion_controller_withPIC_B.rtb_Add_c_im_ch,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l) +
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_ei =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
       motion_controller_withPIC_B.rtb_Add_c_im_ch = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_ax =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
       motion_controller_withPIC_B.rtb_Add_c_im_d = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_af =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
       motion_controller_withPIC_B.rtb_Add_c_im_pb = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_ms =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
       motion_controller_withPIC_B.rtb_Add_c_im_o3 = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_n =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
       motion_controller_withPIC_B.rtb_Add_c_im_lu = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_pe =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
       motion_controller_withPIC_B.rtb_Add_c_im_pt = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_f =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
       motion_controller_withPIC_B.rtb_Add_c_im_i = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
-      motion_controller_withPIC_B.rtb_Add_c_im_ox = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_ox =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
+      motion_controller_withPIC_B.rtb_Add_c_im_kk = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
+      motion_controller_withPIC_B.rtb_Add_c_im_ie = 0.0;
     } else {
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_h2 =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_h2 =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      }
-
-      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
-           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_ei = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_ch =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_ei = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_ch =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -13533,150 +13797,150 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_ox =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_ox = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_kk =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_ox =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_ox = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_kk =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      }
+
+      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
+           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_ie =
+          motion_controller_withPIC_B.e_a_tmp_f;
+      } else {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_ie =
+          motion_controller_withPIC_B.e_a_tmp_f;
       }
     }
 
     motion_controller_withPIC_B.rc_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_ox,
+                    motion_controller_withPIC_B.rtb_Add_c_im_ie,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu) -
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_ox = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ie = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_ox =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ie =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_ox =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_ie =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.wc_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_ox,
+                    motion_controller_withPIC_B.rtb_Add_c_im_ie,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu) +
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_ox = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ie = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_ox =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ie =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_ox =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_ie =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.ed_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_ox -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_ie -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu) +
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_ox = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ie = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_ox =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ie =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_ox =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_ie =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.jd_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_ox -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_ie -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu) -
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_ox = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_k =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy;
       motion_controller_withPIC_B.rtb_Add_c_im_ie = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_oc =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
       motion_controller_withPIC_B.rtb_Add_c_im_m4 = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_cu =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
       motion_controller_withPIC_B.rtb_Add_c_im_fb = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_hc =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
       motion_controller_withPIC_B.rtb_Add_c_im_m44 = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_ad =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
       motion_controller_withPIC_B.rtb_Add_c_im_kb = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_pc =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy;
+      motion_controller_withPIC_B.rtb_Add_c_re_pcr =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
       motion_controller_withPIC_B.rtb_Add_c_im_bp = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_ch =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
       motion_controller_withPIC_B.rtb_Add_c_im_n = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy;
-      motion_controller_withPIC_B.rtb_Add_c_im_ij = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_ij =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
+      motion_controller_withPIC_B.rtb_Add_c_im_my = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
+      motion_controller_withPIC_B.rtb_Add_c_im_j = 0.0;
     } else {
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_ox =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_ox =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      }
-
-      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
-           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_k = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_ie =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_k = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_ie =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -13736,12 +14000,12 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_pc = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_pcr = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_bp =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_pc = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_pcr = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_bp =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -13762,150 +14026,150 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_ij =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_ij = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_my =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_ij =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_ij = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_my =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      }
+
+      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
+           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_j =
+          motion_controller_withPIC_B.e_a_tmp_f;
+      } else {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_j =
+          motion_controller_withPIC_B.e_a_tmp_f;
       }
     }
 
     motion_controller_withPIC_B.pd_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_ij -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_j -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g) -
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_ij = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_j = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_ij =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_j =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_ij =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_j =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.td_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_ij,
+                    motion_controller_withPIC_B.rtb_Add_c_im_j,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g) -
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_ij = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_j = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_ij =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_j =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_ij =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_j =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.ae_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_ij,
+                    motion_controller_withPIC_B.rtb_Add_c_im_j,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g) +
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_ij = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_j = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_ij =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_j =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_ij =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_j =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.ie_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_ij -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_j -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g) +
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_l =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_ij = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_my =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
       motion_controller_withPIC_B.rtb_Add_c_im_j = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_ev =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
       motion_controller_withPIC_B.rtb_Add_c_im_mv = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_m0 =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
       motion_controller_withPIC_B.rtb_Add_c_im_jg = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_fo =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
       motion_controller_withPIC_B.rtb_Add_c_im_a5 = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_gl =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
       motion_controller_withPIC_B.rtb_Add_c_im_nr = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_d =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
       motion_controller_withPIC_B.rtb_Add_c_im_na = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_cg =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
       motion_controller_withPIC_B.rtb_Add_c_im_fx = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l;
-      motion_controller_withPIC_B.rtb_Add_c_im_pm = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_pm =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
+      motion_controller_withPIC_B.rtb_Add_c_im_p2 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
+      motion_controller_withPIC_B.rtb_Add_c_im_nj = 0.0;
     } else {
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_ij =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_l = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_ij =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      }
-
-      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
-           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_my = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_j =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_my = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_j =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -13991,150 +14255,150 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_pm =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_pm = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_p2 =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_pm =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_pm = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_p2 =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      }
+
+      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
+           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_nj =
+          motion_controller_withPIC_B.e_a_tmp_f;
+      } else {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_nj =
+          motion_controller_withPIC_B.e_a_tmp_f;
       }
     }
 
     motion_controller_withPIC_B.ne_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_pm -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_nj -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d) -
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_pm = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_nj = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_pm =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_nj =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_pm =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_nj =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.qe_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_pm,
+                    motion_controller_withPIC_B.rtb_Add_c_im_nj,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d) -
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_pm = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_nj = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_pm =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_nj =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_pm =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_nj =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.ve_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_pm,
+                    motion_controller_withPIC_B.rtb_Add_c_im_nj,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d) +
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_pm = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_nj = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_pm =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_nj =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_pm =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_nj =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.df_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_pm -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_nj -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d) +
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_pm = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_p2 =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
       motion_controller_withPIC_B.rtb_Add_c_im_nj = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_kt =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
+      motion_controller_withPIC_B.rtb_Add_c_re_k =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
       motion_controller_withPIC_B.rtb_Add_c_im_n3 = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_oy =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
       motion_controller_withPIC_B.rtb_Add_c_im_gg = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_cq =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
       motion_controller_withPIC_B.rtb_Add_c_im_cj = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_m1 =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
       motion_controller_withPIC_B.rtb_Add_c_im_jp = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_kn =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
       motion_controller_withPIC_B.rtb_Add_c_im_mx = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_pr =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
       motion_controller_withPIC_B.rtb_Add_c_im_dz = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu;
-      motion_controller_withPIC_B.rtb_Add_c_im_g4 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_g4 =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
+      motion_controller_withPIC_B.rtb_Add_c_im_c3 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
+      motion_controller_withPIC_B.rtb_Add_c_im_cx = 0.0;
     } else {
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_pm =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_pm =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      }
-
-      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
-           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_p2 = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_nj =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_p2 = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_nj =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -14142,12 +14406,12 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_kt = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_k = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_n3 =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_kt = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_k = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_n3 =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -14220,94 +14484,94 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_g4 =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_g4 = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_c3 =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_g4 =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_g4 = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_c3 =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      }
+
+      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
+           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_cx =
+          motion_controller_withPIC_B.e_a_tmp_f;
+      } else {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_cx =
+          motion_controller_withPIC_B.e_a_tmp_f;
       }
     }
 
     motion_controller_withPIC_B.ef_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_g4,
+                    motion_controller_withPIC_B.rtb_Add_c_im_cx,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv) -
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_g4 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_cx = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_g4 =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_cx =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_g4 =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_cx =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.ff_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_g4,
+                    motion_controller_withPIC_B.rtb_Add_c_im_cx,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv) +
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_g =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_g4 = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_c3 =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
       motion_controller_withPIC_B.rtb_Add_c_im_cx = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_if =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
       motion_controller_withPIC_B.rtb_Add_c_im_dx = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_g4 =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
+      motion_controller_withPIC_B.rtb_Add_c_re_g4k =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
       motion_controller_withPIC_B.rtb_Add_c_im_lg = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_f1 =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
       motion_controller_withPIC_B.rtb_Add_c_im_db = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_jr =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
       motion_controller_withPIC_B.rtb_Add_c_im_i3 = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g;
-      motion_controller_withPIC_B.rtb_Add_c_im_h22 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_h222 =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
+      motion_controller_withPIC_B.rtb_Add_c_im_nm = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
+      motion_controller_withPIC_B.rtb_Add_c_im_o30 = 0.0;
     } else {
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_g4 =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_g = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_g4 =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      }
-
-      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
-           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_c3 = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_cx =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_c3 = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_cx =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -14328,12 +14592,12 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_g4 = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_g4k = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_lg =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_g4 = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_g4k = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_lg =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -14367,94 +14631,94 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_h22 =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_h222 = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_nm =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_h22 =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_h222 = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_nm =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      }
+
+      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
+           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_o30 =
+          motion_controller_withPIC_B.e_a_tmp_f;
+      } else {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_o30 =
+          motion_controller_withPIC_B.e_a_tmp_f;
       }
     }
 
     motion_controller_withPIC_B.gf_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_h22 -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_o30 -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j) -
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_h22 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_o30 = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_h22 =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_o30 =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_h22 =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_o30 =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.hf_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_h22 -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_o30 -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j) +
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_d =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_h22 = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_nm =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
       motion_controller_withPIC_B.rtb_Add_c_im_o30 = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_ch3 =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
       motion_controller_withPIC_B.rtb_Add_c_im_bd = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_er =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
       motion_controller_withPIC_B.rtb_Add_c_im_dd = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_ik =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
       motion_controller_withPIC_B.rtb_Add_c_im_gs = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_nn =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
       motion_controller_withPIC_B.rtb_Add_c_im_l0 = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d;
-      motion_controller_withPIC_B.rtb_Add_c_im_ce = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_ce =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_im_nc = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_im_ph = 0.0;
     } else {
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_h22 =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_d = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_h22 =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      }
-
-      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
-           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_nm = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_o30 =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_nm = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_o30 =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -14514,94 +14778,94 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_ce =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_ce = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_nc =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_ce =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_ce = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_nc =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      }
+
+      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
+           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_ph =
+          motion_controller_withPIC_B.e_a_tmp_f;
+      } else {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_ph =
+          motion_controller_withPIC_B.e_a_tmp_f;
       }
     }
 
     motion_controller_withPIC_B.if_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_ce,
+                    motion_controller_withPIC_B.rtb_Add_c_im_ph,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f) -
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_ce = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ph = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_ce =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ph =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_ce =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_ph =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.jf_a = sin(motion_controller_withPIC_B.df_j -
       rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_ce,
+                    motion_controller_withPIC_B.rtb_Add_c_im_ph,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f) +
                      motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k));
+                    motion_controller_withPIC_B.n_a_tmp_a));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_f =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_ce = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_nc =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
       motion_controller_withPIC_B.rtb_Add_c_im_ph = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_dk =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
       motion_controller_withPIC_B.rtb_Add_c_im_oi = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_jrs =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
       motion_controller_withPIC_B.rtb_Add_c_im_c2 = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_hp =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
       motion_controller_withPIC_B.rtb_Add_c_im_da = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_c5 =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
       motion_controller_withPIC_B.rtb_Add_c_im_pw = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv;
-      motion_controller_withPIC_B.rtb_Add_c_im_pi = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_pi =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
+      motion_controller_withPIC_B.rtb_Add_c_im_a4 = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_js =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f;
+      motion_controller_withPIC_B.rtb_Add_c_im_ow = 0.0;
     } else {
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_ce =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_ce =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      }
-
-      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
-           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_nc = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_ph =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_nc = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_f = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_ph =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -14661,91 +14925,91 @@ void motion_controller_withPIC::step()
 
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_pi =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_pi = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_a4 =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_pi =
-          motion_controller_withPIC_B.e_a_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_pi = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_a4 =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      }
+
+      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
+           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_js = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_ow =
+          motion_controller_withPIC_B.e_a_tmp_f;
+      } else {
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_js = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_ow =
+          motion_controller_withPIC_B.e_a_tmp_f;
       }
     }
 
     motion_controller_withPIC_B.kf_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_pi -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_ow -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j) -
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_js) -
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_js =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_pi = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ow = 0.0;
     } else if ((motion_controller_withPIC_B.Add1 -
                 motion_controller_withPIC_B.Add * sin
                 (motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_im_pi =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_js = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_im_ow =
+        motion_controller_withPIC_B.e_a_tmp_f;
     } else {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = (rtNaN);
-      motion_controller_withPIC_B.rtb_Add_c_im_pi =
-        motion_controller_withPIC_B.e_a_tmp_j;
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_js = (rtNaN);
+      motion_controller_withPIC_B.rtb_Add_c_im_ow =
+        motion_controller_withPIC_B.e_a_tmp_f;
     }
 
     motion_controller_withPIC_B.lf_a = sin(motion_controller_withPIC_B.dr_i -
-      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_pi -
-                    motion_controller_withPIC_B.alpha1_tmp_i,
+      rt_atan2d_snf(motion_controller_withPIC_B.rtb_Add_c_im_ow -
+                    motion_controller_withPIC_B.alpha1_tmp_f,
                     ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j) +
+                      motion_controller_withPIC_B.rtb_Add_c_re_tmp_js) +
                      motion_controller_withPIC_B.b_value_ax) -
                     motion_controller_withPIC_B.b_value_i));
     if (motion_controller_withPIC_B.e_a_tmp == 0.0) {
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp_j =
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp_js =
         (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * 0.0 /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      motion_controller_withPIC_B.rtb_Add_c_im_pi = 0.0;
-      motion_controller_withPIC_B.rtb_Add_c_re_a4 =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
       motion_controller_withPIC_B.rtb_Add_c_im_ow = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_jw =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
-      motion_controller_withPIC_B.rtb_Add_c_im_pie = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_js;
+      motion_controller_withPIC_B.rtb_Add_c_im_pi = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_ob =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_js;
       motion_controller_withPIC_B.rtb_Add_c_im_lm = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_kv =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_js;
       motion_controller_withPIC_B.rtb_Add_c_im_jk = 0.0;
       motion_controller_withPIC_B.rtb_Add_c_re_fz =
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j;
-      motion_controller_withPIC_B.e_a_tmp_j = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_js;
+      motion_controller_withPIC_B.rtb_Add_c_im_cm = 0.0;
+      motion_controller_withPIC_B.rtb_Add_c_re_fq =
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_js;
+      motion_controller_withPIC_B.e_a_tmp_f = 0.0;
     } else {
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_pi =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_tmp_j = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_pi =
-          motion_controller_withPIC_B.e_a_tmp /
-          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-      }
-
-      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
-           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
-        motion_controller_withPIC_B.rtb_Add_c_re_a4 = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_js = 0.0;
         motion_controller_withPIC_B.rtb_Add_c_im_ow =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
-        motion_controller_withPIC_B.rtb_Add_c_re_a4 = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_re_tmp_js = (rtNaN);
         motion_controller_withPIC_B.rtb_Add_c_im_ow =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
@@ -14754,12 +15018,12 @@ void motion_controller_withPIC::step()
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
         motion_controller_withPIC_B.rtb_Add_c_re_jw = 0.0;
-        motion_controller_withPIC_B.rtb_Add_c_im_pie =
+        motion_controller_withPIC_B.rtb_Add_c_im_pi =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
         motion_controller_withPIC_B.rtb_Add_c_re_jw = (rtNaN);
-        motion_controller_withPIC_B.rtb_Add_c_im_pie =
+        motion_controller_withPIC_B.rtb_Add_c_im_pi =
           motion_controller_withPIC_B.e_a_tmp /
           motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       }
@@ -14793,34 +15057,51 @@ void motion_controller_withPIC::step()
       if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
            sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
         motion_controller_withPIC_B.rtb_Add_c_re_fz = 0.0;
+        motion_controller_withPIC_B.rtb_Add_c_im_cm =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
       } else {
         motion_controller_withPIC_B.rtb_Add_c_re_fz = (rtNaN);
+        motion_controller_withPIC_B.rtb_Add_c_im_cm =
+          motion_controller_withPIC_B.e_a_tmp /
+          motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
+      }
+
+      if ((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
+           sin(motion_controller_withPIC_B.yaw)) * 0.0 == 0.0) {
+        motion_controller_withPIC_B.rtb_Add_c_re_fq = 0.0;
+      } else {
+        motion_controller_withPIC_B.rtb_Add_c_re_fq = (rtNaN);
       }
     }
 
-    motion_controller_withPIC_B.b_value_l = motion_controller_withPIC_P.B / 2.0 *
-      motion_controller_withPIC_B.b_value_e;
+    motion_controller_withPIC_B.b_value_o = motion_controller_withPIC_P.B / 2.0 *
+      motion_controller_withPIC_B.y_g;
     motion_controller_withPIC_B.Gain2 = motion_controller_withPIC_B.Add -
-      motion_controller_withPIC_B.b_value_l;
-    motion_controller_withPIC_B.b_value_o = sin(atan(sin(rt_atan2d_snf
+      motion_controller_withPIC_B.b_value_o;
+    motion_controller_withPIC_B.b_value_o2 = sin(atan(sin(rt_atan2d_snf
       (motion_controller_withPIC_B.o_a_tmp, motion_controller_withPIC_B.Gain2) -
       motion_controller_withPIC_B.df_j) * motion_controller_withPIC_B.b_value_c0)
-      * motion_controller_withPIC_B.as) * motion_controller_withPIC_B.Fy1_tmp;
-    motion_controller_withPIC_B.Add_i = motion_controller_withPIC_B.b_value_l +
+      * motion_controller_withPIC_B.b_value_ct) *
+      motion_controller_withPIC_B.Fy1_tmp;
+    motion_controller_withPIC_B.Add_i = motion_controller_withPIC_B.b_value_o +
       motion_controller_withPIC_B.Add;
-    motion_controller_withPIC_B.b_value_l = sin(atan(sin(rt_atan2d_snf
+    motion_controller_withPIC_B.b_value_o = sin(atan(sin(rt_atan2d_snf
       (motion_controller_withPIC_B.o_a_tmp, motion_controller_withPIC_B.Add_i) -
       motion_controller_withPIC_B.df_j) * motion_controller_withPIC_B.b_value_c0)
-      * motion_controller_withPIC_B.as) * motion_controller_withPIC_B.Fy2_tmp;
+      * motion_controller_withPIC_B.b_value_ct) *
+      motion_controller_withPIC_B.Fy2_tmp;
     motion_controller_withPIC_B.Gain2 = sin(atan(sin(rt_atan2d_snf
-      (motion_controller_withPIC_B.i_a_tmp, motion_controller_withPIC_B.Gain2) -
-      motion_controller_withPIC_B.dr_i) * motion_controller_withPIC_B.b_value_p)
-      * motion_controller_withPIC_B.b_value_p5) *
+      (motion_controller_withPIC_B.b_value_ip, motion_controller_withPIC_B.Gain2)
+      - motion_controller_withPIC_B.dr_i) *
+      motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) *
       motion_controller_withPIC_B.Fy3_tmp;
     motion_controller_withPIC_B.Add_i = sin(atan(sin(rt_atan2d_snf
-      (motion_controller_withPIC_B.i_a_tmp, motion_controller_withPIC_B.Add_i) -
-      motion_controller_withPIC_B.dr_i) * motion_controller_withPIC_B.b_value_p)
-      * motion_controller_withPIC_B.b_value_p5) *
+      (motion_controller_withPIC_B.b_value_ip, motion_controller_withPIC_B.Add_i)
+      - motion_controller_withPIC_B.dr_i) *
+      motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) *
       motion_controller_withPIC_B.Fy4_tmp;
     motion_controller_withPIC_B.Fy4_tmp = motion_controller_withPIC_B.dr_i +
       motion_controller_withPIC_B.yaw;
@@ -14835,471 +15116,482 @@ void motion_controller_withPIC::step()
     motion_controller_withPIC_B.Fy4_tmp = sin
       (motion_controller_withPIC_B.Fy4_tmp);
     motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[1] = 0.0;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c =
-      motion_controller_withPIC_B.b_value_p *
-      motion_controller_withPIC_B.b_value_p5 *
-      motion_controller_withPIC_B.b_value_af;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f =
-      motion_controller_withPIC_B.b_value_p *
-      motion_controller_withPIC_B.b_value_p;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n =
-      motion_controller_withPIC_B.b_value_c0 * motion_controller_withPIC_B.as *
-      motion_controller_withPIC_B.b_value_ct;
+      motion_controller_withPIC_B.b_value_p5 *
+      motion_controller_withPIC_B.b_value_af *
+      motion_controller_withPIC_B.b_value_e;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i =
+      motion_controller_withPIC_B.b_value_p5 *
+      motion_controller_withPIC_B.b_value_p5;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l =
+      motion_controller_withPIC_B.b_value_c0 *
+      motion_controller_withPIC_B.b_value_ct *
+      motion_controller_withPIC_B.b_value_p;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 =
       motion_controller_withPIC_B.b_value_c0 *
       motion_controller_withPIC_B.b_value_c0;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e =
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b =
       motion_controller_withPIC_B.In1_f.linear_acceleration.x *
       motion_controller_withPIC_P.hCG * motion_controller_withPIC_P.m / 2.0;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc =
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d =
       (motion_controller_withPIC_P.a * motion_controller_withPIC_P.g *
        motion_controller_withPIC_P.m / 2.0 +
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e) /
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b) /
       motion_controller_withPIC_P.L;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a =
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e =
       motion_controller_withPIC_B.In1_f.linear_acceleration.y *
       motion_controller_withPIC_P.hCG * motion_controller_withPIC_P.m *
       (motion_controller_withPIC_P.Krsf - 1.0) / motion_controller_withPIC_P.B;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d =
-      motion_controller_withPIC_B.i_a_tmp * 0.0;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh =
-      (motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e -
+      motion_controller_withPIC_B.b_value_ip * 0.0;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a =
+      (motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b -
        motion_controller_withPIC_P.b * motion_controller_withPIC_P.g *
        motion_controller_withPIC_P.m / 2.0) / motion_controller_withPIC_P.L;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b =
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il =
       motion_controller_withPIC_B.In1_f.linear_acceleration.y *
       motion_controller_withPIC_P.Krsf * motion_controller_withPIC_P.hCG *
       motion_controller_withPIC_P.m / motion_controller_withPIC_P.B;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__a0 =
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f =
       motion_controller_withPIC_B.o_a_tmp * 0.0;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc -
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc +=
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh +
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh -=
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e = 1.0 /
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j =
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d -
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d +=
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e =
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a +
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a -=
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b = 1.0 /
       motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e /
-      (motion_controller_withPIC_P.B * motion_controller_withPIC_B.b_value_e /
-       2.0 - motion_controller_withPIC_B.Add);
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 =
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il =
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b /
+      (motion_controller_withPIC_P.B * motion_controller_withPIC_B.y_g / 2.0 -
+       motion_controller_withPIC_B.Add);
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho =
       motion_controller_withPIC_B.b_value_as *
       motion_controller_withPIC_B.b_value_as;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j =
-      motion_controller_withPIC_B.g_a_tmp * motion_controller_withPIC_B.g_a_tmp;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho =
-      motion_controller_withPIC_B.q_a_tmp * motion_controller_withPIC_B.q_a_tmp;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__cf =
-      motion_controller_withPIC_B.o_a_tmp * motion_controller_withPIC_B.o_a_tmp;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c =
+      motion_controller_withPIC_B.b_value_l *
+      motion_controller_withPIC_B.b_value_l;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d /
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn =
-      motion_controller_withPIC_B.i_a_tmp * motion_controller_withPIC_B.i_a_tmp;
+      motion_controller_withPIC_B.q_a_tmp * motion_controller_withPIC_B.q_a_tmp;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn +
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j;
+      motion_controller_withPIC_B.o_a_tmp * motion_controller_withPIC_B.o_a_tmp;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d /
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__jz =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__a0 /
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1;
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__cf +
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__a0 /=
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__cf +=
+      motion_controller_withPIC_B.b_value_ip *
+      motion_controller_withPIC_B.b_value_ip;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn =
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl +
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__jz =
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh /
       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__bn =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b -
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__jz;
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hm =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e /
-      motion_controller_withPIC_B.q_a_tmp -
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__a0;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eg =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e /
-      motion_controller_withPIC_B.g_a_tmp +
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki +
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f /=
       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki +=
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eg =
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il -
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__bn;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hn =
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b /
+      motion_controller_withPIC_B.q_a_tmp -
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ku =
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b /
+      motion_controller_withPIC_B.b_value_l +
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av;
     motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[5] = -((cos(atan(sin
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_o -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_f -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
           motion_controller_withPIC_B.rtb_Add_c_re) -
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+      motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
        (motion_controller_withPIC_B.rtb_Add_c_im -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
           motion_controller_withPIC_B.rtb_Add_c_re_tmp) -
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc * (1.0 /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d * (1.0 /
       motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp /
       motion_controller_withPIC_B.b_value_as -
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__jz) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
       ((motion_controller_withPIC_B.f_a * motion_controller_withPIC_B.f_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
        (motion_controller_withPIC_B.e_a * motion_controller_withPIC_B.e_a +
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1)) - cos(atan
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho)) - cos(atan
       (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_ff -
-            motion_controller_withPIC_B.alpha1_tmp_i,
+           (motion_controller_withPIC_B.rtb_Add_c_im_c -
+            motion_controller_withPIC_B.alpha1_tmp_f,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_iz) +
+              motion_controller_withPIC_B.rtb_Add_c_re_g) +
              motion_controller_withPIC_B.b_value_ax) -
             motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_f -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_ff -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
           motion_controller_withPIC_B.rtb_Add_c_re_i) +
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eg *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ku *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c /
       ((motion_controller_withPIC_B.k_a * motion_controller_withPIC_B.k_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki)) *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn)) *
       motion_controller_withPIC_B.Fy2_tmp - (cos(atan(sin
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_m,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_m) -
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
       (motion_controller_withPIC_B.df_j - rt_atan2d_snf
        (motion_controller_withPIC_B.n_a_tmp +
         motion_controller_withPIC_B.rtb_Add_c_im_l,
         ((motion_controller_withPIC_B.Add +
           motion_controller_withPIC_B.rtb_Add_c_re_o) -
          motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-           (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_c,
-            ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_g) -
-             motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__bn *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 /
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eg *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
       ((motion_controller_withPIC_B.n_a * motion_controller_withPIC_B.n_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl) + cos(atan
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hm) + cos(atan
       (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
            (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_fm,
+            motion_controller_withPIC_B.rtb_Add_c_im_e,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_c) +
+              motion_controller_withPIC_B.rtb_Add_c_re_p) +
              motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as)
-      * (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-             (motion_controller_withPIC_B.n_a_tmp +
-              motion_controller_withPIC_B.rtb_Add_c_im_m,
-              ((motion_controller_withPIC_B.Add +
-                motion_controller_withPIC_B.rtb_Add_c_re_m) +
-               motion_controller_withPIC_B.b_value_ax) +
-              motion_controller_withPIC_B.n_a_tmp_k)) *
-         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hm *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
+            motion_controller_withPIC_B.n_a_tmp_a)) *
+       motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_fm,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_c) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hn *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu /
       ((motion_controller_withPIC_B.s_a * motion_controller_withPIC_B.s_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__cf)) *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki)) *
       motion_controller_withPIC_B.Fy1_tmp) / motion_controller_withPIC_P.m;
     motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp *=
       motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e =
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b =
       (motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add * sin
        (motion_controller_withPIC_B.yaw)) *
       motion_controller_withPIC_B.rtb_Add_i_tmp_tmp /
       motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp -
       motion_controller_withPIC_B.Add;
     motion_controller_withPIC_B.e_a =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b /
       motion_controller_withPIC_B.b_value_as;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn +=
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av =
-      motion_controller_withPIC_B.e_a -
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl +=
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__jz =
       motion_controller_withPIC_B.e_a -
       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__jz;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__a0 =
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e /
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__bn =
+      motion_controller_withPIC_B.e_a -
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__bn;
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f =
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b /
       motion_controller_withPIC_B.q_a_tmp -
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__a0;
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f;
     motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[9] = ((((cos(atan
       (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_me -
-            motion_controller_withPIC_B.alpha1_tmp_i,
+           (motion_controller_withPIC_B.rtb_Add_c_im_h -
+            motion_controller_withPIC_B.alpha1_tmp_f,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_h2) +
+              motion_controller_withPIC_B.rtb_Add_c_re_mc) +
              motion_controller_withPIC_B.b_value_ax) -
             motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_l5 -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_me -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_h) +
+          motion_controller_withPIC_B.rtb_Add_c_re_h2) +
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
       ((motion_controller_withPIC_B.e_a_tmp *
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp -
-        motion_controller_withPIC_B.Add) / motion_controller_withPIC_B.g_a_tmp +
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j /
+        motion_controller_withPIC_B.Add) / motion_controller_withPIC_B.b_value_l
+       + motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c /
       ((motion_controller_withPIC_B.bb_a * motion_controller_withPIC_B.bb_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki) - cos(atan
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn) - cos(atan
       (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_k -
-            motion_controller_withPIC_B.alpha1_tmp_i,
+           (motion_controller_withPIC_B.rtb_Add_c_im_p -
+            motion_controller_withPIC_B.alpha1_tmp_f,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_cs) -
+              motion_controller_withPIC_B.rtb_Add_c_re_pc) -
              motion_controller_withPIC_B.b_value_ax) -
             motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_h -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_k -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_mc) -
+          motion_controller_withPIC_B.rtb_Add_c_re_cs) -
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__jz *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
       ((motion_controller_withPIC_B.hb_a * motion_controller_withPIC_B.hb_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn)) *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl)) *
       motion_controller_withPIC_B.Fy2_tmp + (sin(atan(sin
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_p -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_o -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
           motion_controller_withPIC_B.rtb_Add_c_re_tmp_o) -
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.b_value_p) *
       motion_controller_withPIC_B.b_value_p5) *
-      motion_controller_withPIC_B.b_value_af *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc + sin(atan(sin
+      motion_controller_withPIC_B.b_value_af) *
+      motion_controller_withPIC_B.b_value_e *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d + sin(atan(sin
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_o4 -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_l5 -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_e) +
+          motion_controller_withPIC_B.rtb_Add_c_re_h) +
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.b_value_p) *
       motion_controller_withPIC_B.b_value_p5) *
-      motion_controller_withPIC_B.b_value_af *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il) *
+      motion_controller_withPIC_B.b_value_af) *
+      motion_controller_withPIC_B.b_value_e *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j) *
       motion_controller_withPIC_B.Fy4_tmp) - (sin(atan(sin
-      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
-       (motion_controller_withPIC_B.n_a_tmp +
-        motion_controller_withPIC_B.rtb_Add_c_im_px,
-        ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_p) -
-         motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      motion_controller_withPIC_B.b_value_ct *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a + sin(atan(sin
       (motion_controller_withPIC_B.df_j - rt_atan2d_snf
        (motion_controller_withPIC_B.n_a_tmp +
         motion_controller_withPIC_B.rtb_Add_c_im_a,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_p4) +
+          motion_controller_withPIC_B.rtb_Add_c_re_p4) -
          motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      motion_controller_withPIC_B.b_value_ct *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh) *
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) *
+      motion_controller_withPIC_B.b_value_p *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e + sin(atan(sin
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_ek,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_j) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) *
+      motion_controller_withPIC_B.b_value_p *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a) *
       motion_controller_withPIC_B.Fy3_tmp) + (cos(atan(sin
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_g,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_a) -
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
       (motion_controller_withPIC_B.df_j - rt_atan2d_snf
        (motion_controller_withPIC_B.n_a_tmp +
         motion_controller_withPIC_B.rtb_Add_c_im_b,
         ((motion_controller_withPIC_B.Add +
           motion_controller_withPIC_B.rtb_Add_c_re_ol) -
          motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-           (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_e,
-            ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_j) -
-             motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__jz *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 /
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__bn *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
       ((motion_controller_withPIC_B.lb_a * motion_controller_withPIC_B.lb_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl) + cos(atan
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hm) + cos(atan
       (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
            (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_fi,
+            motion_controller_withPIC_B.rtb_Add_c_im_ei,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_ex) +
+              motion_controller_withPIC_B.rtb_Add_c_re_h22) +
              motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as)
-      * (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-             (motion_controller_withPIC_B.n_a_tmp +
-              motion_controller_withPIC_B.rtb_Add_c_im_g,
-              ((motion_controller_withPIC_B.Add +
-                motion_controller_withPIC_B.rtb_Add_c_re_a) +
-               motion_controller_withPIC_B.b_value_ax) +
-              motion_controller_withPIC_B.n_a_tmp_k)) *
-         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__a0 *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
+            motion_controller_withPIC_B.n_a_tmp_a)) *
+       motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_fi,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_e) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu /
       ((motion_controller_withPIC_B.rb_a * motion_controller_withPIC_B.rb_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__cf)) *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki)) *
       motion_controller_withPIC_B.Fy1_tmp) / motion_controller_withPIC_P.m;
     motion_controller_withPIC_B.rtb_Add_c_re_tmp = motion_controller_withPIC_P.B
-      / 2.0 * motion_controller_withPIC_B.i_a_tmp;
+      / 2.0 * motion_controller_withPIC_B.b_value_ip;
     motion_controller_withPIC_B.e_a_tmp = motion_controller_withPIC_P.B / 2.0 *
       motion_controller_withPIC_B.o_a_tmp;
-    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu =
+    motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av =
       motion_controller_withPIC_B.rtb_Add_c_re_tmp /
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 +
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho +
       motion_controller_withPIC_P.b / motion_controller_withPIC_B.b_value_as;
     motion_controller_withPIC_B.rtb_Add_i_tmp_tmp = (0.0 -
       motion_controller_withPIC_P.a) / motion_controller_withPIC_B.b_value_as +
       motion_controller_withPIC_B.e_a_tmp /
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1;
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho;
     motion_controller_withPIC_B.e_a_tmp = motion_controller_withPIC_B.e_a_tmp /
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho +
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu +
       motion_controller_withPIC_P.a / motion_controller_withPIC_B.q_a_tmp;
     motion_controller_withPIC_B.q_a_tmp = (0.0 - motion_controller_withPIC_P.b) /
-      motion_controller_withPIC_B.g_a_tmp -
+      motion_controller_withPIC_B.b_value_l -
       motion_controller_withPIC_B.rtb_Add_c_re_tmp /
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j;
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c;
     motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[13] = ((cos(atan(sin
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_ch -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_d -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_ei) +
+          motion_controller_withPIC_B.rtb_Add_c_re_ax) +
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+      motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_h2 -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_ch -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_tmp_f) +
+          motion_controller_withPIC_B.rtb_Add_c_re_tmp_l) +
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
       motion_controller_withPIC_B.q_a_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c /
       ((motion_controller_withPIC_B.yb_a * motion_controller_withPIC_B.yb_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki) + cos(atan
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn) + cos(atan
       (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_pb -
-            motion_controller_withPIC_B.alpha1_tmp_i,
+           (motion_controller_withPIC_B.rtb_Add_c_im_o3 -
+            motion_controller_withPIC_B.alpha1_tmp_f,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_af) -
+              motion_controller_withPIC_B.rtb_Add_c_re_ms) -
              motion_controller_withPIC_B.b_value_ax) -
             motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_d -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_pb -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_ax) -
+          motion_controller_withPIC_B.rtb_Add_c_re_af) -
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
       ((motion_controller_withPIC_B.ec_a * motion_controller_withPIC_B.ec_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn)) *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl)) *
       motion_controller_withPIC_B.Fy2_tmp - (cos(atan(sin
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_pt,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_pe) -
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
       (motion_controller_withPIC_B.df_j - rt_atan2d_snf
        (motion_controller_withPIC_B.n_a_tmp +
         motion_controller_withPIC_B.rtb_Add_c_im_lu,
         ((motion_controller_withPIC_B.Add +
           motion_controller_withPIC_B.rtb_Add_c_re_n) -
          motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-           (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_o3,
-            ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_ms) -
-             motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
       motion_controller_withPIC_B.rtb_Add_i_tmp_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
       ((motion_controller_withPIC_B.hc_a * motion_controller_withPIC_B.hc_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl) - cos(atan
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hm) - cos(atan
       (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
            (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_i,
+            motion_controller_withPIC_B.rtb_Add_c_im_kk,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_f) +
+              motion_controller_withPIC_B.rtb_Add_c_re_ox) +
              motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as)
-      * (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-             (motion_controller_withPIC_B.n_a_tmp +
-              motion_controller_withPIC_B.rtb_Add_c_im_pt,
-              ((motion_controller_withPIC_B.Add +
-                motion_controller_withPIC_B.rtb_Add_c_re_pe) +
-               motion_controller_withPIC_B.b_value_ax) +
-              motion_controller_withPIC_B.n_a_tmp_k)) *
-         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+            motion_controller_withPIC_B.n_a_tmp_a)) *
+       motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_i,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_f) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
       motion_controller_withPIC_B.e_a_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu /
       ((motion_controller_withPIC_B.mc_a * motion_controller_withPIC_B.mc_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__cf)) *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki)) *
       motion_controller_withPIC_B.Fy1_tmp) / motion_controller_withPIC_P.m;
     motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[0] = 0.0;
     motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[2] = 0.0;
@@ -15314,11 +15606,11 @@ void motion_controller_withPIC::step()
       motion_controller_withPIC_B.alpha2_tmp / 2.0;
     motion_controller_withPIC_B.rtb_Add_c_re_tmp = motion_controller_withPIC_P.b
       * motion_controller_withPIC_B.alpha1_tmp;
-    motion_controller_withPIC_B.rtb_Add_c_im_h2 =
+    motion_controller_withPIC_B.rtb_Add_c_im_ch =
       motion_controller_withPIC_B.yb_a -
       motion_controller_withPIC_B.rtb_Add_c_re_tmp;
     motion_controller_withPIC_B.hc_a = motion_controller_withPIC_P.B *
-      motion_controller_withPIC_B.alpha1_tmp_l / 2.0;
+      motion_controller_withPIC_B.alpha1_tmp_k / 2.0;
     motion_controller_withPIC_B.ec_a = motion_controller_withPIC_B.hc_a -
       motion_controller_withPIC_B.rtb_Add_i_tmp;
     motion_controller_withPIC_B.rtb_Add_i_tmp +=
@@ -15328,428 +15620,437 @@ void motion_controller_withPIC::step()
     motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[7] = -(((-(cos(atan
       (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
            (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_ie,
+            motion_controller_withPIC_B.rtb_Add_c_im_m4,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_k) -
+              motion_controller_withPIC_B.rtb_Add_c_re_oc) -
              motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as)
-      * (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-             (motion_controller_withPIC_B.n_a_tmp +
-              motion_controller_withPIC_B.rtb_Add_c_im_ox,
-              ((motion_controller_withPIC_B.Add +
-                motion_controller_withPIC_B.rtb_Add_c_re_tmp_oy) -
-               motion_controller_withPIC_B.b_value_ax) +
-              motion_controller_withPIC_B.n_a_tmp_k)) *
-         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
+            motion_controller_withPIC_B.n_a_tmp_a)) *
+       motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_ie,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu) -
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e *
       motion_controller_withPIC_B.rtb_Add_i_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__bn *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1) /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eg *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho) /
       ((motion_controller_withPIC_B.rc_a * motion_controller_withPIC_B.rc_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl) + cos(atan
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hm) + cos(atan
       (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
            (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_fb,
+            motion_controller_withPIC_B.rtb_Add_c_im_m44,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_cu) +
+              motion_controller_withPIC_B.rtb_Add_c_re_hc) +
              motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as)
-      * (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-             (motion_controller_withPIC_B.n_a_tmp +
-              motion_controller_withPIC_B.rtb_Add_c_im_m4,
-              ((motion_controller_withPIC_B.Add +
-                motion_controller_withPIC_B.rtb_Add_c_re_oc) +
-               motion_controller_withPIC_B.b_value_ax) +
-              motion_controller_withPIC_B.n_a_tmp_k)) *
-         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh *
-      motion_controller_withPIC_B.ec_a *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hm *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
-      ((motion_controller_withPIC_B.wc_a * motion_controller_withPIC_B.wc_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__cf)) + cos(atan
-      (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_kb -
-            motion_controller_withPIC_B.alpha1_tmp_i,
-            ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_ad) +
-             motion_controller_withPIC_B.b_value_ax) -
-            motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
-      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_m44 -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+            motion_controller_withPIC_B.n_a_tmp_a)) *
+       motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_fb,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_hc) +
-         motion_controller_withPIC_B.b_value_ax) -
-        motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eg *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j /
-      ((motion_controller_withPIC_B.ed_a * motion_controller_withPIC_B.ed_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
+          motion_controller_withPIC_B.rtb_Add_c_re_cu) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
+      motion_controller_withPIC_B.ec_a *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hn *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu /
+      ((motion_controller_withPIC_B.wc_a * motion_controller_withPIC_B.wc_a *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki)) + cos(atan
       (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_n -
-            motion_controller_withPIC_B.alpha1_tmp_i,
+           (motion_controller_withPIC_B.rtb_Add_c_im_bp -
+            motion_controller_withPIC_B.alpha1_tmp_f,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_ch) -
+              motion_controller_withPIC_B.rtb_Add_c_re_pcr) +
              motion_controller_withPIC_B.b_value_ax) -
             motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_bp -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_kb -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_pc) -
+          motion_controller_withPIC_B.rtb_Add_c_re_ad) +
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc *
-      (motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_b -
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ku *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c /
+      ((motion_controller_withPIC_B.ed_a * motion_controller_withPIC_B.ed_a *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn)) + cos(atan
+      (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
+           (motion_controller_withPIC_B.rtb_Add_c_im_my -
+            motion_controller_withPIC_B.alpha1_tmp_f,
+            ((motion_controller_withPIC_B.Add +
+              motion_controller_withPIC_B.rtb_Add_c_re_ij) -
+             motion_controller_withPIC_B.b_value_ax) -
+            motion_controller_withPIC_B.b_value_i)) *
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
+      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
+       (motion_controller_withPIC_B.rtb_Add_c_im_n -
+        motion_controller_withPIC_B.alpha1_tmp_f,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_ch) -
+         motion_controller_withPIC_B.b_value_ax) -
+        motion_controller_withPIC_B.b_value_i)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_Add_c_im_ch *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d *
+      (motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il -
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh /
        (motion_controller_withPIC_B.b_value_as *
         motion_controller_withPIC_B.b_value_as)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
       ((motion_controller_withPIC_B.jd_a * motion_controller_withPIC_B.jd_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn)) /
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl)) /
       motion_controller_withPIC_P.Izz;
     motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[11] = -(((cos(atan
       (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_j -
-            motion_controller_withPIC_B.alpha1_tmp_i,
+           (motion_controller_withPIC_B.rtb_Add_c_im_mv -
+            motion_controller_withPIC_B.alpha1_tmp_f,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_my) -
+              motion_controller_withPIC_B.rtb_Add_c_re_ev) -
              motion_controller_withPIC_B.b_value_ax) -
             motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_ij -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_j -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_tmp_l) -
+          motion_controller_withPIC_B.rtb_Add_c_re_tmp_g) -
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av *
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 /
-      ((motion_controller_withPIC_B.pd_a * motion_controller_withPIC_B.pd_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn) - cos(atan
-      (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-           (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_jg,
-            ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_m0) -
-             motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as)
-      * (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-             (motion_controller_withPIC_B.n_a_tmp +
-              motion_controller_withPIC_B.rtb_Add_c_im_mv,
-              ((motion_controller_withPIC_B.Add +
-                motion_controller_withPIC_B.rtb_Add_c_re_ev) -
-               motion_controller_withPIC_B.b_value_ax) +
-              motion_controller_withPIC_B.n_a_tmp_k)) *
-         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__jz *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
-      motion_controller_withPIC_B.rtb_Add_i_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 /
-      ((motion_controller_withPIC_B.td_a * motion_controller_withPIC_B.td_a *
+      motion_controller_withPIC_B.rtb_Add_c_im_ch *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
+      ((motion_controller_withPIC_B.pd_a * motion_controller_withPIC_B.pd_a *
         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl)) + cos(atan
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl) - cos(atan
       (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
            (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_nr,
+            motion_controller_withPIC_B.rtb_Add_c_im_a5,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_gl) +
+              motion_controller_withPIC_B.rtb_Add_c_re_fo) -
              motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as)
-      * (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-             (motion_controller_withPIC_B.n_a_tmp +
-              motion_controller_withPIC_B.rtb_Add_c_im_a5,
-              ((motion_controller_withPIC_B.Add +
-                motion_controller_withPIC_B.rtb_Add_c_re_fo) +
-               motion_controller_withPIC_B.b_value_ax) +
-              motion_controller_withPIC_B.n_a_tmp_k)) *
-         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__a0 *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh *
-      motion_controller_withPIC_B.ec_a *
+            motion_controller_withPIC_B.n_a_tmp_a)) *
+       motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_jg,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_m0) -
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__bn *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e *
+      motion_controller_withPIC_B.rtb_Add_i_tmp *
       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
-      ((motion_controller_withPIC_B.ae_a * motion_controller_withPIC_B.ae_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__cf)) + cos(atan
-      (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_fx -
-            motion_controller_withPIC_B.alpha1_tmp_i,
+      ((motion_controller_withPIC_B.td_a * motion_controller_withPIC_B.td_a *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hm)) + cos(atan
+      (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
+           (motion_controller_withPIC_B.n_a_tmp +
+            motion_controller_withPIC_B.rtb_Add_c_im_na,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_cg) +
+              motion_controller_withPIC_B.rtb_Add_c_re_d) +
+             motion_controller_withPIC_B.b_value_ax) +
+            motion_controller_withPIC_B.n_a_tmp_a)) *
+       motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_nr,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_gl) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
+      motion_controller_withPIC_B.ec_a *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu /
+      ((motion_controller_withPIC_B.ae_a * motion_controller_withPIC_B.ae_a *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki)) + cos(atan
+      (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
+           (motion_controller_withPIC_B.rtb_Add_c_im_p2 -
+            motion_controller_withPIC_B.alpha1_tmp_f,
+            ((motion_controller_withPIC_B.Add +
+              motion_controller_withPIC_B.rtb_Add_c_re_pm) +
              motion_controller_withPIC_B.b_value_ax) -
             motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_na -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_fx -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_d) +
+          motion_controller_withPIC_B.rtb_Add_c_re_cg) +
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
       motion_controller_withPIC_B.rtb_Add_c_re_tmp *
       (((motion_controller_withPIC_B.Add1 - motion_controller_withPIC_B.Add *
          sin(motion_controller_withPIC_B.yaw)) * sin
         (motion_controller_withPIC_B.yaw) /
         motion_controller_withPIC_B.rtb_Add_i_tmp_tmp_tmp -
         motion_controller_withPIC_B.Add) / (motion_controller_withPIC_P.B *
-      motion_controller_withPIC_B.b_value_e / 2.0 +
-      motion_controller_withPIC_B.Add) +
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d /
-       (motion_controller_withPIC_B.g_a_tmp *
-        motion_controller_withPIC_B.g_a_tmp)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j /
+      motion_controller_withPIC_B.y_g / 2.0 + motion_controller_withPIC_B.Add) +
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh /
+       (motion_controller_withPIC_B.b_value_l *
+        motion_controller_withPIC_B.b_value_l)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c /
       ((motion_controller_withPIC_B.ie_a * motion_controller_withPIC_B.ie_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki)) /
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn)) /
       motion_controller_withPIC_P.Izz;
     motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[15] = -(((-(cos(atan
       (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_nj -
-            motion_controller_withPIC_B.alpha1_tmp_i,
+           (motion_controller_withPIC_B.rtb_Add_c_im_n3 -
+            motion_controller_withPIC_B.alpha1_tmp_f,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_p2) -
+              motion_controller_withPIC_B.rtb_Add_c_re_k) -
              motion_controller_withPIC_B.b_value_ax) -
             motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_pm -
-        motion_controller_withPIC_B.alpha1_tmp_i,
-        ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_tmp_lu) -
-         motion_controller_withPIC_B.b_value_ax) -
-        motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu *
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1) /
-      ((motion_controller_withPIC_B.ne_a * motion_controller_withPIC_B.ne_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn) + cos(atan
-      (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-           (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_gg,
-            ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_oy) -
-             motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as)
-      * (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-             (motion_controller_withPIC_B.n_a_tmp +
-              motion_controller_withPIC_B.rtb_Add_c_im_n3,
-              ((motion_controller_withPIC_B.Add +
-                motion_controller_withPIC_B.rtb_Add_c_re_kt) -
-               motion_controller_withPIC_B.b_value_ax) +
-              motion_controller_withPIC_B.n_a_tmp_k)) *
-         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_Add_i_tmp_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
-      motion_controller_withPIC_B.rtb_Add_i_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__f1 /
-      ((motion_controller_withPIC_B.qe_a * motion_controller_withPIC_B.qe_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl)) + cos(atan
-      (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-           (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_jp,
-            ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_m1) +
-             motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as)
-      * (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-             (motion_controller_withPIC_B.n_a_tmp +
-              motion_controller_withPIC_B.rtb_Add_c_im_cj,
-              ((motion_controller_withPIC_B.Add +
-                motion_controller_withPIC_B.rtb_Add_c_re_cq) +
-               motion_controller_withPIC_B.b_value_ax) +
-              motion_controller_withPIC_B.n_a_tmp_k)) *
-         motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.e_a_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh *
-      motion_controller_withPIC_B.ec_a *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
-      ((motion_controller_withPIC_B.ve_a * motion_controller_withPIC_B.ve_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__cf)) + cos(atan
-      (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_dz -
-            motion_controller_withPIC_B.alpha1_tmp_i,
-            ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_pr) +
-             motion_controller_withPIC_B.b_value_ax) -
-            motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
-      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_mx -
-        motion_controller_withPIC_B.alpha1_tmp_i,
-        ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_kn) +
-         motion_controller_withPIC_B.b_value_ax) -
-        motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_Add_c_re_tmp *
-      motion_controller_withPIC_B.q_a_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j /
-      ((motion_controller_withPIC_B.df_a * motion_controller_withPIC_B.df_a *
-        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki)) /
-      motion_controller_withPIC_P.Izz;
-    motion_controller_withPIC_B.B0[1] = ((cos(atan(sin
-      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
-       (motion_controller_withPIC_B.n_a_tmp +
-        motion_controller_withPIC_B.rtb_Add_c_im_cx,
-        ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_c3) -
-         motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-           (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_g4,
-            ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_tmp_g) -
-             motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a /
-      (motion_controller_withPIC_B.ef_a * motion_controller_withPIC_B.ef_a *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) + cos
-      (atan(sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-                (motion_controller_withPIC_B.n_a_tmp +
-                 motion_controller_withPIC_B.rtb_Add_c_im_lg,
-                 ((motion_controller_withPIC_B.Add +
-                   motion_controller_withPIC_B.rtb_Add_c_re_g4) +
-                  motion_controller_withPIC_B.b_value_ax) +
-                 motion_controller_withPIC_B.n_a_tmp_k)) *
-            motion_controller_withPIC_B.b_value_c0) *
-       motion_controller_withPIC_B.as) * (cos(motion_controller_withPIC_B.df_j -
-      rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_dx,
-                    ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_if) +
-                     motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh /
-      (motion_controller_withPIC_B.ff_a * motion_controller_withPIC_B.ff_a *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0)) *
-      motion_controller_withPIC_B.Fy1_tmp - (sin(atan(sin
-      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
-       (motion_controller_withPIC_B.n_a_tmp +
-        motion_controller_withPIC_B.rtb_Add_c_im_db,
-        ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_f1) -
-         motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      motion_controller_withPIC_B.b_value_ct *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a + sin(atan(sin
-      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
-       (motion_controller_withPIC_B.n_a_tmp +
-        motion_controller_withPIC_B.rtb_Add_c_im_i3,
-        ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_jr) +
-         motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      motion_controller_withPIC_B.b_value_ct *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh) *
-      motion_controller_withPIC_B.Fy3_tmp) / motion_controller_withPIC_P.m;
-    motion_controller_withPIC_B.B0[5] = ((sin(atan(sin
-      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_h22 -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_nj -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
           motion_controller_withPIC_B.rtb_Add_c_re_tmp_d) -
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) *
-      motion_controller_withPIC_B.b_value_af *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc + sin(atan(sin
-      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_o30 -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__av *
+      motion_controller_withPIC_B.rtb_Add_c_im_ch *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho) /
+      ((motion_controller_withPIC_B.ne_a * motion_controller_withPIC_B.ne_a *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__kl) + cos(atan
+      (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
+           (motion_controller_withPIC_B.n_a_tmp +
+            motion_controller_withPIC_B.rtb_Add_c_im_cj,
+            ((motion_controller_withPIC_B.Add +
+              motion_controller_withPIC_B.rtb_Add_c_re_cq) -
+             motion_controller_withPIC_B.b_value_ax) +
+            motion_controller_withPIC_B.n_a_tmp_a)) *
+       motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_gg,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_nm) +
+          motion_controller_withPIC_B.rtb_Add_c_re_oy) -
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_Add_i_tmp_tmp *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e *
+      motion_controller_withPIC_B.rtb_Add_i_tmp *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ho /
+      ((motion_controller_withPIC_B.qe_a * motion_controller_withPIC_B.qe_a *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__hm)) + cos(atan
+      (sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
+           (motion_controller_withPIC_B.n_a_tmp +
+            motion_controller_withPIC_B.rtb_Add_c_im_mx,
+            ((motion_controller_withPIC_B.Add +
+              motion_controller_withPIC_B.rtb_Add_c_re_kn) +
+             motion_controller_withPIC_B.b_value_ax) +
+            motion_controller_withPIC_B.n_a_tmp_a)) *
+       motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_jp,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_m1) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.e_a_tmp *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
+      motion_controller_withPIC_B.ec_a *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__nu /
+      ((motion_controller_withPIC_B.ve_a * motion_controller_withPIC_B.ve_a *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__ki)) + cos(atan
+      (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
+           (motion_controller_withPIC_B.rtb_Add_c_im_c3 -
+            motion_controller_withPIC_B.alpha1_tmp_f,
+            ((motion_controller_withPIC_B.Add +
+              motion_controller_withPIC_B.rtb_Add_c_re_g4) +
+             motion_controller_withPIC_B.b_value_ax) -
+            motion_controller_withPIC_B.b_value_i)) *
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
+      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
+       (motion_controller_withPIC_B.rtb_Add_c_im_dz -
+        motion_controller_withPIC_B.alpha1_tmp_f,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_pr) +
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.b_value_p) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_Add_c_re_tmp *
+      motion_controller_withPIC_B.q_a_tmp *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c /
+      ((motion_controller_withPIC_B.df_a * motion_controller_withPIC_B.df_a *
+        motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fn)) /
+      motion_controller_withPIC_P.Izz;
+    motion_controller_withPIC_B.B0[1] = ((cos(atan(sin
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_dx,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_if) -
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_cx,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv) -
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e /
+      (motion_controller_withPIC_B.ef_a * motion_controller_withPIC_B.ef_a *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0) + cos
+      (atan(sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
+                (motion_controller_withPIC_B.n_a_tmp +
+                 motion_controller_withPIC_B.rtb_Add_c_im_db,
+                 ((motion_controller_withPIC_B.Add +
+                   motion_controller_withPIC_B.rtb_Add_c_re_f1) +
+                  motion_controller_withPIC_B.b_value_ax) +
+                 motion_controller_withPIC_B.n_a_tmp_a)) *
+            motion_controller_withPIC_B.b_value_c0) *
+       motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_lg,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_g4k) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a /
+      (motion_controller_withPIC_B.ff_a * motion_controller_withPIC_B.ff_a *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0)) *
+      motion_controller_withPIC_B.Fy1_tmp - (sin(atan(sin
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_i3,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_jr) -
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) *
+      motion_controller_withPIC_B.b_value_p *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e + sin(atan(sin
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_nm,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_h222) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) *
+      motion_controller_withPIC_B.b_value_p *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a) *
+      motion_controller_withPIC_B.Fy3_tmp) / motion_controller_withPIC_P.m;
+    motion_controller_withPIC_B.B0[5] = ((sin(atan(sin
+      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
+       (motion_controller_withPIC_B.rtb_Add_c_im_o30 -
+        motion_controller_withPIC_B.alpha1_tmp_f,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_tmp_j) -
+         motion_controller_withPIC_B.b_value_ax) -
+        motion_controller_withPIC_B.b_value_i)) *
       motion_controller_withPIC_B.b_value_p5) *
-      motion_controller_withPIC_B.b_value_af *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il) *
+      motion_controller_withPIC_B.b_value_af) *
+      motion_controller_withPIC_B.b_value_e *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d + sin(atan(sin
+      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
+       (motion_controller_withPIC_B.rtb_Add_c_im_bd -
+        motion_controller_withPIC_B.alpha1_tmp_f,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_ch3) +
+         motion_controller_withPIC_B.b_value_ax) -
+        motion_controller_withPIC_B.b_value_i)) *
+      motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) *
+      motion_controller_withPIC_B.b_value_e *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j) *
       motion_controller_withPIC_B.Fy4_tmp - (cos(atan(sin
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
+       (motion_controller_withPIC_B.rtb_Add_c_im_gs -
+        motion_controller_withPIC_B.alpha1_tmp_f,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_ik) -
+         motion_controller_withPIC_B.b_value_ax) -
+        motion_controller_withPIC_B.b_value_i)) *
+      motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
+      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
        (motion_controller_withPIC_B.rtb_Add_c_im_dd -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
           motion_controller_withPIC_B.rtb_Add_c_re_er) -
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
-      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_bd -
-        motion_controller_withPIC_B.alpha1_tmp_i,
-        ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_ch3) -
-         motion_controller_withPIC_B.b_value_ax) -
-        motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d /
       (motion_controller_withPIC_B.gf_a * motion_controller_withPIC_B.gf_a *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0) + cos
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0) + cos
       (atan(sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-                (motion_controller_withPIC_B.rtb_Add_c_im_l0 -
-                 motion_controller_withPIC_B.alpha1_tmp_i,
+                (motion_controller_withPIC_B.rtb_Add_c_im_nc -
+                 motion_controller_withPIC_B.alpha1_tmp_f,
                  ((motion_controller_withPIC_B.Add +
-                   motion_controller_withPIC_B.rtb_Add_c_re_nn) +
+                   motion_controller_withPIC_B.rtb_Add_c_re_ce) +
                   motion_controller_withPIC_B.b_value_ax) -
                  motion_controller_withPIC_B.b_value_i)) *
-            motion_controller_withPIC_B.b_value_p) *
-       motion_controller_withPIC_B.b_value_p5) * (cos
+            motion_controller_withPIC_B.b_value_p5) *
+       motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_gs -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_l0 -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_ik) +
+          motion_controller_withPIC_B.rtb_Add_c_re_nn) +
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j /
       (motion_controller_withPIC_B.hf_a * motion_controller_withPIC_B.hf_a *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0)) *
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0)) *
       motion_controller_withPIC_B.Fy2_tmp) / motion_controller_withPIC_P.m;
     motion_controller_withPIC_B.B0[0] = 0.0;
     motion_controller_withPIC_B.B0[2] = 0.0;
@@ -15757,197 +16058,201 @@ void motion_controller_withPIC::step()
     motion_controller_withPIC_B.B0[6] = 0.0;
     motion_controller_withPIC_B.alpha1 = motion_controller_withPIC_P.B *
       motion_controller_withPIC_B.alpha1 / 2.0;
-    motion_controller_withPIC_B.alpha1_tmp_l *= motion_controller_withPIC_P.a;
+    motion_controller_withPIC_B.alpha1_tmp_k *= motion_controller_withPIC_P.a;
     motion_controller_withPIC_B.B0[3] = (((sin(atan(sin
-      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
-       (motion_controller_withPIC_B.n_a_tmp +
-        motion_controller_withPIC_B.rtb_Add_c_im_ce,
-        ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_tmp_dv) -
-         motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      motion_controller_withPIC_B.b_value_ct *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
-      (motion_controller_withPIC_B.alpha1 -
-       motion_controller_withPIC_B.alpha1_tmp_l) - sin(atan(sin
       (motion_controller_withPIC_B.df_j - rt_atan2d_snf
        (motion_controller_withPIC_B.n_a_tmp +
         motion_controller_withPIC_B.rtb_Add_c_im_ph,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_nc) +
+          motion_controller_withPIC_B.rtb_Add_c_re_tmp_f) -
          motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      motion_controller_withPIC_B.b_value_ct *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh *
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) *
+      motion_controller_withPIC_B.b_value_p *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e *
+      (motion_controller_withPIC_B.alpha1 -
+       motion_controller_withPIC_B.alpha1_tmp_k) - sin(atan(sin
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_oi,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_dk) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) *
+      motion_controller_withPIC_B.b_value_p *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
       (motion_controller_withPIC_B.alpha1 +
-       motion_controller_withPIC_B.alpha1_tmp_l)) + cos(atan(sin
+       motion_controller_withPIC_B.alpha1_tmp_k)) + cos(atan(sin
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_da,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_hp) -
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.b_value_c0) *
+      motion_controller_withPIC_B.b_value_ct) * (cos
       (motion_controller_withPIC_B.df_j - rt_atan2d_snf
        (motion_controller_withPIC_B.n_a_tmp +
         motion_controller_withPIC_B.rtb_Add_c_im_c2,
         ((motion_controller_withPIC_B.Add +
           motion_controller_withPIC_B.rtb_Add_c_re_jrs) -
          motion_controller_withPIC_B.b_value_ax) +
-        motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.b_value_c0) * motion_controller_withPIC_B.as) *
-      (cos(motion_controller_withPIC_B.df_j - rt_atan2d_snf
-           (motion_controller_withPIC_B.n_a_tmp +
-            motion_controller_withPIC_B.rtb_Add_c_im_oi,
-            ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_dk) -
-             motion_controller_withPIC_B.b_value_ax) +
-            motion_controller_withPIC_B.n_a_tmp_k)) *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_e *
       motion_controller_withPIC_B.rtb_Add_i_tmp /
       (motion_controller_withPIC_B.if_a * motion_controller_withPIC_B.if_a *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0)) - cos
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0)) - cos
       (atan(sin(motion_controller_withPIC_B.df_j - rt_atan2d_snf
                 (motion_controller_withPIC_B.n_a_tmp +
-                 motion_controller_withPIC_B.rtb_Add_c_im_pw,
+                 motion_controller_withPIC_B.rtb_Add_c_im_a4,
                  ((motion_controller_withPIC_B.Add +
-                   motion_controller_withPIC_B.rtb_Add_c_re_c5) +
+                   motion_controller_withPIC_B.rtb_Add_c_re_pi) +
                   motion_controller_withPIC_B.b_value_ax) +
-                 motion_controller_withPIC_B.n_a_tmp_k)) *
+                 motion_controller_withPIC_B.n_a_tmp_a)) *
             motion_controller_withPIC_B.b_value_c0) *
-       motion_controller_withPIC_B.as) * (cos(motion_controller_withPIC_B.df_j -
-      rt_atan2d_snf(motion_controller_withPIC_B.n_a_tmp +
-                    motion_controller_withPIC_B.rtb_Add_c_im_da,
-                    ((motion_controller_withPIC_B.Add +
-                      motion_controller_withPIC_B.rtb_Add_c_re_hp) +
-                     motion_controller_withPIC_B.b_value_ax) +
-                    motion_controller_withPIC_B.n_a_tmp_k)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__eh *
+       motion_controller_withPIC_B.b_value_ct) * (cos
+      (motion_controller_withPIC_B.df_j - rt_atan2d_snf
+       (motion_controller_withPIC_B.n_a_tmp +
+        motion_controller_withPIC_B.rtb_Add_c_im_pw,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_c5) +
+         motion_controller_withPIC_B.b_value_ax) +
+        motion_controller_withPIC_B.n_a_tmp_a)) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_l) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_a *
       motion_controller_withPIC_B.ec_a / (motion_controller_withPIC_B.jf_a *
       motion_controller_withPIC_B.jf_a *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0)) /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__i3 + 1.0)) /
       motion_controller_withPIC_P.Izz;
     motion_controller_withPIC_B.alpha1 = motion_controller_withPIC_P.B *
       motion_controller_withPIC_B.alpha1_tmp / 2.0;
-    motion_controller_withPIC_B.alpha1_tmp_l = motion_controller_withPIC_P.b *
+    motion_controller_withPIC_B.alpha1_tmp_k = motion_controller_withPIC_P.b *
       motion_controller_withPIC_B.alpha2_tmp;
     motion_controller_withPIC_B.B0[7] = -(((sin(atan(sin
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_pi -
-        motion_controller_withPIC_B.alpha1_tmp_i,
-        ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_tmp_j) -
-         motion_controller_withPIC_B.b_value_ax) -
-        motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) *
-      motion_controller_withPIC_B.b_value_af *
-      (motion_controller_withPIC_B.alpha1 +
-       motion_controller_withPIC_B.alpha1_tmp_l) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc - sin(atan(sin
-      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
        (motion_controller_withPIC_B.rtb_Add_c_im_ow -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_a4) +
+          motion_controller_withPIC_B.rtb_Add_c_re_tmp_js) -
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.b_value_p) *
       motion_controller_withPIC_B.b_value_p5) *
-      motion_controller_withPIC_B.b_value_af *
+      motion_controller_withPIC_B.b_value_af) *
+      motion_controller_withPIC_B.b_value_e *
+      (motion_controller_withPIC_B.alpha1 +
+       motion_controller_withPIC_B.alpha1_tmp_k) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d - sin(atan(sin
+      (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
+       (motion_controller_withPIC_B.rtb_Add_c_im_pi -
+        motion_controller_withPIC_B.alpha1_tmp_f,
+        ((motion_controller_withPIC_B.Add +
+          motion_controller_withPIC_B.rtb_Add_c_re_jw) +
+         motion_controller_withPIC_B.b_value_ax) -
+        motion_controller_withPIC_B.b_value_i)) *
+      motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) *
+      motion_controller_withPIC_B.b_value_e *
       (motion_controller_withPIC_B.alpha1 -
-       motion_controller_withPIC_B.alpha1_tmp_l) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il) + cos(atan
+       motion_controller_withPIC_B.alpha1_tmp_k) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j) + cos(atan
       (sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-           (motion_controller_withPIC_B.rtb_Add_c_im_lm -
-            motion_controller_withPIC_B.alpha1_tmp_i,
+           (motion_controller_withPIC_B.rtb_Add_c_im_jk -
+            motion_controller_withPIC_B.alpha1_tmp_f,
             ((motion_controller_withPIC_B.Add +
-              motion_controller_withPIC_B.rtb_Add_c_re_ob) -
+              motion_controller_withPIC_B.rtb_Add_c_re_kv) -
              motion_controller_withPIC_B.b_value_ax) -
             motion_controller_withPIC_B.b_value_i)) *
-       motion_controller_withPIC_B.b_value_p) *
-      motion_controller_withPIC_B.b_value_p5) * (cos
+       motion_controller_withPIC_B.b_value_p5) *
+      motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_pie -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_lm -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_jw) -
+          motion_controller_withPIC_B.rtb_Add_c_re_ob) -
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
-      motion_controller_withPIC_B.rtb_Add_c_im_h2 *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__fc /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
+      motion_controller_withPIC_B.rtb_Add_c_im_ch *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_d /
       (motion_controller_withPIC_B.kf_a * motion_controller_withPIC_B.kf_a *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0)) - cos
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0)) - cos
       (atan(sin(motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-                (motion_controller_withPIC_B.e_a_tmp_j -
-                 motion_controller_withPIC_B.alpha1_tmp_i,
+                (motion_controller_withPIC_B.e_a_tmp_f -
+                 motion_controller_withPIC_B.alpha1_tmp_f,
                  ((motion_controller_withPIC_B.Add +
-                   motion_controller_withPIC_B.rtb_Add_c_re_fz) +
+                   motion_controller_withPIC_B.rtb_Add_c_re_fq) +
                   motion_controller_withPIC_B.b_value_ax) -
                  motion_controller_withPIC_B.b_value_i)) *
-            motion_controller_withPIC_B.b_value_p) *
-       motion_controller_withPIC_B.b_value_p5) * (cos
+            motion_controller_withPIC_B.b_value_p5) *
+       motion_controller_withPIC_B.b_value_af) * (cos
       (motion_controller_withPIC_B.dr_i - rt_atan2d_snf
-       (motion_controller_withPIC_B.rtb_Add_c_im_jk -
-        motion_controller_withPIC_B.alpha1_tmp_i,
+       (motion_controller_withPIC_B.rtb_Add_c_im_cm -
+        motion_controller_withPIC_B.alpha1_tmp_f,
         ((motion_controller_withPIC_B.Add +
-          motion_controller_withPIC_B.rtb_Add_c_re_kv) +
+          motion_controller_withPIC_B.rtb_Add_c_re_fz) +
          motion_controller_withPIC_B.b_value_ax) -
         motion_controller_withPIC_B.b_value_i)) *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_c) *
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_n) *
       motion_controller_withPIC_B.rtb_Add_c_re_tmp *
-      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1__il /
+      motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_j /
       (motion_controller_withPIC_B.lf_a * motion_controller_withPIC_B.lf_a *
-       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_f + 1.0)) /
+       motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_i + 1.0)) /
       motion_controller_withPIC_P.Izz;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_h[0] =
       motion_controller_withPIC_B.Add1;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_h[1] =
-      ((motion_controller_withPIC_B.b_value_o +
-        motion_controller_withPIC_B.b_value_l) *
+      ((motion_controller_withPIC_B.b_value_o2 +
+        motion_controller_withPIC_B.b_value_o) *
        motion_controller_withPIC_B.Fy1_tmp + (motion_controller_withPIC_B.Gain2
         + motion_controller_withPIC_B.Add_i) *
        motion_controller_withPIC_B.Fy2_tmp) * (1.0 /
       motion_controller_withPIC_P.m);
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_h[2] =
-      motion_controller_withPIC_B.b_value_e;
+      motion_controller_withPIC_B.y_g;
     motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_h[3] =
       (((motion_controller_withPIC_B.Fy1_tmp_tmp_tmp *
-         motion_controller_withPIC_B.b_value_o +
+         motion_controller_withPIC_B.b_value_o2 +
          motion_controller_withPIC_B.Fy1_tmp_tmp *
-         motion_controller_withPIC_B.b_value_l) + motion_controller_withPIC_B.d1
-        * motion_controller_withPIC_B.Gain2) + motion_controller_withPIC_B.d_f *
+         motion_controller_withPIC_B.b_value_o) + motion_controller_withPIC_B.d1
+        * motion_controller_withPIC_B.Gain2) + motion_controller_withPIC_B.d_o *
        motion_controller_withPIC_B.Add_i) * (1.0 /
       motion_controller_withPIC_P.Izz);
     for (motion_controller_withPIC_B.isMpcEnable = 0;
          motion_controller_withPIC_B.isMpcEnable <= 2;
          motion_controller_withPIC_B.isMpcEnable += 2) {
       // MATLAB Function: '<S16>/update'
+      tmp_5 = _mm_loadu_pd
+        (&motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[motion_controller_withPIC_B.isMpcEnable
+         + 4]);
+      tmp_4 = _mm_loadu_pd
+        (&motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[motion_controller_withPIC_B.isMpcEnable]);
       tmp = _mm_loadu_pd
         (&motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[motion_controller_withPIC_B.isMpcEnable
-         + 4]);
-      tmp_0 = _mm_loadu_pd
-        (&motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[motion_controller_withPIC_B.isMpcEnable]);
-      tmp_1 = _mm_loadu_pd
-        (&motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[motion_controller_withPIC_B.isMpcEnable
          + 8]);
-      tmp_2 = _mm_loadu_pd
+      tmp_0 = _mm_loadu_pd
         (&motion_controller_withPIC_B.ImpAsg_InsertedFor_Out1_a_k[motion_controller_withPIC_B.isMpcEnable
          + 12]);
-      tmp_3 = _mm_loadu_pd
+      tmp_1 = _mm_loadu_pd
         (&motion_controller_withPIC_B.rtb_ImpAsg_InsertedFor_Out1_a_h[motion_controller_withPIC_B.isMpcEnable]);
-      tmp_4 = _mm_loadu_pd
+      tmp_2 = _mm_loadu_pd
         (&motion_controller_withPIC_B.B0[motion_controller_withPIC_B.isMpcEnable
          + 4]);
-      tmp_5 = _mm_loadu_pd
+      tmp_3 = _mm_loadu_pd
         (&motion_controller_withPIC_B.B0[motion_controller_withPIC_B.isMpcEnable]);
       _mm_storeu_pd
         (&motion_controller_withPIC_B.gama[motion_controller_withPIC_B.isMpcEnable],
-         _mm_sub_pd(_mm_sub_pd(tmp_3, _mm_add_pd(_mm_add_pd(_mm_add_pd
-             (_mm_mul_pd(tmp, _mm_set1_pd(motion_controller_withPIC_B.Add1)),
-              _mm_mul_pd(tmp_0, _mm_set1_pd(motion_controller_withPIC_B.yp))),
-             _mm_mul_pd(tmp_1, _mm_set1_pd(motion_controller_withPIC_B.yaw))),
-            _mm_mul_pd(tmp_2, _mm_set1_pd(motion_controller_withPIC_B.b_value_e)))),
-                    _mm_add_pd(_mm_mul_pd(tmp_4, _mm_set1_pd
-            (motion_controller_withPIC_B.dr_i)), _mm_mul_pd(tmp_5, _mm_set1_pd
+         _mm_sub_pd(_mm_sub_pd(tmp_1, _mm_add_pd(_mm_add_pd(_mm_add_pd
+             (_mm_mul_pd(tmp_5, _mm_set1_pd(motion_controller_withPIC_B.Add1)),
+              _mm_mul_pd(tmp_4, _mm_set1_pd(motion_controller_withPIC_B.yp))),
+             _mm_mul_pd(tmp, _mm_set1_pd(motion_controller_withPIC_B.yaw))),
+            _mm_mul_pd(tmp_0, _mm_set1_pd(motion_controller_withPIC_B.y_g)))),
+                    _mm_add_pd(_mm_mul_pd(tmp_2, _mm_set1_pd
+            (motion_controller_withPIC_B.dr_i)), _mm_mul_pd(tmp_3, _mm_set1_pd
             (motion_controller_withPIC_B.df_j)))));
     }
 
@@ -15969,12 +16274,12 @@ void motion_controller_withPIC::step()
       // MATLAB Function: '<S16>/update' incorporates:
       //   Constant: '<Root>/Constant2'
 
-      tmp = _mm_loadu_pd
+      tmp_5 = _mm_loadu_pd
         (&motion_controller_withPIC_B.B0[motion_controller_withPIC_B.isMpcEnable]);
       _mm_storeu_pd
         (&motion_controller_withPIC_B.B0[motion_controller_withPIC_B.isMpcEnable],
          _mm_mul_pd(_mm_set1_pd(motion_controller_withPIC_P.Constant2_Value_e),
-                    tmp));
+                    tmp_5));
     }
 
     // MATLAB Function: '<S16>/update' incorporates:
@@ -16023,16 +16328,16 @@ void motion_controller_withPIC::step()
          motion_controller_withPIC_B.isMpcEnable++) {
       motion_controller_withPIC_B.b_kidx =
         motion_controller_withPIC_B.isMpcEnable << 2;
-      motion_controller_withPIC_B.rtb_A1_tmp =
-        (motion_controller_withPIC_B.isMpcEnable + 4) * 6;
-      motion_controller_withPIC_B.A1[motion_controller_withPIC_B.rtb_A1_tmp] =
+      motion_controller_withPIC_B.i = (motion_controller_withPIC_B.isMpcEnable +
+        4) * 6;
+      motion_controller_withPIC_B.A1[motion_controller_withPIC_B.i] =
         motion_controller_withPIC_B.B0[motion_controller_withPIC_B.b_kidx];
-      motion_controller_withPIC_B.A1[motion_controller_withPIC_B.rtb_A1_tmp + 1]
-        = motion_controller_withPIC_B.B0[motion_controller_withPIC_B.b_kidx + 1];
-      motion_controller_withPIC_B.A1[motion_controller_withPIC_B.rtb_A1_tmp + 2]
-        = motion_controller_withPIC_B.B0[motion_controller_withPIC_B.b_kidx + 2];
-      motion_controller_withPIC_B.A1[motion_controller_withPIC_B.rtb_A1_tmp + 3]
-        = motion_controller_withPIC_B.B0[motion_controller_withPIC_B.b_kidx + 3];
+      motion_controller_withPIC_B.A1[motion_controller_withPIC_B.i + 1] =
+        motion_controller_withPIC_B.B0[motion_controller_withPIC_B.b_kidx + 1];
+      motion_controller_withPIC_B.A1[motion_controller_withPIC_B.i + 2] =
+        motion_controller_withPIC_B.B0[motion_controller_withPIC_B.b_kidx + 2];
+      motion_controller_withPIC_B.A1[motion_controller_withPIC_B.i + 3] =
+        motion_controller_withPIC_B.B0[motion_controller_withPIC_B.b_kidx + 3];
     }
 
     for (motion_controller_withPIC_B.isMpcEnable = 0;
@@ -16052,25 +16357,21 @@ void motion_controller_withPIC::step()
     motion_controller_withPIC_B.c_I[1] = 0;
     motion_controller_withPIC_B.c_I[2] = 0;
     motion_controller_withPIC_B.c_I[3] = 0;
-    for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-         motion_controller_withPIC_B.rtb_A1_tmp < 2;
-         motion_controller_withPIC_B.rtb_A1_tmp++) {
-      motion_controller_withPIC_B.c_I[motion_controller_withPIC_B.rtb_A1_tmp +
-        (motion_controller_withPIC_B.rtb_A1_tmp << 1)] = 1;
-      motion_controller_withPIC_B.isMpcEnable =
-        motion_controller_withPIC_B.rtb_A1_tmp << 2;
-      motion_controller_withPIC_B.B1[6 * motion_controller_withPIC_B.rtb_A1_tmp]
-        = motion_controller_withPIC_B.B0[motion_controller_withPIC_B.isMpcEnable];
-      motion_controller_withPIC_B.B1[6 * motion_controller_withPIC_B.rtb_A1_tmp
-        + 1] =
+    for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i < 2;
+         motion_controller_withPIC_B.i++) {
+      motion_controller_withPIC_B.c_I[motion_controller_withPIC_B.i +
+        (motion_controller_withPIC_B.i << 1)] = 1;
+      motion_controller_withPIC_B.isMpcEnable = motion_controller_withPIC_B.i <<
+        2;
+      motion_controller_withPIC_B.B1[6 * motion_controller_withPIC_B.i] =
+        motion_controller_withPIC_B.B0[motion_controller_withPIC_B.isMpcEnable];
+      motion_controller_withPIC_B.B1[6 * motion_controller_withPIC_B.i + 1] =
         motion_controller_withPIC_B.B0[motion_controller_withPIC_B.isMpcEnable +
         1];
-      motion_controller_withPIC_B.B1[6 * motion_controller_withPIC_B.rtb_A1_tmp
-        + 2] =
+      motion_controller_withPIC_B.B1[6 * motion_controller_withPIC_B.i + 2] =
         motion_controller_withPIC_B.B0[motion_controller_withPIC_B.isMpcEnable +
         2];
-      motion_controller_withPIC_B.B1[6 * motion_controller_withPIC_B.rtb_A1_tmp
-        + 3] =
+      motion_controller_withPIC_B.B1[6 * motion_controller_withPIC_B.i + 3] =
         motion_controller_withPIC_B.B0[motion_controller_withPIC_B.isMpcEnable +
         3];
     }
@@ -16080,61 +16381,61 @@ void motion_controller_withPIC::step()
     motion_controller_withPIC_B.B1[10] = motion_controller_withPIC_B.c_I[2];
     motion_controller_withPIC_B.B1[11] = motion_controller_withPIC_B.c_I[3];
 
-    // If: '<S59>/If' incorporates:
+    // If: '<S60>/If' incorporates:
     //   MATLABSystem: '<S16>/Get Parameter1'
 
-    if (motion_controller_withPIC_B.b_value_kw) {
-      // Outputs for IfAction SubSystem: '<S59>/If Action Subsystem' incorporates:
-      //   ActionPort: '<S61>/Action Port'
+    if (motion_controller_withPIC_B.b_value_k1) {
+      // Outputs for IfAction SubSystem: '<S60>/If Action Subsystem' incorporates:
+      //   ActionPort: '<S62>/Action Port'
 
-      // Gain: '<S61>/Gain1' incorporates:
+      // Gain: '<S62>/Gain1' incorporates:
       //   MATLABSystem: '<S16>/Get Parameter6'
 
       motion_controller_withPIC_B.yp = motion_controller_withPIC_P.Gain1_Gain_o *
-        motion_controller_withPIC_B.UnitDelay;
+        motion_controller_withPIC_B.vxp;
 
-      // MATLAB Function: '<S61>/predict'
+      // MATLAB Function: '<S62>/predict'
       memset(&motion_controller_withPIC_B.G_e[0], 0, 720U * sizeof(real_T));
       memcpy(&motion_controller_withPIC_B.t[0], &motion_controller_withPIC_B.A1
              [0], 36U * sizeof(real_T));
-      for (motion_controller_withPIC_B.b_j = 0; motion_controller_withPIC_B.b_j <
-           20; motion_controller_withPIC_B.b_j++) {
-        motion_controller_withPIC_B.i = motion_controller_withPIC_B.b_j * 6;
-        motion_controller_withPIC_B.d_a[0] = 6;
+      for (motion_controller_withPIC_B.j = 0; motion_controller_withPIC_B.j < 20;
+           motion_controller_withPIC_B.j++) {
+        motion_controller_withPIC_B.i = motion_controller_withPIC_B.j * 6;
+        motion_controller_withPIC_B.d_fm[0] = 6;
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 6;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 6;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 6;
+               motion_controller_withPIC_B.b_kidx++) {
             motion_controller_withPIC_B.G_e[(motion_controller_withPIC_B.i +
-              motion_controller_withPIC_B.rtb_A1_tmp) + 120 *
+              motion_controller_withPIC_B.b_kidx) + 120 *
               motion_controller_withPIC_B.isMpcEnable] =
-              motion_controller_withPIC_B.t[motion_controller_withPIC_B.d_a[0] *
+              motion_controller_withPIC_B.t[motion_controller_withPIC_B.d_fm[0] *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx];
             motion_controller_withPIC_B.b_value_c0 = 0.0;
-            for (motion_controller_withPIC_B.b_kidx = 0;
-                 motion_controller_withPIC_B.b_kidx < 6;
-                 motion_controller_withPIC_B.b_kidx++) {
+            for (motion_controller_withPIC_B.b_j = 0;
+                 motion_controller_withPIC_B.b_j < 6;
+                 motion_controller_withPIC_B.b_j++) {
               motion_controller_withPIC_B.b_value_c0 +=
                 motion_controller_withPIC_B.t[6 *
-                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j +
                 motion_controller_withPIC_B.isMpcEnable] *
                 motion_controller_withPIC_B.A1[6 *
-                motion_controller_withPIC_B.rtb_A1_tmp +
-                motion_controller_withPIC_B.b_kidx];
+                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j];
             }
 
             motion_controller_withPIC_B.t_j[motion_controller_withPIC_B.isMpcEnable
-              + 6 * motion_controller_withPIC_B.rtb_A1_tmp] =
+              + 6 * motion_controller_withPIC_B.b_kidx] =
               motion_controller_withPIC_B.b_value_c0;
           }
         }
 
         memcpy(&motion_controller_withPIC_B.t[0],
                &motion_controller_withPIC_B.t_j[0], 36U * sizeof(real_T));
-        motion_controller_withPIC_B.i = motion_controller_withPIC_B.b_j << 2;
+        motion_controller_withPIC_B.i = motion_controller_withPIC_B.j << 2;
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 4;
              motion_controller_withPIC_B.isMpcEnable++) {
@@ -16145,24 +16446,24 @@ void motion_controller_withPIC::step()
       }
 
       memset(&motion_controller_withPIC_B.H_e[0], 0, 4800U * sizeof(real_T));
-      for (motion_controller_withPIC_B.k = 0; motion_controller_withPIC_B.k < 20;
-           motion_controller_withPIC_B.k++) {
-        motion_controller_withPIC_B.i = motion_controller_withPIC_B.k * 6 + 1;
+      for (motion_controller_withPIC_B.c_jz = 0;
+           motion_controller_withPIC_B.c_jz < 20;
+           motion_controller_withPIC_B.c_jz++) {
+        motion_controller_withPIC_B.i = motion_controller_withPIC_B.c_jz * 6 + 1;
         motion_controller_withPIC_B.b_value_c0 = 1.0;
-        motion_controller_withPIC_B.b_h = static_cast<int32_T>(((6.0 -
+        motion_controller_withPIC_B.b_g = static_cast<int32_T>(((6.0 -
           static_cast<real_T>(motion_controller_withPIC_B.i)) + 60.0) / 6.0);
         for (motion_controller_withPIC_B.b_j = 0;
-             motion_controller_withPIC_B.b_j < motion_controller_withPIC_B.b_h;
+             motion_controller_withPIC_B.b_j < motion_controller_withPIC_B.b_g;
              motion_controller_withPIC_B.b_j++) {
-          motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.b_j *
-            6 + motion_controller_withPIC_B.i;
-          if (motion_controller_withPIC_B.b_kidx >
-              motion_controller_withPIC_B.b_kidx + 5) {
-            motion_controller_withPIC_B.g = -5;
-            motion_controller_withPIC_B.b_kidx = -5;
+          motion_controller_withPIC_B.j = motion_controller_withPIC_B.b_j * 6 +
+            motion_controller_withPIC_B.i;
+          if (motion_controller_withPIC_B.j > motion_controller_withPIC_B.j + 5)
+          {
+            motion_controller_withPIC_B.k = -5;
+            motion_controller_withPIC_B.j = -5;
           } else {
-            motion_controller_withPIC_B.g = motion_controller_withPIC_B.b_kidx -
-              6;
+            motion_controller_withPIC_B.k = motion_controller_withPIC_B.j - 6;
           }
 
           if (motion_controller_withPIC_B.b_value_c0 >
@@ -16176,8 +16477,8 @@ void motion_controller_withPIC::step()
               ((motion_controller_withPIC_B.b_value_c0 + 2.0) - 1.0);
           }
 
-          motion_controller_withPIC_B.f_idx_0 =
-            motion_controller_withPIC_B.b_kidx - motion_controller_withPIC_B.g;
+          motion_controller_withPIC_B.f_idx_0 = motion_controller_withPIC_B.j -
+            motion_controller_withPIC_B.k;
           motion_controller_withPIC_B.f_idx_1 =
             motion_controller_withPIC_B.isMpcEnable -
             motion_controller_withPIC_B.l;
@@ -16185,17 +16486,17 @@ void motion_controller_withPIC::step()
                motion_controller_withPIC_B.isMpcEnable <
                motion_controller_withPIC_B.f_idx_1;
                motion_controller_withPIC_B.isMpcEnable++) {
-            for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-                 motion_controller_withPIC_B.rtb_A1_tmp <
+            for (motion_controller_withPIC_B.b_kidx = 0;
+                 motion_controller_withPIC_B.b_kidx <
                  motion_controller_withPIC_B.f_idx_0;
-                 motion_controller_withPIC_B.rtb_A1_tmp++) {
-              motion_controller_withPIC_B.H_e[((motion_controller_withPIC_B.g +
-                motion_controller_withPIC_B.rtb_A1_tmp) + 120 *
+                 motion_controller_withPIC_B.b_kidx++) {
+              motion_controller_withPIC_B.H_e[((motion_controller_withPIC_B.k +
+                motion_controller_withPIC_B.b_kidx) + 120 *
                 (motion_controller_withPIC_B.l +
                  motion_controller_withPIC_B.isMpcEnable)) + 5] =
                 motion_controller_withPIC_B.B1[motion_controller_withPIC_B.f_idx_0
                 * motion_controller_withPIC_B.isMpcEnable +
-                motion_controller_withPIC_B.rtb_A1_tmp];
+                motion_controller_withPIC_B.b_kidx];
             }
           }
 
@@ -16205,24 +16506,24 @@ void motion_controller_withPIC::step()
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 6;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 2;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 2;
+               motion_controller_withPIC_B.b_kidx++) {
             motion_controller_withPIC_B.b_value_c0 = 0.0;
-            for (motion_controller_withPIC_B.b_kidx = 0;
-                 motion_controller_withPIC_B.b_kidx < 6;
-                 motion_controller_withPIC_B.b_kidx++) {
+            for (motion_controller_withPIC_B.b_j = 0;
+                 motion_controller_withPIC_B.b_j < 6;
+                 motion_controller_withPIC_B.b_j++) {
               motion_controller_withPIC_B.b_value_c0 +=
                 motion_controller_withPIC_B.A1[6 *
-                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j +
                 motion_controller_withPIC_B.isMpcEnable] *
                 motion_controller_withPIC_B.B1[6 *
-                motion_controller_withPIC_B.rtb_A1_tmp +
-                motion_controller_withPIC_B.b_kidx];
+                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j];
             }
 
             motion_controller_withPIC_B.rtb_A1_m[motion_controller_withPIC_B.isMpcEnable
-              + 6 * motion_controller_withPIC_B.rtb_A1_tmp] =
+              + 6 * motion_controller_withPIC_B.b_kidx] =
               motion_controller_withPIC_B.b_value_c0;
           }
         }
@@ -16266,24 +16567,23 @@ void motion_controller_withPIC::step()
           motion_controller_withPIC_B.isMpcEnable + 5] = 0.0;
       }
 
-      for (motion_controller_withPIC_B.b_j = 0; motion_controller_withPIC_B.b_j <
-           20; motion_controller_withPIC_B.b_j++) {
-        motion_controller_withPIC_B.i = motion_controller_withPIC_B.b_j * 6 + 1;
+      for (motion_controller_withPIC_B.b_g = 0; motion_controller_withPIC_B.b_g <
+           20; motion_controller_withPIC_B.b_g++) {
+        motion_controller_withPIC_B.i = motion_controller_withPIC_B.b_g * 6 + 1;
         motion_controller_withPIC_B.b_value_c0 = 1.0;
-        motion_controller_withPIC_B.g = static_cast<int32_T>(((6.0 -
+        motion_controller_withPIC_B.c_jz = static_cast<int32_T>(((6.0 -
           static_cast<real_T>(motion_controller_withPIC_B.i)) + 120.0) / 6.0);
-        for (motion_controller_withPIC_B.b_h = 0;
-             motion_controller_withPIC_B.b_h < motion_controller_withPIC_B.g;
-             motion_controller_withPIC_B.b_h++) {
-          motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.b_h *
-            6 + motion_controller_withPIC_B.i;
-          if (motion_controller_withPIC_B.b_kidx >
-              motion_controller_withPIC_B.b_kidx + 5) {
+        for (motion_controller_withPIC_B.b_j = 0;
+             motion_controller_withPIC_B.b_j < motion_controller_withPIC_B.c_jz;
+             motion_controller_withPIC_B.b_j++) {
+          motion_controller_withPIC_B.j = motion_controller_withPIC_B.b_j * 6 +
+            motion_controller_withPIC_B.i;
+          if (motion_controller_withPIC_B.j > motion_controller_withPIC_B.j + 5)
+          {
             motion_controller_withPIC_B.k = -5;
-            motion_controller_withPIC_B.b_kidx = -5;
+            motion_controller_withPIC_B.j = -5;
           } else {
-            motion_controller_withPIC_B.k = motion_controller_withPIC_B.b_kidx -
-              6;
+            motion_controller_withPIC_B.k = motion_controller_withPIC_B.j - 6;
           }
 
           if (motion_controller_withPIC_B.b_value_c0 >
@@ -16297,8 +16597,8 @@ void motion_controller_withPIC::step()
               ((motion_controller_withPIC_B.b_value_c0 + 4.0) - 1.0);
           }
 
-          motion_controller_withPIC_B.f_idx_0 =
-            motion_controller_withPIC_B.b_kidx - motion_controller_withPIC_B.k;
+          motion_controller_withPIC_B.f_idx_0 = motion_controller_withPIC_B.j -
+            motion_controller_withPIC_B.k;
           motion_controller_withPIC_B.f_idx_1 =
             motion_controller_withPIC_B.isMpcEnable -
             motion_controller_withPIC_B.l;
@@ -16306,17 +16606,17 @@ void motion_controller_withPIC::step()
                motion_controller_withPIC_B.isMpcEnable <
                motion_controller_withPIC_B.f_idx_1;
                motion_controller_withPIC_B.isMpcEnable++) {
-            for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-                 motion_controller_withPIC_B.rtb_A1_tmp <
+            for (motion_controller_withPIC_B.b_kidx = 0;
+                 motion_controller_withPIC_B.b_kidx <
                  motion_controller_withPIC_B.f_idx_0;
-                 motion_controller_withPIC_B.rtb_A1_tmp++) {
+                 motion_controller_withPIC_B.b_kidx++) {
               motion_controller_withPIC_B.W_m[((motion_controller_withPIC_B.k +
-                motion_controller_withPIC_B.rtb_A1_tmp) + 120 *
+                motion_controller_withPIC_B.b_kidx) + 120 *
                 (motion_controller_withPIC_B.l +
                  motion_controller_withPIC_B.isMpcEnable)) + 5] =
                 motion_controller_withPIC_B.c_t[motion_controller_withPIC_B.f_idx_0
                 * motion_controller_withPIC_B.isMpcEnable +
-                motion_controller_withPIC_B.rtb_A1_tmp];
+                motion_controller_withPIC_B.b_kidx];
             }
           }
 
@@ -16326,24 +16626,24 @@ void motion_controller_withPIC::step()
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 6;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 4;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 4;
+               motion_controller_withPIC_B.b_kidx++) {
             motion_controller_withPIC_B.b_value_c0 = 0.0;
-            for (motion_controller_withPIC_B.b_kidx = 0;
-                 motion_controller_withPIC_B.b_kidx < 6;
-                 motion_controller_withPIC_B.b_kidx++) {
+            for (motion_controller_withPIC_B.b_j = 0;
+                 motion_controller_withPIC_B.b_j < 6;
+                 motion_controller_withPIC_B.b_j++) {
               motion_controller_withPIC_B.b_value_c0 +=
                 motion_controller_withPIC_B.A1[6 *
-                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j +
                 motion_controller_withPIC_B.isMpcEnable] *
                 motion_controller_withPIC_B.c_t[6 *
-                motion_controller_withPIC_B.rtb_A1_tmp +
-                motion_controller_withPIC_B.b_kidx];
+                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j];
             }
 
             motion_controller_withPIC_B.rtb_A1_o[motion_controller_withPIC_B.isMpcEnable
-              + 6 * motion_controller_withPIC_B.rtb_A1_tmp] =
+              + 6 * motion_controller_withPIC_B.b_kidx] =
               motion_controller_withPIC_B.b_value_c0;
           }
         }
@@ -16352,9 +16652,9 @@ void motion_controller_withPIC::step()
                &motion_controller_withPIC_B.rtb_A1_o[0], 24U * sizeof(real_T));
       }
 
-      // End of MATLAB Function: '<S61>/predict'
+      // End of MATLAB Function: '<S62>/predict'
 
-      // MATLAB Function: '<S61>/solvex' incorporates:
+      // MATLAB Function: '<S62>/solvex' incorporates:
       //   MATLABSystem: '<S16>/Get Parameter'
       //   MATLABSystem: '<S16>/Get Parameter6'
       //   Reshape: '<S16>/Reshape'
@@ -16363,39 +16663,36 @@ void motion_controller_withPIC::step()
 
       if (!motion_controller_withPIC_DW.x0_not_empty_k) {
         motion_controller_withPIC_DW.x0_not_empty_k = true;
-        motion_controller_withPIC_DW.Umin_c =
-          -motion_controller_withPIC_B.Product1;
-        motion_controller_withPIC_DW.Umax_n =
-          motion_controller_withPIC_B.Product1;
+        motion_controller_withPIC_DW.Umin_c = -motion_controller_withPIC_B.vyp;
+        motion_controller_withPIC_DW.Umax_n = motion_controller_withPIC_B.vyp;
         motion_controller_withPIC_B.isMpcEnable = -1;
         motion_controller_withPIC_B.b_kidx = -1;
-        for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-             motion_controller_withPIC_B.rtb_A1_tmp < 20;
-             motion_controller_withPIC_B.rtb_A1_tmp++) {
-          for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <
-               2; motion_controller_withPIC_B.i++) {
-            motion_controller_withPIC_B.b_j = motion_controller_withPIC_B.i << 1;
-            motion_controller_withPIC_B.B_gr = B[motion_controller_withPIC_B.b_j];
-            motion_controller_withPIC_B.B_b = B[motion_controller_withPIC_B.b_j
+        for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <
+             20; motion_controller_withPIC_B.i++) {
+          for (motion_controller_withPIC_B.j = 0; motion_controller_withPIC_B.j <
+               2; motion_controller_withPIC_B.j++) {
+            motion_controller_withPIC_B.c_jz = motion_controller_withPIC_B.j <<
+              1;
+            motion_controller_withPIC_B.B_b = B[motion_controller_withPIC_B.c_jz];
+            motion_controller_withPIC_B.B_k = B[motion_controller_withPIC_B.c_jz
               + 1];
-            for (motion_controller_withPIC_B.b_j = 0;
-                 motion_controller_withPIC_B.b_j < 20;
-                 motion_controller_withPIC_B.b_j++) {
+            for (motion_controller_withPIC_B.c_jz = 0;
+                 motion_controller_withPIC_B.c_jz < 20;
+                 motion_controller_withPIC_B.c_jz++) {
               motion_controller_withPIC_B.A = A_0[20 *
-                motion_controller_withPIC_B.rtb_A1_tmp +
-                motion_controller_withPIC_B.b_j];
+                motion_controller_withPIC_B.i + motion_controller_withPIC_B.c_jz];
               motion_controller_withPIC_B.Rp[motion_controller_withPIC_B.isMpcEnable
                 + 1] = motion_controller_withPIC_B.A *
-                motion_controller_withPIC_B.B_gr;
-              motion_controller_withPIC_B.K[motion_controller_withPIC_B.b_kidx +
-                1] = static_cast<int8_T>(motion_controller_withPIC_B.A *
-                motion_controller_withPIC_B.B_gr);
-              motion_controller_withPIC_B.Rp[motion_controller_withPIC_B.isMpcEnable
-                + 2] = motion_controller_withPIC_B.A *
                 motion_controller_withPIC_B.B_b;
               motion_controller_withPIC_B.K[motion_controller_withPIC_B.b_kidx +
-                2] = static_cast<int8_T>(motion_controller_withPIC_B.A *
+                1] = static_cast<int8_T>(motion_controller_withPIC_B.A *
                 motion_controller_withPIC_B.B_b);
+              motion_controller_withPIC_B.Rp[motion_controller_withPIC_B.isMpcEnable
+                + 2] = motion_controller_withPIC_B.A *
+                motion_controller_withPIC_B.B_k;
+              motion_controller_withPIC_B.K[motion_controller_withPIC_B.b_kidx +
+                2] = static_cast<int8_T>(motion_controller_withPIC_B.A *
+                motion_controller_withPIC_B.B_k);
               motion_controller_withPIC_B.b_kidx =
                 motion_controller_withPIC_B.isMpcEnable + 2;
               motion_controller_withPIC_B.isMpcEnable += 2;
@@ -16406,20 +16703,20 @@ void motion_controller_withPIC::step()
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 40;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 40;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.b_kidx = 40 *
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 40;
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.i = 40 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp;
-            motion_controller_withPIC_B.i = 80 *
+              motion_controller_withPIC_B.b_kidx;
+            motion_controller_withPIC_B.j = 80 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp;
-            motion_controller_withPIC_DW.A_j[motion_controller_withPIC_B.i] =
-              motion_controller_withPIC_B.Rp[motion_controller_withPIC_B.b_kidx];
-            motion_controller_withPIC_DW.A_j[motion_controller_withPIC_B.i + 40]
+              motion_controller_withPIC_B.b_kidx;
+            motion_controller_withPIC_DW.A_j[motion_controller_withPIC_B.j] =
+              motion_controller_withPIC_B.Rp[motion_controller_withPIC_B.i];
+            motion_controller_withPIC_DW.A_j[motion_controller_withPIC_B.j + 40]
               = -static_cast<real_T>
-              (motion_controller_withPIC_B.K[motion_controller_withPIC_B.b_kidx]);
+              (motion_controller_withPIC_B.K[motion_controller_withPIC_B.i]);
           }
         }
       }
@@ -16429,15 +16726,13 @@ void motion_controller_withPIC::step()
       motion_controller_withPIC_B.k = 6;
       for (motion_controller_withPIC_B.b_j = 0; motion_controller_withPIC_B.b_j <
            20; motion_controller_withPIC_B.b_j++) {
-        motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.b_j * 6
-          + 6;
-        if (motion_controller_withPIC_B.b_kidx - 5 >
-            motion_controller_withPIC_B.b_kidx) {
-          motion_controller_withPIC_B.g = 0;
-          motion_controller_withPIC_B.b_h = 0;
+        motion_controller_withPIC_B.j = motion_controller_withPIC_B.b_j * 6 + 6;
+        if (motion_controller_withPIC_B.j - 5 > motion_controller_withPIC_B.j) {
+          motion_controller_withPIC_B.c_jz = 0;
+          motion_controller_withPIC_B.b_g = 0;
         } else {
-          motion_controller_withPIC_B.g = motion_controller_withPIC_B.b_kidx - 6;
-          motion_controller_withPIC_B.b_h = motion_controller_withPIC_B.b_kidx;
+          motion_controller_withPIC_B.c_jz = motion_controller_withPIC_B.j - 6;
+          motion_controller_withPIC_B.b_g = motion_controller_withPIC_B.j;
         }
 
         if (motion_controller_withPIC_B.k - 5 > motion_controller_withPIC_B.k) {
@@ -16449,8 +16744,8 @@ void motion_controller_withPIC::step()
             motion_controller_withPIC_B.k;
         }
 
-        motion_controller_withPIC_B.f_idx_0 = motion_controller_withPIC_B.b_h -
-          motion_controller_withPIC_B.g;
+        motion_controller_withPIC_B.f_idx_0 = motion_controller_withPIC_B.b_g -
+          motion_controller_withPIC_B.c_jz;
         motion_controller_withPIC_B.f_idx_1 =
           motion_controller_withPIC_B.isMpcEnable -
           motion_controller_withPIC_B.i;
@@ -16458,37 +16753,35 @@ void motion_controller_withPIC::step()
              motion_controller_withPIC_B.isMpcEnable <
              motion_controller_withPIC_B.f_idx_1;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp <
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx <
                motion_controller_withPIC_B.f_idx_0;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.Qp[(motion_controller_withPIC_B.g +
-              motion_controller_withPIC_B.rtb_A1_tmp) + 120 *
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.Qp[(motion_controller_withPIC_B.c_jz +
+              motion_controller_withPIC_B.b_kidx) + 120 *
               (motion_controller_withPIC_B.i +
                motion_controller_withPIC_B.isMpcEnable)] =
               motion_controller_withPIC_B.Q[motion_controller_withPIC_B.f_idx_0 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx];
           }
         }
 
         motion_controller_withPIC_B.k += 6;
-        if (motion_controller_withPIC_B.b_kidx - 5 >
-            motion_controller_withPIC_B.b_kidx) {
-          motion_controller_withPIC_B.rtb_A1_tmp = 0;
+        if (motion_controller_withPIC_B.j - 5 > motion_controller_withPIC_B.j) {
           motion_controller_withPIC_B.b_kidx = 0;
+          motion_controller_withPIC_B.j = 0;
         } else {
-          motion_controller_withPIC_B.rtb_A1_tmp =
-            motion_controller_withPIC_B.b_kidx - 6;
+          motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.j - 6;
         }
 
-        motion_controller_withPIC_B.b_kidx -=
-          motion_controller_withPIC_B.rtb_A1_tmp;
+        motion_controller_withPIC_B.i = motion_controller_withPIC_B.j -
+          motion_controller_withPIC_B.b_kidx;
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable <
-             motion_controller_withPIC_B.b_kidx;
+             motion_controller_withPIC_B.i;
              motion_controller_withPIC_B.isMpcEnable++) {
-          motion_controller_withPIC_B.rtb_H_o[motion_controller_withPIC_B.rtb_A1_tmp
+          motion_controller_withPIC_B.rtb_H_o[motion_controller_withPIC_B.b_kidx
             + motion_controller_withPIC_B.isMpcEnable] =
             motion_controller_withPIC_B.y_j[motion_controller_withPIC_B.isMpcEnable];
         }
@@ -16496,10 +16789,9 @@ void motion_controller_withPIC::step()
 
       memset(&motion_controller_withPIC_B.Rp[0], 0, 1600U * sizeof(real_T));
       motion_controller_withPIC_B.k = 2;
-      for (motion_controller_withPIC_B.b_h = 0; motion_controller_withPIC_B.b_h <
-           20; motion_controller_withPIC_B.b_h++) {
-        motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.b_h <<
-          1;
+      for (motion_controller_withPIC_B.b_j = 0; motion_controller_withPIC_B.b_j <
+           20; motion_controller_withPIC_B.b_j++) {
+        motion_controller_withPIC_B.j = motion_controller_withPIC_B.b_j << 1;
         if (motion_controller_withPIC_B.k - 1 > motion_controller_withPIC_B.k) {
           motion_controller_withPIC_B.i = 0;
           motion_controller_withPIC_B.isMpcEnable = 0;
@@ -16516,16 +16808,16 @@ void motion_controller_withPIC::step()
              motion_controller_withPIC_B.isMpcEnable <
              motion_controller_withPIC_B.f_idx_1;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 2;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.Rp[(motion_controller_withPIC_B.b_kidx +
-              motion_controller_withPIC_B.rtb_A1_tmp) + 40 *
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 2;
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.Rp[(motion_controller_withPIC_B.j +
+              motion_controller_withPIC_B.b_kidx) + 40 *
               (motion_controller_withPIC_B.i +
                motion_controller_withPIC_B.isMpcEnable)] =
               motion_controller_withPIC_B.R
               [(motion_controller_withPIC_B.isMpcEnable << 1) +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx];
           }
         }
 
@@ -16540,19 +16832,18 @@ void motion_controller_withPIC::step()
         memset
           (&motion_controller_withPIC_B.y_mb[motion_controller_withPIC_B.b_kidx],
            0, 40U * sizeof(real_T));
-        for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-             motion_controller_withPIC_B.rtb_A1_tmp < 120;
-             motion_controller_withPIC_B.rtb_A1_tmp++) {
+        for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <
+             120; motion_controller_withPIC_B.i++) {
           motion_controller_withPIC_B.b_value_c0 =
-            motion_controller_withPIC_B.Qp[motion_controller_withPIC_B.rtb_A1_tmp
-            * 120 + motion_controller_withPIC_B.isMpcEnable];
-          for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <
-               40; motion_controller_withPIC_B.i++) {
-            motion_controller_withPIC_B.b_j = motion_controller_withPIC_B.b_kidx
-              + motion_controller_withPIC_B.i;
-            motion_controller_withPIC_B.y_mb[motion_controller_withPIC_B.b_j] +=
-              motion_controller_withPIC_B.H_e[motion_controller_withPIC_B.i *
-              120 + motion_controller_withPIC_B.rtb_A1_tmp] *
+            motion_controller_withPIC_B.Qp[motion_controller_withPIC_B.i * 120 +
+            motion_controller_withPIC_B.isMpcEnable];
+          for (motion_controller_withPIC_B.j = 0; motion_controller_withPIC_B.j <
+               40; motion_controller_withPIC_B.j++) {
+            motion_controller_withPIC_B.c_jz =
+              motion_controller_withPIC_B.b_kidx + motion_controller_withPIC_B.j;
+            motion_controller_withPIC_B.y_mb[motion_controller_withPIC_B.c_jz] +=
+              motion_controller_withPIC_B.H_e[motion_controller_withPIC_B.j *
+              120 + motion_controller_withPIC_B.i] *
               motion_controller_withPIC_B.b_value_c0;
           }
         }
@@ -16560,20 +16851,19 @@ void motion_controller_withPIC::step()
         memset
           (&motion_controller_withPIC_B.b_y[motion_controller_withPIC_B.b_kidx],
            0, 40U * sizeof(real_T));
-        for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-             motion_controller_withPIC_B.rtb_A1_tmp < 120;
-             motion_controller_withPIC_B.rtb_A1_tmp++) {
+        for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <
+             120; motion_controller_withPIC_B.i++) {
           motion_controller_withPIC_B.b_value_c0 =
-            motion_controller_withPIC_B.Qp[motion_controller_withPIC_B.rtb_A1_tmp
-            * 120 + motion_controller_withPIC_B.isMpcEnable];
-          for (motion_controller_withPIC_B.b_j = 0;
-               motion_controller_withPIC_B.b_j < 40;
-               motion_controller_withPIC_B.b_j++) {
-            motion_controller_withPIC_B.i = motion_controller_withPIC_B.b_kidx +
-              motion_controller_withPIC_B.b_j;
-            motion_controller_withPIC_B.b_y[motion_controller_withPIC_B.i] +=
-              motion_controller_withPIC_B.H_e[motion_controller_withPIC_B.b_j *
-              120 + motion_controller_withPIC_B.rtb_A1_tmp] *
+            motion_controller_withPIC_B.Qp[motion_controller_withPIC_B.i * 120 +
+            motion_controller_withPIC_B.isMpcEnable];
+          for (motion_controller_withPIC_B.b_g = 0;
+               motion_controller_withPIC_B.b_g < 40;
+               motion_controller_withPIC_B.b_g++) {
+            motion_controller_withPIC_B.j = motion_controller_withPIC_B.b_kidx +
+              motion_controller_withPIC_B.b_g;
+            motion_controller_withPIC_B.b_y[motion_controller_withPIC_B.j] +=
+              motion_controller_withPIC_B.H_e[motion_controller_withPIC_B.b_g *
+              120 + motion_controller_withPIC_B.i] *
               motion_controller_withPIC_B.b_value_c0;
           }
         }
@@ -16582,7 +16872,8 @@ void motion_controller_withPIC::step()
       motion_controller_withPIC_B.b_value_c0 =
         motion_controller_withPIC_DW.Umax_n -
         motion_controller_withPIC_DW.UnitDelay_DSTATE;
-      motion_controller_withPIC_B.as = motion_controller_withPIC_DW.Umax_n -
+      motion_controller_withPIC_B.b_value_p5 =
+        motion_controller_withPIC_DW.Umax_n -
         motion_controller_withPIC_DW.UnitDelay1_DSTATE;
       motion_controller_withPIC_B.isMpcEnable = -1;
       for (motion_controller_withPIC_B.b_kidx = 0;
@@ -16591,14 +16882,14 @@ void motion_controller_withPIC::step()
         motion_controller_withPIC_B.T[motion_controller_withPIC_B.isMpcEnable +
           1] = motion_controller_withPIC_B.b_value_c0;
         motion_controller_withPIC_B.T[motion_controller_withPIC_B.isMpcEnable +
-          2] = motion_controller_withPIC_B.as;
+          2] = motion_controller_withPIC_B.b_value_p5;
         motion_controller_withPIC_B.isMpcEnable += 2;
       }
 
       motion_controller_withPIC_B.b_value_c0 =
         motion_controller_withPIC_DW.UnitDelay_DSTATE -
         motion_controller_withPIC_DW.Umin_c;
-      motion_controller_withPIC_B.as =
+      motion_controller_withPIC_B.b_value_p5 =
         motion_controller_withPIC_DW.UnitDelay1_DSTATE -
         motion_controller_withPIC_DW.Umin_c;
       motion_controller_withPIC_B.isMpcEnable = -1;
@@ -16608,7 +16899,7 @@ void motion_controller_withPIC::step()
         motion_controller_withPIC_B.b_K[motion_controller_withPIC_B.isMpcEnable
           + 1] = motion_controller_withPIC_B.b_value_c0;
         motion_controller_withPIC_B.b_K[motion_controller_withPIC_B.isMpcEnable
-          + 2] = motion_controller_withPIC_B.as;
+          + 2] = motion_controller_withPIC_B.b_value_p5;
         motion_controller_withPIC_B.isMpcEnable += 2;
       }
 
@@ -16619,88 +16910,85 @@ void motion_controller_withPIC::step()
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 120;
              motion_controller_withPIC_B.isMpcEnable++) {
+          motion_controller_withPIC_B.b_value_p5 = 0.0;
           motion_controller_withPIC_B.b_value_c0 = 0.0;
-          motion_controller_withPIC_B.as = 0.0;
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 120;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.b_value_c0 +=
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 120;
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.b_value_p5 +=
               motion_controller_withPIC_B.H_e[120 *
-              motion_controller_withPIC_B.i +
-              motion_controller_withPIC_B.rtb_A1_tmp] *
-              motion_controller_withPIC_B.Qp[120 *
+              motion_controller_withPIC_B.i + motion_controller_withPIC_B.b_kidx]
+              * motion_controller_withPIC_B.Qp[120 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
-            motion_controller_withPIC_B.as =
-              motion_controller_withPIC_B.b_value_c0;
+              motion_controller_withPIC_B.b_kidx];
+            motion_controller_withPIC_B.b_value_c0 =
+              motion_controller_withPIC_B.b_value_p5;
           }
 
           motion_controller_withPIC_B.b_kidx = 40 *
             motion_controller_withPIC_B.isMpcEnable +
             motion_controller_withPIC_B.i;
           motion_controller_withPIC_B.rtb_H_e_k[motion_controller_withPIC_B.b_kidx]
-            = motion_controller_withPIC_B.as;
-          motion_controller_withPIC_B.rtb_H_e_c[motion_controller_withPIC_B.b_kidx]
             = motion_controller_withPIC_B.b_value_c0;
+          motion_controller_withPIC_B.rtb_H_e_c[motion_controller_withPIC_B.b_kidx]
+            = motion_controller_withPIC_B.b_value_p5;
         }
 
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 6;
              motion_controller_withPIC_B.isMpcEnable++) {
-          motion_controller_withPIC_B.as = 0.0;
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 120;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.as +=
+          motion_controller_withPIC_B.b_value_c0 = 0.0;
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 120;
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.b_value_c0 +=
               motion_controller_withPIC_B.rtb_H_e_k[40 *
-              motion_controller_withPIC_B.rtb_A1_tmp +
-              motion_controller_withPIC_B.i] * motion_controller_withPIC_B.G_e
-              [120 * motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx + motion_controller_withPIC_B.i]
+              * motion_controller_withPIC_B.G_e[120 *
+              motion_controller_withPIC_B.isMpcEnable +
+              motion_controller_withPIC_B.b_kidx];
           }
 
           motion_controller_withPIC_B.rtb_H_e_d[motion_controller_withPIC_B.i +
             40 * motion_controller_withPIC_B.isMpcEnable] =
-            motion_controller_withPIC_B.as;
+            motion_controller_withPIC_B.b_value_c0;
         }
 
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 80;
              motion_controller_withPIC_B.isMpcEnable++) {
-          motion_controller_withPIC_B.b_value_c0 = 0.0;
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 120;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.b_value_c0 +=
-              motion_controller_withPIC_B.y_mb[40 *
-              motion_controller_withPIC_B.rtb_A1_tmp +
+          motion_controller_withPIC_B.y_g = 0.0;
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 120;
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.y_g += motion_controller_withPIC_B.y_mb
+              [40 * motion_controller_withPIC_B.b_kidx +
               motion_controller_withPIC_B.i] * motion_controller_withPIC_B.W_m
               [120 * motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx];
           }
 
           motion_controller_withPIC_B.y_b[motion_controller_withPIC_B.i + 40 *
             motion_controller_withPIC_B.isMpcEnable] =
-            motion_controller_withPIC_B.b_value_c0;
+            motion_controller_withPIC_B.y_g;
         }
 
-        motion_controller_withPIC_B.as = 0.0;
+        motion_controller_withPIC_B.b_value_c0 = 0.0;
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 6;
              motion_controller_withPIC_B.isMpcEnable++) {
-          motion_controller_withPIC_B.as +=
+          motion_controller_withPIC_B.b_value_c0 +=
             motion_controller_withPIC_B.rtb_H_e_d[40 *
             motion_controller_withPIC_B.isMpcEnable +
             motion_controller_withPIC_B.i] *
             motion_controller_withPIC_B.Reshape[motion_controller_withPIC_B.isMpcEnable];
         }
 
-        motion_controller_withPIC_B.b_value_c0 = 0.0;
+        motion_controller_withPIC_B.y_g = 0.0;
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 80;
              motion_controller_withPIC_B.isMpcEnable++) {
-          motion_controller_withPIC_B.b_value_c0 +=
-            motion_controller_withPIC_B.y_b[40 *
+          motion_controller_withPIC_B.y_g += motion_controller_withPIC_B.y_b[40 *
             motion_controller_withPIC_B.isMpcEnable +
             motion_controller_withPIC_B.i] *
             motion_controller_withPIC_B.T_c[motion_controller_withPIC_B.isMpcEnable];
@@ -16710,15 +16998,15 @@ void motion_controller_withPIC::step()
              motion_controller_withPIC_B.isMpcEnable < 40;
              motion_controller_withPIC_B.isMpcEnable++) {
           motion_controller_withPIC_B.alpha1 = 0.0;
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 120;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 120;
+               motion_controller_withPIC_B.b_kidx++) {
             motion_controller_withPIC_B.alpha1 +=
               motion_controller_withPIC_B.rtb_H_e_c[40 *
-              motion_controller_withPIC_B.rtb_A1_tmp +
-              motion_controller_withPIC_B.i] * motion_controller_withPIC_B.H_e
-              [120 * motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx + motion_controller_withPIC_B.i]
+              * motion_controller_withPIC_B.H_e[120 *
+              motion_controller_withPIC_B.isMpcEnable +
+              motion_controller_withPIC_B.b_kidx];
           }
 
           motion_controller_withPIC_B.b_kidx = 40 *
@@ -16740,9 +17028,8 @@ void motion_controller_withPIC::step()
         }
 
         motion_controller_withPIC_B.rtb_H_e_j[motion_controller_withPIC_B.i] =
-          (motion_controller_withPIC_B.as +
-           motion_controller_withPIC_B.b_value_c0) -
-          motion_controller_withPIC_B.alpha1;
+          (motion_controller_withPIC_B.b_value_c0 +
+           motion_controller_withPIC_B.y_g) - motion_controller_withPIC_B.alpha1;
         motion_controller_withPIC_B.rtb_T_b[motion_controller_withPIC_B.i] =
           motion_controller_withPIC_B.T[motion_controller_withPIC_B.i];
         motion_controller_withPIC_B.rtb_T_b[motion_controller_withPIC_B.i + 40] =
@@ -16750,7 +17037,7 @@ void motion_controller_withPIC::step()
         motion_controller_withPIC_B.rtb_Gain1_c_f[motion_controller_withPIC_B.i]
           = motion_controller_withPIC_B.yp;
         motion_controller_withPIC_B.b_value_a[motion_controller_withPIC_B.i] =
-          motion_controller_withPIC_B.UnitDelay;
+          motion_controller_withPIC_B.vxp;
       }
 
       motion_controller_with_quadprog(motion_controller_withPIC_B.rtb_H_e_m,
@@ -16761,88 +17048,90 @@ void motion_controller_withPIC::step()
         &motion_controller_withPIC_DW.opts);
       motion_controller_withPIC_B.b_value_c0 = motion_controller_withPIC_B.V[0]
         + motion_controller_withPIC_DW.UnitDelay_DSTATE;
-      motion_controller_withPIC_B.as = motion_controller_withPIC_B.V[1] +
-        motion_controller_withPIC_DW.UnitDelay1_DSTATE;
+      motion_controller_withPIC_B.b_value_p5 = motion_controller_withPIC_B.V[1]
+        + motion_controller_withPIC_DW.UnitDelay1_DSTATE;
 
-      // SignalConversion generated from: '<S61>/dfl' incorporates:
-      //   MATLAB Function: '<S61>/solvex'
-      //   Merge: '<S59>/Merge'
+      // SignalConversion generated from: '<S62>/dfl' incorporates:
+      //   MATLAB Function: '<S62>/solvex'
+      //   Merge: '<S60>/Merge'
 
       motion_controller_withPIC_B.Merge[0] =
         motion_controller_withPIC_B.b_value_c0;
 
-      // SignalConversion generated from: '<S61>/dfr' incorporates:
-      //   MATLAB Function: '<S61>/solvex'
-      //   Merge: '<S59>/Merge'
+      // SignalConversion generated from: '<S62>/dfr' incorporates:
+      //   MATLAB Function: '<S62>/solvex'
+      //   Merge: '<S60>/Merge'
 
       motion_controller_withPIC_B.Merge[1] =
         motion_controller_withPIC_B.b_value_c0;
 
-      // SignalConversion generated from: '<S61>/drl' incorporates:
-      //   MATLAB Function: '<S61>/solvex'
-      //   Merge: '<S59>/Merge'
+      // SignalConversion generated from: '<S62>/drl' incorporates:
+      //   MATLAB Function: '<S62>/solvex'
+      //   Merge: '<S60>/Merge'
 
-      motion_controller_withPIC_B.Merge[2] = motion_controller_withPIC_B.as;
+      motion_controller_withPIC_B.Merge[2] =
+        motion_controller_withPIC_B.b_value_p5;
 
-      // SignalConversion generated from: '<S61>/drr' incorporates:
-      //   MATLAB Function: '<S61>/solvex'
-      //   Merge: '<S59>/Merge'
+      // SignalConversion generated from: '<S62>/drr' incorporates:
+      //   MATLAB Function: '<S62>/solvex'
+      //   Merge: '<S60>/Merge'
 
-      motion_controller_withPIC_B.Merge[3] = motion_controller_withPIC_B.as;
+      motion_controller_withPIC_B.Merge[3] =
+        motion_controller_withPIC_B.b_value_p5;
 
-      // End of Outputs for SubSystem: '<S59>/If Action Subsystem'
+      // End of Outputs for SubSystem: '<S60>/If Action Subsystem'
     } else {
-      // Outputs for IfAction SubSystem: '<S59>/If Action Subsystem1' incorporates:
-      //   ActionPort: '<S62>/Action Port'
+      // Outputs for IfAction SubSystem: '<S60>/If Action Subsystem1' incorporates:
+      //   ActionPort: '<S63>/Action Port'
 
-      // Gain: '<S62>/Gain1' incorporates:
+      // Gain: '<S63>/Gain1' incorporates:
       //   MATLABSystem: '<S16>/Get Parameter6'
 
       motion_controller_withPIC_B.yp = motion_controller_withPIC_P.Gain1_Gain_c *
-        motion_controller_withPIC_B.UnitDelay;
+        motion_controller_withPIC_B.vxp;
 
-      // MATLAB Function: '<S62>/predict'
+      // MATLAB Function: '<S63>/predict'
       memset(&motion_controller_withPIC_B.G[0], 0, 360U * sizeof(real_T));
       memcpy(&motion_controller_withPIC_B.t[0], &motion_controller_withPIC_B.A1
              [0], 36U * sizeof(real_T));
-      for (motion_controller_withPIC_B.b_j = 0; motion_controller_withPIC_B.b_j <
-           10; motion_controller_withPIC_B.b_j++) {
-        motion_controller_withPIC_B.i = motion_controller_withPIC_B.b_j * 6;
-        motion_controller_withPIC_B.d_a[0] = 6;
+      for (motion_controller_withPIC_B.j = 0; motion_controller_withPIC_B.j < 10;
+           motion_controller_withPIC_B.j++) {
+        motion_controller_withPIC_B.i = motion_controller_withPIC_B.j * 6;
+        motion_controller_withPIC_B.d_fm[0] = 6;
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 6;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 6;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 6;
+               motion_controller_withPIC_B.b_kidx++) {
             motion_controller_withPIC_B.G[(motion_controller_withPIC_B.i +
-              motion_controller_withPIC_B.rtb_A1_tmp) + 60 *
+              motion_controller_withPIC_B.b_kidx) + 60 *
               motion_controller_withPIC_B.isMpcEnable] =
-              motion_controller_withPIC_B.t[motion_controller_withPIC_B.d_a[0] *
+              motion_controller_withPIC_B.t[motion_controller_withPIC_B.d_fm[0] *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx];
             motion_controller_withPIC_B.b_value_c0 = 0.0;
-            for (motion_controller_withPIC_B.b_kidx = 0;
-                 motion_controller_withPIC_B.b_kidx < 6;
-                 motion_controller_withPIC_B.b_kidx++) {
+            for (motion_controller_withPIC_B.b_j = 0;
+                 motion_controller_withPIC_B.b_j < 6;
+                 motion_controller_withPIC_B.b_j++) {
               motion_controller_withPIC_B.b_value_c0 +=
                 motion_controller_withPIC_B.t[6 *
-                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j +
                 motion_controller_withPIC_B.isMpcEnable] *
                 motion_controller_withPIC_B.A1[6 *
-                motion_controller_withPIC_B.rtb_A1_tmp +
-                motion_controller_withPIC_B.b_kidx];
+                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j];
             }
 
             motion_controller_withPIC_B.t_j[motion_controller_withPIC_B.isMpcEnable
-              + 6 * motion_controller_withPIC_B.rtb_A1_tmp] =
+              + 6 * motion_controller_withPIC_B.b_kidx] =
               motion_controller_withPIC_B.b_value_c0;
           }
         }
 
         memcpy(&motion_controller_withPIC_B.t[0],
                &motion_controller_withPIC_B.t_j[0], 36U * sizeof(real_T));
-        motion_controller_withPIC_B.i = motion_controller_withPIC_B.b_j << 2;
+        motion_controller_withPIC_B.i = motion_controller_withPIC_B.j << 2;
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 4;
              motion_controller_withPIC_B.isMpcEnable++) {
@@ -16853,24 +17142,24 @@ void motion_controller_withPIC::step()
       }
 
       memset(&motion_controller_withPIC_B.H[0], 0, 1200U * sizeof(real_T));
-      for (motion_controller_withPIC_B.k = 0; motion_controller_withPIC_B.k < 10;
-           motion_controller_withPIC_B.k++) {
-        motion_controller_withPIC_B.i = motion_controller_withPIC_B.k * 6 + 1;
+      for (motion_controller_withPIC_B.c_jz = 0;
+           motion_controller_withPIC_B.c_jz < 10;
+           motion_controller_withPIC_B.c_jz++) {
+        motion_controller_withPIC_B.i = motion_controller_withPIC_B.c_jz * 6 + 1;
         motion_controller_withPIC_B.b_value_c0 = 1.0;
-        motion_controller_withPIC_B.b_h = static_cast<int32_T>(((6.0 -
+        motion_controller_withPIC_B.b_g = static_cast<int32_T>(((6.0 -
           static_cast<real_T>(motion_controller_withPIC_B.i)) + 60.0) / 6.0);
         for (motion_controller_withPIC_B.b_j = 0;
-             motion_controller_withPIC_B.b_j < motion_controller_withPIC_B.b_h;
+             motion_controller_withPIC_B.b_j < motion_controller_withPIC_B.b_g;
              motion_controller_withPIC_B.b_j++) {
-          motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.b_j *
-            6 + motion_controller_withPIC_B.i;
-          if (motion_controller_withPIC_B.b_kidx >
-              motion_controller_withPIC_B.b_kidx + 5) {
-            motion_controller_withPIC_B.g = -5;
-            motion_controller_withPIC_B.b_kidx = -5;
+          motion_controller_withPIC_B.j = motion_controller_withPIC_B.b_j * 6 +
+            motion_controller_withPIC_B.i;
+          if (motion_controller_withPIC_B.j > motion_controller_withPIC_B.j + 5)
+          {
+            motion_controller_withPIC_B.k = -5;
+            motion_controller_withPIC_B.j = -5;
           } else {
-            motion_controller_withPIC_B.g = motion_controller_withPIC_B.b_kidx -
-              6;
+            motion_controller_withPIC_B.k = motion_controller_withPIC_B.j - 6;
           }
 
           if (motion_controller_withPIC_B.b_value_c0 >
@@ -16884,8 +17173,8 @@ void motion_controller_withPIC::step()
               ((motion_controller_withPIC_B.b_value_c0 + 2.0) - 1.0);
           }
 
-          motion_controller_withPIC_B.f_idx_0 =
-            motion_controller_withPIC_B.b_kidx - motion_controller_withPIC_B.g;
+          motion_controller_withPIC_B.f_idx_0 = motion_controller_withPIC_B.j -
+            motion_controller_withPIC_B.k;
           motion_controller_withPIC_B.f_idx_1 =
             motion_controller_withPIC_B.isMpcEnable -
             motion_controller_withPIC_B.l;
@@ -16893,17 +17182,17 @@ void motion_controller_withPIC::step()
                motion_controller_withPIC_B.isMpcEnable <
                motion_controller_withPIC_B.f_idx_1;
                motion_controller_withPIC_B.isMpcEnable++) {
-            for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-                 motion_controller_withPIC_B.rtb_A1_tmp <
+            for (motion_controller_withPIC_B.b_kidx = 0;
+                 motion_controller_withPIC_B.b_kidx <
                  motion_controller_withPIC_B.f_idx_0;
-                 motion_controller_withPIC_B.rtb_A1_tmp++) {
-              motion_controller_withPIC_B.H[((motion_controller_withPIC_B.g +
-                motion_controller_withPIC_B.rtb_A1_tmp) + 60 *
+                 motion_controller_withPIC_B.b_kidx++) {
+              motion_controller_withPIC_B.H[((motion_controller_withPIC_B.k +
+                motion_controller_withPIC_B.b_kidx) + 60 *
                 (motion_controller_withPIC_B.l +
                  motion_controller_withPIC_B.isMpcEnable)) + 5] =
                 motion_controller_withPIC_B.B1[motion_controller_withPIC_B.f_idx_0
                 * motion_controller_withPIC_B.isMpcEnable +
-                motion_controller_withPIC_B.rtb_A1_tmp];
+                motion_controller_withPIC_B.b_kidx];
             }
           }
 
@@ -16913,24 +17202,24 @@ void motion_controller_withPIC::step()
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 6;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 2;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 2;
+               motion_controller_withPIC_B.b_kidx++) {
             motion_controller_withPIC_B.b_value_c0 = 0.0;
-            for (motion_controller_withPIC_B.b_kidx = 0;
-                 motion_controller_withPIC_B.b_kidx < 6;
-                 motion_controller_withPIC_B.b_kidx++) {
+            for (motion_controller_withPIC_B.b_j = 0;
+                 motion_controller_withPIC_B.b_j < 6;
+                 motion_controller_withPIC_B.b_j++) {
               motion_controller_withPIC_B.b_value_c0 +=
                 motion_controller_withPIC_B.A1[6 *
-                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j +
                 motion_controller_withPIC_B.isMpcEnable] *
                 motion_controller_withPIC_B.B1[6 *
-                motion_controller_withPIC_B.rtb_A1_tmp +
-                motion_controller_withPIC_B.b_kidx];
+                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j];
             }
 
             motion_controller_withPIC_B.rtb_A1_m[motion_controller_withPIC_B.isMpcEnable
-              + 6 * motion_controller_withPIC_B.rtb_A1_tmp] =
+              + 6 * motion_controller_withPIC_B.b_kidx] =
               motion_controller_withPIC_B.b_value_c0;
           }
         }
@@ -16974,24 +17263,23 @@ void motion_controller_withPIC::step()
           motion_controller_withPIC_B.isMpcEnable + 5] = 0.0;
       }
 
-      for (motion_controller_withPIC_B.b_j = 0; motion_controller_withPIC_B.b_j <
-           10; motion_controller_withPIC_B.b_j++) {
-        motion_controller_withPIC_B.i = motion_controller_withPIC_B.b_j * 6 + 1;
+      for (motion_controller_withPIC_B.b_g = 0; motion_controller_withPIC_B.b_g <
+           10; motion_controller_withPIC_B.b_g++) {
+        motion_controller_withPIC_B.i = motion_controller_withPIC_B.b_g * 6 + 1;
         motion_controller_withPIC_B.b_value_c0 = 1.0;
-        motion_controller_withPIC_B.g = static_cast<int32_T>(((6.0 -
+        motion_controller_withPIC_B.c_jz = static_cast<int32_T>(((6.0 -
           static_cast<real_T>(motion_controller_withPIC_B.i)) + 60.0) / 6.0);
-        for (motion_controller_withPIC_B.b_h = 0;
-             motion_controller_withPIC_B.b_h < motion_controller_withPIC_B.g;
-             motion_controller_withPIC_B.b_h++) {
-          motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.b_h *
-            6 + motion_controller_withPIC_B.i;
-          if (motion_controller_withPIC_B.b_kidx >
-              motion_controller_withPIC_B.b_kidx + 5) {
+        for (motion_controller_withPIC_B.b_j = 0;
+             motion_controller_withPIC_B.b_j < motion_controller_withPIC_B.c_jz;
+             motion_controller_withPIC_B.b_j++) {
+          motion_controller_withPIC_B.j = motion_controller_withPIC_B.b_j * 6 +
+            motion_controller_withPIC_B.i;
+          if (motion_controller_withPIC_B.j > motion_controller_withPIC_B.j + 5)
+          {
             motion_controller_withPIC_B.k = -5;
-            motion_controller_withPIC_B.b_kidx = -5;
+            motion_controller_withPIC_B.j = -5;
           } else {
-            motion_controller_withPIC_B.k = motion_controller_withPIC_B.b_kidx -
-              6;
+            motion_controller_withPIC_B.k = motion_controller_withPIC_B.j - 6;
           }
 
           if (motion_controller_withPIC_B.b_value_c0 >
@@ -17005,8 +17293,8 @@ void motion_controller_withPIC::step()
               ((motion_controller_withPIC_B.b_value_c0 + 4.0) - 1.0);
           }
 
-          motion_controller_withPIC_B.f_idx_0 =
-            motion_controller_withPIC_B.b_kidx - motion_controller_withPIC_B.k;
+          motion_controller_withPIC_B.f_idx_0 = motion_controller_withPIC_B.j -
+            motion_controller_withPIC_B.k;
           motion_controller_withPIC_B.f_idx_1 =
             motion_controller_withPIC_B.isMpcEnable -
             motion_controller_withPIC_B.l;
@@ -17014,17 +17302,17 @@ void motion_controller_withPIC::step()
                motion_controller_withPIC_B.isMpcEnable <
                motion_controller_withPIC_B.f_idx_1;
                motion_controller_withPIC_B.isMpcEnable++) {
-            for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-                 motion_controller_withPIC_B.rtb_A1_tmp <
+            for (motion_controller_withPIC_B.b_kidx = 0;
+                 motion_controller_withPIC_B.b_kidx <
                  motion_controller_withPIC_B.f_idx_0;
-                 motion_controller_withPIC_B.rtb_A1_tmp++) {
+                 motion_controller_withPIC_B.b_kidx++) {
               motion_controller_withPIC_B.W[((motion_controller_withPIC_B.k +
-                motion_controller_withPIC_B.rtb_A1_tmp) + 60 *
+                motion_controller_withPIC_B.b_kidx) + 60 *
                 (motion_controller_withPIC_B.l +
                  motion_controller_withPIC_B.isMpcEnable)) + 5] =
                 motion_controller_withPIC_B.c_t[motion_controller_withPIC_B.f_idx_0
                 * motion_controller_withPIC_B.isMpcEnable +
-                motion_controller_withPIC_B.rtb_A1_tmp];
+                motion_controller_withPIC_B.b_kidx];
             }
           }
 
@@ -17034,24 +17322,24 @@ void motion_controller_withPIC::step()
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 6;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 4;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 4;
+               motion_controller_withPIC_B.b_kidx++) {
             motion_controller_withPIC_B.b_value_c0 = 0.0;
-            for (motion_controller_withPIC_B.b_kidx = 0;
-                 motion_controller_withPIC_B.b_kidx < 6;
-                 motion_controller_withPIC_B.b_kidx++) {
+            for (motion_controller_withPIC_B.b_j = 0;
+                 motion_controller_withPIC_B.b_j < 6;
+                 motion_controller_withPIC_B.b_j++) {
               motion_controller_withPIC_B.b_value_c0 +=
                 motion_controller_withPIC_B.A1[6 *
-                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j +
                 motion_controller_withPIC_B.isMpcEnable] *
                 motion_controller_withPIC_B.c_t[6 *
-                motion_controller_withPIC_B.rtb_A1_tmp +
-                motion_controller_withPIC_B.b_kidx];
+                motion_controller_withPIC_B.b_kidx +
+                motion_controller_withPIC_B.b_j];
             }
 
             motion_controller_withPIC_B.rtb_A1_o[motion_controller_withPIC_B.isMpcEnable
-              + 6 * motion_controller_withPIC_B.rtb_A1_tmp] =
+              + 6 * motion_controller_withPIC_B.b_kidx] =
               motion_controller_withPIC_B.b_value_c0;
           }
         }
@@ -17060,9 +17348,9 @@ void motion_controller_withPIC::step()
                &motion_controller_withPIC_B.rtb_A1_o[0], 24U * sizeof(real_T));
       }
 
-      // End of MATLAB Function: '<S62>/predict'
+      // End of MATLAB Function: '<S63>/predict'
 
-      // MATLAB Function: '<S62>/solvex' incorporates:
+      // MATLAB Function: '<S63>/solvex' incorporates:
       //   MATLABSystem: '<S16>/Get Parameter'
       //   MATLABSystem: '<S16>/Get Parameter6'
       //   Reshape: '<S16>/Reshape'
@@ -17071,38 +17359,36 @@ void motion_controller_withPIC::step()
 
       if (!motion_controller_withPIC_DW.x0_not_empty) {
         motion_controller_withPIC_DW.x0_not_empty = true;
-        motion_controller_withPIC_DW.Umin =
-          -motion_controller_withPIC_B.Product1;
-        motion_controller_withPIC_DW.Umax = motion_controller_withPIC_B.Product1;
+        motion_controller_withPIC_DW.Umin = -motion_controller_withPIC_B.vyp;
+        motion_controller_withPIC_DW.Umax = motion_controller_withPIC_B.vyp;
         motion_controller_withPIC_B.isMpcEnable = -1;
         motion_controller_withPIC_B.b_kidx = -1;
-        for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-             motion_controller_withPIC_B.rtb_A1_tmp < 10;
-             motion_controller_withPIC_B.rtb_A1_tmp++) {
-          for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <
-               2; motion_controller_withPIC_B.i++) {
-            motion_controller_withPIC_B.b_j = motion_controller_withPIC_B.i << 1;
-            motion_controller_withPIC_B.B_gr = B[motion_controller_withPIC_B.b_j];
-            motion_controller_withPIC_B.B_b = B[motion_controller_withPIC_B.b_j
+        for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <
+             10; motion_controller_withPIC_B.i++) {
+          for (motion_controller_withPIC_B.j = 0; motion_controller_withPIC_B.j <
+               2; motion_controller_withPIC_B.j++) {
+            motion_controller_withPIC_B.c_jz = motion_controller_withPIC_B.j <<
+              1;
+            motion_controller_withPIC_B.B_b = B[motion_controller_withPIC_B.c_jz];
+            motion_controller_withPIC_B.B_k = B[motion_controller_withPIC_B.c_jz
               + 1];
-            for (motion_controller_withPIC_B.b_j = 0;
-                 motion_controller_withPIC_B.b_j < 10;
-                 motion_controller_withPIC_B.b_j++) {
+            for (motion_controller_withPIC_B.c_jz = 0;
+                 motion_controller_withPIC_B.c_jz < 10;
+                 motion_controller_withPIC_B.c_jz++) {
               motion_controller_withPIC_B.A = A[10 *
-                motion_controller_withPIC_B.rtb_A1_tmp +
-                motion_controller_withPIC_B.b_j];
+                motion_controller_withPIC_B.i + motion_controller_withPIC_B.c_jz];
               motion_controller_withPIC_B.Rp_g[motion_controller_withPIC_B.isMpcEnable
                 + 1] = motion_controller_withPIC_B.A *
-                motion_controller_withPIC_B.B_gr;
-              motion_controller_withPIC_B.K_d[motion_controller_withPIC_B.b_kidx
-                + 1] = static_cast<int8_T>(motion_controller_withPIC_B.A *
-                motion_controller_withPIC_B.B_gr);
-              motion_controller_withPIC_B.Rp_g[motion_controller_withPIC_B.isMpcEnable
-                + 2] = motion_controller_withPIC_B.A *
                 motion_controller_withPIC_B.B_b;
               motion_controller_withPIC_B.K_d[motion_controller_withPIC_B.b_kidx
-                + 2] = static_cast<int8_T>(motion_controller_withPIC_B.A *
+                + 1] = static_cast<int8_T>(motion_controller_withPIC_B.A *
                 motion_controller_withPIC_B.B_b);
+              motion_controller_withPIC_B.Rp_g[motion_controller_withPIC_B.isMpcEnable
+                + 2] = motion_controller_withPIC_B.A *
+                motion_controller_withPIC_B.B_k;
+              motion_controller_withPIC_B.K_d[motion_controller_withPIC_B.b_kidx
+                + 2] = static_cast<int8_T>(motion_controller_withPIC_B.A *
+                motion_controller_withPIC_B.B_k);
               motion_controller_withPIC_B.b_kidx =
                 motion_controller_withPIC_B.isMpcEnable + 2;
               motion_controller_withPIC_B.isMpcEnable += 2;
@@ -17113,20 +17399,20 @@ void motion_controller_withPIC::step()
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 20;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 20;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.b_kidx = 20 *
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 20;
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.i = 20 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp;
-            motion_controller_withPIC_B.i = 40 *
+              motion_controller_withPIC_B.b_kidx;
+            motion_controller_withPIC_B.j = 40 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp;
-            motion_controller_withPIC_DW.A[motion_controller_withPIC_B.i] =
-              motion_controller_withPIC_B.Rp_g[motion_controller_withPIC_B.b_kidx];
-            motion_controller_withPIC_DW.A[motion_controller_withPIC_B.i + 20] =
+              motion_controller_withPIC_B.b_kidx;
+            motion_controller_withPIC_DW.A[motion_controller_withPIC_B.j] =
+              motion_controller_withPIC_B.Rp_g[motion_controller_withPIC_B.i];
+            motion_controller_withPIC_DW.A[motion_controller_withPIC_B.j + 20] =
               -static_cast<real_T>
-              (motion_controller_withPIC_B.K_d[motion_controller_withPIC_B.b_kidx]);
+              (motion_controller_withPIC_B.K_d[motion_controller_withPIC_B.i]);
           }
         }
       }
@@ -17136,15 +17422,13 @@ void motion_controller_withPIC::step()
       motion_controller_withPIC_B.k = 6;
       for (motion_controller_withPIC_B.b_j = 0; motion_controller_withPIC_B.b_j <
            10; motion_controller_withPIC_B.b_j++) {
-        motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.b_j * 6
-          + 6;
-        if (motion_controller_withPIC_B.b_kidx - 5 >
-            motion_controller_withPIC_B.b_kidx) {
-          motion_controller_withPIC_B.g = 0;
-          motion_controller_withPIC_B.b_h = 0;
+        motion_controller_withPIC_B.j = motion_controller_withPIC_B.b_j * 6 + 6;
+        if (motion_controller_withPIC_B.j - 5 > motion_controller_withPIC_B.j) {
+          motion_controller_withPIC_B.c_jz = 0;
+          motion_controller_withPIC_B.b_g = 0;
         } else {
-          motion_controller_withPIC_B.g = motion_controller_withPIC_B.b_kidx - 6;
-          motion_controller_withPIC_B.b_h = motion_controller_withPIC_B.b_kidx;
+          motion_controller_withPIC_B.c_jz = motion_controller_withPIC_B.j - 6;
+          motion_controller_withPIC_B.b_g = motion_controller_withPIC_B.j;
         }
 
         if (motion_controller_withPIC_B.k - 5 > motion_controller_withPIC_B.k) {
@@ -17156,8 +17440,8 @@ void motion_controller_withPIC::step()
             motion_controller_withPIC_B.k;
         }
 
-        motion_controller_withPIC_B.f_idx_0 = motion_controller_withPIC_B.b_h -
-          motion_controller_withPIC_B.g;
+        motion_controller_withPIC_B.f_idx_0 = motion_controller_withPIC_B.b_g -
+          motion_controller_withPIC_B.c_jz;
         motion_controller_withPIC_B.f_idx_1 =
           motion_controller_withPIC_B.isMpcEnable -
           motion_controller_withPIC_B.i;
@@ -17165,48 +17449,45 @@ void motion_controller_withPIC::step()
              motion_controller_withPIC_B.isMpcEnable <
              motion_controller_withPIC_B.f_idx_1;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp <
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx <
                motion_controller_withPIC_B.f_idx_0;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.Qp_c[(motion_controller_withPIC_B.g +
-              motion_controller_withPIC_B.rtb_A1_tmp) + 60 *
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.Qp_c[(motion_controller_withPIC_B.c_jz +
+              motion_controller_withPIC_B.b_kidx) + 60 *
               (motion_controller_withPIC_B.i +
                motion_controller_withPIC_B.isMpcEnable)] =
               motion_controller_withPIC_B.Q[motion_controller_withPIC_B.f_idx_0 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx];
           }
         }
 
         motion_controller_withPIC_B.k += 6;
-        if (motion_controller_withPIC_B.b_kidx - 5 >
-            motion_controller_withPIC_B.b_kidx) {
-          motion_controller_withPIC_B.rtb_A1_tmp = 0;
+        if (motion_controller_withPIC_B.j - 5 > motion_controller_withPIC_B.j) {
           motion_controller_withPIC_B.b_kidx = 0;
+          motion_controller_withPIC_B.j = 0;
         } else {
-          motion_controller_withPIC_B.rtb_A1_tmp =
-            motion_controller_withPIC_B.b_kidx - 6;
+          motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.j - 6;
         }
 
-        motion_controller_withPIC_B.b_kidx -=
-          motion_controller_withPIC_B.rtb_A1_tmp;
+        motion_controller_withPIC_B.i = motion_controller_withPIC_B.j -
+          motion_controller_withPIC_B.b_kidx;
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable <
-             motion_controller_withPIC_B.b_kidx;
+             motion_controller_withPIC_B.i;
              motion_controller_withPIC_B.isMpcEnable++) {
-          motion_controller_withPIC_B.b_b[motion_controller_withPIC_B.rtb_A1_tmp
-            + motion_controller_withPIC_B.isMpcEnable] =
+          motion_controller_withPIC_B.b_b[motion_controller_withPIC_B.b_kidx +
+            motion_controller_withPIC_B.isMpcEnable] =
             motion_controller_withPIC_B.y_j[motion_controller_withPIC_B.isMpcEnable];
         }
       }
 
       memset(&motion_controller_withPIC_B.Rp_g[0], 0, 400U * sizeof(real_T));
       motion_controller_withPIC_B.k = 2;
-      for (motion_controller_withPIC_B.b_h = 0; motion_controller_withPIC_B.b_h <
-           10; motion_controller_withPIC_B.b_h++) {
-        motion_controller_withPIC_B.b_kidx = motion_controller_withPIC_B.b_h <<
-          1;
+      for (motion_controller_withPIC_B.b_j = 0; motion_controller_withPIC_B.b_j <
+           10; motion_controller_withPIC_B.b_j++) {
+        motion_controller_withPIC_B.j = motion_controller_withPIC_B.b_j << 1;
         if (motion_controller_withPIC_B.k - 1 > motion_controller_withPIC_B.k) {
           motion_controller_withPIC_B.i = 0;
           motion_controller_withPIC_B.isMpcEnable = 0;
@@ -17223,16 +17504,16 @@ void motion_controller_withPIC::step()
              motion_controller_withPIC_B.isMpcEnable <
              motion_controller_withPIC_B.f_idx_1;
              motion_controller_withPIC_B.isMpcEnable++) {
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 2;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.Rp_g[(motion_controller_withPIC_B.b_kidx
-              + motion_controller_withPIC_B.rtb_A1_tmp) + 20 *
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 2;
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.Rp_g[(motion_controller_withPIC_B.j +
+              motion_controller_withPIC_B.b_kidx) + 20 *
               (motion_controller_withPIC_B.i +
                motion_controller_withPIC_B.isMpcEnable)] =
               motion_controller_withPIC_B.R
               [(motion_controller_withPIC_B.isMpcEnable << 1) +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx];
           }
         }
 
@@ -17247,19 +17528,18 @@ void motion_controller_withPIC::step()
         memset
           (&motion_controller_withPIC_B.y_n[motion_controller_withPIC_B.b_kidx],
            0, 20U * sizeof(real_T));
-        for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-             motion_controller_withPIC_B.rtb_A1_tmp < 60;
-             motion_controller_withPIC_B.rtb_A1_tmp++) {
+        for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <
+             60; motion_controller_withPIC_B.i++) {
           motion_controller_withPIC_B.b_value_c0 =
-            motion_controller_withPIC_B.Qp_c[motion_controller_withPIC_B.rtb_A1_tmp
-            * 60 + motion_controller_withPIC_B.isMpcEnable];
-          for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <
-               20; motion_controller_withPIC_B.i++) {
-            motion_controller_withPIC_B.b_j = motion_controller_withPIC_B.b_kidx
-              + motion_controller_withPIC_B.i;
-            motion_controller_withPIC_B.y_n[motion_controller_withPIC_B.b_j] +=
-              motion_controller_withPIC_B.H[motion_controller_withPIC_B.i * 60 +
-              motion_controller_withPIC_B.rtb_A1_tmp] *
+            motion_controller_withPIC_B.Qp_c[motion_controller_withPIC_B.i * 60
+            + motion_controller_withPIC_B.isMpcEnable];
+          for (motion_controller_withPIC_B.j = 0; motion_controller_withPIC_B.j <
+               20; motion_controller_withPIC_B.j++) {
+            motion_controller_withPIC_B.c_jz =
+              motion_controller_withPIC_B.b_kidx + motion_controller_withPIC_B.j;
+            motion_controller_withPIC_B.y_n[motion_controller_withPIC_B.c_jz] +=
+              motion_controller_withPIC_B.H[motion_controller_withPIC_B.j * 60 +
+              motion_controller_withPIC_B.i] *
               motion_controller_withPIC_B.b_value_c0;
           }
         }
@@ -17267,20 +17547,19 @@ void motion_controller_withPIC::step()
         memset
           (&motion_controller_withPIC_B.b_y_p[motion_controller_withPIC_B.b_kidx],
            0, 20U * sizeof(real_T));
-        for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-             motion_controller_withPIC_B.rtb_A1_tmp < 60;
-             motion_controller_withPIC_B.rtb_A1_tmp++) {
+        for (motion_controller_withPIC_B.i = 0; motion_controller_withPIC_B.i <
+             60; motion_controller_withPIC_B.i++) {
           motion_controller_withPIC_B.b_value_c0 =
-            motion_controller_withPIC_B.Qp_c[motion_controller_withPIC_B.rtb_A1_tmp
-            * 60 + motion_controller_withPIC_B.isMpcEnable];
-          for (motion_controller_withPIC_B.b_j = 0;
-               motion_controller_withPIC_B.b_j < 20;
-               motion_controller_withPIC_B.b_j++) {
-            motion_controller_withPIC_B.i = motion_controller_withPIC_B.b_kidx +
-              motion_controller_withPIC_B.b_j;
-            motion_controller_withPIC_B.b_y_p[motion_controller_withPIC_B.i] +=
-              motion_controller_withPIC_B.H[motion_controller_withPIC_B.b_j * 60
-              + motion_controller_withPIC_B.rtb_A1_tmp] *
+            motion_controller_withPIC_B.Qp_c[motion_controller_withPIC_B.i * 60
+            + motion_controller_withPIC_B.isMpcEnable];
+          for (motion_controller_withPIC_B.b_g = 0;
+               motion_controller_withPIC_B.b_g < 20;
+               motion_controller_withPIC_B.b_g++) {
+            motion_controller_withPIC_B.j = motion_controller_withPIC_B.b_kidx +
+              motion_controller_withPIC_B.b_g;
+            motion_controller_withPIC_B.b_y_p[motion_controller_withPIC_B.j] +=
+              motion_controller_withPIC_B.H[motion_controller_withPIC_B.b_g * 60
+              + motion_controller_withPIC_B.i] *
               motion_controller_withPIC_B.b_value_c0;
           }
         }
@@ -17288,8 +17567,8 @@ void motion_controller_withPIC::step()
 
       motion_controller_withPIC_B.b_value_c0 = motion_controller_withPIC_DW.Umax
         - motion_controller_withPIC_DW.UnitDelay_DSTATE;
-      motion_controller_withPIC_B.as = motion_controller_withPIC_DW.Umax -
-        motion_controller_withPIC_DW.UnitDelay1_DSTATE;
+      motion_controller_withPIC_B.b_value_p5 = motion_controller_withPIC_DW.Umax
+        - motion_controller_withPIC_DW.UnitDelay1_DSTATE;
       motion_controller_withPIC_B.isMpcEnable = -1;
       for (motion_controller_withPIC_B.b_kidx = 0;
            motion_controller_withPIC_B.b_kidx < 10;
@@ -17297,14 +17576,14 @@ void motion_controller_withPIC::step()
         motion_controller_withPIC_B.b_K_o[motion_controller_withPIC_B.isMpcEnable
           + 1] = motion_controller_withPIC_B.b_value_c0;
         motion_controller_withPIC_B.b_K_o[motion_controller_withPIC_B.isMpcEnable
-          + 2] = motion_controller_withPIC_B.as;
+          + 2] = motion_controller_withPIC_B.b_value_p5;
         motion_controller_withPIC_B.isMpcEnable += 2;
       }
 
       motion_controller_withPIC_B.b_value_c0 =
         motion_controller_withPIC_DW.UnitDelay_DSTATE -
         motion_controller_withPIC_DW.Umin;
-      motion_controller_withPIC_B.as =
+      motion_controller_withPIC_B.b_value_p5 =
         motion_controller_withPIC_DW.UnitDelay1_DSTATE -
         motion_controller_withPIC_DW.Umin;
       motion_controller_withPIC_B.isMpcEnable = -1;
@@ -17314,7 +17593,7 @@ void motion_controller_withPIC::step()
         motion_controller_withPIC_B.c_K[motion_controller_withPIC_B.isMpcEnable
           + 1] = motion_controller_withPIC_B.b_value_c0;
         motion_controller_withPIC_B.c_K[motion_controller_withPIC_B.isMpcEnable
-          + 2] = motion_controller_withPIC_B.as;
+          + 2] = motion_controller_withPIC_B.b_value_p5;
         motion_controller_withPIC_B.isMpcEnable += 2;
       }
 
@@ -17325,86 +17604,85 @@ void motion_controller_withPIC::step()
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 60;
              motion_controller_withPIC_B.isMpcEnable++) {
+          motion_controller_withPIC_B.b_value_p5 = 0.0;
           motion_controller_withPIC_B.b_value_c0 = 0.0;
-          motion_controller_withPIC_B.as = 0.0;
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 60;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.b_value_c0 +=
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 60;
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.b_value_p5 +=
               motion_controller_withPIC_B.H[60 * motion_controller_withPIC_B.i +
-              motion_controller_withPIC_B.rtb_A1_tmp] *
+              motion_controller_withPIC_B.b_kidx] *
               motion_controller_withPIC_B.Qp_c[60 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
-            motion_controller_withPIC_B.as =
-              motion_controller_withPIC_B.b_value_c0;
+              motion_controller_withPIC_B.b_kidx];
+            motion_controller_withPIC_B.b_value_c0 =
+              motion_controller_withPIC_B.b_value_p5;
           }
 
           motion_controller_withPIC_B.b_kidx = 20 *
             motion_controller_withPIC_B.isMpcEnable +
             motion_controller_withPIC_B.i;
           motion_controller_withPIC_B.rtb_H_j[motion_controller_withPIC_B.b_kidx]
-            = motion_controller_withPIC_B.as;
-          motion_controller_withPIC_B.rtb_H_l[motion_controller_withPIC_B.b_kidx]
             = motion_controller_withPIC_B.b_value_c0;
+          motion_controller_withPIC_B.rtb_H_l[motion_controller_withPIC_B.b_kidx]
+            = motion_controller_withPIC_B.b_value_p5;
         }
 
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 6;
              motion_controller_withPIC_B.isMpcEnable++) {
-          motion_controller_withPIC_B.as = 0.0;
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 60;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.as +=
+          motion_controller_withPIC_B.b_value_c0 = 0.0;
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 60;
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.b_value_c0 +=
               motion_controller_withPIC_B.rtb_H_j[20 *
-              motion_controller_withPIC_B.rtb_A1_tmp +
-              motion_controller_withPIC_B.i] * motion_controller_withPIC_B.G[60 *
+              motion_controller_withPIC_B.b_kidx + motion_controller_withPIC_B.i]
+              * motion_controller_withPIC_B.G[60 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx];
           }
 
           motion_controller_withPIC_B.rtb_H_o[motion_controller_withPIC_B.i + 20
             * motion_controller_withPIC_B.isMpcEnable] =
-            motion_controller_withPIC_B.as;
+            motion_controller_withPIC_B.b_value_c0;
         }
 
         for (motion_controller_withPIC_B.isMpcEnable = 0;
              motion_controller_withPIC_B.isMpcEnable < 40;
              motion_controller_withPIC_B.isMpcEnable++) {
-          motion_controller_withPIC_B.b_value_c0 = 0.0;
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 60;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
-            motion_controller_withPIC_B.b_value_c0 +=
-              motion_controller_withPIC_B.y_n[20 *
-              motion_controller_withPIC_B.rtb_A1_tmp +
+          motion_controller_withPIC_B.y_g = 0.0;
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 60;
+               motion_controller_withPIC_B.b_kidx++) {
+            motion_controller_withPIC_B.y_g += motion_controller_withPIC_B.y_n
+              [20 * motion_controller_withPIC_B.b_kidx +
               motion_controller_withPIC_B.i] * motion_controller_withPIC_B.W[60 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx];
           }
 
           motion_controller_withPIC_B.y_d[motion_controller_withPIC_B.i + 20 *
             motion_controller_withPIC_B.isMpcEnable] =
-            motion_controller_withPIC_B.b_value_c0;
-        }
-
-        motion_controller_withPIC_B.as = 0.0;
-        for (motion_controller_withPIC_B.isMpcEnable = 0;
-             motion_controller_withPIC_B.isMpcEnable < 6;
-             motion_controller_withPIC_B.isMpcEnable++) {
-          motion_controller_withPIC_B.as += motion_controller_withPIC_B.rtb_H_o
-            [20 * motion_controller_withPIC_B.isMpcEnable +
-            motion_controller_withPIC_B.i] *
-            motion_controller_withPIC_B.Reshape[motion_controller_withPIC_B.isMpcEnable];
+            motion_controller_withPIC_B.y_g;
         }
 
         motion_controller_withPIC_B.b_value_c0 = 0.0;
         for (motion_controller_withPIC_B.isMpcEnable = 0;
-             motion_controller_withPIC_B.isMpcEnable < 40;
+             motion_controller_withPIC_B.isMpcEnable < 6;
              motion_controller_withPIC_B.isMpcEnable++) {
           motion_controller_withPIC_B.b_value_c0 +=
-            motion_controller_withPIC_B.y_d[20 *
+            motion_controller_withPIC_B.rtb_H_o[20 *
+            motion_controller_withPIC_B.isMpcEnable +
+            motion_controller_withPIC_B.i] *
+            motion_controller_withPIC_B.Reshape[motion_controller_withPIC_B.isMpcEnable];
+        }
+
+        motion_controller_withPIC_B.y_g = 0.0;
+        for (motion_controller_withPIC_B.isMpcEnable = 0;
+             motion_controller_withPIC_B.isMpcEnable < 40;
+             motion_controller_withPIC_B.isMpcEnable++) {
+          motion_controller_withPIC_B.y_g += motion_controller_withPIC_B.y_d[20 *
             motion_controller_withPIC_B.isMpcEnable +
             motion_controller_withPIC_B.i] *
             motion_controller_withPIC_B.T[motion_controller_withPIC_B.isMpcEnable];
@@ -17414,15 +17692,15 @@ void motion_controller_withPIC::step()
              motion_controller_withPIC_B.isMpcEnable < 20;
              motion_controller_withPIC_B.isMpcEnable++) {
           motion_controller_withPIC_B.alpha1 = 0.0;
-          for (motion_controller_withPIC_B.rtb_A1_tmp = 0;
-               motion_controller_withPIC_B.rtb_A1_tmp < 60;
-               motion_controller_withPIC_B.rtb_A1_tmp++) {
+          for (motion_controller_withPIC_B.b_kidx = 0;
+               motion_controller_withPIC_B.b_kidx < 60;
+               motion_controller_withPIC_B.b_kidx++) {
             motion_controller_withPIC_B.alpha1 +=
               motion_controller_withPIC_B.rtb_H_l[20 *
-              motion_controller_withPIC_B.rtb_A1_tmp +
-              motion_controller_withPIC_B.i] * motion_controller_withPIC_B.H[60 *
+              motion_controller_withPIC_B.b_kidx + motion_controller_withPIC_B.i]
+              * motion_controller_withPIC_B.H[60 *
               motion_controller_withPIC_B.isMpcEnable +
-              motion_controller_withPIC_B.rtb_A1_tmp];
+              motion_controller_withPIC_B.b_kidx];
           }
 
           motion_controller_withPIC_B.b_kidx = 20 *
@@ -17446,9 +17724,8 @@ void motion_controller_withPIC::step()
         }
 
         motion_controller_withPIC_B.rtb_H_n[motion_controller_withPIC_B.i] =
-          (motion_controller_withPIC_B.as +
-           motion_controller_withPIC_B.b_value_c0) -
-          motion_controller_withPIC_B.alpha1;
+          (motion_controller_withPIC_B.b_value_c0 +
+           motion_controller_withPIC_B.y_g) - motion_controller_withPIC_B.alpha1;
         motion_controller_withPIC_B.b_K[motion_controller_withPIC_B.i] =
           motion_controller_withPIC_B.b_K_o[motion_controller_withPIC_B.i];
         motion_controller_withPIC_B.b_K[motion_controller_withPIC_B.i + 20] =
@@ -17456,7 +17733,7 @@ void motion_controller_withPIC::step()
         motion_controller_withPIC_B.rtb_Gain1_m3[motion_controller_withPIC_B.i] =
           motion_controller_withPIC_B.yp;
         motion_controller_withPIC_B.b_value_cz[motion_controller_withPIC_B.i] =
-          motion_controller_withPIC_B.UnitDelay;
+          motion_controller_withPIC_B.vxp;
       }
 
       motion_controller_wi_quadprog_k(motion_controller_withPIC_B.rtb_H_ld,
@@ -17467,39 +17744,41 @@ void motion_controller_withPIC::step()
         &motion_controller_withPIC_DW.opts_j);
       motion_controller_withPIC_B.b_value_c0 = motion_controller_withPIC_B.V_i[0]
         + motion_controller_withPIC_DW.UnitDelay_DSTATE;
-      motion_controller_withPIC_B.as = motion_controller_withPIC_B.V_i[1] +
-        motion_controller_withPIC_DW.UnitDelay1_DSTATE;
+      motion_controller_withPIC_B.b_value_p5 = motion_controller_withPIC_B.V_i[1]
+        + motion_controller_withPIC_DW.UnitDelay1_DSTATE;
 
-      // SignalConversion generated from: '<S62>/dfl' incorporates:
-      //   MATLAB Function: '<S62>/solvex'
-      //   Merge: '<S59>/Merge'
+      // SignalConversion generated from: '<S63>/dfl' incorporates:
+      //   MATLAB Function: '<S63>/solvex'
+      //   Merge: '<S60>/Merge'
 
       motion_controller_withPIC_B.Merge[0] =
         motion_controller_withPIC_B.b_value_c0;
 
-      // SignalConversion generated from: '<S62>/dfr' incorporates:
-      //   MATLAB Function: '<S62>/solvex'
-      //   Merge: '<S59>/Merge'
+      // SignalConversion generated from: '<S63>/dfr' incorporates:
+      //   MATLAB Function: '<S63>/solvex'
+      //   Merge: '<S60>/Merge'
 
       motion_controller_withPIC_B.Merge[1] =
         motion_controller_withPIC_B.b_value_c0;
 
-      // SignalConversion generated from: '<S62>/drl' incorporates:
-      //   MATLAB Function: '<S62>/solvex'
-      //   Merge: '<S59>/Merge'
+      // SignalConversion generated from: '<S63>/drl' incorporates:
+      //   MATLAB Function: '<S63>/solvex'
+      //   Merge: '<S60>/Merge'
 
-      motion_controller_withPIC_B.Merge[2] = motion_controller_withPIC_B.as;
+      motion_controller_withPIC_B.Merge[2] =
+        motion_controller_withPIC_B.b_value_p5;
 
-      // SignalConversion generated from: '<S62>/drr' incorporates:
-      //   MATLAB Function: '<S62>/solvex'
-      //   Merge: '<S59>/Merge'
+      // SignalConversion generated from: '<S63>/drr' incorporates:
+      //   MATLAB Function: '<S63>/solvex'
+      //   Merge: '<S60>/Merge'
 
-      motion_controller_withPIC_B.Merge[3] = motion_controller_withPIC_B.as;
+      motion_controller_withPIC_B.Merge[3] =
+        motion_controller_withPIC_B.b_value_p5;
 
-      // End of Outputs for SubSystem: '<S59>/If Action Subsystem1'
+      // End of Outputs for SubSystem: '<S60>/If Action Subsystem1'
     }
 
-    // End of If: '<S59>/If'
+    // End of If: '<S60>/If'
 
     // Update for UnitDelay: '<S16>/Unit Delay'
     motion_controller_withPIC_DW.UnitDelay_DSTATE =
@@ -17516,15 +17795,15 @@ void motion_controller_withPIC::step()
 
   // MATLABSystem: '<S10>/Get Parameter2'
   ParamGet_motion_controller_withPIC_629.getParameter
-    (&motion_controller_withPIC_B.b_value_kw);
+    (&motion_controller_withPIC_B.b_value_k1);
 
   // Switch: '<S10>/Switch1'
-  if (motion_controller_withPIC_B.naxpy != 0) {
+  if (motion_controller_withPIC_B.p_k != 0) {
     // Switch: '<S10>/Switch3' incorporates:
     //   Gain: '<S10>/Gain2'
     //   MATLABSystem: '<S10>/Get Parameter2'
 
-    if (motion_controller_withPIC_B.b_value_kw) {
+    if (motion_controller_withPIC_B.b_value_k1) {
       motion_controller_withPIC_B.R[0] = motion_controller_withPIC_P.Gain2_Gain *
         motion_controller_withPIC_B.Merge[0];
       motion_controller_withPIC_B.R[1] = motion_controller_withPIC_P.Gain2_Gain *
@@ -17562,14 +17841,14 @@ void motion_controller_withPIC::step()
     motion_controller_w_CurrentTime(&motion_controller_withPIC_B.CurrentTime1);
 
     // Outputs for Iterator SubSystem: '<S14>/For Each Subsystem1' incorporates:
-    //   ForEach: '<S40>/For Each'
+    //   ForEach: '<S41>/For Each'
 
-    for (motion_controller_withPIC_B.ForEach_itr_j_j = 0;
-         motion_controller_withPIC_B.ForEach_itr_j_j < 4;
-         motion_controller_withPIC_B.ForEach_itr_j_j++) {
+    for (motion_controller_withPIC_B.ForEach_itr_j_l = 0;
+         motion_controller_withPIC_B.ForEach_itr_j_l < 4;
+         motion_controller_withPIC_B.ForEach_itr_j_l++) {
       // Saturate: '<S10>/Saturation'
       motion_controller_withPIC_B.yp =
-        motion_controller_withPIC_B.Switch[motion_controller_withPIC_B.ForEach_itr_j_j];
+        motion_controller_withPIC_B.Switch[motion_controller_withPIC_B.ForEach_itr_j_l];
       if (motion_controller_withPIC_B.yp >
           motion_controller_withPIC_P.Saturation_UpperSat_h) {
         motion_controller_withPIC_B.yp =
@@ -17593,57 +17872,57 @@ void motion_controller_withPIC::step()
           motion_controller_withPIC_P.Saturation2_LowerSat;
       }
 
-      motion_controller_withPIC_B.Switch[motion_controller_withPIC_B.ForEach_itr_j_j]
+      motion_controller_withPIC_B.Switch[motion_controller_withPIC_B.ForEach_itr_j_l]
         = motion_controller_withPIC_B.yp;
 
       // End of Saturate: '<S14>/Saturation2'
 
       // Saturate: '<S14>/Saturation1'
-      motion_controller_withPIC_B.Product1 =
-        motion_controller_withPIC_B.spd_cmd[motion_controller_withPIC_B.ForEach_itr_j_j];
+      motion_controller_withPIC_B.vxp =
+        motion_controller_withPIC_B.spd_cmd[motion_controller_withPIC_B.ForEach_itr_j_l];
 
-      // ForEachSliceAssignment generated from: '<S40>/actuaor_command' incorporates:
-      //   BusAssignment: '<S40>/Bus Assignment1'
-      //   Constant: '<S44>/Constant'
+      // ForEachSliceAssignment generated from: '<S41>/actuaor_command' incorporates:
+      //   BusAssignment: '<S41>/Bus Assignment1'
+      //   Constant: '<S45>/Constant'
 
-      motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_j_j]
+      motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_j_l]
         = motion_controller_withPIC_P.CoreSubsys_pn.Constant_Value;
 
-      // BusAssignment: '<S40>/Bus Assignment1' incorporates:
-      //   ForEachSliceAssignment generated from: '<S40>/actuaor_command'
-      //   ForEachSliceSelector generated from: '<S40>/effort'
+      // BusAssignment: '<S41>/Bus Assignment1' incorporates:
+      //   ForEachSliceAssignment generated from: '<S41>/actuaor_command'
+      //   ForEachSliceSelector generated from: '<S41>/effort'
 
-      motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_j_j]
+      motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_j_l]
         .effort = motion_controller_withPIC_B.yp;
 
       // Saturate: '<S14>/Saturation1'
-      if (motion_controller_withPIC_B.Product1 >
+      if (motion_controller_withPIC_B.vxp >
           motion_controller_withPIC_P.Saturation1_UpperSat) {
-        // BusAssignment: '<S40>/Bus Assignment1' incorporates:
-        //   ForEachSliceAssignment generated from: '<S40>/actuaor_command'
+        // BusAssignment: '<S41>/Bus Assignment1' incorporates:
+        //   ForEachSliceAssignment generated from: '<S41>/actuaor_command'
 
-        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_j_j]
+        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_j_l]
           .velocity = motion_controller_withPIC_P.Saturation1_UpperSat;
-      } else if (motion_controller_withPIC_B.Product1 <
+      } else if (motion_controller_withPIC_B.vxp <
                  motion_controller_withPIC_P.Saturation1_LowerSat) {
-        // BusAssignment: '<S40>/Bus Assignment1' incorporates:
-        //   ForEachSliceAssignment generated from: '<S40>/actuaor_command'
+        // BusAssignment: '<S41>/Bus Assignment1' incorporates:
+        //   ForEachSliceAssignment generated from: '<S41>/actuaor_command'
 
-        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_j_j]
+        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_j_l]
           .velocity = motion_controller_withPIC_P.Saturation1_LowerSat;
       } else {
-        // BusAssignment: '<S40>/Bus Assignment1' incorporates:
-        //   ForEachSliceAssignment generated from: '<S40>/actuaor_command'
+        // BusAssignment: '<S41>/Bus Assignment1' incorporates:
+        //   ForEachSliceAssignment generated from: '<S41>/actuaor_command'
 
-        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_j_j]
-          .velocity = motion_controller_withPIC_B.Product1;
+        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_j_l]
+          .velocity = motion_controller_withPIC_B.vxp;
       }
     }
 
     // End of Outputs for SubSystem: '<S14>/For Each Subsystem1'
 
     // BusAssignment: '<S14>/Bus Assignment1' incorporates:
-    //   Constant: '<S38>/Constant'
+    //   Constant: '<S39>/Constant'
 
     motion_controller_withPIC_B.BusAssignment1 =
       motion_controller_withPIC_P.Constant_Value_f;
@@ -17653,7 +17932,7 @@ void motion_controller_withPIC::step()
     // Switch: '<S10>/Switch' incorporates:
     //   Logic: '<S10>/Logical Operator1'
 
-    if ((motion_controller_withPIC_B.naxpy != 0) &&
+    if ((motion_controller_withPIC_B.p_k != 0) &&
         (motion_controller_withPIC_B.mode != 0)) {
       // DataTypeConversion: '<S14>/Data Type Conversion' incorporates:
       //   Constant: '<S10>/Constant'
@@ -17694,47 +17973,47 @@ void motion_controller_withPIC::step()
            &motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[0], sizeof
            (SL_Bus_custom_interfaces_Actuator) << 2U);
 
-    // MATLABSystem: '<S41>/SinkBlock'
+    // MATLABSystem: '<S42>/SinkBlock'
     Pub_motion_controller_withPIC_4.publish
       (&motion_controller_withPIC_B.BusAssignment1);
     motion_controller_w_CurrentTime(&motion_controller_withPIC_B.CurrentTime);
 
     // Outputs for Iterator SubSystem: '<S14>/For Each Subsystem' incorporates:
-    //   ForEach: '<S39>/For Each'
+    //   ForEach: '<S40>/For Each'
 
     // Saturate: '<S14>/Saturation'
-    for (motion_controller_withPIC_B.ForEach_itr_p_g = 0;
-         motion_controller_withPIC_B.ForEach_itr_p_g < 4;
-         motion_controller_withPIC_B.ForEach_itr_p_g++) {
-      motion_controller_withPIC_B.Product1 =
-        motion_controller_withPIC_B.R[motion_controller_withPIC_B.ForEach_itr_p_g];
+    for (motion_controller_withPIC_B.ForEach_itr_p_k = 0;
+         motion_controller_withPIC_B.ForEach_itr_p_k < 4;
+         motion_controller_withPIC_B.ForEach_itr_p_k++) {
+      motion_controller_withPIC_B.vxp =
+        motion_controller_withPIC_B.R[motion_controller_withPIC_B.ForEach_itr_p_k];
 
-      // ForEachSliceAssignment generated from: '<S39>/actuaor_command' incorporates:
-      //   BusAssignment: '<S39>/Bus Assignment1'
-      //   Constant: '<S43>/Constant'
+      // ForEachSliceAssignment generated from: '<S40>/actuaor_command' incorporates:
+      //   BusAssignment: '<S40>/Bus Assignment1'
+      //   Constant: '<S44>/Constant'
 
-      motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_p_g]
+      motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_p_k]
         = motion_controller_withPIC_P.CoreSubsys_p.Constant_Value;
-      if (motion_controller_withPIC_B.Product1 >
+      if (motion_controller_withPIC_B.vxp >
           motion_controller_withPIC_P.Saturation_UpperSat) {
-        // BusAssignment: '<S39>/Bus Assignment1' incorporates:
-        //   ForEachSliceAssignment generated from: '<S39>/actuaor_command'
+        // BusAssignment: '<S40>/Bus Assignment1' incorporates:
+        //   ForEachSliceAssignment generated from: '<S40>/actuaor_command'
 
-        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_p_g]
+        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_p_k]
           .position = motion_controller_withPIC_P.Saturation_UpperSat;
-      } else if (motion_controller_withPIC_B.Product1 <
+      } else if (motion_controller_withPIC_B.vxp <
                  motion_controller_withPIC_P.Saturation_LowerSat) {
-        // BusAssignment: '<S39>/Bus Assignment1' incorporates:
-        //   ForEachSliceAssignment generated from: '<S39>/actuaor_command'
+        // BusAssignment: '<S40>/Bus Assignment1' incorporates:
+        //   ForEachSliceAssignment generated from: '<S40>/actuaor_command'
 
-        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_p_g]
+        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_p_k]
           .position = motion_controller_withPIC_P.Saturation_LowerSat;
       } else {
-        // BusAssignment: '<S39>/Bus Assignment1' incorporates:
-        //   ForEachSliceAssignment generated from: '<S39>/actuaor_command'
+        // BusAssignment: '<S40>/Bus Assignment1' incorporates:
+        //   ForEachSliceAssignment generated from: '<S40>/actuaor_command'
 
-        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_p_g]
-          .position = motion_controller_withPIC_B.Product1;
+        motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[motion_controller_withPIC_B.ForEach_itr_p_k]
+          .position = motion_controller_withPIC_B.vxp;
       }
     }
 
@@ -17742,7 +18021,7 @@ void motion_controller_withPIC::step()
     // End of Outputs for SubSystem: '<S14>/For Each Subsystem'
 
     // BusAssignment: '<S14>/Bus Assignment2' incorporates:
-    //   Constant: '<S37>/Constant'
+    //   Constant: '<S38>/Constant'
 
     motion_controller_withPIC_B.BusAssignment1 =
       motion_controller_withPIC_P.Constant_Value_i;
@@ -17752,7 +18031,7 @@ void motion_controller_withPIC::step()
            &motion_controller_withPIC_B.ImpAsg_InsertedFor_actuaor_[0], sizeof
            (SL_Bus_custom_interfaces_Actuator) << 2U);
 
-    // MATLABSystem: '<S42>/SinkBlock'
+    // MATLABSystem: '<S43>/SinkBlock'
     Pub_motion_controller_withPIC_148.publish
       (&motion_controller_withPIC_B.BusAssignment1);
   }
@@ -17777,33 +18056,39 @@ void motion_controller_withPIC::initialize()
     static const char_T prmName_3[15] = "steer_rate_dps";
     static const char_T prmName_4[9] = "angleMax";
     static const char_T prmName_5[10] = "ackermann";
-    static const char_T prmName_6[5] = "rLPF";
-    static const char_T prmName_7[18] = "rFilterUpdateRate";
-    static const char_T prmName_8[17] = "picActivationDAy";
-    static const char_T prmName_9[21] = "picActivationDomegaz";
-    static const char_T prmName_a[6] = "vxAdd";
-    static const char_T prmName_b[11] = "t265offset";
-    static const char_T prmName_c[18] = "isSetSteeringDead";
-    static const char_T prmName_d[7] = "tireBf";
-    static const char_T prmName_e[7] = "tireCf";
-    static const char_T prmName_f[8] = "tireMuf";
-    static const char_T prmName_g[7] = "tireBr";
-    static const char_T prmName_h[7] = "tireCr";
-    static const char_T prmName_i[8] = "tireMur";
-    static const char_T prmName_j[8] = "spdMax1";
-    static const char_T prmName_k[14] = "testWithDrive";
-    static const char_T prmName_l[9] = "Weight_Y";
-    static const char_T prmName_m[10] = "Weight_Vy";
-    static const char_T prmName_n[11] = "Weight_Yaw";
-    static const char_T prmName_o[15] = "Weight_YawRate";
-    static const char_T prmName_p[10] = "Weight_df";
-    static const char_T prmName_q[10] = "Weight_dr";
-    static const char_T prmName_r[11] = "Weight_ddf";
-    static const char_T prmName_s[11] = "Weight_ddr";
-    static const char_T prmName_t[10] = "noControl";
-    static const char_T prmName_u[12] = "angleMaxMpc";
-    static const char_T prmName_v[15] = "isMpcN20Else10";
-    static const char_T prmName_w[9] = "mpc_lbub";
+    static const char_T prmName_6[19] = "isGsFilterElseMean";
+    static const char_T prmName_7[16] = "rGsDataN5r10r20";
+    static const char_T prmName_8[6] = "rGsFs";
+    static const char_T prmName_9[9] = "rGsSigma";
+    static const char_T prmName_a[18] = "rFilterUpdateRate";
+    static const char_T prmName_b[17] = "picActivationDAy";
+    static const char_T prmName_c[21] = "picActivationDomegaz";
+    static const char_T prmName_d[11] = "vxDeadZone";
+    static const char_T prmName_e[11] = "vyDeadZone";
+    static const char_T prmName_f[6] = "vxAdd";
+    static const char_T prmName_g[11] = "t265offset";
+    static const char_T prmName_h[18] = "isSetSteeringDead";
+    static const char_T prmName_i[7] = "tireBf";
+    static const char_T prmName_j[7] = "tireCf";
+    static const char_T prmName_k[8] = "tireMuf";
+    static const char_T prmName_l[7] = "tireBr";
+    static const char_T prmName_m[7] = "tireCr";
+    static const char_T prmName_n[8] = "tireMur";
+    static const char_T prmName_o[8] = "spdMax1";
+    static const char_T prmName_p[14] = "testWithDrive";
+    static const char_T prmName_q[9] = "Weight_Y";
+    static const char_T prmName_r[10] = "Weight_Vy";
+    static const char_T prmName_s[11] = "Weight_Yaw";
+    static const char_T prmName_t[15] = "Weight_YawRate";
+    static const char_T prmName_u[10] = "Weight_df";
+    static const char_T prmName_v[10] = "Weight_dr";
+    static const char_T prmName_w[11] = "Weight_ddf";
+    static const char_T prmName_x[11] = "Weight_ddr";
+    static const char_T prmName_y[10] = "noControl";
+    static const char_T prmName_z[12] = "angleMaxMpc";
+    static const char_T prmName_10[15] = "isMpcN20Else10";
+    static const char_T prmName_11[28] = "mpcDesiredYaw0r1DefaultAuto";
+    static const char_T prmName_12[9] = "mpc_lbub";
     static sSOeZ9WO10chPn9Si6PKiCB_motio_T tmp = { 0.01,// InitDamping
       { 'f', 'o', 'r', 'w', 'a', 'r', 'd' },// FiniteDifferenceType
       false,                           // SpecifyObjectiveGradient
@@ -17842,43 +18127,27 @@ void motion_controller_withPIC::initialize()
     };
 
     // SystemInitialize for Enabled SubSystem: '<Root>/picController'
-    // SystemInitialize for IfAction SubSystem: '<S59>/If Action Subsystem'
-    // SystemInitialize for MATLAB Function: '<S61>/solvex'
+    // SystemInitialize for IfAction SubSystem: '<S60>/If Action Subsystem'
+    // SystemInitialize for MATLAB Function: '<S62>/solvex'
     tmp.DiffMaxChange = (rtInf);
     tmp.FunctionTolerance = (rtInf);
 
-    // End of SystemInitialize for SubSystem: '<S59>/If Action Subsystem'
+    // End of SystemInitialize for SubSystem: '<S60>/If Action Subsystem'
     // End of SystemInitialize for SubSystem: '<Root>/picController'
-
-    // SystemInitialize for Enabled SubSystem: '<S30>/Enabled Subsystem'
-    // SystemInitialize for SignalConversion generated from: '<S33>/In1' incorporates:
-    //   Outport: '<S33>/Out1'
-
-    motion_controller_withPIC_B.In1_je = motion_controller_withPIC_P.Out1_Y0_i;
-
-    // End of SystemInitialize for SubSystem: '<S30>/Enabled Subsystem'
 
     // SystemInitialize for Enabled SubSystem: '<S31>/Enabled Subsystem'
     // SystemInitialize for SignalConversion generated from: '<S34>/In1' incorporates:
     //   Outport: '<S34>/Out1'
 
-    motion_controller_withPIC_B.In1_f = motion_controller_withPIC_P.Out1_Y0_e;
+    motion_controller_withPIC_B.In1_je = motion_controller_withPIC_P.Out1_Y0_i;
 
     // End of SystemInitialize for SubSystem: '<S31>/Enabled Subsystem'
-
-    // SystemInitialize for Enabled SubSystem: '<S68>/Enabled Subsystem'
-    // SystemInitialize for SignalConversion generated from: '<S71>/In1' incorporates:
-    //   Outport: '<S71>/Out1'
-
-    motion_controller_withPIC_B.In1_m = motion_controller_withPIC_P.Out1_Y0_f;
-
-    // End of SystemInitialize for SubSystem: '<S68>/Enabled Subsystem'
 
     // SystemInitialize for Enabled SubSystem: '<S32>/Enabled Subsystem'
     // SystemInitialize for SignalConversion generated from: '<S35>/In1' incorporates:
     //   Outport: '<S35>/Out1'
 
-    motion_controller_withPIC_B.In1_j = motion_controller_withPIC_P.Out1_Y0;
+    motion_controller_withPIC_B.In1_f = motion_controller_withPIC_P.Out1_Y0_e;
 
     // End of SystemInitialize for SubSystem: '<S32>/Enabled Subsystem'
 
@@ -17886,9 +18155,25 @@ void motion_controller_withPIC::initialize()
     // SystemInitialize for SignalConversion generated from: '<S72>/In1' incorporates:
     //   Outport: '<S72>/Out1'
 
-    motion_controller_withPIC_B.In1 = motion_controller_withPIC_P.Out1_Y0_k;
+    motion_controller_withPIC_B.In1_m = motion_controller_withPIC_P.Out1_Y0_f;
 
     // End of SystemInitialize for SubSystem: '<S69>/Enabled Subsystem'
+
+    // SystemInitialize for Enabled SubSystem: '<S33>/Enabled Subsystem'
+    // SystemInitialize for SignalConversion generated from: '<S36>/In1' incorporates:
+    //   Outport: '<S36>/Out1'
+
+    motion_controller_withPIC_B.In1_j = motion_controller_withPIC_P.Out1_Y0;
+
+    // End of SystemInitialize for SubSystem: '<S33>/Enabled Subsystem'
+
+    // SystemInitialize for Enabled SubSystem: '<S70>/Enabled Subsystem'
+    // SystemInitialize for SignalConversion generated from: '<S73>/In1' incorporates:
+    //   Outport: '<S73>/Out1'
+
+    motion_controller_withPIC_B.In1 = motion_controller_withPIC_P.Out1_Y0_k;
+
+    // End of SystemInitialize for SubSystem: '<S70>/Enabled Subsystem'
 
     // SystemInitialize for Atomic SubSystem: '<Root>/controller'
     // SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S15>/get_effort' incorporates:
@@ -17898,42 +18183,42 @@ void motion_controller_withPIC::initialize()
 
     // End of SystemInitialize for S-Function (sfun_private_function_caller) generated from: '<S15>/get_effort' 
 
-    // Start for MATLABSystem: '<S46>/Get Parameter4'
-    motion_controller_withPIC_DW.obj_e.matlabCodegenIsDeleted = false;
-    motion_controller_withPIC_DW.obj_e.isInitialized = 1;
+    // Start for MATLABSystem: '<S47>/Get Parameter4'
+    motion_controller_withPIC_DW.obj_el.matlabCodegenIsDeleted = false;
+    motion_controller_withPIC_DW.obj_el.isInitialized = 1;
     ParamGet_motion_controller_withPIC_298.initParam(&prmName[0]);
     ParamGet_motion_controller_withPIC_298.setInitialValue(0.0);
-    motion_controller_withPIC_DW.obj_e.isSetupComplete = true;
+    motion_controller_withPIC_DW.obj_el.isSetupComplete = true;
 
-    // Start for MATLABSystem: '<S46>/Get Parameter2'
+    // Start for MATLABSystem: '<S47>/Get Parameter2'
     motion_controller_withPIC_DW.obj_c.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_c.isInitialized = 1;
     ParamGet_motion_controller_withPIC_301.initParam(&prmName_0[0]);
     ParamGet_motion_controller_withPIC_301.setInitialValue(false);
     motion_controller_withPIC_DW.obj_c.isSetupComplete = true;
 
-    // Start for MATLABSystem: '<S46>/Get Parameter3'
+    // Start for MATLABSystem: '<S47>/Get Parameter3'
     motion_controller_withPIC_DW.obj_l4.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_l4.isInitialized = 1;
     ParamGet_motion_controller_withPIC_194.initParam(&prmName_1[0]);
     ParamGet_motion_controller_withPIC_194.setInitialValue(1.0);
     motion_controller_withPIC_DW.obj_l4.isSetupComplete = true;
 
-    // Start for MATLABSystem: '<S46>/Get Parameter5'
+    // Start for MATLABSystem: '<S47>/Get Parameter5'
     motion_controller_withPIC_DW.obj_g.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_g.isInitialized = 1;
     ParamGet_motion_controller_withPIC_329.initParam(&prmName_2[0]);
     ParamGet_motion_controller_withPIC_329.setInitialValue(true);
     motion_controller_withPIC_DW.obj_g.isSetupComplete = true;
 
-    // Start for MATLABSystem: '<S46>/Get Parameter1'
+    // Start for MATLABSystem: '<S47>/Get Parameter1'
     motion_controller_withPIC_DW.obj_o.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_o.isInitialized = 1;
     ParamGet_motion_controller_withPIC_317.initParam(&prmName_3[0]);
     ParamGet_motion_controller_withPIC_317.setInitialValue(0.0);
     motion_controller_withPIC_DW.obj_o.isSetupComplete = true;
 
-    // Start for MATLABSystem: '<S46>/Get Parameter'
+    // Start for MATLABSystem: '<S47>/Get Parameter'
     motion_controller_withPIC_DW.obj_m.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_m.isInitialized = 1;
     ParamGet_motion_controller_withPIC_316.initParam(&prmName_4[0]);
@@ -17958,19 +18243,19 @@ void motion_controller_withPIC::initialize()
     motion_controller_withPIC_DW.UnitDelay1_DSTATE =
       motion_controller_withPIC_P.UnitDelay1_InitialCondition;
 
-    // SystemInitialize for IfAction SubSystem: '<S59>/If Action Subsystem'
-    // SystemInitialize for MATLAB Function: '<S61>/solvex'
+    // SystemInitialize for IfAction SubSystem: '<S60>/If Action Subsystem'
+    // SystemInitialize for MATLAB Function: '<S62>/solvex'
     motion_controller_withPIC_DW.opts = tmp;
 
-    // End of SystemInitialize for SubSystem: '<S59>/If Action Subsystem'
+    // End of SystemInitialize for SubSystem: '<S60>/If Action Subsystem'
 
-    // SystemInitialize for IfAction SubSystem: '<S59>/If Action Subsystem1'
-    // SystemInitialize for MATLAB Function: '<S62>/solvex'
+    // SystemInitialize for IfAction SubSystem: '<S60>/If Action Subsystem1'
+    // SystemInitialize for MATLAB Function: '<S63>/solvex'
     motion_controller_withPIC_DW.opts_j = tmp;
 
-    // End of SystemInitialize for SubSystem: '<S59>/If Action Subsystem1'
+    // End of SystemInitialize for SubSystem: '<S60>/If Action Subsystem1'
 
-    // SystemInitialize for Merge: '<S59>/Merge'
+    // SystemInitialize for Merge: '<S60>/Merge'
     motion_controller_withPIC_B.Merge[0] =
       motion_controller_withPIC_P.Merge_InitialOutput;
     motion_controller_withPIC_B.Merge[1] =
@@ -17983,21 +18268,28 @@ void motion_controller_withPIC::initialize()
     // Start for MATLABSystem: '<S16>/Get Parameter'
     motion_controller_withPIC_DW.obj_p.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_p.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_637.initParam(&prmName_u[0]);
+    ParamGet_motion_controller_withPIC_637.initParam(&prmName_z[0]);
     ParamGet_motion_controller_withPIC_637.setInitialValue(0.515);
     motion_controller_withPIC_DW.obj_p.isSetupComplete = true;
 
     // Start for MATLABSystem: '<S16>/Get Parameter1'
     motion_controller_withPIC_DW.obj_l.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_l.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_709.initParam(&prmName_v[0]);
+    ParamGet_motion_controller_withPIC_709.initParam(&prmName_10[0]);
     ParamGet_motion_controller_withPIC_709.setInitialValue(true);
     motion_controller_withPIC_DW.obj_l.isSetupComplete = true;
+
+    // Start for MATLABSystem: '<S16>/Get Parameter2'
+    motion_controller_withPIC_DW.obj_e.matlabCodegenIsDeleted = false;
+    motion_controller_withPIC_DW.obj_e.isInitialized = 1;
+    ParamGet_motion_controller_withPIC_944.initParam(&prmName_11[0]);
+    ParamGet_motion_controller_withPIC_944.setInitialValue(-1.0);
+    motion_controller_withPIC_DW.obj_e.isSetupComplete = true;
 
     // Start for MATLABSystem: '<S16>/Get Parameter6'
     motion_controller_withPIC_DW.obj.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_556.initParam(&prmName_w[0]);
+    ParamGet_motion_controller_withPIC_556.initParam(&prmName_12[0]);
     ParamGet_motion_controller_withPIC_556.setInitialValue(0.0279);
     motion_controller_withPIC_DW.obj.isSetupComplete = true;
 
@@ -18006,22 +18298,22 @@ void motion_controller_withPIC::initialize()
     // SystemInitialize for Enabled SubSystem: '<Root>/cmd_pub'
     motion_control_CurrentTime_Init(&motion_controller_withPIC_DW.CurrentTime1);
 
-    // Start for MATLABSystem: '<S41>/SinkBlock'
+    // Start for MATLABSystem: '<S42>/SinkBlock'
     motion_SystemCore_setup_fxdcjik(&motion_controller_withPIC_DW.obj_bq);
     motion_control_CurrentTime_Init(&motion_controller_withPIC_DW.CurrentTime);
 
-    // Start for MATLABSystem: '<S42>/SinkBlock'
+    // Start for MATLABSystem: '<S43>/SinkBlock'
     motio_SystemCore_setup_fxdcjikh(&motion_controller_withPIC_DW.obj_ca);
 
     // End of SystemInitialize for SubSystem: '<Root>/cmd_pub'
 
-    // Start for MATLABSystem: '<S30>/SourceBlock'
+    // Start for MATLABSystem: '<S31>/SourceBlock'
     motion_co_SystemCore_setup_fxdc(&motion_controller_withPIC_DW.obj_az);
 
-    // Start for MATLABSystem: '<S31>/SourceBlock'
+    // Start for MATLABSystem: '<S32>/SourceBlock'
     motion_c_SystemCore_setup_fxdcj(&motion_controller_withPIC_DW.obj_en);
 
-    // Start for MATLABSystem: '<S68>/SourceBlock'
+    // Start for MATLABSystem: '<S69>/SourceBlock'
     moti_SystemCore_setup_fxdcjikhl(&motion_controller_withPIC_DW.obj_nf);
 
     // Start for MATLABSystem: '<Root>/Get Parameter18'
@@ -18031,93 +18323,128 @@ void motion_controller_withPIC::initialize()
     ParamGet_motion_controller_withPIC_940.setInitialValue(true);
     motion_controller_withPIC_DW.obj_h.isSetupComplete = true;
 
+    // Start for MATLABSystem: '<Root>/Get Parameter20'
+    motion_controller_withPIC_DW.obj_f0.matlabCodegenIsDeleted = false;
+    motion_controller_withPIC_DW.obj_f0.isInitialized = 1;
+    ParamGet_motion_controller_withPIC_941.initParam(&prmName_7[0]);
+    ParamGet_motion_controller_withPIC_941.setInitialValue(100.0);
+    motion_controller_withPIC_DW.obj_f0.isSetupComplete = true;
+
+    // Start for MATLABSystem: '<Root>/Get Parameter21'
+    motion_controller_withPIC_DW.obj_ou.matlabCodegenIsDeleted = false;
+    motion_controller_withPIC_DW.obj_ou.isInitialized = 1;
+    ParamGet_motion_controller_withPIC_942.initParam(&prmName_8[0]);
+    ParamGet_motion_controller_withPIC_942.setInitialValue(100.0);
+    motion_controller_withPIC_DW.obj_ou.isSetupComplete = true;
+
+    // Start for MATLABSystem: '<Root>/Get Parameter22'
+    motion_controller_withPIC_DW.obj_cp.matlabCodegenIsDeleted = false;
+    motion_controller_withPIC_DW.obj_cp.isInitialized = 1;
+    ParamGet_motion_controller_withPIC_943.initParam(&prmName_9[0]);
+    ParamGet_motion_controller_withPIC_943.setInitialValue(0.8);
+    motion_controller_withPIC_DW.obj_cp.isSetupComplete = true;
+
     // Start for MATLABSystem: '<Root>/Get Parameter19'
     motion_controller_withPIC_DW.obj_ka.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_ka.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_924.initParam(&prmName_7[0]);
+    ParamGet_motion_controller_withPIC_924.initParam(&prmName_a[0]);
     ParamGet_motion_controller_withPIC_924.setInitialValue(1.0);
     motion_controller_withPIC_DW.obj_ka.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter7'
     motion_controller_withPIC_DW.obj_b.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_b.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_605.initParam(&prmName_8[0]);
+    ParamGet_motion_controller_withPIC_605.initParam(&prmName_b[0]);
     ParamGet_motion_controller_withPIC_605.setInitialValue(0.28);
     motion_controller_withPIC_DW.obj_b.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter8'
     motion_controller_withPIC_DW.obj_k.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_k.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_606.initParam(&prmName_9[0]);
+    ParamGet_motion_controller_withPIC_606.initParam(&prmName_c[0]);
     ParamGet_motion_controller_withPIC_606.setInitialValue(0.0045);
     motion_controller_withPIC_DW.obj_k.isSetupComplete = true;
+
+    // Start for MATLABSystem: '<S9>/Get Parameter22'
+    motion_controller_withPIC_DW.obj_fa.matlabCodegenIsDeleted = false;
+    motion_controller_withPIC_DW.obj_fa.isInitialized = 1;
+    ParamGet_motion_controller_withPIC_946.initParam(&prmName_d[0]);
+    ParamGet_motion_controller_withPIC_946.setInitialValue(0.0);
+    motion_controller_withPIC_DW.obj_fa.isSetupComplete = true;
+
+    // Start for MATLABSystem: '<S9>/Get Parameter1'
+    motion_controller_withPIC_DW.obj_f5.matlabCodegenIsDeleted = false;
+    motion_controller_withPIC_DW.obj_f5.isInitialized = 1;
+    ParamGet_motion_controller_withPIC_948.initParam(&prmName_e[0]);
+    ParamGet_motion_controller_withPIC_948.setInitialValue(0.0);
+    motion_controller_withPIC_DW.obj_f5.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter6'
     motion_controller_withPIC_DW.obj_iv.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_iv.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_907.initParam(&prmName_a[0]);
+    ParamGet_motion_controller_withPIC_907.initParam(&prmName_f[0]);
     ParamGet_motion_controller_withPIC_907.setInitialValue(0.0);
     motion_controller_withPIC_DW.obj_iv.isSetupComplete = true;
 
     // Start for MATLABSystem: '<S13>/Get Parameter20'
     motion_controller_withPIC_DW.obj_my.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_my.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_916.initParam(&prmName_b[0]);
+    ParamGet_motion_controller_withPIC_916.initParam(&prmName_g[0]);
     ParamGet_motion_controller_withPIC_916.setInitialValue(0.0);
     motion_controller_withPIC_DW.obj_my.isSetupComplete = true;
 
     // Start for MATLABSystem: '<S20>/SinkBlock'
     motion_control_SystemCore_setup(&motion_controller_withPIC_DW.obj_ng);
 
-    // Start for MATLABSystem: '<S32>/SourceBlock'
+    // Start for MATLABSystem: '<S33>/SourceBlock'
     motion__SystemCore_setup_fxdcji(&motion_controller_withPIC_DW.obj_dp);
 
     // Start for MATLABSystem: '<Root>/Get Parameter17'
     motion_controller_withPIC_DW.obj_pt.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_pt.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_910.initParam(&prmName_c[0]);
+    ParamGet_motion_controller_withPIC_910.initParam(&prmName_h[0]);
     ParamGet_motion_controller_withPIC_910.setInitialValue(true);
     motion_controller_withPIC_DW.obj_pt.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter9'
     motion_controller_withPIC_DW.obj_n.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_n.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_614.initParam(&prmName_d[0]);
+    ParamGet_motion_controller_withPIC_614.initParam(&prmName_i[0]);
     ParamGet_motion_controller_withPIC_614.setInitialValue(-49.824);
     motion_controller_withPIC_DW.obj_n.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter10'
     motion_controller_withPIC_DW.obj_ba.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_ba.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_615.initParam(&prmName_e[0]);
+    ParamGet_motion_controller_withPIC_615.initParam(&prmName_j[0]);
     ParamGet_motion_controller_withPIC_615.setInitialValue(1.128);
     motion_controller_withPIC_DW.obj_ba.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter11'
     motion_controller_withPIC_DW.obj_ff.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_ff.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_616.initParam(&prmName_f[0]);
+    ParamGet_motion_controller_withPIC_616.initParam(&prmName_k[0]);
     ParamGet_motion_controller_withPIC_616.setInitialValue(0.431);
     motion_controller_withPIC_DW.obj_ff.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter12'
     motion_controller_withPIC_DW.obj_co.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_co.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_617.initParam(&prmName_g[0]);
+    ParamGet_motion_controller_withPIC_617.initParam(&prmName_l[0]);
     ParamGet_motion_controller_withPIC_617.setInitialValue(-40.215);
     motion_controller_withPIC_DW.obj_co.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter13'
     motion_controller_withPIC_DW.obj_e5.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_e5.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_618.initParam(&prmName_h[0]);
+    ParamGet_motion_controller_withPIC_618.initParam(&prmName_m[0]);
     ParamGet_motion_controller_withPIC_618.setInitialValue(1.177);
     motion_controller_withPIC_DW.obj_e5.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter14'
     motion_controller_withPIC_DW.obj_hb.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_hb.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_619.initParam(&prmName_i[0]);
+    ParamGet_motion_controller_withPIC_619.initParam(&prmName_n[0]);
     ParamGet_motion_controller_withPIC_619.setInitialValue(0.399);
     motion_controller_withPIC_DW.obj_hb.isSetupComplete = true;
 
@@ -18130,83 +18457,83 @@ void motion_controller_withPIC::initialize()
     // Start for MATLABSystem: '<S26>/SinkBlock'
     motion_con_SystemCore_setup_fxd(&motion_controller_withPIC_DW.obj_ar);
 
-    // Start for MATLABSystem: '<S69>/SourceBlock'
+    // Start for MATLABSystem: '<S70>/SourceBlock'
     mot_SystemCore_setup_fxdcjikhl4(&motion_controller_withPIC_DW.obj_mo);
 
     // Start for MATLABSystem: '<S10>/Get Parameter3'
     motion_controller_withPIC_DW.obj_p3.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_p3.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_621.initParam(&prmName_j[0]);
+    ParamGet_motion_controller_withPIC_621.initParam(&prmName_o[0]);
     ParamGet_motion_controller_withPIC_621.setInitialValue(1.0);
     motion_controller_withPIC_DW.obj_p3.isSetupComplete = true;
 
     // Start for MATLABSystem: '<S10>/Get Parameter1'
     motion_controller_withPIC_DW.obj_i.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_i.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_625.initParam(&prmName_k[0]);
+    ParamGet_motion_controller_withPIC_625.initParam(&prmName_p[0]);
     ParamGet_motion_controller_withPIC_625.setInitialValue(false);
     motion_controller_withPIC_DW.obj_i.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter'
     motion_controller_withPIC_DW.obj_ay.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_ay.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_557.initParam(&prmName_l[0]);
+    ParamGet_motion_controller_withPIC_557.initParam(&prmName_q[0]);
     ParamGet_motion_controller_withPIC_557.setInitialValue(40.0);
     motion_controller_withPIC_DW.obj_ay.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter1'
     motion_controller_withPIC_DW.obj_hm.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_hm.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_558.initParam(&prmName_m[0]);
+    ParamGet_motion_controller_withPIC_558.initParam(&prmName_r[0]);
     ParamGet_motion_controller_withPIC_558.setInitialValue(2.0);
     motion_controller_withPIC_DW.obj_hm.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter2'
     motion_controller_withPIC_DW.obj_di.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_di.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_559.initParam(&prmName_n[0]);
+    ParamGet_motion_controller_withPIC_559.initParam(&prmName_s[0]);
     ParamGet_motion_controller_withPIC_559.setInitialValue(40.0);
     motion_controller_withPIC_DW.obj_di.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter3'
     motion_controller_withPIC_DW.obj_pw.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_pw.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_560.initParam(&prmName_o[0]);
+    ParamGet_motion_controller_withPIC_560.initParam(&prmName_t[0]);
     ParamGet_motion_controller_withPIC_560.setInitialValue(2.0);
     motion_controller_withPIC_DW.obj_pw.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter4'
     motion_controller_withPIC_DW.obj_ny.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_ny.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_561.initParam(&prmName_p[0]);
+    ParamGet_motion_controller_withPIC_561.initParam(&prmName_u[0]);
     ParamGet_motion_controller_withPIC_561.setInitialValue(2.0);
     motion_controller_withPIC_DW.obj_ny.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter5'
     motion_controller_withPIC_DW.obj_j.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_j.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_562.initParam(&prmName_q[0]);
+    ParamGet_motion_controller_withPIC_562.initParam(&prmName_v[0]);
     ParamGet_motion_controller_withPIC_562.setInitialValue(5.0);
     motion_controller_withPIC_DW.obj_j.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter15'
     motion_controller_withPIC_DW.obj_kx.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_kx.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_631.initParam(&prmName_r[0]);
+    ParamGet_motion_controller_withPIC_631.initParam(&prmName_w[0]);
     ParamGet_motion_controller_withPIC_631.setInitialValue(2.0);
     motion_controller_withPIC_DW.obj_kx.isSetupComplete = true;
 
     // Start for MATLABSystem: '<Root>/Get Parameter16'
     motion_controller_withPIC_DW.obj_ma.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_ma.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_632.initParam(&prmName_s[0]);
+    ParamGet_motion_controller_withPIC_632.initParam(&prmName_x[0]);
     ParamGet_motion_controller_withPIC_632.setInitialValue(5.0);
     motion_controller_withPIC_DW.obj_ma.isSetupComplete = true;
 
     // Start for MATLABSystem: '<S10>/Get Parameter2'
     motion_controller_withPIC_DW.obj_ls.matlabCodegenIsDeleted = false;
     motion_controller_withPIC_DW.obj_ls.isInitialized = 1;
-    ParamGet_motion_controller_withPIC_629.initParam(&prmName_t[0]);
+    ParamGet_motion_controller_withPIC_629.initParam(&prmName_y[0]);
     ParamGet_motion_controller_withPIC_629.setInitialValue(false);
     motion_controller_withPIC_DW.obj_ls.isSetupComplete = true;
   }
@@ -18215,26 +18542,26 @@ void motion_controller_withPIC::initialize()
 // Model terminate function
 void motion_controller_withPIC::terminate()
 {
-  // Terminate for MATLABSystem: '<S30>/SourceBlock'
+  // Terminate for MATLABSystem: '<S31>/SourceBlock'
   if (!motion_controller_withPIC_DW.obj_az.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_az.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S30>/SourceBlock'
+  // End of Terminate for MATLABSystem: '<S31>/SourceBlock'
 
-  // Terminate for MATLABSystem: '<S31>/SourceBlock'
+  // Terminate for MATLABSystem: '<S32>/SourceBlock'
   if (!motion_controller_withPIC_DW.obj_en.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_en.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S31>/SourceBlock'
+  // End of Terminate for MATLABSystem: '<S32>/SourceBlock'
 
-  // Terminate for MATLABSystem: '<S68>/SourceBlock'
+  // Terminate for MATLABSystem: '<S69>/SourceBlock'
   if (!motion_controller_withPIC_DW.obj_nf.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_nf.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S68>/SourceBlock'
+  // End of Terminate for MATLABSystem: '<S69>/SourceBlock'
 
   // Terminate for MATLABSystem: '<Root>/Get Parameter18'
   if (!motion_controller_withPIC_DW.obj_h.matlabCodegenIsDeleted) {
@@ -18242,6 +18569,27 @@ void motion_controller_withPIC::terminate()
   }
 
   // End of Terminate for MATLABSystem: '<Root>/Get Parameter18'
+
+  // Terminate for MATLABSystem: '<Root>/Get Parameter20'
+  if (!motion_controller_withPIC_DW.obj_f0.matlabCodegenIsDeleted) {
+    motion_controller_withPIC_DW.obj_f0.matlabCodegenIsDeleted = true;
+  }
+
+  // End of Terminate for MATLABSystem: '<Root>/Get Parameter20'
+
+  // Terminate for MATLABSystem: '<Root>/Get Parameter21'
+  if (!motion_controller_withPIC_DW.obj_ou.matlabCodegenIsDeleted) {
+    motion_controller_withPIC_DW.obj_ou.matlabCodegenIsDeleted = true;
+  }
+
+  // End of Terminate for MATLABSystem: '<Root>/Get Parameter21'
+
+  // Terminate for MATLABSystem: '<Root>/Get Parameter22'
+  if (!motion_controller_withPIC_DW.obj_cp.matlabCodegenIsDeleted) {
+    motion_controller_withPIC_DW.obj_cp.matlabCodegenIsDeleted = true;
+  }
+
+  // End of Terminate for MATLABSystem: '<Root>/Get Parameter22'
 
   // Terminate for MATLABSystem: '<Root>/Get Parameter19'
   if (!motion_controller_withPIC_DW.obj_ka.matlabCodegenIsDeleted) {
@@ -18264,6 +18612,20 @@ void motion_controller_withPIC::terminate()
 
   // End of Terminate for MATLABSystem: '<Root>/Get Parameter8'
 
+  // Terminate for MATLABSystem: '<S9>/Get Parameter22'
+  if (!motion_controller_withPIC_DW.obj_fa.matlabCodegenIsDeleted) {
+    motion_controller_withPIC_DW.obj_fa.matlabCodegenIsDeleted = true;
+  }
+
+  // End of Terminate for MATLABSystem: '<S9>/Get Parameter22'
+
+  // Terminate for MATLABSystem: '<S9>/Get Parameter1'
+  if (!motion_controller_withPIC_DW.obj_f5.matlabCodegenIsDeleted) {
+    motion_controller_withPIC_DW.obj_f5.matlabCodegenIsDeleted = true;
+  }
+
+  // End of Terminate for MATLABSystem: '<S9>/Get Parameter1'
+
   // Terminate for MATLABSystem: '<Root>/Get Parameter6'
   if (!motion_controller_withPIC_DW.obj_iv.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_iv.matlabCodegenIsDeleted = true;
@@ -18285,12 +18647,12 @@ void motion_controller_withPIC::terminate()
 
   // End of Terminate for MATLABSystem: '<S20>/SinkBlock'
 
-  // Terminate for MATLABSystem: '<S32>/SourceBlock'
+  // Terminate for MATLABSystem: '<S33>/SourceBlock'
   if (!motion_controller_withPIC_DW.obj_dp.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_dp.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S32>/SourceBlock'
+  // End of Terminate for MATLABSystem: '<S33>/SourceBlock'
 
   // Terminate for MATLABSystem: '<Root>/Get Parameter17'
   if (!motion_controller_withPIC_DW.obj_pt.matlabCodegenIsDeleted) {
@@ -18362,55 +18724,55 @@ void motion_controller_withPIC::terminate()
 
   // End of Terminate for MATLABSystem: '<S26>/SinkBlock'
 
-  // Terminate for MATLABSystem: '<S69>/SourceBlock'
+  // Terminate for MATLABSystem: '<S70>/SourceBlock'
   if (!motion_controller_withPIC_DW.obj_mo.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_mo.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S69>/SourceBlock'
+  // End of Terminate for MATLABSystem: '<S70>/SourceBlock'
 
   // Terminate for Atomic SubSystem: '<Root>/controller'
-  // Terminate for MATLABSystem: '<S46>/Get Parameter4'
-  if (!motion_controller_withPIC_DW.obj_e.matlabCodegenIsDeleted) {
-    motion_controller_withPIC_DW.obj_e.matlabCodegenIsDeleted = true;
+  // Terminate for MATLABSystem: '<S47>/Get Parameter4'
+  if (!motion_controller_withPIC_DW.obj_el.matlabCodegenIsDeleted) {
+    motion_controller_withPIC_DW.obj_el.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S46>/Get Parameter4'
+  // End of Terminate for MATLABSystem: '<S47>/Get Parameter4'
 
-  // Terminate for MATLABSystem: '<S46>/Get Parameter2'
+  // Terminate for MATLABSystem: '<S47>/Get Parameter2'
   if (!motion_controller_withPIC_DW.obj_c.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_c.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S46>/Get Parameter2'
+  // End of Terminate for MATLABSystem: '<S47>/Get Parameter2'
 
-  // Terminate for MATLABSystem: '<S46>/Get Parameter3'
+  // Terminate for MATLABSystem: '<S47>/Get Parameter3'
   if (!motion_controller_withPIC_DW.obj_l4.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_l4.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S46>/Get Parameter3'
+  // End of Terminate for MATLABSystem: '<S47>/Get Parameter3'
 
-  // Terminate for MATLABSystem: '<S46>/Get Parameter5'
+  // Terminate for MATLABSystem: '<S47>/Get Parameter5'
   if (!motion_controller_withPIC_DW.obj_g.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_g.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S46>/Get Parameter5'
+  // End of Terminate for MATLABSystem: '<S47>/Get Parameter5'
 
-  // Terminate for MATLABSystem: '<S46>/Get Parameter1'
+  // Terminate for MATLABSystem: '<S47>/Get Parameter1'
   if (!motion_controller_withPIC_DW.obj_o.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_o.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S46>/Get Parameter1'
+  // End of Terminate for MATLABSystem: '<S47>/Get Parameter1'
 
-  // Terminate for MATLABSystem: '<S46>/Get Parameter'
+  // Terminate for MATLABSystem: '<S47>/Get Parameter'
   if (!motion_controller_withPIC_DW.obj_m.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_m.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S46>/Get Parameter'
+  // End of Terminate for MATLABSystem: '<S47>/Get Parameter'
 
   // Terminate for MATLABSystem: '<S15>/Get Parameter1'
   if (!motion_controller_withPIC_DW.obj_f.matlabCodegenIsDeleted) {
@@ -18512,6 +18874,13 @@ void motion_controller_withPIC::terminate()
 
   // End of Terminate for MATLABSystem: '<S16>/Get Parameter1'
 
+  // Terminate for MATLABSystem: '<S16>/Get Parameter2'
+  if (!motion_controller_withPIC_DW.obj_e.matlabCodegenIsDeleted) {
+    motion_controller_withPIC_DW.obj_e.matlabCodegenIsDeleted = true;
+  }
+
+  // End of Terminate for MATLABSystem: '<S16>/Get Parameter2'
+
   // Terminate for MATLABSystem: '<S16>/Get Parameter6'
   if (!motion_controller_withPIC_DW.obj.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj.matlabCodegenIsDeleted = true;
@@ -18530,20 +18899,20 @@ void motion_controller_withPIC::terminate()
   // Terminate for Enabled SubSystem: '<Root>/cmd_pub'
   motion_control_CurrentTime_Term(&motion_controller_withPIC_DW.CurrentTime1);
 
-  // Terminate for MATLABSystem: '<S41>/SinkBlock'
+  // Terminate for MATLABSystem: '<S42>/SinkBlock'
   if (!motion_controller_withPIC_DW.obj_bq.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_bq.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S41>/SinkBlock'
+  // End of Terminate for MATLABSystem: '<S42>/SinkBlock'
   motion_control_CurrentTime_Term(&motion_controller_withPIC_DW.CurrentTime);
 
-  // Terminate for MATLABSystem: '<S42>/SinkBlock'
+  // Terminate for MATLABSystem: '<S43>/SinkBlock'
   if (!motion_controller_withPIC_DW.obj_ca.matlabCodegenIsDeleted) {
     motion_controller_withPIC_DW.obj_ca.matlabCodegenIsDeleted = true;
   }
 
-  // End of Terminate for MATLABSystem: '<S42>/SinkBlock'
+  // End of Terminate for MATLABSystem: '<S43>/SinkBlock'
   // End of Terminate for SubSystem: '<Root>/cmd_pub'
 }
 

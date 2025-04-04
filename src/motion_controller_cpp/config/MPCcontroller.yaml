@@ -1,26 +1,27 @@
 motion_controller_withPIC:
   ros__parameters:
-    Weight_Y: 180.0
+    Weight_Y: 200.0
     Weight_Vy: 10.0
-    Weight_Yaw: 40.0
+    Weight_Yaw: 50.0
     Weight_YawRate: 10.0
-    Weight_df: 10.0
-    Weight_dr: 25.0
-    Weight_ddf: 10.0
+    Weight_df: 30.0
+    Weight_dr: 12.0
+    Weight_ddf: 40.0
     Weight_ddr: 40.0
     mpc_lbub: 0.047123
-    tireBf: -10.824
-    tireCf: 1.228
-    tireMuf: 0.431
-    tireBr: -10.215
-    tireCr: 1.277
-    tireMur: 0.399
-    # tireBf: -14.824
-    # tireCf: 1.238
-    # tireMuf: 0.435
-    # tireBr: -14.215
+    mpcDesiredYaw0r1DefaultAuto: 1.0
+    # tireBf: -10.824
+    # tireCf: 1.228
+    # tireMuf: 0.431
+    # tireBr: -10.215
     # tireCr: 1.277
-    # tireMur: 0.405
+    # tireMur: 0.399
+    tireBf: -14.824
+    tireCf: 1.238
+    tireMuf: 0.435
+    tireBr: -14.215
+    tireCr: 1.277
+    tireMur: 0.405
     # tireBf: -49.824
     # tireCf: 1.128
     # tireMuf: 0.431
@@ -37,13 +38,18 @@ motion_controller_withPIC:
     acc_rate_mps: 0.0
     drive_by_2: False
     FWS: True
-    picActivationDAy: 0.18
+    picActivationDAy: 0.58
     picActivationDomegaz: 0.00
-    testWithDrive: True
-    noControl: False
-    isMpcN20Else10: True
+    testWithDrive: False
+    noControl: True
+    isMpcN20Else10: False
     isSetSteeringDead: True
-    vxAdd: 0.1
-    t265offset: 0.0
-    rLPF: False
-    rFilterUpdateRate: 0.01
+    vxAdd: -0.1
+    t265offset: 0.065
+    isGsFilterElseMean: False
+    rGsDataN5r10r20: 50.0
+    rGsFs: 100.0
+    rGsSigma: 0.8
+    rFilterUpdateRate: 0.1
+    vxDeadZone: 0.05
+    vyDeadZone: 0.05

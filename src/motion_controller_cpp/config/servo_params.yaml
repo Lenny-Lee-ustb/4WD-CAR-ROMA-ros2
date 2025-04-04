@@ -12,9 +12,9 @@ servo_rs485_node : # node name
     right_min_position_f: 1558
     right_mid_position_f: 2048
     right_max_position_f: 2538
-    left_min_position_r: 1558
-    left_mid_position_r: 2048
-    left_max_position_r: 2538
+    left_min_position_r: 1518
+    left_mid_position_r: 2003
+    left_max_position_r: 2498
     right_min_position_r: 1558
     right_mid_position_r: 2048
     right_max_position_r: 2538
