@@ -22,6 +22,7 @@ class Filter(Node):
         self.ImuFilterFrameID = self.declare_parameter('ImuFilterFrameID','Imu_filter_frame').value
         self.T265FilterFrameID = self.declare_parameter('T265FilterFrameID','t265_filter_frame').value
         self.subscriber_imu = self.create_subscription(msg_type=Imu, topic='Imu_data', callback=self.imu_filter, qos_profile=qos_profile_sub)
+        # self.subscriber_imu = self.create_subscription(msg_type=Imu, topic='imu/data', callback=self.imu_filter, qos_profile=qos_profile_sub)
         self.publishers_imu = self.create_publisher(msg_type=Imu, topic='Imu_data_filter', qos_profile=qos_profile_pub)
         self.subscriber_t265 = self.create_subscription(msg_type=Odometry, topic='/camera/pose/sample', callback=self.t265_filter, qos_profile=qos_profile_sub)
         self.publishers_t265 = self.create_publisher(msg_type=Odometry, topic='t265_odometry_filter', qos_profile=qos_profile_pub)
@@ -34,6 +35,7 @@ class Filter(Node):
         data.angular_velocity.x = float((self.imu_filter_coeffs @ self.imu_data_buffer.angular_velocity_x)[0])
         data.angular_velocity.y = float((self.imu_filter_coeffs @ self.imu_data_buffer.angular_velocity_y)[0])
         data.angular_velocity.z = float((self.imu_filter_coeffs @ self.imu_data_buffer.angular_velocity_z)[0])
+        # data.angular_velocity.z = float(self.imu_data_buffer.angular_velocity_z[0])
         data.linear_acceleration.x = float((self.imu_filter_coeffs @ self.imu_data_buffer.linear_acceleration_x)[0])
         data.linear_acceleration.y = float((self.imu_filter_coeffs @ self.imu_data_buffer.linear_acceleration_y)[0])
         data.linear_acceleration.z = float((self.imu_filter_coeffs @ self.imu_data_buffer.linear_acceleration_z)[0])

@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slx'.
 //
-// Model version                  : 2.251
+// Model version                  : 2.255
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Tue Dec  3 20:49:54 2024
+// C/C++ source code generated on : Tue Jul  8 21:38:08 2025
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)

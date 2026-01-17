@@ -1,5 +1,5 @@
 // Copyright 2022-2023 The MathWorks, Inc.
-// Generated 03-Dec-2024 20:50:02
+// Generated 08-Jul-2025 21:38:13
 #ifndef _SLROS2_INITIALIZE_H_
 #define _SLROS2_INITIALIZE_H_
 #include "motion_controller_slx_types.h"
@@ -47,6 +47,8 @@ extern SimulinkSubscriber<sbus_interface::msg::Sbus,SL_Bus_sbus_interface_Sbus> 
 extern SimulinkSubscriber<custom_interfaces::msg::ActuatorState,SL_Bus_custom_interfaces_ActuatorState> Sub_motion_controller_slx_238;
 // For Block motion_controller_slx/controller/Get Parameter1
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_217;
+// For Block motion_controller_slx/controller/Get Parameter2
+extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_435;
 // For Block motion_controller_slx/controller/Subsystem/Get Parameter
 extern SimulinkParameterGetter<real64_T,double> ParamGet_motion_controller_slx_316;
 // For Block motion_controller_slx/controller/Subsystem/Get Parameter1

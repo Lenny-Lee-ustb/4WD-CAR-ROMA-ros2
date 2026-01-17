@@ -15,9 +15,15 @@ def generate_launch_description():
         'config',
         'TD3controller.yaml'))
     
+    # mpccontroller =Node(
+    #     package="motion_controller_withtd3",
+    #     executable="motion_controller_withTD3",
+    #     parameters=[config]
+    # )
+        
     mpccontroller =Node(
-        package="motion_controller_withtd3",
-        executable="motion_controller_withTD3",
+        package="agent2",
+        executable="agent2",
         parameters=[config]
     )
 

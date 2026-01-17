@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slx'.
 //
-// Model version                  : 2.251
+// Model version                  : 2.255
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Tue Dec  3 20:49:54 2024
+// C/C++ source code generated on : Tue Jul  8 21:38:08 2025
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -22,43 +22,43 @@
 P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   // Variable: L
   //  Referenced by:
-  //    '<S20>/MATLAB Function'
-  //    '<S21>/getFz'
-  //    '<S22>/MATLAB Function'
+  //    '<S21>/MATLAB Function'
+  //    '<S22>/getFz'
+  //    '<S23>/MATLAB Function'
 
   0.494,
 
   // Variable: Tw
   //  Referenced by:
-  //    '<S20>/MATLAB Function'
-  //    '<S22>/MATLAB Function'
+  //    '<S21>/MATLAB Function'
+  //    '<S23>/MATLAB Function'
 
   0.34054,
 
   // Variable: a
-  //  Referenced by: '<S21>/getFz'
+  //  Referenced by: '<S22>/getFz'
 
   0.247,
 
   // Variable: b
   //  Referenced by:
-  //    '<S21>/getFz'
-  //    '<S22>/MATLAB Function'
+  //    '<S22>/getFz'
+  //    '<S23>/MATLAB Function'
 
   0.247,
 
   // Variable: g
-  //  Referenced by: '<S21>/getFz'
+  //  Referenced by: '<S22>/getFz'
 
   9.8,
 
   // Variable: h
-  //  Referenced by: '<S21>/getFz'
+  //  Referenced by: '<S22>/getFz'
 
   0.0839,
 
   // Variable: m
-  //  Referenced by: '<S21>/getFz'
+  //  Referenced by: '<S22>/getFz'
 
   10.83,
 
@@ -68,7 +68,7 @@ P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   1000,
 
   // Computed Parameter: Out1_Y0
-  //  Referenced by: '<S34>/Out1'
+  //  Referenced by: '<S35>/Out1'
 
   {
     {
@@ -409,7 +409,7 @@ P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   },
 
   // Computed Parameter: Constant_Value
-  //  Referenced by: '<S31>/Constant'
+  //  Referenced by: '<S32>/Constant'
 
   {
     {
@@ -1262,7 +1262,7 @@ P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   },
 
   // Computed Parameter: Out1_Y0_f
-  //  Referenced by: '<S33>/Out1'
+  //  Referenced by: '<S34>/Out1'
 
   {
     {
@@ -1300,7 +1300,7 @@ P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   },
 
   // Computed Parameter: Constant_Value_d
-  //  Referenced by: '<S30>/Constant'
+  //  Referenced by: '<S31>/Constant'
 
   {
     {
@@ -1368,67 +1368,67 @@ P_motion_controller_slx_T motion_controller_slx::motion_controller_slx_P = {
   -0.75,
 
   // Expression: J
-  //  Referenced by: '<S21>/MATLAB Function'
+  //  Referenced by: '<S22>/MATLAB Function'
 
   0.00101,
 
   // Expression: Re
-  //  Referenced by: '<S21>/MATLAB Function'
+  //  Referenced by: '<S22>/MATLAB Function'
 
   0.065,
 
   // Expression: 0.00399/4
-  //  Referenced by: '<S21>/Constant'
+  //  Referenced by: '<S22>/Constant'
 
   0.0009975,
 
   // Expression: 0.0104/4
-  //  Referenced by: '<S21>/Constant1'
+  //  Referenced by: '<S22>/Constant1'
 
   0.0026,
 
   // Expression: Re
-  //  Referenced by: '<S21>/Constant2'
+  //  Referenced by: '<S22>/Constant2'
 
   0.065,
 
   // Expression: 0.036675
-  //  Referenced by: '<S21>/Gain'
+  //  Referenced by: '<S22>/Gain'
 
   0.036675,
 
   // Expression: 0.21275
-  //  Referenced by: '<S21>/Constant3'
+  //  Referenced by: '<S22>/Constant3'
 
   0.21275,
 
   // Expression: 0
-  //  Referenced by: '<S22>/Gain'
+  //  Referenced by: '<S23>/Gain'
 
   0.0,
 
   // Expression: 500
-  //  Referenced by: '<S19>/Constant2'
+  //  Referenced by: '<S20>/Constant2'
 
   500.0,
 
   // Expression: 1/500
-  //  Referenced by: '<S19>/Gain1'
+  //  Referenced by: '<S20>/Gain1'
 
   0.002,
 
   // Expression: 500
-  //  Referenced by: '<S19>/Constant'
+  //  Referenced by: '<S20>/Constant'
 
   500.0,
 
   // Expression: 1/500
-  //  Referenced by: '<S19>/Gain'
+  //  Referenced by: '<S20>/Gain'
 
   0.002,
 
   // Expression: -1
-  //  Referenced by: '<S19>/Gain2'
+  //  Referenced by: '<S20>/Gain2'
 
   -1.0,
 

@@ -1,0 +1,12 @@
+motion_controller_cktest:
+  ros__parameters:
+    spdMax: 4.5
+    angleMax: 0.515
+    ackermann: 1.0
+    effortMax: 1.6
+    steer_rate_dps: 0.0
+    acc_rate_mps: 0.0
+    drive_by_2: False
+    FWS: True
+    effortTarget: 0.7
+  

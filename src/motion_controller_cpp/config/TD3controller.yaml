@@ -1,27 +1,36 @@
-motion_controller_withTD3:
+# motion_controller_withTD3:
+agent2:
   ros__parameters:
-    spdMax: 4.5
-    spdMax1: 4.5
+    spdMax: 3.5
+    spdMax1: 3.5
     angleMax: 0.7
     angleMaxMpc: 0.7
     ackermann: 1.0
     effortMax: 0.6
     steer_rate_dps: 0.0
-    acc_rate_mps: 0.0
+    acc_rate_mps: 4.0
     drive_by_2: False
     FWS: True
     picActivationDAy: 0.58
-    picActivationDomegaz: 0.00
-    testWithDrive: True
-    noControl: True
-    isMpcN20Else10: False
-    isSetSteeringDead: True
-    vxAdd: 1.0
+    picActivationDomegaz: 0.0
+    testWithDrive: False
+    noControl: False
+    isSetSteeringDead: False
+    vxAdd: 0.05
     t265offset: 0.065
     isGsFilterElseMean: False
     rGsDataN5r10r20: 50.0
     rGsFs: 100.0
     rGsSigma: 0.8
-    rFilterUpdateRate: 0.1
+    rFilterUpdateRate: 1.0
+    deltaGain: 1.0
+    XDeadZone: 0.0
+    YDeadZone: 0.0
+    yawDeadZone: 0.005
+    rDeadZone: 0.05
+    AxDeadZone: 0.0
+    AyDeadZone: 0.0
     vxDeadZone: 0.05
     vyDeadZone: 0.05
+    steeringAngleBiasDeg: 0.0
+# ros2 param get /motion_controller_withTD3 vxAdd

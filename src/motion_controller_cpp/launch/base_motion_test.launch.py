@@ -69,13 +69,20 @@ def generate_launch_description():
         output='screen'
     )
 
-    config = os.path.join(
+    path_camera = os.path.join(
         get_package_share_directory('realsense2_camera'),
         'launch',
     )
     camera = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([config, '/rs_launch.py'])
+            PythonLaunchDescriptionSource([path_camera, '/rs_launch.py'])
         )
+    # path_IMU = os.path.join(
+    #     get_package_share_directory('microstrain_inertial_driver'),
+    #     'launch',
+    # )
+    # superIMU = IncludeLaunchDescription(
+    #         PythonLaunchDescriptionSource([path_IMU, '/microstrain_launch.py'])
+    #     )
     filter_node = Node(
         package="filter_py",
         executable="filter_py",
@@ -89,6 +96,7 @@ def generate_launch_description():
     ld.add_action(battery_node)
     ld.add_action(wheel_node)
     ld.add_entity(camera)
+    # ld.add_entity(superIMU)
     ld.add_action(filter_node)
 
     return ld

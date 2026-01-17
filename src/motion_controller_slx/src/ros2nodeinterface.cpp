@@ -4,9 +4,9 @@
 //
 // Code generated for Simulink model 'motion_controller_slx'.
 //
-// Model version                  : 2.251
+// Model version                  : 2.255
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Tue Dec 03 20:50:03 2024
+// C/C++ source code generated on : Tue Jul 08 21:38:14 2025
 //
 #ifdef _MSC_VER
 #pragma warning(push)
